@@ -1,0 +1,9 @@
+packages:
+  - apps/web
+  - packages/nc-lit-cards
+  - packages/shared-types
+  - services/nexconn-bridge-node
+strictPeerDependencies: false
+autoInstallPeers: true
+allowBuilds:
+  esbuild: false

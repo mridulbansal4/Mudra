@@ -1,0 +1,99 @@
+name: SAMADHAN-OS Polyglot CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  security-and-secrets:
+    name: Secret Scan & Client Bundle Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Ensure NEXCONN_SECRET_KEY is never in apps/web
+        run: |
+          if [ -d apps/web ] && grep -R "NEXCONN_SECRET_KEY" apps/web/; then
+            echo "FATAL: NEXCONN_SECRET_KEY leaked into client code!"
+            exit 1
+          fi
+
+  go-deal-engine:
+    name: Go 1.24 Deal Engine & Escrow FSM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+      - name: Run Go Vet & Race Tests
+        working-directory: services/deal-engine-go
+        run: |
+          if [ -f go.mod ]; then
+            go vet ./...
+            go test -v -race ./...
+          fi
+
+  rust-assay-verifier:
+    name: Rust 1.85 Forensic Assay & WASM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: "1.85.0"
+          targets: wasm32-unknown-unknown
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - name: Run Rust Clippy & Unit Tests
+        working-directory: services/assay-verifier-rs
+        run: |
+          if [ -f Cargo.toml ]; then
+            cargo fmt --all -- --check
+            cargo clippy --all-targets -- -D warnings
+            cargo test --release
+          fi
+      - name: Verify WASM Target Compilation
+        working-directory: packages/assay-wasm-rs
+        run: |
+          if [ -f Cargo.toml ]; then
+            cargo check --target wasm32-unknown-unknown
+          fi
+
+  node-and-web:
+    name: Node 22 Nexconn Bridge & React 19 HeroUI v3 Web
+    runs-on: ubuntu-latest
+    needs: [security-and-secrets]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate OpenAPI 3.1 Contract (API-01..API-18)
+        run: |
+          if [ -f api/openapi.yaml ]; then
+            grep -q "openapi: 3.1.0" api/openapi.yaml
+            test "$(grep -c "operationId: API-" api/openapi.yaml)" -eq 18
+          fi
+      - name: Install, Typecheck, Unit Test & Hallmark Sloplint Gate
+        run: |
+          if [ -f package.json ]; then
+            pnpm install --frozen-lockfile
+            pnpm -r typecheck
+            pnpm -r test:unit
+            npx sloplint --render http://localhost:5173
+          fi
+

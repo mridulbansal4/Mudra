@@ -1,0 +1,986 @@
+openapi: 3.1.0
+info:
+  title: SAMADHAN-OS (SamvadDeal) Polyglot API Specification
+  version: 0.1.0
+  summary: Real-Time Cross-Lingual Video-Escrow Commerce & 90s Freeze-Locked Dispute Tribunal API
+  description: |
+    Unified OpenAPI 3.1 contract across:
+    - `services/deal-engine-go` (Go 1.24 · Port 4002)
+    - `services/nexconn-bridge-node` (Node.js 22 + `@nexconn/server-sdk@0.1.2` · Port 4001)
+    - `services/assay-verifier-rs` (Rust 1.85 Axum · Port 4003)
+  contact:
+    name: Team Chanakya — Nexconn Build Challenge 2026
+    url: https://reskilll.com/hack/nexconn
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: http://localhost:4002
+    description: Local Go Deal Engine & API Gateway
+  - url: https://api.samadhan-os.dev
+    description: Production Polyglot Edge Gateway
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ProblemDetails:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message, trace_id, retryable]
+          properties:
+            code:
+              type: string
+              example: ERR_FSM_CONFLICT
+            message:
+              type: string
+            trace_id:
+              type: string
+            retryable:
+              type: boolean
+    SessionRequest:
+      type: object
+      required: [display_name, role, preferred_locale]
+      properties:
+        persona_preset:
+          type: string
+          enum: [P-01_RAJESH, P-02_VIKRAM, P-03_AARAV, P-04_MEERA, P-05_JUDGE_GUEST]
+        display_name:
+          type: string
+          example: Rajesh Natarajan
+        role:
+          type: string
+          enum: [buyer, seller, arbitrator, guest]
+        preferred_locale:
+          type: string
+          enum: [ta-IN, hi-IN, mr-IN, pa-IN, ml-IN, en-IN, en-SG]
+        client_platform:
+          type: string
+          enum: [web, mobile_expo, sandbox_split]
+    SessionResponse:
+      type: object
+      required: [user, nexconn, samadhan_jwt]
+      properties:
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            nexconn_user_id:
+              type: string
+            display_name:
+              type: string
+            role:
+              type: string
+            preferred_locale:
+              type: string
+        nexconn:
+          type: object
+          properties:
+            app_key:
+              type: string
+            access_token:
+              type: string
+            expires_in_sec:
+              type: integer
+        samadhan_jwt:
+          type: string
+    EscrowTransitionRequest:
+      type: object
+      required: [action, expected_version]
+      properties:
+        action:
+          type: string
+          enum: [LOCK_ESCROW, START_ASSAY, MARK_ASSAY_VERIFIED, RELEASE_FUNDS]
+        expected_version:
+          type: integer
+          minimum: 1
+        upi_mandate_umn:
+          type: string
+    AssayVerifyRequest:
+      type: object
+      required: [nexconn_call_id, stage_tag, challenge_nonce, wasm_blur_laplacian, frame_jpeg_base64]
+      properties:
+        nexconn_call_id:
+          type: string
+        stage_tag:
+          type: string
+          enum: [PRE_SHIPMENT, POST_DELIVERY]
+        challenge_nonce:
+          type: string
+        wasm_blur_laplacian:
+          type: number
+        frame_jpeg_base64:
+          type: string
+        audio_pcm_f32_base64:
+          type: string
+    DisputeFreezeRequest:
+      type: object
+      required: [reason_code, description]
+      properties:
+        reason_code:
+          type: string
+          enum: [TRANSIT_DAMAGE, SERIAL_MISMATCH, SLA_BREACH]
+        description:
+          type: string
+        post_delivery_phash_hex:
+          type: string
+    SandboxProvisionResponse:
+      type: object
+      required: [deal_id, nexconn_channel_id, story_stage, buyer_session, seller_session, escrow_contract]
+      properties:
+        deal_id:
+          type: string
+        nexconn_channel_id:
+          type: string
+        story_stage:
+          type: integer
+          minimum: 1
+          maximum: 4
+        buyer_session:
+          type: object
+          required: [nexconn_user_id, access_token, locale]
+          properties:
+            nexconn_user_id:
+              type: string
+            access_token:
+              type: string
+            locale:
+              type: string
+        seller_session:
+          type: object
+          required: [nexconn_user_id, access_token, locale]
+          properties:
+            nexconn_user_id:
+              type: string
+            access_token:
+              type: string
+            locale:
+              type: string
+        escrow_contract:
+          $ref: "#/components/schemas/EscrowContractSummary"
+    EscrowContractSummary:
+      type: object
+      required: [fsm_state, amount_paise, currency, version]
+      properties:
+        fsm_state:
+          type: string
+          enum: [CREATED, FUNDED, INSPECTION_LIVE, ASSAY_VERIFIED, RELEASED, DISPUTED_FROZEN, ARBITRATED_SPLIT, REFUNDED]
+        amount_paise:
+          type: integer
+        currency:
+          type: string
+          default: INR
+        version:
+          type: integer
+          minimum: 1
+    CreateDealRequest:
+      type: object
+      required: [title, seller_nexconn_id, amount_paise, currency, checklist_items]
+      properties:
+        title:
+          type: string
+        seller_nexconn_id:
+          type: string
+        amount_paise:
+          type: integer
+          minimum: 100
+        currency:
+          type: string
+          default: INR
+        checklist_items:
+          type: array
+          items:
+            type: object
+            required: [id, label, verified]
+            properties:
+              id:
+                type: string
+              label:
+                type: string
+              verified:
+                type: boolean
+    DealRoomResponse:
+      type: object
+      required: [deal_id, nexconn_channel_id, title, story_stage, escrow_contract, checklist_items, assay_logs, system_vouchers]
+      properties:
+        deal_id:
+          type: string
+        nexconn_channel_id:
+          type: string
+        title:
+          type: string
+        story_stage:
+          type: integer
+        escrow_contract:
+          $ref: "#/components/schemas/EscrowContractSummary"
+        checklist_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              label:
+                type: string
+              verified:
+                type: boolean
+        assay_logs:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssayVerifyResponse"
+        system_vouchers:
+          type: array
+          items:
+            type: object
+            properties:
+              voucher_type:
+                type: string
+              curr_voucher_sha256:
+                type: string
+              ed25519_signature:
+                type: string
+    TranslateStreamRequest:
+      type: object
+      required: [sender_nexconn_id, source_locale, target_locale, raw_text]
+      properties:
+        sender_nexconn_id:
+          type: string
+        source_locale:
+          type: string
+        target_locale:
+          type: string
+        raw_text:
+          type: string
+    TranslateStreamResponse:
+      type: object
+      required: [stream_id, pii_scrub_time_us, pii_redacted_count, extracted_terms, nexconn_delivery]
+      properties:
+        stream_id:
+          type: string
+        pii_scrub_time_us:
+          type: integer
+        pii_redacted_count:
+          type: integer
+        extracted_terms:
+          type: object
+          properties:
+            offered_amount_paise:
+              type: integer
+            required_rpm:
+              type: integer
+            warranty_months:
+              type: integer
+        nexconn_delivery:
+          type: string
+    EscrowTransitionResponse:
+      type: object
+      required: [deal_id, prev_state, fsm_state, story_stage, version, go_exec_time_us, system_voucher]
+      properties:
+        deal_id:
+          type: string
+        prev_state:
+          type: string
+        fsm_state:
+          type: string
+          enum: [CREATED, FUNDED, INSPECTION_LIVE, ASSAY_VERIFIED, RELEASED, DISPUTED_FROZEN, ARBITRATED_SPLIT, REFUNDED]
+        story_stage:
+          type: integer
+        version:
+          type: integer
+        go_exec_time_us:
+          type: integer
+        system_voucher:
+          type: object
+          required: [voucher_type, curr_voucher_sha256, ed25519_signature]
+          properties:
+            voucher_type:
+              type: string
+            curr_voucher_sha256:
+              type: string
+            ed25519_signature:
+              type: string
+    AssayStartRequest:
+      type: object
+      required: [stage_tag]
+      properties:
+        stage_tag:
+          type: string
+          enum: [PRE_SHIPMENT, POST_DELIVERY]
+        simulated_hd_camera:
+          type: boolean
+          default: false
+    AssayStartResponse:
+      type: object
+      required: [deal_id, challenge_nonce, required_serial_plate, min_motor_rpm, expires_in_sec]
+      properties:
+        deal_id:
+          type: string
+        challenge_nonce:
+          type: string
+        required_serial_plate:
+          type: string
+        min_motor_rpm:
+          type: number
+        expires_in_sec:
+          type: integer
+    AssayVerifyResponse:
+      type: object
+      required: [assay_passed, frame_phash_hex, audio_fft_rpm_peak, detected_serial_text, rust_compute_ms, fsm_state, ed25519_sig_hex]
+      properties:
+        assay_passed:
+          type: boolean
+        frame_phash_hex:
+          type: string
+        audio_fft_rpm_peak:
+          type: number
+        detected_serial_text:
+          type: string
+        rust_compute_ms:
+          type: number
+        fsm_state:
+          type: string
+        ed25519_sig_hex:
+          type: string
+    DisputeFreezeResponse:
+      type: object
+      required: [dispute_id, channel_frozen, nexconn_api_called, freeze_latency_ms, hamming_distance_phash, ai_tribunal_stream_status, recommended_split]
+      properties:
+        dispute_id:
+          type: string
+        channel_frozen:
+          type: boolean
+        nexconn_api_called:
+          type: string
+        freeze_latency_ms:
+          type: integer
+        hamming_distance_phash:
+          type: integer
+        ai_tribunal_stream_status:
+          type: string
+        recommended_split:
+          type: object
+          required: [buyer_refund_bps, seller_payout_bps, buyer_refund_inr, seller_payout_inr]
+          properties:
+            buyer_refund_bps:
+              type: integer
+            seller_payout_bps:
+              type: integer
+            buyer_refund_inr:
+              type: number
+            seller_payout_inr:
+              type: number
+    DispatchAssignRequest:
+      type: object
+      required: [dispute_id, arbitrator_nexconn_id]
+      properties:
+        dispute_id:
+          type: string
+        arbitrator_nexconn_id:
+          type: string
+    DispatchAssignResponse:
+      type: object
+      required: [dispute_id, nexconn_channel_id, arbitrator_nexconn_id, freeze_remaining_sec, joined_at]
+      properties:
+        dispute_id:
+          type: string
+        nexconn_channel_id:
+          type: string
+        arbitrator_nexconn_id:
+          type: string
+        freeze_remaining_sec:
+          type: integer
+        joined_at:
+          type: string
+          format: date-time
+    DisputeResolveRequest:
+      type: object
+      required: [buyer_refund_bps, seller_payout_bps, expected_version, resolution_note]
+      properties:
+        buyer_refund_bps:
+          type: integer
+          minimum: 0
+          maximum: 10000
+        seller_payout_bps:
+          type: integer
+          minimum: 0
+          maximum: 10000
+        expected_version:
+          type: integer
+          minimum: 1
+        resolution_note:
+          type: string
+    DisputeResolveResponse:
+      type: object
+      required: [dispute_id, deal_id, fsm_state, buyer_refund_paise, seller_payout_paise, channel_unfrozen, system_voucher_sha256, ed25519_sig_hex]
+      properties:
+        dispute_id:
+          type: string
+        deal_id:
+          type: string
+        fsm_state:
+          type: string
+          enum: [ARBITRATED_SPLIT, REFUNDED, RELEASED]
+        buyer_refund_paise:
+          type: integer
+        seller_payout_paise:
+          type: integer
+        channel_unfrozen:
+          type: boolean
+        system_voucher_sha256:
+          type: string
+        ed25519_sig_hex:
+          type: string
+    OpenFlashLotItem:
+      type: object
+      required: [lot_id, nexconn_open_channel_id, title, seller_nexconn_id, reserve_price_paise, current_bid_paise, assay_verified, ends_at]
+      properties:
+        lot_id:
+          type: string
+        nexconn_open_channel_id:
+          type: string
+        title:
+          type: string
+        seller_nexconn_id:
+          type: string
+        reserve_price_paise:
+          type: integer
+        current_bid_paise:
+          type: integer
+        assay_verified:
+          type: boolean
+        ends_at:
+          type: string
+          format: date-time
+    OpenFlashLotsListResponse:
+      type: object
+      required: [open_channel_id, active_lots, community_subchannels]
+      properties:
+        open_channel_id:
+          type: string
+        active_lots:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenFlashLotItem"
+        community_subchannels:
+          type: array
+          items:
+            type: object
+            required: [subchannel_id, slug, title, active_members]
+            properties:
+              subchannel_id:
+                type: string
+              slug:
+                type: string
+              title:
+                type: string
+              active_members:
+                type: integer
+    BroadcastOpenFlashLotRequest:
+      type: object
+      required: [open_channel_id, seller_nexconn_id, title, reserve_price_paise, duration_sec]
+      properties:
+        open_channel_id:
+          type: string
+        seller_nexconn_id:
+          type: string
+        title:
+          type: string
+        reserve_price_paise:
+          type: integer
+        duration_sec:
+          type: integer
+    CommunitySubchannelRequest:
+      type: object
+      required: [community_channel_id, category_slug, action]
+      properties:
+        community_channel_id:
+          type: string
+        category_slug:
+          type: string
+          enum: [sub/machinery, sub/refurb-tech, sub/agri-mandi, sub/campus-thrift]
+        action:
+          type: string
+          enum: [CREATE_OR_GET, JOIN]
+    CommunitySubchannelResponse:
+      type: object
+      required: [community_channel_id, subchannel_id, category_slug, joined]
+      properties:
+        community_channel_id:
+          type: string
+        subchannel_id:
+          type: string
+        category_slug:
+          type: string
+        joined:
+          type: boolean
+    ArenaStartRequest:
+      type: object
+      required: [challenger_name, preferred_locale, item_sku]
+      properties:
+        challenger_name:
+          type: string
+        preferred_locale:
+          type: string
+          enum: [en-IN, hi-IN, mr-IN, ta-IN]
+        item_sku:
+          type: string
+          example: THINKPAD_X1_GEN10
+    ArenaStartResponse:
+      type: object
+      required: [run_id, nexconn_direct_channel_id, nexconn_access_token, sticker_price_paise, duration_sec, ends_at]
+      properties:
+        run_id:
+          type: string
+        nexconn_direct_channel_id:
+          type: string
+        nexconn_access_token:
+          type: string
+        sticker_price_paise:
+          type: integer
+        duration_sec:
+          type: integer
+        ends_at:
+          type: string
+          format: date-time
+    ArenaBidRequest:
+      type: object
+      required: [offered_amount_paise, message_text, locale]
+      properties:
+        offered_amount_paise:
+          type: integer
+        message_text:
+          type: string
+        locale:
+          type: string
+    ArenaBidResponse:
+      type: object
+      required: [run_id, deal_closed, counter_offer_paise, savings_bps, stream_id]
+      properties:
+        run_id:
+          type: string
+        deal_closed:
+          type: boolean
+        counter_offer_paise:
+          type: integer
+        savings_bps:
+          type: integer
+        stream_id:
+          type: string
+    UpiOndcWebhookPayload:
+      type: object
+      required: [event_id, event_type, deal_id, amount_paise, umn_or_txn_id, timestamp_unix]
+      properties:
+        event_id:
+          type: string
+        event_type:
+          type: string
+          enum: [UPI_MANDATE_LOCKED, UPI_MANDATE_SETTLED, ONDC_CONFIRM]
+        deal_id:
+          type: string
+        amount_paise:
+          type: integer
+        umn_or_txn_id:
+          type: string
+        timestamp_unix:
+          type: integer
+    UpiOndcWebhookResponse:
+      type: object
+      required: [acknowledged, deal_id, new_fsm_state, idempotent_replay]
+      properties:
+        acknowledged:
+          type: boolean
+        deal_id:
+          type: string
+        new_fsm_state:
+          type: string
+        idempotent_replay:
+          type: boolean
+    TractionTelemetryResponse:
+      type: object
+      required: [app_key_masked, verified_connected_maus, active_channels_by_type, latency_p99_ms, total_escrow_vouchers_signed]
+      properties:
+        app_key_masked:
+          type: string
+        verified_connected_maus:
+          type: integer
+        active_channels_by_type:
+          type: object
+          required: [direct, group, community, open, system]
+          properties:
+            direct:
+              type: integer
+            group:
+              type: integer
+            community:
+              type: integer
+            open:
+              type: integer
+            system:
+              type: integer
+        latency_p99_ms:
+          type: object
+          required: [go_escrow_fsm_ms, rust_pii_scrub_ms, rust_phash_assay_ms]
+          properties:
+            go_escrow_fsm_ms:
+              type: number
+            rust_pii_scrub_ms:
+              type: number
+            rust_phash_assay_ms:
+              type: number
+        total_escrow_vouchers_signed:
+          type: integer
+paths:
+  /api/v1/auth/session:
+    post:
+      operationId: API-01_CreateSession
+      summary: Issue Nexconn accessToken (/v4/auth/access-token/issue) & Samadhan JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SessionRequest"
+      responses:
+        "200":
+          description: Session & Nexconn token issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionResponse"
+  /api/v1/sandbox/provision:
+    post:
+      operationId: API-02_ProvisionSplitScreenSandbox
+      summary: Atomically provision dual Buyer + Seller Nexconn tokens & seeded Group room
+      responses:
+        "201":
+          description: Dual-persona sandbox ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SandboxProvisionResponse"
+  /api/v1/deals:
+    post:
+      operationId: API-03_CreateDealRoom
+      summary: Create new Direct or Group deal room and escrow contract (E-03, E-04)
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDealRequest"
+      responses:
+        "201":
+          description: Deal room created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DealRoomResponse"
+  /api/v1/deals/{dealId}:
+    get:
+      operationId: API-04_GetDealRoom
+      summary: Fetch deal state, story stage, video assay logs, and System audit vouchers
+      parameters:
+        - name: dealId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Deal state payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DealRoomResponse"
+  /api/v1/deals/{dealId}/translate-stream:
+    post:
+      operationId: API-05_StreamBilingualTranslation
+      summary: Scrub PII in Rust (<300us) & stream translation via sendGroupChannelStreamMessage
+      parameters:
+        - name: dealId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TranslateStreamRequest"
+      responses:
+        "202":
+          description: Native Nexconn group stream initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TranslateStreamResponse"
+  /api/v1/deals/{dealId}/escrow/transition:
+    post:
+      operationId: API-06_TransitionEscrowState
+      summary: Execute serializable Go 1.24 FSM escrow transition & emit SystemMessagesApi voucher
+      parameters:
+        - name: dealId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EscrowTransitionRequest"
+      responses:
+        "200":
+          description: State transitioned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EscrowTransitionResponse"
+        "409":
+          description: Optimistic concurrency version conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+  /api/v1/deals/{dealId}/assay/start:
+    post:
+      operationId: API-07_StartVideoAssayChallenge
+      summary: Generate visual/acoustic challenge nonce prior to @nexconn/call escalation
+      parameters:
+        - name: dealId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssayStartRequest"
+      responses:
+        "200":
+          description: Challenge nonce issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssayStartResponse"
+  /api/v1/deals/{dealId}/assay/verify-frame:
+    post:
+      operationId: API-08_VerifyVideoAssayFrame
+      summary: Compute Rust 64-bit pHash, 4096-pt audio FFT RPM, M-03 Vision check & Ed25519 receipt
+      parameters:
+        - name: dealId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssayVerifyRequest"
+      responses:
+        "200":
+          description: Assay verified and logged to System channel
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssayVerifyResponse"
+  /api/v1/deals/{dealId}/dispute/freeze:
+    post:
+      operationId: API-09_FreezeDisputeChannel
+      summary: Freeze group channel via addGroupChannelFreezeList & stream AI Tribunal split
+      parameters:
+        - name: dealId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DisputeFreezeRequest"
+      responses:
+        "200":
+          description: Channel frozen in <150ms and AI Tribunal streaming
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DisputeFreezeResponse"
+  /api/v1/dispatch/assign:
+    post:
+      operationId: API-10_AssignHumanArbitrator
+      summary: Dispatch human arbitrator from /dispatch queue into frozen Group channel
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DispatchAssignRequest"
+      responses:
+        "200":
+          description: Arbitrator joined channel with moderation override
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DispatchAssignResponse"
+  /api/v1/disputes/{disputeId}/resolve:
+    post:
+      operationId: API-11_ResolveDisputeSplit
+      summary: Execute binding basis-point split & emit final Ed25519 System channel voucher
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: disputeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DisputeResolveRequest"
+      responses:
+        "200":
+          description: Dispute resolved and funds split
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DisputeResolveResponse"
+  /api/v1/marketplace/open-lots:
+    get:
+      operationId: API-12_ListOpenFlashLots
+      summary: List active Open channel flash lots and Community subchannels
+      responses:
+        "200":
+          description: Active flash lots
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenFlashLotsListResponse"
+  /api/v1/marketplace/open-lots/broadcast:
+    post:
+      operationId: API-13_BroadcastOpenFlashLot
+      summary: Whitelist priority sender via OpenChannelPriorityControlsApi and broadcast lot
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BroadcastOpenFlashLotRequest"
+      responses:
+        "201":
+          description: Broadcasted to Open channel
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenFlashLotItem"
+  /api/v1/community/subchannels:
+    post:
+      operationId: API-14_ManageCommunitySubchannels
+      summary: Create or join category subchannel via createCommunitySubchannel
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommunitySubchannelRequest"
+      responses:
+        "200":
+          description: Subchannel ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommunitySubchannelResponse"
+  /api/v1/arena/start:
+    post:
+      operationId: API-15_StartBargainArena
+      summary: Issue real Nexconn token and start 60s AI Shopkeeper Bargaining Challenge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArenaStartRequest"
+      responses:
+        "201":
+          description: Arena session started
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArenaStartResponse"
+  /api/v1/arena/{runId}/bid:
+    post:
+      operationId: API-16_SubmitBargainBid
+      summary: Evaluate counter-offer in Go and stream AI Shopkeeper response via sendDirectChannelStreamMessage
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArenaBidRequest"
+      responses:
+        "202":
+          description: Streamed counter-offer initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArenaBidResponse"
+  /api/v1/webhooks/upi-ondc:
+    post:
+      operationId: API-17_HandleUpiOndcWebhook
+      summary: HMAC-SHA256 verified webhook handler for UPI ASBA / PA-Escrow and ONDC events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpiOndcWebhookPayload"
+      responses:
+        "200":
+          description: Webhook processed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpiOndcWebhookResponse"
+  /api/v1/traction/telemetry:
+    get:
+      operationId: API-18_GetPublicTractionTelemetry
+      summary: Live verified MAU, channel count, and p95 latency feed for /traction
+      responses:
+        "200":
+          description: Public verifiable telemetry payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TractionTelemetryResponse"
+
