@@ -30,8 +30,8 @@ func maskAppKey(k string) string {
 // `baseline_counts` and `live_counts` break them apart so nothing is passed
 // off as real MAU. Latencies are real measurements only (0 when no samples).
 func (s *Server) handleTraction(w http.ResponseWriter, r *http.Request) {
-	snap := s.Store.Telemetry.Snapshot()
-	base := s.Store.Telemetry.Baseline
+	snap := s.Store.Telemetry().Snapshot()
+	base := s.Store.Telemetry().Baseline
 	c := s.Store.Counts()
 	systemLive := 0
 	if c.Vouchers > 0 {
@@ -94,8 +94,8 @@ func (s *Server) handleTraction(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
 	mw.WriteJSON(w, http.StatusOK, map[string]any{
 		"status": "ok", "service": "deal-engine-go", "version": Version, "port": s.Cfg.Port,
-		"store":      "in-memory",
-		"uptime_sec": int(time.Since(s.Store.Telemetry.StartedAt).Seconds()),
+		"store":      s.Store.BackendName(),
+		"uptime_sec": int(time.Since(s.Store.Telemetry().StartedAt).Seconds()),
 		"dependencies": map[string]any{
 			"nexconn_bridge":    s.Bridge.Status(),
 			"assay_verifier_rs": s.Rust.Status(),

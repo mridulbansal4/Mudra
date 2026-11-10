@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "title": "Recon, Prerequisite & Live Supabase Schema Verification",
+    "passes": true
+  },
+  {
+    "id": "2",
+    "title": "Extract StoreInterface & Refactor MemoryStore and Handlers",
+    "passes": true
+  },
+  {
+    "id": "3",
+    "title": "Implement PostgresStore with pgx/v5, ACID Optimistic Locking & Idempotent Seeding",
+    "passes": true
+  },
+  {
+    "id": "4",
+    "title": "Config, .env Loading, Dual-Mode Server Boot & /health Store Reporting",
+    "passes": true
+  },
+  {
+    "id": "5",
+    "title": "Frontend Supabase Realtime Integration (@supabase/supabase-js & useLiveDeal)",
+    "passes": true
+  },
+  {
+    "id": "6",
+    "title": "End-to-End Live Supabase Persistence, Restart, Trigger & Monorepo Regression Verification",
+    "passes": true
+  }
+]

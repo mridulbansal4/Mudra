@@ -113,7 +113,7 @@ func (s *Server) handleArenaStart(w http.ResponseWriter, r *http.Request) {
 		DisplayName: req.ChallengerName, Role: "guest", Locale: req.PreferredLocale, KYCTier: "GUEST_SANDBOX", CreatedAt: now}
 	s.Store.PutUser(u)
 	tok := s.Bridge.IssueToken(r.Context(), u.NexconnUserID, u.DisplayName, "")
-	s.Store.Telemetry.RecordToken(u.NexconnUserID, tok.Mode)
+	s.Store.Telemetry().RecordToken(u.NexconnUserID, tok.Mode)
 	runID := "arena_run_" + tag + store.RandHex(1)
 	opening := "Namaste " + req.ChallengerName + "! " + item.Title + " — sticker price ₹" + clients.FormatINR(item.StickerPaise) + ". You have 60 seconds. Make me an offer!"
 	run := &store.ArenaRun{
@@ -187,6 +187,7 @@ func (s *Server) handleArenaBid(w http.ResponseWriter, r *http.Request) {
 	if dec.Accepted {
 		run.Won, run.FinalPricePaise = true, dec.CounterPaise
 	}
+	s.Store.SaveArena(run)
 	mw.WriteJSON(w, http.StatusAccepted, map[string]any{
 		"run_id": run.ID, "deal_closed": dec.Accepted, "counter_offer_paise": dec.CounterPaise, "savings_bps": dec.SavingsBps, "stream_id": st.StreamID,
 		// extras

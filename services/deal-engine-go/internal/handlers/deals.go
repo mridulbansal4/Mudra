@@ -134,7 +134,7 @@ func termsMap(t clients.ExtractedTerms) map[string]any {
 // translateAndStore: Rust PII scrub → bridge translate → bridge group stream → store + SSE.
 func (s *Server) translateAndStore(ctx context.Context, d *store.Deal, sender store.User, senderRole, text, src, dst string) translated {
 	sc := s.Rust.ScrubPII(ctx, text)
-	s.Store.Telemetry.RecordPII(sc.ScrubTimeUS, sc.Engine)
+	s.Store.Telemetry().RecordPII(sc.ScrubTimeUS, sc.Engine)
 	tr := s.Bridge.Translate(ctx, sc.ScrubbedText, src, dst)
 	redacted := max(sc.RedactedCount, tr.PIIRedactedCount)
 	terms := termsMap(tr.ExtractedTerms)

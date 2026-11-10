@@ -15,9 +15,10 @@ import (
 var validRoles = map[string]bool{"buyer": true, "seller": true, "arbitrator": true, "guest": true}
 
 // issueSession issues a Nexconn token (bridge or sim_) and a samadhan JWT for u.
-func (s *Server) issueSession(ctx context.Context, u *store.User) (clients.TokenResult, string, error) {
+func (s *Server) issueSession(ctx context.Context, u *store.User, platform string) (clients.TokenResult, string, error) {
 	tok := s.Bridge.IssueToken(ctx, u.NexconnUserID, u.DisplayName, "")
-	s.Store.Telemetry.RecordToken(u.NexconnUserID, tok.Mode)
+	s.Store.Telemetry().RecordToken(u.NexconnUserID, tok.Mode)
+	s.Store.RecordSession(u.ID, u.NexconnUserID, tok.AccessToken, platform, tok.Mode, tok.ExpiresInSec)
 	jwt, err := s.JWT.Issue(mw.Claims{Sub: u.ID, NexconnID: u.NexconnUserID, Name: u.DisplayName, Role: u.Role, Locale: u.Locale})
 	return tok, jwt, err
 }
@@ -62,7 +63,7 @@ func (s *Server) handleAuthSession(w http.ResponseWriter, r *http.Request) {
 		}
 		s.Store.PutUser(u)
 	}
-	tok, jwt, err := s.issueSession(r.Context(), u)
+	tok, jwt, err := s.issueSession(r.Context(), u, req.ClientPlatform)
 	if err != nil {
 		mw.WriteError(w, r, http.StatusInternalServerError, "ERR_INTERNAL", err.Error(), true)
 		return
@@ -107,9 +108,9 @@ func (s *Server) handleSandboxProvision(w http.ResponseWriter, r *http.Request) 
 	s.Store.PutUser(seller)
 
 	ctx := r.Context()
-	bt, bj, err1 := s.issueSession(ctx, buyer)
-	st, sj, err2 := s.issueSession(ctx, seller)
-	at, aj, err3 := s.issueSession(ctx, arbUser)
+	bt, bj, err1 := s.issueSession(ctx, buyer, "sandbox_split")
+	st, sj, err2 := s.issueSession(ctx, seller, "sandbox_split")
+	at, aj, err3 := s.issueSession(ctx, arbUser, "sandbox_split")
 	if err1 != nil || err2 != nil || err3 != nil {
 		mw.WriteError(w, r, http.StatusInternalServerError, "ERR_INTERNAL", "jwt issue failed", true)
 		return

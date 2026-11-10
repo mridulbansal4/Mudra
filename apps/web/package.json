@@ -22,6 +22,7 @@
     "@react-aria/utils": "^3.34.1",
     "@samadhan/nc-lit-cards": "workspace:*",
     "@samadhan/shared-types": "workspace:*",
+    "@supabase/supabase-js": "^2.119.0",
     "lit": "^3.3.2",
     "react": "^19.1.0",
     "react-aria": "^3.53.1",
