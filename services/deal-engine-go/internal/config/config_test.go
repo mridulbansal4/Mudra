@@ -3,6 +3,7 @@ package config
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -37,6 +38,19 @@ func TestDotEnvDoesNotOverride(t *testing.T) {
 	}
 	if os.Getenv("DE_TEST_A") != "fromenv" || os.Getenv("DE_TEST_B") != "fromfile" {
 		t.Fatalf("A=%s B=%s", os.Getenv("DE_TEST_A"), os.Getenv("DE_TEST_B"))
+	}
+}
+
+func TestPlaceholderAndMaskDatabaseURL(t *testing.T) {
+	if !IsPlaceholderDatabaseURL("") || !IsPlaceholderDatabaseURL("postgresql://postgres:[YOUR-PASSWORD]@localhost:5432/samadhan_os") {
+		t.Fatal("expected placeholder DSNs")
+	}
+	if IsPlaceholderDatabaseURL("postgresql://postgres:secret@aws-1-ap-south-1.pooler.supabase.com:5432/postgres") {
+		t.Fatal("live pooler DSN must not be treated as a placeholder")
+	}
+	masked := MaskDatabaseURL("postgresql://postgres:secret@aws-1-ap-south-1.pooler.supabase.com:5432/postgres?sslmode=require")
+	if strings.Contains(masked, "secret") || masked != "aws-1-ap-south-1.pooler.supabase.com:5432/postgres" {
+		t.Fatalf("mask = %q", masked)
 	}
 }
 

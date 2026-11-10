@@ -173,6 +173,22 @@ type Machine struct {
 // NewMachine creates a machine in the given state with version 1.
 func NewMachine(s State) *Machine { return &Machine{state: s, version: 1} }
 
+// NewMachineWithVersion creates a machine in the given state and version.
+func NewMachineWithVersion(s State, version int64) *Machine {
+	if version < 1 {
+		version = 1
+	}
+	return &Machine{state: s, version: version}
+}
+
+// Sync updates the in-memory state and version atomically.
+func (m *Machine) Sync(s State, version int64) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	m.state = s
+	m.version = version
+}
+
 // Snapshot returns the current state and version.
 func (m *Machine) Snapshot() (State, int64) {
 	m.mu.Lock()

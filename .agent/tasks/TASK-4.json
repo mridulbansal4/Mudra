@@ -1,0 +1,12 @@
+{
+  "id": "4",
+  "title": "Config, .env Loading, Dual-Mode Server Boot & /health Store Reporting",
+  "description": "Extend internal/config/config.go with DatabaseURL, DatabaseMaxConns, DatabaseMinConns, and robust .env search up to 6 parent directories. Wire dual-mode initialization in internal/handlers/server.go + cmd/server/main.go (connecting to PostgresStore when DATABASE_URL is reachable, logging warning and falling back to MemoryStore when unset/placeholder/unreachable). Update /health to report store: postgresql or in-memory.",
+  "acceptance_criteria": [
+    "Config loads DATABASE_URL, DATABASE_MAX_CONNS (default 25), DATABASE_MIN_CONNS (default 5) from env or .env",
+    "Server.New(cfg) connects to PostgresStore and logs 'connected to Supabase PostgreSQL cluster' when DATABASE_URL is valid and reachable",
+    "Server.New(cfg) logs a structured warning and falls back to MemoryStore when DATABASE_URL is empty, unconfigured localhost placeholder, or unreachable",
+    "GET /health and GET /api/v1/health return store='postgresql' or store='in-memory' while preserving all existing fields",
+    "Graceful shutdown closes PostgresStore pool"
+  ]
+}

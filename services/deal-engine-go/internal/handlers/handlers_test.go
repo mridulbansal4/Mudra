@@ -390,8 +390,12 @@ func TestTractionAndHealth(t *testing.T) {
 		t.Fatalf("live counts %v", live)
 	}
 	hl := call(t, h, "GET", "/health", "", nil)
-	if hl.Code != 200 || hl.Body["status"] != "ok" {
+	if hl.Code != 200 || hl.Body["status"] != "ok" || hl.Body["store"] != store.BackendInMemory {
 		t.Fatalf("health %s", hl.Raw)
+	}
+	apiHealth := call(t, h, "GET", "/api/v1/health", "", nil)
+	if apiHealth.Code != 200 || apiHealth.Body["store"] != "in-memory" || apiHealth.Body["service"] != "deal-engine-go" {
+		t.Fatalf("api health %s", apiHealth.Raw)
 	}
 	if r := call(t, h, "GET", "/api/v1/nope", "", nil); r.Code != 404 || m(r.Body["error"])["trace_id"] == "" {
 		t.Fatalf("404 envelope %s", r.Raw)

@@ -3,6 +3,7 @@
 package store
 
 import (
+	"context"
 	"crypto/rand"
 	"encoding/hex"
 	"fmt"
@@ -222,6 +223,9 @@ type Subchannel struct {
 	CommunityChannelID string `json:"-"`
 }
 
+// MemoryStore aliases Store as the in-memory StoreInterface implementation.
+type MemoryStore = Store
+
 // Store is the in-memory database.
 type Store struct {
 	mu           sync.RWMutex
@@ -236,16 +240,34 @@ type Store struct {
 	openChannels map[string]bool
 	webhookSeen  map[string][]byte
 	seq          int64
-	Telemetry    *Telemetry
+	telemetry    *Telemetry
 }
 
-// New creates an empty store.
+var _ StoreInterface = (*Store)(nil)
+
+// New creates an empty in-memory store.
 func New() *Store {
 	return &Store{
 		users: map[string]*User{}, usersByNx: map[string]*User{}, deals: map[string]*Deal{},
 		disputes: map[string]*Dispute{}, arena: map[string]*ArenaRun{}, openChannels: map[string]bool{},
-		webhookSeen: map[string][]byte{}, Telemetry: NewTelemetry(),
+		webhookSeen: map[string][]byte{}, telemetry: NewTelemetry(),
 	}
+}
+
+// NewMemoryStore creates an empty in-memory store.
+func NewMemoryStore() *MemoryStore { return New() }
+
+// BackendName reports the active backing store.
+func (s *Store) BackendName() string { return BackendInMemory }
+
+// Telemetry returns the store's telemetry collector.
+func (s *Store) Telemetry() *Telemetry { return s.telemetry }
+
+// Close is a no-op for the in-memory store.
+func (s *Store) Close() error { return nil }
+
+// RecordSession is a no-op for the in-memory store (telemetry tracks tokens separately).
+func (s *Store) RecordSession(userID, nexconnUserID, accessToken, platform, mode string, expiresInSec int64) {
 }
 
 // RandHex returns n random bytes hex encoded.
@@ -372,6 +394,33 @@ func (s *Store) ListDeals() []*Deal {
 	return out
 }
 
+// ApplyTransition executes an atomic optimistic-CAS state transition and appends the voucher + timeline card.
+func (s *Store) ApplyTransition(_ context.Context, d *Deal, act fsm.Action, expectedVersion int64, mint VoucherMintFunc) (fsm.Result, Voucher, ChatMessage, error) {
+	if expectedVersion < 0 {
+		_, expectedVersion = d.Machine.Snapshot()
+	}
+	res, err := d.Machine.Apply(act, expectedVersion)
+	if err != nil {
+		return fsm.Result{}, Voucher{}, ChatMessage{}, err
+	}
+	var amount int64
+	var prevHash string
+	s.ReadDeal(d, func(d *Deal) {
+		amount = d.AmountPaise
+		prevHash = d.LastVoucherHash()
+	})
+	v, card, err := mint(prevHash, res, amount)
+	if err != nil {
+		d.Machine.Sync(res.Prev, expectedVersion)
+		return fsm.Result{}, Voucher{}, ChatMessage{}, err
+	}
+	s.UpdateDeal(d, func(d *Deal) {
+		d.Vouchers = append(d.Vouchers, v)
+		d.Messages = append(d.Messages, card)
+	})
+	return res, v, card, nil
+}
+
 // ---- disputes ----
 
 // PutDispute inserts a dispute.
@@ -429,6 +478,13 @@ func (s *Store) ListDisputes() []Dispute {
 
 // PutArena stores a run.
 func (s *Store) PutArena(r *ArenaRun) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.arena[r.ID] = r
+}
+
+// SaveArena persists mutations to an existing run (no-op in-memory since pointer is live).
+func (s *Store) SaveArena(r *ArenaRun) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.arena[r.ID] = r
