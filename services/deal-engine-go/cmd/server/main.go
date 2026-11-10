@@ -32,8 +32,12 @@ func main() {
 	defer stop()
 	srv.StartBackground(ctx)
 
+	host := os.Getenv("GO_DEAL_ENGINE_HOST")
+	if host == "" {
+		host = "0.0.0.0"
+	}
 	httpSrv := &http.Server{
-		Addr:              ":" + strconv.Itoa(cfg.Port),
+		Addr:              host + ":" + strconv.Itoa(cfg.Port),
 		Handler:           srv.Routes(),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       30 * time.Second,

@@ -233,7 +233,7 @@ export function registerAiRoutes(app: FastifyInstance, deps: AiDeps): void {
           }),
           userText: wrapUntrusted(safe.message_text || "(player sent no message)"),
           temperature: 0.8,
-          maxOutputTokens: 256,
+          maxOutputTokens: 1024,
         });
         const reply = typeof out.reply_text === "string" ? out.reply_text.trim() : "";
         if (!reply || reply.length > 600) throw new GeminiUnavailable("shopkeeper reply missing or too long");
