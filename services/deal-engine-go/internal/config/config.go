@@ -6,6 +6,7 @@ import (
 	"bufio"
 	"encoding/hex"
 	"log/slog"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -22,6 +23,10 @@ const (
 // Config is the runtime configuration.
 type Config struct {
 	Port               int
+	DatabaseURL        string
+	DatabaseSchema     string
+	PGMaxConns         int32
+	PGMinConns         int32
 	BridgeURL          string
 	RustURL            string
 	InternalHMAC       string
@@ -41,15 +46,19 @@ type Config struct {
 func Load() Config {
 	envPath := loadDotEnv()
 	c := Config{
-		Port:          atoiDefault(os.Getenv("GO_DEAL_ENGINE_PORT"), 4002),
-		BridgeURL:     strings.TrimRight(getDefault("NEXCONN_BRIDGE_URL", "http://127.0.0.1:4001"), "/"),
-		RustURL:       strings.TrimRight(getDefault("RUST_ASSAY_VERIFIER_URL", "http://127.0.0.1:4003"), "/"),
-		InternalHMAC:  os.Getenv("INTERNAL_SERVICE_HMAC_SECRET"),
-		WebhookSecret: os.Getenv("UPI_WEBHOOK_HMAC_SECRET"),
-		JWTSecret:     os.Getenv("SAMADHAN_JWT_SECRET"),
-		NexconnAppKey: os.Getenv("NEXCONN_APP_KEY"),
-		DotEnvPath:    envPath,
-		CORSOrigins:   []string{"http://localhost:5173", "http://127.0.0.1:5173"},
+		Port:           atoiDefault(os.Getenv("GO_DEAL_ENGINE_PORT"), 4002),
+		DatabaseURL:    strings.TrimSpace(os.Getenv("DATABASE_URL")),
+		DatabaseSchema: strings.TrimSpace(os.Getenv("DATABASE_SCHEMA")),
+		PGMaxConns:     int32(atoiDefault(firstNonEmpty(os.Getenv("DATABASE_MAX_CONNS"), os.Getenv("PG_MAX_CONNS")), 25)),
+		PGMinConns:     int32(atoiDefault(firstNonEmpty(os.Getenv("DATABASE_MIN_CONNS"), os.Getenv("PG_MIN_CONNS")), 5)),
+		BridgeURL:      strings.TrimRight(getDefault("NEXCONN_BRIDGE_URL", "http://127.0.0.1:4001"), "/"),
+		RustURL:        strings.TrimRight(getDefault("RUST_ASSAY_VERIFIER_URL", "http://127.0.0.1:4003"), "/"),
+		InternalHMAC:   os.Getenv("INTERNAL_SERVICE_HMAC_SECRET"),
+		WebhookSecret:  os.Getenv("UPI_WEBHOOK_HMAC_SECRET"),
+		JWTSecret:      os.Getenv("SAMADHAN_JWT_SECRET"),
+		NexconnAppKey:  os.Getenv("NEXCONN_APP_KEY"),
+		DotEnvPath:     envPath,
+		CORSOrigins:    []string{"http://localhost:5173", "http://127.0.0.1:5173"},
 	}
 	if extra := os.Getenv("CORS_ALLOWED_ORIGINS"); extra != "" {
 		for _, o := range strings.Split(extra, ",") {
@@ -84,6 +93,15 @@ func getDefault(k, d string) string {
 	return d
 }
 
+func firstNonEmpty(vals ...string) string {
+	for _, v := range vals {
+		if s := strings.TrimSpace(v); s != "" {
+			return s
+		}
+	}
+	return ""
+}
+
 func atoiDefault(s string, d int) int {
 	if n, err := strconv.Atoi(strings.TrimSpace(s)); err == nil && n > 0 {
 		return n
@@ -91,14 +109,46 @@ func atoiDefault(s string, d int) int {
 	return d
 }
 
-// loadDotEnv looks for .env in cwd and up to three parent dirs (the service is
-// normally run from services/deal-engine-go, so ../../.env is the repo root).
+// LoadDatabaseURL returns the trimmed DATABASE_URL from process environment.
+func LoadDatabaseURL() string {
+	return strings.TrimSpace(os.Getenv("DATABASE_URL"))
+}
+
+// IsPlaceholderDatabaseURL detects unset or unconfigured template DSNs.
+func IsPlaceholderDatabaseURL(dsn string) bool {
+	s := strings.TrimSpace(dsn)
+	if s == "" {
+		return true
+	}
+	lower := strings.ToLower(s)
+	return strings.Contains(lower, "[your-password]") ||
+		strings.Contains(lower, "your-password") ||
+		strings.Contains(lower, "replace_with_") ||
+		strings.Contains(lower, "localhost:5432/samadhan_os") ||
+		strings.Contains(lower, "127.0.0.1:5432/samadhan_os")
+}
+
+// MaskDatabaseURL strips password credentials from a PostgreSQL DSN for safe structured logging.
+func MaskDatabaseURL(dsn string) string {
+	u, err := url.Parse(strings.TrimSpace(dsn))
+	if err != nil || u.Host == "" {
+		return "redacted-dsn"
+	}
+	db := strings.TrimPrefix(u.Path, "/")
+	if db == "" {
+		return u.Host
+	}
+	return u.Host + "/" + db
+}
+
+// loadDotEnv looks for .env in cwd and up to five parent dirs (covers running
+// from repo root, services/deal-engine-go, cmd/server, or internal/* packages).
 func loadDotEnv() string {
 	dir, err := os.Getwd()
 	if err != nil {
 		return ""
 	}
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 6; i++ {
 		p := filepath.Join(dir, ".env")
 		if fi, err := os.Stat(p); err == nil && !fi.IsDir() {
 			if err := ParseDotEnvFile(p, false); err == nil {

@@ -63,5 +63,9 @@ func main() {
 		slog.Error("graceful shutdown failed", "err", err)
 		os.Exit(1)
 	}
+	if err := srv.Close(); err != nil {
+		slog.Error("store close failed", "err", err)
+		os.Exit(1)
+	}
 	slog.Info("shutdown complete")
 }

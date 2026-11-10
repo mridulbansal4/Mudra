@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ChatMessage, DealView, FsmAction, Locale, Role } from "@samadhan/shared-types";
 import { api } from "./api";
+import { subscribeToDealRealtime } from "./supabase";
 
 export interface LiveDeal extends DealView {
   buyer_name?: string;
@@ -62,7 +63,11 @@ export function useLiveDeal(dealId: string | undefined, jwt: string | undefined)
       setConnection("polling");
       pollRef.current = window.setInterval(() => void refresh(), 3000);
     }
+    const stopRealtime = subscribeToDealRealtime(dealId, () => {
+      void refresh();
+    });
     return () => {
+      stopRealtime();
       es?.close();
       if (pollRef.current) window.clearInterval(pollRef.current);
       pollRef.current = undefined;

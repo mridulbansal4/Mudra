@@ -175,7 +175,7 @@ func (s *Server) handleAssayVerify(w http.ResponseWriter, r *http.Request) {
 		FrameJPEGBase64: req.FrameJPEGBase64, ReferencePHashHex: reference, AudioPCMBase64: req.AudioPCMF32Base64,
 		SampleRate: req.SampleRate, MinMotorRPM: minRPM, ClientReportedRPM: req.AudioFFTRPMPeak,
 	})
-	s.Store.Telemetry.RecordAssay(res.ComputeMs, res.Engine)
+	s.Store.Telemetry().RecordAssay(res.ComputeMs, res.Engine)
 	if res.FrameError != "" {
 		failures = append(failures, "frame: "+res.FrameError)
 	}

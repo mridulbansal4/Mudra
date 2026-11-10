@@ -1,0 +1,11 @@
+{
+  "id": "2",
+  "title": "Extract StoreInterface & Refactor MemoryStore and Handlers",
+  "description": "Create internal/store/interface.go defining StoreInterface (and MemoryStore alias/constructor), add atomic ApplyTransition and SaveArena methods, and refactor Server and all handlers in internal/handlers/* to depend on store.StoreInterface with zero regressions.",
+  "acceptance_criteria": [
+    "internal/store/interface.go defines StoreInterface covering users, sessions, deals, atomic escrow transitions, disputes, arena runs, marketplace lots, subchannels, webhooks, counts, telemetry, Name(), and Close()",
+    "MemoryStore implements StoreInterface cleanly",
+    "All handlers in internal/handlers/* compile and use StoreInterface",
+    "go test -v -race ./... passes 100% with zero regressions"
+  ]
+}
