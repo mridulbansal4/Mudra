@@ -1,0 +1,22 @@
+[package]
+name = "assay-wasm-rs"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+resolver = "3"
+publish = false
+description = "SAMADHAN-OS in-browser assay helpers: Laplacian blur metric, 64-bit DCT pHash from RGBA, Hamming distance"
+
+# Standalone crate (not a member of any parent workspace).
+[workspace]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

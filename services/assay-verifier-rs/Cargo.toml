@@ -1,0 +1,37 @@
+[package]
+name = "assay-verifier-rs"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+# MSRV-aware dependency resolution (Cargo >= 1.84) so `cargo update` never
+# picks a crate release that needs a newer toolchain than rust:1.85.
+resolver = "3"
+publish = false
+description = "SAMADHAN-OS forensic & crypto engine: DPDP PII scrubber, frame pHash, audio FFT assay, Ed25519 hash-chained vouchers"
+
+# Standalone crate (not a member of any parent workspace).
+[workspace]
+
+[dependencies]
+axum = "0.7.9"
+tokio = { version = "1.40", features = ["macros", "rt", "rt-multi-thread", "net", "signal"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+base64 = "0.22"
+sha2 = "0.10"
+hmac = "0.12"
+hex = "0.4"
+ed25519-dalek = "2.1"
+rustfft = "6.2"
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+regex = "1.10"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

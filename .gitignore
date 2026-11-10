@@ -1,0 +1,12 @@
+node_modules/
+dist/
+pkg/
+target/
+.env
+*.log
+.vite/
+coverage/
+services/deal-engine-go/bin/
+*.exe
+.claude/
+*.tsbuildinfo

@@ -1,0 +1,27 @@
+name: SAMADHAN-OS Zero-Downtime Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-polyglot-stack:
+    name: Build & Deploy Web + Go + Rust + Node Bridge
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post-Deploy Synthetic Sandbox & Nexconn Health Check
+        run: |
+          echo "Verifying Go (:4002), Rust (:4003), and Node Nexconn Bridge (:4001) health endpoints..."

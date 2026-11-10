@@ -1,0 +1,43 @@
+# Local stack: PostgreSQL 17 + Redis 7.4 + the three services + web.
+# Data stores are optional for the current build (the Go engine uses an in-memory store);
+# the schema lives in services/deal-engine-go/internal/db/migrations.
+name: samadhan-os
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: samadhan
+      POSTGRES_PASSWORD: samadhan_dev_pass
+      POSTGRES_DB: samadhan_os
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../../services/deal-engine-go/internal/db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U samadhan"]
+      interval: 5s
+  redis:
+    image: redis:7.4-alpine
+    ports: ["6379:6379"]
+  assay-verifier-rs:
+    build: ../../services/assay-verifier-rs
+    env_file: ../../.env
+    ports: ["4003:4003"]
+  nexconn-bridge-node:
+    build:
+      context: ../..
+      dockerfile: services/nexconn-bridge-node/Dockerfile
+    env_file: ../../.env
+    environment:
+      RUST_ASSAY_VERIFIER_URL: http://assay-verifier-rs:4003
+    ports: ["4001:4001"]
+  deal-engine-go:
+    build: ../../services/deal-engine-go
+    env_file: ../../.env
+    environment:
+      NEXCONN_BRIDGE_URL: http://nexconn-bridge-node:4001
+      RUST_ASSAY_VERIFIER_URL: http://assay-verifier-rs:4003
+    ports: ["4002:4002"]
+    depends_on: [nexconn-bridge-node, assay-verifier-rs]
+volumes:
+  pgdata:
