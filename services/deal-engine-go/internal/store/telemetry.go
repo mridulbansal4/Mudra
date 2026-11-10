@@ -60,6 +60,9 @@ func DefaultBaseline() Baseline {
 	}
 }
 
+// TelemetrySink persists telemetry events asynchronously when backed by PostgreSQL.
+type TelemetrySink func(eventType string, metricMs *float64, attrs map[string]any)
+
 // Telemetry collects live counters and latency samples.
 type Telemetry struct {
 	mu          sync.Mutex
@@ -76,6 +79,23 @@ type Telemetry struct {
 	transitions int
 	webhooksOK  int
 	webhooksBad int
+	sink        TelemetrySink
+}
+
+// SetSink attaches an optional persistence sink.
+func (t *Telemetry) SetSink(s TelemetrySink) {
+	t.mu.Lock()
+	defer t.mu.Unlock()
+	t.sink = s
+}
+
+func (t *Telemetry) emit(eventType string, metricMs *float64, attrs map[string]any) {
+	t.mu.Lock()
+	s := t.sink
+	t.mu.Unlock()
+	if s != nil {
+		s(eventType, metricMs, attrs)
+	}
 }
 
 // NewTelemetry creates the collector.
@@ -89,47 +109,70 @@ func NewTelemetry() *Telemetry {
 // RecordFSM records one FSM transition execution time.
 func (t *Telemetry) RecordFSM(d time.Duration) {
 	t.mu.Lock()
-	defer t.mu.Unlock()
 	t.fsmNs.add(float64(d.Nanoseconds()))
 	t.transitions++
+	s := t.sink
+	t.mu.Unlock()
+	if s != nil {
+		ms := float64(d.Nanoseconds()) / 1e6
+		s("FSM_TRANSITION", &ms, map[string]any{"ns": d.Nanoseconds()})
+	}
 }
 
 // RecordPII records a PII scrub time in µs.
 func (t *Telemetry) RecordPII(us int64, engine string) {
 	t.mu.Lock()
-	defer t.mu.Unlock()
 	t.piiUs.add(float64(us))
 	t.piiEngine = engine
+	s := t.sink
+	t.mu.Unlock()
+	if s != nil {
+		ms := float64(us) / 1e3
+		s("PII_SCRUB", &ms, map[string]any{"engine": engine, "us": us})
+	}
 }
 
 // RecordAssay records an assay compute time in ms.
 func (t *Telemetry) RecordAssay(ms float64, engine string) {
 	t.mu.Lock()
-	defer t.mu.Unlock()
 	t.assayMs.add(ms)
 	t.assayEngine = engine
+	s := t.sink
+	t.mu.Unlock()
+	if s != nil {
+		v := ms
+		s("ASSAY_VERIFY", &v, map[string]any{"engine": engine})
+	}
 }
 
 // RecordToken records a Nexconn token issuance.
 func (t *Telemetry) RecordToken(nexconnUserID, mode string) {
 	t.mu.Lock()
-	defer t.mu.Unlock()
 	if mode == "live" {
 		t.tokensLive++
 	} else {
 		t.tokensSim++
 	}
 	t.tokenUsers[nexconnUserID] = true
+	s := t.sink
+	t.mu.Unlock()
+	if s != nil {
+		s("TOKEN_ISSUED", nil, map[string]any{"nexconn_user_id": nexconnUserID, "mode": mode})
+	}
 }
 
 // RecordWebhook counts webhook verifications.
 func (t *Telemetry) RecordWebhook(ok bool) {
 	t.mu.Lock()
-	defer t.mu.Unlock()
 	if ok {
 		t.webhooksOK++
 	} else {
 		t.webhooksBad++
+	}
+	s := t.sink
+	t.mu.Unlock()
+	if s != nil {
+		s("WEBHOOK_VERIFIED", nil, map[string]any{"ok": ok})
 	}
 }
 

@@ -32,73 +32,69 @@ func (o TransitionOutcome) ExecTimeUS() int64 {
 // The caller MUST hold d.Op. expectedVersion < 0 means "current version"
 // (used by internal flows such as API-09/webhooks that have no client version).
 func (s *Server) transition(ctx context.Context, d *store.Deal, act fsm.Action, expectedVersion int64, actorRole string, extra map[string]any) (TransitionOutcome, error) {
-	if expectedVersion < 0 {
-		_, expectedVersion = d.Machine.Snapshot()
-	}
-	res, err := d.Machine.Apply(act, expectedVersion)
+	var out TransitionOutcome
+	var cardMsg store.ChatMessage
+	res, v, card, err := s.Store.ApplyTransition(ctx, d, act, expectedVersion, func(prevHash string, res fsm.Result, amount int64) (store.Voucher, store.ChatMessage, error) {
+		if prevHash == "" {
+			prevHash = clients.GenesisHash
+		}
+		now := time.Now().UTC()
+		vType := fsm.VoucherType(act)
+		payload := map[string]any{
+			"action":       string(act),
+			"prev_state":   string(res.Prev),
+			"fsm_state":    string(res.Next),
+			"version":      res.Version,
+			"amount_paise": amount,
+			"actor_role":   actorRole,
+			"issued_at":    now.Format(time.RFC3339Nano),
+		}
+		for k, val := range extra {
+			payload[k] = val
+		}
+		sv := s.Rust.SignVoucher(ctx, d.ID, vType, payload, prevHash)
+		v := store.Voucher{
+			ID: "vch_" + store.RandHex(6), VoucherType: vType, PrevVoucherSHA256: prevHash,
+			CurrVoucherSHA256: sv.CurrHashHex, Ed25519Signature: sv.SignatureHex, PublicKeyHex: sv.PublicKeyHex,
+			Payload: payload, Engine: sv.Engine, CreatedAt: now,
+		}
+		tmpOut := TransitionOutcome{Prev: res.Prev, Next: res.Next, Version: res.Version, ExecTime: res.ExecTime, Voucher: v}
+		card := store.ChatMessage{
+			ID: "msg_" + store.RandHex(6), DealID: d.ID, SenderRole: "system", SenderName: "SAMADHAN Escrow",
+			MessageType: "x-samadhan-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
+			ExtractedTerms: map[string]any{},
+			Extras: map[string]any{
+				"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next), "version": res.Version,
+				"story_stage": fsm.StoryStage(res.Next), "amount_paise": amount, "go_exec_time_us": tmpOut.ExecTimeUS(),
+				"voucher_type": vType, "curr_voucher_sha256": v.CurrVoucherSHA256, "prev_voucher_sha256": prevHash,
+				"ed25519_signature": v.Ed25519Signature, "signing_engine": v.Engine, "actor_role": actorRole,
+			},
+			Engine: v.Engine, CreatedAt: now,
+		}
+		return v, card, nil
+	})
 	if err != nil {
 		return TransitionOutcome{}, err
 	}
-	s.Store.Telemetry.RecordFSM(res.ExecTime)
+	s.Store.Telemetry().RecordFSM(res.ExecTime)
+	out = TransitionOutcome{Prev: res.Prev, Next: res.Next, Version: res.Version, ExecTime: res.ExecTime, Voucher: v}
+	cardMsg = card
 
-	var amount int64
-	var prevHash, dealTitle string
+	var buyerNx, sellerNx, channel, dealTitle string
 	s.Store.ReadDeal(d, func(d *store.Deal) {
-		amount, prevHash, dealTitle = d.AmountPaise, d.LastVoucherHash(), d.Title
-	})
-	if prevHash == "" {
-		prevHash = clients.GenesisHash
-	}
-	now := time.Now().UTC()
-	vType := fsm.VoucherType(act)
-	payload := map[string]any{
-		"action":       string(act),
-		"prev_state":   string(res.Prev),
-		"fsm_state":    string(res.Next),
-		"version":      res.Version,
-		"amount_paise": amount,
-		"actor_role":   actorRole,
-		"issued_at":    now.Format(time.RFC3339Nano),
-	}
-	for k, v := range extra {
-		payload[k] = v
-	}
-	sv := s.Rust.SignVoucher(ctx, d.ID, vType, payload, prevHash)
-	v := store.Voucher{
-		ID: "vch_" + store.RandHex(6), VoucherType: vType, PrevVoucherSHA256: prevHash,
-		CurrVoucherSHA256: sv.CurrHashHex, Ed25519Signature: sv.SignatureHex, PublicKeyHex: sv.PublicKeyHex,
-		Payload: payload, Engine: sv.Engine, CreatedAt: now,
-	}
-	out := TransitionOutcome{Prev: res.Prev, Next: res.Next, Version: res.Version, ExecTime: res.ExecTime, Voucher: v}
-
-	card := store.ChatMessage{
-		ID: "msg_" + store.RandHex(6), DealID: d.ID, SenderRole: "system", SenderName: "SAMADHAN Escrow",
-		MessageType: "x-samadhan-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
-		ExtractedTerms: map[string]any{},
-		Extras: map[string]any{
-			"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next), "version": res.Version,
-			"story_stage": fsm.StoryStage(res.Next), "amount_paise": amount, "go_exec_time_us": out.ExecTimeUS(),
-			"voucher_type": vType, "curr_voucher_sha256": v.CurrVoucherSHA256, "prev_voucher_sha256": prevHash,
-			"ed25519_signature": v.Ed25519Signature, "signing_engine": v.Engine, "actor_role": actorRole,
-		},
-		Engine: v.Engine, CreatedAt: now,
-	}
-	var buyerNx, sellerNx, channel string
-	s.Store.UpdateDeal(d, func(d *store.Deal) {
-		d.Vouchers = append(d.Vouchers, v)
-		d.Messages = append(d.Messages, card)
 		buyerNx = s.Store.UserCopyUnsafe(d.BuyerID).NexconnUserID
 		sellerNx = s.Store.UserCopyUnsafe(d.SellerID).NexconnUserID
 		channel = d.ChannelID
+		dealTitle = d.Title
 	})
-	s.Bus.PublishMessage(d.ID, card)
+	s.Bus.PublishMessage(d.ID, cardMsg)
 
 	// Best-effort Nexconn side effects: System-channel voucher + escrow card stream.
-	vPayload := map[string]any{"deal_id": d.ID, "deal_title": dealTitle, "voucher_type": vType, "curr_voucher_sha256": v.CurrVoucherSHA256,
-		"prev_voucher_sha256": prevHash, "ed25519_signature": v.Ed25519Signature, "public_key_hex": v.PublicKeyHex, "fsm_state": string(res.Next), "version": res.Version}
+	vPayload := map[string]any{"deal_id": d.ID, "deal_title": dealTitle, "voucher_type": v.VoucherType, "curr_voucher_sha256": v.CurrVoucherSHA256,
+		"prev_voucher_sha256": v.PrevVoucherSHA256, "ed25519_signature": v.Ed25519Signature, "public_key_hex": v.PublicKeyHex, "fsm_state": string(res.Next), "version": res.Version}
 	async("system-voucher", func(ctx context.Context) {
 		s.Bridge.SystemVoucher(ctx, []string{buyerNx, sellerNx}, vPayload)
-		s.Bridge.StreamGroup(ctx, channel, "usr_samadhan_system_voucher", "x-samadhan-escrow-card", card.RawText, card.Extras)
+		s.Bridge.StreamGroup(ctx, channel, "usr_samadhan_system_voucher", "x-samadhan-escrow-card", cardMsg.RawText, cardMsg.Extras)
 	})
 	return out, nil
 }
@@ -150,10 +146,16 @@ func (s *Server) publishDeal(d *store.Deal) {
 	}
 }
 
-// seed creates the FUNDED demo deal (Rajesh ↔ Vikram) with a real signed voucher chain.
+// seed creates the FUNDED demo deal (Rajesh ↔ Vikram) with a real signed voucher chain idempotently.
 func (s *Server) seed() {
 	now := time.Now().UTC()
 	s.Store.SeedStatic(now)
+	if existing, exists := s.Store.GetDeal(store.SeedDealID); exists {
+		// Record one baseline FSM sample from persisted seed state so /traction latency_detail stays populated.
+		_ = existing
+		s.Store.Telemetry().RecordFSM(time.Microsecond)
+		return
+	}
 	rajesh, _ := store.PersonaByPreset("P-01_RAJESH")
 	vikram, _ := store.PersonaByPreset("P-02_VIKRAM")
 	d := &store.Deal{
@@ -165,6 +167,7 @@ func (s *Server) seed() {
 	}
 	s.Store.PutDeal(d)
 	s.addMessage(d, store.ChatMessage{
+		ID: "msg_seed_8821_offer",
 		SenderRole: "buyer", SenderName: rajesh.Name, SenderNexconnID: rajesh.NexconnID, MessageType: "x-samadhan-bilingual-bubble",
 		SourceLocale: "ta-IN", TargetLocale: "hi-IN",
 		RawText:        "நான் ₹1,45,000-க்கு வாங்க தயார், மோட்டார் 4800 RPM சோதனை தேவை",
@@ -182,40 +185,37 @@ func (s *Server) seed() {
 
 // transitionLocal is transition() but always signs with the Go signer (seed only).
 func (s *Server) transitionLocal(d *store.Deal, act fsm.Action, extra map[string]any) (TransitionOutcome, error) {
-	_, ver := d.Machine.Snapshot()
-	res, err := d.Machine.Apply(act, ver)
-	if err != nil {
-		return TransitionOutcome{}, err
-	}
-	s.Store.Telemetry.RecordFSM(res.ExecTime)
-	now := time.Now().UTC()
-	payload := map[string]any{"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next),
-		"version": res.Version, "amount_paise": d.AmountPaise, "actor_role": "system", "issued_at": now.Format(time.RFC3339Nano)}
-	for k, v := range extra {
-		payload[k] = v
-	}
-	prev := d.LastVoucherHash()
-	if prev == "" {
-		prev = clients.GenesisHash
-	}
-	sv, err := s.signer.Sign(d.ID, fsm.VoucherType(act), payload, prev)
-	if err != nil {
-		return TransitionOutcome{}, err
-	}
-	v := store.Voucher{ID: "vch_" + store.RandHex(6), VoucherType: fsm.VoucherType(act), PrevVoucherSHA256: prev,
-		CurrVoucherSHA256: sv.CurrHashHex, Ed25519Signature: sv.SignatureHex, PublicKeyHex: sv.PublicKeyHex,
-		Payload: payload, Engine: "go-native-seed", CreatedAt: now}
-	s.Store.UpdateDeal(d, func(d *store.Deal) {
-		d.Vouchers = append(d.Vouchers, v)
-		d.Messages = append(d.Messages, store.ChatMessage{
-			ID: "msg_" + store.RandHex(6), DealID: d.ID, SenderRole: "system", SenderName: "SAMADHAN Escrow",
+	res, v, _, err := s.Store.ApplyTransition(context.Background(), d, act, -1, func(prev string, res fsm.Result, amount int64) (store.Voucher, store.ChatMessage, error) {
+		now := time.Now().UTC()
+		payload := map[string]any{"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next),
+			"version": res.Version, "amount_paise": amount, "actor_role": "system", "issued_at": now.Format(time.RFC3339Nano)}
+		for k, val := range extra {
+			payload[k] = val
+		}
+		if prev == "" {
+			prev = clients.GenesisHash
+		}
+		sv, err := s.signer.Sign(d.ID, fsm.VoucherType(act), payload, prev)
+		if err != nil {
+			return store.Voucher{}, store.ChatMessage{}, err
+		}
+		v := store.Voucher{ID: "vch_seed_8821_lock", VoucherType: fsm.VoucherType(act), PrevVoucherSHA256: prev,
+			CurrVoucherSHA256: sv.CurrHashHex, Ed25519Signature: sv.SignatureHex, PublicKeyHex: sv.PublicKeyHex,
+			Payload: payload, Engine: "go-native-seed", CreatedAt: now}
+		card := store.ChatMessage{
+			ID: "msg_seed_8821_lock", DealID: d.ID, SenderRole: "system", SenderName: "SAMADHAN Escrow",
 			MessageType: "x-samadhan-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
 			ExtractedTerms: map[string]any{},
 			Extras: map[string]any{"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next), "version": res.Version,
-				"story_stage": fsm.StoryStage(res.Next), "amount_paise": d.AmountPaise, "voucher_type": v.VoucherType,
+				"story_stage": fsm.StoryStage(res.Next), "amount_paise": amount, "voucher_type": v.VoucherType,
 				"curr_voucher_sha256": v.CurrVoucherSHA256, "prev_voucher_sha256": prev, "ed25519_signature": v.Ed25519Signature, "signing_engine": v.Engine},
 			Engine: v.Engine, CreatedAt: now,
-		})
+		}
+		return v, card, nil
 	})
+	if err != nil {
+		return TransitionOutcome{}, err
+	}
+	s.Store.Telemetry().RecordFSM(res.ExecTime)
 	return TransitionOutcome{Prev: res.Prev, Next: res.Next, Version: res.Version, ExecTime: res.ExecTime, Voucher: v}, nil
 }

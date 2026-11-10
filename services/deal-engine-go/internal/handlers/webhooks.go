@@ -34,7 +34,7 @@ func (s *Server) handleWebhook(w http.ResponseWriter, r *http.Request) {
 	sig := strings.TrimPrefix(strings.TrimSpace(r.Header.Get("X-Samadhan-Signature")), "sha256=")
 	want := SignWebhook(s.Cfg.WebhookSecret, raw)
 	if sig == "" || !hmac.Equal([]byte(strings.ToLower(sig)), []byte(want)) {
-		s.Store.Telemetry.RecordWebhook(false)
+		s.Store.Telemetry().RecordWebhook(false)
 		mw.WriteError(w, r, http.StatusUnauthorized, "ERR_WEBHOOK_SIGNATURE", "invalid or missing X-Samadhan-Signature", false)
 		return
 	}
@@ -55,11 +55,11 @@ func (s *Server) handleWebhook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if d := time.Now().Unix() - ev.TimestampUnix; d > webhookWindow || d < -webhookWindow {
-		s.Store.Telemetry.RecordWebhook(false)
+		s.Store.Telemetry().RecordWebhook(false)
 		mw.WriteError(w, r, http.StatusUnauthorized, "ERR_WEBHOOK_REPLAY_WINDOW", "timestamp_unix outside ±300s replay window", false)
 		return
 	}
-	s.Store.Telemetry.RecordWebhook(true)
+	s.Store.Telemetry().RecordWebhook(true)
 	if cached, ok := s.Store.WebhookSeen(ev.EventID); ok {
 		var body map[string]any
 		_ = json.Unmarshal(cached, &body)

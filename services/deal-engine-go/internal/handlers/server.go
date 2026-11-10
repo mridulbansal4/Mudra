@@ -26,7 +26,7 @@ const Version = "0.1.0"
 // Server wires everything together.
 type Server struct {
 	Cfg    config.Config
-	Store  *store.Store
+	Store  store.StoreInterface
 	Bridge *clients.Bridge
 	Rust   *clients.Rust
 	JWT    *mw.JWT
@@ -36,12 +36,41 @@ type Server struct {
 	// asyncWG-free: async side effects are best-effort with their own timeouts.
 }
 
-// New builds a server and seeds the store.
+// New builds a server. When DATABASE_URL is set and reachable it uses PostgresStore;
+// an unset, placeholder, or unreachable URL falls back to the in-memory store.
 func New(cfg config.Config) *Server {
+	return NewWithStore(cfg, openStore(cfg))
+}
+
+// openStore selects PostgresStore or MemoryStore (dual-mode fallback).
+func openStore(cfg config.Config) store.StoreInterface {
+	dsn := strings.TrimSpace(cfg.DatabaseURL)
+	if config.IsPlaceholderDatabaseURL(dsn) {
+		slog.Info("DATABASE_URL unset or placeholder; using in-memory store")
+		return store.NewMemoryStore()
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	pg, err := store.NewPostgresStore(ctx, store.PostgresOptions{
+		DatabaseURL: dsn,
+		MaxConns:    cfg.PGMaxConns,
+		MinConns:    cfg.PGMinConns,
+		Schema:      cfg.DatabaseSchema,
+	})
+	if err != nil {
+		slog.Warn("failed to connect to PostgreSQL; falling back to in-memory store", "err", err, "url_masked", config.MaskDatabaseURL(dsn))
+		return store.NewMemoryStore()
+	}
+	slog.Info("connected to Supabase PostgreSQL cluster", "url_masked", config.MaskDatabaseURL(dsn))
+	return pg
+}
+
+// NewWithStore builds a server with an explicit StoreInterface implementation and seeds it idempotently.
+func NewWithStore(cfg config.Config, st store.StoreInterface) *Server {
 	signer := clients.NewGoSigner(cfg.Ed25519Seed)
 	s := &Server{
 		Cfg:    cfg,
-		Store:  store.New(),
+		Store:  st,
 		Bridge: clients.NewBridge(cfg.BridgeURL, cfg.InternalHMAC, cfg.NexconnAppKey),
 		Rust:   clients.NewRust(cfg.RustURL, cfg.InternalHMAC, signer),
 		JWT:    mw.NewJWT(cfg.JWTSecret),
@@ -51,6 +80,15 @@ func New(cfg config.Config) *Server {
 	}
 	s.seed()
 	return s
+}
+
+// Close releases underlying store and SSE broadcaster resources.
+func (s *Server) Close() error {
+	s.Bus.Close()
+	if s.Store != nil {
+		return s.Store.Close()
+	}
+	return nil
 }
 
 // StartBackground launches probers and sweepers until ctx is done.

@@ -1,0 +1,12 @@
+{
+  "id": "6",
+  "title": "End-to-End Live Supabase Persistence, Restart, Trigger & Monorepo Regression Verification",
+  "description": "Execute full live verification against Supabase PostgreSQL (boot log, /health store=postgresql, seeded d_8821_juki fetch, state mutation + voucher minting across process restart, trg_vouchers_append_only UPDATE/DELETE rejection, and dual-mode fallback when DATABASE_URL is unreachable/empty) plus full monorepo test/typecheck/lint/build gates.",
+  "acceptance_criteria": [
+    "Live deal-engine-go boots with store='postgresql' on /health and serves seeded d_8821_juki",
+    "Mutated deal state and signed Ed25519 voucher chain persist across deal-engine-go process restart",
+    "PostgreSQL trigger trg_vouchers_append_only rejects UPDATE and DELETE on system_audit_vouchers with 'system_audit_vouchers is append-only'",
+    "Dual-mode fallback verified with empty/unreachable DATABASE_URL returning store='in-memory'",
+    "go test -v -race ./..., pnpm typecheck, pnpm test, pnpm build, and cargo test pass with zero errors and no lingering background processes"
+  ]
+}
