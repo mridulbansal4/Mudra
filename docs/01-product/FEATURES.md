@@ -1,0 +1,39 @@
+# Feature Matrix & Flags — SAMADHAN-OS (`SamvadDeal`)
+> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product & Engineering Leads) · Status: Draft v0.1 · Last updated: 2026-11-10
+> Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [PRD](./PRD.md) · [User Stories](./USER_STORIES.md) · [Architecture](../03-engineering/ARCHITECTURE.md)
+
+---
+
+## 1. Canonical Feature Matrix (`F-01` – `F-14`)
+
+| ID | Feature Name | Description | Personas | MoSCoW | In MVP? | Dependencies | Owner |
+|---|---|---|---|---|---|---|---|
+| **F-01** | **Zero-Friction Auth, 1-Tap Persona Login & Nexconn Token Service** | Issues real Nexconn access tokens via `/v4/auth/access-token/issue` (`API-01`), supports 1-tap Demo Persona Quick-Fill on `/auth` and zero-login guest tokens on `/sandbox` & `/arena`, and connects `NCEngine`. | `P-01`..`P-05` | **Must** | Yes (`100%`) | `@nexconn/server-sdk`, `@nexconn/chat`, PostgreSQL `E-01`/`E-02` | Dev 1 + Dev 2 |
+| **F-02** | **Story-Driven Beginner Landing, Onboarding Wizard & Coachmarks** | Progressive story routing (`/` → `/auth` → `/onboarding` → `/app` / `/sandbox`) with Hallmark `1280x800` hero, 45s camera/language setup, Simulated HD Inspection Video fallback, and 4-Stage Deal Story Bar. | `P-01`, `P-02`, `P-05` | **Must** | Yes (`100%`) | HeroUI v3 (`@heroui/react`), Tailwind v4, `F-01` | Dev 3 |
+| **F-03** | **Cross-Lingual 1:1 & Group Deal Room with Streaming Translation** | Scrubs PII in Rust (`<300µs`), translates Tamil/Hindi/Marathi/Punjabi/Malayalam ↔ English via `M-01`/`M-02`, and streams tokens via `sendGroupChannelStreamMessage` into custom Lit `<nc-bilingual-bubble>`. | `P-01`, `P-02`, `P-03` | **Must** | Yes (`100%`) | `@nexconn/chatui`, `@nexconn/server-sdk`, Rust `assay-verifier-rs`, `M-01`, `M-02` | Dev 1 + Dev 4 |
+| **F-04** | **Custom Lit Escrow Milestone State Card (`<nc-escrow-deal-card>`)** | Interactive Lit `BaseMessageContent` card registered via `registerMessageType` before `app.ready()`, wired to Go 1.24 deterministic FSM (`services/deal-engine-go`, `API-06`). | `P-01`, `P-02`, `P-03`, `P-05` | **Must** | Yes (`100%`) | `@nexconn/chatui`, `lit@^3.3.2`, Go `deal-engine-go` (`E-04`) | Dev 1 + Dev 2 |
+| **F-05** | **1-Click Live WebRTC Video Defect & Serial Inspection (`@nexconn/call`)** | Starts 1:1 audio call over `NCEngine` and escalates to HD video via `requestChangeMediaType(NCCallMediaType.VIDEO)` inside an Apple-design draggable PiP Loupe; logs `onServerCallLogReceived`. | `P-01`, `P-02`, `P-03`, `P-05` | **Must** | Yes (`100%`) | `@nexconn/call@^26.2.0`, `@nexconn/chat` (`NCEngine` connected), `F-01` | Dev 1 + Dev 3 |
+| **F-06** | **Rust + WASM Real-Time Forensic Frame & Audio Assay** | Client WASM (`packages/assay-wasm-rs`) 60fps blur/serial lock + Rust Axum (`services/assay-verifier-rs`) `pHash`, 4096-pt `rustfft` motor/fan RPM check, `M-03` Vision check, and Ed25519 receipt signing (`<5ms`). | `P-01`, `P-02`, `P-04`, `P-05` | **Must** | Yes (`100%`) | Rust 1.85, `wasm-bindgen`, `M-03` (Gemini 2.5 Flash Vision), `F-05` | Dev 2 + Dev 4 |
+| **F-07** | **Instant Channel-Freeze Dispute Lock (`addGroupChannelFreezeList`)** | 1-click `Raise Dispute` invokes `GroupChannelModerationApi.addGroupChannelFreezeList` (`API-09`), freezing Buyer & Seller chat inputs in `<150ms` and transitioning Go FSM to `DISPUTE_FROZEN`. | `P-01`, `P-02`, `P-04`, `P-05` | **Must** | Yes (`100%`) | `@nexconn/server-sdk` (`GroupChannelModerationApi`), Go `deal-engine-go` | Dev 1 + Dev 2 |
+| **F-08** | **Human Agent Dispatch Center & AI Tribunal Streaming Settlement** | `/dispatch` queue assigns human arbitrator (`P-04`) to frozen `Group` room (`API-10`) while `M-04` streams evidence-cited rebate split into `<nc-tribunal-verdict-card>` via `sendGroupChannelStreamMessage`. | `P-01`, `P-02`, `P-04`, `P-05` | **Must** | Yes (`100%`) | `@nexconn/server-sdk`, `M-04` (Gemini 2.5 Pro), `F-07` | Dev 3 + Dev 4 |
+| **F-09** | **Immutable `System` Channel Audit & Compliance Ledger** | Emits Ed25519-signed, SHA-256 hash-chained vouchers (`E-08`) into user's read-only `System` channel via `SystemMessagesApi` for DPDP consent, escrow locks, call logs, and tribunal payouts. | `P-01`..`P-05` | **Must** | Yes (`100%`) | `@nexconn/server-sdk` (`SystemMessagesApi`), `@nexconn/chatui`, Rust `ed25519-dalek` | Dev 1 + Dev 2 |
+| **F-10** | **Live `Open` Channel Flash-Lot Ticker & `Community` Subchannels** | Hybrid `@nexconn/chat` (`NCEngine`) sidebar displaying priority `Open` wholesale/thrift drops (`OpenChannelPriorityControlsApi`, `API-13`) and `Community` category subchannels (`createCommunitySubchannel`, `API-14`). | `P-01`, `P-02`, `P-03`, `P-05` | **Must** | Yes (`100%`) | `@nexconn/chat@^26.2.1`, `@nexconn/server-sdk` (`OpenChannelPriorityControlsApi`, `CommunityChannelManagementApi`) | Dev 1 + Dev 3 |
+| **F-11** | **1-Click Split-Screen Buyer + Seller + AI Judge Sandbox (`/sandbox`)** | Zero-login dual-pane browser view (`API-02`) provisioning 2 real Nexconn tokens (`buyer_demo_<id>`, `seller_demo_<id>`) with a 5-step guided story coachmark overlay. | `P-05`, `P-01` | **Must** | Yes (`100%`) | `F-01`..`F-09`, Go + Node sandbox provisioner | Dev 1 + Dev 3 |
+| **F-12** | **60-Second Viral AI Shopkeeper Bargaining Arena (`/arena`)** | Gamified 60s bargaining challenge against Chanakya AI Shopkeeper (`M-05`) streaming via `sendDirectChannelStreamMessage` (`API-15`, `API-16`); auto-provisions real Nexconn user tokens to drive MAUs. | `P-03`, `P-05` | **Should** | Yes (`100%`) | `@nexconn/server-sdk` (`sendDirectChannelStreamMessage`), Go pricing guardrails, `M-05` | Dev 3 + Dev 4 |
+| **F-13** | **Public Verified MAU & SDK Telemetry Proof Dashboard (`/traction` & `/guide`)** | `/traction` displays real-time connected `userId`s, channel counts, and latencies (`API-18`); `/guide` maps every UI action to its underlying Nexconn SDK method. | `P-05` | **Should** | Yes (`100%`) | Go telemetry aggregator (`API-18`), PostHog | Dev 2 + Dev 3 |
+| **F-14** | **Companion Mobile Field Assay App (`apps/mobile-expo`)** | Expo SDK 53 + React Native + `heroui-native@^2.0.1` + Uniwind companion mobile app for workshop sellers (`P-02`) to scan deal QR codes and stream back-camera video assays. | `P-02`, `P-03` | **Could** | Yes (Core View) | `heroui-native`, `uniwind`, `@nexconn/call` WebRTC bridge | Dev 3 |
+
+---
+
+## 2. Feature Flags & Runtime Toggles
+
+Configured via environment variables (`.env.example`) and runtime query overrides on `/sandbox` and `/onboarding` so judges and developers can test every scenario deterministically:
+
+| Flag Name | Default (`MVP`) | Purpose & Fallback Behavior |
+|---|---|---|
+| `FF_SIMULATED_HD_CAMERA` | `auto` (`true` if no webcam detected) | Injects a 60fps HTML5 Canvas video & audio stream of an industrial Juki overlock machine / MacBook Pro serial plate into `NCCallEngine` so judges at 2 AM without a webcam experience full live video + Rust WASM verification. |
+| `FF_RUST_PII_SCRUBBER_STRICT` | `true` | Enforces `<300µs` Rust Aho-Corasick redaction of phone numbers, Aadhaar, PAN, and bank digits before any LLM call (`API-05`). |
+| `FF_AI_COUNTERPARTY_AUTOREPLY` | `true` | In single-pane `/app` mode, if the human counterparty hasn't replied within `4 seconds`, `Chanakya Autonomous Counterparty` streams a contextual bilingual response via `sendGroupChannelStreamMessage` so no room is ever dead. |
+| `FF_BHASHINI_FALLBACK_ENABLED` | `true` | Automatically routes Indic translation/ASR (`M-01`/`M-02`) to Bhashini ULCA / Together AI if Google Gemini 2.5 Flash latency exceeds `1,800ms`. |
+| `FF_WEBRTC_KEYFRAME_FALLBACK` | `true` | If corporate firewall blocks UDP WebRTC media after `2,500ms`, automatically streams Rust WASM-watermarked keyframes over `NCEngine` to `API-08`. |
+| `FF_STORY_COACHMARKS_ACTIVE` | `true` | Displays the glowing **"Next Recommended Action"** helper chip on the top 4-Stage Story Bar in `/app` and `/sandbox` for first-time users. |
