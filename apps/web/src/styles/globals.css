@@ -190,15 +190,8 @@ body {
   text-transform: uppercase;
 }
 
-@media (max-width: 640px) {
-  .eyebrow {
-    font-size: 10px;
-  }
-}
-
-.num {
-  font-variant-numeric: tabular-nums;
-}
+@media (max-width: 640px) { .eyebrow { font-size: 10px; } }
+.num { font-variant-numeric: tabular-nums; }
 
 .t-num-xl {
   font-family: var(--font-sans);
@@ -219,9 +212,7 @@ body {
   min-width: 0;
 }
 
-.hairline {
-  border-color: var(--hairline);
-}
+.hairline { border-color: var(--hairline); }
 
 .mesh-canvas {
   background:
@@ -233,92 +224,30 @@ body {
   animation: mesh-drift 24s ease-in-out alternate infinite;
 }
 
-.press {
-  transition: transform 90ms ease-out, background-color 150ms ease-out;
-}
-.press:active {
-  transform: scale(0.97);
-}
-
-:where(a, button, [role="button"], [tabindex]):focus-visible {
-  outline: 2px solid var(--neo-paccha);
-  outline-offset: 3px;
-}
-
-.glass {
-  background: var(--surface-glass);
-  backdrop-filter: blur(20px) saturate(140%);
-}
-
-.no-scrollbar {
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+.press { transition: transform 90ms ease-out, background-color 150ms ease-out; }
+.press:active { transform: scale(0.97); }
+:where(a, button, [role="button"], [tabindex]):focus-visible { outline: 2px solid var(--neo-paccha); outline-offset: 3px; }
+.bg-neo-paccha:focus-visible, [data-paccha-fill="true"]:focus-visible { outline-color: #ffffff; }
+.glass { background: var(--surface-glass); backdrop-filter: blur(20px) saturate(140%); }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
 @media (prefers-reduced-transparency: reduce) {
-  .glass {
-    background: var(--card);
-    backdrop-filter: none;
-  }
+  .glass { background: var(--card); backdrop-filter: none; }
 }
 
 /* Ambient loops (§9.5) */
-@keyframes mesh-drift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes float-a {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(6px, -14px, 0); }
-}
-
-@keyframes float-b {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-6px, 14px, 0); }
-}
-
-@keyframes float-c {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(5px, 11px, 0); }
-}
-
-@keyframes scan-cue {
-  0% { transform: translateY(0); opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translateY(36px); opacity: 0; }
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-140%); }
-  100% { transform: translateX(240%); }
-}
-
-@keyframes spin-fan {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes dot-wave {
-  0%, 100% { opacity: 0.25; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-2px); }
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(0.82); }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(4px); }
-}
-
-.fade-in {
-  animation: fade-in 220ms ease-out both;
-}
+@keyframes mesh-drift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+@keyframes float-a { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(6px, -14px, 0); } }
+@keyframes float-b { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(-6px, 14px, 0); } }
+@keyframes float-c { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(5px, 11px, 0); } }
+@keyframes scan-cue { 0% { transform: translateY(0); opacity: 0; } 20%, 80% { opacity: 1; } 100% { transform: translateY(36px); opacity: 0; } }
+@keyframes shimmer { 0% { transform: translateX(-140%); } 100% { transform: translateX(240%); } }
+@keyframes spin-fan { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes dot-wave { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.82); } }
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } }
+.fade-in { animation: fade-in 220ms ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

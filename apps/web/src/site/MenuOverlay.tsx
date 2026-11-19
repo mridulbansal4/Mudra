@@ -143,29 +143,52 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
           {session ? (
             <div className="flex flex-col items-start gap-4">
               <div className="text-[18px] font-bold lowercase text-fg">{session.displayName}</div>
-              <NeoButton variant="paccha" size="md" to="/app" onClick={onClose}>
-                open my desk
-              </NeoButton>
-              <button
-                type="button"
-                onClick={() => {
-                  setSession(null);
-                  onClose();
-                  navigate("/");
-                }}
-                className="bg-transparent border-0 p-0 text-[13px] font-semibold lowercase text-muted hover:text-fg cursor-pointer press"
-              >
-                sign out
-              </button>
+              <div className="flex flex-wrap items-center gap-3">
+                <NeoButton variant="paccha" size="md" to="/app" onClick={onClose}>
+                  open my desk
+                </NeoButton>
+                <NeoButton variant="ghost" size="md" to="/onboarding" onClick={onClose}>
+                  start onboarding
+                </NeoButton>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  to="/auth"
+                  onClick={onClose}
+                  className="text-[13px] font-semibold lowercase text-muted hover:text-fg no-underline"
+                >
+                  switch account
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSession(null);
+                    onClose();
+                    navigate("/");
+                  }}
+                  className="bg-transparent border-0 p-0 text-[13px] font-semibold lowercase text-muted hover:text-fg cursor-pointer press"
+                >
+                  sign out
+                </button>
+              </div>
             </div>
           ) : (
-            <div className="flex flex-wrap items-center gap-4">
-              <NeoButton variant="paccha" size="md" to="/auth" onClick={onClose}>
-                sign in
-              </NeoButton>
-              <NeoButton variant="ghost" size="md" to="/onboarding" onClick={onClose}>
-                start onboarding
-              </NeoButton>
+            <div className="flex flex-col items-start gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <NeoButton variant="paccha" size="md" to="/auth" onClick={onClose}>
+                  sign in
+                </NeoButton>
+                <NeoButton variant="ghost" size="md" to="/onboarding" onClick={onClose}>
+                  start onboarding
+                </NeoButton>
+              </div>
+              <Link
+                to="/app"
+                onClick={onClose}
+                className="text-[13px] font-semibold lowercase text-muted hover:text-fg no-underline"
+              >
+                open my desk
+              </Link>
             </div>
           )}
         </div>

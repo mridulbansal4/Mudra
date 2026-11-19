@@ -20,9 +20,15 @@ export function DealChat({ state, dispatch, viewer = "buyer" }: DealChatProps) {
   const reduced = Boolean(useReducedMotion());
   const isBuyer = viewer === "buyer";
   const peer = isBuyer ? DEAL_META.seller : DEAL_META.buyer;
-  const subline = isBuyer
-    ? "speaks हिन्दी · you see தமிழ்"
-    : "speaks தமிழ் · you see हिन्दी";
+  const subline = isBuyer ? (
+    <>
+      speaks <span lang="hi">हिन्दी</span> · you see <span lang="ta">தமிழ்</span>
+    </>
+  ) : (
+    <>
+      speaks <span lang="ta">தமிழ்</span> · you see <span lang="hi">हिन्दी</span>
+    </>
+  );
   const pill = fsmToneAndLabel(state.fsm);
   const quickList = QUICK_PHRASES[isBuyer ? "ta-IN" : "hi-IN"];
 
