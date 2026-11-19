@@ -66,8 +66,8 @@ export function Freeze({ state, dispatch, viewer = "buyer" }: FreezeProps) {
 
           {/* Evidence attached */}
           <div className="rounded-[20px] bg-card p-3.5 border border-[var(--hairline)]">
-            <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
-              EVIDENCE ATTACHED
+            <div className="text-[12px] font-bold lowercase text-muted">
+              evidence attached
             </div>
             <div className="mt-2.5 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
