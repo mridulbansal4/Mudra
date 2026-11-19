@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUp, ChevronLeft, Languages, Snowflake, Video } from "lucide-react";
 import { QUICK_PHRASES } from "../../lib/deal";
+import { useReducedMotion } from "../../motion/hooks";
 import { NeoButton } from "../../ui/NeoButton";
 import { StatusPill, fsmToneAndLabel } from "../../ui/StatusPill";
 import { VelvetCard } from "../../ui/VelvetCard";
@@ -16,6 +17,7 @@ export interface DealChatProps {
 
 export function DealChat({ state, dispatch, viewer = "buyer" }: DealChatProps) {
   const [draft, setDraft] = useState("");
+  const reduced = Boolean(useReducedMotion());
   const isBuyer = viewer === "buyer";
   const peer = isBuyer ? DEAL_META.seller : DEAL_META.buyer;
   const subline = isBuyer
@@ -23,6 +25,23 @@ export function DealChat({ state, dispatch, viewer = "buyer" }: DealChatProps) {
     : "speaks தமிழ் · you see हिन्दी";
   const pill = fsmToneAndLabel(state.fsm);
   const quickList = QUICK_PHRASES[isBuyer ? "ta-IN" : "hi-IN"];
+
+  // Typing indicator before incoming message bubble (§8.5 Step 2: 800ms on seller, §8.7: 300ms incoming)
+  const prevCountRef = useRef(state.messages.length);
+  const [typingMessageId, setTypingMessageId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const prevCount = prevCountRef.current;
+    prevCountRef.current = state.messages.length;
+    if (reduced || state.messages.length <= prevCount) return;
+    const latest = state.messages[state.messages.length - 1];
+    if (latest && latest.kind === "text" && latest.from !== viewer) {
+      setTypingMessageId(latest.id);
+      const delayMs = !isBuyer && state.step === 2 ? 800 : 300;
+      const t = window.setTimeout(() => setTypingMessageId(null), delayMs);
+      return () => window.clearTimeout(t);
+    }
+  }, [isBuyer, reduced, state.messages, state.step, viewer]);
 
   const handleSend = (text: string) => {
     const trimmed = text.trim();
@@ -106,9 +125,32 @@ export function DealChat({ state, dispatch, viewer = "buyer" }: DealChatProps) {
 
       {/* Message stream */}
       <div className="my-3 flex flex-1 flex-col gap-2.5">
-        {state.messages.map((m) => (
-          <BilingualBubble key={m.id} message={m} viewer={viewer} />
-        ))}
+        {state.messages.map((m) => {
+          if (m.id === typingMessageId) {
+            return (
+              <div
+                key={`typing-${m.id}`}
+                aria-label="Typing indicator"
+                className="inline-flex w-fit items-center gap-1.5 px-4 py-3"
+                style={{
+                  backgroundColor: "var(--card-2)",
+                  borderRadius: "20px 20px 20px 6px",
+                }}
+              >
+                {[0, 1, 2].map((d) => (
+                  <span
+                    key={d}
+                    className="size-[4px] rounded-full bg-fg-2"
+                    style={{
+                      animation: `dot-wave 1.1s ease-in-out ${d * 0.16}s infinite`,
+                    }}
+                  />
+                ))}
+              </div>
+            );
+          }
+          return <BilingualBubble key={m.id} message={m} viewer={viewer} />;
+        })}
 
         {/* Seller FUNDED callout card (§8.4 S2) */}
         {!isBuyer && state.fsm === "FUNDED" ? (

@@ -125,10 +125,27 @@ export default function Demo() {
   const handlePopOut = () => {
     window.open("/demo/phone/buyer", "samadhan-buyer", "width=460,height=920");
     window.open("/demo/phone/seller", "samadhan-seller", "width=460,height=920");
+    window.setTimeout(() => {
+      store.dispatch({ type: "SYNC_STATE", state: store.getState() }, true);
+    }, 350);
+    window.setTimeout(() => {
+      store.dispatch({ type: "SYNC_STATE", state: store.getState() }, true);
+    }, 800);
   };
 
+  const [arbiterDismissed, setArbiterDismissed] = useState(false);
+  useEffect(() => {
+    if (state.branch === "dispute" && state.step === 8) {
+      setArbiterDismissed(false);
+      const id = window.setTimeout(() => setArbiterDismissed(true), 3000);
+      return () => window.clearTimeout(id);
+    }
+    setArbiterDismissed(false);
+  }, [state.branch, state.step]);
+
   const showArbiterOverlay =
-    state.branch === "dispute" && (state.step === 7 || state.step === 8);
+    state.branch === "dispute" &&
+    (state.step === 7 || (state.step === 8 && !arbiterDismissed));
 
   return (
     <div className="mesh-canvas min-h-dvh w-full text-fg pb-28">
@@ -172,7 +189,7 @@ export default function Demo() {
         </div>
 
         {/* Stage */}
-        <div className="relative mt-10 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start min-[1100px]:gap-[64px]">
+        <div className="relative mt-10 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start min-[1100px]:gap-0">
           <PhoneFrame
             scale={phoneScale}
             label="rajesh · buyer · தமிழ்"
