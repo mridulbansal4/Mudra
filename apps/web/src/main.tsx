@@ -19,6 +19,7 @@ const Arena = lazy(() => import("./routes/Arena"));
 const Dispatch = lazy(() => import("./routes/Dispatch"));
 const Guide = lazy(() => import("./routes/Guide"));
 const Traction = lazy(() => import("./routes/Traction"));
+const HowItWorks = lazy(() => import("./routes/HowItWorks"));
 const Demo = lazy(() => import("./routes/Demo"));
 const DemoPhone = lazy(() => import("./routes/DemoPhone"));
 
@@ -41,6 +42,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/dispatch" element={<Dispatch />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/traction" element={<Traction />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/demo/phone/:role" element={<DemoPhone />} />
           <Route path="*" element={<Navigate to="/" replace />} />
