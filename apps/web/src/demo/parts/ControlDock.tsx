@@ -55,7 +55,7 @@ export function ControlDock({ state, dispatch }: ControlDockProps) {
         <SkipForward size={18} strokeWidth={1.5} aria-hidden="true" />
       </button>
 
-      <div className="num px-3 text-[13px] font-bold text-fg select-none">
+      <div className="num shrink-0 whitespace-nowrap px-3 text-[13px] font-bold text-fg select-none">
         {state.step} / {TOTAL_SCRIPT_STEPS}
       </div>
 
@@ -65,7 +65,7 @@ export function ControlDock({ state, dispatch }: ControlDockProps) {
         onClick={() =>
           dispatch({ type: "SET_SPEED", speed: state.speed === 1 ? 2 : 1 })
         }
-        className="num flex h-[38px] items-center gap-1 rounded-full bg-card-3 px-3.5 text-[12px] font-bold text-fg border-0 cursor-pointer press"
+        className="num flex h-[38px] shrink-0 whitespace-nowrap items-center gap-1 rounded-full bg-card-3 px-3.5 text-[12px] font-bold text-fg border-0 cursor-pointer press"
       >
         <span className={state.speed === 1 ? "text-neo-paccha" : "text-muted"}>1×</span>
         <span className="text-muted">|</span>

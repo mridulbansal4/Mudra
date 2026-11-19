@@ -82,7 +82,11 @@ export function S7TwoPhoneTeaser() {
               <PhoneFrame
                 scale={0.62}
                 tilt={{ x: 0, y: 8, z: 0 }}
-                label="rajesh · தமிழ்"
+                label={
+                  <>
+                    rajesh · <span lang="ta">தமிழ்</span>
+                  </>
+                }
               >
                 <DealChat
                   state={activeState}
@@ -96,7 +100,11 @@ export function S7TwoPhoneTeaser() {
               <PhoneFrame
                 scale={0.62}
                 tilt={{ x: 0, y: -8, z: 0 }}
-                label="vikram · हिन्दी"
+                label={
+                  <>
+                    vikram · <span lang="hi">हिन्दी</span>
+                  </>
+                }
               >
                 <DealChat
                   state={activeState}

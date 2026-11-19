@@ -192,7 +192,11 @@ export default function Demo() {
         <div className="relative mt-10 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start min-[1100px]:gap-0">
           <PhoneFrame
             scale={phoneScale}
-            label="rajesh · buyer · தமிழ்"
+            label={
+              <>
+                rajesh · buyer · <span lang="ta">தமிழ்</span>
+              </>
+            }
           >
             <PhoneScreenRouter
               screen={state.buyerScreen}
@@ -208,7 +212,11 @@ export default function Demo() {
 
           <PhoneFrame
             scale={phoneScale}
-            label="vikram · seller · हिन्दी"
+            label={
+              <>
+                vikram · seller · <span lang="hi">हिन्दी</span>
+              </>
+            }
           >
             <PhoneScreenRouter
               screen={state.sellerScreen}
