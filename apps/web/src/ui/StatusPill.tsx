@@ -20,7 +20,7 @@ export function StatusPill({ tone = "neutral", children, className = "" }: Statu
   const t = TONE_MAP[tone];
   return (
     <span
-      className={`inline-flex h-[24px] items-center gap-1.5 px-2.5 text-[11px] font-bold uppercase tracking-[0.12em] select-none ${className}`}
+      className={`inline-flex h-[24px] w-fit self-start items-center gap-1.5 px-2.5 text-[11px] font-bold uppercase tracking-[0.12em] select-none ${className}`}
       style={{
         borderRadius: "999px",
         backgroundColor: t.bg,
