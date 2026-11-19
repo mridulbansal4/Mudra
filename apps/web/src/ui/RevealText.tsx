@@ -45,7 +45,10 @@ function RevealWord({
   }
 
   return (
-    <span aria-hidden="true" className="rw relative inline-block mr-[0.28em]">
+    <span
+      aria-hidden="true"
+      className={`rw relative inline-block mr-[0.28em] ${boldWhenLit ? "font-bold" : ""}`}
+    >
       <span style={{ color: "#3a3a3a" }}>{word} </span>
       <motion.span
         className={`absolute inset-0 text-fg ${boldWhenLit ? "font-bold" : ""}`}
