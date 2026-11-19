@@ -12,7 +12,7 @@ export interface CountUpProps {
 }
 
 function easeOutExpo(t: number): number {
-  return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  return t >= 0.85 ? 1 : (1 - Math.pow(2, -10 * t)) / (1 - Math.pow(2, -8.5));
 }
 
 export function CountUp({
