@@ -98,19 +98,24 @@ export function Logo({
   className = "",
 }: LogoProps) {
   const reducedMotion = useReducedMotion();
-  const [playIntro, setPlayIntro] = useState(false);
+  const [playIntro, setPlayIntro] = useState(() => {
+    if (!intro) return false;
+    try {
+      if (typeof window !== "undefined" && !sessionStorage.getItem("logo-intro")) {
+        sessionStorage.setItem("logo-intro", "1");
+        return true;
+      }
+      return false;
+    } catch {
+      return true;
+    }
+  });
 
   useEffect(() => {
-    if (!intro || reducedMotion) return;
-    try {
-      if (!sessionStorage.getItem("logo-intro")) {
-        sessionStorage.setItem("logo-intro", "1");
-        setPlayIntro(true);
-      }
-    } catch {
-      setPlayIntro(true);
+    if (reducedMotion && playIntro) {
+      setPlayIntro(false);
     }
-  }, [intro, reducedMotion]);
+  }, [reducedMotion, playIntro]);
 
   const resolvedWordmarkSize = wordmarkSize ?? (layout === "row" ? 13 : 11);
 
