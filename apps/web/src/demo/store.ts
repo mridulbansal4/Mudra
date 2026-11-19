@@ -1,6 +1,8 @@
-import { TRANSITIONS, type FsmAction, type FsmState } from "@samadhan/shared-types";
+import type { FsmAction, FsmState } from "@samadhan/shared-types";
 import { connectDemoBroadcast } from "./broadcast";
 import {
+  applyFsmMove,
+  applyStep,
   SCRIPT_MESSAGES,
   TOTAL_SCRIPT_STEPS,
   type DemoBranch,
@@ -40,6 +42,7 @@ export type DemoAction =
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "JUMP_TO_STEP"; step: number; branch?: DemoBranch }
+  | { type: "SYNC_STATE"; state: DemoState }
   | { type: "SET_BRANCH"; branch: DemoBranch }
   | { type: "SET_PLAYING"; playing: boolean }
   | { type: "SET_SPEED"; speed: 1 | 2 }
@@ -76,157 +79,6 @@ export function createInitialDemoState(branch: DemoBranch = "happy", playing = t
   };
 }
 
-function applyFsmMove(
-  state: DemoState,
-  action: FsmAction,
-  actor: "buyer" | "seller" | "arbitrator",
-  latencyMs = 0.9
-): DemoState {
-  const nextFsm = TRANSITIONS[state.fsm]?.[action];
-  if (!nextFsm) {
-    return state;
-  }
-  const entry: DemoEventLogEntry = {
-    id: `ev-${state.eventLog.length + 1}`,
-    t: state.step,
-    actor,
-    action,
-    from: state.fsm,
-    to: nextFsm,
-    latencyMs,
-  };
-  return {
-    ...state,
-    fsm: nextFsm,
-    eventLog: [...state.eventLog, entry],
-  };
-}
-
-export function applyStep(state: DemoState, targetStep: number): DemoState {
-  const seq = (state.lastPacket?.seq ?? 0) + 1;
-  switch (targetStep) {
-    case 1:
-      return {
-        ...state,
-        step: 1,
-        buyerScreen: "B2",
-        sellerScreen: "S1",
-        sellerToast: "rajesh started a deal",
-        lastPacket: { seq, from: "buyer", to: "seller", label: "OPEN_DEAL" },
-      };
-    case 2:
-      return {
-        ...state,
-        step: 2,
-        buyerScreen: "B2",
-        sellerScreen: "S2",
-        sellerToast: undefined,
-        messages: [...state.messages, SCRIPT_MESSAGES.m1_buyer],
-        lastPacket: { seq, from: "buyer", to: "seller", label: "MSG_TA_TO_HI" },
-      };
-    case 3:
-      return {
-        ...state,
-        step: 3,
-        buyerScreen: "B2",
-        sellerScreen: "S2",
-        messages: [...state.messages, SCRIPT_MESSAGES.m2_seller],
-        lastPacket: { seq, from: "seller", to: "buyer", label: "MSG_HI_TO_TA" },
-      };
-    case 4: {
-      const moved = applyFsmMove(state, "LOCK_ESCROW", "buyer", 0.9);
-      if (moved === state) return state;
-      return {
-        ...moved,
-        step: 4,
-        buyerScreen: "B3",
-        sellerScreen: "S2",
-        messages: [...moved.messages, SCRIPT_MESSAGES.m3_escrow],
-        lastPacket: { seq, from: "buyer", to: "seller", label: "LOCK_ESCROW" },
-      };
-    }
-    case 5: {
-      const moved = applyFsmMove(state, "START_ASSAY", "seller", 1.1);
-      if (moved === state) return state;
-      return {
-        ...moved,
-        step: 5,
-        buyerScreen: "B4",
-        sellerScreen: "S3",
-        incomingCallBanner: false,
-        rpm: 1840,
-        frameMatch: 48,
-        checklist: [true, false, false],
-        lastPacket: { seq, from: "seller", to: "buyer", label: "START_ASSAY" },
-      };
-    }
-    case 6:
-      return {
-        ...state,
-        step: 6,
-        buyerScreen: "B4",
-        sellerScreen: "S3",
-        rpm: 4820,
-        frameMatch: 96,
-        checklist: [true, true, true],
-        lastPacket: { seq, from: "seller", to: "buyer", label: "ASSAY_STREAM" },
-      };
-    case 7: {
-      if (state.branch === "happy") {
-        const moved = applyFsmMove(state, "MARK_ASSAY_VERIFIED", "buyer", 0.8);
-        if (moved === state) return state;
-        return {
-          ...moved,
-          step: 7,
-          buyerScreen: "B5",
-          sellerScreen: "S4",
-          messages: [...moved.messages, SCRIPT_MESSAGES.m4_receipt],
-          lastPacket: { seq, from: "buyer", to: "seller", label: "MARK_ASSAY_VERIFIED" },
-        };
-      }
-      const moved = applyFsmMove(state, "RAISE_DISPUTE", "buyer", 1.0);
-      if (moved === state) return state;
-      return {
-        ...moved,
-        step: 7,
-        buyerScreen: "B6",
-        sellerScreen: "S6",
-        freezeLeft: 87,
-        lastPacket: { seq, from: "buyer", to: "seller", label: "RAISE_DISPUTE" },
-      };
-    }
-    case 8: {
-      if (state.branch === "happy") {
-        const moved = applyFsmMove(state, "RELEASE_FUNDS", "buyer", 0.9);
-        if (moved === state) return state;
-        return {
-          ...moved,
-          step: 8,
-          buyerScreen: "B5",
-          sellerScreen: "S5",
-          playing: false,
-          lastPacket: { seq, from: "buyer", to: "seller", label: "RELEASE_FUNDS" },
-        };
-      }
-      const moved = applyFsmMove(state, "RESOLVE_SPLIT", "arbitrator", 1.1);
-      if (moved === state) return state;
-      return {
-        ...moved,
-        step: 8,
-        buyerScreen: "B7",
-        sellerScreen: "S6",
-        freezeLeft: 72,
-        verdict: { buyerPct: 30, sellerPct: 70 },
-        messages: [...moved.messages, SCRIPT_MESSAGES.m5_verdict],
-        playing: false,
-        lastPacket: { seq, from: "arbiter", to: "buyer", label: "RESOLVE_SPLIT" },
-      };
-    }
-    default:
-      return state;
-  }
-}
-
 export function replayToStep(step: number, branch: DemoBranch, playing = false): DemoState {
   const clamped = Math.max(0, Math.min(TOTAL_SCRIPT_STEPS, step));
   let s = createInitialDemoState(branch, playing);
@@ -238,6 +90,8 @@ export function replayToStep(step: number, branch: DemoBranch, playing = false):
 
 export function demoReducer(state: DemoState, action: DemoAction): DemoState {
   switch (action.type) {
+    case "SYNC_STATE":
+      return action.state;
     case "NEXT_STEP": {
       if (state.step >= TOTAL_SCRIPT_STEPS) {
         return { ...state, playing: false };
@@ -252,24 +106,18 @@ export function demoReducer(state: DemoState, action: DemoAction): DemoState {
       const branch = action.branch ?? state.branch;
       return replayToStep(action.step, branch, false);
     }
-    case "SET_BRANCH": {
+    case "SET_BRANCH":
       return createInitialDemoState(action.branch, true);
-    }
-    case "SET_PLAYING": {
+    case "SET_PLAYING":
       return { ...state, playing: action.playing };
-    }
-    case "SET_SPEED": {
+    case "SET_SPEED":
       return { ...state, speed: action.speed };
-    }
-    case "REPLAY": {
+    case "REPLAY":
       return createInitialDemoState(state.branch, true);
-    }
-    case "NAV_BUYER": {
+    case "NAV_BUYER":
       return { ...state, buyerScreen: action.screen, playing: false };
-    }
-    case "NAV_SELLER": {
+    case "NAV_SELLER":
       return { ...state, sellerScreen: action.screen, playing: false };
-    }
     case "SEND_MESSAGE": {
       const id = `msg-custom-${state.messages.length + 1}`;
       const msg: DemoMessage = {
@@ -295,14 +143,13 @@ export function demoReducer(state: DemoState, action: DemoAction): DemoState {
         },
       };
     }
-    case "SET_TELEMETRY": {
+    case "SET_TELEMETRY":
       return {
         ...state,
         rpm: action.rpm ?? state.rpm,
         frameMatch: action.frameMatch ?? state.frameMatch,
         checklist: action.checklist ?? state.checklist,
       };
-    }
     case "TICK_FREEZE": {
       if (state.fsm !== "DISPUTED_FROZEN") return state;
       const next = action.freezeLeft ?? Math.max(0, state.freezeLeft - 1);
@@ -311,9 +158,8 @@ export function demoReducer(state: DemoState, action: DemoAction): DemoState {
       }
       return { ...state, freezeLeft: next };
     }
-    case "TICK_LIVE": {
+    case "TICK_LIVE":
       return { ...state, liveSeconds: state.liveSeconds + 1 };
-    }
     case "FSM_TRANSITION": {
       const actor = action.actor ?? "buyer";
       const moved = applyFsmMove(state, action.action, actor, 0.9);
@@ -337,6 +183,7 @@ export function demoReducer(state: DemoState, action: DemoAction): DemoState {
             playing: false,
             buyerScreen: "B4",
             sellerScreen: "S3",
+            incomingCallBanner: true,
             rpm: 4820,
             frameMatch: 96,
             checklist: [true, true, true],
@@ -433,6 +280,8 @@ export function createDemoStore(initialBranch: DemoBranch = "happy", initialPlay
         state = next;
         if (broadcast) bc.post(action);
         notify();
+      } else if (action.type === "SYNC_STATE" && broadcast) {
+        bc.post(action);
       }
     },
     destroy: () => {

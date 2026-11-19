@@ -1,4 +1,5 @@
-import type { FsmAction, FsmState } from "@samadhan/shared-types";
+import { TRANSITIONS, type FsmAction, type FsmState } from "@samadhan/shared-types";
+import type { DemoState } from "./store";
 
 export type ScreenId =
   | "B1"
@@ -39,7 +40,10 @@ export interface DemoEventLogEntry {
 
 export const TOTAL_SCRIPT_STEPS = 8;
 
-export const SCRIPT_MESSAGES: Record<"m1_buyer" | "m2_seller" | "m3_escrow" | "m4_receipt" | "m5_verdict", DemoMessage> = {
+export const SCRIPT_MESSAGES: Record<
+  "m1_buyer" | "m2_seller" | "m3_escrow" | "m4_receipt" | "m5_verdict",
+  DemoMessage
+> = {
   m1_buyer: {
     id: "msg-1",
     from: "buyer",
@@ -115,3 +119,155 @@ export const DEAL_META = {
     locale: "en-IN" as const,
   },
 } as const;
+
+export function applyFsmMove(
+  state: DemoState,
+  action: FsmAction,
+  actor: "buyer" | "seller" | "arbitrator",
+  latencyMs = 0.9
+): DemoState {
+  const nextFsm = TRANSITIONS[state.fsm]?.[action];
+  if (!nextFsm) {
+    return state;
+  }
+  const entry: DemoEventLogEntry = {
+    id: `ev-${state.eventLog.length + 1}`,
+    t: state.step,
+    actor,
+    action,
+    from: state.fsm,
+    to: nextFsm,
+    latencyMs,
+  };
+  return {
+    ...state,
+    fsm: nextFsm,
+    eventLog: [...state.eventLog, entry],
+  };
+}
+
+export function applyStep(state: DemoState, targetStep: number): DemoState {
+  const seq = (state.lastPacket?.seq ?? 0) + 1;
+  switch (targetStep) {
+    case 1:
+      return {
+        ...state,
+        step: 1,
+        buyerScreen: "B2",
+        sellerScreen: "S1",
+        sellerToast: "rajesh started a deal",
+        lastPacket: { seq, from: "buyer", to: "seller", label: "OPEN_DEAL" },
+      };
+    case 2:
+      return {
+        ...state,
+        step: 2,
+        buyerScreen: "B2",
+        sellerScreen: "S2",
+        sellerToast: undefined,
+        messages: [...state.messages, SCRIPT_MESSAGES.m1_buyer],
+        lastPacket: { seq, from: "buyer", to: "seller", label: "MSG_TA_TO_HI" },
+      };
+    case 3:
+      return {
+        ...state,
+        step: 3,
+        buyerScreen: "B2",
+        sellerScreen: "S2",
+        messages: [...state.messages, SCRIPT_MESSAGES.m2_seller],
+        lastPacket: { seq, from: "seller", to: "buyer", label: "MSG_HI_TO_TA" },
+      };
+    case 4: {
+      const moved = applyFsmMove(state, "LOCK_ESCROW", "buyer", 0.9);
+      if (moved === state) return state;
+      return {
+        ...moved,
+        step: 4,
+        buyerScreen: "B3",
+        sellerScreen: "S2",
+        messages: [...moved.messages, SCRIPT_MESSAGES.m3_escrow],
+        lastPacket: { seq, from: "buyer", to: "seller", label: "LOCK_ESCROW" },
+      };
+    }
+    case 5: {
+      const moved = applyFsmMove(state, "START_ASSAY", "seller", 1.1);
+      if (moved === state) return state;
+      return {
+        ...moved,
+        step: 5,
+        buyerScreen: "B4",
+        sellerScreen: "S3",
+        incomingCallBanner: true,
+        rpm: 1840,
+        frameMatch: 48,
+        checklist: [true, false, false],
+        lastPacket: { seq, from: "seller", to: "buyer", label: "START_ASSAY" },
+      };
+    }
+    case 6:
+      return {
+        ...state,
+        step: 6,
+        buyerScreen: "B4",
+        sellerScreen: "S3",
+        incomingCallBanner: false,
+        rpm: 4820,
+        frameMatch: 96,
+        checklist: [true, true, true],
+        lastPacket: { seq, from: "seller", to: "buyer", label: "ASSAY_STREAM" },
+      };
+    case 7: {
+      if (state.branch === "happy") {
+        const moved = applyFsmMove(state, "MARK_ASSAY_VERIFIED", "buyer", 0.8);
+        if (moved === state) return state;
+        return {
+          ...moved,
+          step: 7,
+          buyerScreen: "B5",
+          sellerScreen: "S4",
+          messages: [...moved.messages, SCRIPT_MESSAGES.m4_receipt],
+          lastPacket: { seq, from: "buyer", to: "seller", label: "MARK_ASSAY_VERIFIED" },
+        };
+      }
+      const moved = applyFsmMove(state, "RAISE_DISPUTE", "buyer", 1.0);
+      if (moved === state) return state;
+      return {
+        ...moved,
+        step: 7,
+        buyerScreen: "B6",
+        sellerScreen: "S6",
+        freezeLeft: 87,
+        lastPacket: { seq, from: "buyer", to: "seller", label: "RAISE_DISPUTE" },
+      };
+    }
+    case 8: {
+      if (state.branch === "happy") {
+        const moved = applyFsmMove(state, "RELEASE_FUNDS", "buyer", 0.9);
+        if (moved === state) return state;
+        return {
+          ...moved,
+          step: 8,
+          buyerScreen: "B5",
+          sellerScreen: "S5",
+          playing: false,
+          lastPacket: { seq, from: "buyer", to: "seller", label: "RELEASE_FUNDS" },
+        };
+      }
+      const moved = applyFsmMove(state, "RESOLVE_SPLIT", "arbitrator", 1.1);
+      if (moved === state) return state;
+      return {
+        ...moved,
+        step: 8,
+        buyerScreen: "B7",
+        sellerScreen: "S6",
+        freezeLeft: 72,
+        verdict: { buyerPct: 30, sellerPct: 70 },
+        messages: [...moved.messages, SCRIPT_MESSAGES.m5_verdict],
+        playing: false,
+        lastPacket: { seq, from: "arbiter", to: "buyer", label: "RESOLVE_SPLIT" },
+      };
+    }
+    default:
+      return state;
+  }
+}

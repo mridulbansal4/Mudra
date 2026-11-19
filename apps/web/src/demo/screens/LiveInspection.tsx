@@ -1,4 +1,6 @@
-import { Snowflake } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Snowflake, Video } from "lucide-react";
+import { useReducedMotion } from "../../motion/hooks";
 import { NeoButton } from "../../ui/NeoButton";
 import { RpmMeter } from "../parts/RpmMeter";
 import { SimVideo } from "../parts/SimVideo";
@@ -10,6 +12,38 @@ export interface LiveInspectionProps {
 }
 
 export function LiveInspection({ state, dispatch }: LiveInspectionProps) {
+  const reduced = Boolean(useReducedMotion());
+  const [showIncomingCall, setShowIncomingCall] = useState(
+    !reduced && state.incomingCallBanner
+  );
+
+  useEffect(() => {
+    if (reduced || !state.incomingCallBanner) {
+      setShowIncomingCall(false);
+      return;
+    }
+    setShowIncomingCall(true);
+    const t = window.setTimeout(() => setShowIncomingCall(false), 1000);
+    return () => window.clearTimeout(t);
+  }, [reduced, state.incomingCallBanner]);
+
+  if (showIncomingCall) {
+    return (
+      <div className="flex h-full min-h-[760px] flex-col items-center justify-center gap-5 bg-pop-void p-6 text-center text-fg">
+        <div
+          className="flex size-20 items-center justify-center rounded-full bg-card-3 text-neo-paccha"
+          style={{ animation: "pulse-dot 1.1s ease-in-out infinite" }}
+        >
+          <Video size={32} strokeWidth={1.5} aria-hidden="true" />
+        </div>
+        <div className="t-h2 !text-[24px] lowercase text-fg">vikram is live — join</div>
+        <p className="text-[13px] font-medium lowercase text-muted">
+          connecting live video &amp; acoustic assay…
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-full min-h-[760px] flex-col bg-pop-black text-fg">
       {/* Top 62% simulated HD stream */}
