@@ -106,7 +106,7 @@ export function SellerHome({ state, dispatch }: SellerHomeProps) {
               {DEAL_META.item.toLowerCase()}
             </div>
             <div className="mt-0.5 text-[12px] font-medium lowercase text-muted">
-              rajesh natarajan · <span lang="ta">தமிழ்</span>
+              rajesh natarajan · tirupur
             </div>
           </div>
           <StatusPill tone={pill.tone}>{pill.label}</StatusPill>

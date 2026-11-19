@@ -113,7 +113,7 @@ export function BuyerHome({ state, dispatch }: BuyerHomeProps) {
               {DEAL_META.item.toLowerCase()}
             </div>
             <div className="mt-0.5 text-[12px] font-medium lowercase text-muted">
-              vikramjeet singh · <span lang="hi">हिन्दी</span>
+              vikramjeet singh · ludhiana
             </div>
           </div>
           <StatusPill tone={pill.tone}>{pill.label}</StatusPill>
