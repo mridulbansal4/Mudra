@@ -258,3 +258,19 @@ Registered via `registerMessageType` inside `NCChatUIApplication.initialize({ ho
   - Direct, specific, calm, and factual.
   - Zero exclamation marks (`!`), zero trailing periods on headlines/labels/buttons, zero AI hype buzzwords (*supercharge, seamless, unlock, magic, revolutionize, AI-powered*).
   - Comparisons always name the baseline (`+142 verified MAUs vs yesterday`, `90s median settlement vs 14-day ticket baseline`).
+
+---
+
+## 8. CRED Revamp Overrides
+
+Per [`CRED_REVAMP_BUILD_SPEC.md`](./CRED_REVAMP_BUILD_SPEC.md) §2, the following overrides apply to `apps/web`:
+
+| Earlier rule (`DESIGN_SYSTEM.md` / `/unslop`) | CRED Revamp Rule |
+| :--- | :--- |
+| Light ledger paper default (`#F9F7F2`) | **Pitch-black `#0d0d0d` default**, no light mode. |
+| "No uppercase tracked eyebrows" | **Allowed ONLY on section eyebrows** (`11px`, `0.22em`, `--muted`), status pills, and bottom-bar tab labels. Headlines and body copy use **lowercase-first** styling (`"trade like you trust them."`). |
+| "No periods in headlines" | **Periods ARE used** on display headlines (e.g., `"and nothing less."`). |
+| Plus Jakarta Sans + Instrument Serif | **Outfit** (`500`–`800`, geometric sans) + **Fraunces** (`600`–`700`, high-contrast display serif, optical size `144`, `SOFT 0`, `WONK 0`) + **JetBrains Mono** (`tabular-nums`) + **Noto Sans Devanagari / Tamil**. |
+| Single vermilion accent | **Neo-Paccha `#e5fe40`** (verified / vault / active), **Pop-Purple `#6a35ff`** (primary CTA / chat / brand accent), **Orange-Sunshine `#ff8744`** (dispute / timer), **Pure White `#ffffff`** (primary buttons & ink). |
+| Soft rounded buttons | **NeoPOP 3D hard-edge buttons** (`border-radius: 0`, `1px` border, `4px 4px 0` solid offset shadow, press translates `(3px, 3px)` and collapses shadow to `(1px, 1px)`). Cards inside the app stay rounded (`20–28px`, velvet inner hairline). |
+
