@@ -1,5 +1,5 @@
-import { useRef, useState, type PointerEvent } from "react";
-import { projectMomentum } from "../../lib/apple-physics";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { APPLE_SPRINGS, projectMomentum, springEasing } from "../../lib/apple-physics";
 import { StatusPill } from "../../ui/StatusPill";
 
 export interface SimVideoProps {
@@ -27,8 +27,16 @@ export function SimVideo({
   const [pipCorner, setPipCorner] = useState<"tr" | "tl" | "br" | "bl">("tr");
   const [dragOffset, setDragOffset] = useState<{ x: number; y: number } | null>(null);
   const dragStart = useRef<{ x: number; y: number; t: number }>({ x: 0, y: 0, t: 0 });
+  const [bracketFlash, setBracketFlash] = useState(false);
 
   const matched = frameMatch >= 90;
+
+  useEffect(() => {
+    if (!matched) return;
+    setBracketFlash(true);
+    const t = window.setTimeout(() => setBracketFlash(false), 320);
+    return () => window.clearTimeout(t);
+  }, [matched]);
 
   const handlePipDown = (e: PointerEvent<HTMLDivElement>) => {
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -70,6 +78,8 @@ export function SimVideo({
           ? "bottom-3 right-3"
           : "bottom-3 left-3";
 
+  const bouncyEasing = springEasing(APPLE_SPRINGS.bouncy.damping);
+
   return (
     <div
       ref={containerRef}
@@ -81,7 +91,7 @@ export function SimVideo({
             : "radial-gradient(circle at 50% 45%, #1c1f24 0%, #0e1012 65%, #070809 100%)",
       }}
     >
-      {/* Subtle scanlines + film grain */}
+      {/* Scanlines */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-20"
@@ -90,6 +100,23 @@ export function SimVideo({
             "repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 4px)",
         }}
       />
+
+      {/* SVG film grain overlay at 6% opacity */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 size-full"
+        style={{ opacity: 0.06 }}
+      >
+        <filter id="sim-film-grain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.85"
+            numOctaves={2}
+            stitchTiles="stitch"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#sim-film-grain)" />
+      </svg>
 
       {/* Top-left LIVE pill */}
       <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
@@ -122,21 +149,27 @@ export function SimVideo({
             border: "1px solid rgba(255,255,255,0.14)",
             boxShadow: "0 12px 24px rgba(0,0,0,0.65)",
             transform: dragOffset ? `translate3d(${dragOffset.x}px, ${dragOffset.y}px, 0)` : undefined,
-            transition: dragOffset ? "none" : "all 280ms cubic-bezier(0.25, 1.25, 0.4, 1)",
+            transition: dragOffset ? "none" : `all 350ms ${bouncyEasing}`,
             touchAction: "none",
           }}
         >
-          <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-muted">YOU</span>
+          <span className="text-[10px] font-bold lowercase text-muted">you</span>
           <div className="mx-auto flex size-10 items-center justify-center rounded-full bg-card-3 text-[12px] font-bold text-fg">
             RN
           </div>
-          <span className="num text-[10px] font-medium text-fg-2">tirupur</span>
+          <span className="num text-[10px] font-medium lowercase text-fg-2">tirupur</span>
         </div>
       ) : null}
 
       {/* Center machine silhouette + HUD brackets */}
       <div className="relative z-10 flex h-full min-h-[250px] flex-col items-center justify-center p-6">
-        <div className="relative flex size-[184px] items-center justify-center">
+        <div
+          className="relative flex size-[184px] items-center justify-center"
+          style={{
+            filter: bracketFlash ? "brightness(1.6)" : "none",
+            animation: "pulse-dot 2.4s ease-in-out infinite",
+          }}
+        >
           {/* 4 corner L-marks (1.5px paccha) */}
           <span
             aria-hidden="true"
@@ -155,7 +188,13 @@ export function SimVideo({
             className="absolute bottom-0 right-0 size-5 border-b-[1.5px] border-r-[1.5px] border-neo-paccha"
           />
 
-          {/* Industrial overlock sewing-machine silhouette SVG */}
+          {/* Slowly rotating industrial overlock sewing-machine silhouette SVG */}
+          <style>{`
+            @keyframes machine-rotate {
+              0%, 100% { transform: perspective(600px) rotateY(-8deg) rotateZ(-1deg); }
+              50% { transform: perspective(600px) rotateY(8deg) rotateZ(1deg); }
+            }
+          `}</style>
           <svg
             viewBox="0 0 160 120"
             width={142}
@@ -163,12 +202,12 @@ export function SimVideo({
             fill="none"
             aria-hidden="true"
             style={{
-              animation: "float-a 8s ease-in-out infinite",
+              animation: "machine-rotate 9s ease-in-out infinite",
             }}
           >
             <path
               d="M18 96h124v10H18zM30 96V48c0-10 8-18 18-18h64c10 0 18 8 18 18v48"
-              stroke="rgba(255,255,255,0.38)"
+              stroke="rgba(255,255,255,0.35)"
               strokeWidth="2"
             />
             <path
@@ -180,7 +219,7 @@ export function SimVideo({
               cx="118"
               cy="56"
               r="14"
-              stroke="rgba(255,255,255,0.45)"
+              stroke="rgba(255,255,255,0.35)"
               strokeWidth="2"
               strokeDasharray="6 4"
             />

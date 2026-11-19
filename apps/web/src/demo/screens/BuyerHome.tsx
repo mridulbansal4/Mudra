@@ -47,7 +47,7 @@ export function BuyerHome({ state, dispatch }: BuyerHomeProps) {
           icon={Vault}
           label="in escrow"
           delta={funded ? "+₹1,45,000" : undefined}
-          value={funded ? "₹1,45,000" : "₹0"}
+          value="₹1,45,000"
           onClick={openChat}
         />
         <ListRow icon={Handshake} label="live deals" value="2" onClick={openChat} />

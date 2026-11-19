@@ -92,7 +92,7 @@ export function SellerLive({ state, dispatch }: SellerLiveProps) {
                         style={{
                           strokeDasharray: 20,
                           strokeDashoffset: 0,
-                          animation: "tick-draw 260ms ease-out both",
+                          animation: `tick-draw 260ms ease-out ${idx * 220}ms both`,
                         }}
                       />
                     </svg>
@@ -117,7 +117,6 @@ export function SellerAwaitingRelease({ state }: { state: DemoState }) {
   return (
     <div className="flex min-h-full flex-col items-center justify-between bg-pop-black p-5 text-fg">
       <div className="my-auto flex flex-col items-center text-center gap-4">
-        {/* Ring-clock icon */}
         <div className="relative flex size-[112px] items-center justify-center">
           <svg width={112} height={112} viewBox="0 0 112 112" fill="none" aria-hidden="true">
             <circle cx={56} cy={56} r={50} stroke="#232323" strokeWidth={6} />
@@ -138,7 +137,6 @@ export function SellerAwaitingRelease({ state }: { state: DemoState }) {
         </h3>
       </div>
 
-      {/* Receipt mini-card */}
       <VelvetCard className="w-full flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 text-[13px] font-bold lowercase text-neo-paccha">

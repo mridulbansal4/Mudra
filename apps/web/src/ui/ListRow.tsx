@@ -1,5 +1,7 @@
 import { ChevronRight, type LucideIcon } from "lucide-react";
-import type { ReactNode } from "react";
+import { Children, type ReactNode } from "react";
+import { motion } from "motion/react";
+import { useReducedMotion } from "../motion/hooks";
 
 export interface ListRowProps {
   icon?: LucideIcon;
@@ -7,6 +9,7 @@ export interface ListRowProps {
   value?: ReactNode;
   delta?: ReactNode;
   showChevron?: boolean;
+  flashPaccha?: boolean;
   onClick?: () => void;
   className?: string;
 }
@@ -17,6 +20,7 @@ export function ListRow({
   value,
   delta,
   showChevron = true,
+  flashPaccha = false,
   onClick,
   className = "",
 }: ListRowProps) {
@@ -40,9 +44,9 @@ export function ListRow({
     </>
   );
 
-  const rowClass = `flex h-[56px] w-full items-center justify-between px-4 bg-transparent border-0 text-left ${
-    onClick ? "cursor-pointer hover:bg-card-2 press" : ""
-  } ${className}`;
+  const rowClass = `flex h-[56px] w-full items-center justify-between px-4 border-0 text-left transition-colors duration-300 ${
+    flashPaccha ? "bg-[rgba(229,254,64,0.12)]" : "bg-transparent"
+  } ${onClick ? "cursor-pointer hover:bg-card-2 press" : ""} ${className}`;
 
   if (onClick) {
     return (
@@ -56,6 +60,9 @@ export function ListRow({
 }
 
 export function ListGroup({ children, className = "" }: { children: ReactNode; className?: string }) {
+  const reduced = Boolean(useReducedMotion());
+  const items = Children.toArray(children);
+
   return (
     <div
       className={`overflow-hidden divide-y divide-[var(--hairline)] ${className}`}
@@ -65,7 +72,18 @@ export function ListGroup({ children, className = "" }: { children: ReactNode; c
         border: "1px solid var(--hairline)",
       }}
     >
-      {children}
+      {reduced
+        ? items
+        : items.map((child, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.24, delay: idx * 0.04, ease: "easeOut" }}
+            >
+              {child}
+            </motion.div>
+          ))}
     </div>
   );
 }
