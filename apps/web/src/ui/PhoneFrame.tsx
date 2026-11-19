@@ -10,7 +10,7 @@ export interface PhoneTilt {
 export interface PhoneFrameProps {
   scale?: number;
   tilt?: PhoneTilt;
-  label?: string;
+  label?: ReactNode;
   roleImgLabel?: string;
   staticDisplay?: boolean;
   children: ReactNode;
