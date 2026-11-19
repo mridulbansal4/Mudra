@@ -10,3 +10,5 @@ services/deal-engine-go/bin/
 *.exe
 .claude/
 *.tsbuildinfo
+__pycache__/
+*.pyc
