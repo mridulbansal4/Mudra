@@ -125,7 +125,7 @@ export function HowChapterSection({
 
           {/* "what protects you" list of 3 rows (lucide icon 20px + 14px text, hairline dividers) */}
           <div className="mt-8 max-w-[480px]">
-            <span className="eyebrow text-muted">WHAT PROTECTS YOU</span>
+            <span className="text-[12px] font-bold lowercase text-muted">what protects you</span>
             <div
               className="mt-3 divide-y divide-[var(--hairline)]"
               style={{
