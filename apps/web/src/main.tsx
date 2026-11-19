@@ -19,6 +19,8 @@ const Arena = lazy(() => import("./routes/Arena"));
 const Dispatch = lazy(() => import("./routes/Dispatch"));
 const Guide = lazy(() => import("./routes/Guide"));
 const Traction = lazy(() => import("./routes/Traction"));
+const Demo = lazy(() => import("./routes/Demo"));
+const DemoPhone = lazy(() => import("./routes/DemoPhone"));
 
 function Loading() {
   return <div className="p-8 text-[14px] text-ink-3">Loading</div>;
@@ -39,6 +41,8 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/dispatch" element={<Dispatch />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/traction" element={<Traction />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/demo/phone/:role" element={<DemoPhone />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
