@@ -52,6 +52,13 @@ export class GeminiClient {
     if (!this.cfg.enabled) throw new GeminiUnavailable("gemini key not configured");
     if (this.breakerOpen()) throw new GeminiUnavailable("gemini circuit breaker open");
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(args.model)}:generateContent`;
+    const isFlash = args.model.toLowerCase().includes("flash");
+    const generationConfig: Record<string, unknown> = {
+      responseMimeType: "application/json",
+      temperature: args.temperature ?? 0.2,
+      maxOutputTokens: args.maxOutputTokens ?? (isFlash ? 1024 : 2048),
+      ...(isFlash ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
+    };
     try {
       const res = await this.fetchImpl(url, {
         method: "POST",
@@ -60,11 +67,7 @@ export class GeminiClient {
         body: JSON.stringify({
           systemInstruction: { parts: [{ text: args.systemInstruction }] },
           contents: [{ role: "user", parts: [{ text: args.userText }] }],
-          generationConfig: {
-            responseMimeType: "application/json",
-            temperature: args.temperature ?? 0.2,
-            maxOutputTokens: args.maxOutputTokens ?? 1024,
-          },
+          generationConfig,
         }),
         signal: AbortSignal.timeout(this.cfg.timeoutMs),
       });
