@@ -48,7 +48,17 @@ export default function DemoPhone() {
 
       <PhoneFrame
         scale={scale}
-        label={isSeller ? "vikram · seller · हिन्दी" : "rajesh · buyer · தமிழ்"}
+        label={
+          isSeller ? (
+            <>
+              vikram · seller · <span lang="hi">हिन्दी</span>
+            </>
+          ) : (
+            <>
+              rajesh · buyer · <span lang="ta">தமிழ்</span>
+            </>
+          )
+        }
       >
         <PhoneScreenRouter
           screen={isSeller ? state.sellerScreen : state.buyerScreen}

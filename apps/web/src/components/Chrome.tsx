@@ -1,5 +1,5 @@
+import { useEffect, type ReactNode } from "react";
 import { Link } from "react-router";
-import type { ReactNode } from "react";
 import { Logo } from "../brand/Logo";
 import { SiteNav } from "../site/SiteNav";
 import { VelvetCard } from "../ui/VelvetCard";
@@ -28,6 +28,10 @@ export function Page({ children, wide = false }: { children: ReactNode; wide?: b
 }
 
 export function SectionTitle({ title, sub }: { title: string; sub?: string }) {
+  useEffect(() => {
+    document.title = `${title.toLowerCase()} — samadhan`;
+  }, [title]);
+
   return (
     <div className="mb-8">
       <h1
