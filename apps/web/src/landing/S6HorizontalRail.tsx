@@ -106,6 +106,7 @@ function RailCardItem({ card }: { card: RailCardDef }) {
 }
 
 export function S6HorizontalRail() {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const reduced = Boolean(useReducedMotion());
   const [maxShift, setMaxShift] = useState(960);
@@ -113,11 +114,8 @@ export function S6HorizontalRail() {
 
   // Lazy-mount S6 rail until within 1 viewport (§9.7)
   useEffect(() => {
-    const el = stickyRef.current;
-    if (!el) {
-      setMounted(true);
-      return;
-    }
+    const el = sectionRef.current;
+    if (!el) return;
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
@@ -151,7 +149,7 @@ export function S6HorizontalRail() {
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxShift]);
 
   return (
-    <section className="relative w-full bg-pop-black py-[96px] md:py-0">
+    <section ref={sectionRef} className="relative w-full bg-pop-black py-[96px] md:py-0">
       {/* Desktop sticky 300vh horizontal scroll rail */}
       <div ref={stickyRef} className="hidden md:block relative h-[300vh] w-full">
         <div className="sticky top-0 flex h-svh w-full flex-col justify-center overflow-hidden px-10">
@@ -163,17 +161,21 @@ export function S6HorizontalRail() {
               </h2>
             </FadeUp>
 
-            <motion.div
-              style={{
-                x: reduced ? 0 : x,
-                willChange: "transform",
-              }}
-              className="mt-12 flex items-stretch gap-6"
-            >
-              {(mounted ? RAIL_CARDS : RAIL_CARDS.slice(0, 3)).map((card) => (
-                <RailCardItem key={card.to} card={card} />
-              ))}
-            </motion.div>
+            {mounted ? (
+              <motion.div
+                style={{
+                  x: reduced ? 0 : x,
+                  willChange: "transform",
+                }}
+                className="mt-12 flex items-stretch gap-6"
+              >
+                {RAIL_CARDS.map((card) => (
+                  <RailCardItem key={card.to} card={card} />
+                ))}
+              </motion.div>
+            ) : (
+              <div className="mt-12 h-[520px] w-full" aria-hidden="true" />
+            )}
           </div>
         </div>
       </div>
@@ -185,14 +187,18 @@ export function S6HorizontalRail() {
           <span className="block">every deal</span>
         </h2>
 
-        <div
-          className="no-scrollbar mt-8 flex gap-4 overflow-x-auto pb-4"
-          style={{ scrollSnapType: "x mandatory" }}
-        >
-          {RAIL_CARDS.map((card) => (
-            <RailCardItem key={card.to} card={card} />
-          ))}
-        </div>
+        {mounted ? (
+          <div
+            className="no-scrollbar mt-8 flex gap-4 overflow-x-auto pb-4"
+            style={{ scrollSnapType: "x mandatory" }}
+          >
+            {RAIL_CARDS.map((card) => (
+              <RailCardItem key={card.to} card={card} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 h-[520px] w-full" aria-hidden="true" />
+        )}
       </div>
     </section>
   );
