@@ -62,10 +62,14 @@ export function PhoneFrame({
         {/* Outer titanium rim + bezel */}
         <div
           style={{
+            position: "absolute",
+            top: 0,
+            left: "50%",
+            marginLeft: `${-OUTER_W / 2}px`,
             width: `${OUTER_W}px`,
             height: `${OUTER_H}px`,
             transform: transformParts.join(" "),
-            transformOrigin: "top left",
+            transformOrigin: "top center",
             borderRadius: "64px",
             padding: "1px",
             background: "linear-gradient(160deg,#5a5a5a,#1a1a1a 30%,#3a3a3a 60%,#111)",
@@ -106,9 +110,9 @@ export function PhoneFrame({
                   }}
                 />
                 <span className="flex items-center gap-1.5 text-fg" aria-hidden="true">
-                  <Signal size={16} strokeWidth={1.75} />
-                  <Wifi size={16} strokeWidth={1.75} />
-                  <BatteryFull size={16} strokeWidth={1.75} />
+                  <Signal size={16} strokeWidth={1.5} />
+                  <Wifi size={16} strokeWidth={1.5} />
+                  <BatteryFull size={16} strokeWidth={1.5} />
                 </span>
               </div>
 
