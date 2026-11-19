@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Vault } from "lucide-react";
+import { useReducedMotion } from "../../motion/hooks";
 import { Eyebrow } from "../../ui/Eyebrow";
 import { ListGroup, ListRow } from "../../ui/ListRow";
 import { SlideToLock } from "../parts/SlideToLock";
@@ -13,15 +14,27 @@ export interface EscrowSheetProps {
 }
 
 export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetProps) {
-  const [manualSealed, setManualSealed] = useState(false);
-  const isSealed = manualSealed || state.fsm !== "CREATED";
+  const reduced = Boolean(useReducedMotion());
+  const [sealedMorph, setSealedMorph] = useState(false);
+
+  // Reset morph phase when step changes back
+  useEffect(() => {
+    if (state.fsm === "CREATED") {
+      setSealedMorph(false);
+    }
+  }, [state.fsm]);
 
   const handleLocked = () => {
-    setManualSealed(true);
+    // Allow 240ms to show the knob's "locked" state + 120ms brightness flash before morphing to sealed Vault
+    const morphDelay = reduced ? 0 : 240;
+    window.setTimeout(() => {
+      setSealedMorph(true);
+    }, morphDelay);
+
     if (state.fsm === "CREATED") {
       window.setTimeout(() => {
         dispatch({ type: "FSM_TRANSITION", action: "LOCK_ESCROW", actor: "buyer" });
-      }, 1600);
+      }, morphDelay + 1600);
     }
   };
 
@@ -48,7 +61,7 @@ export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetPr
           />
         </div>
 
-        {isSealed ? (
+        {sealedMorph ? (
           <div className="flex flex-col items-center py-8 text-center">
             <div className="relative flex size-[120px] items-center justify-center">
               <svg
@@ -117,7 +130,10 @@ export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetPr
               />
             </ListGroup>
 
-            <SlideToLock autoLock={autoLock} locked={isSealed} onLocked={handleLocked} />
+            <SlideToLock
+              autoLock={autoLock || state.fsm !== "CREATED"}
+              onLocked={handleLocked}
+            />
           </>
         )}
       </div>

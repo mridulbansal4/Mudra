@@ -65,7 +65,7 @@ export function Receipt({ state, dispatch }: ReceiptProps) {
           <span className="t-small num lowercase text-muted">19 nov 2026 · 09:41 ist</span>
         </div>
 
-        {/* RELEASED stamp + 12 radial burst lines */}
+        {/* RELEASED stamp + 12 radial burst lines (scaleX 0->1->0 along each rotated ray) */}
         {released ? (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             {!reduced
@@ -73,19 +73,26 @@ export function Receipt({ state, dispatch }: ReceiptProps) {
                   <span
                     key={deg}
                     aria-hidden="true"
-                    className="absolute h-[1.5px] w-[36px] bg-neo-paccha"
+                    className="absolute h-[1.5px] w-[36px]"
                     style={{
                       transform: `rotate(${deg}deg) translateX(64px)`,
-                      animation: "stamp-burst 500ms ease-out both",
                     }}
-                  />
+                  >
+                    <span
+                      className="block size-full bg-neo-paccha"
+                      style={{
+                        transformOrigin: "left center",
+                        animation: "stamp-burst 500ms ease-out both",
+                      }}
+                    />
+                  </span>
                 ))
               : null}
             <style>{`
               @keyframes stamp-burst {
-                0% { opacity: 0; transform-origin: left center; scale: 0 1; }
-                45% { opacity: 1; scale: 1 1; }
-                100% { opacity: 0; scale: 0 1; }
+                0% { opacity: 0; transform: scaleX(0); }
+                45% { opacity: 1; transform: scaleX(1); }
+                100% { opacity: 0; transform: scaleX(0); }
               }
             `}</style>
             <motion.div
