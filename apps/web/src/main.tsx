@@ -19,7 +19,6 @@ const Arena = lazy(() => import("./routes/Arena"));
 const Dispatch = lazy(() => import("./routes/Dispatch"));
 const Guide = lazy(() => import("./routes/Guide"));
 const Traction = lazy(() => import("./routes/Traction"));
-const Scratch = lazy(() => import("./routes/Scratch"));
 
 function Loading() {
   return <div className="p-8 text-[14px] text-ink-3">Loading</div>;
@@ -40,7 +39,6 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/dispatch" element={<Dispatch />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/traction" element={<Traction />} />
-          <Route path="/__scratch" element={<Scratch />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
