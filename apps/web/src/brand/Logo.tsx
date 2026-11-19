@@ -59,7 +59,7 @@ export function LogoMark({ size = 28, playIntro = false, className = "" }: LogoM
         style={
           playIntro
             ? {
-                animation: "logo-chevron-left 400ms cubic-bezier(0.16,1,0.3,1) 700ms both",
+                animation: "logo-chevron-left 400ms cubic-bezier(0.16,1,0.3,1) 900ms both",
               }
             : undefined
         }
@@ -73,7 +73,7 @@ export function LogoMark({ size = 28, playIntro = false, className = "" }: LogoM
         style={
           playIntro
             ? {
-                animation: "logo-chevron-right 400ms cubic-bezier(0.16,1,0.3,1) 700ms both",
+                animation: "logo-chevron-right 400ms cubic-bezier(0.16,1,0.3,1) 900ms both",
               }
             : undefined
         }
@@ -147,13 +147,14 @@ export function Logo({
       <LogoMark size={markSize} playIntro={playIntro} />
       <span
         style={{
+          fontFamily: "var(--font-sans)",
           fontSize: `${resolvedWordmarkSize}px`,
           fontWeight: 800,
           letterSpacing: "0.28em",
           lineHeight: 1,
           textTransform: "uppercase",
           animation: playIntro
-            ? "logo-wordmark-up 300ms cubic-bezier(0.16,1,0.3,1) 1000ms both"
+            ? "logo-wordmark-up 300ms cubic-bezier(0.16,1,0.3,1) 1300ms both"
             : undefined,
         }}
       >
