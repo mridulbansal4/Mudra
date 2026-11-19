@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { S1Hero } from "../landing/S1Hero";
 import { S2Manifesto } from "../landing/S2Manifesto";
+import { S3PhoneSection } from "../landing/S3PhoneSection";
+import { S4Scrolly } from "../landing/S4Scrolly";
 import { FloatingDemoCard } from "../site/FloatingDemoCard";
 import { SiteFooter } from "../site/SiteFooter";
 import { SiteNav } from "../site/SiteNav";
@@ -16,6 +18,8 @@ export default function Landing() {
       <main>
         <S1Hero />
         <S2Manifesto />
+        <S3PhoneSection />
+        <S4Scrolly />
       </main>
       <SiteFooter />
       <FloatingDemoCard />
