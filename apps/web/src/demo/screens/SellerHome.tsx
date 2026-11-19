@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { storyStage } from "@samadhan/shared-types";
 import {
   BadgeCheck,
@@ -25,6 +26,14 @@ export function SellerHome({ state, dispatch }: SellerHomeProps) {
   const funded = state.fsm !== "CREATED";
   const stage = storyStage(state.fsm);
   const pill = fsmToneAndLabel(state.fsm);
+  const [flash, setFlash] = useState(false);
+
+  useEffect(() => {
+    if (!funded) return;
+    setFlash(true);
+    const t = window.setTimeout(() => setFlash(false), 600);
+    return () => window.clearTimeout(t);
+  }, [funded]);
 
   const openChat = () => dispatch({ type: "NAV_SELLER", screen: "S2" });
 
@@ -43,7 +52,7 @@ export function SellerHome({ state, dispatch }: SellerHomeProps) {
           style={{ borderRadius: "14px" }}
         >
           <span>{state.sellerToast}</span>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.12em]">OPEN</span>
+          <span className="text-[11px] font-extrabold lowercase">open</span>
         </button>
       ) : null}
 
@@ -57,6 +66,7 @@ export function SellerHome({ state, dispatch }: SellerHomeProps) {
           label={funded ? "in escrow for you" : "awaiting escrow"}
           delta={funded ? "+₹1,45,000" : undefined}
           value={funded ? "₹1,45,000" : "₹0"}
+          flashPaccha={flash}
           onClick={openChat}
         />
         <ListRow

@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import { APPLE_SPRINGS } from "../../lib/apple-physics";
 import { ease, useReducedMotion } from "../../motion/hooks";
 import type { ScreenId } from "../script";
 import type { DemoAction, DemoState } from "../store";
@@ -80,12 +81,16 @@ export function PhoneScreenRouter({
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={screen}
-        initial={isSheet ? { y: "18%", opacity: 0 } : { x: "18%", opacity: 0.6 }}
+        initial={isSheet ? { y: "100%", opacity: 1 } : { x: "100%", opacity: 1 }}
         animate={{ x: "0%", y: "0%", opacity: 1 }}
-        exit={isSheet ? { y: "12%", opacity: 0 } : { x: "-12%", opacity: 0.6 }}
+        exit={isSheet ? { y: "100%", opacity: 1 } : { x: "-25%", opacity: 0.6 }}
         transition={
           isSheet
-            ? { type: "spring", bounce: 0, duration: 0.45 }
+            ? {
+                type: "spring",
+                duration: APPLE_SPRINGS.smooth.response,
+                bounce: 1 - APPLE_SPRINGS.smooth.damping,
+              }
             : { duration: 0.42, ease: ease.ios }
         }
         className="min-h-full w-full"
