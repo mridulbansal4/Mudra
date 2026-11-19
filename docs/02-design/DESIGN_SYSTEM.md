@@ -265,12 +265,18 @@ Registered via `registerMessageType` inside `NCChatUIApplication.initialize({ ho
 
 Per [`CRED_REVAMP_BUILD_SPEC.md`](./CRED_REVAMP_BUILD_SPEC.md) §2, the following overrides apply to `apps/web`:
 
-| Earlier rule (`DESIGN_SYSTEM.md` / `/unslop`) | CRED Revamp Rule |
-| :--- | :--- |
-| Light ledger paper default (`#F9F7F2`) | **Pitch-black `#0d0d0d` default**, no light mode. |
-| "No uppercase tracked eyebrows" | **Allowed ONLY on section eyebrows** (`11px`, `0.22em`, `--muted`), status pills, and bottom-bar tab labels. Headlines and body copy use **lowercase-first** styling (`"trade like you trust them."`). |
-| "No periods in headlines" | **Periods ARE used** on display headlines (e.g., `"and nothing less."`). |
-| Plus Jakarta Sans + Instrument Serif | **Outfit** (`500`–`800`, geometric sans) + **Fraunces** (`600`–`700`, high-contrast display serif, optical size `144`, `SOFT 0`, `WONK 0`) + **JetBrains Mono** (`tabular-nums`) + **Noto Sans Devanagari / Tamil**. |
-| Single vermilion accent | **Neo-Paccha `#e5fe40`** (verified / vault / active), **Pop-Purple `#6a35ff`** (primary CTA / chat / brand accent), **Orange-Sunshine `#ff8744`** (dispute / timer), **Pure White `#ffffff`** (primary buttons & ink). |
-| Soft rounded buttons | **NeoPOP 3D hard-edge buttons** (`border-radius: 0`, `1px` border, `4px 4px 0` solid offset shadow, press translates `(3px, 3px)` and collapses shadow to `(1px, 1px)`). Cards inside the app stay rounded (`20–28px`, velvet inner hairline). |
+- **Purples**: `--pop-purple: #6a35ff` is **allowed** as a solid brand accent (CRED NeoPOP's signature purple) on CTAs, active tabs, and buyer chat bubbles. **Not allowed**: purple→indigo gradients, neon glow blur > 24px.
+- **Uppercase**: Small uppercase tracked labels are **allowed** only via the `.eyebrow` class (`11px`, `0.22em`, `--muted`), max 1 per section, plus `StatusPill` and bottom-bar tab labels. Headlines and body copy use **lowercase-first** styling (`"trade like you trust them."`).
+- **Periods in headlines**: **Allowed** on display headlines (`"and nothing less."`).
+- **Palette**: The warm ledger palette (`#F9F7F2` / `#C84B20`) is **replaced** by the CRED NeoPOP dark palette in [`CRED_REVAMP_BUILD_SPEC.md`](./CRED_REVAMP_BUILD_SPEC.md) §3 (`--pop-black: #0d0d0d`, `--pop-void: #000000`, `--neo-paccha: #e5fe40`, `--pop-purple: #6a35ff`, `--orange-sunshine: #ff8744`).
+- **Typography**: **Outfit** (`500`–`800`, geometric sans) + **Fraunces** (`600`–`700`, optical size `144`, `SOFT 0`, `WONK 0`) + **JetBrains Mono** (`tabular-nums`) + **Noto Sans Devanagari / Tamil**.
+- **NeoPOP 3D buttons**: `border-radius: 0`, `1.5px` solid border, `5px 5px 0 0` solid offset shadow (no blur); hover translates `(-1px, -1px)` with `6px 6px 0 0` shadow; active press translates `(5px, 5px)` and collapses shadow to `0 0 0 0`. App cards stay rounded (`20–28px`, velvet inner hairline).
+- **Still enforced**:
+  1. Line 1 of `apps/web/src/styles/globals.css` keeps the `/* hallmark:v2.0.0 ... */` comment (with `theme: cred-neopop-dark`).
+  2. No emoji in UI.
+  3. No 3-equal-card feature rows.
+  4. No fake ticker marquees.
+  5. Tabular numbers (`.num`) on all figures.
+  6. HeroUI v3 rules (no provider, compound components, `onPress`).
+  7. All 9 existing routes reachable in ≤ 2 clicks.
 
