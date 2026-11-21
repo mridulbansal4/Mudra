@@ -1,5 +1,5 @@
-# API Specification (`API-01` – `API-18`) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Backend & API Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# API Specification (`API-01` – `API-18`) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Backend & API Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Architecture](./ARCHITECTURE.md) · [Data Model](./DATA_MODEL.md) · [OpenAPI 3.1 Spec](../../api/openapi.yaml) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md)
 
 ---
@@ -7,7 +7,7 @@
 ## 1. API Conventions, Routing & Error Envelope
 
 - **Protocol & Versioning**: HTTP/2 + JSON REST under `/api/v1/*`. External client traffic enters the **Go 1.24 Gateway & Deal Engine (`:4002`)**, which handles deterministic state transitions directly or proxies SDK/forensic calls over internal keep-alive connections to the **Node.js 22 Nexconn Bridge (`:4001`)** and **Rust 1.85 Assay Verifier (`:4003`)**.
-- **Authentication**: Bearer JWT (`Authorization: Bearer <samadhan_jwt>`) issued by `API-01` (`POST /api/v1/auth/session`) or `API-02` (`POST /api/v1/sandbox/provision`), paired with `X-Idempotency-Key` on all state-mutating `POST` requests.
+- **Authentication**: Bearer JWT (`Authorization: Bearer <mudra_jwt>`) issued by `API-01` (`POST /api/v1/auth/session`) or `API-02` (`POST /api/v1/sandbox/provision`), paired with `X-Idempotency-Key` on all state-mutating `POST` requests.
 - **Standard Error Envelope (RFC 9457 Problem Details compatible)**:
   ```json
   {
@@ -24,7 +24,7 @@
 
 ## 2. Complete Endpoint Reference (`API-01` – `API-18`)
 
-### `API-01` · `POST /api/v1/auth/session` — Authenticate Persona / User & Issue Nexconn Token
+### `API-01` · `POST /api/v1/auth/session` - Authenticate Persona / User & Issue Nexconn Token
 - **Handler**: Go (`:4002`) → Node Bridge (`:4001`, `UserManagementApi.issueAccessToken` → `POST https://api.nexconn.ai/v4/auth/access-token/issue`)
 - **Auth Scope**: Public (Rate-limited: `30 req/min/IP`)
 - **Request JSON**:
@@ -48,24 +48,24 @@
       "preferred_locale": "ta-IN"
     },
     "nexconn": {
-      "app_key": "nc_live_app_key_samadhan_2026",
+      "app_key": "nc_live_app_key_mudra_2026",
       "access_token": "nc_tok_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
       "expires_in_sec": 86400
     },
-    "samadhan_jwt": "eyJhbGciOiJFZERTQSI..."
+    "mudra_jwt": "eyJhbGciOiJFZERTQSI..."
   }
   ```
 
 ---
 
-### `API-02` · `POST /api/v1/sandbox/provision` — 1-Click Split-Screen Buyer + Seller Sandbox Provisioner
+### `API-02` · `POST /api/v1/sandbox/provision` - 1-Click Split-Screen Buyer + Seller Sandbox Provisioner
 - **Handler**: Go (`:4002`) + Node Bridge (`:4001`, `UserManagementApi.issueAccessToken` x2 + `GroupChannelManagementApi`)
 - **Auth Scope**: Public (Zero-login Judge Mode `/sandbox`, Rate-limited: `20 req/min/IP`)
 - **Response `201 Created`**:
   ```json
   {
     "deal_id": "d_8821_sandbox",
-    "nexconn_channel_id": "grp_samadhan_juki_8821",
+    "nexconn_channel_id": "grp_mudra_juki_8821",
     "story_stage": 1,
     "buyer_session": {
       "nexconn_user_id": "buyer_demo_991a",
@@ -88,7 +88,7 @@
 
 ---
 
-### `API-03` · `POST /api/v1/deals` & `API-04` · `GET /api/v1/deals/:dealId` — Create & Inspect Deal Room
+### `API-03` · `POST /api/v1/deals` & `API-04` · `GET /api/v1/deals/:dealId` - Create & Inspect Deal Room
 - **Handler**: Go Deal Engine (`:4002`) + Node Bridge (`GroupChannelManagementApi`)
 - **Auth Scope**: `BearerAuth` (`buyer` / `seller` / `arbitrator`, Rate-limited: `60 req/min/user`)
 - **`API-03` Request JSON**:
@@ -108,7 +108,7 @@
   ```json
   {
     "deal_id": "d_8821_sandbox",
-    "nexconn_channel_id": "grp_samadhan_juki_8821",
+    "nexconn_channel_id": "grp_mudra_juki_8821",
     "title": "Juki MO-6814S High-Speed Overlock Machine",
     "story_stage": 2,
     "escrow_contract": {
@@ -128,7 +128,7 @@
 
 ---
 
-### `API-05` · `POST /api/v1/deals/:dealId/translate-stream` — Rust PII Scrub + Native Nexconn Streaming Translation
+### `API-05` · `POST /api/v1/deals/:dealId/translate-stream` - Rust PII Scrub + Native Nexconn Streaming Translation
 - **Handler**: Rust Scrubber (`:4003`, `<300µs`) → Node Bridge (`:4001`, `M-01` Gemini 2.5 Flash + `MessageManagementApi.sendGroupChannelStreamMessage`)
 - **Auth Scope**: `BearerAuth` (`buyer` / `seller`, Rate-limited: `120 req/min/user`)
 - **Request JSON**:
@@ -151,13 +151,13 @@
       "required_rpm": 4800,
       "warranty_months": 6
     },
-    "nexconn_delivery": "POST /v4/group-channel/message/stream/send (x-samadhan-bilingual-bubble)"
+    "nexconn_delivery": "POST /v4/group-channel/message/stream/send (x-mudra-bilingual-bubble)"
   }
   ```
 
 ---
 
-### `API-06` · `POST /api/v1/deals/:dealId/escrow/transition` — Deterministic Go 1.24 FSM Transition
+### `API-06` · `POST /api/v1/deals/:dealId/escrow/transition` - Deterministic Go 1.24 FSM Transition
 - **Handler**: Go Deal Engine (`:4002`) + Rust Ed25519 Signer (`:4003`) + Node Bridge (`SystemMessagesApi`)
 - **Auth Scope**: `BearerAuth` + `X-Idempotency-Key` (`buyer` / `seller`, Rate-limited: `30 req/min/user`)
 - **Request JSON**:
@@ -165,7 +165,7 @@
   {
     "action": "LOCK_ESCROW",
     "expected_version": 1,
-    "upi_mandate_umn": "samadhan.8821@okaxis"
+    "upi_mandate_umn": "mudra.8821@okaxis"
   }
   ```
 - **Response `200 OK` (or `409 Conflict` if concurrent stale version)**:
@@ -187,7 +187,7 @@
 
 ---
 
-### `API-07` · `POST /api/v1/deals/:dealId/assay/start` & `API-08` · `POST /api/v1/deals/:dealId/assay/verify-frame` — Live WebRTC Video + Rust Forensic Assay
+### `API-07` · `POST /api/v1/deals/:dealId/assay/start` & `API-08` · `POST /api/v1/deals/:dealId/assay/verify-frame` - Live WebRTC Video + Rust Forensic Assay
 - **Handler**: `API-07` in Go (`:4002`); `API-08` in Rust Assay Verifier (`:4003`) + `M-03` Vision + Node Bridge (`SystemMessagesApi`)
 - **Auth Scope**: `BearerAuth` (`buyer` / `seller`, Rate-limited: `30 req/min/user`)
 - **`API-07` Request JSON**:
@@ -271,7 +271,7 @@
   // Response 200 OK
   {
     "dispute_id": "disp_8821",
-    "nexconn_channel_id": "grp_samadhan_juki_8821",
+    "nexconn_channel_id": "grp_mudra_juki_8821",
     "arbitrator_nexconn_id": "arbitrator_meera_sg_8821",
     "freeze_remaining_sec": 74,
     "joined_at": "2026-11-10T14:22:16Z"
@@ -301,17 +301,17 @@
 
 ---
 
-### `API-12` · `GET /api/v1/marketplace/open-lots` & `API-13` · `POST /api/v1/marketplace/open-lots/broadcast` — `Open` Channel Priority Flash Lots (`F-06`)
+### `API-12` · `GET /api/v1/marketplace/open-lots` & `API-13` · `POST /api/v1/marketplace/open-lots/broadcast` - `Open` Channel Priority Flash Lots (`F-06`)
 - **Handler**: Go (`:4002`) + Node Bridge (`:4001`, `OpenChannelManagementApi` & `OpenChannelPriorityControlsApi`)
 - **Auth Scope**: `API-12` Public (`120 req/min/IP`); `API-13` `BearerAuth` (`seller` role, `20 req/min/user`)
 - **`API-12` Response `200 OK`**:
   ```json
   {
-    "open_channel_id": "open_samadhan_flash_mandi_01",
+    "open_channel_id": "open_mudra_flash_mandi_01",
     "active_lots": [
       {
         "lot_id": "lot_juki_8821",
-        "nexconn_open_channel_id": "open_samadhan_flash_mandi_01",
+        "nexconn_open_channel_id": "open_mudra_flash_mandi_01",
         "title": "Juki MO-6814S Overlock Lot (Assay Verified 4,820 RPM)",
         "seller_nexconn_id": "seller_vikram_hi_8821",
         "reserve_price_paise": 14000000,
@@ -329,7 +329,7 @@
 - **`API-13` Request JSON**:
   ```json
   {
-    "open_channel_id": "open_samadhan_flash_mandi_01",
+    "open_channel_id": "open_mudra_flash_mandi_01",
     "seller_nexconn_id": "seller_vikram_hi_8821",
     "title": "Juki MO-6814S Overlock Lot (Assay Verified 4,820 RPM)",
     "reserve_price_paise": 14000000,
@@ -339,20 +339,20 @@
 
 ---
 
-### `API-14` · `POST /api/v1/community/subchannels` — `Community` Category Subchannel Provisioning (`F-07`)
+### `API-14` · `POST /api/v1/community/subchannels` - `Community` Category Subchannel Provisioning (`F-07`)
 - **Handler**: Go (`:4002`) → Node Bridge (`:4001`, `CommunityChannelManagementApi` / `createCommunitySubchannel`)
 - **Auth Scope**: `BearerAuth` (`60 req/min/user`)
 - **Request & Response `200 OK`**:
   ```json
   // Request
   {
-    "community_channel_id": "comm_samadhan_bharat_trade",
+    "community_channel_id": "comm_mudra_bharat_trade",
     "category_slug": "sub/machinery",
     "action": "CREATE_OR_GET"
   }
   // Response 200 OK
   {
-    "community_channel_id": "comm_samadhan_bharat_trade",
+    "community_channel_id": "comm_mudra_bharat_trade",
     "subchannel_id": "sub_machinery_01",
     "category_slug": "sub/machinery",
     "joined": true
@@ -361,7 +361,7 @@
 
 ---
 
-### `API-15` · `POST /api/v1/arena/start` & `API-16` · `POST /api/v1/arena/:runId/bid` — 60-Second Chanakya AI Bargaining Arena (`F-10`)
+### `API-15` · `POST /api/v1/arena/start` & `API-16` · `POST /api/v1/arena/:runId/bid` - 60-Second Chanakya AI Bargaining Arena (`F-10`)
 - **Handler**: Go (`:4002`, reservation price curve) + Node Bridge (`:4001`, `UserManagementApi.issueAccessToken` & `MessageManagementApi.sendDirectChannelStreamMessage` with `M-05`)
 - **Auth Scope**: Public zero-login viral loop (Rate-limited: `30 req/min/IP`)
 - **`API-15` Request & Response `201 Created`**:
@@ -402,8 +402,8 @@
 
 ---
 
-### `API-17` · `POST /api/v1/webhooks/upi-ondc` — HMAC-SHA256 Verified UPI / ONDC Webhook Receiver (`F-04`)
-- **Handler**: Go Deal Engine (`:4002`, constant-time `hmac.Equal` on `X-Samadhan-Signature` + timestamp replay window `±300s`)
+### `API-17` · `POST /api/v1/webhooks/upi-ondc` - HMAC-SHA256 Verified UPI / ONDC Webhook Receiver (`F-04`)
+- **Handler**: Go Deal Engine (`:4002`, constant-time `hmac.Equal` on `X-Mudra-Signature` + timestamp replay window `±300s`)
 - **Auth Scope**: Webhook HMAC-SHA256 signature (`UPI_WEBHOOK_HMAC_SECRET`)
 - **Request & Response `200 OK`**:
   ```json
@@ -413,7 +413,7 @@
     "event_type": "UPI_MANDATE_LOCKED",
     "deal_id": "d_8821_sandbox",
     "amount_paise": 14500000,
-    "umn_or_txn_id": "samadhan.8821@okaxis",
+    "umn_or_txn_id": "mudra.8821@okaxis",
     "timestamp_unix": 1794320500
   }
   // Response 200 OK
@@ -427,7 +427,7 @@
 
 ---
 
-### `API-18` · `GET /api/v1/traction/telemetry` — Public Verifiable MAU & Latency Proof Feed (`F-13`)
+### `API-18` · `GET /api/v1/traction/telemetry` - Public Verifiable MAU & Latency Proof Feed (`F-13`)
 - **Handler**: Go Deal Engine (`:4002`, DragonflyDB / Redis 7.4 `5s` cached read-through over PostgreSQL 17 `traction_telemetry_events` `E-10`)
 - **Auth Scope**: Public (`120 req/min/IP`)
 - **Response `200 OK`**:

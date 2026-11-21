@@ -1,7 +1,7 @@
 //! 64-bit DCT perceptual hash (pHash).
 //!
 //! Algorithm (identical in `packages/assay-wasm-rs`, the Go fallback and the
-//! TS fallback — see README "pHash algorithm"):
+//! TS fallback - see README "pHash algorithm"):
 //!   1. Decode JPEG/PNG -> RGBA8 (alpha ignored).
 //!   2. Luma per pixel: `0.299*R + 0.587*G + 0.114*B` (f64).
 //!   3. Box-resize to 32x32: output cell (ox, oy) averages source pixels

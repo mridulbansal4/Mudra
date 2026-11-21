@@ -1,8 +1,8 @@
 # Tier 5 White-Box Adversarial Verification & Handoff Report (`challenger_m5_1`)
 
-- **Agent**: `challenger_m5_1` (Wave 4 Challenger 1 — Tier 5 White-Box Adversarial Verifier)
+- **Agent**: `challenger_m5_1` (Wave 4 Challenger 1 - Tier 5 White-Box Adversarial Verifier)
 - **Roles**: `critic`, `specialist`
-- **Milestone**: M5 — Final E2E Pass & Tier 5 Adversarial Hardening
+- **Milestone**: M5 - Final E2E Pass & Tier 5 Adversarial Hardening
 - **Explicit Verdict**: **APPROVE**
 
 ---
@@ -50,12 +50,12 @@ Using custom white-box Python verification scripts executed via `run_command`, w
    - Canonical formula in `C:\Users\Harshad\.gemini\config\skills\war-room-council\references\war-room-protocol.md` (lines 136–144), `d:\Hackathons\Nexconn\PROJECT.md` (line 88), and `d:\Hackathons\Nexconn\biblehackathon.md` (line 282):
      $$\text{Winnability} = 0.25(\text{CompInv}) + 0.20(\text{SatInv}) + 0.20(\text{Demo}) + 0.20(\text{Align}) + 0.15(\text{Feas})$$
    - All 6 tracks appear in identical rank order (`#1` to `#6`) with identical sub-scores, identical Winnability Scores (`9.27`, `9.02`, `9.01`, `8.73`, `8.69`, `8.43`), and identical #1 track ideas across `biblehackathon.md` (lines 284–291), `ideas.md` (lines 19–26), `state.md` (lines 60–67), `biblehackathon.pdf`, and `ideas.pdf`:
-     - **Rank #1**: `02 · nexconn-gaming` (`Gaming & Live Streams`) — Factors `(9.0, 9.2, 9.8, 9.6, 8.7)` → Exact canonical sum `9.275` → Printed **`9.27 / 10`** — Top Idea: **`GhostCoach SquadOS`** (**`9.44 / 10`**).
-     - **Rank #2**: `03 · nexconn-workplace` (`Workplace & Collaboration`) — Factors `(8.6, 9.0, 9.4, 9.5, 8.6)` → Exact canonical sum `9.020` → Printed **`9.02 / 10`** — Top Idea: **`BatonOS`** (**`9.15 / 10`**).
-     - **Rank #3**: `04 · nexconn-support` (`Marketplace & Support`) — Factors `(8.4, 9.0, 9.5, 9.4, 8.9)` → Exact canonical sum `9.015` → Printed **`9.01 / 10`** — Top Idea: **`WhisperDesk ($\tau$-Guard)`** (**`9.20 / 10`**).
-     - **Rank #4**: `06 · open` / `open-innovation` (`Open Innovation`) — Factors `(8.5, 9.0, 9.0, 9.0, 8.0)` → Exact canonical sum `8.725` → Printed **`8.73 / 10`** — Top Idea: **`A2ACanvas OS`** (**`9.25 / 10`**).
-     - **Rank #5**: `01 · nexconn-social` (`Social & Community`) — Factors `(7.6, 8.4, 9.6, 9.4, 8.7)` → Exact canonical sum `8.685` → Printed **`8.69 / 10`** — Top Idea: **`SyncStage AI`** (**`9.29 / 10`**).
-     - **Rank #6**: `05 · nexconn-social-good` (`Humanitarian & Social Good`) — Factors `(8.8, 8.5, 8.2, 8.2, 8.3)` → Exact canonical sum `8.425` → Printed **`8.43 / 10`** — Top Idea: **`KavachElder`** (**`9.07 / 10`**).
+     - **Rank #1**: `02 · nexconn-gaming` (`Gaming & Live Streams`) - Factors `(9.0, 9.2, 9.8, 9.6, 8.7)` → Exact canonical sum `9.275` → Printed **`9.27 / 10`** - Top Idea: **`GhostCoach SquadOS`** (**`9.44 / 10`**).
+     - **Rank #2**: `03 · nexconn-workplace` (`Workplace & Collaboration`) - Factors `(8.6, 9.0, 9.4, 9.5, 8.6)` → Exact canonical sum `9.020` → Printed **`9.02 / 10`** - Top Idea: **`BatonOS`** (**`9.15 / 10`**).
+     - **Rank #3**: `04 · nexconn-support` (`Marketplace & Support`) - Factors `(8.4, 9.0, 9.5, 9.4, 8.9)` → Exact canonical sum `9.015` → Printed **`9.01 / 10`** - Top Idea: **`WhisperDesk ($\tau$-Guard)`** (**`9.20 / 10`**).
+     - **Rank #4**: `06 · open` / `open-innovation` (`Open Innovation`) - Factors `(8.5, 9.0, 9.0, 9.0, 8.0)` → Exact canonical sum `8.725` → Printed **`8.73 / 10`** - Top Idea: **`A2ACanvas OS`** (**`9.25 / 10`**).
+     - **Rank #5**: `01 · nexconn-social` (`Social & Community`) - Factors `(7.6, 8.4, 9.6, 9.4, 8.7)` → Exact canonical sum `8.685` → Printed **`8.69 / 10`** - Top Idea: **`SyncStage AI`** (**`9.29 / 10`**).
+     - **Rank #6**: `05 · nexconn-social-good` (`Humanitarian & Social Good`) - Factors `(8.8, 8.5, 8.2, 8.2, 8.3)` → Exact canonical sum `8.425` → Printed **`8.43 / 10`** - Top Idea: **`KavachElder`** (**`9.07 / 10`**).
 2. **#1 Winning Pick & #1 Dark Horse Pick Consistency**:
    - **#1 Overall Winning Pick**: **`GhostCoach SquadOS`** (`Track 02: Gaming & Live Streams`, `nexconn-gaming`, score **`9.44 / 10`**) is identically designated across `biblehackathon.md` (lines 286, 335–342), `ideas.md` (lines 21, 30–35, 47, 90–130), `state.md` (lines 62, 69–76, 82), `biblehackathon.pdf`, and `ideas.pdf`.
    - **#1 Dark Horse Pick**: **`A2ACanvas OS`** (`Track 06: Open Innovation`, `open` / `open-innovation`, score **`9.25 / 10`**) is identically designated across `biblehackathon.md` (lines 289, 344–351), `ideas.md` (lines 24, 37–40, 62), `state.md` (lines 65, 78–80, 97), `biblehackathon.pdf`, and `ideas.pdf`.
@@ -95,7 +95,7 @@ Using custom white-box Python verification scripts executed via `run_command`, w
    - Result: **`0` raw dialogue leaks** in `biblehackathon.md` (all council attributions are synthesized in third-person analytical prose or structured tables).
 4. **`HUNCH:` Label Discipline in `research/F-connect-the-dots.md` and `biblehackathon.md`**:
    - `d:\Hackathons\Nexconn\research\F-connect-the-dots.md` contains **`17` explicit `HUNCH:` occurrences** across all 6 cross-pollination hypotheses (`HUNCH 1` through `HUNCH 6`, lines 11–107), each paired with a concrete **Evidence Chain** (`[A-organisers.md]`, `[B-sponsors-judges.md]`, `[C-why-this-exists.md]`, `[D-geopolitics-india.md]`, `[E-global-currents.md]`) and **Falsification Test**.
-   - `biblehackathon.md` Part 2 (`## Connect-the-dots synthesis — the hidden thesis`, lines 84–99) distills the evidence-backed sponsor/judge/geopolitical thesis and explicitly cross-references `research/F-connect-the-dots.md` without presenting unlabelled speculation as fact.
+   - `biblehackathon.md` Part 2 (`## Connect-the-dots synthesis - the hidden thesis`, lines 84–99) distills the evidence-backed sponsor/judge/geopolitical thesis and explicitly cross-references `research/F-connect-the-dots.md` without presenting unlabelled speculation as fact.
 
 ### 1.5 White-Box Non-Blocking Observations Uncovered
 During deep line-by-line inspection, we identified 4 Low-severity, non-blocking prose/formatting nuances:
@@ -103,7 +103,7 @@ During deep line-by-line inspection, we identified 4 Low-severity, non-blocking 
    - `ideas.md` (line 11) and `state.md` (line 59) print the formula header with weights `0.25(CompInv) + 0.20(SatInv) + 0.25(Demo) + 0.20(Align) + 0.10(Feas48h)`, whereas `biblehackathon.md` (line 282), `PROJECT.md` (line 88), and `war-room-protocol.md` (line 138) print the canonical weights `0.25 + 0.20 + 0.20 + 0.20 + 0.15`.
    - Importantly, the actual **Winnability Score** values printed in all three tables (`9.27`, `9.02`, `9.01`, `8.73`, `8.69`, `8.43`) were computed using the canonical `0.25 / 0.20 / 0.20 / 0.20 / 0.15` weights (`9.275`, `9.020`, `9.015`, `8.725`, `8.685`, `8.425`), so the numerical scores and rankings are 100% consistent across all files.
 2. **Literal `?` Character Substitutions for Em-Dashes in `ideas.md` (24 lines)**:
-   - In `ideas.md` (lines `1, 5, 21–26, 30, 31, 37, 41, 80, 302, 716, 1140, 1611, 1828, 2328–2333`), 24 lines contain ` ? ` where an em-dash (`—`) or en-dash (`–`) was converted during Windows CP1252 string assembly (e.g., `# Nexconn Build Challenge 2026 ? Top Ideas by Domain`). All 30 `## Idea N — ...` headers and body sections use proper UTF-8 em-dashes (`—`).
+   - In `ideas.md` (lines `1, 5, 21–26, 30, 31, 37, 41, 80, 302, 716, 1140, 1611, 1828, 2328–2333`), 24 lines contain ` ? ` where an em-dash (` - `) or en-dash (`–`) was converted during Windows CP1252 string assembly (e.g., `# Nexconn Build Challenge 2026 ? Top Ideas by Domain`). All 30 `## Idea N - ...` headers and body sections use proper UTF-8 em-dashes (` - `).
 3. **Residual `$10,000` Prose Mentions in `biblehackathon.md` (`lines 110, 141, 349`)**:
    - `biblehackathon.md` Part 1 (lines 16–17) and `state.md` (line 22) accurately document the verified `$5,000 USD` cash pool (`$2,000 1st · $1,250 2nd · $750 3rd · $500 4th · $500 5th`) + `$20,640 Free Chat Plan` (`$25,640` total value), and explicitly debunk the third-party aggregator `$10,000` rumor in `research/01-facts.md` (line 75). However, three rhetorical sentences in `biblehackathon.md` (lines 110, 141, 349) still mention `$10,000` (`$5,000 / $3,000 / $2,000`).
 4. **Specialist Seat Summary Naming (`biblehackathon.md:324-331` vs `war-room/roster-additions.md`)**:
@@ -165,19 +165,19 @@ python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --self-test
 #### [Low] Challenge 1: Formula Weight Text vs Computed Table Score in `ideas.md` and `state.md`
 - **Assumption challenged**: That the printed LaTeX formula string in `ideas.md:11` and `state.md:59` uses the exact same weight literals as `biblehackathon.md:282`.
 - **Attack scenario**: A pedantic reader manually multiplies the 5 row factors `(9.0, 9.2, 9.8, 9.6, 8.7)` using the text header `0.25, 0.20, 0.25, 0.20, 0.10` in `ideas.md:11` (`= 9.33`) instead of the canonical weights `0.25, 0.20, 0.20, 0.20, 0.15` in `biblehackathon.md:282` (`= 9.275 -> 9.27`).
-- **Blast radius**: Cosmetic only — the printed **Winnability Score** column (`9.27`, `9.02`, `9.01`, `8.73`, `8.69`, `8.43`) and track rank order (`#1` to `#6`) are 100% identical across `biblehackathon.md`, `ideas.md`, and `state.md`, and even under the alternative `0.25/0.10` weights the top tracks remain in the same tier.
+- **Blast radius**: Cosmetic only - the printed **Winnability Score** column (`9.27`, `9.02`, `9.01`, `8.73`, `8.69`, `8.43`) and track rank order (`#1` to `#6`) are 100% identical across `biblehackathon.md`, `ideas.md`, and `state.md`, and even under the alternative `0.25/0.10` weights the top tracks remain in the same tier.
 - **Mitigation**: No blocking action required; if a future revision edits `ideas.md` or `state.md`, align line 11 / line 59 text weights to `0.20(Demo) + 0.15(Feas)`.
 
 #### [Low] Challenge 2: CP1252 `?` Replacement of Em-Dashes in `ideas.md` Section Headers
 - **Assumption challenged**: That all punctuation across `ideas.md` survived UTF-8 file concatenation without codepage substitution.
-- **Attack scenario**: 24 header/summary lines in `ideas.md` (e.g., line 1 `# Nexconn Build Challenge 2026 ? Top Ideas by Domain`, line 5 `# Part 0 ? Where to Play`, lines 80, 302, 716, 1140, 1611, 1828) display ` ? ` instead of ` — `, which carries over into `ideas.pdf` headings.
-- **Blast radius**: Cosmetic typography only — all 30 `## Idea N — ...` cards, body text, tables, and math formulas render cleanly in both `ideas.md` and `ideas.pdf`.
+- **Attack scenario**: 24 header/summary lines in `ideas.md` (e.g., line 1 `# Nexconn Build Challenge 2026 ? Top Ideas by Domain`, line 5 `# Part 0 ? Where to Play`, lines 80, 302, 716, 1140, 1611, 1828) display ` ? ` instead of ` - `, which carries over into `ideas.pdf` headings.
+- **Blast radius**: Cosmetic typography only - all 30 `## Idea N - ...` cards, body text, tables, and math formulas render cleanly in both `ideas.md` and `ideas.pdf`.
 - **Mitigation**: Always enforce `encoding='utf-8'` when writing or concatenating markdown strings in PowerShell/Python on Windows.
 
 #### [Low] Challenge 3: Residual `$10,000` Prose References in `biblehackathon.md`
 - **Assumption challenged**: That debunked third-party prize pool numbers (`$10,000`) were purged from all rhetorical prose in `biblehackathon.md`.
 - **Attack scenario**: While `biblehackathon.md` Part 1 (`lines 16–17`) and `research/01-facts.md` (`line 75`) clearly state the official `$5,000 USD cash + $20,640 Free Chat Plan` (`$25,640` total value) prize structure, lines `110`, `141`, and `349` of `biblehackathon.md` still refer to `$10,000` (`$5,000 / $3,000 / $2,000`) in rhetorical commentary.
-- **Blast radius**: Low — Part 1's canonical table and bullet list (`lines 16–17`) explicitly provide the exact official Devpost prize breakdown.
+- **Blast radius**: Low - Part 1's canonical table and bullet list (`lines 16–17`) explicitly provide the exact official Devpost prize breakdown.
 - **Mitigation**: Non-blocking; documented for completeness.
 
 ### Stress Test Results

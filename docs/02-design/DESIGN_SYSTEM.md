@@ -1,17 +1,17 @@
-# Design System — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Design & Frontend Craft Lead — Jony Ive & Don Norman Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Design System - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Design & Frontend Craft Lead - Jony Ive & Don Norman Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [UI Spec](./UI_SPEC.md) · [Accessibility](./ACCESSIBILITY.md) · [Localization](./LOCALIZATION.md) · [Frontend Engineering](../03-engineering/FRONTEND.md) · [ADR-0004](../03-engineering/adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md)
 
 ---
 
 ## 1. Unified Design Governance (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` v3 + `/heroui-native` v2)
 
-SAMADHAN-OS is governed by five non-negotiable design systems so that no screen ever looks like "AI-generated vibecoded slop":
+MUDRA-OS is governed by five non-negotiable design systems so that no screen ever looks like "AI-generated vibecoded slop":
 
 ### 1.1 The `/unslop` Five-Line Direction
 - **Product**: Real-time cross-lingual video-escrow deal desk and 90-second channel-freeze dispute tribunal for Indian and cross-border B2B/P2P merchants (`P-01`..`P-05`).
 - **Character**: `tactile, forensic, assured` (Words like *clean, modern, sleek, minimal, premium* are banned).
-- **World**: **Warm customs assay house & precision instrument ledger** — unbleached cotton bond paper, warm graphite scales, vermilion wax seals, emerald vault locks, and high-contrast optical inspection loupes.
+- **World**: **Warm customs assay house & precision instrument ledger** - unbleached cotton bond paper, warm graphite scales, vermilion wax seals, emerald vault locks, and high-contrast optical inspection loupes.
 - **Moments**:
   1. **The Interactive Lit Escrow Milestone Card (`<nc-escrow-deal-card>`)**: Rich tactile vault card inside the quiet chat timeline with physical step indicators and cryptographic receipts.
   2. **The Draggable WebRTC Video Assay Loupe (`@nexconn/call` + Rust WASM)**: Floating optical viewfinder with real-time 60fps serial-plate bounding lock (`JUKI-MO-6814S-8821`) and live motor RPM audio spectrum.
@@ -29,7 +29,7 @@ SAMADHAN-OS is governed by five non-negotiable design systems so that no screen 
 - **Chrome** · nav: edge-aligned, flat wordmark + story route links + 1 primary action (`Launch 1-Click Demo`, `Sign in` as quiet text link) · footer: structured mast with SDK & compliance proof links
 - **Hero** · Split Stage at `1280x800`: headline (≤7 words: "Trade across languages. Verify on live video."), 1 sentence (12 words), 2 actions on cols 1–5; live interactive `<nc-escrow-deal-card>` + Video Assay preview on cols 6–12
 - **Signature** · Monospaced cryptographic System-channel receipt strip (`[SYS-VOUCHER · ED25519:8f9a…2c1b]`) inside the live escrow card
-- **Sections** · Hero (Live Deal Card Stage) · Story Chapter 1 (The ₹38,000 Cr Trust Gap) · Story Chapter 2 (The 4-Stage SAMADHAN Covenant) · Story Chapter 3 (5 Persona Entry Doors) · Live Telemetry Strip (`/traction` preview) · Footer
+- **Sections** · Hero (Live Deal Card Stage) · Story Chapter 1 (The ₹38,000 Cr Trust Gap) · Story Chapter 2 (The 4-Stage MUDRA Covenant) · Story Chapter 3 (5 Persona Entry Doors) · Live Telemetry Strip (`/traction` preview) · Footer
 - **Material** · real: Nexconn v26.2.5/v26.2.1/v26.2.0/v0.1.2 SDK suite, Go 1.24 FSM, Rust 1.85 WASM verifier, ₹38,000 Cr ONDC/RBI fraud benchmark · pictures: real rendered `<nc-chat-ui-app-provider>` + `<nc-escrow-deal-card>` + simulated HD Juki overlock assay canvas · absent: zero invented customer testimonials or fake company logo walls
 - **Sweep** · `node scripts/sloplint.mjs --render` enforced in CI (`Floor 0 FAIL`)
 ```
@@ -62,14 +62,14 @@ Per `/unslop` Pass 2 and `/heroui-react` v3 theming rules, surfaces stay quiet a
 /* hallmark-stamp: v2.0.0 | shape: workbench | theme: custom-assay-ledger | genre: modern-minimal | signature: sys-voucher-strip */
 /* critique: warm customs ledger paper and carbon graphite surfaces keep chrome quiet so Lit escrow cards and live WebRTC video assay carry the focus */
 
-/* 1. Tailwind CSS v4 — MUST BE FIRST (HeroUI v3 Mandate) */
+/* 1. Tailwind CSS v4 - MUST BE FIRST (HeroUI v3 Mandate) */
 @import "tailwindcss";
 
-/* 2. HeroUI v3 Styles — MUST BE SECOND */
+/* 2. HeroUI v3 Styles - MUST BE SECOND */
 @import "@heroui/styles";
 
 :root {
-  /* Neutral Ramp — Light Mode (Unbleached Ledger Paper & Carbon Ink) */
+  /* Neutral Ramp - Light Mode (Unbleached Ledger Paper & Carbon Ink) */
   --background: oklch(0.978 0.005 85);          /* Warm cotton paper #F9F7F2 */
   --surface-1: oklch(0.992 0.003 85);           /* Raised card surface */
   --surface-2: oklch(0.952 0.007 85);           /* Subtle recessed well / sidebar */
@@ -79,15 +79,15 @@ Per `/unslop` Pass 2 and `/heroui-react` v3 theming rules, surfaces stay quiet a
   --foreground-muted: oklch(0.525 0.010 265);   /* Muted meta & captions (4.6:1) */
   --border-hairline: oklch(0.185 0.012 265 / 0.08); /* 8% quiet hairline */
 
-  /* Primary Brand Accent — Assay Amber-Vermilion (Customs Seal) */
-  --accent: oklch(0.565 0.185 38);              /* #C84B20 — 4.85:1 with snow */
+  /* Primary Brand Accent - Assay Amber-Vermilion (Customs Seal) */
+  --accent: oklch(0.565 0.185 38);              /* #C84B20 - 4.85:1 with snow */
   --accent-foreground: oklch(0.990 0.002 85);
 
   /* Semantic Moments (Escrow Vault, Video Assay, Freeze Lock) */
-  --vault-locked: oklch(0.520 0.145 155);       /* Vault Emerald — Escrow Funded & Assay Verified */
+  --vault-locked: oklch(0.520 0.145 155);       /* Vault Emerald - Escrow Funded & Assay Verified */
   --vault-locked-bg: oklch(0.945 0.035 155);
-  --assay-active: oklch(0.550 0.160 245);       /* Optical Cobalt — Live WebRTC Video Assay */
-  --freeze-danger: oklch(0.530 0.205 25);       /* Tribunal Vermilion — Channel Frozen (addGroupChannelFreezeList) */
+  --assay-active: oklch(0.550 0.160 245);       /* Optical Cobalt - Live WebRTC Video Assay */
+  --freeze-danger: oklch(0.530 0.205 25);       /* Tribunal Vermilion - Channel Frozen (addGroupChannelFreezeList) */
   --freeze-danger-bg: oklch(0.945 0.040 25);
 
   /* Typography Families */
@@ -97,7 +97,7 @@ Per `/unslop` Pass 2 and `/heroui-react` v3 theming rules, surfaces stay quiet a
 }
 
 .dark, [data-theme="dark"] {
-  /* Neutral Ramp — Dark Mode (Precision Instrument Graphite) */
+  /* Neutral Ramp - Dark Mode (Precision Instrument Graphite) */
   --background: oklch(0.155 0.008 265);         /* Deep instrument graphite #0D0E12 */
   --surface-1: oklch(0.195 0.010 265);          /* Raised panel step 1 */
   --surface-2: oklch(0.235 0.012 265);          /* Active row / step 2 */
@@ -147,7 +147,7 @@ Because `heroui-native@^2.0.1` on Uniwind requires **HSL** tokens instead of `ok
   3. **Forensic & Numeric Ledger (`--font-mono`)**: `JetBrains Mono` with `font-variant-numeric: tabular-nums` for all ₹/SGD/USD prices, 60-second `/arena` countdowns, `pHash` strings, `4,820 RPM` FFT readouts, and `[SYS-VOUCHER]` receipts.
 - **Weight & Case Discipline**:
   - Only weights `400` (regular), `500` (medium), and `600` (semi-bold for rare emphasis). **Zero `700–900` ultra-bold shouting**.
-  - **Sentence case everywhere** (`Escrow milestones`, `Live video assay`, `System audit ledger` — never `ESCROW MILESTONES` with wide letter-spacing).
+  - **Sentence case everywhere** (`Escrow milestones`, `Live video assay`, `System audit ledger` - never `ESCROW MILESTONES` with wide letter-spacing).
 - **Size-Specific Tracking & Inverse Leading (`/apple-design` WWDC Typography Rules)**:
 
 | Token | Size (`rem` / `px`) | Line Height (Leading) | Letter Spacing (Tracking) | Usage |
@@ -244,10 +244,10 @@ Because `heroui-native@^2.0.1` on Uniwind requires **HSL** tokens instead of `ok
 
 ### 6.2 Custom Lit `^3.3.2` Message Cards Inside `<nc-chat-ui-app-provider>` (`packages/nc-lit-cards`)
 Registered via `registerMessageType` inside `NCChatUIApplication.initialize({ hooks })` **before** `app.ready()`:
-1. **`<nc-bilingual-bubble>` (`type: "x-samadhan-bilingual-bubble"`)**: Displays source speech/text, live streaming translated text (`sendGroupChannelStreamMessage`), language pair tag (`Tamil → Hindi`), and extracted JSON deal terms (`Price: ₹1,45,000`, `RPM: 4,800`).
-2. **`<nc-escrow-deal-card>` (`type: "x-samadhan-escrow-card"`)**: Displays deal title, `tabular-nums` amount in `₹`, 4-state visual stepper, interactive buttons (`Lock Escrow`, `Verify on Live Video`, `Release Funds`, `Raise Dispute`), and the signature `[SYS-VOUCHER · ED25519:...]` footer strip.
-3. **`<nc-video-assay-receipt>` (`type: "x-samadhan-assay-receipt"`)**: Renders the captured WebRTC inspection frame thumbnail, `onServerCallLogReceived` call duration/ID, Rust 64-bit `pHash`, `rustfft` acoustic check (`4,820 RPM — Pass`), and Gemini Vision serial plate badge.
-4. **`<nc-tribunal-verdict-card>` (`type: "x-samadhan-tribunal-verdict"`)**: Appears inside frozen channels (`addGroupChannelFreezeList`), streaming the AI Tribunal (`M-04`) evidence comparison and 1-click binding split approval (`88% Seller / 12% Buyer Rebate`).
+1. **`<nc-bilingual-bubble>` (`type: "x-mudra-bilingual-bubble"`)**: Displays source speech/text, live streaming translated text (`sendGroupChannelStreamMessage`), language pair tag (`Tamil → Hindi`), and extracted JSON deal terms (`Price: ₹1,45,000`, `RPM: 4,800`).
+2. **`<nc-escrow-deal-card>` (`type: "x-mudra-escrow-card"`)**: Displays deal title, `tabular-nums` amount in `₹`, 4-state visual stepper, interactive buttons (`Lock Escrow`, `Verify on Live Video`, `Release Funds`, `Raise Dispute`), and the signature `[SYS-VOUCHER · ED25519:...]` footer strip.
+3. **`<nc-video-assay-receipt>` (`type: "x-mudra-assay-receipt"`)**: Renders the captured WebRTC inspection frame thumbnail, `onServerCallLogReceived` call duration/ID, Rust 64-bit `pHash`, `rustfft` acoustic check (`4,820 RPM - Pass`), and Gemini Vision serial plate badge.
+4. **`<nc-tribunal-verdict-card>` (`type: "x-mudra-tribunal-verdict"`)**: Appears inside frozen channels (`addGroupChannelFreezeList`), streaming the AI Tribunal (`M-04`) evidence comparison and 1-click binding split approval (`88% Seller / 12% Buyer Rebate`).
 
 ---
 

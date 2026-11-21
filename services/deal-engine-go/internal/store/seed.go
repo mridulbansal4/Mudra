@@ -29,14 +29,14 @@ func PersonaByPreset(p string) (Persona, bool) {
 // Seed constants.
 const (
 	SeedDealID         = "d_8821_juki"
-	SeedChannelID      = "grp_samadhan_juki_8821"
+	SeedChannelID      = "grp_mudra_juki_8821"
 	SeedDealTitle      = "Juki MO-6814S High-Speed Overlock Machine"
 	SeedAmountPaise    = 14500000
 	SeedSerial         = "JUKI-MO-6814S-8821"
 	SeedMinRPM         = 4800
 	SeedReferencePHash = "a4f19c83e2b0771d"
-	OpenChannelID      = "open_samadhan_flash_mandi_01"
-	CommunityChannelID = "comm_samadhan_bharat_trade"
+	OpenChannelID      = "open_mudra_flash_mandi_01"
+	CommunityChannelID = "comm_mudra_bharat_trade"
 )
 
 // DefaultChecklist is the Juki checklist from API-03.

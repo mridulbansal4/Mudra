@@ -1,9 +1,9 @@
-# Progress — `teamwork_spec_miner_survey_1`
+# Progress - `teamwork_spec_miner_survey_1`
 
 Last visited: 2026-10-31T18:11:00Z
 
 ## Status
-Completed — All specifications mined, verified, and written to `handoff.md`.
+Completed - All specifications mined, verified, and written to `handoff.md`.
 
 ## Completed Steps
 - [x] Read `ORIGINAL_REQUEST.md` and `DISPATCH.md`

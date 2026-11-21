@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 const webhookWindow = 300 // seconds
@@ -31,11 +31,11 @@ func (s *Server) handleWebhook(w http.ResponseWriter, r *http.Request) {
 		badRequest(w, r, "body too large or unreadable")
 		return
 	}
-	sig := strings.TrimPrefix(strings.TrimSpace(r.Header.Get("X-Samadhan-Signature")), "sha256=")
+	sig := strings.TrimPrefix(strings.TrimSpace(r.Header.Get("X-Mudra-Signature")), "sha256=")
 	want := SignWebhook(s.Cfg.WebhookSecret, raw)
 	if sig == "" || !hmac.Equal([]byte(strings.ToLower(sig)), []byte(want)) {
 		s.Store.Telemetry().RecordWebhook(false)
-		mw.WriteError(w, r, http.StatusUnauthorized, "ERR_WEBHOOK_SIGNATURE", "invalid or missing X-Samadhan-Signature", false)
+		mw.WriteError(w, r, http.StatusUnauthorized, "ERR_WEBHOOK_SIGNATURE", "invalid or missing X-Mudra-Signature", false)
 		return
 	}
 	var ev struct {

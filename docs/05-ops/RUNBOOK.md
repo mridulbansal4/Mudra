@@ -1,5 +1,5 @@
-# Operations Runbook, Incident Playbooks & Demo Emergency Plan — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (SRE & Incident Command Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Operations Runbook, Incident Playbooks & Demo Emergency Plan - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (SRE & Incident Command Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Observability](./OBSERVABILITY.md) · [Deployment](./DEPLOYMENT.md) · [Security Architecture](../06-security-compliance/SECURITY_ARCHITECTURE.md)
 
 ---
@@ -45,6 +45,6 @@ In the event of a confirmed security incident or personal data breach:
 - **Recovery Point Objective (RPO)**: **`0 seconds`** for committed escrow transactions (PostgreSQL 17 synchronous WAL + Nexconn cloud `System` channel voucher replication).
 - **Recovery Time Objective (RTO)**: **`< 90 seconds`** (stateless Go, Rust, and Node containers restart in `<1.5s`; automated standby failover in `<90s`).
 - **Demo-Day Emergency Plan**:
-  1. Primary Live URL: `https://samadhan-os.dev` (Vercel + Railway/AWS Mumbai).
-  2. Warm Standby URL: `https://backup.samadhan-os.dev` (Cloudflare Pages + Singapore container replica).
+  1. Primary Live URL: `https://mudra-os.dev` (Vercel + Railway/AWS Mumbai).
+  2. Warm Standby URL: `https://backup.mudra-os.dev` (Cloudflare Pages + Singapore container replica).
   3. Offline Local Docker Bundle: Pre-warmed on two developer laptops over separate 5G hotspots (`Jio 5G` + `Airtel 5G`).

@@ -1,12 +1,12 @@
-# Cloud Infrastructure & Dual-Region Topology — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Cloud & Infra Lead — Kelsey Hightower Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Cloud Infrastructure & Dual-Region Topology - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Cloud & Infra Lead - Kelsey Hightower Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Architecture](../03-engineering/ARCHITECTURE.md) · [Deployment](./DEPLOYMENT.md) · [Cost](./COST.md)
 
 ---
 
 ## 1. Cloud Hosting & India + Singapore Residency Topology
 
-SAMADHAN-OS is designed for the **India–Singapore trade and judging corridor**:
+MUDRA-OS is designed for the **India–Singapore trade and judging corridor**:
 - **Primary Data Residency & Compute Region (`ap-south-1` Mumbai, India)**: Ensures 100% compliance with **RBI Payment System Data Localization** and **CERT-In 180-day log retention in India**, while giving Indian MSMEs (`P-01`, `P-02`) and campus users (`P-03`) `<25ms` RTT.
 - **Low-Latency Edge Peering with Singapore (`ap-southeast-1` Singapore)**: Directly peers with **RCLOUD GLOBAL PTE. LTD.** (`api.nexconn.ai` Singapore edge) and Singaporean judges (`P-05`) at `<38ms` RTT across the Chennai–Singapore subsea cable.
 - **Co-Sponsor Cloud Credit Optimization**: Uses multi-stage Docker images deployable identically on **AWS (`ECS Fargate` / `App Runner`)**, **Alibaba Cloud (`ACK Serverless` / `ECS`)** (both official Nexconn Build Challenge co-sponsors!), or **Railway + Vercel Edge** for instant hackathon sprint agility.
@@ -51,7 +51,7 @@ flowchart TB
 Stored in `infra/docker/docker-compose.prod.yml` and `infra/terraform/main.tf`:
 
 ```hcl
-# infra/terraform/main.tf — Multi-Cloud Ready Container & DB Definition
+# infra/terraform/main.tf - Multi-Cloud Ready Container & DB Definition
 terraform {
   required_version = ">= 1.9.0"
   required_providers {

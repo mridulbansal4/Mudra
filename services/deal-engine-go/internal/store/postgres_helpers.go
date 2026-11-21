@@ -12,16 +12,16 @@ import (
 
 // Fixed UUIDv5 namespace seeds for deterministic string-ID <-> UUID mapping.
 const (
-	nsUser    = "samadhan:e01:user:"
-	nsSession = "samadhan:e02:session:"
-	nsDeal    = "samadhan:e03:deal:"
-	nsEscrow  = "samadhan:e04:escrow:"
-	nsMessage = "samadhan:e05:message:"
-	nsAssay   = "samadhan:e06:assay:"
-	nsDispute = "samadhan:e07:dispute:"
-	nsVoucher = "samadhan:e08:voucher:"
-	nsLot     = "samadhan:e09:lot:"
-	nsArena   = "samadhan:e10:arena:"
+	nsUser    = "mudra:e01:user:"
+	nsSession = "mudra:e02:session:"
+	nsDeal    = "mudra:e03:deal:"
+	nsEscrow  = "mudra:e04:escrow:"
+	nsMessage = "mudra:e05:message:"
+	nsAssay   = "mudra:e06:assay:"
+	nsDispute = "mudra:e07:dispute:"
+	nsVoucher = "mudra:e08:voucher:"
+	nsLot     = "mudra:e09:lot:"
+	nsArena   = "mudra:e10:arena:"
 )
 
 // isCanonicalUUID checks whether s is a valid 36-char RFC 4122 hex UUID string.

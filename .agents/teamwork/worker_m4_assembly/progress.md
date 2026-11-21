@@ -1,4 +1,4 @@
-# Progress Log — `worker_m4_assembly`
+# Progress Log - `worker_m4_assembly`
 
 Last visited: 2026-10-31T20:05:00Z
 

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: SAMADHAN-OS (SamvadDeal) Polyglot API Specification
+  title: MUDRA-OS (SamvadDeal) Polyglot API Specification
   version: 0.1.0
   summary: Real-Time Cross-Lingual Video-Escrow Commerce & 90s Freeze-Locked Dispute Tribunal API
   description: |
@@ -9,7 +9,7 @@ info:
     - `services/nexconn-bridge-node` (Node.js 22 + `@nexconn/server-sdk@0.1.2` · Port 4001)
     - `services/assay-verifier-rs` (Rust 1.85 Axum · Port 4003)
   contact:
-    name: Team Chanakya — Nexconn Build Challenge 2026
+    name: Team Chanakya - Nexconn Build Challenge 2026
     url: https://reskilll.com/hack/nexconn
   license:
     name: MIT
@@ -17,7 +17,7 @@ info:
 servers:
   - url: http://localhost:4002
     description: Local Go Deal Engine & API Gateway
-  - url: https://api.samadhan-os.dev
+  - url: https://api.mudra-os.dev
     description: Production Polyglot Edge Gateway
 components:
   securitySchemes:
@@ -64,7 +64,7 @@ components:
           enum: [web, mobile_expo, sandbox_split]
     SessionResponse:
       type: object
-      required: [user, nexconn, samadhan_jwt]
+      required: [user, nexconn, mudra_jwt]
       properties:
         user:
           type: object
@@ -89,7 +89,7 @@ components:
               type: string
             expires_in_sec:
               type: integer
-        samadhan_jwt:
+        mudra_jwt:
           type: string
     EscrowTransitionRequest:
       type: object
@@ -640,7 +640,7 @@ paths:
   /api/v1/auth/session:
     post:
       operationId: API-01_CreateSession
-      summary: Issue Nexconn accessToken (/v4/auth/access-token/issue) & Samadhan JWT
+      summary: Issue Nexconn accessToken (/v4/auth/access-token/issue) & Mudra JWT
       requestBody:
         required: true
         content:

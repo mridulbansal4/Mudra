@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD)
-## Supabase PostgreSQL Persistence & Realtime Integration — SAMADHAN-OS (`SamvadDeal`)
+## Supabase PostgreSQL Persistence & Realtime Integration - MUDRA-OS (`SamvadDeal`)
 
 ### 1. Overview & Objective
-Upgrade **SAMADHAN-OS (`SamvadDeal`)** (`services/deal-engine-go` on `:4002` and `apps/web` on `:5173`) from volatile in-memory-only runtime storage to **production-grade Supabase PostgreSQL persistence with ACID optimistic concurrency, cryptographic append-only audit vouchers, dual-mode offline fallback, idempotent boot seeding, and Frontend Supabase Realtime subscriptions**.
+Upgrade **MUDRA-OS (`SamvadDeal`)** (`services/deal-engine-go` on `:4002` and `apps/web` on `:5173`) from volatile in-memory-only runtime storage to **production-grade Supabase PostgreSQL persistence with ACID optimistic concurrency, cryptographic append-only audit vouchers, dual-mode offline fallback, idempotent boot seeding, and Frontend Supabase Realtime subscriptions**.
 
 ### 2. Core Architectural Requirements
 

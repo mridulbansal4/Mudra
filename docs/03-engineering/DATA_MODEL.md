@@ -1,5 +1,5 @@
-# Data Model & Database Schema — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Data & Systems Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Data Model & Database Schema - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Data & Systems Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Architecture](./ARCHITECTURE.md) · [API Spec](./API_SPEC.md) · [Privacy (DPDP)](../06-security-compliance/PRIVACY.md) · [ADR-0005](./adr/ADR-0005-postgresql-redis-and-system-channel-immutable-ledger.md)
 
 ---
@@ -153,7 +153,7 @@ erDiagram
 | **E-03** | `deal_rooms` | `UNIQUE(nexconn_channel_id)`, `INDEX(buyer_user_id)`, `INDEX(seller_user_id)`, `INDEX(is_frozen)` | **Non-PII Metadata**: Relational pointers & story stage (`1..4`). | 3 years (Commercial contract audit trail). |
 | **E-04** | `escrow_contracts` | `UNIQUE(deal_room_id)`, `CHECK (amount_paise > 0)`, `version INTEGER NOT NULL DEFAULT 1` | **Financial Metadata**: Integer `amount_paise` and masked UPI Mandate UMN (`****4821@upi`). Zero card/CVV numbers stored. | 5 years (RBI / Income Tax financial record rules). |
 | **E-05** | `bilingual_messages` | `UNIQUE(nexconn_msg_id)`, `INDEX(deal_room_id, created_at)` | **PII-Scrubbed**: `scrubbed_source_text` is processed by Rust `assay-verifier-rs` (`<300µs`) to redact raw Aadhaar/PAN/phone/bank numbers (`[REDACTED_PII]`) before DB write or LLM transit. | 90 days (or purged immediately upon Data Principal erasure after deal settlement). |
-| **E-06** | `video_assay_logs` | `UNIQUE(nexconn_call_id)`, `INDEX(deal_room_id, stage_tag)` | **PII-Restricted**: Stores only 64-bit `frame_phash_hex`, serial OCR text, and audio FFT RPM float—never raw biometric face recordings unless explicitly consented for dispute evidence. | 90 days post-settlement. |
+| **E-06** | `video_assay_logs` | `UNIQUE(nexconn_call_id)`, `INDEX(deal_room_id, stage_tag)` | **PII-Restricted**: Stores only 64-bit `frame_phash_hex`, serial OCR text, and audio FFT RPM float - never raw biometric face recordings unless explicitly consented for dispute evidence. | 90 days post-settlement. |
 | **E-07** | `dispute_cases` | `INDEX(deal_room_id, status)` | **Non-PII Legal Record**: Basis-point split integers (`buyer_refund_bps + seller_payout_bps = 10000`) and tribunal rationale JSON. | 3 years (Arbitration & Conciliation Act record). |
 | **E-08** | `system_audit_vouchers` | `INDEX(deal_room_id, created_at)`, `UNIQUE(curr_voucher_sha256)` | **Cryptographic Audit Hash**: Contains SHA-256 hash chain and Ed25519 signature; zero raw personal identifiers inside the hash payload. | Immutable ledger (retained for statutory audit). |
 | **E-09** | `open_flash_lots` | `INDEX(community_subchannel_id, expires_at)` | **Public Catalog Data**: Commodity title, price, and subchannel tag. | 30 days after lot expiry. |

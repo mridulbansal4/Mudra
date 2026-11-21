@@ -1,4 +1,4 @@
-name: SAMADHAN-OS Polyglot CI
+name: MUDRA-OS Polyglot CI
 
 on:
   push:

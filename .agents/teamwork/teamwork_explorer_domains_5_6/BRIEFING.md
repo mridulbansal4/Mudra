@@ -1,7 +1,7 @@
-# BRIEFING — 2026-10-31T18:33:00Z
+# BRIEFING - 2026-10-31T18:33:00Z
 
 ## Mission
-Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation blueprints for Track 05 (`nexconn-social-good` — Humanitarian & Social Good) and Track 06 (`open-innovation` — Open Innovation) for the Nexconn Build Challenge 2026.
+Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation blueprints for Track 05 (`nexconn-social-good` - Humanitarian & Social Good) and Track 06 (`open-innovation` - Open Innovation) for the Nexconn Build Challenge 2026.
 
 ## 🔒 My Identity
 - Archetype: teamwork_explorer
@@ -11,7 +11,7 @@ Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation bluep
 - Milestone: M3 (Tracks 04–06 Domain Research & War-Room)
 
 ## 🔒 Key Constraints
-- Read-only investigation — do NOT modify files outside `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6`
+- Read-only investigation - do NOT modify files outside `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6`
 - Every fact, number, GitHub repo, research paper, and news item must come from a real search result with an inline URL link
 - Zero `TODO` or `TBD` markers
 - Must cover all 7 domain research sections + 15+ raw seeds + Top 5 detailed blueprints (with 9-criterion rubric math and War-Room survival analysis) for BOTH Track 05 (`nexconn-social-good`) and Track 06 (`open-innovation`)
@@ -29,6 +29,6 @@ Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation bluep
 - Organize `handoff.md` so that Milestone 3's writer can directly consume all required data for `research/domains/nexconn-social-good.md`, `war-room/nexconn-social-good.md`, `war-room/nexconn-social-good-ideas.md`, `research/domains/open-innovation.md`, `war-room/open-innovation.md`, and `war-room/open-innovation-ideas.md`.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\BRIEFING.md` — Working memory
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\progress.md` — Liveness heartbeat
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\handoff.md` — Final 5-component handoff report
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\BRIEFING.md` - Working memory
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\progress.md` - Liveness heartbeat
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\handoff.md` - Final 5-component handoff report

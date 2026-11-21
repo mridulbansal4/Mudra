@@ -86,7 +86,7 @@ export function PhoneCluster() {
     <div
       ref={containerRef}
       role="img"
-      aria-label="Samadhan app screens showing buyer home, bilingual deal chat, and live seller video inspection"
+      aria-label="Mudra app screens showing buyer home, bilingual deal chat, and live seller video inspection"
       className="relative mx-auto flex w-full items-start justify-center overflow-visible"
       style={{
         height: `${Math.round(720 * clusterScale)}px`,

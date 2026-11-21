@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@heroui/react";
-import type { DisputeView, FsmState } from "@samadhan/shared-types";
-import { formatInr } from "@samadhan/shared-types";
+import type { DisputeView, FsmState } from "@mudra/shared-types";
+import { formatInr } from "@mudra/shared-types";
 import { Page, SectionTitle, Banner } from "../components/Chrome";
 import { LitCard } from "../components/LitCard";
 import { VoucherChain, useDealActions } from "../components/DealRoom";
@@ -132,13 +132,13 @@ export default function Dispatch() {
                 <h3 className="text-[14px] font-medium text-ink">Forensic comparison</h3>
                 <dl className="num mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1.5 text-[12.5px]">
                   <dt className="text-ink-3">Pre-shipment pHash</dt>
-                  <dd className="break-all text-ink">{preHash ?? "—"}</dd>
+                  <dd className="break-all text-ink">{preHash ?? "-"}</dd>
                   <dt className="text-ink-3">Post-delivery pHash</dt>
-                  <dd className="break-all text-ink">{(d.post_delivery_phash_hex as string | undefined) ?? "—"}</dd>
+                  <dd className="break-all text-ink">{(d.post_delivery_phash_hex as string | undefined) ?? "-"}</dd>
                   <dt className="text-ink-3">Hamming distance</dt>
-                  <dd className="text-ink">{d.hamming_distance_phash ?? "—"} / 64</dd>
+                  <dd className="text-ink">{d.hamming_distance_phash ?? "-"} / 64</dd>
                   <dt className="text-ink-3">Motor RPM at assay</dt>
-                  <dd className="text-ink">{Math.round(Number([...(deal.assay_logs ?? [])].reverse().find((a) => a.audio_fft_rpm_peak)?.audio_fft_rpm_peak ?? 0)).toLocaleString("en-IN") || "—"}</dd>
+                  <dd className="text-ink">{Math.round(Number([...(deal.assay_logs ?? [])].reverse().find((a) => a.audio_fft_rpm_peak)?.audio_fft_rpm_peak ?? 0)).toLocaleString("en-IN") || "-"}</dd>
                 </dl>
               </div>
               <VoucherChain deal={deal} />

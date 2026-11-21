@@ -198,7 +198,7 @@ export function Logo({
   markSize = 32,
   wordmarkSize,
   intro = false,
-  label = "SAMADHAN",
+  label = "MUDRA",
   className = "",
 }: LogoProps) {
   const reducedMotion = useReducedMotion();
