@@ -44,7 +44,12 @@ pub fn sign(secret: &[u8], timestamp: &str, body: &[u8]) -> String {
 }
 
 /// Verifies the internal-auth headers against `body` at time `now` (unix seconds).
-pub fn verify(secret: &[u8], headers: &HeaderMap, body: &[u8], now: i64) -> Result<(), &'static str> {
+pub fn verify(
+    secret: &[u8],
+    headers: &HeaderMap,
+    body: &[u8],
+    now: i64,
+) -> Result<(), &'static str> {
     let ts_str = headers
         .get(HEADER_TIMESTAMP)
         .and_then(|v| v.to_str().ok())
@@ -92,7 +97,8 @@ pub async fn hmac_auth(State(state): State<AppState>, req: Request, next: Next) 
         return AppError::unauthorized(reason).into_response();
     }
 
-    next.run(Request::from_parts(parts, Body::from(bytes))).await
+    next.run(Request::from_parts(parts, Body::from(bytes)))
+        .await
 }
 
 #[cfg(test)]
@@ -111,7 +117,10 @@ mod tests {
     fn sign_matches_known_vector() {
         // HMAC_SHA256("key", "1700000000.{}") - computed with Node `crypto`.
         let s = sign(b"key", "1700000000", b"{}");
-        assert_eq!(s, "9d713ed406bb7076d4123f0dc2c39d2df5c654ed4b0cd56b52c8b4c940bd63ae");
+        assert_eq!(
+            s,
+            "9d713ed406bb7076d4123f0dc2c39d2df5c654ed4b0cd56b52c8b4c940bd63ae"
+        );
     }
 
     #[test]
