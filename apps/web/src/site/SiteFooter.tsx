@@ -72,7 +72,7 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-[var(--hairline)] pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="inline-flex items-center gap-2.5 text-fg">
-            <LogoMark size={20} />
+            <LogoMark size={28} />
             <span className="text-[14px] font-semibold lowercase">samadhan · samvaddeal</span>
           </div>
           <p className="t-small lowercase text-muted">
