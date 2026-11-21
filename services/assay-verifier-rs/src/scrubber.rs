@@ -25,7 +25,8 @@ use serde::Serialize;
 pub const REDACTION_TOKEN: &str = "[REDACTED_DPDP_PII]";
 
 static EMAIL_RE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}").expect("email regex")
+    Regex::new(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}")
+        .expect("email regex")
 });
 static UPI_RE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"[A-Za-z0-9][A-Za-z0-9._\-]{1,255}@[A-Za-z][A-Za-z0-9]{1,63}\b").expect("upi regex")
@@ -79,7 +80,11 @@ const VERHOEFF_P: [[u8; 10]; 8] = [
 /// Returns true if the ASCII digit string (other chars ignored) has a valid
 /// Verhoeff check digit as its last digit.
 pub fn verhoeff_valid(s: &str) -> bool {
-    let digits: Vec<u8> = s.bytes().filter(|b| b.is_ascii_digit()).map(|b| b - b'0').collect();
+    let digits: Vec<u8> = s
+        .bytes()
+        .filter(|b| b.is_ascii_digit())
+        .map(|b| b - b'0')
+        .collect();
     if digits.is_empty() {
         return false;
     }
@@ -148,7 +153,11 @@ pub fn scrub(text: &str) -> ScrubResult {
     let mut category_counts = BTreeMap::new();
     let mut total = 0usize;
     for cat in ORDER {
-        let c = counts.iter().find(|(k, _)| *k == cat).map(|(_, v)| *v).unwrap_or(0);
+        let c = counts
+            .iter()
+            .find(|(k, _)| *k == cat)
+            .map(|(_, v)| *v)
+            .unwrap_or(0);
         if c > 0 {
             categories.push(cat.to_string());
             category_counts.insert(cat.to_string(), c);
@@ -191,7 +200,11 @@ mod tests {
             "call 09876543210 now",
         ] {
             let r = scrub(input);
-            assert_eq!(r.scrubbed_text, format!("call {} now", REDACTION_TOKEN), "input: {input}");
+            assert_eq!(
+                r.scrubbed_text,
+                format!("call {} now", REDACTION_TOKEN),
+                "input: {input}"
+            );
             assert_eq!(r.categories, vec!["PHONE".to_string()], "input: {input}");
             assert_eq!(r.redacted_count, 1);
         }
@@ -224,7 +237,8 @@ mod tests {
 
     #[test]
     fn redacts_pan_ifsc_upi_email() {
-        let r = scrub("PAN ABCDE1234F ifsc HDFC0001234 upi ramesh.k@okaxis mail ramesh@example.co.in");
+        let r =
+            scrub("PAN ABCDE1234F ifsc HDFC0001234 upi ramesh.k@okaxis mail ramesh@example.co.in");
         assert_eq!(
             r.scrubbed_text,
             format!("PAN {t} ifsc {t} upi {t} mail {t}", t = REDACTION_TOKEN)
@@ -232,7 +246,12 @@ mod tests {
         assert_eq!(r.redacted_count, 4);
         assert_eq!(
             r.categories,
-            vec!["PAN".to_string(), "UPI".to_string(), "IFSC".to_string(), "EMAIL".to_string()]
+            vec![
+                "PAN".to_string(),
+                "UPI".to_string(),
+                "IFSC".to_string(),
+                "EMAIL".to_string()
+            ]
         );
     }
 

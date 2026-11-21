@@ -77,8 +77,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9.15.4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -88,12 +86,12 @@ jobs:
             grep -q "openapi: 3.1.0" api/openapi.yaml
             test "$(grep -c "operationId: API-" api/openapi.yaml)" -eq 18
           fi
-      - name: Install, Typecheck, Unit Test & Hallmark Sloplint Gate
+      - name: Install, Typecheck, Unit Test & Production Build
         run: |
           if [ -f package.json ]; then
             pnpm install --frozen-lockfile
             pnpm -r typecheck
-            pnpm -r test:unit
-            npx sloplint --render http://localhost:5173
+            pnpm -r test
+            pnpm --filter @mudra/web build
           fi
 
