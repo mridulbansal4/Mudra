@@ -1,5 +1,5 @@
 # ADR-0001: Polyglot Backend Architecture (Go 1.24 + Rust 1.85 + Node.js 22 Bridge) Over Generic Python
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Systems Backend Lead) · Status: Accepted · Last updated: 2026-11-10
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Systems Backend Lead) · Status: Accepted · Last updated: 2026-11-10
 > Related: [Project Brief](../../00-overview/PROJECT_BRIEF.md) · [Architecture](../ARCHITECTURE.md) · [Backend](../BACKEND.md) · [Performance](../PERFORMANCE.md)
 
 ---
@@ -8,7 +8,7 @@
 `Accepted`
 
 ## Context & Problem Statement
-SAMADHAN-OS combines real-time escrow state transitions (`API-06`), high-frequency `Open` channel flash auctions (`API-13`), CPU-intensive video frame perceptual hashing (`pHash`), 4096-point audio FFT motor RPM verification, `<300µs` DPDP PII scrubbing, Ed25519 cryptographic voucher signing (`API-08`), and official `@nexconn/server-sdk@0.1.2` orchestration. We must decide our backend runtime topology while strictly avoiding slow, generic Python web wrappers.
+MUDRA-OS combines real-time escrow state transitions (`API-06`), high-frequency `Open` channel flash auctions (`API-13`), CPU-intensive video frame perceptual hashing (`pHash`), 4096-point audio FFT motor RPM verification, `<300µs` DPDP PII scrubbing, Ed25519 cryptographic voucher signing (`API-08`), and official `@nexconn/server-sdk@0.1.2` orchestration. We must decide our backend runtime topology while strictly avoiding slow, generic Python web wrappers.
 
 ## Decision Drivers
 - **Sub-millisecond Escrow FSM Determinism**: Concurrent buyer/seller actions must execute in `<1.2ms` p99 without GC stalls.
@@ -16,9 +16,9 @@ SAMADHAN-OS combines real-time escrow state transitions (`API-06`), high-frequen
 - **First-Class Official `@nexconn/server-sdk@0.1.2` Support**: Nexconn's official v4 server SDK (`nexconn-server-sdk-node`) is published in TypeScript/Node.js.
 
 ## Considered Options
-1. **Option A: Monolithic Python (`FastAPI` + `OpenCV` + `Librosa`)**: Rejected—suffers from GIL contention under concurrent video frames (`118ms` p95), `1.4GB` container bloat, and lacks an official Nexconn v4 server SDK.
-2. **Option B: Single Node.js Process for Everything**: Rejected—running 2D DCT `pHash` and 4096-point audio FFT on the Node.js event loop blocks SSE streaming (`sendGroupChannelStreamMessage`).
-3. **Option C: Polyglot Triad — Go 1.24 (`deal-engine-go`) + Rust 1.85 (`assay-verifier-rs` & `assay-wasm-rs`) + Node.js 22 (`nexconn-bridge-node`)**.
+1. **Option A: Monolithic Python (`FastAPI` + `OpenCV` + `Librosa`)**: Rejected - suffers from GIL contention under concurrent video frames (`118ms` p95), `1.4GB` container bloat, and lacks an official Nexconn v4 server SDK.
+2. **Option B: Single Node.js Process for Everything**: Rejected - running 2D DCT `pHash` and 4096-point audio FFT on the Node.js event loop blocks SSE streaming (`sendGroupChannelStreamMessage`).
+3. **Option C: Polyglot Triad - Go 1.24 (`deal-engine-go`) + Rust 1.85 (`assay-verifier-rs` & `assay-wasm-rs`) + Node.js 22 (`nexconn-bridge-node`)**.
 
 ## Decision Outcome
 Chosen option: **Option C (Go 1.24 + Rust 1.85 + WASM + Node.js 22)**.

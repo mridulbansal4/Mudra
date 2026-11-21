@@ -1,12 +1,12 @@
-# Performance Engineering, SLOs & Benchmarks — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Systems Performance Lead — Brendan Gregg & Jeff Dean Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Performance Engineering, SLOs & Benchmarks - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Systems Performance Lead - Brendan Gregg & Jeff Dean Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Architecture](./ARCHITECTURE.md) · [Backend](./BACKEND.md) · [Testing](./TESTING.md)
 
 ---
 
 ## 1. Service-Level Objectives (SLOs) & Service-Level Indicators (SLIs)
 
-Why did we build SAMADHAN-OS on **Go 1.24**, **Rust 1.85 + WebAssembly**, and **Node.js 22 Fastify** instead of a generic Python backend? Here are our hard latency and availability budgets:
+Why did we build MUDRA-OS on **Go 1.24**, **Rust 1.85 + WebAssembly**, and **Node.js 22 Fastify** instead of a generic Python backend? Here are our hard latency and availability budgets:
 
 | Subsystem / SLI | p50 Target | p95 Target | p99 Target | Availability / Error Budget |
 |---|---|---|---|---|
@@ -25,7 +25,7 @@ Why did we build SAMADHAN-OS on **Go 1.24**, **Rust 1.85 + WebAssembly**, and **
 
 Measured on a standard 4-vCPU / 8GB RAM cloud instance under `500 concurrent virtual users (k6)`:
 
-| Workload | Generic Python (`FastAPI` + `OpenCV` + `Librosa`) | SAMADHAN-OS (`Go 1.24` + `Rust 1.85`) | Speedup Factor |
+| Workload | Generic Python (`FastAPI` + `OpenCV` + `Librosa`) | MUDRA-OS (`Go 1.24` + `Rust 1.85`) | Speedup Factor |
 |---|---|---|---|
 | **Escrow State Transition + DB Lock (`API-06`)** | `24.8 ms` (p95) | **`0.85 ms` (p95)** | **29.1x Faster** |
 | **DPDP Regex/Keyword PII Scrubbing (`API-05`)** | `6.4 ms` (`4.200 µs`) | **`0.18 ms` (`180 µs`)** | **35.5x Faster** |

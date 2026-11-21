@@ -1,4 +1,4 @@
-# Progress — teamwork_explorer_survey_3
+# Progress - teamwork_explorer_survey_3
 
 Last visited: 2026-10-31T18:22:00Z
 

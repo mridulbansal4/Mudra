@@ -1,7 +1,7 @@
 import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
-import { defineSamadhanCards } from "@samadhan/nc-lit-cards";
+import { defineMudraCards } from "@mudra/nc-lit-cards";
 import "./styles/globals.css";
 import Landing from "./routes/Landing";
 
@@ -9,7 +9,7 @@ import { getSession } from "./lib/session";
 
 // Simulated mode defines the Lit cards up front. With a live Nexconn session, ChatUI's
 // app.ready() defines them from registerCustomMessages (see lib/nexconn-boot.ts) instead.
-if (getSession()?.mode !== "live") defineSamadhanCards();
+if (getSession()?.mode !== "live") defineMudraCards();
 
 const Auth = lazy(() => import("./routes/Auth"));
 const Onboarding = lazy(() => import("./routes/Onboarding"));

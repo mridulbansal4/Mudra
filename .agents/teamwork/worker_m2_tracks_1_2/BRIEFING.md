@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T19:10:00Z
+# BRIEFING - 2026-10-31T19:10:00Z
 
 ## Mission
 Write the complete Phase 2 Domain Dossiers (`research/domains/nexconn-social.md`, `research/domains/nexconn-gaming.md`), Phase 3 War-Room Council debate transcripts (`war-room/nexconn-social.md`, `war-room/nexconn-gaming.md`), and clean Top 5 Idea documents (`war-room/nexconn-social-ideas.md`, `war-room/nexconn-gaming-ideas.md`) for Track 01 (Social & Community) and Track 02 (Gaming & Live Streams).
@@ -33,12 +33,12 @@ Write the complete Phase 2 Domain Dossiers (`research/domains/nexconn-social.md`
 
 ## Change Tracker
 - **Files modified**:
-  - `d:\Hackathons\Nexconn\research\domains\nexconn-social.md` — Track 01 Phase 2 Domain Dossier (27,816 chars)
-  - `d:\Hackathons\Nexconn\war-room\nexconn-social.md` — Track 01 Phase 3 War-Room Transcript Rounds 0–5 (32,084 chars)
-  - `d:\Hackathons\Nexconn\war-room\nexconn-social-ideas.md` — Track 01 Clean Top 5 Ideas (46,229 chars)
-  - `d:\Hackathons\Nexconn\research\domains\nexconn-gaming.md` — Track 02 Phase 2 Domain Dossier (28,796 chars)
-  - `d:\Hackathons\Nexconn\war-room\nexconn-gaming.md` — Track 02 Phase 3 War-Room Transcript Rounds 0–5 (30,811 chars)
-  - `d:\Hackathons\Nexconn\war-room\nexconn-gaming-ideas.md` — Track 02 Clean Top 5 Ideas (46,462 chars)
+  - `d:\Hackathons\Nexconn\research\domains\nexconn-social.md` - Track 01 Phase 2 Domain Dossier (27,816 chars)
+  - `d:\Hackathons\Nexconn\war-room\nexconn-social.md` - Track 01 Phase 3 War-Room Transcript Rounds 0–5 (32,084 chars)
+  - `d:\Hackathons\Nexconn\war-room\nexconn-social-ideas.md` - Track 01 Clean Top 5 Ideas (46,229 chars)
+  - `d:\Hackathons\Nexconn\research\domains\nexconn-gaming.md` - Track 02 Phase 2 Domain Dossier (28,796 chars)
+  - `d:\Hackathons\Nexconn\war-room\nexconn-gaming.md` - Track 02 Phase 3 War-Room Transcript Rounds 0–5 (30,811 chars)
+  - `d:\Hackathons\Nexconn\war-room\nexconn-gaming-ideas.md` - Track 02 Clean Top 5 Ideas (46,462 chars)
 - **Build status**: PASS (Python verification check exited with code 0)
 - **Pending issues**: None
 
@@ -53,10 +53,10 @@ Write the complete Phase 2 Domain Dossiers (`research/domains/nexconn-social.md`
 - **Core methodology**: Evidence-backed domain research (7 sections) + 6-round multi-persona adversarial War-Room Council debate + clean Top 5 idea template with exact 9-criterion weighted scoring.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\research\domains\nexconn-social.md` — Track 01 Phase 2 Domain Dossier
-- `d:\Hackathons\Nexconn\war-room\nexconn-social.md` — Track 01 Phase 3 War-Room Transcript (Rounds 0–5)
-- `d:\Hackathons\Nexconn\war-room\nexconn-social-ideas.md` — Track 01 Clean Top 5 Ideas
-- `d:\Hackathons\Nexconn\research\domains\nexconn-gaming.md` — Track 02 Phase 2 Domain Dossier
-- `d:\Hackathons\Nexconn\war-room\nexconn-gaming.md` — Track 02 Phase 3 War-Room Transcript (Rounds 0–5)
-- `d:\Hackathons\Nexconn\war-room\nexconn-gaming-ideas.md` — Track 02 Clean Top 5 Ideas
-- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m2_tracks_1_2\handoff.md` — 5-Component Handoff Report
+- `d:\Hackathons\Nexconn\research\domains\nexconn-social.md` - Track 01 Phase 2 Domain Dossier
+- `d:\Hackathons\Nexconn\war-room\nexconn-social.md` - Track 01 Phase 3 War-Room Transcript (Rounds 0–5)
+- `d:\Hackathons\Nexconn\war-room\nexconn-social-ideas.md` - Track 01 Clean Top 5 Ideas
+- `d:\Hackathons\Nexconn\research\domains\nexconn-gaming.md` - Track 02 Phase 2 Domain Dossier
+- `d:\Hackathons\Nexconn\war-room\nexconn-gaming.md` - Track 02 Phase 3 War-Room Transcript (Rounds 0–5)
+- `d:\Hackathons\Nexconn\war-room\nexconn-gaming-ideas.md` - Track 02 Clean Top 5 Ideas
+- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m2_tracks_1_2\handoff.md` - 5-Component Handoff Report

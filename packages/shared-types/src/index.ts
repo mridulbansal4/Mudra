@@ -87,7 +87,7 @@ export interface ChatMessage {
   deal_id: string;
   sender_role: Role | "system" | "ai";
   sender_name?: string;
-  message_type: string; // e.g. x-samadhan-bilingual-bubble
+  message_type: string; // e.g. x-mudra-bilingual-bubble
   source_locale?: Locale;
   target_locale?: Locale;
   raw_text?: string;
@@ -137,7 +137,7 @@ export interface NexconnSession {
   nexconn_user_id: string;
   access_token: string;
   locale?: Locale;
-  samadhan_jwt?: string;
+  mudra_jwt?: string;
   app_key?: string;
   mode?: "live" | "simulated";
 }

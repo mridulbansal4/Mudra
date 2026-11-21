@@ -17,9 +17,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/config"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/config"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 func testServer(t *testing.T) (*Server, http.Handler) {
@@ -95,7 +95,7 @@ func TestSeededDealIsFunded(t *testing.T) {
 	if auth.Code != 200 {
 		t.Fatalf("auth %d %s", auth.Code, auth.Raw)
 	}
-	tok := auth.Body["samadhan_jwt"].(string)
+	tok := auth.Body["mudra_jwt"].(string)
 	if !strings.HasPrefix(m(auth.Body["nexconn"])["access_token"].(string), "sim_") {
 		t.Fatal("expected simulated token")
 	}
@@ -123,9 +123,9 @@ func TestFullEscrowDisputeFlowFallbackMode(t *testing.T) {
 		t.Fatalf("provision %d %s", prov.Code, prov.Raw)
 	}
 	dealID := prov.Body["deal_id"].(string)
-	buyer := m(prov.Body["buyer_session"])["samadhan_jwt"].(string)
-	seller := m(prov.Body["seller_session"])["samadhan_jwt"].(string)
-	arb := m(prov.Body["arbitrator_session"])["samadhan_jwt"].(string)
+	buyer := m(prov.Body["buyer_session"])["mudra_jwt"].(string)
+	seller := m(prov.Body["seller_session"])["mudra_jwt"].(string)
+	arb := m(prov.Body["arbitrator_session"])["mudra_jwt"].(string)
 	base := "/api/v1/deals/" + dealID
 
 	// RBAC: seller cannot LOCK_ESCROW
@@ -136,7 +136,7 @@ func TestFullEscrowDisputeFlowFallbackMode(t *testing.T) {
 	if r := call(t, h, "POST", base+"/escrow/transition", buyer, map[string]any{"action": "RELEASE_FUNDS", "expected_version": 1}); r.Code != 422 || m(r.Body["error"])["code"] != "ERR_INVALID_FSM_TRANSITION" {
 		t.Fatalf("invalid: %d %s", r.Code, r.Raw)
 	}
-	lock := call(t, h, "POST", base+"/escrow/transition", buyer, map[string]any{"action": "LOCK_ESCROW", "expected_version": 1, "upi_mandate_umn": "samadhan.8821@okaxis"}, "X-Idempotency-Key", "lock-1")
+	lock := call(t, h, "POST", base+"/escrow/transition", buyer, map[string]any{"action": "LOCK_ESCROW", "expected_version": 1, "upi_mandate_umn": "mudra.8821@okaxis"}, "X-Idempotency-Key", "lock-1")
 	if lock.Code != 200 || lock.Body["fsm_state"] != "FUNDED" || num(lock.Body["version"]) != 2 || num(lock.Body["story_stage"]) != 2 {
 		t.Fatalf("lock: %d %s", lock.Code, lock.Raw)
 	}
@@ -256,7 +256,7 @@ func TestFullEscrowDisputeFlowFallbackMode(t *testing.T) {
 	for _, x := range final.Body["messages"].([]any) {
 		types[m(x)["message_type"].(string)]++
 	}
-	if types["x-samadhan-escrow-card"] != 5 || types["x-samadhan-assay-receipt"] != 2 || types["x-samadhan-tribunal-verdict"] != 2 || types["x-samadhan-bilingual-bubble"] != 2 {
+	if types["x-mudra-escrow-card"] != 5 || types["x-mudra-assay-receipt"] != 2 || types["x-mudra-tribunal-verdict"] != 2 || types["x-mudra-bilingual-bubble"] != 2 {
 		t.Fatalf("timeline types %v", types)
 	}
 	if len(final.Body["allowed_actions"].([]any)) != 0 {
@@ -267,8 +267,8 @@ func TestFullEscrowDisputeFlowFallbackMode(t *testing.T) {
 
 func TestRefundBuyerWhenFullRefund(t *testing.T) {
 	_, h := testServer(t)
-	rajesh := call(t, h, "POST", "/api/v1/auth/session", "", map[string]any{"persona_preset": "P-01_RAJESH"}).Body["samadhan_jwt"].(string)
-	meera := call(t, h, "POST", "/api/v1/auth/session", "", map[string]any{"persona_preset": "P-04_MEERA"}).Body["samadhan_jwt"].(string)
+	rajesh := call(t, h, "POST", "/api/v1/auth/session", "", map[string]any{"persona_preset": "P-01_RAJESH"}).Body["mudra_jwt"].(string)
+	meera := call(t, h, "POST", "/api/v1/auth/session", "", map[string]any{"persona_preset": "P-04_MEERA"}).Body["mudra_jwt"].(string)
 	d := call(t, h, "POST", "/api/v1/deals/"+store.SeedDealID+"/dispute/freeze", rajesh, map[string]any{"reason_code": "SERIAL_MISMATCH", "description": "wrong machine", "post_delivery_phash_hex": "5b0e637c1d4f88e2"})
 	if d.Code != 200 || num(d.Body["hamming_distance_phash"]) != 64 || num(m(d.Body["recommended_split"])["buyer_refund_bps"]) != 10000 {
 		t.Fatalf("dispute %d %s", d.Code, d.Raw)
@@ -346,14 +346,14 @@ func TestWebhook(t *testing.T) {
 			sig = SignWebhook(s.Cfg.WebhookSecret, raw)
 		}
 		r := httptest.NewRequest("POST", "/api/v1/webhooks/upi-ondc", bytes.NewReader(raw))
-		r.Header.Set("X-Samadhan-Signature", sig)
+		r.Header.Set("X-Mudra-Signature", sig)
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, r)
 		out := resp{Code: w.Code, Raw: w.Body.String()}
 		_ = json.Unmarshal(w.Body.Bytes(), &out.Body)
 		return out
 	}
-	ev := map[string]any{"event_id": "evt_1", "event_type": "UPI_MANDATE_LOCKED", "deal_id": dealID, "amount_paise": 14500000, "umn_or_txn_id": "samadhan.8821@okaxis", "timestamp_unix": time.Now().Unix()}
+	ev := map[string]any{"event_id": "evt_1", "event_type": "UPI_MANDATE_LOCKED", "deal_id": dealID, "amount_paise": 14500000, "umn_or_txn_id": "mudra.8821@okaxis", "timestamp_unix": time.Now().Unix()}
 	if r := post(ev, strings.Repeat("0", 64)); r.Code != 401 {
 		t.Fatalf("bad sig accepted %d", r.Code)
 	}
@@ -406,7 +406,7 @@ func TestSSEInitialDealAndMessageEvents(t *testing.T) {
 	_, h := testServer(t)
 	ts := httptest.NewServer(h)
 	defer ts.Close()
-	tok := call(t, h, "POST", "/api/v1/auth/session", "", map[string]any{"persona_preset": "P-02_VIKRAM"}).Body["samadhan_jwt"].(string)
+	tok := call(t, h, "POST", "/api/v1/auth/session", "", map[string]any{"persona_preset": "P-02_VIKRAM"}).Body["mudra_jwt"].(string)
 	req, _ := http.NewRequest("GET", ts.URL+"/api/v1/deals/"+store.SeedDealID+"/events?access_token="+tok, nil)
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

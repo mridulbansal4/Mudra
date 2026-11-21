@@ -51,7 +51,7 @@ export function LogoMark({ size = 28, playIntro = false, className = "" }: LogoM
         }
       />
       <path
-        d="M42 22H24l-6 8 6 8h7"
+        d="M19 50V22l13 16"
         stroke="currentColor"
         strokeWidth="4"
         strokeLinejoin="miter"
@@ -59,13 +59,13 @@ export function LogoMark({ size = 28, playIntro = false, className = "" }: LogoM
         style={
           playIntro
             ? {
-                animation: "logo-chevron-left 400ms cubic-bezier(0.16,1,0.3,1) 900ms both",
+                animation: "logo-m-left 400ms cubic-bezier(0.16,1,0.3,1) 900ms both",
               }
             : undefined
         }
       />
       <path
-        d="M22 50h18l6-8-6-8h-7"
+        d="M45 50V22L32 38"
         stroke="currentColor"
         strokeWidth="4"
         strokeLinejoin="miter"
@@ -73,7 +73,7 @@ export function LogoMark({ size = 28, playIntro = false, className = "" }: LogoM
         style={
           playIntro
             ? {
-                animation: "logo-chevron-right 400ms cubic-bezier(0.16,1,0.3,1) 900ms both",
+                animation: "logo-m-right 400ms cubic-bezier(0.16,1,0.3,1) 900ms both",
               }
             : undefined
         }
@@ -135,11 +135,11 @@ export function Logo({
             from { stroke-dashoffset: 80; }
             to { stroke-dashoffset: 0; }
           }
-          @keyframes logo-chevron-left {
+          @keyframes logo-m-left {
             from { opacity: 0; transform: translateX(-8px); }
             to { opacity: 1; transform: translateX(0); }
           }
-          @keyframes logo-chevron-right {
+          @keyframes logo-m-right {
             from { opacity: 0; transform: translateX(8px); }
             to { opacity: 1; transform: translateX(0); }
           }
@@ -163,7 +163,7 @@ export function Logo({
             : undefined,
         }}
       >
-        SAMADHAN
+        MUDRA
       </span>
     </span>
   );

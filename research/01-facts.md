@@ -1,4 +1,4 @@
-# 01 — Ground-Truth Facts Sheet: Nexconn Build Challenge 2026
+# 01 - Ground-Truth Facts Sheet: Nexconn Build Challenge 2026
 
 > **Primary Sources**: `https://reskilll.com/hack/nexconn/` (SPA bundle `index-DSX23m3q.js`, `Rules-DQNF0983.js`, `Submit-R3OJNUmD.js`, `Schedule-B3uB_Csm.js`, `Admin-_pGkMjvW.js`), `https://www.nexconn.ai/`, `https://docs.nexconn.ai/llms.txt`, and `https://github.com/NexconnAI-Dev/nexconn-skills`.
 
@@ -33,8 +33,8 @@ All programmatic dates are defined in `xt` and `hS` inside `https://reskilll.com
 
 ## 3. Prize Pool Breakdown, Non-Cash Perks & Track Structure
 
-### 3.1 Cash Prizes ($5,000 USD Total Across 5 Overall Winners — `Vx` in `index-DSX23m3q.js`)
-All 6 tracks compete in a **single unified prize pool** (`yS` FAQ in `Rules-DQNF0983.js`: *"Do tracks have separate prizes? No — all 6 tracks share the same prize pool."*).
+### 3.1 Cash Prizes ($5,000 USD Total Across 5 Overall Winners - `Vx` in `index-DSX23m3q.js`)
+All 6 tracks compete in a **single unified prize pool** (`yS` FAQ in `Rules-DQNF0983.js`: *"Do tracks have separate prizes? No - all 6 tracks share the same prize pool."*).
 
 | Placement | Cash Award (USD) | Share of Cash Pool | Nexconn Free Chat Plan Credit (`mS`) | Cloud Partner Discount (`Jx`) | Total Package Value per Winner |
 |---|---|---|---|---|---|
@@ -74,7 +74,7 @@ Extracted verbatim from `Wx` in `https://reskilll.com/hack/nexconn/assets/index-
 | Track # | Portal ID (`Wx.id`) | Canonical Research Slug | Track Name (`Wx.name`) | Verbatim Subtitle (`Wx.sub`) | Verbatim Description (`Wx.desc`) | Verbatim Example Ideas (`Wx.examples`) |
 |---|---|---|---|---|---|---|
 | **01** | `nexconn-social` | `nexconn-social` | **Social & Community** | *"Group messaging and topic-based channels"* | *"Build apps where people connect around shared interests, live events, creators, or local communities using group chat, communities, or open channels."* | 1. `Live room for a watch party`<br>2. `Group chat for shared interests`<br>3. `Creator fan channel` |
-| **02** | `nexconn-gaming` | `nexconn-gaming` | **Gaming & Live Streams** | *"Squad chat and live stream interactive chatroom"* | *"Power real-time communication for players and viewers—from low-latency squad coordination to massive live-stream spectator chatrooms."* | 1. `Squad chat room`<br>2. `In-match quick chat`<br>3. `Spectator chat overlay` |
+| **02** | `nexconn-gaming` | `nexconn-gaming` | **Gaming & Live Streams** | *"Squad chat and live stream interactive chatroom"* | *"Power real-time communication for players and viewers - from low-latency squad coordination to massive live-stream spectator chatrooms."* | 1. `Squad chat room`<br>2. `In-match quick chat`<br>3. `Spectator chat overlay` |
 | **03** | `nexconn-workplace` | `nexconn-workplace` | **Workplace & Collaboration** | *"Direct messaging and team project threads"* | *"Create productivity and operational messaging tools that help distributed teams, frontline staff, or AI-assisted workspaces coordinate faster."* | 1. `Direct messaging for teams`<br>2. `Project discussion threads`<br>3. `Shift handover channel` |
 | **04** | `nexconn-support` | `nexconn-support` | **Marketplace & Support** | *"Buyer-seller chat and customer service"* | *"Enable trusted transactional conversations between buyers and sellers, on-demand service providers, or multi-language customer support teams."* | 1. `Buyer-seller 1-on-1 chat`<br>2. `Human agent dispatch center`<br>3. `Multi-language translated chat` |
 | **05** | `nexconn-social-good` | `nexconn-social-good` | **Humanitarian & Social Good** | *"Accessible text chat for seniors and communities"* | *"Design inclusive, accessible real-time communication tools for seniors, differently-abled users, emergency volunteers, or peer-support networks."* | 1. `Large-font & voice-to-text chat`<br>2. `Volunteer dispatch rooms`<br>3. `Peer-support check-ins` |
@@ -95,7 +95,7 @@ Verified from `Submit-R3OJNUmD.js` (`https://reskilll.com/hack/nexconn/assets/Su
 7. **Public GitHub Repository (`repoUrl`)**: Valid `https://github.com/{owner}/{repo}` URL. The submission form calls `https://api.github.com/repos/{owner}/{repo}` in real time to verify the repo exists and is public.
 8. **Demo Video (`demoVideoUrl`)**: Hosted on **YouTube**, **Loom**, **Google Drive**, or **Vimeo**.
 9. **Project Write-up PDF (`writeupUrl`)**: PDF document up to **25 MB** uploaded to `https://allbackend.reskilll.com/upload/document`. Must include the team's **Nexconn App Key** inside the PDF text.
-10. **Traction Proof (`tractionUrl`, `activeUsers` — Optional Bonus)**: URL to traction proof plus integer count (`1–9` digits) of active users acquired during the hackathon.
+10. **Traction Proof (`tractionUrl`, `activeUsers` - Optional Bonus)**: URL to traction proof plus integer count (`1–9` digits) of active users acquired during the hackathon.
 11. **Prior Work Disclosure (`builtBefore`, `builtBeforeDetails`)**: Explicit `"no"` or `"yes"` (with 10–2,000 char disclosure if `"yes"`).
 
 ---
@@ -114,12 +114,12 @@ Verified from `Submit-R3OJNUmD.js` (`https://reskilll.com/hack/nexconn/assets/Su
 ## 8. Allowed / Required Tech Stack & Sponsor Tools
 
 - **Mandatory Sponsor Core**:
-  - **Nexconn Chat SDK (`IMLib`)** — Web (`@rongcloud/imlib-next`), Android (`cn.rongcloud.sdk:im_lib`), iOS (`RongCloudIM/IMLibCore`), Flutter (`rongcloud_im_wrapper_plugin`), React Native (`@rongcloud/react-native-imlib`), or Unity (`RongCloud IM Unity`).
-  - **OR Nexconn Chat UI (`UIKit`)** — Android (`cn.rongcloud.sdk:im_kit`), iOS (`RongCloudIM/IMKit`), or Web UIKit components.
+  - **Nexconn Chat SDK (`IMLib`)** - Web (`@rongcloud/imlib-next`), Android (`cn.rongcloud.sdk:im_lib`), iOS (`RongCloudIM/IMLibCore`), Flutter (`rongcloud_im_wrapper_plugin`), React Native (`@rongcloud/react-native-imlib`), or Unity (`RongCloud IM Unity`).
+  - **OR Nexconn Chat UI (`UIKit`)** - Android (`cn.rongcloud.sdk:im_kit`), iOS (`RongCloudIM/IMKit`), or Web UIKit components.
 - **Optional High-Leverage Sponsor Extensions**:
-  - **Nexconn Call SDK (`CallLib` / `CallKit`)** — Web (`@rongcloud/engine`, `@rongcloud/calllib-v3`), Android, iOS, Flutter, React Native.
-  - **Nexconn Server SDKs & Webhooks** — Node.js, Go, Java, Python, PHP, .NET (`POST /user/getToken.json`, message routing webhooks, pre-send moderation webhooks, online status webhooks).
-  - **Nexconn AI Developer Tooling** — `nexconn-skills` (`https://github.com/NexconnAI-Dev/nexconn-skills`) and `@nexconn/console-mcp` (`npx -y @nexconn/console-mcp`).
+  - **Nexconn Call SDK (`CallLib` / `CallKit`)** - Web (`@rongcloud/engine`, `@rongcloud/calllib-v3`), Android, iOS, Flutter, React Native.
+  - **Nexconn Server SDKs & Webhooks** - Node.js, Go, Java, Python, PHP, .NET (`POST /user/getToken.json`, message routing webhooks, pre-send moderation webhooks, online status webhooks).
+  - **Nexconn AI Developer Tooling** - `nexconn-skills` (`https://github.com/NexconnAI-Dev/nexconn-skills`) and `@nexconn/console-mcp` (`npx -y @nexconn/console-mcp`).
 - **Application Frameworks, Cloud & AI Models**: Completely unrestricted (Next.js, React, Vue, Swift, Kotlin, Flutter, FastAPI, Node.js, Go, OpenAI/Anthropic/Gemini/open-weight LLMs, AWS, Alibaba Cloud, Vercel, Supabase, etc.).
 
 ---

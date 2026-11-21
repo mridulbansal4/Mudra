@@ -1,5 +1,5 @@
-# Product Requirements Document (PRD) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product Management Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Product Requirements Document (PRD) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product Management Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Personas](./PERSONAS.md) · [User Journeys](./USER_JOURNEYS.md) · [User Stories](./USER_STORIES.md) · [Features](./FEATURES.md) · [Architecture](../03-engineering/ARCHITECTURE.md)
 
 ---
@@ -57,7 +57,7 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
 
 ## 5. Scope Matrix: MVP (Hackathon) vs. v1 (Production) vs. v2 (Scale)
 
-| Capability | MVP (Hackathon — Nov 2026) | v1 (Production — Q1/Q2 2027) | v2 (Global Scale — 2028+) |
+| Capability | MVP (Hackathon - Nov 2026) | v1 (Production - Q1/Q2 2027) | v2 (Global Scale - 2028+) |
 |---|---|---|---|
 | **Frontend Channels** | Web (`apps/web` HeroUI v3) + Mobile (`apps/mobile-expo` `heroui-native`) | Full iOS/Android App Store release + WhatsApp deep-link launcher | Embedded SDK widget for ONDC buyer/seller apps & IndiaMART |
 | **Languages (`F-03`)** | Tamil, Hindi, Marathi, Punjabi, Malayalam, English (`M-01`/`M-02`) | All 22 Scheduled Indian Languages (Bhashini) + Bahasa, Mandarin, Thai | 100+ global trade languages with real-time voice dubbing |
@@ -68,7 +68,7 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
 
 ## 6. Functional Requirements (`F-01` – `F-14`)
 
-### `F-01` — Zero-Friction Auth, 1-Tap Persona Login & Nexconn Token Service (`Must`)
+### `F-01` - Zero-Friction Auth, 1-Tap Persona Login & Nexconn Token Service (`Must`)
 - **Description**: Authenticates users via `/auth` or auto-provisions guest tokens on `/sandbox` and `/arena` via `API-01` (`POST /api/v1/auth/session`), invoking `@nexconn/server-sdk`'s `UserManagementApi.issueAccessToken` (`POST /v4/auth/access-token/issue`).
 - **Mapped User Stories**: `US-01`, `US-02`.
 - **Acceptance Criteria**:
@@ -76,22 +76,22 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
   2. `NCEngine.initialize({ appKey })` and `await NCEngine.connect({ token })` complete before mounting `<nc-chat-ui-app-provider>` or initializing `NCCallEngine`.
   3. `NEXCONN_SECRET_KEY` is never transmitted to or bundled in the client.
 
-### `F-02` — Story-Driven Beginner Landing, Onboarding Wizard & Interactive Coachmarks (`Must`)
+### `F-02` - Story-Driven Beginner Landing, Onboarding Wizard & Interactive Coachmarks (`Must`)
 - **Description**: Multi-route progressive story flow (`/` → `/auth` → `/onboarding` → `/app` / `/sandbox`) built with HeroUI v3, Hallmark Floor rules, Unslop warm-ledger tokens, and Apple fluid springs.
 - **Mapped User Stories**: `US-02`, `US-03`.
 - **Acceptance Criteria**:
-  1. `/` displays a `1280x800` above-the-fold hero (≤7 words headline, 1 sentence, 2 CTAs) and 3 story chapters explaining the SAMADHAN flow.
+  1. `/` displays a `1280x800` above-the-fold hero (≤7 words headline, 1 sentence, 2 CTAs) and 3 story chapters explaining the MUDRA flow.
   2. `/onboarding` allows selecting native language, testing camera/mic, or toggling **"Use Simulated HD Inspection Video Stream"** for webcam-less devices.
   3. `/app` and `/sandbox` display a top **4-Stage Deal Story Bar** with a contextual **"Next Step"** coachmark pill.
 
-### `F-03` — Cross-Lingual 1:1 & Group Deal Room with Streaming Translation (`Must`)
+### `F-03` - Cross-Lingual 1:1 & Group Deal Room with Streaming Translation (`Must`)
 - **Description**: Real-time translation and contract entity extraction streamed into `<nc-bilingual-bubble>` inside `<nc-chat-ui-app-provider>`.
 - **Mapped User Stories**: `US-04`, `US-05`.
 - **Acceptance Criteria**:
   1. When Buyer sends a text or `@nexconn/chat` voice note in Tamil, Rust scrubs PII in `<300µs` (`API-05`), and Node Bridge streams the Hindi/English translation token-by-token via `MessageManagementApi.sendGroupChannelStreamMessage`.
   2. `<nc-bilingual-bubble>` renders original text, streaming translation, language badge, and extracted price/warranty chips without Shadow DOM layout shifts.
 
-### `F-04` — Custom Lit Escrow Milestone State Card (`<nc-escrow-deal-card>`) (`Must`)
+### `F-04` - Custom Lit Escrow Milestone State Card (`<nc-escrow-deal-card>`) (`Must`)
 - **Description**: Interactive Lit `BaseMessageContent` web component registered before `app.ready()` and backed by the Go 1.24 FSM (`services/deal-engine-go`).
 - **Mapped User Stories**: `US-06`, `US-07`.
 - **Acceptance Criteria**:
@@ -99,66 +99,66 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
   2. Enforces valid Go FSM transitions (`DRAFT` → `LOCKED` → `ASSAY_IN_PROGRESS` → `ASSAY_VERIFIED` → `SETTLED_RELEASED` or `DISPUTE_FROZEN` → `SETTLED_SPLIT`).
   3. Concurrent conflicting clicks return HTTP `409 Conflict` via PostgreSQL optimistic locking.
 
-### `F-05` — 1-Click Live WebRTC Video Defect & Serial Inspection (`@nexconn/call`) (`Must`)
+### `F-05` - 1-Click Live WebRTC Video Defect & Serial Inspection (`@nexconn/call`) (`Must`)
 - **Description**: Launches an in-channel `@nexconn/call` session and escalates to HD video via `requestChangeMediaType(NCCallMediaType.VIDEO)`.
 - **Mapped User Stories**: `US-08`, `US-09`.
 - **Acceptance Criteria**:
   1. Clicking `Verify on Live Video` starts `NCCallEngine` audio call and escalates to `NCCallMediaType.VIDEO` inside a draggable Apple-design Picture-in-Picture Loupe (`setPointerCapture` + momentum corner projection).
   2. When call ends or frame is verified, `onServerCallLogReceived` captures the server call log and binds it to `video_assay_logs` (`E-06`).
 
-### `F-06` — Rust + WASM Real-Time Forensic Frame & Audio Assay (`Must`)
+### `F-06` - Rust + WASM Real-Time Forensic Frame & Audio Assay (`Must`)
 - **Description**: Browser WASM (`packages/assay-wasm-rs`) + Rust Axum server (`services/assay-verifier-rs`) + Gemini 2.5 Flash Vision (`M-03`) verify physical condition, serial number plate, and acoustic motor/fan RPM signature.
 - **Mapped User Stories**: `US-09`, `US-10`.
 - **Acceptance Criteria**:
   1. Client WASM computes frame Laplacian blur variance (`>120.0` threshold) and serial bounding-box alignment at 60fps.
   2. Rust `assay-verifier-rs` (`API-08`) computes 64-bit `pHash`, runs 4096-point `rustfft` audio spectrum check, signs an Ed25519 voucher in `<5ms`, and emits `<nc-video-assay-receipt>`.
 
-### `F-07` — Instant Channel-Freeze Dispute Lock (`addGroupChannelFreezeList`) (`Must`)
+### `F-07` - Instant Channel-Freeze Dispute Lock (`addGroupChannelFreezeList`) (`Must`)
 - **Description**: Freezes a `Group` deal room in `<150ms` when either party flags a defect or breach.
 - **Mapped User Stories**: `US-11`.
 - **Acceptance Criteria**:
   1. Clicking `Raise Dispute` calls `API-09` → `GroupChannelModerationApi.addGroupChannelFreezeList` (`POST /v4/group-channel/moderation/freeze/add`).
   2. Buyer and Seller text/voice inputs lock immediately with a clear Frozen Tribunal banner; only the AI Tribunal and dispatched Arbitrator can post.
 
-### `F-08` — Human Agent Dispatch Center & AI Tribunal Streaming Settlement (`Must`)
+### `F-08` - Human Agent Dispatch Center & AI Tribunal Streaming Settlement (`Must`)
 - **Description**: `/dispatch` routes a human arbitrator (`P-04`) into frozen channels while `M-04` streams a structured settlement split into `<nc-tribunal-verdict-card>`.
 - **Mapped User Stories**: `US-12`, `US-13`.
 - **Acceptance Criteria**:
   1. Frozen rooms appear in `/dispatch` within `500ms` with pre-loaded `pHash` diffs and call logs.
   2. `M-04` streams an evidence-cited settlement split (e.g., `88%` seller payout / `12%` buyer repair rebate) via `sendGroupChannelStreamMessage`.
 
-### `F-09` — Immutable `System` Channel Audit & Compliance Ledger (`Must`)
+### `F-09` - Immutable `System` Channel Audit & Compliance Ledger (`Must`)
 - **Description**: Every DPDP consent notice, escrow lock, call log, and tribunal verdict emits an Ed25519-signed voucher into the user's read-only `System` channel via `SystemMessagesApi`.
 - **Mapped User Stories**: `US-07`, `US-13`.
 - **Acceptance Criteria**:
   1. Each voucher in `system_audit_vouchers` (`E-08`) contains `prev_hash`, `curr_hash`, and `ed25519_sig`, verifiable in `/guide` and rendered in `<nc-chat-ui-app-provider>`'s `System` tab.
 
-### `F-10` — Live `Open` Channel Flash-Lot Ticker & `Community` Category Subchannels (`Must`)
+### `F-10` - Live `Open` Channel Flash-Lot Ticker & `Community` Category Subchannels (`Must`)
 - **Description**: Hybrid `@nexconn/chat` (`NCEngine`) sidebar showing priority `Open` channel drops (`OpenChannelPriorityControlsApi`) and `Community` subchannels (`createCommunitySubchannel`).
 - **Mapped User Stories**: `US-14`.
 - **Acceptance Criteria**:
   1. Verified sellers broadcast flash lots via `API-13` (`OpenChannelPriorityControlsApi`).
   2. Users switch between `Machinery`, `Refurbished-Tech`, `Agri-Mandi`, and `Campus-Thrift` `Community` subchannels (`API-14`) and click `Negotiate Deal` to spawn a 1:1/Group room.
 
-### `F-11` — 1-Click Split-Screen Buyer + Seller + AI Judge Sandbox (`/sandbox`) (`Must`)
+### `F-11` - 1-Click Split-Screen Buyer + Seller + AI Judge Sandbox (`/sandbox`) (`Must`)
 - **Description**: Dual-pane zero-login sandbox provisioning two real Nexconn tokens (`buyer_demo_<id>`, `seller_demo_<id>`) with a 5-step guided story tour.
 - **Mapped User Stories**: `US-03`, `US-15`.
 - **Acceptance Criteria**:
   1. Loads from `/` in `<400ms` with zero login wall and walks the user through all 4 deal stages in under 60 seconds.
 
-### `F-12` — 60-Second Viral AI Shopkeeper Bargaining Arena (`/arena`) (`Should`)
+### `F-12` - 60-Second Viral AI Shopkeeper Bargaining Arena (`/arena`) (`Should`)
 - **Description**: Gamified 60-second bargaining duel against "Chanakya AI Shopkeeper" (`M-05`) streaming via `sendDirectChannelStreamMessage`.
 - **Mapped User Stories**: `US-16`.
 - **Acceptance Criteria**:
   1. Every player receives a real Nexconn `userId` token (`API-15`) and generates a shareable WhatsApp/Instagram score card.
 
-### `F-13` — Public Verified MAU & SDK Telemetry Proof Dashboard (`/traction`) (`Should`)
+### `F-13` - Public Verified MAU & SDK Telemetry Proof Dashboard (`/traction`) (`Should`)
 - **Description**: Live public metrics dashboard backed by `API-18` matching `console.nexconn.ai`.
 - **Mapped User Stories**: `US-15`.
 - **Acceptance Criteria**:
   1. Displays live unique connected `userId`s, channel counts across all 5 types, stream latencies, and call logs.
 
-### `F-14` — Companion Mobile Field Assay App (`apps/mobile-expo`) (`Could`)
+### `F-14` - Companion Mobile Field Assay App (`apps/mobile-expo`) (`Could`)
 - **Description**: Expo + React Native + `heroui-native` v2.0.1 + Uniwind mobile app for field sellers/inspectors.
 - **Mapped User Stories**: `US-08`.
 - **Acceptance Criteria**:
@@ -181,6 +181,6 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
 
 ## 8. Assumptions, Dependencies & Open Questions Resolved
 
-- **Assumptions**: Judges will evaluate primarily on desktop Chrome/Edge/Safari at `1280x800` to `1920x1080` (with optional mobile inspection) and may test late at night without a second human counterparty or physical machinery on camera—hence `/sandbox` and our Simulated HD Inspection Stream are mandatory defaults.
+- **Assumptions**: Judges will evaluate primarily on desktop Chrome/Edge/Safari at `1280x800` to `1920x1080` (with optional mobile inspection) and may test late at night without a second human counterparty or physical machinery on camera - hence `/sandbox` and our Simulated HD Inspection Stream are mandatory defaults.
 - **Dependencies**: `https://api.nexconn.ai` v4 endpoints, `console.nexconn.ai` App Key with Call SDK enabled, Google Gemini 2.5 API / Bhashini ULCA API.
 - **Release Criteria (Definition of Ready to Submit)**: All 14 features (`F-01`–`F-14`) verified against Playwright E2E suite, `sloplint --render` returning `0 FAIL`, and `>500` verified MAUs recorded under our `App Key`.

@@ -1,4 +1,4 @@
-# C — Judges & Evaluation Pipeline Deep-Dive: Inside the Nexconn & Reskilll Review Room
+# C - Judges & Evaluation Pipeline Deep-Dive: Inside the Nexconn & Reskilll Review Room
 
 > **Primary Sources**: `https://reskilll.com/hack/nexconn/assets/Admin-_pGkMjvW.js`, `https://reskilll.com/hack/nexconn/assets/Submit-R3OJNUmD.js`, `https://reskilll.com/hack/nexconn/assets/Rules-DQNF0983.js`, `https://reskilll.com/hack/nexconn/assets/index-DSX23m3q.js`, `https://www.nexconn.ai/`, `https://docs.nexconn.ai/llms.txt`, and `https://github.com/NexconnAI-Dev`.
 
@@ -14,7 +14,7 @@ Per `Rules-DQNF0983.js` (`Zx` & `hS`), the judging window runs for 5 days (`Nov 
 | **1. Reskilll Operations Screening Lead** | Reskilll Hackathon Program Manager (`/hack/nexconn/admin` operator) | Checks **Form Completeness** in `Admin-_pGkMjvW.js`: Is `status === "submitted"`? Does `repoUrl` open publicly? Does `demoVideoUrl` play without permission errors? Does `writeupUrl` PDF open and contain the `App Key`? | Google Drive videos set to "Request Access", 404 deployment URLs, missing PDF write-ups, or `call-sdk` alone without `chat-sdk`/`chat-ui`. |
 | **2. Nexconn Solutions Engineering & DevRel Lead (`Amy` & Quickdemo Maintainers)** | Authors of `https://github.com/NexconnAI-Dev` (`imsdk-web-Quickdemo`, `uikit-android-Quickdemo`, `nexconn-skills`) | Clicks the **Copy App Key** button in `Admin-_pGkMjvW.js` and pastes `appKey` into `console.nexconn.ai` internal telemetry. Verifies real SDK initialization, token generation (`getToken`), channel creation, and message count. | **"Fake Integration"**: Apps that submit a real `appKey` with `0` API calls on `console.nexconn.ai` while routing chat over Firebase, Supabase, or `socket.io`, or hardcoding `App Secret` inside frontend React code. |
 | **3. Nexconn Global Product Director (`Leo`)** | Leads Nexconn international product commercialization, pricing ($860/mo 10K MAU plan), and vertical go-to-market (`nexconn.ai`) | Evaluates **Completeness & UX (50%)** and **Business & Growth Potential (20% + Traction Bonus)**. Asks: *"Could we feature this app on `nexconn.ai` as a customer case study tomorrow? Did real users actually log in and send messages?"* | Ugly tutorial UIs, broken login screens requiring manual token copy-pasting by the user, and zero thought given to how the app acquires or retains users. |
-| **4. Nexconn AI Product Manager (`Kai` — AI Mode, Lyra & `nexconn-skills`)** | Architect of **AI Mode** (`https://docs.nexconn.ai/ai-mode/`), **Lyra** (`https://www.lyrawork.com`), and `https://github.com/NexconnAI-Dev/nexconn-skills` | Evaluates **Innovation & Scenario Value (30%)**, especially how teams combine human messaging with AI agents, **Streaming Messages (`stream-message.md`)**, **Message Expansion (`expansion.md`)**, **Built-in Translation**, or **Voice-to-Text**. | Generic "ChatGPT wrapper in a single chat box" that doesn't use Nexconn's multi-user channels, streaming message primitives, or stateful message expansion. |
+| **4. Nexconn AI Product Manager (`Kai` - AI Mode, Lyra & `nexconn-skills`)** | Architect of **AI Mode** (`https://docs.nexconn.ai/ai-mode/`), **Lyra** (`https://www.lyrawork.com`), and `https://github.com/NexconnAI-Dev/nexconn-skills` | Evaluates **Innovation & Scenario Value (30%)**, especially how teams combine human messaging with AI agents, **Streaming Messages (`stream-message.md`)**, **Message Expansion (`expansion.md`)**, **Built-in Translation**, or **Voice-to-Text**. | Generic "ChatGPT wrapper in a single chat box" that doesn't use Nexconn's multi-user channels, streaming message primitives, or stateful message expansion. |
 | **5. Nexconn Core IM/RTC Architecture Reviewer (`Yang Pan` / `Cen Yu` Engineering Delegate)** | Senior SDK & backend engineers behind `@rongcloud/imlib-next`, `IMKit`, `CallLib`, and Open Channel clusters | Inspects the public GitHub repository (`repoUrl`) and `sdkFeatures` text (`30–2,000 chars`) to see which specific Nexconn primitives were exercised (e.g., Open Channel metadata, Targeted Group Messages, custom message types, webhooks, E2EE, moderation). | Using only basic `sendTextMessage` in a 1-on-1 room when the scenario clearly calls for Group Channels, Open Channel Metadata, or Message Expansion. |
 
 ---
@@ -23,13 +23,13 @@ Per `Rules-DQNF0983.js` (`Zx` & `hS`), the judging window runs for 5 days (`Nov 
 
 From our forensic inspection of `https://reskilll.com/hack/nexconn/assets/Admin-_pGkMjvW.js` and `Submit-R3OJNUmD.js`, we know the exact interface and workflow the judges use between **November 23 and November 27, 2026**:
 
-### Step 1 — CSV Export & Admin Triage (`Admin-_pGkMjvW.js`)
+### Step 1 - CSV Export & Admin Triage (`Admin-_pGkMjvW.js`)
 The judging coordinator exports the master CSV (`Qt` in `Admin-_pGkMjvW.js`) containing all 16 columns:
 `Project | Team | Team code | Track | Submitted by | Status | App | Repo | Demo video | Write-up | App Key | Packages | Active users | Traction | Built before | Submitted at`
 - Drafts (`Status !== "submitted"`) are immediately filtered out.
 - All remaining submissions are evaluated in a **single shared pool across all 6 tracks** (`yS`: *"all 6 tracks share the same prize pool"*).
 
-### Step 2 — The Mandatory `App Key` Telemetry Audit (`console.nexconn.ai`)
+### Step 2 - The Mandatory `App Key` Telemetry Audit (`console.nexconn.ai`)
 Inside the `/hack/nexconn/admin` inspector drawer, `Admin-_pGkMjvW.js` renders the team's `App Key` next to a dedicated **Copy** button (`navigator.clipboard.writeText(idea.appKey)`).
 - A Nexconn engineer copies `appKey` and looks it up in the Nexconn backend console.
 - **What Telemetry They See Instantly**:
@@ -40,12 +40,12 @@ Inside the `/hack/nexconn/admin` inspector drawer, `Admin-_pGkMjvW.js` renders t
   5. **Does the console's actual Active Users (MAU/DAU) count match the `Active users` number self-reported by the team in Section 05?**
   - *Critical Insight*: Because `Rules-DQNF0983.js` explicitly states *"Active users are counted on the Nexconn console using the App Key you submit"*, inflating `activeUsers` on the form without matching `userId` connections on `console.nexconn.ai` destroys credibility immediately. Conversely, having **20–100+ genuine active `userId` sessions on your `appKey`** provides indisputable mathematical proof for the **20% Business & Growth Potential + Traction Bonus**.
 
-### Step 3 — The 50% Completeness & UX Stress Test (`appUrl` + `demoVideoUrl`)
-Because **Completeness & user experience carries 50% of the total score** (`gu` in `index-DSX23m3q.js`—the single largest weight), judges click `demoVideoUrl` and `appUrl`:
+### Step 3 - The 50% Completeness & UX Stress Test (`appUrl` + `demoVideoUrl`)
+Because **Completeness & user experience carries 50% of the total score** (`gu` in `index-DSX23m3q.js` - the single largest weight), judges click `demoVideoUrl` and `appUrl`:
 - If `appUrl` requires the judge to manually register an account, wait for an email OTP that fails, or find a second person to chat with, the judge sees an **empty, dead chat screen**.
 - **Winning Counter-Measure**: The live `appUrl` must offer **1-Click Instant Demo Login** (e.g., *"Sign in as Demo Buyer / Demo Agent / Squad Leader"* with pre-populated active channels, live simulated/AI peer responders, and a **"Open Split-Screen Dual-User Test Mode"** button so a single judge on one browser tab can experience real-time two-way Nexconn messaging, typing indicators, read receipts, and state synchronization in <10 seconds).
 
-### Step 4 — Scenario Value (30%) & Code/Write-up Audit (`sdkFeatures` + `writeupUrl` + `repoUrl`)
+### Step 4 - Scenario Value (30%) & Code/Write-up Audit (`sdkFeatures` + `writeupUrl` + `repoUrl`)
 Judges read the `sdkFeatures` summary (`30–2,000 chars`), open `writeupUrl` (PDF), and spot-check `repoUrl`:
 - They look for clear architectural diagrams showing how the frontend (`@rongcloud/imlib-next` or mobile SDK) and backend (Token server + Webhooks + AI/business logic) interact.
 - They verify that `AppKey` is prominently documented inside the PDF write-up (as instructed in `Submit-R3OJNUmD.js`).

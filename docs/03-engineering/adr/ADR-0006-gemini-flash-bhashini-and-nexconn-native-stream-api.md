@@ -1,5 +1,5 @@
 # ADR-0006: Gemini 2.5 Flash/Pro + Bhashini Indic Pipeline Delivered via Native Nexconn v4 Server Stream APIs
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (AI & Streaming Lead — Dev 4) · Status: Accepted · Last updated: 2026-11-10
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (AI & Streaming Lead - Dev 4) · Status: Accepted · Last updated: 2026-11-10
 > Related: [Models](../../04-ai/MODELS.md) · [Prompts](../../04-ai/PROMPTS.md) · [Nexconn SDK Manual](../NEXCONN_SDK_MANUAL.md)
 
 ---
@@ -8,7 +8,7 @@
 `Accepted`
 
 ## Context & Problem Statement
-Most hackathon teams call an LLM from the frontend or a simple REST endpoint, wait 4–6 seconds, and post a static message—or open a separate custom WebSocket that bypasses Nexconn. Furthermore, sending raw Indian user messages to external LLMs risks leaking Aadhaar/phone/bank PII under the India DPDP Act 2023 (`R-09`).
+Most hackathon teams call an LLM from the frontend or a simple REST endpoint, wait 4–6 seconds, and post a static message - or open a separate custom WebSocket that bypasses Nexconn. Furthermore, sending raw Indian user messages to external LLMs risks leaking Aadhaar/phone/bank PII under the India DPDP Act 2023 (`R-09`).
 
 ## Decision Drivers
 - Achieve `< 280ms` Time-To-First-Token (TTFT) for bilingual bargaining translations (`M-01`) and AI Tribunal briefs (`M-04`).
@@ -16,8 +16,8 @@ Most hackathon teams call an LLM from the frontend or a simple REST endpoint, wa
 - Guarantee `1.000` recall on Indian PII redaction (`Aadhaar`, `PAN`, `UPI VPA`, `IFSC`, phone numbers) in `< 300µs` before any text leaves our server boundary (`R-09`).
 
 ## Considered Options
-1. **Option A: Client-side LLM calls or non-streaming `POST` message injection**: Rejected—exposes API keys, incurs 4–6s blocking wait times, and fails to showcase Nexconn's v4 native stream endpoints.
-2. **Option B: Single LLM provider without Indic ASR or PII redaction**: Rejected—poor accuracy on colloquial Tamil/Marathi/Hindi voice notes and violates DPDP Act 2023 data minimization.
+1. **Option A: Client-side LLM calls or non-streaming `POST` message injection**: Rejected - exposes API keys, incurs 4–6s blocking wait times, and fails to showcase Nexconn's v4 native stream endpoints.
+2. **Option B: Single LLM provider without Indic ASR or PII redaction**: Rejected - poor accuracy on colloquial Tamil/Marathi/Hindi voice notes and violates DPDP Act 2023 data minimization.
 3. **Option C: Rust `< 300µs` Aho-Corasick Pre-Scrubber (`POST /internal/scrub-pii`) + Gemini 2.5 Flash/Pro & Bhashini ULCA ASR + Native `@nexconn/server-sdk@0.1.2` `sendGroupChannelStreamMessage` / `sendDirectChannelStreamMessage`**.
 
 ## Decision Outcome

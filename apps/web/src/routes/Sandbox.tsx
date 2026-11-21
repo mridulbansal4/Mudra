@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { Button } from "@heroui/react";
-import type { FsmState, Locale, NexconnSession } from "@samadhan/shared-types";
+import type { FsmState, Locale, NexconnSession } from "@mudra/shared-types";
 import { Wordmark, Banner } from "../components/Chrome";
 import { StoryBar } from "../components/StoryBar";
 import { DealRoom, VoucherChain, useDealActions } from "../components/DealRoom";
@@ -19,7 +19,7 @@ interface Provision {
   escrow_contract: { fsm_state: FsmState; version: number };
 }
 
-const KEY = "samadhan.sandbox.v1";
+const KEY = "mudra.sandbox.v1";
 const TOUR = ["Send the Tamil offer", "Lock escrow", "Verify on live video", "Raise a dispute", "Execute the split"];
 
 function simulatedCapture() {
@@ -70,8 +70,8 @@ export default function Sandbox() {
       .catch(() => undefined);
   }, [prov, provision]);
 
-  const buyerJwt = prov?.buyer_session.samadhan_jwt;
-  const sellerJwt = prov?.seller_session.samadhan_jwt;
+  const buyerJwt = prov?.buyer_session.mudra_jwt;
+  const sellerJwt = prov?.seller_session.mudra_jwt;
   const { deal, refresh, error: dealErr } = useLiveDeal(prov?.deal_id, buyerJwt);
   const judge = useDealActions(deal, arbJwt, refresh);
 

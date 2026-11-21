@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 // TransitionOutcome is the result of a successful FSM transition + voucher.
@@ -60,8 +60,8 @@ func (s *Server) transition(ctx context.Context, d *store.Deal, act fsm.Action, 
 		}
 		tmpOut := TransitionOutcome{Prev: res.Prev, Next: res.Next, Version: res.Version, ExecTime: res.ExecTime, Voucher: v}
 		card := store.ChatMessage{
-			ID: "msg_" + store.RandHex(6), DealID: d.ID, SenderRole: "system", SenderName: "SAMADHAN Escrow",
-			MessageType: "x-samadhan-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
+			ID: "msg_" + store.RandHex(6), DealID: d.ID, SenderRole: "system", SenderName: "MUDRA Escrow",
+			MessageType: "x-mudra-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
 			ExtractedTerms: map[string]any{},
 			Extras: map[string]any{
 				"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next), "version": res.Version,
@@ -94,7 +94,7 @@ func (s *Server) transition(ctx context.Context, d *store.Deal, act fsm.Action, 
 		"prev_voucher_sha256": v.PrevVoucherSHA256, "ed25519_signature": v.Ed25519Signature, "public_key_hex": v.PublicKeyHex, "fsm_state": string(res.Next), "version": res.Version}
 	async("system-voucher", func(ctx context.Context) {
 		s.Bridge.SystemVoucher(ctx, []string{buyerNx, sellerNx}, vPayload)
-		s.Bridge.StreamGroup(ctx, channel, "usr_samadhan_system_voucher", "x-samadhan-escrow-card", cardMsg.RawText, cardMsg.Extras)
+		s.Bridge.StreamGroup(ctx, channel, "usr_mudra_system_voucher", "x-mudra-escrow-card", cardMsg.RawText, cardMsg.Extras)
 	})
 	return out, nil
 }
@@ -162,13 +162,13 @@ func (s *Server) seed() {
 		ID: store.SeedDealID, ChannelID: store.SeedChannelID, Title: store.SeedDealTitle,
 		BuyerID: rajesh.ID, SellerID: vikram.ID, Machine: fsm.NewMachine(fsm.StateCreated),
 		AmountPaise: store.SeedAmountPaise, Currency: "INR", Checklist: store.DefaultChecklist(),
-		UPIMandateUMN: "samadhan.8821@okaxis", RequiredSerial: store.SeedSerial, MinMotorRPM: store.SeedMinRPM,
+		UPIMandateUMN: "mudra.8821@okaxis", RequiredSerial: store.SeedSerial, MinMotorRPM: store.SeedMinRPM,
 		ReferencePHash: store.SeedReferencePHash, CreatedAt: now.Add(-20 * time.Minute), UpdatedAt: now,
 	}
 	s.Store.PutDeal(d)
 	s.addMessage(d, store.ChatMessage{
 		ID: "msg_seed_8821_offer",
-		SenderRole: "buyer", SenderName: rajesh.Name, SenderNexconnID: rajesh.NexconnID, MessageType: "x-samadhan-bilingual-bubble",
+		SenderRole: "buyer", SenderName: rajesh.Name, SenderNexconnID: rajesh.NexconnID, MessageType: "x-mudra-bilingual-bubble",
 		SourceLocale: "ta-IN", TargetLocale: "hi-IN",
 		RawText:        "நான் ₹1,45,000-க்கு வாங்க தயார், மோட்டார் 4800 RPM சோதனை தேவை",
 		TranslatedText: "मैं ₹1,45,000 में खरीदने को तैयार हूँ, मोटर 4800 RPM जाँच ज़रूरी है",
@@ -176,7 +176,7 @@ func (s *Server) seed() {
 		Engine:         "seed", CreatedAt: now.Add(-15 * time.Minute),
 	})
 	d.Op.Lock()
-	// Seed signing is local (Go Ed25519) — siblings are not probed yet at boot.
+	// Seed signing is local (Go Ed25519) - siblings are not probed yet at boot.
 	if _, err := s.transitionLocal(d, fsm.ActionLockEscrow, map[string]any{"upi_mandate_umn_masked": "****8821@okaxis", "source": "seed"}); err != nil {
 		panic(err)
 	}
@@ -203,8 +203,8 @@ func (s *Server) transitionLocal(d *store.Deal, act fsm.Action, extra map[string
 			CurrVoucherSHA256: sv.CurrHashHex, Ed25519Signature: sv.SignatureHex, PublicKeyHex: sv.PublicKeyHex,
 			Payload: payload, Engine: "go-native-seed", CreatedAt: now}
 		card := store.ChatMessage{
-			ID: "msg_seed_8821_lock", DealID: d.ID, SenderRole: "system", SenderName: "SAMADHAN Escrow",
-			MessageType: "x-samadhan-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
+			ID: "msg_seed_8821_lock", DealID: d.ID, SenderRole: "system", SenderName: "MUDRA Escrow",
+			MessageType: "x-mudra-escrow-card", RawText: string(res.Prev) + " → " + string(res.Next), TranslatedText: string(res.Prev) + " → " + string(res.Next),
 			ExtractedTerms: map[string]any{},
 			Extras: map[string]any{"action": string(act), "prev_state": string(res.Prev), "fsm_state": string(res.Next), "version": res.Version,
 				"story_stage": fsm.StoryStage(res.Next), "amount_paise": amount, "voucher_type": v.VoucherType,

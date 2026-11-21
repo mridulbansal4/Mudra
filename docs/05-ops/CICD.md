@@ -1,5 +1,5 @@
-# CI/CD Pipeline Architecture — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (DevOps & Release Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# CI/CD Pipeline Architecture - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (DevOps & Release Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Git Workflow](../03-engineering/GIT_WORKFLOW.md) · [Testing](../03-engineering/TESTING.md) · [Deployment](./DEPLOYMENT.md) · [`ci.yml`](../../.github/workflows/ci.yml)
 
 ---
@@ -31,7 +31,7 @@ All three workflows are committed in `.github/workflows/`:
 
 ### Inline Reference: `.github/workflows/ci.yml`
 ```yaml
-name: SAMADHAN-OS Polyglot CI
+name: MUDRA-OS Polyglot CI
 
 on:
   push:
@@ -142,12 +142,12 @@ jobs:
 | Environment | URL Pattern | Secrets Source | Purpose |
 |---|---|---|---|
 | **Local Dev** | `http://localhost:5173` (`:4001`..`:4003`) | Local `.env` (gitignored) | Developer workstation & `/sandbox` testing |
-| **PR Preview** | `https://pr-<num>-samadhan-os.vercel.app` | GitHub Environment `preview` + Neon DB Branch | Automated Playwright E2E + `sloplint --render` review |
-| **Production (Judge Live)** | `https://samadhan-os.dev` (`api.samadhan-os.dev`) | GitHub Environment `production` + AWS Secrets Manager / Railway | Live URL submitted on `https://reskilll.com/hack/nexconn/dashboard` |
+| **PR Preview** | `https://pr-<num>-mudra-os.vercel.app` | GitHub Environment `preview` + Neon DB Branch | Automated Playwright E2E + `sloplint --render` review |
+| **Production (Judge Live)** | `https://mudra-os.dev` (`api.mudra-os.dev`) | GitHub Environment `production` + AWS Secrets Manager / Railway | Live URL submitted on `https://reskilll.com/hack/nexconn/dashboard` |
 
 ---
 
 ## 4. Instant Rollback Strategy
 
 - **Frontend (`apps/web`)**: 1-click instant alias rollback on Vercel / Cloudflare Pages (`<5 seconds`).
-- **Polyglot Backend (`deal-engine-go`, `assay-verifier-rs`, `nexconn-bridge-node`)**: Immutable Docker images tagged by Git SHA (`ghcr.io/chanakya-team/samadhan-*:sha-<commit>`). If post-deploy `/health` or synthetic `/api/v1/sandbox/provision` check fails within `60s`, the deployment orchestrator automatically keeps traffic on the previous healthy container revision.
+- **Polyglot Backend (`deal-engine-go`, `assay-verifier-rs`, `nexconn-bridge-node`)**: Immutable Docker images tagged by Git SHA (`ghcr.io/chanakya-team/mudra-*:sha-<commit>`). If post-deploy `/health` or synthetic `/api/v1/sandbox/provision` check fails within `60s`, the deployment orchestrator automatically keeps traffic on the previous healthy container revision.

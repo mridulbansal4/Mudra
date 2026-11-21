@@ -1,4 +1,4 @@
-name: SAMADHAN-OS Zero-Downtime Deploy
+name: MUDRA-OS Zero-Downtime Deploy
 
 on:
   push:

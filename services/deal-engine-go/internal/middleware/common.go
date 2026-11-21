@@ -10,9 +10,9 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/hrtime"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/hrtime"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 // statusRecorder captures status for logging while preserving Flusher.
@@ -95,7 +95,7 @@ func CORS(origins []string) func(http.Handler) http.Handler {
 				h.Add("Vary", "Origin")
 				h.Set("Access-Control-Allow-Credentials", "true")
 				h.Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-				h.Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Idempotency-Key, X-Trace-Id, X-Samadhan-Signature")
+				h.Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Idempotency-Key, X-Trace-Id, X-Mudra-Signature")
 				h.Set("Access-Control-Expose-Headers", "Idempotent-Replay, X-Trace-Id")
 				h.Set("Access-Control-Max-Age", "600")
 			}

@@ -1,4 +1,4 @@
--- SAMADHAN-OS deal-engine-go — initial schema (entities E-01..E-10, DATA_MODEL.md).
+-- MUDRA-OS deal-engine-go - initial schema (entities E-01..E-10, DATA_MODEL.md).
 -- FSM state and voucher-type names follow IMPLEMENTATION_CONTRACT.md §3 (which
 -- overrides the older DRAFT/LOCKED names in DATA_MODEL.md).
 -- NOTE: not applied at runtime yet; the service uses its in-memory store.
@@ -75,7 +75,7 @@ CREATE TABLE bilingual_messages (
     deal_room_id         UUID NOT NULL REFERENCES deal_rooms(id) ON DELETE CASCADE,
     nexconn_msg_id       VARCHAR(128) NOT NULL UNIQUE,
     sender_nexconn_id    VARCHAR(128) NOT NULL,
-    message_type         VARCHAR(48)  NOT NULL DEFAULT 'x-samadhan-bilingual-bubble',
+    message_type         VARCHAR(48)  NOT NULL DEFAULT 'x-mudra-bilingual-bubble',
     source_locale        VARCHAR(8)   NOT NULL,
     target_locale        VARCHAR(8)   NOT NULL,
     scrubbed_source_text TEXT         NOT NULL,

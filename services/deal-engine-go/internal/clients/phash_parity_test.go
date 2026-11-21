@@ -3,7 +3,7 @@ package clients
 import "testing"
 
 // Same synthetic image and expected hashes as services/assay-verifier-rs
-// phash::tests::cross_language_vectors — keeps the Go fallback bit-identical to Rust.
+// phash::tests::cross_language_vectors - keeps the Go fallback bit-identical to Rust.
 func parityLuma(w, h int) []float64 {
 	l := make([]float64, w*h)
 	for y := 0; y < h; y++ {

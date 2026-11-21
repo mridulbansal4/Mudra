@@ -1,5 +1,5 @@
-# Product Roadmap — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product Strategy Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Product Roadmap - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product Strategy Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Vision](../00-overview/VISION.md) · [PRD](./PRD.md) · [GTM](../07-business/GTM.md)
 
 ---
@@ -8,7 +8,7 @@
 
 ```mermaid
 gantt
-    title SAMADHAN-OS 12-Month Execution Roadmap (Nov 2026 – Nov 2027)
+    title MUDRA-OS 12-Month Execution Roadmap (Nov 2026 – Nov 2027)
     dateFormat  YYYY-MM-DD
     axisFormat  %b %Y
     section Phase 0: Hackathon MVP
@@ -43,24 +43,24 @@ gantt
 
 | Milestone | Target Date | Core Engineering & Product Scope | Pilot Partners & KPIs |
 |---|---|---|---|
-| **Day 30: P2P Electronics & Campus Thrift Launch** | Dec 31, 2026 | Ship browser screen-share stress-test presets (FurMark GPU benchmark & MacBook battery cycle OCR inside `packages/assay-wasm-rs`); add WhatsApp bot deep-link generator (`samadhan.os/d/<slug>`). | **Partners**: 15 college hostel buy/sell communities + `r/IndianGaming` hardware swap moderators.<br>**KPI**: `5,000 MAUs`, `₹1.2 Cr` verified P2P escrow volume. |
+| **Day 30: P2P Electronics & Campus Thrift Launch** | Dec 31, 2026 | Ship browser screen-share stress-test presets (FurMark GPU benchmark & MacBook battery cycle OCR inside `packages/assay-wasm-rs`); add WhatsApp bot deep-link generator (`mudra.os/d/<slug>`). | **Partners**: 15 college hostel buy/sell communities + `r/IndianGaming` hardware swap moderators.<br>**KPI**: `5,000 MAUs`, `₹1.2 Cr` verified P2P escrow volume. |
 | **Day 60: Live RBI PA-Escrow & UPI ASBA Integration** | Jan 30, 2027 | Upgrade `API-17` (`services/deal-engine-go`) from sandbox HMAC webhooks to live production **Razorpay Route / Cashfree Escrow** (backed by Yes Bank / Axis Bank nodal escrow accounts) + NPCI **UPI One-Time Mandate (ASBA)**. | **Partners**: 40 refurbished laptop/phone dealers in Bengaluru (SP Road), Mumbai (Lamington Road), and Delhi (Nehru Place).<br>**KPI**: `12,000 MAUs`, `₹8.5 Cr` GMV, `<0.2%` fraud loss. |
 | **Day 90: Inter-State B2B Machinery & Textile Corridor** | Feb 28, 2027 | Add multi-milestone B2B escrow (`30% Booking` → `40% Live Video Assay` → `30% Delivery Assay`) in `<nc-escrow-deal-card>` + Rust `rustfft` acoustic presets for industrial sewing/CNC spindles. | **Partners**: Tirupur Exporters' Association (TEA) MSME buyers (`P-01`) & Ludhiana machinery dealers (`P-02`).<br>**KPI**: `250 B2B merchants`, `₹25 Cr` annualized GMV. |
 
 ---
 
-### Phase 2: 6-Month Expansion (Mar – May 2027) — ONDC & Mobile Field Scale
+### Phase 2: 6-Month Expansion (Mar – May 2027) - ONDC & Mobile Field Scale
 1. **ONDC Beckn Protocol Adapter (`services/deal-engine-go`)**:
-   - Publish SAMADHAN-OS as an open **ONDC Pre-Shipment Assay & Issue/Grievance Management (IGM 2.0) TSP**, allowing any ONDC Buyer App or Seller App to spawn a Nexconn video-escrow room on high-value B2B orders.
+   - Publish MUDRA-OS as an open **ONDC Pre-Shipment Assay & Issue/Grievance Management (IGM 2.0) TSP**, allowing any ONDC Buyer App or Seller App to spawn a Nexconn video-escrow room on high-value B2B orders.
 2. **Full 22-Language Bhashini Pipeline + `heroui-native` Mobile App**:
    - Release `apps/mobile-expo` (`heroui-native@^2.0.1` + Uniwind) on Google Play and iOS App Store with offline frame queuing and full 22-language Bhashini voice-to-voice translation for agricultural FPO mandis (`e-NAM` sellers).
 3. **6-Month KPI Target**: `30,000+ MAUs` (fully utilizing the 2-Year Free Nexconn Chat Plan prize!), `₹180 Cr` annualized GMV, `96.5%` dispute resolution under 3 minutes.
 
 ---
 
-### Phase 3: 12-Month Vision (Jun – Nov 2027) — The India–Singapore–ASEAN Corridor
+### Phase 3: 12-Month Vision (Jun – Nov 2027) - The India–Singapore–ASEAN Corridor
 1. **Cross-Border Singapore–India Trade Desk (Aligned with RCLOUD GLOBAL PTE. LTD.)**:
-   - Integrate **UPI–PayNow** cross-border instant settlement and Singapore MAS-compliant escrow rails so Singaporean importers and ASEAN SMEs can inspect and purchase Indian textiles, spices, and engineering components inside SAMADHAN-OS.
+   - Integrate **UPI–PayNow** cross-border instant settlement and Singapore MAS-compliant escrow rails so Singaporean importers and ASEAN SMEs can inspect and purchase Indian textiles, spices, and engineering components inside MUDRA-OS.
 2. **Hardware C2PA & IoT Telemetry Attestation**:
    - Integrate C2PA cryptographic camera signatures and Bluetooth OBD-II / moisture meter telemetry directly into `services/assay-verifier-rs`.
 3. **12-Month KPI Target**: `100,000+ MAUs`, `₹650+ Crore ($78M USD)` verified GMV, Series Seed/A readiness alongside Nexconn AI's global enterprise sales team.

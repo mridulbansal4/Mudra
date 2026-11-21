@@ -190,7 +190,7 @@ export function AssayLoupe(props: {
           {props.challenge?.required_serial_plate ?? DEMO_SERIAL}
         </div>
         <div className="num absolute bottom-2 left-2 rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">
-          Sharpness {sharp != null ? sharp.toFixed(0) : "—"} · min RPM {(props.challenge?.min_motor_rpm ?? 4800).toLocaleString("en-IN")}
+          Sharpness {sharp != null ? sharp.toFixed(0) : "-"} · min RPM {(props.challenge?.min_motor_rpm ?? 4800).toLocaleString("en-IN")}
         </div>
         <div className="absolute right-2 top-2 rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">{mode === "sim" ? "Simulated HD stream" : "Camera"}</div>
       </div>

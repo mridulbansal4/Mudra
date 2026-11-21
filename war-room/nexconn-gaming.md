@@ -1,19 +1,19 @@
-# Phase 3 War-Room Council Transcript — Track 02: Gaming & Live Streams (`nexconn-gaming`)
+# Phase 3 War-Room Council Transcript - Track 02: Gaming & Live Streams (`nexconn-gaming`)
 
-> **Domain:** `02 Gaming & Live Streams — Squad Chat and Live Stream Interactive Chatroom` (`nexconn-gaming`)  
+> **Domain:** `02 Gaming & Live Streams - Squad Chat and Live Stream Interactive Chatroom` (`nexconn-gaming`)  
 > **Official Sub-Scenarios:** `Squad chat room` · `In-match quick chat` · `Spectator chat overlay`  
 > **Evidence Base:** `research/domains/nexconn-gaming.md` (`[S1]`–`[S15]`), `research/01-facts.md`, `research/F-connect-the-dots.md`, `war-room/roster-additions.md`  
 > **Council Composition (22 Seats Active):**
 > - **11 Core Seats:** Peter Thiel, Alex Karp, Patrick Jane, Warren Buffett, Harvey Specter, Mike Ross, Steve Jobs, Elon Musk, Andrej Karpathy, S. Jaishankar, Dr. R.S. Sharma
 > - **6 Extra Strategy/Product/Growth Seats:** Charlie Munger, Seth Godin, Gary Vaynerchuk, Tim Cook, Jony Ive, Paul Graham
-> - **Domain Bench Leads (`Gaming / Media / AI / India Rails`):** Justin Lin / Emmett Shear Composite (Seat 19 — Live Streaming, Gaming & Community Economy Co-Lead), Ronnie Screwvala (Media & Esports Entertainment), Demis Hassabis (AlphaStar / DeepMind Gaming AI Lead), Nandan Nilekani (India UPI / Micro-Tournament Rails)
-> - **Custom Nexconn Protocol & Ops Seats (`war-room/roster-additions.md`):** Kai / Yang Pan Composite (Seat 18 — IM/RTC Protocol & AI Agent Architect), Charity Majors / Kelsey Hightower Composite (Seat 20 — Telemetry & Sub-100ms Reliability), Haben Girma / Chieko Asakawa Composite (Seat 21 — Non-Verbal / Deaf-Accessible Quick-Chat HUD)
+> - **Domain Bench Leads (`Gaming / Media / AI / India Rails`):** Justin Lin / Emmett Shear Composite (Seat 19 - Live Streaming, Gaming & Community Economy Co-Lead), Ronnie Screwvala (Media & Esports Entertainment), Demis Hassabis (AlphaStar / DeepMind Gaming AI Lead), Nandan Nilekani (India UPI / Micro-Tournament Rails)
+> - **Custom Nexconn Protocol & Ops Seats (`war-room/roster-additions.md`):** Kai / Yang Pan Composite (Seat 18 - IM/RTC Protocol & AI Agent Architect), Charity Majors / Kelsey Hightower Composite (Seat 20 - Telemetry & Sub-100ms Reliability), Haben Girma / Chieko Asakawa Composite (Seat 21 - Non-Verbal / Deaf-Accessible Quick-Chat HUD)
 
 ---
 
-## Round 0 — Intelligence Briefing (5 Min)
+## Round 0 - Intelligence Briefing (5 Min)
 
-**JANE:** Welcome to Track 02: **Gaming & Live Streams (`nexconn-gaming`)**. Let me tell you why this track is a goldmine if we play it right—and a graveyard if we play it lazy. Most hackathon teams are terrified of gaming tracks because they think they have to build a 3D Unity game in 36 hours. Read the prompt carefully: *"Squad Chat and Live Stream Interactive Chatroom — Power real-time communication for players and viewers during gameplay and live broadcasts. Examples: Squad chat room, In-match quick chat, Spectator chat overlay."* We are NOT building a game engine; we are building the **real-time tactical communication HUD and interactive spectator overlay layer** powered by Nexconn!
+**JANE:** Welcome to Track 02: **Gaming & Live Streams (`nexconn-gaming`)**. Let me tell you why this track is a goldmine if we play it right - and a graveyard if we play it lazy. Most hackathon teams are terrified of gaming tracks because they think they have to build a 3D Unity game in 36 hours. Read the prompt carefully: *"Squad Chat and Live Stream Interactive Chatroom - Power real-time communication for players and viewers during gameplay and live broadcasts. Examples: Squad chat room, In-match quick chat, Spectator chat overlay."* We are NOT building a game engine; we are building the **real-time tactical communication HUD and interactive spectator overlay layer** powered by Nexconn!
 
 **LIN / SHEAR:** Look at the numbers in `research/domains/nexconn-gaming.md` `[S1, S3, S5]`:
 1. **86% of multiplayer gamers** face harassment (`ADL 2024–2025`), and **58% mute voice/text chat entirely** (`"Mute-All Meta"`), costing squads **18%–24% of their winnable games** `[S1]`.
@@ -23,17 +23,17 @@
 **KAI / YANG PAN:** And look at how **Nexconn's protocol** (`docs.nexconn.ai/llms.txt`) maps to those exact three sub-scenarios `[S10, S11]`:
 - **`Targeted Group Whispers` (`/chatsdk-flutter/group-channels/direct.md`):** Inside a 5-player `Group Channel`, send a tactical HUD card to `userIds: ["player_duelist"]` and a *completely different* card to `userIds: ["player_controller"]` in sub-100ms.
 - **`Open Channel KV Metadata` (`/chatsdk-web/open-channel/open-channel-kv.md`):** Up to 50 mutable room-level keys (`roundPhase`, `spikePlanted`, `clutchState: "1v3"`, `activePredictionId`) synced to every spectator overlay instantly.
-- **`Message Expansion` (`/chatsdk-android/message/expansion.md`):** Up to 300 mutable KV keys per message—enabling **Danmaku bullet-chat combo stacking (`🔥 CLUTCH ×64`)**, **live 45-second clutch prediction pools**, and **5-player tactical ACK cards**.
+- **`Message Expansion` (`/chatsdk-android/message/expansion.md`):** Up to 300 mutable KV keys per message - enabling **Danmaku bullet-chat combo stacking (`🔥 CLUTCH ×64`)**, **live 45-second clutch prediction pools**, and **5-player tactical ACK cards**.
 - **`Voice-to-Text` + `Built-in AI Translation` + `Auto-Moderation` + `Streaming Messages` + `Call SDK`**.
 
 ---
 
-## Round 1 — Divergent Generation (24 Candidate Proposals Across All 22 Council Seats)
+## Round 1 - Divergent Generation (24 Candidate Proposals Across All 22 Council Seats)
 
 **HASSABIS:** When we built AlphaStar for StarCraft II and studied multi-agent coordination (`arXiv:2603.03060`), the breakthrough insight was **asymmetric information routing**: a commander should never yell the entire battlefield state to every unit `[S3]`.
-- **Candidate #01 (`GhostCoach SquadOS`):** A telemetry-grounded AI In-Game Leader (IGL) for 5-player squads (`Group Channels` + `Open Channel KV`) that ingests live match state (Valorant / Dota 2 / BGMI JSON telemetry) and dispatches **silent, role-targeted micro-directives via Nexconn `Targeted Group Whispers` (`userIds`)** so the Entry Duelist, Smoke Controller, and Flank Anchor each receive only their exact 4-second instruction on their HUD—paired with a 1-keystroke `Message Expansion` quick-chat radial wheel (`[F1] ACK` · `[F2] Need Flash` · `[F3] Rotating`).
+- **Candidate #01 (`GhostCoach SquadOS`):** A telemetry-grounded AI In-Game Leader (IGL) for 5-player squads (`Group Channels` + `Open Channel KV`) that ingests live match state (Valorant / Dota 2 / BGMI JSON telemetry) and dispatches **silent, role-targeted micro-directives via Nexconn `Targeted Group Whispers` (`userIds`)** so the Entry Duelist, Smoke Controller, and Flank Anchor each receive only their exact 4-second instruction on their HUD - paired with a 1-keystroke `Message Expansion` quick-chat radial wheel (`[F1] ACK` · `[F2] Need Flash` · `[F3] Rotating`).
 
-**LIN / SHEAR:** Let's tackle the `Spectator chat overlay` prompt directly. Bilibili's bullet-chat (`Danmaku`) is 10x more engaging than Twitch's vertical box, and Twitch Predictions are the #1 retention hook on Twitch—but both break during high-velocity clutches `[S5, S6]`.
+**LIN / SHEAR:** Let's tackle the `Spectator chat overlay` prompt directly. Bilibili's bullet-chat (`Danmaku`) is 10x more engaging than Twitch's vertical box, and Twitch Predictions are the #1 retention hook on Twitch - but both break during high-velocity clutches `[S5, S6]`.
 - **Candidate #02 (`DanmakuPulse Arena`):** A 60fps OBS/Web spectator overlay built on `Open Channels` featuring **Min-Heap collision-free bullet-chat physics**, **`Message Expansion` semantic combo stacking** (when 50 viewers type `"GG"` or `"VAC"`, it merges into a single glowing `⚡ VAC SHOT ×50` projectile via mutable KV counters instead of clogging the screen), and an **Autonomous 45-Second Clutch Prediction Engine** (`Open Channel KV` detects `1v3 Clutch` or `Baron Fight` → auto-spawns a `Message Expansion` live odds card → auto-settles points 45 seconds later).
 
 **KARP:** Look at the **86% toxicity statistic** `[S1]`. Players mute their teammates because a tilted player screams `"Why didn't you smoke Heaven you idiot, Jett is 20 HP rafters!"` Notice that buried inside that toxic rant is mission-critical tactical intel (`Jett 20 HP rafters`, `Smoke Heaven needed`). If you just block the message, the team loses the round!
@@ -55,7 +55,7 @@
 - **Candidate #08 (`NeuralQuick Radial HUD`):** A zero-typing `In-match quick chat` overlay where a single hotkey (`Alt+Wheel` or 2-word voice burst via `Voice-to-Text`) dispatches a live **Squad Ult & Economy Combo Card (`Message Expansion`)** that calculates the exact win-probability of fighting vs. saving.
 
 **JOBS:** Have you ever looked at a gamer's screen with Discord overlay, Overwolf, Streamlabs, and Twitch chat open? It's visual garbage covering 40% of the art.
-- **Candidate #09 (`ZeroBezel Glass HUD`):** An adaptive translucent HUD where `Open Channel KV` tracks `combatIntensity`—automatically collapsing chat into peripheral 1-word telemetry pills during active firefights and expanding rich `Message Expansion` cards during buy-phase / respawn!
+- **Candidate #09 (`ZeroBezel Glass HUD`):** An adaptive translucent HUD where `Open Channel KV` tracks `combatIntensity` - automatically collapsing chat into peripheral 1-word telemetry pills during active firefights and expanding rich `Message Expansion` cards during buy-phase / respawn!
 
 **JONY IVE:** And when 200 spectators react to a 1v4 clutch, instead of jittery text boxes, the border of the stream frame should pulse with a directional chroma wave driven by `Message Expansion` reaction tallies.
 - **Candidate #10 (`ChromaEdge Spectator Frame`):** Ambient perimeter WebGL/CSS shader tied to Nexconn `Open Channel` reaction velocity.
@@ -104,35 +104,35 @@
 
 ---
 
-## Round 2 — The Kill Floor: Adversarial Critique, Clashes & Vetoes
+## Round 2 - The Kill Floor: Adversarial Critique, Clashes & Vetoes
 
-**MUNGER:** Let's apply the Inversion Knife first. How do 90% of gaming hackathon projects fail during judging? The judge is sitting on a laptop with a browser. They do NOT have Valorant, League of Legends, or OBS installed on their judging machine. Therefore, **Tim Cook's Candidate #19 (`LiveEsports Telemetry Simulator & Replay Deck`)** and **Mike Ross's Candidate #13 (`TriForce Arena Suite`)** are NOT standalone ideas—they are **mandatory infrastructure** that must be baked into every single one of our Top 5 ideas!
+**MUNGER:** Let's apply the Inversion Knife first. How do 90% of gaming hackathon projects fail during judging? The judge is sitting on a laptop with a browser. They do NOT have Valorant, League of Legends, or OBS installed on their judging machine. Therefore, **Tim Cook's Candidate #19 (`LiveEsports Telemetry Simulator & Replay Deck`)** and **Mike Ross's Candidate #13 (`TriForce Arena Suite`)** are NOT standalone ideas - they are **mandatory infrastructure** that must be baked into every single one of our Top 5 ideas!
 
 **JOBS:** Second veto: look at **Candidate #09 (`ZeroBezel Glass HUD`)** and **Candidate #24 (`PostRound 10-Second Autopsy`)**. Those aren't separate products; they are essential UX behaviors of **Candidate #01 (`GhostCoach SquadOS`)**. During combat (`combatIntensity: HIGH` in `Open Channel KV`), the HUD must stay ultra-minimal and only show the 4-word **`Targeted Group Whisper`** for your specific role; the instant the round ends (`combatIntensity: BUY_PHASE`), it streams the **`PostRound 10-Second Autopsy`** via `Streaming Messages`!
 **HASSABIS:** Completely agree, Steve. And when we merge **#01 (`GhostCoach SquadOS`) + #08 (`NeuralQuick Radial HUD`) + #09 (`ZeroBezel Glass HUD`) + #12 (`TacticalTimeout WhisperBox`) + #24 (`PostRound Autopsy`)**, look at what we have:
 - It covers BOTH **`Squad chat room`** and **`In-match quick chat`** in one seamless system.
-- It implements the exact March 2026 multi-agent gaming paper (`arXiv:2603.03060`) `[S3]` using **Nexconn `Targeted Group Whispers` (`userIds`)** so the Entry Duelist sees *"⚡ FLASH A-MAIN NOW — Jett dashing in 2s"*, the Controller sees *"💨 SMOKE HEAVEN — Spike carrier crossing"*, and the Anchor sees *"🛡️ HOLD B-LINK FLANK — 1 enemy lurker"*.
+- It implements the exact March 2026 multi-agent gaming paper (`arXiv:2603.03060`) `[S3]` using **Nexconn `Targeted Group Whispers` (`userIds`)** so the Entry Duelist sees *"⚡ FLASH A-MAIN NOW - Jett dashing in 2s"*, the Controller sees *"💨 SMOKE HEAVEN - Spike carrier crossing"*, and the Anchor sees *"🛡️ HOLD B-LINK FLANK - 1 enemy lurker"*.
 - And any player can press `[1]`, `[2]`, or `[3]` on the **In-Match Quick-Chat Wheel** to mutate the shared **`Message Expansion` Squad Ready/Ult Card** in sub-100ms!
 **KAI / YANG PAN:** That is a 10/10 protocol showcase for `Group Channels`, `Targeted Group Whispers`, `Open Channel KV`, `Message Expansion`, and `Streaming Messages`. Lock **`GhostCoach SquadOS`** as #1!
 
 **LIN / SHEAR:** Now let's battle-test the **`Spectator chat overlay`** candidates: **#02 (`DanmakuPulse Arena`)**, **#04 (`CrowdDirector Live`)**, **#06 (`DeadChat Wingman`)**, **#07 (`CrowdRadar`)**, **#10 (`ChromaEdge`)**, and **#16 (`HypeSpike Auto-Clipper`)**.
 **KARPATHY:** Why split **#02 (`DanmakuPulse Arena`)** and **#16 (`HypeSpike`)**? In **`DanmakuPulse Arena`**, we solve the two biggest algorithmic problems in live-stream spectator overlays `[S5, S6]`:
 1. **Min-Heap Collision-Free Bullet-Chat + `Message Expansion` Semantic Combo Stacking:** Instead of 80 viewers flooding the screen with overlapping `"INSANE CLUTCH"` text, our client hashes semantically identical messages within a 3-second window and increments `comboCount` in **Nexconn `Message Expansion`**, turning 80 spam messages into a single, dazzling **`🔥 INSANE CLUTCH ×80`** kinetic projectile gliding across the top-25% safe zone at 60fps!
-2. **45-Second Autonomous Clutch Prediction Engine:** The moment `Open Channel KV` telemetry flips to `clutchState: "1v3_SPIKE_PLANTED"`, a translucent **Clutch Prediction Card (`Custom Messages` + `Message Expansion`)** slides into the overlay corner (*"Will TenZ win this 1v3? [YES 64% | NO 36%] — 30s left"*). Viewers click right on the video overlay to lock their prediction, watching the `Message Expansion` odds bar shift live and auto-settle when the round ends!
+2. **45-Second Autonomous Clutch Prediction Engine:** The moment `Open Channel KV` telemetry flips to `clutchState: "1v3_SPIKE_PLANTED"`, a translucent **Clutch Prediction Card (`Custom Messages` + `Message Expansion`)** slides into the overlay corner (*"Will TenZ win this 1v3? [YES 64% | NO 36%] - 30s left"*). Viewers click right on the video overlay to lock their prediction, watching the `Message Expansion` odds bar shift live and auto-settle when the round ends!
 **BUFFETT:** And for the 20% Business & Growth score, streamers can enable sponsored prediction pools or ₹10/100-point channel passes right inside that `Message Expansion` card. That's a clear #2 (**`DanmakuPulse Arena`**).
 
 **KARP:** Now look at **Candidate #03 (`ShieldMic RaidRoom`)** + **Candidate #22 (`SonicRadar Spatial Caption HUD`)**. Remember the **86% toxicity rate** and **58% Mute-All epidemic** from the ADL report `[S1]`. Every gaming company on earth talks about toxicity, yet all they do is ban people 3 days later.
 **HARVEY:** If we show a live demo where Player A screams a toxic, tilted rant into voice/text (*"You're trash Omen, why didn't you blind A-main, Raze is 10 HP in corners!!"*), and **within 300ms**:
 1. **Nexconn `Auto-Moderation` (`profanity-filter-callback`) + `Voice-to-Text`** intercepts the toxic payload before it tilts the squad.
 2. **Gemini 2.5 Flash** strips 100% of the abuse and publishes a crisp **Tactical Intel & Request Card (`Custom Messages` + `Message Expansion`)** to the squad HUD: *"🎯 Intel: Enemy Raze 10 HP @ A-Corner | ⚡ Request: Omen Paranoia A-Main [Press F1 to ACK]"*.
-3. Simultaneously, the tilted player receives a private **Nexconn `Targeted Group Whisper`** (`userIds: [tiltedPlayerId]`) with a calm reset prompt (*"🛡️ ShieldMic converted your callout into a Tactical Card so Omen reacts faster. Take a breath—winnable round!"*).
-4. Plus, for deaf/hard-of-hearing or muted-mic players (**Seat 21 — Girma/Asakawa**), every voice callout renders as a directional, role-tagged visual quick-card!
-**SHARMA:** That solves online safety, accessibility, AND competitive win-rate in one stroke. Nobody can veto **`ShieldMic RaidRoom`**—it's #3.
+3. Simultaneously, the tilted player receives a private **Nexconn `Targeted Group Whisper`** (`userIds: [tiltedPlayerId]`) with a calm reset prompt (*"🛡️ ShieldMic converted your callout into a Tactical Card so Omen reacts faster. Take a breath - winnable round!"*).
+4. Plus, for deaf/hard-of-hearing or muted-mic players (**Seat 21 - Girma/Asakawa**), every voice callout renders as a directional, role-tagged visual quick-card!
+**SHARMA:** That solves online safety, accessibility, AND competitive win-rate in one stroke. Nobody can veto **`ShieldMic RaidRoom`** - it's #3.
 
 **GARY VEE:** What about **Candidate #04 (`CrowdDirector Live`)** + **Candidate #06 (`DeadChat Wingman`)**? Look at the **94% of streamers who have <15 viewers** `[S5]` and want their stream to feel like an interactive game show.
 **KARPATHY:** When we fuse **#04 (`CrowdDirector Live`) + #06 (`DeadChat Wingman`)** using **`arXiv:2609.27606` (*Look Before You Speak: Proactive Gaming VLMs*)** `[S9]`:
 - Viewers in the `Open Channel` overlay vote on live **Chaos Modifiers & Streamer Dares** via `Message Expansion` cards.
-- A **Proactive VLM AI Co-Caster** (`arXiv:2609.27606` + Nexconn `Streaming Messages`) watches the live telemetry/frames, calls the play-by-play when action spikes, and keeps small streams electric during quiet moments—while sending the streamer a 4-word **`Targeted Group Whisper`** summary of viewer questions so the streamer never misses a fan while locked in combat!
+- A **Proactive VLM AI Co-Caster** (`arXiv:2609.27606` + Nexconn `Streaming Messages`) watches the live telemetry/frames, calls the play-by-play when action spikes, and keeps small streams electric during quiet moments - while sending the streamer a 4-word **`Targeted Group Whisper`** summary of viewer questions so the streamer never misses a fan while locked in combat!
 That's a rock-solid #4 (**`CrowdDirector Live`**).
 
 **JAISHANKAR:** And for #5, we must own the cross-language squad & quick-chat gap in India, SEA, and EU (**Candidate #05 `GuildSync Polyglot LFG` + #14 `FiveStack Beacon` + #18 `CustomRoom Pass`**) `[S2, S8]`. On Mumbai and Singapore servers, combining **Nexconn `Community Channels`** (LFG matchmaking lobbies), **`Group Channels`** (5-stack raid room), **`Built-in AI Translation`** (instant cross-language tactical quick-chat wheel across Hindi, Tamil, Bahasa, Tagalog, and English), and **`Targeted Group Whispers`** (stream-sniper-proof custom lobby code delivery) completes the entire Track 02 portfolio!
@@ -143,7 +143,7 @@ That's a rock-solid #4 (**`CrowdDirector Live`**).
 
 ---
 
-## Round 3 — Synthesis & Convergence (Top 8 Narrowed to Top 5 Survivors)
+## Round 3 - Synthesis & Convergence (Top 8 Narrowed to Top 5 Survivors)
 
 | Rank | Idea Name | Sub-Scenario Covered | Core Nexconn SDK Primitives Used | Gap Bucket | Status |
 |---|---|---|---|---|---|
@@ -158,7 +158,7 @@ That's a rock-solid #4 (**`CrowdDirector Live`**).
 
 ---
 
-## Round 4 — Stress Test, Red-Team & 36-Hour Build Polish (Top 5)
+## Round 4 - Stress Test, Red-Team & 36-Hour Build Polish (Top 5)
 
 **MAJORS / HIGHTOWER (Seat 20):** Let's stress-test **Idea 1 (`GhostCoach SquadOS`)** and **Idea 2 (`DanmakuPulse Arena`)** under high message throughput. What happens if 100 simulated spectators fire bullet-chat messages in 3 seconds during a 1v3 clutch?
 **KAI / YANG PAN:** Two architectural safeguards:
@@ -169,16 +169,16 @@ That's a rock-solid #4 (**`CrowdDirector Live`**).
 **MIKE ROSS:** We ship the **Interactive 5-Role HUD Switcher & Match Telemetry Deck** right at the top of the web app:
 - An embedded HD Valorant / CS2 / BGMI clutch video plays in the center.
 - Below or beside it, the judge can toggle between **`🎯 Role 1: Entry Duelist (Jett)`**, **`💨 Role 2: Controller (Omen)`**, **`🛡️ Role 3: Sentinel Anchor (Cypher)`**, or **`👁️ Split-Screen All-5 Squad Matrix`**.
-- Clicking **"Trigger Event: Spike Planted 3v3 Retake"** writes the JSON telemetry to **Nexconn `Open Channel KV`** and fires 3 distinct **Nexconn `Targeted Group Whispers` (`userIds`)** simultaneously—so the judge watches Jett, Omen, and Cypher each receive their tailored 4-word tactical assignment on their own HUD while pressing `[F1]` to flip the shared **`Message Expansion` Squad ACK Bar** to green!
+- Clicking **"Trigger Event: Spike Planted 3v3 Retake"** writes the JSON telemetry to **Nexconn `Open Channel KV`** and fires 3 distinct **Nexconn `Targeted Group Whispers` (`userIds`)** simultaneously - so the judge watches Jett, Omen, and Cypher each receive their tailored 4-word tactical assignment on their own HUD while pressing `[F1]` to flip the shared **`Message Expansion` Squad ACK Bar** to green!
 
 ---
 
-## Round 5 — Final 9-Criterion Scoring & Domain Winnability Assessment
+## Round 5 - Final 9-Criterion Scoring & Domain Winnability Assessment
 
 **JANE:** Locking the final 9-criterion scores for Track 02 (`nexconn-gaming`):  
 `Total = 0.15*(pain + novelty + alignment + demo) + 0.10*(feasibility + India + business) + 0.05*(legal + moonshot)`
 
-### Final Ranked Top 5 Scorecard — Track 02 (`nexconn-gaming`)
+### Final Ranked Top 5 Scorecard - Track 02 (`nexconn-gaming`)
 
 | Rank | Idea | Type | Pain (15%) | Novelty (15%) | Alignment (15%) | Demo (15%) | Feas. (10%) | India/Global (10%) | Business (10%) | Legal (5%) | Moonshot (5%) | **Weighted Total** |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
