@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+@import 'uniwind';
+@import 'heroui-native/styles';
+@source './node_modules/heroui-native/lib';
+
+@layer theme {
+  :root {
+    @variant dark {
+      --background: #0d0d0d;
+      --foreground: #ffffff;
+      --muted: #8a8a8a;
+      --surface: #121212;
+      --surface-secondary: #1a1a1a;
+      --surface-tertiary: #232323;
+      --overlay: #1a1a1a;
+      --default: #232323;
+      --accent: #6a35ff;
+      --accent-foreground: #ffffff;
+      --field-background: #1a1a1a;
+      --field-foreground: #ffffff;
+      --field-placeholder: #8a8a8a;
+      --field-border: #3d3d3d;
+      --segment: #ffffff;
+      --success: #3ddc84;
+      --warning: #ff8744;
+      --danger: #ff4d4d;
+      --border: rgba(255, 255, 255, 0.08);
+      --link: #e5fe40;
+    }
+    @variant light {
+      --background: #0d0d0d;
+      --foreground: #ffffff;
+      --muted: #8a8a8a;
+      --surface: #121212;
+      --surface-secondary: #1a1a1a;
+      --surface-tertiary: #232323;
+      --overlay: #1a1a1a;
+      --default: #232323;
+      --accent: #6a35ff;
+      --accent-foreground: #ffffff;
+      --field-background: #1a1a1a;
+      --field-foreground: #ffffff;
+      --field-placeholder: #8a8a8a;
+      --field-border: #3d3d3d;
+      --segment: #ffffff;
+      --success: #3ddc84;
+      --warning: #ff8744;
+      --danger: #ff4d4d;
+      --border: rgba(255, 255, 255, 0.08);
+      --link: #e5fe40;
+    }
+  }
+}
