@@ -34,7 +34,11 @@ pub fn phash_rgba(rgba: &[u8], width: u32, height: u32) -> Result<u64, String> {
         .and_then(|p| p.checked_mul(4))
         .ok_or_else(|| "image dimensions overflow".to_string())?;
     if rgba.len() < needed {
-        return Err(format!("rgba buffer too small: {} < {}", rgba.len(), needed));
+        return Err(format!(
+            "rgba buffer too small: {} < {}",
+            rgba.len(),
+            needed
+        ));
     }
 
     // Steps 2+3: luma + box resize to 32x32.
@@ -50,7 +54,9 @@ pub fn phash_rgba(rgba: &[u8], width: u32, height: u32) -> Result<u64, String> {
             for y in y0..y1 {
                 for x in x0..x1 {
                     let i = (y * w + x) * 4;
-                    sum += 0.299 * rgba[i] as f64 + 0.587 * rgba[i + 1] as f64 + 0.114 * rgba[i + 2] as f64;
+                    sum += 0.299 * rgba[i] as f64
+                        + 0.587 * rgba[i + 1] as f64
+                        + 0.114 * rgba[i + 2] as f64;
                     count += 1.0;
                 }
             }
@@ -116,7 +122,10 @@ pub fn to_hex(hash: u64) -> String {
 /// Parses a 16-hex-char pHash (optional `0x` prefix, case-insensitive).
 pub fn parse_hex(s: &str) -> Result<u64, String> {
     let t = s.trim();
-    let t = t.strip_prefix("0x").or_else(|| t.strip_prefix("0X")).unwrap_or(t);
+    let t = t
+        .strip_prefix("0x")
+        .or_else(|| t.strip_prefix("0X"))
+        .unwrap_or(t);
     if t.len() != 16 || !t.chars().all(|c| c.is_ascii_hexdigit()) {
         return Err(format!("invalid pHash hex (need 16 hex chars): {s:?}"));
     }
@@ -161,7 +170,11 @@ mod tests {
     fn brightened_image_small_distance() {
         let a = phash_rgba(&test_image(64, 48, 0), 64, 48).unwrap();
         let b = phash_rgba(&test_image(64, 48, 8), 64, 48).unwrap();
-        assert!((a ^ b).count_ones() <= 8, "distance {}", (a ^ b).count_ones());
+        assert!(
+            (a ^ b).count_ones() <= 8,
+            "distance {}",
+            (a ^ b).count_ones()
+        );
     }
 
     #[test]
@@ -171,7 +184,11 @@ mod tests {
         let mut other = Vec::new();
         for y in 0..48u32 {
             for x in 0..64u32 {
-                let v = if (x / 8 + y / 8) % 2 == 0 { 230u8 } else { 20u8 };
+                let v = if (x / 8 + y / 8) % 2 == 0 {
+                    230u8
+                } else {
+                    20u8
+                };
                 other.extend_from_slice(&[v, v, v, 255]);
             }
         }
@@ -183,8 +200,14 @@ mod tests {
     /// of the README algorithm (Go/TS fallbacks must produce the same).
     #[test]
     fn cross_language_vectors() {
-        assert_eq!(to_hex(phash_rgba(&test_image(64, 48, 0), 64, 48).unwrap()), "80031f3f3e787971");
-        assert_eq!(to_hex(phash_rgba(&test_image(20, 10, 0), 20, 10).unwrap()), "8055005580550055");
+        assert_eq!(
+            to_hex(phash_rgba(&test_image(64, 48, 0), 64, 48).unwrap()),
+            "80031f3f3e787971"
+        );
+        assert_eq!(
+            to_hex(phash_rgba(&test_image(20, 10, 0), 20, 10).unwrap()),
+            "8055005580550055"
+        );
     }
 
     #[test]
@@ -202,7 +225,10 @@ mod tests {
     #[test]
     fn hamming_parsing() {
         assert_eq!(hamming("ffffffffffffffff", "0000000000000000").unwrap(), 64);
-        assert_eq!(hamming("0x000000000000000F", "0000000000000000").unwrap(), 4);
+        assert_eq!(
+            hamming("0x000000000000000F", "0000000000000000").unwrap(),
+            4
+        );
         assert!(hamming("abc", "0000000000000000").is_err());
         assert!(hamming("zzzzzzzzzzzzzzzz", "0000000000000000").is_err());
     }
