@@ -1,10 +1,25 @@
-# Mobile Companion App Specification (`apps/mobile-expo`) - MUDRA-OS (`SamvadDeal`)
-> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Mobile & Field UX Lead - Dev 3) · Status: Draft v0.1 · Last updated: 2026-11-10
-> Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Design System](../02-design/DESIGN_SYSTEM.md) · [Frontend](./FRONTEND.md) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md)
+# Mobile App Specification (`apps/mobile` & Legacy `apps/mobile-expo`) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Mobile & Field UX Lead - Dev 3) · Status: Production v1.0 · Last updated: 2026-11-22
+> Related: [Android App Implementation Plan](../mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md) · [Project Brief](../00-overview/PROJECT_BRIEF.md) · [CRED Revamp Build Spec](../02-design/CRED_REVAMP_BUILD_SPEC.md) · [Frontend](./FRONTEND.md)
 
 ---
 
-## 1. Purpose of the Mobile Companion App (`F-14`)
+## 0. Production Android App (`apps/mobile` — Supersedes `apps/mobile-expo`)
+
+> **Canonical Specification**: See **[`docs/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md`](../mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md)** and **[`apps/mobile/README.md`](../../apps/mobile/README.md)** for the full architecture, schema, RPC contract, and release APK build guide.
+
+The standalone production Android application (`com.chanakya.mudra`, URL scheme `mudra://`) lives in **`apps/mobile`** (outside `pnpm-workspace.yaml` to avoid dependency hoisting conflicts with `apps/web`) and ships as signed release APKs (`apps/mobile/dist/mudra-v1.0.0.apk` universal and `apps/mobile/dist/mudra-v1.0.0-arm64.apk`):
+
+- **Runtime & UI Stack**: Expo SDK 58 + React Native 0.88 (New Architecture), `expo-router`, Reanimated 4, Gesture Handler, `heroui-native` + `uniwind`, and custom **CRED NeoPOP Dark** primitives (`NeoButton`, `VelvetCard`, `SlideToLock`, `CountdownRing`, `BilingualBubble`, `OfferCard`, `PinPad`, `AvatarRing`, `Receipt`, `Stamp`).
+- **Typography**: `Outfit` (UI body/weights), `Fraunces` (lowercase display headings), and `JetBrains Mono` (short codes & SHA-256 voucher hashes), with automatic script fallback for Devanagari/Tamil (`hi`, `ta`, `mr`).
+- **Hosted Supabase Backend (`mudra` schema)**:
+  - Private schema `mudra` (`profiles`, `sessions`, `wallets`, `wallet_tx`, `listings`, `saves`, `deals`, `messages`, `vouchers` with append-only trigger, `reviews`, `reports`, `idempotency`, `secrets`) completely hidden from direct anon REST access.
+  - **28+ `public.m_*` `SECURITY DEFINER` RPCs**: passwordless/OTP-free 4-digit PIN auth (`m_signup`, `m_login`, `m_logout`, `m_me`, `m_change_pin`, `m_delete_account`), campus feed & listings (`m_feed`, `m_listing`, `m_create_listing`, `m_update_listing`, `m_set_listing_status`, `m_my_listings`, `m_toggle_save`, `m_saved`, `m_seller_profile`), deterministic Escrow Deal FSM (`m_start_deal`, `m_deal_action`, `m_deals`, `m_deal`), bilingual chat & lazy Gemini translation (`m_messages`, `m_send_message`, `m_translate_message`), 90-second freeze resolution desk (`m_resolve_if_due`), interactive demo bots (`m_demo_tick`, `m_reset_demo`), and demo credits wallet (`m_wallet`, `m_topup_demo`).
+  - **Realtime & Storage**: `public.m_events` Realtime table with automatic React Query invalidation + polling fallback, and `mudra-photos` public storage bucket (`listings/`, `evidence/`, `avatars/`, `seed/`).
+
+---
+
+## 1. Legacy Companion Prototype (`apps/mobile-expo` — `F-14`)
 
 While buyers, arbitrators, and hackathon judges frequently use desktop web (`apps/web`), machinery dealers (`P-02` Vikram in Ludhiana) and agri-mandi sellers walk around physical warehouses holding a smartphone to aim their back camera at a serial number plate or grain sack during a live `@nexconn/call` video assay.
 

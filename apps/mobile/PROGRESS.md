@@ -4,13 +4,13 @@
 
 - [x] **P0**: Scaffold, deps, Uniwind/HeroUI/fonts, icons, release signing, `m_ping` screen, release APK on `Pixel_10` emulator
 - [x] **P1**: Backend migrations `001`–`003`, `migrate.mjs`, `seed.mjs`, `smoke.mjs` (15/15 checks passed)
-- [ ] **P2**: Design system primitives + TopBar/BottomBar shell + `/dev/ui` gallery
-- [ ] **P3**: Auth (welcome, signup 5 steps, login, session persistence, guest mode, demo login)
-- [ ] **P4**: Home buy/sell + mode switch + explore + listing detail + saved + seller profile
-- [ ] **P5**: Create/edit listing + photo upload + my listings + checkpoint APK 1
-- [ ] **P6**: Deals list + deal room chat + realtime + quick replies + translation + offers/counter + demo tick
-- [ ] **P7**: Escrow sheet, live check, receipt/release/stamp, freeze/verdict, review, wallet
-- [ ] **P8**: Profile/settings, language, currency, change PIN, delete account, guide, safety, i18n + checkpoint APK 2
+- [x] **P2**: Design system primitives + TopBar/BottomBar shell + `/dev/ui` gallery
+- [x] **P3**: Auth (welcome, signup 5 steps, login, session persistence, guest mode, demo login)
+- [x] **P4**: Home buy/sell + mode switch + explore + listing detail + saved + seller profile
+- [x] **P5**: Create/edit listing + photo upload + my listings + checkpoint APK 1
+- [x] **P6**: Deals list + deal room chat + realtime + quick replies + translation + offers/counter + demo tick
+- [x] **P7**: Escrow sheet, live check, receipt/release/stamp, freeze/verdict, review, wallet
+- [x] **P8**: Profile/settings, language, currency, change PIN, delete account, guide, safety, i18n + checkpoint APK 2
 - [ ] **P9**: Polish pass, icons/splash, empty/error states, performance, a11y
 - [ ] **P10**: Final universal + arm64 release builds, `MORNING_REPORT.md`, docs update, final commit
 
@@ -27,6 +27,8 @@
 - **P1 — Non-transactional PIN lockout slots**: Because PostgreSQL rolls back table `UPDATE`s when `RAISE EXCEPTION 'MUDRA:BAD_PIN:...'` is raised inside an RPC, `001_mudra_schema.sql` pre-creates a pool of 256 sequences (`mudra.pin_slot_0..255`) used via `setval()` in `m_login` so failed PIN attempt counts and 5-minute lockouts persist across rolled-back `RAISE EXCEPTION` calls.
 - **P1 — Visually verified Unsplash seed photos**: Downloaded all 60 Unsplash photos to `apps/mobile/assets/seed/<id>.jpg`, visually inspected every photo, dropped `1558618666-fcd25c85cd64` (commercial coffee roaster), uploaded all 60 to Supabase Storage bucket `mudra-photos` (`seed/<id>.jpg`), and matched the 59 product photos to 44 realistic campus listings across all 10 categories, kinds (`sell`, `swap`, `free`), and currencies (`INR`, `USD`, `SGD`, `GBP`).
 - **P1 — Gemini translation model fallback**: `m_translate_message` uses `mudra.secrets` (`gemini_model`) and automatically falls back to `gemini-2.5-flash` if the configured model returns non-200.
+- **P2 — NeoPOP Design System Primitives**: Built all 28 NeoPOP components in `src/ui/` (`Text`, `NeoButton`, `VelvetCard`, `ListGroup`, `ListRow`, `IconTile`, `StatusPill`, `Eyebrow`, `SegmentedControl`, `SlideToLock`, `CountdownRing`, `BilingualBubble`, `OfferCard`, `SystemLine`, `AvatarRing`, `PinPad`, `ProgressSegments`, `Sheet`, `EmptyState`, `Price`, `ListingCard`, `LogoMark`, `Toast`, `Skeleton`, `TopBar`, `BottomBar`, `HudBrackets`, `Stamp`, `Receipt`) using StyleSheet + Reanimated + TS tokens (`src/theme/tokens.ts` & `src/theme/motion.ts`) and `/dev/ui` showcase gallery.
+- **P3–P8 — Data, i18n (5 Locales), and Full Route Tree**: Implemented `src/lib/**`, `src/state/**` (`useSessionStore` persisted across `expo-secure-store` & `AsyncStorage`), `src/i18n/{en,hi,ta,mr,es}.json` + `quick.ts`, `src/features/**` (React Query hooks + 4s deal polling + 3s `m_demo_tick` + `useRealtimeEvents` on `public.m_events`), and all 31 routes across auth, tabs (`home`, `explore`, `deals`), listings (`[id]`, `new`, `saved`, `my-listings`, `seller/[id]`), deal room (`[id]`, `escrow`, `inspect`, `receipt`, `freeze`, `review`), `wallet`, `profile`, `settings/{language,currency,pin}`, `guide`, and `safety`.
 
 ---
 
