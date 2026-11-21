@@ -6,15 +6,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 var validRoles = map[string]bool{"buyer": true, "seller": true, "arbitrator": true, "guest": true}
 
-// issueSession issues a Nexconn token (bridge or sim_) and a samadhan JWT for u.
+// issueSession issues a Nexconn token (bridge or sim_) and a mudra JWT for u.
 func (s *Server) issueSession(ctx context.Context, u *store.User, platform string) (clients.TokenResult, string, error) {
 	tok := s.Bridge.IssueToken(ctx, u.NexconnUserID, u.DisplayName, "")
 	s.Store.Telemetry().RecordToken(u.NexconnUserID, tok.Mode)
@@ -71,7 +71,7 @@ func (s *Server) handleAuthSession(w http.ResponseWriter, r *http.Request) {
 	mw.WriteJSON(w, http.StatusOK, map[string]any{
 		"user":         map[string]any{"id": u.ID, "nexconn_user_id": u.NexconnUserID, "display_name": u.DisplayName, "role": u.Role, "preferred_locale": u.Locale},
 		"nexconn":      map[string]any{"app_key": tok.AppKey, "access_token": tok.AccessToken, "expires_in_sec": tok.ExpiresInSec, "mode": tok.Mode},
-		"samadhan_jwt": jwt,
+		"mudra_jwt": jwt,
 		"engine":       tok.Engine,
 	})
 }
@@ -79,11 +79,11 @@ func (s *Server) handleAuthSession(w http.ResponseWriter, r *http.Request) {
 func sessionJSON(u *store.User, tok clients.TokenResult, jwt string) map[string]any {
 	return map[string]any{
 		"user_id": u.ID, "nexconn_user_id": u.NexconnUserID, "display_name": u.DisplayName, "role": u.Role,
-		"access_token": tok.AccessToken, "app_key": tok.AppKey, "locale": u.Locale, "samadhan_jwt": jwt, "token_mode": tok.Mode,
+		"access_token": tok.AccessToken, "app_key": tok.AppKey, "locale": u.Locale, "mudra_jwt": jwt, "token_mode": tok.Mode,
 	}
 }
 
-// API-02 POST /api/v1/sandbox/provision — fresh CREATED Juki deal with new buyer+seller.
+// API-02 POST /api/v1/sandbox/provision - fresh CREATED Juki deal with new buyer+seller.
 func (s *Server) handleSandboxProvision(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		BuyerLocale  string `json:"buyer_locale"`
@@ -116,7 +116,7 @@ func (s *Server) handleSandboxProvision(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	dealID := "d_" + tag + "_sandbox"
-	channelID := "grp_samadhan_juki_" + tag
+	channelID := "grp_mudra_juki_" + tag
 	ch := s.Bridge.CreateGroupChannel(ctx, channelID, store.SeedDealTitle, seller.NexconnUserID, []string{buyer.NexconnUserID, seller.NexconnUserID})
 	d := &store.Deal{
 		ID: dealID, ChannelID: channelID, Title: store.SeedDealTitle, BuyerID: buyer.ID, SellerID: seller.ID,

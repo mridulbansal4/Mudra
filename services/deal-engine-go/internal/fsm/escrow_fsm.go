@@ -1,4 +1,4 @@
-// Package fsm implements the canonical SAMADHAN-OS escrow finite-state machine
+// Package fsm implements the canonical MUDRA-OS escrow finite-state machine
 // (IMPLEMENTATION_CONTRACT.md §3) plus an optimistic-concurrency Machine.
 package fsm
 
@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/hrtime"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/hrtime"
 )
 
 // State is an escrow FSM state.

@@ -53,8 +53,8 @@ export interface RustScrubOptions {
 }
 
 /**
- * Calls Rust `POST /internal/scrub-pii` (HMAC-signed, 300 ms budget). Any failure —
- * network, timeout, non-2xx, malformed body — falls back to the local scrubber.
+ * Calls Rust `POST /internal/scrub-pii` (HMAC-signed, 300 ms budget). Any failure - 
+ * network, timeout, non-2xx, malformed body - falls back to the local scrubber.
  */
 export async function scrubPii(text: string, opts: RustScrubOptions): Promise<ScrubResult> {
   if (!text) return { scrubbed_text: "", redacted_count: 0, categories: [], engine: "node-fallback", scrub_time_us: 0 };

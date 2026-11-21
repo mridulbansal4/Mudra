@@ -5,7 +5,7 @@ edition = "2021"
 rust-version = "1.85"
 resolver = "3"
 publish = false
-description = "SAMADHAN-OS in-browser assay helpers: Laplacian blur metric, 64-bit DCT pHash from RGBA, Hamming distance"
+description = "MUDRA-OS in-browser assay helpers: Laplacian blur metric, 64-bit DCT pHash from RGBA, Hamming distance"
 
 # Standalone crate (not a member of any parent workspace).
 [workspace]

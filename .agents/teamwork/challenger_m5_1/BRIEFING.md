@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T20:16:00Z
+# BRIEFING - 2026-10-31T20:16:00Z
 
 ## Mission
 Execute Tier 5 white-box adversarial verification of `biblehackathon.md`, `biblehackathon.pdf`, `ideas.md`, `ideas.pdf`, `state.md`, `research/*`, and `tests/run_e2e_tests.py` without modifying deliverables.
@@ -12,7 +12,7 @@ Execute Tier 5 white-box adversarial verification of `biblehackathon.md`, `bible
 - Instance: 1 of 2 (`challenger_m5_1`)
 
 ## 🔒 Key Constraints
-- Review-only — do NOT modify implementation code or project deliverables
+- Review-only - do NOT modify implementation code or project deliverables
 - Must run verification code empirically (do not trust worker logs)
 - Never place source/test code in `.agents/teamwork/`
 
@@ -45,7 +45,7 @@ Execute Tier 5 white-box adversarial verification of `biblehackathon.md`, `bible
 - Issued explicit **APPROVE** verdict in `handoff.md` based on 100% empirical pass rate across all acceptance criteria and E2E gates.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\DISPATCH.md` — Dispatch log
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\BRIEFING.md` — Persistent working memory
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\progress.md` — Heartbeat log
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\handoff.md` — Tier 5 White-Box Adversarial Verification & Handoff Report
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\DISPATCH.md` - Dispatch log
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\BRIEFING.md` - Persistent working memory
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\progress.md` - Heartbeat log
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1\handoff.md` - Tier 5 White-Box Adversarial Verification & Handoff Report

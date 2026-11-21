@@ -1,7 +1,7 @@
-# Wave 4 Review & Adversarial Critique Report — `reviewer_m5_1`
+# Wave 4 Review & Adversarial Critique Report - `reviewer_m5_1`
 
 - **Agent**: `reviewer_m5_1` (Roles: `reviewer`, `critic`)
-- **Milestone**: M5 (Final End-to-End Verification & Adversarial Review — Wave 4 Reviewer 1)
+- **Milestone**: M5 (Final End-to-End Verification & Adversarial Review - Wave 4 Reviewer 1)
 - **Scope**: `biblehackathon.md`, `biblehackathon.pdf`, `state.md`, `research/00-source/*`, `research/01-facts.md`, `research/A-organisers.md` .. `research/F-connect-the-dots.md`, `research/domains/*.md`, and `tests/run_e2e_tests.py`
 - **Verdict**: **`APPROVE`**
 
@@ -33,12 +33,12 @@
 ### 1.2 Direct File Inspection of `biblehackathon.md`, `biblehackathon.pdf`, `state.md`, and `research/*`
 1. **`d:\Hackathons\Nexconn\biblehackathon.md` (379 lines, 68,534 bytes) & `d:\Hackathons\Nexconn\biblehackathon.pdf` (1,251,767 bytes, 31 pages)**:
    - Contains all 7 required parts matching `C:\Users\Harshad\.gemini\config\skills\war-room-council\references\output-templates.md`:
-     - `# Part 1 — Executive Intelligence Brief` (lines 7–62): includes `## At a glance` table, `## The 60-second truth of this hackathon` (3 paragraphs), and `## Top 3 domains to target` (`#1 Open Innovation — 9.27/10`, `#2 NexConn for Workplace — 9.15/10`, `#3 NexConn for Support — 8.85/10`).
-     - `# Part 2 — Phase 1: Reverse-Engineered Hackathon Intelligence` (lines 66–157): includes `## 2.1 Fact sheet`, `## 2.2 Organiser intelligence (Lens A)`, `## 2.3 Sponsor intelligence (Lens B)` with sponsor table, `## 2.4 Judge & jury dossiers (Lens C)` with evaluator table, `## 2.5 Why each problem statement exists (Lens D)`, `## 2.6 Competition structure & unstated rules (Lens E)` with explicit vs. hidden criteria table, and `## 2.7 Connect-the-dots synthesis (Lens F)` with 5 falsifiable hypotheses and the **Winning Archetype**.
-     - `# Part 3 — Phase 2: Deep Domain Research (per domain)` (lines 161–263): covers all 6 official tracks (`Domain 1: NexConn for Social`, `Domain 2: NexConn for Gaming`, `Domain 3: NexConn for Workplace`, `Domain 4: NexConn for Support`, `Domain 5: NexConn for Social Good`, `Domain 6: Open Innovation`) with official statement, decoded real meaning, top 5 quantified pains, urgency score, prior art table, 3-bucket gap analysis, why previous attempts failed, India DPI/Nexconn stack angle, and key URL sources.
-     - `# Part 4 — Phase 4: Domain Winnability Ranking` (lines 267–325): contains `## The master matrix` scoring all 6 domains across the 5 `war-room-protocol.md` criteria (`Low Competition 25%`, `Low Saturation 20%`, `Demo-ability 20%`, `Sponsor/Judge Alignment 20%`, `Feasibility in 48h 15%`), plus `## Strategic recommendation` (`Primary pick`, `Pivot pick`, `Contrarian pick`, `Trap domain`).
-     - `# Part 5 — Tactical Playbook` (lines 329–350): contains `## Who to build for`, `## The Council Roster`, `## Demo-day choreography`, `## Pre-submission checklist`, and `## Disqualification & silent-kill landmines`.
-     - `# Part 6 — Full Source Register` (lines 354–379): contains 20 numbered clickable URL sources across categories.
+     - `# Part 1 - Executive Intelligence Brief` (lines 7–62): includes `## At a glance` table, `## The 60-second truth of this hackathon` (3 paragraphs), and `## Top 3 domains to target` (`#1 Open Innovation - 9.27/10`, `#2 NexConn for Workplace - 9.15/10`, `#3 NexConn for Support - 8.85/10`).
+     - `# Part 2 - Phase 1: Reverse-Engineered Hackathon Intelligence` (lines 66–157): includes `## 2.1 Fact sheet`, `## 2.2 Organiser intelligence (Lens A)`, `## 2.3 Sponsor intelligence (Lens B)` with sponsor table, `## 2.4 Judge & jury dossiers (Lens C)` with evaluator table, `## 2.5 Why each problem statement exists (Lens D)`, `## 2.6 Competition structure & unstated rules (Lens E)` with explicit vs. hidden criteria table, and `## 2.7 Connect-the-dots synthesis (Lens F)` with 5 falsifiable hypotheses and the **Winning Archetype**.
+     - `# Part 3 - Phase 2: Deep Domain Research (per domain)` (lines 161–263): covers all 6 official tracks (`Domain 1: NexConn for Social`, `Domain 2: NexConn for Gaming`, `Domain 3: NexConn for Workplace`, `Domain 4: NexConn for Support`, `Domain 5: NexConn for Social Good`, `Domain 6: Open Innovation`) with official statement, decoded real meaning, top 5 quantified pains, urgency score, prior art table, 3-bucket gap analysis, why previous attempts failed, India DPI/Nexconn stack angle, and key URL sources.
+     - `# Part 4 - Phase 4: Domain Winnability Ranking` (lines 267–325): contains `## The master matrix` scoring all 6 domains across the 5 `war-room-protocol.md` criteria (`Low Competition 25%`, `Low Saturation 20%`, `Demo-ability 20%`, `Sponsor/Judge Alignment 20%`, `Feasibility in 48h 15%`), plus `## Strategic recommendation` (`Primary pick`, `Pivot pick`, `Contrarian pick`, `Trap domain`).
+     - `# Part 5 - Tactical Playbook` (lines 329–350): contains `## Who to build for`, `## The Council Roster`, `## Demo-day choreography`, `## Pre-submission checklist`, and `## Disqualification & silent-kill landmines`.
+     - `# Part 6 - Full Source Register` (lines 354–379): contains 20 numbered clickable URL sources across categories.
    - `biblehackathon.pdf` starts with `%PDF-1.4`, renders 31 pages via WeasyPrint (`check_pdf_file` verified 31 pages, `595 x 842 pt` A4 portrait, cover title + body text + headers extracted cleanly via `pypdf`).
 2. **`d:\Hackathons\Nexconn\state.md` (130 lines, 12,855 bytes)**:
    - Tracks Phase 0 through Phase 5 completion, canonical slug `nexconn`, all 6 domain slugs (`nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `nexconn-support`, `nexconn-social-good`, `open-innovation`), the 22-seat Council Roster (17 permanent + 5 specialist additions), the Winnability Matrix, and the 30 selected Top-5 ideas (5 per domain) with scores and runner-up notes.
@@ -102,7 +102,7 @@ To independently reproduce and verify all findings in this report:
    ```powershell
    python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --root "d:\Hackathons\Nexconn"
    ```
-   - **Expected Output**: `OVERALL: 189/189 passed (100.0%) — PASS`, exit code `0`.
+   - **Expected Output**: `OVERALL: 189/189 passed (100.0%) - PASS`, exit code `0`.
 2. **Run the E2E Negative Mutation Self-Test**:
    ```powershell
    python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --self-test
@@ -185,7 +185,7 @@ To independently reproduce and verify all findings in this report:
 
 ## Unverified Items
 
-- Live external HTTP status codes for third-party citations (arXiv, GitHub, tech press) — not verified via live network requests during review to avoid external rate limits and because local primary sources (`00-source/*`) were directly verified.
+- Live external HTTP status codes for third-party citations (arXiv, GitHub, tech press) - not verified via live network requests during review to avoid external rate limits and because local primary sources (`00-source/*`) were directly verified.
 
 ---
 

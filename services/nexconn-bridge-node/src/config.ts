@@ -19,7 +19,7 @@ export function loadDotEnv(): string[] {
       process.loadEnvFile(p);
       loaded.push(p);
     } catch {
-      /* malformed .env — ignore, defaults apply */
+      /* malformed .env - ignore, defaults apply */
     }
   }
   return loaded;
@@ -92,9 +92,9 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): BridgeConfig {
       secondaryDomain: secondary,
       simulated: isNexconnSimulated(appKey, secretKey),
       timeoutMs: Number(env.NEXCONN_TIMEOUT_MS || 5000),
-      arbitratorBotId: clean(env.NEXCONN_ARBITRATOR_BOT_ID) || "usr_samadhan_arbitrator_bot",
+      arbitratorBotId: clean(env.NEXCONN_ARBITRATOR_BOT_ID) || "usr_mudra_arbitrator_bot",
       shopkeeperBotId: clean(env.NEXCONN_SHOPKEEPER_BOT_ID) || "usr_chanakya_shopkeeper_bot",
-      systemVoucherBotId: clean(env.NEXCONN_SYSTEM_VOUCHER_BOT_ID) || "usr_samadhan_system_voucher",
+      systemVoucherBotId: clean(env.NEXCONN_SYSTEM_VOUCHER_BOT_ID) || "usr_mudra_system_voucher",
     },
     gemini: {
       apiKey: geminiKey,

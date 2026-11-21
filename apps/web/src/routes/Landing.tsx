@@ -13,7 +13,7 @@ import { SiteNav } from "../site/SiteNav";
 
 export default function Landing() {
   useEffect(() => {
-    document.title = "samadhan — trade like you trust them";
+    document.title = "Mudra";
   }, []);
 
   return (

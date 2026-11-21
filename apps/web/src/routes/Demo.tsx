@@ -45,7 +45,7 @@ export default function Demo() {
   }, []);
 
   useEffect(() => {
-    document.title = "two-phone demo — samadhan";
+    document.title = "Mudra";
     return () => store.destroy();
   }, [store]);
 
@@ -123,8 +123,8 @@ export default function Demo() {
   }, []);
 
   const handlePopOut = () => {
-    window.open("/demo/phone/buyer", "samadhan-buyer", "width=460,height=920");
-    window.open("/demo/phone/seller", "samadhan-seller", "width=460,height=920");
+    window.open("/demo/phone/buyer", "mudra-buyer", "width=460,height=920");
+    window.open("/demo/phone/seller", "mudra-seller", "width=460,height=920");
     window.setTimeout(() => {
       store.dispatch({ type: "SYNC_STATE", state: store.getState() }, true);
     }, 350);

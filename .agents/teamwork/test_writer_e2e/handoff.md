@@ -1,4 +1,4 @@
-# Handoff Report — E2E Testing Track (`test_writer_e2e`)
+# Handoff Report - E2E Testing Track (`test_writer_e2e`)
 
 - **Handoff Type**: Hard (Task Complete)
 - **Agent**: `test_writer_e2e` (`teamwork_test_writer`)

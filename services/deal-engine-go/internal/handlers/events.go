@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
 )
 
 type sseEvent struct {

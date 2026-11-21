@@ -3,7 +3,7 @@ package clients
 import (
 	"regexp"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/hrtime"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/hrtime"
 )
 
 // PIIToken replaces every redacted span (contract §6).

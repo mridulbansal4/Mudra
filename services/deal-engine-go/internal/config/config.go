@@ -15,7 +15,7 @@ import (
 
 // Dev defaults mirror the repo's .env.example so the demo runs with zero setup.
 const (
-	DevJWTSecret      = "dev_samadhan_jwt_secret_change_in_prod"
+	DevJWTSecret      = "dev_mudra_jwt_secret_change_in_prod"
 	DevWebhookSecret  = "whsec_dev_upi_setu_razorpayx_hmac_secret_32b"
 	DevEd25519SeedHex = "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
 )
@@ -55,7 +55,7 @@ func Load() Config {
 		RustURL:        strings.TrimRight(getDefault("RUST_ASSAY_VERIFIER_URL", "http://127.0.0.1:4003"), "/"),
 		InternalHMAC:   os.Getenv("INTERNAL_SERVICE_HMAC_SECRET"),
 		WebhookSecret:  os.Getenv("UPI_WEBHOOK_HMAC_SECRET"),
-		JWTSecret:      os.Getenv("SAMADHAN_JWT_SECRET"),
+		JWTSecret:      os.Getenv("MUDRA_JWT_SECRET"),
 		NexconnAppKey:  os.Getenv("NEXCONN_APP_KEY"),
 		DotEnvPath:     envPath,
 		CORSOrigins:    []string{"http://localhost:5173", "http://127.0.0.1:5173"},
@@ -124,8 +124,8 @@ func IsPlaceholderDatabaseURL(dsn string) bool {
 	return strings.Contains(lower, "[your-password]") ||
 		strings.Contains(lower, "your-password") ||
 		strings.Contains(lower, "replace_with_") ||
-		strings.Contains(lower, "localhost:5432/samadhan_os") ||
-		strings.Contains(lower, "127.0.0.1:5432/samadhan_os")
+		strings.Contains(lower, "localhost:5432/mudra_os") ||
+		strings.Contains(lower, "127.0.0.1:5432/mudra_os")
 }
 
 // MaskDatabaseURL strips password credentials from a PostgreSQL DSN for safe structured logging.

@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-// Claims carried in the samadhan JWT.
+// Claims carried in the mudra JWT.
 type Claims struct {
 	Sub       string `json:"sub"`  // internal user id
 	NexconnID string `json:"nxid"` // nexconn user id
@@ -47,7 +47,7 @@ var (
 // Issue signs claims (sets iss/iat/exp).
 func (j *JWT) Issue(c Claims) (string, error) {
 	now := time.Now()
-	c.Issuer = "samadhan-deal-engine"
+	c.Issuer = "mudra-deal-engine"
 	c.IssuedAt = now.Unix()
 	c.ExpiresAt = now.Add(j.ttl).Unix()
 	payload, err := json.Marshal(c)
