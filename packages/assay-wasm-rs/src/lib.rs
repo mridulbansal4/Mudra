@@ -1,13 +1,13 @@
-//! assay-wasm-rs — browser-side assay helpers for SAMADHAN-OS.
+//! assay-wasm-rs - browser-side assay helpers for MUDRA-OS.
 //!
 //! Runs inside `apps/web/src/workers/assay-wasm.worker.ts` on frames pulled
 //! from an `OffscreenCanvas` (`ImageData.data` is RGBA8, row-major).
 //!
 //! Exports (wasm-bindgen):
-//! * `laplacian_variance(rgba, width, height) -> f64` — blur/focus metric.
-//! * `phash_rgba(rgba, width, height) -> String` — 64-bit DCT pHash, 16 hex chars.
+//! * `laplacian_variance(rgba, width, height) -> f64` - blur/focus metric.
+//! * `phash_rgba(rgba, width, height) -> String` - 64-bit DCT pHash, 16 hex chars.
 //!   Bit-for-bit the same algorithm as `services/assay-verifier-rs/src/phash.rs`.
-//! * `hamming_hex(a, b) -> u32` — Hamming distance of two 16-hex-char hashes.
+//! * `hamming_hex(a, b) -> u32` - Hamming distance of two 16-hex-char hashes.
 //!
 //! Error convention (JS cannot easily catch Rust errors here): invalid input
 //! returns `0.0` / `""` / `64` respectively.

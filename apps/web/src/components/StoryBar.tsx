@@ -1,5 +1,5 @@
-import type { FsmState } from "@samadhan/shared-types";
-import { storyStage } from "@samadhan/shared-types";
+import type { FsmState } from "@mudra/shared-types";
+import { storyStage } from "@mudra/shared-types";
 
 const STAGES = ["Negotiate", "Lock escrow", "Video assay", "Release or freeze"];
 

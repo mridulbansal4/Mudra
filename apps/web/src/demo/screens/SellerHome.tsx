@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { storyStage } from "@samadhan/shared-types";
+import { storyStage } from "@mudra/shared-types";
 import {
   BadgeCheck,
   IndianRupee,
@@ -78,7 +78,7 @@ export function SellerHome({ state, dispatch }: SellerHomeProps) {
         <ListRow icon={BadgeCheck} label="rating" value="4.9" onClick={openChat} />
       </ListGroup>
 
-      <Eyebrow className="mt-8 mb-3">EXPLORE SAMADHAN</Eyebrow>
+      <Eyebrow className="mt-8 mb-3">EXPLORE MUDRA</Eyebrow>
       <div className="grid grid-cols-4 gap-3 items-start justify-items-center">
         <IconTile
           icon={Video}

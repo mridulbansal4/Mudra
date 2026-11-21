@@ -1,5 +1,5 @@
-# Hackathon Build Plan & Submission Playbook — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Delivery Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Hackathon Build Plan & Submission Playbook - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Delivery Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](./PROJECT_BRIEF.md) · [Pitch](./PITCH.md) · [Backlog](../08-project/BACKLOG.md) · [Nexconn SDK Manual](../03-engineering/NEXCONN_SDK_MANUAL.md)
 
 ---
@@ -8,11 +8,11 @@
 
 - **Hackathon**: Nexconn Build Challenge 2026 (`https://reskilll.com/hack/nexconn`)
 - **Submission Portal**: `https://reskilll.com/hack/nexconn/dashboard`
-- **Hard Deadline**: **Sun, Nov 22, 2026, 23:59 AoE** (**Mon, Nov 23, 2026, 5:29 PM IST / GMT+5:30**) — *Team `Chanakya` internal freeze target: **Sun, Nov 22, 2026, 11:00 PM IST** (18.5 hours buffer).*
+- **Hard Deadline**: **Sun, Nov 22, 2026, 23:59 AoE** (**Mon, Nov 23, 2026, 5:29 PM IST / GMT+5:30**) - *Team `Chanakya` internal freeze target: **Sun, Nov 22, 2026, 11:00 PM IST** (18.5 hours buffer).*
 - **Core Build Sprint**: **36-Hour High-Velocity Engineering Sprint** (`H00` to `H36`) followed by continuous MAU traction harvesting (`/arena` & campus/merchant trials) until deadline.
-- **Team Roster (`Chanakya` — 4 Engineers)**:
+- **Team Roster (`Chanakya` - 4 Engineers)**:
   - **Dev 1 (`Lead Architect & Nexconn SDK Specialist`)**: `services/nexconn-bridge-node` (`@nexconn/server-sdk@0.1.2`), `@nexconn/chatui` (`<nc-chat-ui-app-provider>`), `@nexconn/chat` (`NCEngine`), `@nexconn/call` (`NCCallEngine`), and `packages/nc-lit-cards` (`lit@^3.3.2`).
-  - **Dev 2 (`Systems Backend — Go & Rust Lead`)**: `services/deal-engine-go` (Go 1.24 FSM, PostgreSQL 17, Redis, webhooks, `/traction` telemetry) and `services/assay-verifier-rs` + `packages/assay-wasm-rs` (Rust 1.85 `pHash`, audio FFT, `<300µs` PII scrubber, Ed25519 signing).
+  - **Dev 2 (`Systems Backend - Go & Rust Lead`)**: `services/deal-engine-go` (Go 1.24 FSM, PostgreSQL 17, Redis, webhooks, `/traction` telemetry) and `services/assay-verifier-rs` + `packages/assay-wasm-rs` (Rust 1.85 `pHash`, audio FFT, `<300µs` PII scrubber, Ed25519 signing).
   - **Dev 3 (`Frontend Story UX & Design Lead`)**: `apps/web` (React 19, Vite 6, Tailwind v4, HeroUI v3 `@heroui/react`, `/hallmark` Floor, `/unslop` tokens, `/apple-design` springs, routes `/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` → `/dispatch` → `/guide` → `/traction`) + `apps/mobile-expo` (`heroui-native`).
   - **Dev 4 (`AI Streaming, Evals, QA & Growth/Pitch Lead`)**: Gemini 2.5 Flash/Pro + Bhashini prompts (`M-01`..`M-05`), Playwright E2E + `sloplint --render`, `/arena` viral MAU rollout, 3-minute demo video, and PDF write-up.
 
@@ -22,7 +22,7 @@
 
 ```mermaid
 gantt
-    title SAMADHAN-OS 36-Hour Sprint Critical Path
+    title MUDRA-OS 36-Hour Sprint Critical Path
     dateFormat  HH
     axisFormat  H%H
     section Phase 1: Foundation (H00-H06)
@@ -92,20 +92,20 @@ As reverse-engineered in `research/01-facts.md` (`Submit-CDxOt6c5.js` / `Dashboa
 **CRITICAL SERIALIZER RULES**:
 1. Total character count of all text fields combined MUST stay **under 3,500 characters** (hard limit is 4,000).
 2. **NEVER** start any line inside `Summary` or `SDK Features Used` with `Track:`, `Summary:`, `Nexconn Packages:`, `Nexconn App Key:`, `SDK Features Used:`, `Active Users:`, or `Prior Work:`.
-3. Ensure the GitHub repository is **Public** (`api.github.com/repos/chanakya-team/samadhan-os` returns `private: false`) before pasting the URL into the form.
+3. Ensure the GitHub repository is **Public** (`api.github.com/repos/chanakya-team/mudra-os` returns `private: false`) before pasting the URL into the form.
 
 ### Ready-to-Paste Submission Fields
 
-- **Project Name**: `SAMADHAN-OS (SamvadDeal)`
+- **Project Name**: `MUDRA-OS (SamvadDeal)`
 - **Track**: `Marketplace & Support`
 - **Nexconn Packages Checked**: `[x] Chat SDK` · `[x] Chat UI` · `[x] Call SDK`
 - **Nexconn App Key**: `<PASTE_PRODUCTION_NEXCONN_APP_KEY_FROM_CONSOLE>`
 - **Prior Work**: `No, built for this challenge`
-- **Summary (742 chars — well under 2,000 char limit)**:
+- **Summary (742 chars - well under 2,000 char limit)**:
   ```text
-  SAMADHAN-OS (SamvadDeal) transforms Nexconn Chat UI, Chat SDK, Call SDK, and v4 Server SDK into a real-time cross-lingual video-escrow commerce desk and 90-second dispute arbitration operating system. Addressing the $48B global and Rs 38,000 Cr Indian B2B/P2P marketplace fraud gap, it embeds the transaction state machine directly inside the chat timeline. Buyers and sellers negotiate across Tamil, Hindi, Marathi, Punjabi, and English with live streaming translations, lock milestones inside custom Lit <nc-escrow-deal-card> components backed by a Go 1.24 FSM, verify physical goods over 1-click @nexconn/call WebRTC video with Rust 1.85 + WASM frame/audio forensics, and resolve disputes in 90s via channel-freeze AI + human arbitration.
+  MUDRA-OS (SamvadDeal) transforms Nexconn Chat UI, Chat SDK, Call SDK, and v4 Server SDK into a real-time cross-lingual video-escrow commerce desk and 90-second dispute arbitration operating system. Addressing the $48B global and Rs 38,000 Cr Indian B2B/P2P marketplace fraud gap, it embeds the transaction state machine directly inside the chat timeline. Buyers and sellers negotiate across Tamil, Hindi, Marathi, Punjabi, and English with live streaming translations, lock milestones inside custom Lit <nc-escrow-deal-card> components backed by a Go 1.24 FSM, verify physical goods over 1-click @nexconn/call WebRTC video with Rust 1.85 + WASM frame/audio forensics, and resolve disputes in 90s via channel-freeze AI + human arbitration.
   ```
-- **SDK Features Used (896 chars — single paragraph, zero reserved newline prefixes)**:
+- **SDK Features Used (896 chars - single paragraph, zero reserved newline prefixes)**:
   ```text
   1) @nexconn/chatui (^26.2.5) + Lit (^3.3.2): Mounted <nc-chat-ui-app-provider> for Direct, Group, and System channels; registered 4 custom BaseMessageContent cards (<nc-escrow-deal-card>, <nc-bilingual-bubble>, <nc-video-assay-receipt>, <nc-tribunal-verdict-card>) via registerMessageType inside NCChatUIApplication.initialize({ hooks }) before app.ready(). 2) @nexconn/chat & @nexconn/engine (^26.2.1): Initialized NCEngine.initialize({ appKey }) and NCEngine.connect({ token }) to power Open channel flash-lot broadcasts, Community category subchannels (createCommunitySubchannel), and browser voice capture. 3) @nexconn/call (^26.2.0): Wired NCCallEngine over NCEngine for 1:1 audio calls escalating to HD video via requestChangeMediaType(NCCallMediaType.VIDEO) and immutable audit logging via onServerCallLogReceived. 4) @nexconn/server-sdk (0.1.2): Used UserManagementApi.issueAccessToken, MessageManagementApi.sendDirectChannelStreamMessage & sendGroupChannelStreamMessage, GroupChannelModerationApi.addGroupChannelFreezeList, OpenChannelPriorityControlsApi, and SystemMessagesApi.
   ```
@@ -118,6 +118,6 @@ As reverse-engineered in `research/01-facts.md` (`Submit-CDxOt6c5.js` / `Dashboa
 |---|---|---|---|
 | **[ ] 1** | **Nexconn SDK Gate (25%)** | Paste our `App Key` and verify `console.nexconn.ai` shows >500 connected `userId`s, active `Direct`/`Group`/`System`/`Open`/`Community` channels, v4 stream messages, and Call SDK minutes. | Dev 1 |
 | **[ ] 2** | **Completeness & Execution (30%)** | Open `Live App` URL in an Incognito browser tab with no webcam attached; verify `/` → `/sandbox` 1-Click Split-Screen Demo completes all 4 deal stages in `<60s` with zero console errors. | Dev 3 |
-| **[ ] 3** | **Public Repo Check (30%)** | Run `curl -s https://api.github.com/repos/<org>/samadhan-os \| jq .private` and confirm output is `false`. Verify zero secrets in git history (`gitleaks`). | Dev 2 |
+| **[ ] 3** | **Public Repo Check (30%)** | Run `curl -s https://api.github.com/repos/<org>/mudra-os \| jq .private` and confirm output is `false`. Verify zero secrets in git history (`gitleaks`). | Dev 2 |
 | **[ ] 4** | **Product Value & Innovation (30%)** | Verify Write-up PDF clearly displays the `App Key` on Page 1, architectural diagrams, and benchmark comparison. Verify 3-minute demo video is public on YouTube/Loom with no login wall. | Dev 4 |
 | **[ ] 5** | **Traction & MAU Bonus (15%)** | Verify `/traction` URL loads in `<800ms` and displays live verifiable MAU counter, `/arena` leaderboard, and merchant/campus trial receipts. | Dev 4 |

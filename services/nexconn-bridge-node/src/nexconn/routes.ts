@@ -6,7 +6,7 @@ const ID_MAX = 64;
 const TEXT_MAX = 8000;
 const TOKEN_TTL_SEC = 7 * 24 * 3600;
 
-/** IMPLEMENTATION_CONTRACT §7 — `/internal/nc/*`. Errors bubble to the app error handler (502 for Nexconn). */
+/** IMPLEMENTATION_CONTRACT §7 - `/internal/nc/*`. Errors bubble to the app error handler (502 for Nexconn). */
 export function registerNexconnRoutes(app: FastifyInstance, nc: NexconnClient): void {
   app.post("/internal/nc/token", async (req) => {
     const b = bodyOf(req);
@@ -33,7 +33,7 @@ export function registerNexconnRoutes(app: FastifyInstance, nc: NexconnClient): 
     const channelId = str(b, "channel_id", { max: ID_MAX });
     const r = await nc.streamGroup(channelId, {
       fromUserId: str(b, "from_user_id", { max: ID_MAX }),
-      messageType: optStr(b, "message_type", 64) ?? "x-samadhan-bilingual-bubble",
+      messageType: optStr(b, "message_type", 64) ?? "x-mudra-bilingual-bubble",
       text: str(b, "text", { max: TEXT_MAX }),
       extras: obj(b, "extras"),
     });
@@ -45,7 +45,7 @@ export function registerNexconnRoutes(app: FastifyInstance, nc: NexconnClient): 
     const toUserId = str(b, "to_user_id", { max: ID_MAX });
     const r = await nc.streamDirect(toUserId, {
       fromUserId: str(b, "from_user_id", { max: ID_MAX }),
-      messageType: optStr(b, "message_type", 64) ?? "x-samadhan-shopkeeper-reply",
+      messageType: optStr(b, "message_type", 64) ?? "x-mudra-shopkeeper-reply",
       text: str(b, "text", { max: TEXT_MAX }),
       extras: obj(b, "extras"),
     });

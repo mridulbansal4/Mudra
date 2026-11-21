@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 const freezeWindow = 90 * time.Second
@@ -133,12 +133,12 @@ func (s *Server) handleDisputeFreeze(w http.ResponseWriter, r *http.Request) {
 		"summary": trib.Summary, "rationale": trib.Rationale, "model": trib.Model, "engine": trib.Engine,
 		"freeze_remaining_sec": int(freezeWindow.Seconds()),
 	}
-	stream := s.Bridge.StreamGroup(ctx, channel, "usr_samadhan_arbitrator_bot", "x-samadhan-tribunal-verdict", trib.Summary, verdictExtras)
+	stream := s.Bridge.StreamGroup(ctx, channel, "usr_mudra_arbitrator_bot", "x-mudra-tribunal-verdict", trib.Summary, verdictExtras)
 	streamStatus := "STREAMING_VIA_SEND_GROUP_CHANNEL_STREAM_MESSAGE"
 	if stream.Engine == clients.EngineGoFallback {
 		streamStatus = "SIMULATED_BRIDGE_OFFLINE"
 	}
-	s.addMessage(d, store.ChatMessage{SenderRole: "system", SenderName: "AI Tribunal", MessageType: "x-samadhan-tribunal-verdict",
+	s.addMessage(d, store.ChatMessage{SenderRole: "system", SenderName: "AI Tribunal", MessageType: "x-mudra-tribunal-verdict",
 		RawText: trib.Summary, TranslatedText: trib.Summary, Extras: verdictExtras, StreamID: stream.StreamID, Engine: trib.Engine})
 	s.publishDeal(d)
 
@@ -189,9 +189,9 @@ func (s *Server) handleDispatchAssign(w http.ResponseWriter, r *http.Request) {
 	var channel string
 	s.Store.ReadDeal(d, func(d *store.Deal) { channel = d.ChannelID })
 	text := fmt.Sprintf("Arbitrator %s joined the frozen deal room.", req.ArbitratorNexconnID)
-	st := s.Bridge.StreamGroup(r.Context(), channel, req.ArbitratorNexconnID, "x-samadhan-arbitrator-joined", text, map[string]any{"dispute_id": dp.ID})
+	st := s.Bridge.StreamGroup(r.Context(), channel, req.ArbitratorNexconnID, "x-mudra-arbitrator-joined", text, map[string]any{"dispute_id": dp.ID})
 	s.addMessage(d, store.ChatMessage{SenderRole: "arbitrator", SenderName: c.Name, SenderNexconnID: req.ArbitratorNexconnID,
-		MessageType: "x-samadhan-arbitrator-joined", RawText: text, TranslatedText: text, StreamID: st.StreamID, Engine: st.Engine,
+		MessageType: "x-mudra-arbitrator-joined", RawText: text, TranslatedText: text, StreamID: st.StreamID, Engine: st.Engine,
 		Extras: map[string]any{"dispute_id": dp.ID}})
 	s.publishDeal(d)
 	cur, _ = s.Store.DisputeCopy(dp.ID)
@@ -268,8 +268,8 @@ func (s *Server) handleDisputeResolve(w http.ResponseWriter, r *http.Request) {
 	extras := map[string]any{"dispute_id": id, "status": "SETTLED_BINDING", "fsm_state": out.Next,
 		"buyer_refund_bps": bps, "seller_payout_bps": *req.SellerPayoutBps, "buyer_refund_paise": refund, "seller_payout_paise": payout,
 		"resolution_note": req.ResolutionNote, "summary": summary, "system_voucher_sha256": out.Voucher.CurrVoucherSHA256, "ed25519_sig_hex": out.Voucher.Ed25519Signature}
-	st := s.Bridge.StreamGroup(ctx, channel, "usr_samadhan_arbitrator_bot", "x-samadhan-tribunal-verdict", summary, extras)
-	s.addMessage(d, store.ChatMessage{SenderRole: "system", SenderName: "SAMADHAN Tribunal", MessageType: "x-samadhan-tribunal-verdict",
+	st := s.Bridge.StreamGroup(ctx, channel, "usr_mudra_arbitrator_bot", "x-mudra-tribunal-verdict", summary, extras)
+	s.addMessage(d, store.ChatMessage{SenderRole: "system", SenderName: "MUDRA Tribunal", MessageType: "x-mudra-tribunal-verdict",
 		RawText: summary, TranslatedText: summary, Extras: extras, StreamID: st.StreamID, Engine: out.Voucher.Engine})
 	s.publishDeal(d)
 	mw.WriteJSON(w, http.StatusOK, map[string]any{

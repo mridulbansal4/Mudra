@@ -1,12 +1,12 @@
-# Accessibility Specification (WCAG 2.2 AA & RPwD Act) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Accessibility & Inclusive Design Lead — Don Norman & Haben Girma Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Accessibility Specification (WCAG 2.2 AA & RPwD Act) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Accessibility & Inclusive Design Lead - Don Norman & Haben Girma Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Design System](./DESIGN_SYSTEM.md) · [UI Spec](./UI_SPEC.md) · [Localization](./LOCALIZATION.md)
 
 ---
 
 ## 1. Accessibility Mandate & Regulatory Alignment
 
-SAMADHAN-OS serves regional MSME owners (`P-01`), noisy factory-floor sellers (`P-02`), and high-volume arbitrators (`P-04`). Our frontend (`apps/web` and `apps/mobile-expo`) enforces:
+MUDRA-OS serves regional MSME owners (`P-01`), noisy factory-floor sellers (`P-02`), and high-volume arbitrators (`P-04`). Our frontend (`apps/web` and `apps/mobile-expo`) enforces:
 1. **WCAG 2.2 Level AA** across all 9 web routes and all 4 custom Lit Web Components (`packages/nc-lit-cards`).
 2. **India Rights of Persons with Disabilities (RPwD) Act, 2016** & **GIGW 3.0** (Guidelines for Indian Government Websites & Apps) digital accessibility standards (`IS 17802`).
 3. **React Aria Accessibility Foundation**: By building on **HeroUI v3 (`@heroui/react@^3.0.1`)**, every `<Button>`, `<Card>`, `<Tabs>`, `<Modal>`, and `<TextField>` uses React Aria primitives (`onPress`, roving `tabIndex`, focus traps, and ARIA live announcements) out of the box.
@@ -15,7 +15,7 @@ SAMADHAN-OS serves regional MSME owners (`P-01`), noisy factory-floor sellers (`
 
 ## 2. WCAG 2.2 AA Verification Checklist
 
-| WCAG 2.2 Criterion | Requirement | How SAMADHAN-OS Complies |
+| WCAG 2.2 Criterion | Requirement | How MUDRA-OS Complies |
 |---|---|---|
 | **1.1.1 Non-text Content** | Alt text / ARIA labels for images, video feeds, and receipts | `<nc-video-assay-receipt>` generates descriptive `aria-label` strings from `M-03` Vision output (`"Verified Juki MO-6814S serial plate, 4820 RPM nominal"`). |
 | **1.3.1 Info & Relationships** | Semantic landmarks & Shadow DOM ARIA | Custom Lit components use `role="region"` and `aria-labelledby` inside their Shadow Roots; top 4-Stage Story Bar uses `<nav aria-label="Deal progress">` with `aria-current="step"`. |

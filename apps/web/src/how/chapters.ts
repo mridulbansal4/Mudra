@@ -54,7 +54,7 @@ export const HOW_CHAPTERS: HowChapterDef[] = [
     lead: "one slide locks ₹1,45,000 into a version-checked escrow state machine. vikram gets cryptographic proof that the money is waiting, while rajesh knows it cannot move without verification.",
     protections: [
       { icon: Vault, text: "upi mandate, not a transfer" },
-      { icon: Lock, text: "idempotent — a double tap can't double pay" },
+      { icon: Lock, text: "idempotent: a double tap can't double pay" },
       { icon: Gauge, text: "version-locked state change" },
     ],
     perspectives: ["buyer", "seller"],

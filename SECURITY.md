@@ -1,6 +1,6 @@
-# Security Policy — SAMADHAN-OS (`SamvadDeal`)
+# Security Policy - MUDRA-OS (`SamvadDeal`)
 
-SAMADHAN-OS handles live milestone escrow state machines (`services/deal-engine-go`), cryptographic product inspection proofs (`services/assay-verifier-rs`), and privileged `@nexconn/server-sdk` channel moderation (`services/nexconn-bridge-node`). Security and **DPDP Act 2023** privacy are foundational engineering requirements.
+MUDRA-OS handles live milestone escrow state machines (`services/deal-engine-go`), cryptographic product inspection proofs (`services/assay-verifier-rs`), and privileged `@nexconn/server-sdk` channel moderation (`services/nexconn-bridge-node`). Security and **DPDP Act 2023** privacy are foundational engineering requirements.
 
 For our deep-dive security documentation, consult:
 - **[`docs/06-security-compliance/SECURITY_ARCHITECTURE.md`](docs/06-security-compliance/SECURITY_ARCHITECTURE.md)** (Defense-in-depth zones, mTLS/HMAC internal service auth, Ed25519 signing)
@@ -25,7 +25,7 @@ For our deep-dive security documentation, consult:
 2. **Optimistic Concurrency & Idempotency on Escrow Transitions**:
    - Every escrow state mutation (`API-06`) in `services/deal-engine-go` (`:4002`) requires both a DragonflyDB / Redis 7.4 `Idempotency-Key` (`24h` TTL) and a PostgreSQL 17 `expected_version` (`UPDATE escrow_contracts SET version = version + 1 WHERE id = $1 AND version = $2`), preventing double-spend and replay attacks.
 3. **HMAC-SHA256 Webhook Verification**:
-   - All payment/escrow webhooks (`POST /api/v1/webhooks/upi-ondc`, `API-17`) verify `X-Samadhan-Signature` (`HMAC-SHA256(timestamp + "." + raw_body, UPI_WEBHOOK_HMAC_SECRET)`) using constant-time `hmac.Equal` and reject timestamps older than `±300 seconds`.
+   - All payment/escrow webhooks (`POST /api/v1/webhooks/upi-ondc`, `API-17`) verify `X-Mudra-Signature` (`HMAC-SHA256(timestamp + "." + raw_body, UPI_WEBHOOK_HMAC_SECRET)`) using constant-time `hmac.Equal` and reject timestamps older than `±300 seconds`.
 4. **Rust Pre-LLM DPDP PII Scrubbing (`< 300µs`)**:
    - All user text and ASR transcripts pass through `POST /internal/scrub-pii` (`services/assay-verifier-rs`) to redact Aadhaar (`12 digits` + Verhoeff checksum), PAN, UPI VPA, IFSC, and bank account numbers before any external call to Gemini (`M-01`, `M-03`, `M-04`, `M-05`) or Bhashini (`M-02`).
 

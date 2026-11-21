@@ -1,5 +1,5 @@
 import { css, html, nothing } from "lit";
-import { SamadhanCardBase, inr, shortHash } from "./base";
+import { MudraCardBase, inr, shortHash } from "./base";
 
 const STEPS = [
   { label: "Negotiate", states: ["CREATED"] },
@@ -20,12 +20,12 @@ const STATE_LABEL: Record<string, { text: string; cls: string }> = {
 };
 
 /**
- * <nc-escrow-deal-card> — messageType `x-samadhan-escrow-card`.
+ * <nc-escrow-deal-card> - messageType `x-mudra-escrow-card`.
  * data: { dealId, title, amountPaise, fsmState, version, voucher: { curr_voucher_sha256, ed25519_signature, voucher_type } }
  */
-export class SamadhanEscrowCard extends SamadhanCardBase {
+export class MudraEscrowCard extends MudraCardBase {
   static styles = [
-    SamadhanCardBase.baseStyles,
+    MudraCardBase.baseStyles,
     css`
       .steps {
         display: grid;

@@ -1,12 +1,12 @@
-# Vision — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product & Strategy Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Vision - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product & Strategy Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](./PROJECT_BRIEF.md) · [Pitch](./PITCH.md) · [PRD](../01-product/PRD.md) · [Impact](../07-business/IMPACT.md)
 
 ---
 
 ## 1. Vision & Mission Statement
 
-- **Vision**: A world where any two strangers—regardless of spoken language, geography, or institutional size—can negotiate, visually inspect, and settle a high-trust commercial transaction in under three minutes inside a single real-time conversation.
+- **Vision**: A world where any two strangers - regardless of spoken language, geography, or institutional size - can negotiate, visually inspect, and settle a high-trust commercial transaction in under three minutes inside a single real-time conversation.
 - **Mission**: Transform real-time communication infrastructure (`@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, and `@nexconn/server-sdk`) from passive message pipes into **enforceable, cryptographically auditable transactional state machines** that eliminate counterparty fraud across India, ASEAN, and the Global South.
 
 ---
@@ -29,7 +29,7 @@
 
 ```mermaid
 timeline
-    title SAMADHAN-OS Trajectory: From Hackathon Sandbox to Global Trade OS
+    title MUDRA-OS Trajectory: From Hackathon Sandbox to Global Trade OS
     2026 (Hackathon MVP) : Full Nexconn Stack (ChatUI + Chat + Call + Server v4)
                          : Go 1.24 Deal FSM + Rust 1.85 Video/Audio Assay + Lit Escrow Cards
                          : 500-1,000+ Verified MAUs via Campus Thrift & Mandi Pilots
@@ -43,17 +43,17 @@ timeline
                          : Collapses $3 Trillion of Trade Friction into Sub-Second RTC Channels
 ```
 
-### 3.1 Year 1 — The Indian MSME, Refurbished Tech & ONDC Trust Layer
+### 3.1 Year 1 - The Indian MSME, Refurbished Tech & ONDC Trust Layer
 - **Scope**: Deploy across three high-fraud verticals in India: (1) Refurbished Electronics & GPUs/Laptops (`P-03`), (2) Inter-State B2B Industrial Machinery & Textile Lots (`P-01`, `P-02`), and (3) Agricultural FPO Wholesale Mandis.
 - **Scale**: 50,000+ active merchants, ₹500 Crore in video-verified escrow volume, native integration with ONDC IGM (Issue & Grievance Management) and UPI ASBA blocked-funds mandates.
 
-### 3.2 Year 5 — The India–Singapore–ASEAN Cross-Border Trade Desk
-- **Scope**: Leveraging **RCLOUD GLOBAL PTE. LTD.**'s Singapore presence and Southeast Asian edge network, expand SAMADHAN-OS into the default bilateral deal room for India–Singapore–Vietnam–Indonesia cross-border SME trade.
+### 3.2 Year 5 - The India–Singapore–ASEAN Cross-Border Trade Desk
+- **Scope**: Leveraging **RCLOUD GLOBAL PTE. LTD.**'s Singapore presence and Southeast Asian edge network, expand MUDRA-OS into the default bilateral deal room for India–Singapore–Vietnam–Indonesia cross-border SME trade.
 - **Scale**: Replace 14-day bank Letters of Credit (L/C) for shipments under $100,000 USD with live factory-floor `@nexconn/call` video assays, Rust-signed bills of lading in `System` channels, and instant multi-currency escrow settlement.
 
-### 3.3 Year 10 — First-Principles Collapse of Commercial Litigation
+### 3.3 Year 10 - First-Principles Collapse of Commercial Litigation
 - **First-Principles Insight**: Commercial courts and Letters of Credit exist only because historically, buyers and sellers could not simultaneously see the physical goods, understand each other's language, and lock programmable money in real time.
-- **The 10-Year Picture**: SAMADHAN-OS becomes the global TCP/IP of commercial trust—an autonomous real-time trade protocol where $3 Trillion of global B2B and P2P commerce is negotiated across 100+ languages, verified by multimodal AI + robotic/camera telemetry over WebRTC, and arbitrated in 90 seconds.
+- **The 10-Year Picture**: MUDRA-OS becomes the global TCP/IP of commercial trust - an autonomous real-time trade protocol where $3 Trillion of global B2B and P2P commerce is negotiated across 100+ languages, verified by multimodal AI + robotic/camera telemetry over WebRTC, and arbitrated in 90 seconds.
 
 ---
 
@@ -61,10 +61,10 @@ timeline
 
 Grounded in our Sacred Texts Metacognitive Matrix (`state.md`) and Design Skills (`/hallmark`, `/unslop`, `/apple-design`):
 
-1. **Non-Dual Protocol Unity (*Ashtavakra Mahageeta — Nirvikalpa*)**: Do not separate conversation from contract. The `<nc-escrow-deal-card>` lives *inside* the `<nc-chat-ui-app-provider>` message stream; the `@nexconn/call` video inspection rides *over* the `NCEngine` socket; the audit receipt lands *in* the `System` channel.
-2. **Surgical Engineering Speed (*Hanuman Chalisa — Laghima & Garima*)**: Zero bloated Python layers in the critical path. **Go 1.24** handles deterministic escrow state transitions in `<1.2ms`; **Rust 1.85 + WASM** handles perceptual frame hashing, audio FFT motor diagnostics, PII scrubbing, and Ed25519 cryptographic signing in `<5ms`; **Node.js 22** drives the official `@nexconn/server-sdk`.
+1. **Non-Dual Protocol Unity (*Ashtavakra Mahageeta - Nirvikalpa*)**: Do not separate conversation from contract. The `<nc-escrow-deal-card>` lives *inside* the `<nc-chat-ui-app-provider>` message stream; the `@nexconn/call` video inspection rides *over* the `NCEngine` socket; the audit receipt lands *in* the `System` channel.
+2. **Surgical Engineering Speed (*Hanuman Chalisa - Laghima & Garima*)**: Zero bloated Python layers in the critical path. **Go 1.24** handles deterministic escrow state transitions in `<1.2ms`; **Rust 1.85 + WASM** handles perceptual frame hashing, audio FFT motor diagnostics, PII scrubbing, and Ed25519 cryptographic signing in `<5ms`; **Node.js 22** drives the official `@nexconn/server-sdk`.
 3. **Beginner-First Story Clarity (*Jony Ive & Don Norman*)**: A first-time user or an exhausted hackathon judge at 2 AM must never ask *"Where do I click?"*. Every route (`/` → `/auth` → `/onboarding` → `/app` → `/sandbox`) reads like a clear story with a persistent 4-stage progress bar and contextual coachmarks.
-4. **Enforceable Deterrence (*Chanakya Arthashastra — Sama, Dana, Bheda, Danda*)**:
+4. **Enforceable Deterrence (*Chanakya Arthashastra - Sama, Dana, Bheda, Danda*)**:
    - *Sama* (Conciliation): Real-time cross-lingual translation (`F-03`).
    - *Dana* (Incentive): Instant escrow milestone release (`F-04`) and zero-login guest tokens (`F-01`).
    - *Bheda* (Forensic Discrimination): Rust + Vision frame/audio defect comparison (`F-06`).
@@ -82,4 +82,4 @@ Grounded in our Sacred Texts Metacognitive Matrix (`state.md`) and Design Skills
 
 ## 6. Impact Thesis
 
-By eliminating the **35% middleman trust tax** in inter-state FPO/MSME trade and preventing **₹38,000+ Crore** in P2P and B2B advance-payment scams, SAMADHAN-OS directly empowers small manufacturers (`P-01`), regional machinery dealers (`P-02`), student micro-entrepreneurs (`P-03`), and vernacular farmers to trade with national and international counterparties on equal footing.
+By eliminating the **35% middleman trust tax** in inter-state FPO/MSME trade and preventing **₹38,000+ Crore** in P2P and B2B advance-payment scams, MUDRA-OS directly empowers small manufacturers (`P-01`), regional machinery dealers (`P-02`), student micro-entrepreneurs (`P-03`), and vernacular farmers to trade with national and international counterparties on equal footing.

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Smoke test verifying that all SAMADHAN-OS microservices and web app are running and healthy.
+// Smoke test verifying that all MUDRA-OS microservices and web app are running and healthy.
 
 const checks = [
   { name: "Bridge (:4001) /health", url: "http://127.0.0.1:4001/health" },
@@ -23,7 +23,7 @@ async function checkUrl(url, timeoutMs = 3000) {
 }
 
 async function run() {
-  console.log("Checking SAMADHAN-OS services health...\n");
+  console.log("Checking MUDRA-OS services health...\n");
   let allOk = true;
 
   for (const c of checks) {

@@ -1,8 +1,8 @@
-# Orchestrator Hard Handoff Report — Nexconn Build Challenge 2026 (`teamwork_orchestrator_main`)
+# Orchestrator Hard Handoff Report - Nexconn Build Challenge 2026 (`teamwork_orchestrator_main`)
 
 - **Orchestrator**: `teamwork_orchestrator_main` (`ce650322-b861-45dd-a12e-c7d3a6871eb0`)
 - **Parent (Sentinel)**: `1070af76-56ea-4db5-9a3c-48f012bf50e8`
-- **Handoff Type**: **Hard Handoff (Task Complete — 100% Milestones & Gate Checks Passed)**
+- **Handoff Type**: **Hard Handoff (Task Complete - 100% Milestones & Gate Checks Passed)**
 - **Timestamp**: `2026-10-31T20:20:00Z`
 
 ---
@@ -30,7 +30,7 @@ None (`0` running). All 16 active subagents have completed their tasks and trans
 ## 3. Observation & Synthesized Intelligence Summary
 
 ### 3.1 Hackathon Ground Truth (`https://reskilll.com/hack/nexconn/`)
-- **Official Event**: **Nexconn Build Challenge 2026** (`"Build the next generation of interactive communication apps with Nexconn Chat SDK"`), hosted on Reskilll (`https://reskilll.com/hack/nexconn/`) and sponsored by **Nexconn** (`RCLOUD GLOBAL PTE. LTD.`, Singapore — the global AI-native flagship brand of **RongCloud**, backed by 19 years of carrier-grade messaging heritage since China Mobile Fetion in 2007 and serving `300M+` monthly active devices across `400,000+` apps).
+- **Official Event**: **Nexconn Build Challenge 2026** (`"Build the next generation of interactive communication apps with Nexconn Chat SDK"`), hosted on Reskilll (`https://reskilll.com/hack/nexconn/`) and sponsored by **Nexconn** (`RCLOUD GLOBAL PTE. LTD.`, Singapore - the global AI-native flagship brand of **RongCloud**, backed by 19 years of carrier-grade messaging heritage since China Mobile Fetion in 2007 and serving `300M+` monthly active devices across `400,000+` apps).
 - **Timeline & Format**: Online Global Hackathon, **April 10, 2026 – May 20, 2026** (`11:59 PM PT` submission deadline); winners announced **early June 2026**. Team size: **1–4 members** (`18+` or age of majority; Mainland China `CN` excluded in portal country selector).
 - **Verified Prize Pool (`$25,640+ USD` total value)**:
   - **`$5,000 USD` Cash Pool across Top 5 Overall Winners**: **1st Place**: `$2,000` · **2nd Place**: `$1,250` · **3rd Place**: `$750` · **4th Place**: `$500` · **5th Place**: `$500`.
@@ -47,8 +47,8 @@ Nexconn's core thesis is **Unified Human-to-Human (`H2H`), Human-to-Agent (`H2A`
 - **Core SDKs & UI Kits**: `@rongcloud/imlib-next` + `@rongcloud/engine` (`v5.x` Web), `RongIMKit` / Chat UI (`20+` customizable UI components), Call SDK (`CallPlus` WebRTC 1-on-1 & group voice/video with AI noise suppression), Server REST APIs & Webhooks (`nexconn.io` / `rongcloud.io`).
 - **6 High-Leverage Differentiators**:
   1. **Streaming Messages (`/chat-sdk/messages/stream-message.md`)**: Native chunked token streaming over the IM socket for real-time LLM/agent responses without HTTP polling.
-  2. **Message Expansion (`/chat-sdk/messages/expansion.md`)**: Mutable key-value state (`up to 100 KV pairs/message`) attached to live messages with real-time listener callbacks — turns any chat bubble into a live state machine (HUD cards, escrow approvals, incident batons, bid counters).
-  3. **Targeted Group Whispers (`/chat-sdk/group-channels/direct.md`)**: Send messages inside a shared group channel that are delivered *only* to specific `userIds` — enables private AI coaching whispers, role-specific tactical alerts, and supervisor guardrails inside a live room.
+  2. **Message Expansion (`/chat-sdk/messages/expansion.md`)**: Mutable key-value state (`up to 100 KV pairs/message`) attached to live messages with real-time listener callbacks - turns any chat bubble into a live state machine (HUD cards, escrow approvals, incident batons, bid counters).
+  3. **Targeted Group Whispers (`/chat-sdk/group-channels/direct.md`)**: Send messages inside a shared group channel that are delivered *only* to specific `userIds` - enables private AI coaching whispers, role-specific tactical alerts, and supervisor guardrails inside a live room.
   4. **Built-in Translation (`/chat-sdk/advanced/builtin-translation.md`) & Voice-to-Text (`/chat-sdk/messages/voice-to-text.md`)**: Server-side auto-translation across `50+` languages (`targetLanguage` per message) and instant speech-to-text transcription.
   5. **Open-Channel Metadata (`/chat-sdk/open-channels/metadata.md`)**: High-concurrency live stream chatrooms with synchronized room-level KV state, mutex locks, and `autoDelete` lifecycle hooks.
   6. **AI Agent Skills & Console MCP (`https://github.com/nexconn/nexconn-skills`, `@nexconn/console-mcp`)**: Agent-driven app provisioning, App Key management, and multi-agent identity (`AgentID` as a first-class citizen alongside `UserID`).
@@ -66,13 +66,13 @@ Using the canonical 5-factor Domain Winnability Index ($\text{Winnability} = 0.2
 | **#6** | `05` · `nexconn-social-good` | **Humanitarian & Social Good** | 8.8 | 8.5 | 8.2 | 8.2 | 8.3 | **8.43 / 10** | **`KavachElder`** (**9.07/10**) |
 
 ### 3.4 Single Best Winning Track & Project Recommendation (+ Dark Horse)
-1. **#1 Overall Winning Pick — `GhostCoach SquadOS` (Track 02: Gaming & Live Streams · `nexconn-gaming` · Score: `9.44 / 10`)**:
+1. **#1 Overall Winning Pick - `GhostCoach SquadOS` (Track 02: Gaming & Live Streams · `nexconn-gaming` · Score: `9.44 / 10`)**:
    - **What It Is**: A telemetry-grounded, role-targeted AI tactical shotcaller and 1-tap `Message Expansion` micro-bounty HUD with a dynamic **Clutch Isolation Shield** for 5-player competitive gaming squads (`Valorant`, `BGMI`, `Dota 2`, `League of Legends`) and live co-streamers.
    - **Why It Wins**:
      - Avoids the "80% Trap" (generic public chatrooms or high-latency voice bots talking over footsteps).
      - Exercises **five distinct Nexconn primitives simultaneously** in the first 45 seconds of the judge demo video: (1) **Targeted Group Whispers** (`/group-channels/direct.md`) so the AI Coach (`AgentID: agent_ghost_coach`) whispers role-specific rotation/economy alerts *only* to the affected player (`userId_IGL` or `userId_Support`) inside the shared 5-player channel; (2) **Streaming Messages** (`/messages/stream-message.md`) for `<200ms` tactical callout streaming; (3) **Message Expansion** (`/messages/expansion.md`) for live 1-tap tactical vote/ready HUD cards and viewer micro-bounties; (4) **Built-in Translation** (`/advanced/builtin-translation.md`) for cross-region SEA/India polyglot callouts; and (5) **Call SDK + Clutch Isolation** that automatically suppresses non-essential crowd/text pings when `alive_squad_count == 1`.
      - Directly adapts **arXiv:2609.27606** (*Dual-Process Multi-Agent Framework for Real-Time Tactical Shotcalling*) and **CHI 2025Danmaku orchestration** onto Nexconn's native SDK.
-2. **#1 Dark Horse Pick — `A2ACanvas OS` (Track 06: Open Innovation · `open` / `open-innovation` · Score: `9.25 / 10`)**:
+2. **#1 Dark Horse Pick - `A2ACanvas OS` (Track 06: Open Innovation · `open` / `open-innovation` · Score: `9.25 / 10`)**:
    - **What It Is**: An executable **Multi-Agent AICP Negotiation Mesh & State-Machine Workspace** where personal and enterprise AI agents (`AgentID`s) negotiate schedules, procurement quotes, and incident handoffs over Nexconn `CustomMessage` JSON-RPC envelopes while humans supervise via Targeted Group Whispers and cryptographic `Message Expansion` approval gates.
 
 ---
@@ -89,7 +89,7 @@ Using the canonical 5-factor Domain Winnability Index ($\text{Winnability} = 0.2
 ## 5. Caveats & Non-Blocking Observations
 
 1. **Minor Cosmetic Typography Nuances Identified in White-Box Review (`Low` Severity)**:
-   - In `ideas.md` (24 top-level section header lines), Windows CP1252 string assembly substituted ` ? ` for an em-dash (`—`), while all 30 `## Idea N — ...` cards, body text, and tables use clean UTF-8 em-dashes and extract cleanly in `ideas.pdf`.
+   - In `ideas.md` (24 top-level section header lines), Windows CP1252 string assembly substituted ` ? ` for an em-dash (` - `), while all 30 `## Idea N - ...` cards, body text, and tables use clean UTF-8 em-dashes and extract cleanly in `ideas.pdf`.
    - In `ideas.md:11` and `state.md:59`, the printed text description of the Winnability formula displays `0.25(Demo) + 0.10(Feas)`, whereas the actual computed table scores (`9.27`, `9.02`, `9.01`, `8.73`, `8.69`, `8.43`) in `biblehackathon.md`, `ideas.md`, and `state.md` all use the exact canonical `war-room-protocol.md` weights (`0.20(Demo) + 0.15(Feas)`).
    - In `biblehackathon.md` (lines 110, 141, 349), three rhetorical prose sentences mention the `$10,000` aggregator figure alongside Part 1's authoritative `$5,000 USD cash + $20,640 Free Chat Plan` (`$25,640` total) breakdown.
    - None of these affect any acceptance criterion, E2E test (`189/189` PASS), PDF validity, or strategic recommendation.
@@ -107,12 +107,12 @@ Using the canonical 5-factor Domain Winnability Index ($\text{Winnability} = 0.2
 
 ### Complete Deliverable Manifest (`d:\Hackathons\Nexconn\`)
 - **Primary Deliverables**:
-  - `d:\Hackathons\Nexconn\biblehackathon.md` (`68,534` bytes, 379 lines — Parts 1–6 + `# Sources`)
+  - `d:\Hackathons\Nexconn\biblehackathon.md` (`68,534` bytes, 379 lines - Parts 1–6 + `# Sources`)
   - `d:\Hackathons\Nexconn\biblehackathon.pdf` (`1,251,767` bytes, 31 pages, `65,087` extractable chars)
-  - `d:\Hackathons\Nexconn\ideas.md` (`386,232` bytes, 2,334 lines — Part 0 Winnability + 30 detailed ideas across 6 tracks + `# Sources`)
+  - `d:\Hackathons\Nexconn\ideas.md` (`386,232` bytes, 2,334 lines - Part 0 Winnability + 30 detailed ideas across 6 tracks + `# Sources`)
   - `d:\Hackathons\Nexconn\ideas.pdf` (`5,751,132` bytes, 105 pages, `367,780` extractable chars)
-  - `d:\Hackathons\Nexconn\state.md` (`12,855` bytes, 130 lines — Complete state & handoff index)
-  - `d:\Hackathons\Nexconn\PROJECT.md` (`17,050` bytes — Master project decomposition & milestone ledger)
+  - `d:\Hackathons\Nexconn\state.md` (`12,855` bytes, 130 lines - Complete state & handoff index)
+  - `d:\Hackathons\Nexconn\PROJECT.md` (`17,050` bytes - Master project decomposition & milestone ledger)
 - **Recon & Connect-the-Dots (`d:\Hackathons\Nexconn\research\`)**:
   - `research/00-source/reskilll-nexconn-portal.md` (`14,625` B) & `research/00-source/nexconn-docs-and-skills.md` (`15,431` B)
   - `research/01-facts.md` (`15,879` B), `research/A-organisers.md` (`15,281` B), `research/B-sponsors.md` (`21,546` B), `research/C-judges.md` (`14,226` B), `research/D-why-now.md` (`17,308` B), `research/E-competition.md` (`19,534` B), `research/F-connect-the-dots.md` (`13,378` B)

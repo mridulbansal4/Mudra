@@ -11,7 +11,7 @@ export function S3PhoneSection() {
             <span className="block">and nothing less.</span>
           </h2>
           <p className="t-lead mx-auto mt-6 max-w-[520px] lowercase text-fg-2">
-            if you're a samadhan member, every rupee you send waits in a sealed
+            if you're a mudra member, every rupee you send waits in a sealed
             vault until the product proves itself on camera. nothing moves until
             both of you say so.
           </p>

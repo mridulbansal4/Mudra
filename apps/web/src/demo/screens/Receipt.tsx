@@ -55,7 +55,7 @@ export function Receipt({ state, dispatch }: ReceiptProps) {
           <ListRow label="motor" value="4,820 rpm" showChevron={false} />
           <ListRow
             label="signed by"
-            value={<span className="text-[13px] font-semibold lowercase">samadhan verifier</span>}
+            value={<span className="text-[13px] font-semibold lowercase">mudra verifier</span>}
             showChevron={false}
           />
         </ListGroup>
