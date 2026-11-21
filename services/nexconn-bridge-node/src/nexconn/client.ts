@@ -239,7 +239,7 @@ export class NexconnClient {
       new SystemMessagesApi(cfg).sendSystemChannelMessage({
         fromUserId: this.config.systemVoucherBotId,
         toUserIds,
-        messageType: "x-samadhan-system-voucher",
+        messageType: "x-mudra-system-voucher",
         content: JSON.stringify(payload),
       }),
     );

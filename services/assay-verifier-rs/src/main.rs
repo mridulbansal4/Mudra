@@ -1,4 +1,4 @@
-//! assay-verifier-rs — SAMADHAN-OS forensic & crypto engine (internal, :4003).
+//! assay-verifier-rs - MUDRA-OS forensic & crypto engine (internal, :4003).
 //!
 //! Endpoints (IMPLEMENTATION_CONTRACT.md §6):
 //!   GET  /health

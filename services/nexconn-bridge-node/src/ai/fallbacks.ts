@@ -114,7 +114,7 @@ export function translateOffline(
     );
   }
   const tag = `[${targetLocale || "und"} · offline]`;
-  const translated = `${tag} ${body}${tail.length ? ` — ${tail.join(" · ")}` : ""}`;
+  const translated = `${tag} ${body}${tail.length ? `, ${tail.join(" · ")}` : ""}`;
   return { translated_text: translated, glossary_hits: hits, model: "heuristic-glossary-v1" };
 }
 
@@ -227,12 +227,12 @@ type Tpl = { counter: string[]; accepted: string[]; react: Record<"student" | "u
 const SHOP: Record<ShopLocale, Tpl> = {
   en: {
     counter: [
-      "{react}Arre, {item} for {offer}? My chai bill is bigger than that margin! Best I can do is {counter} — Chanakya's word.",
+      "{react}Arre, {item} for {offer}? My chai bill is bigger than that margin! Best I can do is {counter}, Chanakya's word.",
       "{react}{offer} for {item}? You bargain like a true Bengaluru pro! My final for this round: {counter}.",
       "{react}Hmm, {offer} is respectable, but this {item} is pure gold. Come up to {counter} and we shake hands.",
     ],
     accepted: [
-      "Shabash! {offer} it is — the {item} is yours. Lock the escrow before I change my mind!",
+      "Shabash! {offer} it is, the {item} is yours. Lock the escrow before I change my mind!",
       "You win this round, champion! {item} at {offer}, deal done. Lock it in escrow now.",
     ],
     react: {
@@ -244,12 +244,12 @@ const SHOP: Record<ShopLocale, Tpl> = {
   },
   hi: {
     counter: [
-      "{react}अरे भाई, {item} {offer} में? इतने में तो पैकिंग भी नहीं आती! मेरा भाव है {counter} — चाणक्य का वचन।",
+      "{react}अरे भाई, {item} {offer} में? इतने में तो पैकिंग भी नहीं आती! मेरा भाव है {counter}, चाणक्य का वचन।",
       "{react}{offer}? बढ़िया मोलभाव! पर इस राउंड में मेरा आखिरी दाम {counter} है।",
       "{react}हम्म, {offer} ठीक है, पर {item} एकदम खरा माल है। {counter} पर हाथ मिलाइए।",
     ],
     accepted: [
-      "शाबाश! {offer} पर सौदा पक्का — {item} आपका हुआ। मेरा मन बदलने से पहले एस्क्रो लॉक कीजिए!",
+      "शाबाश! {offer} पर सौदा पक्का, {item} आपका हुआ। मेरा मन बदलने से पहले एस्क्रो लॉक कीजिए!",
       "आप जीत गए! {item} {offer} में, सौदा पक्का। अभी एस्क्रो लॉक करें।",
     ],
     react: {
@@ -261,12 +261,12 @@ const SHOP: Record<ShopLocale, Tpl> = {
   },
   hinglish: {
     counter: [
-      "{react}Arre bhai, {item} sirf {offer} mein? Itne mein toh packing bhi nahi aati! Mera rate hai {counter} — Chanakya ka vachan.",
+      "{react}Arre bhai, {item} sirf {offer} mein? Itne mein toh packing bhi nahi aati! Mera rate hai {counter}, Chanakya ka vachan.",
       "{react}{offer}? Badhiya mol-bhav! Par is round mein mera aakhri daam {counter} hai.",
       "{react}Hmm, {offer} theek hai, par {item} ekdum khara maal hai. {counter} pe haath milao.",
     ],
     accepted: [
-      "Shabash! {offer} pe deal pakki — {item} aapka hua. Escrow lock karo jaldi!",
+      "Shabash! {offer} pe deal pakki, {item} aapka hua. Escrow lock karo jaldi!",
       "Aap jeet gaye boss! {item} {offer} mein, deal done. Abhi escrow lock karo.",
     ],
     react: {
@@ -278,12 +278,12 @@ const SHOP: Record<ShopLocale, Tpl> = {
   },
   mr: {
     counter: [
-      "{react}अहो, {item} फक्त {offer} मध्ये? एवढ्यात तर पॅकिंगसुद्धा येत नाही! माझा भाव {counter} — चाणक्याचा शब्द.",
+      "{react}अहो, {item} फक्त {offer} मध्ये? एवढ्यात तर पॅकिंगसुद्धा येत नाही! माझा भाव {counter}, चाणक्याचा शब्द.",
       "{react}{offer}? छान घासाघीस! पण या फेरीत माझी शेवटची किंमत {counter} आहे.",
       "{react}हम्म, {offer} ठीक आहे, पण {item} अस्सल माल आहे. {counter} वर हात मिळवा.",
     ],
     accepted: [
-      "शाब्बास! {offer} वर व्यवहार पक्का — {item} तुमचा झाला. एस्क्रो लगेच लॉक करा!",
+      "शाब्बास! {offer} वर व्यवहार पक्का, {item} तुमचा झाला. एस्क्रो लगेच लॉक करा!",
       "तुम्ही जिंकलात! {item} {offer} मध्ये, सौदा पक्का. आता एस्क्रो लॉक करा.",
     ],
     react: {
@@ -295,12 +295,12 @@ const SHOP: Record<ShopLocale, Tpl> = {
   },
   ta: {
     counter: [
-      "{react}அண்ணா, {item} வெறும் {offer}-க்கா? அந்த விலைக்கு பேக்கிங் கூட வராது! என் விலை {counter} — சாணக்கியர் வாக்கு.",
+      "{react}அண்ணா, {item} வெறும் {offer}-க்கா? அந்த விலைக்கு பேக்கிங் கூட வராது! என் விலை {counter}, சாணக்கியர் வாக்கு.",
       "{react}{offer}? நல்ல பேரம்! ஆனால் இந்த சுற்றில் என் கடைசி விலை {counter}.",
       "{react}ம்ம், {offer} பரவாயில்லை, ஆனால் இந்த {item} அசல் சரக்கு. {counter}-க்கு கை குலுக்குவோம்.",
     ],
     accepted: [
-      "சபாஷ்! {offer}-க்கு ஒப்பந்தம் உறுதி — {item} உங்களுடையது. உடனே எஸ்க்ரோவை லாக் செய்யுங்கள்!",
+      "சபாஷ்! {offer}-க்கு ஒப்பந்தம் உறுதி, {item} உங்களுடையது. உடனே எஸ்க்ரோவை லாக் செய்யுங்கள்!",
       "நீங்கள் வென்றீர்கள்! {item} {offer}-க்கு, ஒப்பந்தம் முடிந்தது. இப்போதே எஸ்க்ரோ லாக் செய்யுங்கள்.",
     ],
     react: {

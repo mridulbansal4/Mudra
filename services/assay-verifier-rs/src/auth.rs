@@ -109,7 +109,7 @@ mod tests {
 
     #[test]
     fn sign_matches_known_vector() {
-        // HMAC_SHA256("key", "1700000000.{}") — computed with Node `crypto`.
+        // HMAC_SHA256("key", "1700000000.{}") - computed with Node `crypto`.
         let s = sign(b"key", "1700000000", b"{}");
         assert_eq!(s, "9d713ed406bb7076d4123f0dc2c39d2df5c654ed4b0cd56b52c8b4c940bd63ae");
     }

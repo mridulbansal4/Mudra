@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
 )
 
 // User (E-01).
@@ -33,7 +33,7 @@ type ChecklistItem struct {
 	Verified bool   `json:"verified"`
 }
 
-// ChatMessage (E-05) — raw_text is always the PII-scrubbed source text.
+// ChatMessage (E-05) - raw_text is always the PII-scrubbed source text.
 type ChatMessage struct {
 	ID              string         `json:"id"`
 	DealID          string         `json:"deal_id"`

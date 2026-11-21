@@ -1,5 +1,5 @@
-# Threat Model (STRIDE & Abuse Cases) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Security & Red-Team Lead — Nicholas Carlini & Troy Hunt Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Threat Model (STRIDE & Abuse Cases) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Security & Red-Team Lead - Nicholas Carlini & Troy Hunt Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Security Architecture](./SECURITY_ARCHITECTURE.md) · [Risk Register](./RISK_REGISTER.md)
 
 ---
@@ -56,12 +56,12 @@ flowchart TB
 
 ## 3. Domain-Specific Marketplace Abuse Cases & Countermeasures
 
-1. **Abuse Case 1 — The "Static Screen Replay" Scam**:
+1. **Abuse Case 1 - The "Static Screen Replay" Scam**:
    - *Attack*: Seller points their phone camera at a laptop monitor showing a photo of a pristine Juki machine or GPU.
    - *Countermeasure*: (a) `API-07` issues a live challenge (*"Tilt camera 20° left and run motor for 2 seconds"*). (b) Client WASM checks Moiré screen-grid interference and specular highlights. (c) Rust `audio_fft.rs` verifies the live `4,820 RPM` acoustic signature simultaneously.
-2. **Abuse Case 2 — Post-Dispute Intimidation & Evidence Deletion**:
+2. **Abuse Case 2 - Post-Dispute Intimidation & Evidence Deletion**:
    - *Attack*: Once Buyer spots a defect, Seller floods the chat with abusive messages or tries to overwrite the conversation context.
    - *Countermeasure*: Clicking `Raise Dispute` (`API-09`) immediately invokes `@nexconn/server-sdk`'s `GroupChannelModerationApi.addGroupChannelFreezeList` (`POST /v4/group-channel/moderation/freeze/add`), locking the channel in `<150ms`.
-3. **Abuse Case 3 — Synthetic MAU Bot Farming Accusation (`R24`)**:
+3. **Abuse Case 3 - Synthetic MAU Bot Farming Accusation (`R24`)**:
    - *Attack/Critique*: Hackathon auditor suspects active users on `console.nexconn.ai` are fake loop scripts.
    - *Countermeasure*: Every session in `nexconn_sessions` (`E-02`) is tied to a real interactive browser session (`/sandbox` split-screen tour or `/arena` 60-second human bargaining turns) with full event telemetry visible on `/traction`.

@@ -1,4 +1,4 @@
-module github.com/chanakya-team/samadhan-os/services/deal-engine-go
+module github.com/chanakya-team/mudra-os/services/deal-engine-go
 
 go 1.24
 

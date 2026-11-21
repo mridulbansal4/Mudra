@@ -1,4 +1,4 @@
-# Victory Auditor Dispatch — victory_auditor_1
+# Victory Auditor Dispatch - victory_auditor_1
 
 - **Identity**: `victory_auditor_1` (`teamwork_victory_auditor`)
 - **Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\victory_auditor_1`

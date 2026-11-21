@@ -1,6 +1,6 @@
 # assay-verifier-rs (`:4003`)
 
-Rust/axum forensic and crypto engine for SAMADHAN-OS. It is **optional**: when it can't be reached, `deal-engine-go` uses its native Go fallbacks, which use the same formulas (see below). See `docs/03-engineering/IMPLEMENTATION_CONTRACT.md` §5–§6.
+Rust/axum forensic and crypto engine for MUDRA-OS. It is **optional**: when it can't be reached, `deal-engine-go` uses its native Go fallbacks, which use the same formulas (see below). See `docs/03-engineering/IMPLEMENTATION_CONTRACT.md` §5–§6.
 
 > **Status:** this code has **not been compiled yet in the authoring environment**, because Rust wasn't installed there. Run `cargo test` first and fix anything it flags. The places most likely to need a tweak are listed at the end.
 

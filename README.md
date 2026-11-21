@@ -1,4 +1,4 @@
-# SAMADHAN-OS (`SamvadDeal`)
+# MUDRA-OS (`SamvadDeal`)
 
 > **When you buy or sell anything high-stakes in chat, the message *is* the escrow, the call *is* the product inspection, and the AI mediator freezes the room before a dispute becomes a chargeback.**
 
@@ -21,8 +21,8 @@
 | `services/nexconn-bridge-node` (:4001) | All `/internal/nc/*` + `/internal/ai/*`, vendored `@nexconn/server-sdk` 0.1.2 | 33 vitest tests; **simulated mode only** (no Nexconn keys yet) |
 | `services/assay-verifier-rs` (:4003) + `packages/assay-wasm-rs` | PII scrub, pHash, motor-RPM FFT, Ed25519 vouchers; WASM metrics | 34 + 6 `cargo test`, clippy `-D warnings` clean, wasm32 build; live E2E with Go signing via Rust and zero hash-chain mismatches. Go/Node still fall back if :4003 is down |
 | `apps/web` (:5173) | All 9 routes, 4 Lit cards, draggable assay loupe, simulated HD camera | typecheck + build + full sandbox flow in a browser |
-| Postgres / Redis | Schema in `services/deal-engine-go/internal/db/migrations`; runtime uses an in-memory store | — |
-| `apps/mobile-expo` | Not implemented | — |
+| Postgres / Redis | Schema in `services/deal-engine-go/internal/db/migrations`; runtime uses an in-memory store | - |
+| `apps/mobile-expo` | Not implemented | - |
 
 Code-level contract (overrides the older docs where they disagree): [`docs/03-engineering/IMPLEMENTATION_CONTRACT.md`](docs/03-engineering/IMPLEMENTATION_CONTRACT.md).
 pHash is bit-identical across Rust, WASM, Go and TypeScript (pinned test vectors in each). Run it: `pnpm install`, then `pnpm dev` (starts Rust too when `cargo` is on PATH), then open `http://localhost:5173/sandbox` and press **Auto-play 45s demo**. Add real `NEXCONN_*` / `GEMINI_API_KEY` values to `.env` to leave simulated mode.
@@ -38,15 +38,15 @@ Over **$50 Billion+** of Indian used electronics, thrift fashion, campus textboo
 
 ---
 
-## 2. What SAMADHAN-OS Does (All 3 Official `PS-03` Sub-Prompts in One Room)
+## 2. What MUDRA-OS Does (All 3 Official `PS-03` Sub-Prompts in One Room)
 
-SAMADHAN-OS turns every **Nexconn** conversation into an **executable, multilingual, video-verified trade contract**:
+MUDRA-OS turns every **Nexconn** conversation into an **executable, multilingual, video-verified trade contract**:
 
-| Official `PS-03` Sub-Prompt | How SAMADHAN-OS Executes It on Nexconn |
+| Official `PS-03` Sub-Prompt | How MUDRA-OS Executes It on Nexconn |
 | :--- | :--- |
-| **1. Buyer-Seller 1-on-1 Chat** | `Direct` and `Group` (`≤ 3,000` members) deal rooms powered by `@nexconn/chatui@^26.2.5`, embedding interactive `<nc-escrow-deal-card>` Lit v3 Web Components (`x-samadhan-escrow-card`) synced to a `< 1.2ms` **Go 1.24** optimistic-locked state machine (`services/deal-engine-go`) and 1-click live WebRTC video inspection (`@nexconn/call@^26.2.0`) verified by **Rust 1.85 + WASM** (`services/assay-verifier-rs`). |
+| **1. Buyer-Seller 1-on-1 Chat** | `Direct` and `Group` (`≤ 3,000` members) deal rooms powered by `@nexconn/chatui@^26.2.5`, embedding interactive `<nc-escrow-deal-card>` Lit v3 Web Components (`x-mudra-escrow-card`) synced to a `< 1.2ms` **Go 1.24** optimistic-locked state machine (`services/deal-engine-go`) and 1-click live WebRTC video inspection (`@nexconn/call@^26.2.0`) verified by **Rust 1.85 + WASM** (`services/assay-verifier-rs`). |
 | **2. Human Agent Dispatch Center** | When a deal hits a deadlock or defect claim, `/dispatch` (`F-08`) invokes `GroupChannelModerationApi.addGroupChannelFreezeList` (`POST /v4/group-channel/moderation/freeze/add`) to **freeze chat input for 90 seconds**, streams a real-time **Gemini 2.5 Pro** evidence brief via `MessageManagementApi.sendGroupChannelStreamMessage`, and gives a human arbitrator 1-click escrow split controls. |
-| **3. Multi-Language Translated Chat** | Every voice note and text message in **English, Hindi (`hi-IN`), Marathi (`mr-IN`), or Tamil (`ta-IN`)** (`F-03`) is transcribed and translated with domain-accurate bargaining preservation (`₹` numbers, tolerances, warranty days) and injected into Nexconn message `extras.translations` so each party reads their native script inline (`<nc-bilingual-bubble>` / `x-samadhan-bilingual-bubble`). |
+| **3. Multi-Language Translated Chat** | Every voice note and text message in **English, Hindi (`hi-IN`), Marathi (`mr-IN`), or Tamil (`ta-IN`)** (`F-03`) is transcribed and translated with domain-accurate bargaining preservation (`₹` numbers, tolerances, warranty days) and injected into Nexconn message `extras.translations` so each party reads their native script inline (`<nc-bilingual-bubble>` / `x-mudra-bilingual-bubble`). |
 
 Plus **all 5 Nexconn Channel Types** (`Direct`, `Group`, `Community` category subchannels via `createCommunitySubchannel` [`F-07`], `Open` live flash-auction drops via `OpenChannelPriorityControlsApi` [`F-06`], and `System` tamper-evident Ed25519 escrow vouchers via `SystemMessagesApi` [`F-09`]).
 
@@ -63,7 +63,7 @@ Every route is designed so a first-time user or a solo hackathon judge at 2:00 A
 | `/onboarding` | **45-Second Interactive Setup (`F-01`)** | 3-step guided setup: pick native language (`EN`/`HI`/`MR`/`TA`), choose role, and toggle **Simulated HD Inspection Video Stream (`FF_SIMULATED_HD_CAMERA`)** if no physical webcam is attached. |
 | `/app` & `/app/deals/:id` | **Main Deal Desk (`F-02`..`F-09`)** | Persistent top **4-Stage Deal Story Bar** (`1. Negotiate` → `2. Lock Escrow` → `3. Video Assay` → `4. Release / Freeze`) with contextual `"Next Step"` coachmarks around `<nc-chat-ui-app-provider>`. |
 | `/sandbox` | **Solo Judge Split-Screen Mode (`F-11`)** | 3-pane synchronized workspace (`Buyer` + `Seller` + `AI Inspector & Go FSM Telemetry`) driving 2 live `NCEngine` sessions side-by-side with a 5-step guided tour (`P-05`). |
-| `/arena` | **60s AI Bargaining Challenge (`F-10`)** | Gamified 60-second haggling duel against **Chanakya AI Shopkeeper (`M-05`)** inside a real Nexconn `Direct` channel — our primary viral campus MAU loop. |
+| `/arena` | **60s AI Bargaining Challenge (`F-10`)** | Gamified 60-second haggling duel against **Chanakya AI Shopkeeper (`M-05`)** inside a real Nexconn `Direct` channel - our primary viral campus MAU loop. |
 | `/dispatch` | **Arbitrator Freeze Center (`F-08`)** | Live queue of frozen `Group` channels with 90-second countdown rings, Rust `pHash`/FFT evidence diffs, and 1-click escrow split actions. |
 | `/guide` | **Interactive Beginner & SDK Manual (`F-12`)** | Step-by-step manual instructions for `console.nexconn.ai`, copy-paste snippets for all 4 Nexconn SDKs, and architecture diagrams. |
 | `/traction` | **Live Telemetry & MAU Proof (`F-13`)** | Real-time App Key `Ke` activity breakdown, Go FSM p99 latency histograms (`0.84ms`), and Rust assay verification counters. |
@@ -120,8 +120,8 @@ docker compose -f infra/docker/docker-compose.yml up -d postgres redis
 ### 2. Install Workspace Dependencies & Build Rust WASM
 ```bash
 pnpm install
-pnpm --filter @samadhan/assay-wasm-rs build:wasm
-pnpm --filter @samadhan/nc-lit-cards build
+pnpm --filter @mudra/assay-wasm-rs build:wasm
+pnpm --filter @mudra/nc-lit-cards build
 ```
 
 ### 3. Run All 3 Backend Services + Web Frontend
@@ -149,15 +149,15 @@ Read **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN
 
 Start with **[`MAP.md`](MAP.md)** for the complete project navigation guide, lookup table, and tailored reading orders.
 
-- **00 — Overview**: [`PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md) · [`VISION.md`](docs/00-overview/VISION.md) · [`PITCH.md`](docs/00-overview/PITCH.md) · [`HACKATHON_PLAN.md`](docs/00-overview/HACKATHON_PLAN.md)
-- **01 — Product**: [`PRD.md`](docs/01-product/PRD.md) · [`PERSONAS.md`](docs/01-product/PERSONAS.md) · [`USER_JOURNEYS.md`](docs/01-product/USER_JOURNEYS.md) · [`USER_STORIES.md`](docs/01-product/USER_STORIES.md) · [`FEATURES.md`](docs/01-product/FEATURES.md) · [`ROADMAP.md`](docs/01-product/ROADMAP.md) · [`METRICS.md`](docs/01-product/METRICS.md) · [`COMPETITIVE_ANALYSIS.md`](docs/01-product/COMPETITIVE_ANALYSIS.md)
-- **02 — Design (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` + `/heroui-native`)**: [`DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md) · [`UI_SPEC.md`](docs/02-design/UI_SPEC.md) · [`ACCESSIBILITY.md`](docs/02-design/ACCESSIBILITY.md) · [`LOCALIZATION.md`](docs/02-design/LOCALIZATION.md)
-- **03 — Engineering & ADRs**: [`ARCHITECTURE.md`](docs/03-engineering/ARCHITECTURE.md) · [`TECH_STACK.md`](docs/03-engineering/TECH_STACK.md) · [`DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md) · [`API_SPEC.md`](docs/03-engineering/API_SPEC.md) · [`openapi.yaml`](api/openapi.yaml) · [`NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md) · [`INTEGRATIONS.md`](docs/03-engineering/INTEGRATIONS.md) · [`FRONTEND.md`](docs/03-engineering/FRONTEND.md) · [`MOBILE.md`](docs/03-engineering/MOBILE.md) · [`BACKEND.md`](docs/03-engineering/BACKEND.md) · [`TESTING.md`](docs/03-engineering/TESTING.md) · [`PERFORMANCE.md`](docs/03-engineering/PERFORMANCE.md) · [`ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md)
-- **04 — AI & Evals**: [`MODELS.md`](docs/04-ai/MODELS.md) · [`PROMPTS.md`](docs/04-ai/PROMPTS.md) · [`AI_EVALS.md`](docs/04-ai/AI_EVALS.md) · [`DATA_PIPELINE.md`](docs/04-ai/DATA_PIPELINE.md) · [`RESPONSIBLE_AI.md`](docs/04-ai/RESPONSIBLE_AI.md)
-- **05 — Ops & Runbooks**: [`CICD.md`](docs/05-ops/CICD.md) · [`INFRASTRUCTURE.md`](docs/05-ops/INFRASTRUCTURE.md) · [`DEPLOYMENT.md`](docs/05-ops/DEPLOYMENT.md) · [`OBSERVABILITY.md`](docs/05-ops/OBSERVABILITY.md) · [`RUNBOOK.md`](docs/05-ops/RUNBOOK.md) · [`COST.md`](docs/05-ops/COST.md) · [`SLA.md`](docs/05-ops/SLA.md)
-- **06 — Security, Privacy & Compliance**: [`SECURITY_ARCHITECTURE.md`](docs/06-security-compliance/SECURITY_ARCHITECTURE.md) · [`THREAT_MODEL.md`](docs/06-security-compliance/THREAT_MODEL.md) · [`PRIVACY.md`](docs/06-security-compliance/PRIVACY.md) · [`COMPLIANCE.md`](docs/06-security-compliance/COMPLIANCE.md) · [`RISK_REGISTER.md`](docs/06-security-compliance/RISK_REGISTER.md) · [`REGULATORY_SANDBOX.md`](docs/06-security-compliance/REGULATORY_SANDBOX.md)
-- **07 — Business & Impact**: [`BUSINESS_MODEL.md`](docs/07-business/BUSINESS_MODEL.md) · [`GTM.md`](docs/07-business/GTM.md) · [`FINANCIALS.md`](docs/07-business/FINANCIALS.md) · [`IMPACT.md`](docs/07-business/IMPACT.md)
-- **08 — Project Management**: [`BACKLOG.md`](docs/08-project/BACKLOG.md) · [`TEAM.md`](docs/08-project/TEAM.md) · [`GLOSSARY.md`](docs/08-project/GLOSSARY.md)
+- **00 - Overview**: [`PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md) · [`VISION.md`](docs/00-overview/VISION.md) · [`PITCH.md`](docs/00-overview/PITCH.md) · [`HACKATHON_PLAN.md`](docs/00-overview/HACKATHON_PLAN.md)
+- **01 - Product**: [`PRD.md`](docs/01-product/PRD.md) · [`PERSONAS.md`](docs/01-product/PERSONAS.md) · [`USER_JOURNEYS.md`](docs/01-product/USER_JOURNEYS.md) · [`USER_STORIES.md`](docs/01-product/USER_STORIES.md) · [`FEATURES.md`](docs/01-product/FEATURES.md) · [`ROADMAP.md`](docs/01-product/ROADMAP.md) · [`METRICS.md`](docs/01-product/METRICS.md) · [`COMPETITIVE_ANALYSIS.md`](docs/01-product/COMPETITIVE_ANALYSIS.md)
+- **02 - Design (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` + `/heroui-native`)**: [`DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md) · [`UI_SPEC.md`](docs/02-design/UI_SPEC.md) · [`ACCESSIBILITY.md`](docs/02-design/ACCESSIBILITY.md) · [`LOCALIZATION.md`](docs/02-design/LOCALIZATION.md)
+- **03 - Engineering & ADRs**: [`ARCHITECTURE.md`](docs/03-engineering/ARCHITECTURE.md) · [`TECH_STACK.md`](docs/03-engineering/TECH_STACK.md) · [`DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md) · [`API_SPEC.md`](docs/03-engineering/API_SPEC.md) · [`openapi.yaml`](api/openapi.yaml) · [`NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md) · [`INTEGRATIONS.md`](docs/03-engineering/INTEGRATIONS.md) · [`FRONTEND.md`](docs/03-engineering/FRONTEND.md) · [`MOBILE.md`](docs/03-engineering/MOBILE.md) · [`BACKEND.md`](docs/03-engineering/BACKEND.md) · [`TESTING.md`](docs/03-engineering/TESTING.md) · [`PERFORMANCE.md`](docs/03-engineering/PERFORMANCE.md) · [`ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md)
+- **04 - AI & Evals**: [`MODELS.md`](docs/04-ai/MODELS.md) · [`PROMPTS.md`](docs/04-ai/PROMPTS.md) · [`AI_EVALS.md`](docs/04-ai/AI_EVALS.md) · [`DATA_PIPELINE.md`](docs/04-ai/DATA_PIPELINE.md) · [`RESPONSIBLE_AI.md`](docs/04-ai/RESPONSIBLE_AI.md)
+- **05 - Ops & Runbooks**: [`CICD.md`](docs/05-ops/CICD.md) · [`INFRASTRUCTURE.md`](docs/05-ops/INFRASTRUCTURE.md) · [`DEPLOYMENT.md`](docs/05-ops/DEPLOYMENT.md) · [`OBSERVABILITY.md`](docs/05-ops/OBSERVABILITY.md) · [`RUNBOOK.md`](docs/05-ops/RUNBOOK.md) · [`COST.md`](docs/05-ops/COST.md) · [`SLA.md`](docs/05-ops/SLA.md)
+- **06 - Security, Privacy & Compliance**: [`SECURITY_ARCHITECTURE.md`](docs/06-security-compliance/SECURITY_ARCHITECTURE.md) · [`THREAT_MODEL.md`](docs/06-security-compliance/THREAT_MODEL.md) · [`PRIVACY.md`](docs/06-security-compliance/PRIVACY.md) · [`COMPLIANCE.md`](docs/06-security-compliance/COMPLIANCE.md) · [`RISK_REGISTER.md`](docs/06-security-compliance/RISK_REGISTER.md) · [`REGULATORY_SANDBOX.md`](docs/06-security-compliance/REGULATORY_SANDBOX.md)
+- **07 - Business & Impact**: [`BUSINESS_MODEL.md`](docs/07-business/BUSINESS_MODEL.md) · [`GTM.md`](docs/07-business/GTM.md) · [`FINANCIALS.md`](docs/07-business/FINANCIALS.md) · [`IMPACT.md`](docs/07-business/IMPACT.md)
+- **08 - Project Management**: [`BACKLOG.md`](docs/08-project/BACKLOG.md) · [`TEAM.md`](docs/08-project/TEAM.md) · [`GLOSSARY.md`](docs/08-project/GLOSSARY.md)
 
 ---
 

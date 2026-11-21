@@ -1,20 +1,20 @@
 # Local stack: PostgreSQL 17 + Redis 7.4 + the three services + web.
 # Data stores are optional for the current build (the Go engine uses an in-memory store);
 # the schema lives in services/deal-engine-go/internal/db/migrations.
-name: samadhan-os
+name: mudra-os
 services:
   postgres:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: samadhan
-      POSTGRES_PASSWORD: samadhan_dev_pass
-      POSTGRES_DB: samadhan_os
+      POSTGRES_USER: mudra
+      POSTGRES_PASSWORD: mudra_dev_pass
+      POSTGRES_DB: mudra_os
     ports: ["5432:5432"]
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ../../services/deal-engine-go/internal/db/migrations:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U samadhan"]
+      test: ["CMD-SHELL", "pg_isready -U mudra"]
       interval: 5s
   redis:
     image: redis:7.4-alpine

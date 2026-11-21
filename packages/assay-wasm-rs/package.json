@@ -1,8 +1,8 @@
 {
-  "name": "@samadhan/assay-wasm-rs",
+  "name": "@mudra/assay-wasm-rs",
   "version": "0.1.0",
   "private": true,
-  "description": "Rust/WASM assay helpers (laplacian_variance, phash_rgba, hamming_hex) for the SAMADHAN-OS web app",
+  "description": "Rust/WASM assay helpers (laplacian_variance, phash_rgba, hamming_hex) for the MUDRA-OS web app",
   "type": "module",
   "main": "pkg/assay_wasm_rs.js",
   "types": "pkg/assay_wasm_rs.d.ts",

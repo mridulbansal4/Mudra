@@ -1,4 +1,4 @@
-// Command server runs the SAMADHAN-OS Go deal engine & public API gateway (:4002).
+// Command server runs the MUDRA-OS Go deal engine & public API gateway (:4002).
 package main
 
 import (
@@ -12,8 +12,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/config"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/handlers"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/config"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/handlers"
 )
 
 func main() {

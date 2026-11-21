@@ -5,7 +5,7 @@ export interface BroadcastPacket {
   action: DemoAction;
 }
 
-const CHANNEL_NAME = "samadhan-demo";
+const CHANNEL_NAME = "mudra-demo";
 
 export function connectDemoBroadcast(onReceive: (action: DemoAction) => void) {
   if (typeof window === "undefined" || typeof BroadcastChannel === "undefined") {

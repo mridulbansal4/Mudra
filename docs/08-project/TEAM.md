@@ -1,5 +1,5 @@
-# Team Topology, RACI Matrix & Governance — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` · Status: Draft v0.1 · Last updated: 2026-11-10
+# Team Topology, RACI Matrix & Governance - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Hackathon Plan](../00-overview/HACKATHON_PLAN.md) · [Backlog](./BACKLOG.md)
 
 ---

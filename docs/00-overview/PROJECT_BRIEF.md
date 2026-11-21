@@ -1,5 +1,5 @@
-# Project Brief — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Architecture & Product Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Project Brief - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Architecture & Product Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Vision](./VISION.md) · [Pitch](./PITCH.md) · [Hackathon Plan](./HACKATHON_PLAN.md) · [PRD](../01-product/PRD.md) · [Architecture](../03-engineering/ARCHITECTURE.md) · [Nexconn SDK Manual](../03-engineering/NEXCONN_SDK_MANUAL.md)
 
 ---
@@ -8,13 +8,13 @@
 
 | Attribute | Canonical Value |
 |---|---|
-| **Product Name** | **SAMADHAN-OS (`SamvadDeal`)** |
+| **Product Name** | **MUDRA-OS (`SamvadDeal`)** |
 | **Tagline / One-Liner** | Live Video-Escrow Commerce, Cross-Lingual B2B/P2P Deal Desk & 90-Second Freeze-Locked AI/Human Dispute Tribunal built 100% on the Nexconn Real-Time Stack. |
 | **Hackathon** | **Nexconn Build Challenge 2026** (`https://reskilll.com/hack/nexconn`) |
-| **Sponsor Legal Entity** | **RCLOUD GLOBAL PTE. LTD.** (`120 Robinson Road, #13-01, Singapore 068913` — International HQ of RongCloud / Nexconn AI, backed by AWS & Alibaba Cloud) |
+| **Sponsor Legal Entity** | **RCLOUD GLOBAL PTE. LTD.** (`120 Robinson Road, #13-01, Singapore 068913` - International HQ of RongCloud / Nexconn AI, backed by AWS & Alibaba Cloud) |
 | **Operating Partner** | **Reskilll** (`https://reskilll.com`, `rohan@reskilll.com`) |
 | **Team Name** | `Chanakya` (4 Engineers · 36-Hour Sprint Core + Pre-Deadline MAU Campaign Window through Mon, Nov 23, 2026, 5:29 PM IST) |
-| **Official Track** | **Marketplace & Support (`PS-03`)** — Combines all 3 official track sub-prompts: *(1) Buyer-seller 1-on-1 chat*, *(2) Human agent dispatch center*, and *(3) Multi-language translated chat*. |
+| **Official Track** | **Marketplace & Support (`PS-03`)** - Combines all 3 official track sub-prompts: *(1) Buyer-seller 1-on-1 chat*, *(2) Human agent dispatch center*, and *(3) Multi-language translated chat*. |
 | **Idea Archetype** | **Doesn't exist** (War Room Council Rank #1 Overall Pick across all 30 ideas · Score: `96.4 / 100` / `9.64 / 10`) |
 | **Nexconn Packages Used** | `@nexconn/chatui@^26.2.5` (`lit@^3.3.2`), `@nexconn/chat@^26.2.1` (`@nexconn/engine@^26.2.1`), `@nexconn/call@^26.2.0`, `@nexconn/server-sdk@0.1.2` |
 
@@ -61,7 +61,7 @@ Full profiles live in [PERSONAS.md](../01-product/PERSONAS.md):
 Per user mandate, the frontend (`apps/web` in React 19 + HeroUI v3 + Tailwind v4 + Lit 3.3.2, and `apps/mobile-expo` in Expo + `heroui-native` v2.0.1 + Uniwind) is engineered as a **beginner-first, zero-confusion interactive story flow** governed by `/hallmark` (v2.0.0), `/unslop`, `/apple-design`, `/heroui-react` (v3.0.1), and `/heroui-native` (v2.0.1):
 
 1. **`/` (Story Landing Page)**: Editorial Hallmark hero (`1280x800` Floor compliant, ≤7-word headline, warm ledger-paper & graphite `oklch` palette, zero purple/blue AI slop) that explains the problem in 3 visual chapters and offers two zero-friction entry doors: **"Launch 1-Click Split-Screen Live Demo"** (`/sandbox`) or **"Sign In / Create Account"** (`/auth`).
-2. **`/auth` (1-Tap Beginner Login, Signup & Persona Switcher)**: HeroUI v3 compound `<Card>` and `<Tabs>` supporting standard account creation PLUS **1-Tap Demo Persona Quick-Fill buttons** (*Rajesh — Tamil Buyer*, *Vikram — Hindi Seller*, *Meera — Arbitrator*, *Instant Guest Pass*) that call `POST /api/v1/auth/session` (`issueAccessToken`) and connect `NCEngine` in `<400ms`.
+2. **`/auth` (1-Tap Beginner Login, Signup & Persona Switcher)**: HeroUI v3 compound `<Card>` and `<Tabs>` supporting standard account creation PLUS **1-Tap Demo Persona Quick-Fill buttons** (*Rajesh - Tamil Buyer*, *Vikram - Hindi Seller*, *Meera - Arbitrator*, *Instant Guest Pass*) that call `POST /api/v1/auth/session` (`issueAccessToken`) and connect `NCEngine` in `<400ms`.
 3. **`/onboarding` (45-Second Interactive First-Time User Setup & Guide)**: 3-step visual wizard: (1) Language & Role Pair Selection, (2) Camera/Mic check with a **1-Click Simulated HD Machinery/Gadget Video Stream** toggle (so users without a webcam or judges at 2 AM still see real video inspection!), and (3) Interactive 3-card preview of the Deal Flow.
 4. **`/app` & `/app/deals/:channelId` (Main Deal Desk Workbench)**: Features a persistent top **4-Stage Deal Story Bar** (`1. Bilingual Negotiate` → `2. Lock Escrow Card` → `3. Live Video Assay` → `4. Release or Freeze Tribunal`) with a pulsing **"Next Step Coachmark"** so a beginner always knows the exact button to press next.
 5. **`/sandbox` (1-Click Split-Screen Buyer + Seller + AI Judge Mode)**: Side-by-side synchronized dual-persona workbench (`buyer_demo_<id>` on left, `seller_demo_<id>` on right) with a 5-step interactive guided story bar at the top.
@@ -181,7 +181,7 @@ Detailed in [INTEGRATIONS.md](../03-engineering/INTEGRATIONS.md) and [NEXCONN_SD
 
 ---
 
-## 12. Top Risks (`R-01` – `R-12`) — Charlie Munger Pre-Mortem
+## 12. Top Risks (`R-01` – `R-12`) - Charlie Munger Pre-Mortem
 
 Full risk register in [RISK_REGISTER.md](../06-security-compliance/RISK_REGISTER.md):
 
@@ -212,7 +212,7 @@ Full risk register in [RISK_REGISTER.md](../06-security-compliance/RISK_REGISTER
 
 ## 14. Hackathon Evaluation Criteria Mapping (`Kx` in `index-Dr3TP1Ui.js`)
 
-| Official Criterion | Weight | How SAMADHAN-OS Dominates This Criterion |
+| Official Criterion | Weight | How MUDRA-OS Dominates This Criterion |
 |---|---|---|
 | **1. Product Value & Innovation** | **30%** | Turns passive chat into an enforceable cross-lingual video-escrow & 90-second dispute arbitration OS solving a ₹38,000 Cr / $48B market failure. |
 | **2. Completeness & Execution** | **30%** | Complete beginner-friendly story frontend (`/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` → `/dispatch` → `/guide` → `/traction`), polyglot Go+Rust+Node backend, public GitHub repo, 3-minute video, and PDF write-up. |
@@ -229,7 +229,7 @@ All architectural decisions are documented in [`docs/03-engineering/adr/`](../03
 |---|---|---|---|
 | **[`ADR-0001`](../03-engineering/adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md)** | **Polyglot Go 1.24 + Rust 1.85/WASM + Node.js 22 Architecture** | Accepted | Eliminates generic Python latency; Go (`:4002`) handles `< 1.2ms` Escrow FSM locks, Rust (`:4003` + WASM) handles `< 300µs` DPDP PII scrubbing & `< 5ms` `pHash`/FFT assays, and Node (`:4001`) runs the official TypeScript `@nexconn/server-sdk@0.1.2`. |
 | **[`ADR-0002`](../03-engineering/adr/ADR-0002-hybrid-nexconn-chatui-and-chat-sdk-channels.md)** | **Hybrid `@nexconn/chatui` + `@nexconn/chat` (`NCEngine`) Channel Routing** | Accepted | `<nc-chat-ui-app-provider>` renders `Direct`, `Group`, and `System` channels; `NCEngine` directly powers `Community` (`createCommunitySubchannel`) and `Open` (`OpenChannelPriorityControlsApi`) channels (`R-02`). |
-| **[`ADR-0003`](../03-engineering/adr/ADR-0003-lit-custom-message-cards-and-shadow-dom-bridge.md)** | **Lit 3.3.2 Custom Message Cards & Shadow DOM Event Bridge** | Accepted | Registers `<nc-escrow-deal-card>` (`x-samadhan-escrow-card`), `<nc-bilingual-bubble>` (`x-samadhan-bilingual-bubble`), `<nc-video-assay-receipt>` (`x-samadhan-assay-receipt`), and `<nc-tribunal-verdict>` (`x-samadhan-tribunal-verdict`) synchronously inside `NCChatUIApplication.initialize({ hooks })` before `app.ready()`, bridging events via `composed: true` (`R-03`). |
+| **[`ADR-0003`](../03-engineering/adr/ADR-0003-lit-custom-message-cards-and-shadow-dom-bridge.md)** | **Lit 3.3.2 Custom Message Cards & Shadow DOM Event Bridge** | Accepted | Registers `<nc-escrow-deal-card>` (`x-mudra-escrow-card`), `<nc-bilingual-bubble>` (`x-mudra-bilingual-bubble`), `<nc-video-assay-receipt>` (`x-mudra-assay-receipt`), and `<nc-tribunal-verdict>` (`x-mudra-tribunal-verdict`) synchronously inside `NCChatUIApplication.initialize({ hooks })` before `app.ready()`, bridging events via `composed: true` (`R-03`). |
 | **[`ADR-0004`](../03-engineering/adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md)** | **HeroUI v3 React + HeroUI Native v2 + Hallmark + Unslop + Apple Motion** | Accepted | Enforces Hallmark `v2.0.0` Floor, Unslop warm customs-ledger `oklch` tokens, Apple critically damped springs (`damping: 1.0`), and providerless `@heroui/react@^3.0.1` on Tailwind CSS v4 (`R-11`). |
 | **[`ADR-0005`](../03-engineering/adr/ADR-0005-postgresql-redis-and-system-channel-immutable-ledger.md)** | **PostgreSQL 17 Optimistic Locking + DragonflyDB / Redis 7.4 Idempotency + `System` Channel Ledger** | Accepted | Combines `WHERE id = $1 AND version = $2` optimistic locking on PostgreSQL 17, `24h` DragonflyDB / Redis 7.4 `Idempotency-Key` deduplication, and SHA-256 hash-chained Ed25519 vouchers dispatched via `SystemMessagesApi`. |
 | **[`ADR-0006`](../03-engineering/adr/ADR-0006-gemini-flash-bhashini-and-nexconn-native-stream-api.md)** | **Gemini 2.5 Flash/Pro + Bhashini ASR + Nexconn Native Stream API** | Accepted | Uses `sendDirectChannelStreamMessage` and `sendGroupChannelStreamMessage` (`/v4/*/message/stream/send`) for `< 280ms` TTFT native token streaming after Rust DPDP PII pre-scrubbing. |

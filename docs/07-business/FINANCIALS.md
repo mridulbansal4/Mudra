@@ -1,12 +1,12 @@
-# Financial Projections & Unit Economics — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (CFO & Forensic Accounting Lead — Warren Buffett & Jim Chanos Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Financial Projections & Unit Economics - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (CFO & Forensic Accounting Lead - Warren Buffett & Jim Chanos Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Business Model](./BUSINESS_MODEL.md) · [Cost](../05-ops/COST.md) · [GTM](./GTM.md)
 
 ---
 
 ## 1. Unit Economics (Survived Red-Team Seat `R4` Jim Chanos Audit)
 
-Red Team Seat `R4` (Jim Chanos) attacks AI startups whose LLM and WebRTC call costs exceed their transaction fees. Here is why SAMADHAN-OS has **>93% gross margins from Day 1**:
+Red Team Seat `R4` (Jim Chanos) attacks AI startups whose LLM and WebRTC call costs exceed their transaction fees. Here is why MUDRA-OS has **>93% gross margins from Day 1**:
 
 | Unit Metric | P2P / Refurb Tech Segment (`P-03`) | B2B Machinery & Wholesale Segment (`P-01`, `P-02`) | Blended Platform Average |
 |---|---|---|---|
@@ -33,9 +33,9 @@ Red Team Seat `R4` (Jim Chanos) attacks AI startups whose LLM and WebRTC call co
 | **1. Escrow Transaction Revenue (`~0.65%` eff.)** | `₹2.08 Cr` | `₹15.92 Cr` | `₹76.70 Cr` | Net of B2B `₹1,500` fee cap |
 | **2. Pro Merchant & Enterprise SaaS Revenue** | `₹3.60 Cr` | `₹25.50 Cr` | `₹102.00 Cr` | `₹2,499/mo` Pro + `₹49,999/mo` Enterprise ReturnShield/ONDC desks |
 | **3. Transit Insurance & Working Capital Hooks** | `₹0.32 Cr` | `₹3.40 Cr` | `₹18.50 Cr` | `0.35%` commission on video-assay-underwritten shipments |
-| **Total Gross Revenue** | **`₹6.00 Cr`** (`$706k`) | **`₹44.82 Cr`** (`$5.27M`) | **`₹197.20 Cr`** (`$23.2M`) | — |
+| **Total Gross Revenue** | **`₹6.00 Cr`** (`$706k`) | **`₹44.82 Cr`** (`$5.27M`) | **`₹197.20 Cr`** (`$23.2M`) | - |
 | **Cloud, Nexconn SDK, AI Tokens & Rail COGS** | `₹0.48 Cr` *(Reduced by $20,640 Nexconn Prize!)* | `₹4.90 Cr` | `₹21.60 Cr` | Go + Rust efficiency keeps compute + AI + RTC COGS `<11%` of revenue |
-| **Gross Profit (`Gross Margin %`)** | **`₹5.52 Cr` (`92.0%`)** | **`₹39.92 Cr` (`89.1%`)** | **`₹175.60 Cr` (`89.0%`)** | — |
+| **Gross Profit (`Gross Margin %`)** | **`₹5.52 Cr` (`92.0%`)** | **`₹39.92 Cr` (`89.1%`)** | **`₹175.60 Cr` (`89.0%`)** | - |
 | **Engineering, Arbitrator Ops & GTM OpEx** | `₹3.80 Cr` | `₹22.40 Cr` | `₹84.00 Cr` | `95%` of disputes resolved by AI + parties; only `5%` require human `P-04` time |
 | **EBITDA (`Operating Margin %`)** | **`+₹1.72 Cr` (`+28.7%`)** | **`+₹17.52 Cr` (`+39.1%`)** | **`+₹91.60 Cr` (`+46.5%`)** | Profitable inside Year 1 thanks to prize credits & polyglot efficiency |
 

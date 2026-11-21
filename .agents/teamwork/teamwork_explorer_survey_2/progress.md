@@ -1,4 +1,4 @@
-# Progress Log — `teamwork_explorer_survey_2`
+# Progress Log - `teamwork_explorer_survey_2`
 
 Last visited: 2026-10-31T18:20:20Z
 

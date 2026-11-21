@@ -1,7 +1,7 @@
-# Handoff Report — Track 03 (`nexconn-workplace`) & Track 04 (`nexconn-support`) Deep Domain Research & War-Room Council Blueprints
+# Handoff Report - Track 03 (`nexconn-workplace`) & Track 04 (`nexconn-support`) Deep Domain Research & War-Room Council Blueprints
 
 > **Executive Summary (2-Sentence Verdict):**
-> Track 03 (`nexconn-workplace`) and Track 04 (`nexconn-support`) are the two highest-leverage enterprise tracks of the **Nexconn Build Challenge 2026 ($100,000 USD Prize Pool)** because they directly showcase Nexconn's flagship differentiator — **AICP (AI Agent Communication Protocol, `UserID` + `AgentID` dual-identity routing)** — alongside its commercial flagship **Lyra (`https://lyrawork.com/`)**, **Targeted Group Whispers (`group-channels/direct.md`)**, **Streaming & Mutable Message Expansion (`stream-message.md`, `expansion.md`)**, and **Built-in Translation (`builtin-translation/overview.md`)**. While 80% of competitors will build generic "Slack/Zendesk clones with an LLM sidebar," winning either track requires making Nexconn's protocol primitives **load-bearing** for zero-drop shift handovers, multi-agent SRE war rooms, whisper-coached human-agent dispatch, and cryptographically bound bilingual escrow negotiations.
+> Track 03 (`nexconn-workplace`) and Track 04 (`nexconn-support`) are the two highest-leverage enterprise tracks of the **Nexconn Build Challenge 2026 ($100,000 USD Prize Pool)** because they directly showcase Nexconn's flagship differentiator - **AICP (AI Agent Communication Protocol, `UserID` + `AgentID` dual-identity routing)** - alongside its commercial flagship **Lyra (`https://lyrawork.com/`)**, **Targeted Group Whispers (`group-channels/direct.md`)**, **Streaming & Mutable Message Expansion (`stream-message.md`, `expansion.md`)**, and **Built-in Translation (`builtin-translation/overview.md`)**. While 80% of competitors will build generic "Slack/Zendesk clones with an LLM sidebar," winning either track requires making Nexconn's protocol primitives **load-bearing** for zero-drop shift handovers, multi-agent SRE war rooms, whisper-coached human-agent dispatch, and cryptographically bound bilingual escrow negotiations.
 
 ---
 
@@ -10,8 +10,8 @@
 Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handoff.md`, `teamwork_explorer_survey_2/handoff.md`, `teamwork_explorer_survey_3/handoff.md`), Nexconn documentation (`https://docs.nexconn.com/`), the official challenge portal (`https://challenge.nexconn.com/`), and targeted web/academic searches yielded the following verified empirical facts:
 
 1. **Official Track Definitions & Sample Builds (`https://challenge.nexconn.com/`):**
-   - **Track 03 — Workplace & Collaboration (`nexconn-workplace`):** Subtitle *"Direct messaging and team project threads."* Official sample builds: (1) *Direct messaging for teams*; (2) *Project discussion threads*; (3) *Shift handover channel*.
-   - **Track 04 — Marketplace & Support (`nexconn-support`):** Subtitle *"Buyer-seller chat and customer service."* Official sample builds: (1) *Buyer-seller 1-on-1 chat*; (2) *Human agent dispatch center*; (3) *Multi-language translated chat*.
+   - **Track 03 - Workplace & Collaboration (`nexconn-workplace`):** Subtitle *"Direct messaging and team project threads."* Official sample builds: (1) *Direct messaging for teams*; (2) *Project discussion threads*; (3) *Shift handover channel*.
+   - **Track 04 - Marketplace & Support (`nexconn-support`):** Subtitle *"Buyer-seller chat and customer service."* Official sample builds: (1) *Buyer-seller 1-on-1 chat*; (2) *Human agent dispatch center*; (3) *Multi-language translated chat*.
 2. **Sponsor & Judge Intent (`https://nexconn.com/`, `https://lyrawork.com/`, `https://docs.nexconn.com/`):**
    - Nexconn PTE. LTD. (Singapore) positions its platform around **"Human + AI Native Communication"** powered by the **AI Agent Communication Protocol (AICP)** (`https://docs.nexconn.com/en/articles/getting-started/aicp-overview.md`), where every message envelope carries both `UserID` and `AgentID`.
    - Nexconn's own flagship commercial application is **Lyra (`https://lyrawork.com/`)**, an AI-native workplace collaboration platform featuring autonomous assistant agents, task tracking, and human-agent co-working channels.
@@ -19,7 +19,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 3. **Underutilized Nexconn SDK Primitives Mapped to Tracks 03 & 04 (`https://docs.nexconn.com/`):**
    - `stream-message.md`: Real-time token streaming for AI agent responses (`StreamMessageStart`, `StreamMessageChunk`, `StreamMessageEnd`) with <100ms perceived latency.
    - `expansion.md`: Mutable JSON key-value message metadata (`MessageExpansion`) allowing in-place state transitions (e.g., handover sign-off status, incident checklist state, escrow milestone state) without flooding channels with new messages.
-   - `group-channels/direct.md`: **Targeted Group Messages (Whispers)** — sending a message inside a shared group channel that is visible *only* to a specified subset of `UserID`/`AgentID` recipients (e.g., an AI Coach whispering negotiation strategy or policy guardrails to a human support agent inside a 3-way buyer-agent-AI room, invisible to the buyer).
+   - `group-channels/direct.md`: **Targeted Group Messages (Whispers)** - sending a message inside a shared group channel that is visible *only* to a specified subset of `UserID`/`AgentID` recipients (e.g., an AI Coach whispering negotiation strategy or policy guardrails to a human support agent inside a 3-way buyer-agent-AI room, invisible to the buyer).
    - `builtin-translation/overview.md` + `builtin-translation/languages.md`: Native protocol-level automatic and on-demand message translation across 50+ languages without external glue code.
    - `channel-tag.md`: Dynamic channel tagging (`#SEV-1`, `#Pending-Signoff`, `#Dispute-Locked`, `#SLA-Risk`) for instant triage routing and dispatch center views.
    - `moderation/overview.md` + `webhook/sync.md` + `webhook/async.md`: Pre-flight synchronous interception (to block off-platform scam links, PII leaks, or unauthorized AI refund promises *before* delivery) and asynchronous event orchestration.
@@ -29,9 +29,9 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 # Track 03: Workplace & Collaboration (`nexconn-workplace`)
 
-## Phase 2 — Domain Deep Research (`nexconn-workplace`)
+## Phase 2 - Domain Deep Research (`nexconn-workplace`)
 
-### 2.1 The Pain Map — Who Suffers, How Much It Costs, Why Current Fixes Fail
+### 2.1 The Pain Map - Who Suffers, How Much It Costs, Why Current Fixes Fail
 
 | Sub-Sector | Who Suffers & Scale | Quantified Cost (USD / ₹ / Lives / Hours) | Why Current Fixes (Slack / Teams / WhatsApp / Paper Logs) Fail |
 |---|---|---|---|
@@ -43,15 +43,15 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 #### 5+ Verifiable Practitioner & Field Voices (`nexconn-workplace`)
 
 1. **On-Call SRE on Slack War-Room Chaos (`r/sre` / `r/devops`):**
-   > *"During a SEV-1 outage, the incident Slack channel turns into a 300-message firehose where three engineers are testing the same hypothesis, nobody knows who holds the Incident Commander baton, and when the EU shift hands over to US West, the new on-call spends 30 minutes scrolling up just to find out what we already rolled back."* — Practitioner synthesis documented across `r/sre` and incident response postmortem analyses ([Firefight / r/sre Incident Chaos Analysis](https://www.reddit.com/r/sre/), [incident.io Slack Incident Management Guide](https://incident.io/guide/slack-incident-management)).
+   > *"During a SEV-1 outage, the incident Slack channel turns into a 300-message firehose where three engineers are testing the same hypothesis, nobody knows who holds the Incident Commander baton, and when the EU shift hands over to US West, the new on-call spends 30 minutes scrolling up just to find out what we already rolled back."* - Practitioner synthesis documented across `r/sre` and incident response postmortem analyses ([Firefight / r/sre Incident Chaos Analysis](https://www.reddit.com/r/sre/), [incident.io Slack Incident Management Guide](https://incident.io/guide/slack-incident-management)).
 2. **Acute Care Nurse on Shift Handover Omissions (`r/nursing`):**
-   > *"Outgoing nurses will spend 5 minutes reading me the patient's 10-year chronic history from the chart, and completely forget to mention that the peripheral IV infiltrated 20 minutes ago or that the potassium replacement is still hanging. After a 12-hour shift, brain fatigue causes critical action items to vanish in verbal report."* — Clinical nursing shift report discussions on `r/nursing` ([Reddit r/nursing Handoff Communication Thread](https://www.reddit.com/r/nursing/)).
+   > *"Outgoing nurses will spend 5 minutes reading me the patient's 10-year chronic history from the chart, and completely forget to mention that the peripheral IV infiltrated 20 minutes ago or that the potassium replacement is still hanging. After a 12-hour shift, brain fatigue causes critical action items to vanish in verbal report."* - Clinical nursing shift report discussions on `r/nursing` ([Reddit r/nursing Handoff Communication Thread](https://www.reddit.com/r/nursing/)).
 3. **Emergency Medicine Informatics Researchers (*JAMA Network Open*, Dec 2024):**
-   > *"Transitions of care from the emergency department to inpatient settings are high-risk events... While untuned LLM summaries scored higher on fluency, unverified omissions of pending labs or active contingencies posed direct patient safety hazards, proving that structured human-in-the-loop verification is mandatory."* — Vince Hartman et al., Weill Cornell Medicine ([PubMed PMID: 39625719](https://pubmed.ncbi.nlm.nih.gov/39625719/)).
+   > *"Transitions of care from the emergency department to inpatient settings are high-risk events... While untuned LLM summaries scored higher on fluency, unverified omissions of pending labs or active contingencies posed direct patient safety hazards, proving that structured human-in-the-loop verification is mandatory."* - Vince Hartman et al., Weill Cornell Medicine ([PubMed PMID: 39625719](https://pubmed.ncbi.nlm.nih.gov/39625719/)).
 4. **Hacker News Engineering Lead on "Slack Archaeology" (`news.ycombinator.com`):**
-   > *"Slack is where institutional engineering decisions go to die. A critical architectural constraint or incident workaround gets agreed upon in a 60-reply thread at 2 AM, and 48 hours later it might as well not exist because it never mutated the project state or runbook."* — Hacker News discussion on Slack thread fatigue and incident context loss ([Hacker News](https://news.ycombinator.com/)).
+   > *"Slack is where institutional engineering decisions go to die. A critical architectural constraint or incident workaround gets agreed upon in a 60-reply thread at 2 AM, and 48 hours later it might as well not exist because it never mutated the project state or runbook."* - Hacker News discussion on Slack thread fatigue and incident context loss ([Hacker News](https://news.ycombinator.com/)).
 5. **UK Health and Safety Executive (HSE) / Lord Cullen Inquiry on Shift Handover Failures:**
-   > *"Shift handover is a safety-critical system of work. Relying on informal verbal updates or passive logbook entries without structured two-way verification of active permits and isolated equipment was a primary root cause of the Piper Alpha catastrophe."* — UK HSE Human Factors in Shift Handover Guidance ([UK HSE Piper Alpha & Shift Handover](https://www.hse.gov.uk/humanfactors/topics/shifthandover.htm)).
+   > *"Shift handover is a safety-critical system of work. Relying on informal verbal updates or passive logbook entries without structured two-way verification of active permits and isolated equipment was a primary root cause of the Piper Alpha catastrophe."* - UK HSE Human Factors in Shift Handover Guidance ([UK HSE Piper Alpha & Shift Handover](https://www.hse.gov.uk/humanfactors/topics/shifthandover.htm)).
 
 ---
 
@@ -65,7 +65,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ---
 
-### 2.3 Prior Art — Startups, GitHub Repositories, Research Papers & Hackathon Winners
+### 2.3 Prior Art - Startups, GitHub Repositories, Research Papers & Hackathon Winners
 
 #### A. Commercial Startups & Products (`nexconn-workplace`)
 | Product / Startup | Funding / Traction | What It Does | Specific Weakness / Why It Falls Short for Nexconn 2026 |
@@ -88,32 +88,32 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 #### C. Recent Academic Research Papers (2024–2026) (`nexconn-workplace`)
 | Paper Title & Authors | Year / Venue | Link / ID | Key Result & Architectural Lesson for Our Build |
 |---|---|---|---|
-| **Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration** (Yijia Shao, Vinay Samuel, Yucheng Jiang, John Yang, Diyi Yang — Stanford) | Dec 2024 (arXiv) | [`arXiv:2412.15701`](https://arxiv.org/abs/2412.15701) | Proves that **asynchronous tripartite interaction** (Human ↔ Agent ↔ Shared Environment State with explicit initiative-taking notifications) outperforms both human-only and fully autonomous agents on complex workplace tasks, while exposing communication breakdown modes when agents lack structured state sharing. |
-| **Flow-of-Action: SOP Enhanced LLM-Based Multi-Agent System for Root Cause Analysis** (Changhua Pei et al. — CAS / ByteDance) | Feb 2025 (WWW '25) | [`arXiv:2502.08224`](https://arxiv.org/abs/2502.08224) | Demonstrates that unconstrained ReAct agents hallucinate during incident RCA; constraining specialized agents (`MainAgent`, `CodeAgent`, `JudgeAgent`, `ObAgent`) with **Standard Operating Procedure (SOP) action graphs** boosts root-cause diagnostic accuracy from 35% to **64%+**. |
-| **Developing and Evaluating Large Language Model-Generated Emergency Medicine Handoff Notes** (Vince Hartman et al. — Weill Cornell Medicine) | Dec 2024 (*JAMA Network Open*) | [`doi:10.1001/jamanetworkopen.2024.48723`](https://doi.org/10.1001/jamanetworkopen.2024.48723) / [`PMID:39625719`](https://pubmed.ncbi.nlm.nih.gov/39625719/) | Shows that combining **rule-based objective telemetry extraction** with **abstractive LLM narrative synthesis** cuts clinical handoff drafting time by **>50%**, while requiring clinician-in-the-loop sign-off to prevent safety-critical omissions. |
-| **A Survey of Agent Interoperability Protocols: MCP, ACP, A2A, and ANP** (Abul Ehtesham et al.) | May 2025 (arXiv) | [`arXiv:2505.02279`](https://arxiv.org/abs/2505.02279) | Establishes the architectural taxonomy for protocol-level agent identity, capability discovery, and stateful task handoffs — directly validating Nexconn's **AICP** (`UserID` + `AgentID`) design. |
+| **Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration** (Yijia Shao, Vinay Samuel, Yucheng Jiang, John Yang, Diyi Yang - Stanford) | Dec 2024 (arXiv) | [`arXiv:2412.15701`](https://arxiv.org/abs/2412.15701) | Proves that **asynchronous tripartite interaction** (Human ↔ Agent ↔ Shared Environment State with explicit initiative-taking notifications) outperforms both human-only and fully autonomous agents on complex workplace tasks, while exposing communication breakdown modes when agents lack structured state sharing. |
+| **Flow-of-Action: SOP Enhanced LLM-Based Multi-Agent System for Root Cause Analysis** (Changhua Pei et al. - CAS / ByteDance) | Feb 2025 (WWW '25) | [`arXiv:2502.08224`](https://arxiv.org/abs/2502.08224) | Demonstrates that unconstrained ReAct agents hallucinate during incident RCA; constraining specialized agents (`MainAgent`, `CodeAgent`, `JudgeAgent`, `ObAgent`) with **Standard Operating Procedure (SOP) action graphs** boosts root-cause diagnostic accuracy from 35% to **64%+**. |
+| **Developing and Evaluating Large Language Model-Generated Emergency Medicine Handoff Notes** (Vince Hartman et al. - Weill Cornell Medicine) | Dec 2024 (*JAMA Network Open*) | [`doi:10.1001/jamanetworkopen.2024.48723`](https://doi.org/10.1001/jamanetworkopen.2024.48723) / [`PMID:39625719`](https://pubmed.ncbi.nlm.nih.gov/39625719/) | Shows that combining **rule-based objective telemetry extraction** with **abstractive LLM narrative synthesis** cuts clinical handoff drafting time by **>50%**, while requiring clinician-in-the-loop sign-off to prevent safety-critical omissions. |
+| **A Survey of Agent Interoperability Protocols: MCP, ACP, A2A, and ANP** (Abul Ehtesham et al.) | May 2025 (arXiv) | [`arXiv:2505.02279`](https://arxiv.org/abs/2505.02279) | Establishes the architectural taxonomy for protocol-level agent identity, capability discovery, and stateful task handoffs - directly validating Nexconn's **AICP** (`UserID` + `AgentID`) design. |
 | **mABC: multi-Agent Blockchain-Inspired Collaboration for Root Cause Analysis in Micro-Services Architecture** (Wei Zhang et al.) | Nov 2024 (EMNLP 2024 Findings) | [`arXiv:2404.12135`](https://arxiv.org/abs/2404.12135) | Coordinates 7 specialized LLM agents using structured consensus voting to trace cyclic microservice fault propagation without single-agent hallucination. |
 
 #### D. Global Hackathon Winners (`nexconn-workplace`)
 | Project Name & Event | Prize Won | Link | What They Built & How We Beat It |
 |---|---|---|---|
-| **Industry.ai** — ETHGlobal Bangkok (Nov 2024) | Finalist + 1st Place Coinbase CDP, Base & Scroll | [`ethglobal.com/showcase/industry-ai-fv79b`](https://ethglobal.com/showcase/industry-ai-fv79b) | Autonomous multi-agent agency where specialized agents (market analyst, coder, trader) collaborate in recursive chat rooms. *How we beat it:* We ground multi-agent recursion in **Nexconn AICP + SOP state machines (`expansion.md`)** for real-world SRE/shift operations rather than speculative DeFi trading. |
-| **Ephemeral** — Stanford TreeHacks (2024) | Best Use of Together.ai | [`arvindrajaraman.com / TreeHacks`](https://www.arvindrajaraman.com/) | Voice-interactive workplace meeting agent that joins calls, answers queries, and drafts follow-ups. *How we beat it:* We combine Nexconn **Call SDK (`voice-video/overview.md`)** with **Targeted Group Whispers (`group-channels/direct.md`)** so the AI whispers real-time contradictions and missing handover items only to the shift receiver. |
-| **CodeCrack** — Stanford TreeHacks (2025) | Featured Devpost AI Agent Build | [`devpost.com/software/codecrack`](https://devpost.com/software/codecrack) | Real-time voice-driven technical assessment agent with live code workspace synchronization. |
+| **Industry.ai** - ETHGlobal Bangkok (Nov 2024) | Finalist + 1st Place Coinbase CDP, Base & Scroll | [`ethglobal.com/showcase/industry-ai-fv79b`](https://ethglobal.com/showcase/industry-ai-fv79b) | Autonomous multi-agent agency where specialized agents (market analyst, coder, trader) collaborate in recursive chat rooms. *How we beat it:* We ground multi-agent recursion in **Nexconn AICP + SOP state machines (`expansion.md`)** for real-world SRE/shift operations rather than speculative DeFi trading. |
+| **Ephemeral** - Stanford TreeHacks (2024) | Best Use of Together.ai | [`arvindrajaraman.com / TreeHacks`](https://www.arvindrajaraman.com/) | Voice-interactive workplace meeting agent that joins calls, answers queries, and drafts follow-ups. *How we beat it:* We combine Nexconn **Call SDK (`voice-video/overview.md`)** with **Targeted Group Whispers (`group-channels/direct.md`)** so the AI whispers real-time contradictions and missing handover items only to the shift receiver. |
+| **CodeCrack** - Stanford TreeHacks (2025) | Featured Devpost AI Agent Build | [`devpost.com/software/codecrack`](https://devpost.com/software/codecrack) | Real-time voice-driven technical assessment agent with live code workspace synchronization. |
 
 ---
 
 ### 2.4 Three-Bucket Gap Analysis (`nexconn-workplace`)
 
-1. **Bucket 1 — Exists-But-Weak:**
+1. **Bucket 1 - Exists-But-Weak:**
    - *What exists:* Slack/Teams "AI Summarize Thread" and incident bots (`incident.io`, Mattermost Playbooks).
    - *Specific weakness:* Summaries are passive, post-hoc walls of text that nobody verifies; outgoing shift workers click "send" and leave while critical unclosed permits, pending lab results, or half-rolled-back flags remain ambiguous.
    - *The 10x Improvement:* **Adversarial Read-Back & Stateful Handover Contracts.** An AICP Shift Auditor Agent cross-checks chat messages against live system state (Git/Datadog/FHIR/SCADA), mutates a live **I-PASS / Permit-to-Work Card** via `expansion.md`, and uses **Targeted Group Whispers (`group-channels/direct.md`)** to privately quiz/prompt the incoming engineer on high-risk edge cases before unlocking the cryptographic shift sign-off.
-2. **Bucket 2 — Doesn't Exist Yet:**
+2. **Bucket 2 - Doesn't Exist Yet:**
    - *What doesn't exist:* **SOP-Constrained Multi-Agent War Rooms with Whisper-Scoped Commander Coaching.**
    - *Why nobody built it before:* Traditional chat APIs treat every participant as a flat user; if 4 specialized diagnostic agents (Logs, Metrics, Traces, Runbook) post their raw reasoning in a channel, they drown the humans in noise.
    - *Why it's solvable now with Nexconn:* Nexconn's **AICP (`AgentID`)** + **Targeted Group Whispers (`group-channels/direct.md`)** + **Streaming (`stream-message.md`)** allow specialized diagnostic agents to debate and vote via SOP graphs (`arXiv:2502.08224`) in a sub-stream while whispering only verified, consensus-ranked remediation diffs directly to the human Incident Commander.
-3. **Bucket 3 — Exists Abroad / In Adjacent Verticals, Missing in Multilingual / Emerging Industrial Ops:**
+3. **Bucket 3 - Exists Abroad / In Adjacent Verticals, Missing in Multilingual / Emerging Industrial Ops:**
    - *What exists abroad:* US-centric clinical handoff tools (TigerConnect, Epic I-PASS modules) and English-only Silicon Valley SRE platforms (Rootly, FireHydrant).
    - *What must change for India & Global South 24/7 Ops:* Factory floors in Pune/Chennai, GCCs in Bengaluru/Hyderabad, and multi-specialty hospitals across India operate across **English, Hindi, Marathi, Tamil, and Telugu** shifts, under **CERT-In 6-hour incident reporting** and **ABDM / NABH** standards. Combining Nexconn's **Built-in Translation (`builtin-translation/overview.md`)** with structured `expansion.md` cards lets a Marathi-speaking shop-floor technician log a valve isolation by voice/text and have the incoming English-speaking shift supervisor verify the exact structured Permit-to-Work state seamlessly.
 
@@ -154,23 +154,23 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ---
 
-## Phase 3 — War-Room Council & Top 5 Ideas (`nexconn-workplace`)
+## Phase 3 - War-Room Council & Top 5 Ideas (`nexconn-workplace`)
 
 ### War-Room Summary (`nexconn-workplace`)
-- **Round 0 — Brief (Patrick Jane):** *"Look at the third sample build in `nexconn-workplace`: **'Shift handover channel.'** 85% of teams will build a generic Slack clone with a 'Summarize Thread' button. Why did Sarah Zhang and Dr. Li put 'Shift handover channel' on the poster? Because in a shift handover, **context loss kills people or costs $10,000/minute**, and passive text summaries fail when nobody verifies what was omitted. The winning build turns a Nexconn channel into a **state-locked, multi-agent handover & incident protocol** where AICP agents cross-examine the outgoing state, mutate `expansion.md` checklists, and whisper omitted risks via `group-channels/direct.md`."*
-- **Round 2 — Council Attack & Kill List:**
+- **Round 0 - Brief (Patrick Jane):** *"Look at the third sample build in `nexconn-workplace`: **'Shift handover channel.'** 85% of teams will build a generic Slack clone with a 'Summarize Thread' button. Why did Sarah Zhang and Dr. Li put 'Shift handover channel' on the poster? Because in a shift handover, **context loss kills people or costs $10,000/minute**, and passive text summaries fail when nobody verifies what was omitted. The winning build turns a Nexconn channel into a **state-locked, multi-agent handover & incident protocol** where AICP agents cross-examine the outgoing state, mutate `expansion.md` checklists, and whisper omitted risks via `group-channels/direct.md`."*
+- **Round 2 - Council Attack & Kill List:**
   - *Munger killed Seed #9 (ShadowTwin)* and *Seed #13 (FatigueGuard)*: "An AI pretending to be an off-shift engineer will hallucinate one approval and get fired; productivity wellness dashboards are tarpits."
   - *Karpathy & Graham killed generic Slack/Linear clones:* "If you can replicate it with a single OpenAI wrapper webhook in Slack, Michael Wang will give it a 4/10 on SDK depth."
   - *Thiel & Musk merged Seeds #1, #2, #3, #4, #8 into high-conviction, protocol-native systems* where Nexconn's primitives (`AICP`, `expansion.md`, `group-channels/direct.md`, `webhook/sync.md`, `builtin-translation/`, `e2ee/`) are structurally irreplaceable.
 
 ---
 
-### Idea 1 — **BatonOS**: Zero-Drop Adversarial Shift Handover & Incident Baton Protocol
+### Idea 1 - **BatonOS**: Zero-Drop Adversarial Shift Handover & Incident Baton Protocol
 **Type:** Doesn't exist (merges Exists-but-weak handover logs with novel Adversarial AICP Read-Back) · **Weighted Score:** **9.15 / 10** · **Track:** `nexconn-workplace` (Sample Build: *Shift handover channel* + *Project discussion threads*)
 
 - **The Pain (Mike Ross):** Every 8 to 12 hours, on-call SREs, industrial plant operators, and ICU teams play a high-stakes game of telephone. In cloud ops, engineers waste 15–30 minutes of every shift change doing "Slack archaeology" across 300+ tangled messages while outages burn $9,000+/minute ([incident.io](https://incident.io/blog/)). In process plants and hospitals, omitted handover items ("Pump A safety valve removed", "pending potassium lab") drive **40%–50% of industrial transition accidents** ([UK HSE](https://www.hse.gov.uk/offshore/piper-alpha.htm)) and **up to 80% of serious medical transition errors** ([Joint Commission](https://www.jointcommission.org/)).
 - **Why Now:** With 2025–2026 enterprise adoption of multi-agent protocols ([arXiv:2505.02279](https://arxiv.org/abs/2505.02279)), **CERT-In's 6-hour incident audit mandate**, and *JAMA Network Open*'s Dec 2024 proof that unconstrained LLM handoff summaries omit safety-critical edge cases ([PMID:39625719](https://pubmed.ncbi.nlm.nih.gov/39625719/)), enterprises urgently need **verified, state-locked handovers** rather than passive chat summaries.
-- **The Gap Others Miss (Jane / Thiel):** Standard AI summarizers compress chat text — which means if the outgoing engineer *forgot to mention* an unmerged hotfix or an isolated valve in chat, the AI summary omits it too! **BatonOS** cross-checks the chat stream against **live external telemetry** (GitHub/Prometheus/PTW/FHIR), detects **silent omissions**, and uses Nexconn's **Sync Webhook (`webhook/sync.md`)** to physically block the shift handover sign-off until the incoming engineer passes a 30-second **Targeted Whisper (`group-channels/direct.md`)** read-back verification.
+- **The Gap Others Miss (Jane / Thiel):** Standard AI summarizers compress chat text - which means if the outgoing engineer *forgot to mention* an unmerged hotfix or an isolated valve in chat, the AI summary omits it too! **BatonOS** cross-checks the chat stream against **live external telemetry** (GitHub/Prometheus/PTW/FHIR), detects **silent omissions**, and uses Nexconn's **Sync Webhook (`webhook/sync.md`)** to physically block the shift handover sign-off until the incoming engineer passes a 30-second **Targeted Whisper (`group-channels/direct.md`)** read-back verification.
 - **What Exists and Why It Falls Short:**
   | Product / Repo / Paper | What It Does | The Gap BatonOS Fills | Link |
   |---|---|---|---|
@@ -184,20 +184,20 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
   4. **Targeted Group Whisper Coaching (`group-channels/direct.md`):** When the incoming engineer (`usr_incoming_priya`) joins the channel, `agent_baton_auditor` sends a **Targeted Group Whisper** visible *only* to Priya: *"⚡ 90-Second Catch-Up: 2 unclosed risks. Outgoing shift bypassed Redis rate-limiter on `eu-west-1`. Ask Rahul whether the TTL override expires at 04:00 UTC before you sign the baton."*
   5. **Sync Webhook Handover Gate (`webhook/sync.md`):** If outgoing engineer Rahul tries to click **"Release Shift Baton"** while a critical omission or unacknowledged contingency remains `false` in `expansion.md`, Nexconn's pre-flight **Sync Webhook** intercepts the action, rejects premature sign-off, and prompts a 1-click **Nexconn Voice Read-Back (`voice-video/overview.md`)**.
   6. **Cryptographic Baton Lock & Channel Tag Flip (`channel-tag.md` + `e2ee/`):** Once Priya acknowledges all contingencies and signs off in `expansion.md`, the channel tag flips from `#Handover-Pending-Risk` to `#Shift-Verified-Priya`, and an immutable **CERT-In / SOC2 Handover Audit Receipt** is sealed.
-- **The Demo Moment (Jobs — First 45 Seconds):**
+- **The Demo Moment (Jobs - First 45 Seconds):**
   Split-screen view: Left side is Outgoing SRE Rahul (`UserID: rahul_sre`) at the end of a chaotic shift; Right side is Incoming SRE Priya (`UserID: priya_sre`) in Bengaluru (`Hindi/English` toggle via `builtin-translation/`). Rahul types *"All quiet, handing over shift"* and clicks **Sign Off Baton**. Instantly, Nexconn's **Sync Webhook blocks the sign-off with a crimson pulse**: `agent_baton_auditor` streams (`stream-message.md`) a live diff showing Rahul silenced Alert #881 (`db-replica-lag`) 40 minutes ago without logging a contingency! Simultaneously, Priya's screen receives a **Private Whisper (`group-channels/direct.md`)** invisible to the rest of the room with the exact 1-click verification question. They click **Verify & Transfer Baton**, the `expansion.md` card mutates green in real time on both screens without a page reload, and the channel tag flips to `#Baton-Locked`.
 - **30-Second Explanation (Karp):**
-  *"Every day, hospitals, cloud teams, and factories lose billions — and lives — at the exact moment one shift hands over to the next, because tired humans summarize from memory and incoming humans drown in chat scroll-back. BatonOS turns Nexconn into a zero-drop shift handover protocol: an AICP Auditor Agent continuously diffs what humans said in chat against what actually happened in production telemetry, updates a live stateful I-PASS card via Nexconn Message Expansion, whispers omitted traps privately to the incoming engineer, and uses Sync Webhooks to block shift sign-off until every live risk is verified."*
+  *"Every day, hospitals, cloud teams, and factories lose billions - and lives - at the exact moment one shift hands over to the next, because tired humans summarize from memory and incoming humans drown in chat scroll-back. BatonOS turns Nexconn into a zero-drop shift handover protocol: an AICP Auditor Agent continuously diffs what humans said in chat against what actually happened in production telemetry, updates a live stateful I-PASS card via Nexconn Message Expansion, whispers omitted traps privately to the incoming engineer, and uses Sync Webhooks to block shift sign-off until every live risk is verified."*
 - **Council Verdict Table:**
   | Seat | Verdict |
   |---|---|
-  | **Thiel — Market & Moat** | **Non-obvious secret:** AI summarization makes handovers *worse* by creating false confidence (automation bias). Adversarial omission detection + synchronous sign-off locking is a true 10x paradigm shift. |
-  | **Buffett — Business & Pricing** | Priced at $29/seat/month (₹2,400/mo) for SRE/DevOps teams and ₹45,000/month per hospital ward or factory unit. Prevents a single 20-minute outage ($180k saved) to pay for 5 years of software. |
-  | **Harvey / Sharma — Legal & Compliance** | Directly satisfies **CERT-In 6-Hour Incident Log mandates**, **DPDP Act 2023 Data Fiduciary audit trails**, and **NABH 6th Edition / Joint Commission I-PASS** documentation rules. |
-  | **Karpathy — AI & Nexconn Stack** | Uses **6 distinct Nexconn modules**: `AICP`, `stream-message.md`, `expansion.md`, `group-channels/direct.md`, `webhook/sync.md`, and `channel-tag.md` (+ `builtin-translation/`). Zero ornamental AI. |
-  | **Mike Ross — Human & Ethics** | Protects exhausted outgoing workers from catastrophic "brain-fart" omissions while shielding incoming junior staff from intimidation via private AI whisper briefings. |
-  | **Munger — How It Dies & Mitigation** | *Risk:* Alert fatigue if the Sync Webhook blocks handovers for trivial nitpicks. *Mitigation:* Strict severity gating — only `P0/P1` unlinked telemetry deltas lock the baton; `P2/P3` auto-roll into async backlog. |
-  | **Musk — Year-10 Moonshot** | Evolves into the universal autonomous operations bus where human shifts gradually hand the baton to 24/7 autonomous AICP agent shifts with cryptographic safety invariants. |
+  | **Thiel - Market & Moat** | **Non-obvious secret:** AI summarization makes handovers *worse* by creating false confidence (automation bias). Adversarial omission detection + synchronous sign-off locking is a true 10x paradigm shift. |
+  | **Buffett - Business & Pricing** | Priced at $29/seat/month (₹2,400/mo) for SRE/DevOps teams and ₹45,000/month per hospital ward or factory unit. Prevents a single 20-minute outage ($180k saved) to pay for 5 years of software. |
+  | **Harvey / Sharma - Legal & Compliance** | Directly satisfies **CERT-In 6-Hour Incident Log mandates**, **DPDP Act 2023 Data Fiduciary audit trails**, and **NABH 6th Edition / Joint Commission I-PASS** documentation rules. |
+  | **Karpathy - AI & Nexconn Stack** | Uses **6 distinct Nexconn modules**: `AICP`, `stream-message.md`, `expansion.md`, `group-channels/direct.md`, `webhook/sync.md`, and `channel-tag.md` (+ `builtin-translation/`). Zero ornamental AI. |
+  | **Mike Ross - Human & Ethics** | Protects exhausted outgoing workers from catastrophic "brain-fart" omissions while shielding incoming junior staff from intimidation via private AI whisper briefings. |
+  | **Munger - How It Dies & Mitigation** | *Risk:* Alert fatigue if the Sync Webhook blocks handovers for trivial nitpicks. *Mitigation:* Strict severity gating - only `P0/P1` unlinked telemetry deltas lock the baton; `P2/P3` auto-roll into async backlog. |
+  | **Musk - Year-10 Moonshot** | Evolves into the universal autonomous operations bus where human shifts gradually hand the baton to 24/7 autonomous AICP agent shifts with cryptographic safety invariants. |
 - **Tech Stack & Implementation Sketch (36-Hour Hackathon Plan):**
   - *Stack:* Next.js 15 + Tailwind/shadcn Split-Screen Command UI; Node.js/FastAPI Webhook & Agent Orchestrator; Nexconn IM SDK (`AICP`, `stream-message`, `expansion`, `group-channels/direct`, `webhook/sync`, `channel-tag`, `builtin-translation`); Claude 3.7 Sonnet / GPT-4o structured outputs; GitHub + Prometheus/PagerDuty + FHIR sandbox connectors.
   - *Timeline:* **H0–H6:** Nexconn multi-user + AICP `AgentID` channel setup & `expansion.md` I-PASS state schema. **H6–H18:** Telemetry-vs-Chat Omission Diff Engine + Sync Webhook sign-off blocker. **H18–H30:** Dual-pane Outgoing/Incoming UI with Targeted Group Whisper coaching & 1-click translation. **H30–H36:** Chaos injection demo button ("Simulate Silent DB Hotfix") + video polish.
@@ -206,7 +206,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ---
 
-### Idea 2 — **FlowRoom (SOP-RCA)**: Multi-Agent SRE Incident War Room with Whisper-Scoped Commander Coaching
+### Idea 2 - **FlowRoom (SOP-RCA)**: Multi-Agent SRE Incident War Room with Whisper-Scoped Commander Coaching
 **Type:** Doesn't exist (operationalizes WWW '25 `arXiv:2502.08224` Flow-of-Action inside Nexconn AICP) · **Weighted Score:** **8.85 / 10** · **Track:** `nexconn-workplace` (Sample Build: *Project discussion threads* + *Direct messaging for teams*)
 
 - **The Pain (Mike Ross):** When a production payment gateway or microservice cluster crashes at 2:14 AM, 10 engineers flood a war-room channel while juggling 8–12 observability tabs ([incident.io](https://incident.io/)). If you put a standard LLM bot in the room, it either hallucinates wild guesses or dumps 80 lines of noisy stack traces into the public chat, making the panic worse ([Pei et al., WWW '25, `arXiv:2502.08224`](https://arxiv.org/abs/2502.08224)).
@@ -224,75 +224,75 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
   3. **Consensus Voting & Whisper Escalation:** Once `agent_sop_judge` reaches >85% consensus (e.g., *"Redis connection pool exhaustion introduced in commit `a81f2c`"*), it sends a **Targeted Group Whisper (`group-channels/direct.md`)** *only* to the human `IC` containing the exact `kubectl rollout undo` payload and blast-radius estimate.
   4. **Sync Webhook Command Guardrail (`webhook/sync.md`):** If a panicking engineer in the room attempts to post or trigger an unapproved destructive command, the Sync Webhook intercepts it and warns them that an active rollback is already staged by the `IC`.
   5. **Zero-Touch Post-Mortem & CERT-In Export:** As soon as metrics recover, the `expansion.md` timeline exports a complete, root-cause-linked Markdown post-mortem and CERT-In 6-hour regulatory JSON packet.
-- **The Demo Moment (Jobs — First 45 Seconds):**
+- **The Demo Moment (Jobs - First 45 Seconds):**
   Click **"Inject Payment Latency Spike"**. Within 2 seconds, the Nexconn War Room opens; 4 AICP agent avatars light up inside the pinned **SOP DAG Card (`expansion.md`)**, visibly traversing nodes (`Check API Gateway` → `Inspect Pod CPU` → `Diff Last 3 Commits`) via live streaming (`stream-message.md`). While the public channel stays crystal-clean, the Incident Commander's pane receives a glowing **Private Whisper (`group-channels/direct.md`)**: *"Root cause isolated (92% confidence): PR #119 connection leak. Click to execute canary rollback."* One click restores green metrics and generates the post-mortem.
 - **30-Second Explanation (Karp):**
   *"During an outage, chat rooms fail because either humans spam conflicting guesses or AI bots dump noisy logs everywhere. FlowRoom brings the WWW 2025 Flow-of-Action multi-agent architecture natively into Nexconn: four specialized AICP agents traverse a strict SOP graph in real time, update a single mutable state card in the channel, and whisper the verified 1-click rollback exclusively to the human Incident Commander."*
 - **Council Verdict Table:**
   | Seat | Verdict |
   |---|---|
-  | **Thiel — Market & Moat** | Directly appeals to Dr. Li (distributed multi-agent coordination) and Michael Wang (deep AICP + Whisper + Expansion choreography). |
-  | **Buffett — Business & Pricing** | Usage + seat hybrid ($39/engineer/mo). High-margin B2B SaaS wedge replacing legacy Opsgenie (sunset by Atlassian) and PagerDuty add-ons. |
-  | **Harvey / Sharma — Legal & Compliance** | Automates **CERT-In 6-hour cyber incident reporting** and **RBI IT Outsourcing / Digital Payment Security Controls** incident timelines. |
-  | **Karpathy — AI & Nexconn Stack** | Implements genuine SOP-constrained multi-agent consensus (`arXiv:2502.08224`) over `AICP`, `expansion.md`, `stream-message.md`, `group-channels/direct.md`, and `webhook/sync.md`. |
-  | **Munger — How It Dies & Mitigation** | *Risk:* Agents execute a bad rollback autonomously. *Mitigation:* Agents have read-only observability access; mutating infrastructure actions require cryptographic human `IC` click via the Whisper card. |
+  | **Thiel - Market & Moat** | Directly appeals to Dr. Li (distributed multi-agent coordination) and Michael Wang (deep AICP + Whisper + Expansion choreography). |
+  | **Buffett - Business & Pricing** | Usage + seat hybrid ($39/engineer/mo). High-margin B2B SaaS wedge replacing legacy Opsgenie (sunset by Atlassian) and PagerDuty add-ons. |
+  | **Harvey / Sharma - Legal & Compliance** | Automates **CERT-In 6-hour cyber incident reporting** and **RBI IT Outsourcing / Digital Payment Security Controls** incident timelines. |
+  | **Karpathy - AI & Nexconn Stack** | Implements genuine SOP-constrained multi-agent consensus (`arXiv:2502.08224`) over `AICP`, `expansion.md`, `stream-message.md`, `group-channels/direct.md`, and `webhook/sync.md`. |
+  | **Munger - How It Dies & Mitigation** | *Risk:* Agents execute a bad rollback autonomously. *Mitigation:* Agents have read-only observability access; mutating infrastructure actions require cryptographic human `IC` click via the Whisper card. |
 - **Rubric Score Breakdown (Weighted Total: 8.85 / 10):**
   - Pain (15%): **9.0** | Novelty (15%): **9.0** | Alignment (15%): **9.5** | Demo-ability (15%): **9.2** | Feasibility (10%): **8.5** | India/Global Fit (10%): **8.2** | Business (10%): **8.8** | Legal (5%): **8.8** | Moonshot (5%): **7.5**.
 
 ---
 
-### Idea 3 — **KavachPTW**: Piper-Alpha-Proof Multilingual Industrial Shift & Permit-to-Work Lockout Mesh
+### Idea 3 - **KavachPTW**: Piper-Alpha-Proof Multilingual Industrial Shift & Permit-to-Work Lockout Mesh
 **Type:** Exists abroad, not in India/Global-South (adapts high-hazard digital logbooks to multilingual voice/chat + AICP lockout verification) · **Weighted Score:** **8.65 / 10** · **Track:** `nexconn-workplace` (Sample Build: *Shift handover channel* + *Direct messaging for teams*)
 
-- **The Pain (Mike Ross):** Across India's 250,000+ factories, chemical plants, refineries, and power substations, 40%–50% of industrial accidents happen around shift transitions ([iFactory](https://ifactoryapp.com/blog/shift-handover/)). A contract technician speaking Hindi, Marathi, or Tamil isolates a high-voltage breaker or removes a safety valve on the afternoon shift and sends a casual voice note or photo in WhatsApp; the night-shift control-room supervisor speaking English misses it, re-energizes the line, and causes a fatal explosion — the exact mechanism of the **Piper Alpha disaster (167 deaths)** ([UK HSE](https://www.hse.gov.uk/offshore/piper-alpha.htm)).
+- **The Pain (Mike Ross):** Across India's 250,000+ factories, chemical plants, refineries, and power substations, 40%–50% of industrial accidents happen around shift transitions ([iFactory](https://ifactoryapp.com/blog/shift-handover/)). A contract technician speaking Hindi, Marathi, or Tamil isolates a high-voltage breaker or removes a safety valve on the afternoon shift and sends a casual voice note or photo in WhatsApp; the night-shift control-room supervisor speaking English misses it, re-energizes the line, and causes a fatal explosion - the exact mechanism of the **Piper Alpha disaster (167 deaths)** ([UK HSE](https://www.hse.gov.uk/offshore/piper-alpha.htm)).
 - **Why Now:** India's **Occupational Safety, Health and Working Conditions (OSHWC) Code** and global **OSHA PSM (29 CFR 1910.119)** enforcement increasingly mandate digital Permit-to-Work (PTW) traceability, while Nexconn's **Built-in Translation (`builtin-translation/overview.md`)** + **Mutable Expansion (`expansion.md`)** + **Sync Webhooks (`webhook/sync.md`)** make it possible to bind multilingual shop-floor chat directly to machine-enforced Lockout/Tagout (LOTO) state.
 - **The Gap Others Miss (Jane / Thiel):** Enterprise EHS software (SAP EHS, Enablon) is desktop form-ware that shop-floor workers hate and bypass via WhatsApp. **KavachPTW** meets workers inside a fast mobile chat channel: when a technician snaps a photo of a locked valve and speaks in Marathi/Hindi, an AICP **Safety Sentinel Agent** extracts the asset ID, translates the thread into the supervisor's language via `builtin-translation/`, pins a **Live LOTO Permit Card (`expansion.md`)**, and blocks any shift handover or "Equipment Start" clearance via `webhook/sync.md` until both shifts co-sign a photo-verified unlock.
 - **What Exists and Why It Falls Short:**
   | Product / Repo / Paper | What It Does | The Gap KavachPTW Fills | Link |
   |---|---|---|---|
   | **SAP EHS / Enablon / Innovapptive** | Heavy enterprise Permit-to-Work form portals. | Clunky desktop forms; disconnected from real-time multilingual shift chat and instant visual verification. | [`innovapptive.com`](https://www.innovapptive.com/) |
-  | **WhatsApp / Telegram Groups** | Ubiquitous informal factory shift messaging. | Zero structured PTW state, no native cross-language translation, and fatal scroll-back amnesia. | — |
+  | **WhatsApp / Telegram Groups** | Ubiquitous informal factory shift messaging. | Zero structured PTW state, no native cross-language translation, and fatal scroll-back amnesia. | - |
 - **How It Works (5-Step Protocol Flow):**
   1. **Multilingual Field Capture:** Shop-floor technician (`UserID: tech_ramesh`) sends a photo of a locked-out pump and a Hindi/Marathi message in the unit's Nexconn shift channel.
   2. **Native Protocol Translation (`builtin-translation/`):** Control-room engineers immediately see the message translated into English/Tamil inline while preserving the original text.
   3. **Vision + AICP Permit Binding (`expansion.md`):** `agent_ptw_sentinel` inspects the photo (verifying physical padlock/tag presence), binds it to Asset `#PUMP-A-104`, and mutates the channel's pinned **Active Isolation Ledger (`expansion.md`)** to `STATUS: LOCKED_OUT (DO NOT ENERGIZE)`.
   4. **Sync Webhook Interlock (`webhook/sync.md`):** During shift change, the channel tag (`channel-tag.md`) locks to `#ISOLATION-ACTIVE`. Any chat message or operator command attempting to clear `#PUMP-A-104` without a matching physical unlock photo + dual `UserID` sign-off is blocked pre-flight by the Sync Webhook.
   5. **Physical Walkthrough Whisper Prompt (`group-channels/direct.md`):** At shift change, the incoming operator receives a private checklist whisper requiring them to confirm the physical tag number on `#PUMP-A-104`.
-- **The Demo Moment (Jobs — First 45 Seconds):**
+- **The Demo Moment (Jobs - First 45 Seconds):**
   Show a technician sending a Hindi message + photo of a tagged-out valve: *"पंप A का सेफ्टी वाल्व खुला है, चालू मत करना"* ("Pump A safety valve is open, do not start"). Nexconn's **Built-in Translation** renders English instantly for the supervisor, while `agent_ptw_sentinel` flips the pinned **LOTO Card (`expansion.md`)** to **RED LOCKOUT**. When the incoming night-shift operator clicks **"Request Pump A Start"** in chat, Nexconn's **Sync Webhook intercepts the request with a Piper-Alpha Siren Alert**, refusing clearance until the valve unlock photo is uploaded.
 - **30-Second Explanation (Karp):**
   *"167 people died on Piper Alpha because the day shift removed a safety valve and the night shift didn't know. Today, millions of factory workers in India and worldwide coordinate maintenance over WhatsApp across language barriers. KavachPTW turns Nexconn's multilingual chat and Message Expansion into a safety-critical Lockout/Tagout ledger where an AICP Safety Agent binds shop-floor photos and translated messages into hard operational interlocks."*
 - **Council Verdict Table:**
   | Seat | Verdict |
   |---|---|
-  | **Thiel — Market & Moat** | High-contrast industrial vertical that zero other hackathon teams will touch; visually unforgettable demo. |
-  | **Buffett — Business & Pricing** | ₹1.5 Lakh/year per plant unit; massive ROI against OSHA/directorate of industrial safety fines and plant downtime. |
-  | **Harvey / Sharma — Legal & Compliance** | Aligned with **India OSHWC Code**, **Factories Act**, **UK HSE Safety Case Regulations**, and **OSHA 29 CFR 1910.119**. |
-  | **Karpathy — AI & Nexconn Stack** | Combines `builtin-translation/`, `message-types.md` (image attachments), `AICP` multimodal inspection, `expansion.md`, `channel-tag.md`, and `webhook/sync.md`. |
+  | **Thiel - Market & Moat** | High-contrast industrial vertical that zero other hackathon teams will touch; visually unforgettable demo. |
+  | **Buffett - Business & Pricing** | ₹1.5 Lakh/year per plant unit; massive ROI against OSHA/directorate of industrial safety fines and plant downtime. |
+  | **Harvey / Sharma - Legal & Compliance** | Aligned with **India OSHWC Code**, **Factories Act**, **UK HSE Safety Case Regulations**, and **OSHA 29 CFR 1910.119**. |
+  | **Karpathy - AI & Nexconn Stack** | Combines `builtin-translation/`, `message-types.md` (image attachments), `AICP` multimodal inspection, `expansion.md`, `channel-tag.md`, and `webhook/sync.md`. |
 - **Rubric Score Breakdown (Weighted Total: 8.65 / 10):**
   - Pain (15%): **9.4** | Novelty (15%): **8.8** | Alignment (15%): **8.5** | Demo-ability (15%): **9.0** | Feasibility (10%): **8.6** | India/Global Fit (10%): **9.2** | Business (10%): **8.2** | Legal (5%): **8.5** | Moonshot (5%): **6.8**.
 
 ---
 
-### Idea 4 — **ThreadMolt (Co-Gym)**: Self-Mutating Project Threads with Autonomous Dependency Brokers
+### Idea 4 - **ThreadMolt (Co-Gym)**: Self-Mutating Project Threads with Autonomous Dependency Brokers
 **Type:** Doesn't exist (operationalizes Stanford `arXiv:2412.15701` Collaborative Gym inside Nexconn threads) · **Weighted Score:** **8.50 / 10** · **Track:** `nexconn-workplace` (Sample Build: *Project discussion threads* + *Direct messaging for teams*)
 
 - **The Pain (Mike Ross):** Knowledge workers are interrupted **275 times/day (every 2 minutes)** and spend **57% of their day communicating vs. 43% creating** ([Microsoft Work Trend Index](https://www.microsoft.com/en-us/worklab/work-trend-index/)). Engineering and product decisions made inside 80-message project threads immediately go stale relative to Jira/Linear tickets, and when Team A silently changes an API response field in `#backend-auth`, Team B in `#mobile-checkout` doesn't find out until staging breaks 4 days later.
 - **Why Now:** Stanford's **Collaborative Gym (`arXiv:2412.15701`, Dec 2024)** proved that human-agent teams succeed only when agents share an explicit, synchronized task environment and take proactive initiative via targeted notifications rather than waiting for human prompts.
-- **The Gap Others Miss (Jane / Thiel):** Standard project chat is append-only dead text. **ThreadMolt** makes every project discussion thread "molt" its conversational prose into a **live, mutable Spec & Dependency Card (`expansion.md`)**. When an AICP **Dependency Broker Agent** detects that a decision in Thread A breaks an assumption in Thread B, it doesn't spam the whole company — it sends a **Targeted Group Whisper (`group-channels/direct.md`)** to only the two affected engineers with an inline diff and a 1-click **Accept / Negotiate Schema Change** action.
+- **The Gap Others Miss (Jane / Thiel):** Standard project chat is append-only dead text. **ThreadMolt** makes every project discussion thread "molt" its conversational prose into a **live, mutable Spec & Dependency Card (`expansion.md`)**. When an AICP **Dependency Broker Agent** detects that a decision in Thread A breaks an assumption in Thread B, it doesn't spam the whole company - it sends a **Targeted Group Whisper (`group-channels/direct.md`)** to only the two affected engineers with an inline diff and a 1-click **Accept / Negotiate Schema Change** action.
 - **How It Works (4-Step Flow):**
   1. **Live Spec Molting (`expansion.md`):** As engineers and PMs discuss a feature in a Nexconn thread, `agent_spec_curator` (`AgentID`) continuously distills agreed decisions, open questions, and API contracts into the root message's `MessageExpansion` JSON payload.
   2. **Cross-Thread Semantic Collision Detection:** When `#backend-payments` modifies `amount: float` to `amount_minor_units: int64`, `agent_dep_broker` detects the collision with `#ios-checkout`'s locked spec.
   3. **Targeted Group Whisper Mediation (`group-channels/direct.md`):** Instead of noisy @channel pings, `agent_dep_broker` whispers the exact contract diff only to `@arjun_backend` and `@meera_ios` inside their respective channels and offers a 1-click bridge DM.
   4. **Sync Webhook Spec Lock (`webhook/sync.md`):** Once a sprint spec is marked `#Spec-Locked` (`channel-tag.md`), any message proposing a breaking change triggers an inline scope-impact prompt.
-- **The Demo Moment (Jobs — First 45 Seconds):**
+- **The Demo Moment (Jobs - First 45 Seconds):**
   Show two project threads side-by-side: `#api-core` and `#frontend-web`. In `#api-core`, a developer types *"Let's rename `user_id` to `account_uuid` in v2."* Instantly, the pinned Spec Card in `#api-core` mutates via `expansion.md`, and within 1.5 seconds, `agent_dep_broker` delivers a **Targeted Whisper (`group-channels/direct.md`)** to the frontend lead in `#frontend-web` highlighting the exact TypeScript interface line that will break, with a **"Spawn 1-on-1 Sync / Auto-PR"** button.
 - **Rubric Score Breakdown (Weighted Total: 8.50 / 10):**
   - Pain (15%): **8.5** | Novelty (15%): **8.8** | Alignment (15%): **9.2** | Demo-ability (15%): **8.6** | Feasibility (10%): **8.8** | India/Global Fit (10%): **8.0** | Business (10%): **8.4** | Legal (5%): **9.0** | Moonshot (5%): **6.8**.
 
 ---
 
-### Idea 5 — **IPassE2E**: Cryptographically Sealed Clinical Ward Handover & ABDM FHIR Copilot
+### Idea 5 - **IPassE2E**: Cryptographically Sealed Clinical Ward Handover & ABDM FHIR Copilot
 **Type:** Exists-but-weak (10x upgrade over TigerConnect / WhatsApp clinical groups using E2EE + `JAMA Netw Open` 2024 hybrid I-PASS synthesis) · **Weighted Score:** **8.35 / 10** · **Track:** `nexconn-workplace` (Sample Build: *Shift handover channel*)
 
 - **The Pain (Mike Ross):** Up to **80% of serious medical errors** stem from inadequate handoff communication ([Joint Commission](https://www.jointcommission.org/)). In Indian and global hospitals, residents and nurses coordinate ward handovers on unencrypted WhatsApp groups (violating HIPAA and India's **DPDP Act 2023**) or rush through verbal reports where critical pending labs and "if/then" contingencies are dropped ([Starmer et al., *NEJM* 2014](https://www.nejm.org/doi/full/10.1056/NEJMsa1405556)).
@@ -300,9 +300,9 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 - **Rubric Score Breakdown (Weighted Total: 8.35 / 10):**
   - Pain (15%): **9.6** | Novelty (15%): **8.2** | Alignment (15%): **8.4** | Demo-ability (15%): **8.5** | Feasibility (10%): **8.0** | India/Global Fit (10%): **8.8** | Business (10%): **8.0** | Legal (5%): **7.8** | Moonshot (5%): **6.5**.
 
-## DOMAIN 04: `nexconn-support` — Marketplace & Support
+## DOMAIN 04: `nexconn-support` - Marketplace & Support
 
-> **Official Track Title & Subtitle:** `nexconn-support` — *"Buyer-seller chat and customer service."* ([https://challenge.nexconn.com/](https://challenge.nexconn.com/))
+> **Official Track Title & Subtitle:** `nexconn-support` - *"Buyer-seller chat and customer service."* ([https://challenge.nexconn.com/](https://challenge.nexconn.com/))
 > **Official Sample Builds:** (1) *Buyer-seller 1-on-1 chat*; (2) *Human agent dispatch center*; (3) *Multi-language translated chat*.
 
 ---
@@ -314,7 +314,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 | Sub-Problem | Who Hurts | Quantified Severity (Cost / Loss / Frequency) | Root Cause in Legacy Tools (Intercom / Zendesk / WhatsApp / Marketplace Chat) |
 |---|---|---|---|
 | **1. Customer Service Failure & "Repeat Yourself" Churn** | E-commerce shoppers, SaaS users, enterprise support centers | **$3.7T–$3.8T** in global annual revenue is at risk due to poor customer service ([Qualtrics / CX Network](https://www.cxnetwork.com/)). **55%–75%** of consumers report frustration with rigid AI chatbots, and **54%+** abandon a brand when forced to repeat their issue during a bot-to-human handoff ([Consumer Reports](https://www.consumerreports.org/) / [Zendesk CX Trends](https://www.zendesk.com/blog/customer-service-statistics/)). Human phone/chat resolution costs **$7–$12 per contact** vs. **$0.10–$0.50** for AI, creating perverse pressure to trap users in deflection loops. | Legacy bots live in a separate pre-chat widget or tier-0 silo. When escalation occurs, the human agent receives a wall of unindexed transcript text rather than structured state, pre-staged tool calls, and private in-room AI coaching. |
-| **2. Legal & Financial Liability from Hallucinated AI Promises (*Moffatt* Syndrome)** | Airlines, retail marketplaces, fintechs, D2C brands, and over-automated AI support teams | In ***Moffatt v. Air Canada* (2024 BCCRT 149)** ([Canadian Legal Information Institute](https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html)), the Civil Resolution Tribunal rejected Air Canada's defense that its website chatbot was a "separate legal entity" and held the airline strictly liable for negligent misrepresentation after the AI invented a retroactive 90-day bereavement fare policy. Similarly, **Klarna**—after boasting in Feb 2024 that its AI assistant handled **2.3M conversations** (two-thirds of all support chats) across 35 languages, doing the work of **700 full-time agents** and driving **$40M–$60M** in profit improvement ([Klarna Press Release](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/))—was forced in **2025** to publicly pivot and re-hire human support capacity because pure AI degraded service quality on complex disputes ([Bloomberg](https://www.bloomberg.com/) / [CX Dive](https://www.customerexperiencedive.com/)). Academic verification via **$\tau$-bench** ([`arXiv:2406.12045`](https://arxiv.org/abs/2406.12045)) proves even frontier models (`gpt-4o`) succeed in **<50%** of multi-turn retail/airline policy-constrained support tasks. | Generative AI bots stream tokens directly to the customer without a **pre-delivery synchronous policy firewall** (`webhook/sync.md`) that checks refund/discount/policy claims against deterministic Intent-Context-Action (ICA) rules before the message is committed to the chat room. |
+| **2. Legal & Financial Liability from Hallucinated AI Promises (*Moffatt* Syndrome)** | Airlines, retail marketplaces, fintechs, D2C brands, and over-automated AI support teams | In ***Moffatt v. Air Canada* (2024 BCCRT 149)** ([Canadian Legal Information Institute](https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html)), the Civil Resolution Tribunal rejected Air Canada's defense that its website chatbot was a "separate legal entity" and held the airline strictly liable for negligent misrepresentation after the AI invented a retroactive 90-day bereavement fare policy. Similarly, **Klarna** - after boasting in Feb 2024 that its AI assistant handled **2.3M conversations** (two-thirds of all support chats) across 35 languages, doing the work of **700 full-time agents** and driving **$40M–$60M** in profit improvement ([Klarna Press Release](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)) - was forced in **2025** to publicly pivot and re-hire human support capacity because pure AI degraded service quality on complex disputes ([Bloomberg](https://www.bloomberg.com/) / [CX Dive](https://www.customerexperiencedive.com/)). Academic verification via **$\tau$-bench** ([`arXiv:2406.12045`](https://arxiv.org/abs/2406.12045)) proves even frontier models (`gpt-4o`) succeed in **<50%** of multi-turn retail/airline policy-constrained support tasks. | Generative AI bots stream tokens directly to the customer without a **pre-delivery synchronous policy firewall** (`webhook/sync.md`) that checks refund/discount/policy claims against deterministic Intent-Context-Action (ICA) rules before the message is committed to the chat room. |
 | **3. India E-Commerce & ONDC Return-to-Origin (RTO) & Fake NDR Crisis** | Indian D2C brands, MSME sellers on ONDC / Shopify / Meesho, 3PL couriers | Cash on Delivery (COD) accounts for **60%–70%** of Indian e-commerce volume. COD orders suffer **25%–40% RTO rates** (surging up to **44% in Tier-3/4 cities**) compared to **<10%** for prepaid orders ([ClickPost](https://www.clickpost.ai/blog/rto-in-ecommerce) / [GoKwik](https://www.gokwik.co/)). Each RTO parcel costs an Indian MSME **₹120–₹180+ ($1.50–$2.20)** in double shipping + reverse logistics, plus inventory lockup and damaged goods. On unbundled networks like **ONDC** (which crossed **12M–15M+ monthly transactions** in 2024–2025, [ONDC Official](https://ondc.org/)), disputes split across separate Buyer Apps, Seller Apps, and Logistics Providers via slow asynchronous `IGM` (Issue & Grievance Management) tickets. | No real-time, vernacular **Buyer + Seller + Courier Rider triangulation room** exists where impulse COD orders are converted to UPI via dynamic chat cards (`expansion.md`) or where "Customer Unavailable" Fake NDR claims are verified live with geo-tagged media and 1-tap voice/video. |
 | **4. P2P & Cross-Border B2B Marketplace Bargaining, Ghosting & Off-Platform Scams** | B2B exporters/importers (IndiaMART, Alibaba), P2P sellers (Facebook Marketplace, OLX, eBay), wholesale buyers | Cross-border SME trade faces massive friction from language barriers, time-zone delays, and payment mistrust. In P2P marketplaces, sellers lose hours to zero-intent "Is this still available?" ghosting, fake payment screenshot scams (Zelle/Venmo/UPI phishing), and return-switch fraud (buyer returns a brick instead of the GPU). Furthermore, SJTU/Stanford research ([`arXiv:2402.15813`](https://arxiv.org/abs/2402.15813)) proves that standard LLMs suffer a severe **buyer disadvantage** in incomplete-information bargaining unless coupled with a deterministic game-theoretic Offer Generator (`OG-Narrator`). | Buyer-seller chats are disconnected from escrow state machines, real-time multilingual translation (`builtin-translation/`), private asymmetric negotiation coaching (`group-channels/direct.md`), and live video product appraisal (`voice-video/overview.md`). |
 
@@ -322,7 +322,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 1. **Support Leaders & Consumers on "Deflection Hell" and Repeating Context (`r/CustomerService`, `r/TalesFromCallCenters`):**
    - *Source:* [https://www.reddit.com/r/CustomerService/](https://www.reddit.com/r/CustomerService/) & [https://www.reddit.com/r/TalesFromCallCenters/](https://www.reddit.com/r/TalesFromCallCenters/)
-   - *Evidence:* Both customers and frontline agents report that AI deflection bots act as a "brick wall" that asks for order numbers, email addresses, and issue descriptions, only to dump the frustrated customer into a human agent queue where the human agent's first message is *"How can I help you today? Can I get your order number?"*—triggering immediate customer rage and CSAT collapse.
+   - *Evidence:* Both customers and frontline agents report that AI deflection bots act as a "brick wall" that asks for order numbers, email addresses, and issue descriptions, only to dump the frustrated customer into a human agent queue where the human agent's first message is *"How can I help you today? Can I get your order number?"* - triggering immediate customer rage and CSAT collapse.
 2. **Tribunal Ruling in *Moffatt v. Air Canada* on Hallucinated Chatbot Refunds (`2024 BCCRT 149`):**
    - *Source:* [https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html](https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html)
    - *Evidence:* Tribunal Member Christopher Rivers ruled: *"Air Canada argues it cannot be held liable for information provided by one of its agents, servants, or representatives – including a chatbot. It does not explain why it believes that is the case... While a chatbot has an interactive component, it is still just a part of Air Canada's website. It should be obvious to Air Canada that it is responsible for all the information on its website."* This single ruling made un-firewalled support bots a board-level legal liability worldwide.
@@ -331,7 +331,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
    - *Evidence:* After becoming the poster child for replacing 700 human support contractors with AI in 2024, Klarna admitted in 2025 that focusing too heavily on cost-cutting via pure AI automation lowered empathy and resolution quality on edge-case disputes, prompting a strategic shift toward **human-in-the-loop hybrid dispatch** where humans are always accessible.
 4. **D2C Founders & E-Commerce Sellers on COD RTO and Fake Courier NDRs (`r/ecommerce`, `r/IndianStartups`, ClickPost RTO Report):**
    - *Source:* [https://www.reddit.com/r/ecommerce/](https://www.reddit.com/r/ecommerce/) & [https://www.clickpost.ai/blog/rto-in-ecommerce](https://www.clickpost.ai/blog/rto-in-ecommerce)
-   - *Evidence:* Indian D2C merchants detail how 30%+ of COD orders bounce back as RTO—often because the delivery rider marks a fake "Customer Refused / Door Locked" NDR without ever calling the buyer, while the seller has no live chat channel linking the buyer and the local courier to rescue the delivery in real time.
+   - *Evidence:* Indian D2C merchants detail how 30%+ of COD orders bounce back as RTO - often because the delivery rider marks a fake "Customer Refused / Door Locked" NDR without ever calling the buyer, while the seller has no live chat channel linking the buyer and the local courier to rescue the delivery in real time.
 5. **Marketplace Sellers on P2P Scams, Lowballers & Return Fraud (`r/Flipping`, `r/FacebookMarketplace`, `r/eBaySellerAdvice`):**
    - *Source:* [https://www.reddit.com/r/Flipping/](https://www.reddit.com/r/Flipping/) & [https://www.reddit.com/r/eBaySellerAdvice/](https://www.reddit.com/r/eBaySellerAdvice/)
    - *Evidence:* Sellers consistently highlight three chat-layer failures: (1) phishing bots trying to move conversations off-platform via fake payment links, (2) hours wasted haggling with buyers across language barriers without structured counter-offer binds, and (3) fraudulent "item arrived damaged / empty box" claims where there is no tamper-evident pre-shipment or unboxing video verification inside the support thread.
@@ -341,9 +341,9 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ---
 
-### 2. Urgency Score & Why Now (2025–2026) — **9.4 / 10**
+### 2. Urgency Score & Why Now (2025–2026) - **9.4 / 10**
 
-- **The 2025–2026 "Hybrid Rebound" After Pure-AI Chatbot Failures:** Following the *Moffatt v. Air Canada* liability shock and Klarna's 2025 hybrid pivot, enterprises in 2026 are ripping out autonomous "black-box" deflection bots and demanding **human-in-the-loop dispatch centers** where AI drafts, stages tools, and whispers policy rules to humans—or where synchronous webhooks verify AI responses before delivery.
+- **The 2025–2026 "Hybrid Rebound" After Pure-AI Chatbot Failures:** Following the *Moffatt v. Air Canada* liability shock and Klarna's 2025 hybrid pivot, enterprises in 2026 are ripping out autonomous "black-box" deflection bots and demanding **human-in-the-loop dispatch centers** where AI drafts, stages tools, and whispers policy rules to humans - or where synchronous webhooks verify AI responses before delivery.
 - **Consumer Protection & AI Transparency Mandates (2025–2026):** The **FTC Operation AI Comply** ([https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-announces-crackdown-deceptive-ai-claims-schemes](https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-announces-crackdown-deceptive-ai-claims-schemes)), the **EU AI Act** transparency obligations (requiring clear disclosure when interacting with AI and strict human oversight in high-impact consumer disputes, [https://artificialintelligenceact.eu/](https://artificialintelligenceact.eu/)), and India's **Central Consumer Protection Authority (CCPA)** e-commerce dark-pattern crackdowns make transparent, auditable AI+Human support mandatory.
 - **Unbundled Open Commerce (`ONDC` + Cross-Border B2B):** As open commerce networks scale and cross-border SME trade accelerates across Southeast Asia, India, and Latin America, Nexconn PTE. LTD. (headquartered in Singapore, the hub of ASEAN cross-border commerce) explicitly spotlights *Buyer-seller 1-on-1 chat*, *Human agent dispatch center*, and *Multi-language translated chat* as its flagship Track 04 scenarios.
 
@@ -365,7 +365,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 | Repository | Stars / Activity | Architecture & Strengths | What It Lacks | Link |
 |---|---|---|---|---|
-| **`chatwoot/chatwoot`** | ~38k ⭐ (Ruby on Rails + Vue.js) | Gold-standard open-source customer engagement suite; supports omnichannel inboxes, private agent notes, labels, Captain AI assistant. | Private notes are restricted to internal staff—cannot send **Targeted Group Whispers** (`group-channels/direct.md`) to a specific subset of external room participants (e.g., whispering only to the Buyer in a Buyer+Seller room), nor does it have native E2EE (`e2ee/`) or streaming state cards (`expansion.md`). | [https://github.com/chatwoot/chatwoot](https://github.com/chatwoot/chatwoot) |
+| **`chatwoot/chatwoot`** | ~38k ⭐ (Ruby on Rails + Vue.js) | Gold-standard open-source customer engagement suite; supports omnichannel inboxes, private agent notes, labels, Captain AI assistant. | Private notes are restricted to internal staff - cannot send **Targeted Group Whispers** (`group-channels/direct.md`) to a specific subset of external room participants (e.g., whispering only to the Buyer in a Buyer+Seller room), nor does it have native E2EE (`e2ee/`) or streaming state cards (`expansion.md`). | [https://github.com/chatwoot/chatwoot](https://github.com/chatwoot/chatwoot) |
 | **`botpress/botpress`** | ~15k ⭐ (TypeScript) | Visual conversational AI flow builder with tool calling and knowledge base ingestion. | Bot-building studio rather than a full low-latency IM + Voice/Video + Human Dispatch Center SDK. | [https://github.com/botpress/botpress](https://github.com/botpress/botpress) |
 | **`papercups-io/papercups`** | ~6.0k ⭐ (Elixir / Phoenix + React) | Lightweight open-source live customer chat widget built on Elixir concurrency. | Archived/stagnant maintenance; lacks modern agentic AICP primitives, translation, and policy guardrails. | [https://github.com/papercups-io/papercups](https://github.com/papercups-io/papercups) |
 | **`freescout-helpdesk/freescout`** | ~4.5k ⭐ (PHP / Laravel) | Lightweight self-hosted shared inbox and helpdesk (HelpScout clone). | Email/ticket-first rather than real-time streaming WebSocket/AICP chat. | [https://github.com/freescout-helpdesk/freescout](https://github.com/freescout-helpdesk/freescout) |
@@ -394,7 +394,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 | Bucket | Specific Capabilities & Gaps | Strategic Takeaway for Nexconn Build Challenge |
 |---|---|---|
-| **Bucket 1: Solved & Commoditized (DO NOT BUILD)** | • Single-user "Chat with our FAQ PDF" customer support widget.<br>• Basic ticket inbox where a human replies to messages manually.<br>• Simple translation toggle that just calls Google Translate on pasted text. | Submitting a generic RAG support chatbot in Track 04 will lose immediately—every judge has seen 500 Intercom/Chatwoot clones. |
+| **Bucket 1: Solved & Commoditized (DO NOT BUILD)** | • Single-user "Chat with our FAQ PDF" customer support widget.<br>• Basic ticket inbox where a human replies to messages manually.<br>• Simple translation toggle that just calls Google Translate on pasted text. | Submitting a generic RAG support chatbot in Track 04 will lose immediately - every judge has seen 500 Intercom/Chatwoot clones. |
 | **Bucket 2: Exists-but-Weak (Ripe for 10x Re-Architecture)** | • **Bot-to-Human Handoff (`Chatwoot` / `Intercom`):** Humans still read raw transcripts and manually run tools in another tab.<br>• **Buyer-Seller Marketplace Chat (`Alibaba` / `IndiaMART` / `OLX`):** Has basic text/translation, but no structured escrow state cards (`expansion.md`) or anti-phishing sync firewalls (`webhook/sync.md`).<br>• **Warranty / Return Claims:** Slow email form uploads instead of live multimodal video/photo appraisal inside the support room. | Re-architecting dispatch and returns around **Pre-Staged Tool Expansion Cards (`expansion.md`)**, **Channel Tags (`channel-tag.md`)**, and **Live Call SDK (`voice-video/overview.md`)** yields an instant 10x UX leap. |
 | **Bucket 3: Wholly Unsolved / Doesn't Exist Yet (Category-Defining Winners)** | • ***Moffatt*-Proof Synchronous Policy Firewall (`webhook/sync.md`) + Whisper Coaching (`group-channels/direct.md`):** An AI support agent whose outbound messages are deterministically checked against Airbnb ICA / $\tau$-bench policy rules *before* delivery; if a rule violation or high-risk refund is detected, the sync webhook blocks the hallucination and silently converts it into a **Targeted Group Whisper** coaching a human dispatcher.<br>• **Asymmetric Bargaining Copilot (`OG-Narrator` via `group-channels/direct.md`):** An AI mediator in a multilingual Buyer-Seller room that speaks publicly to facilitate trade while whispering private game-theoretic price guidance only to its principal.<br>• **3-Way Buyer + Seller + Courier RTO Rescue Room:** Live vernacular triangulation on open commerce (`ONDC`). | These three concepts directly fuse 2024–2025 frontier papers (`arXiv:2406.12045`, `arXiv:2402.15813`, `arXiv:2510.10331`) with Nexconn's unique protocol primitives. |
 
@@ -404,7 +404,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 | Nexconn Primitive (`docs.nexconn.com`) | Exact Role in Track 04 (`nexconn-support`) | Paired India / Global DPI or Enterprise Rail |
 |---|---|---|
-| **Synchronous Pre-Delivery Webhook (`webhook/sync.md`)** | Intercepts every outbound AI support message or P2P marketplace chat message *before* it is delivered—blocking hallucinated refund promises (*Moffatt* defense) or off-platform phishing links (`Zelle`/fake `UPI` QR codes). | **Airbnb ICA Policy Schema (`arXiv:2510.10331`)** / **$\tau$-bench Rule Engine (`arXiv:2406.12045`)** |
+| **Synchronous Pre-Delivery Webhook (`webhook/sync.md`)** | Intercepts every outbound AI support message or P2P marketplace chat message *before* it is delivered - blocking hallucinated refund promises (*Moffatt* defense) or off-platform phishing links (`Zelle`/fake `UPI` QR codes). | **Airbnb ICA Policy Schema (`arXiv:2510.10331`)** / **$\tau$-bench Rule Engine (`arXiv:2406.12045`)** |
 | **Targeted Group Whispers (`group-channels/direct.md`)** | Allows an AI Supervisor (`AgentID`) to whisper private policy citations and pre-staged refund macros ONLY to the Human Support Agent inside a Customer+Agent room, OR whisper `OG-Narrator` reservation-price strategy ONLY to the Buyer inside a Buyer+Seller room. | **Internal CRM / ERP Inventory & Margin APIs** (Shopify, Stripe, Razorpay) |
 | **Built-in Multi-Language Translation (`builtin-translation/`)** | Enables seamless 1-on-1 negotiation between a Mandarin/Tamil/Hindi manufacturer and an English/Spanish/Arabic wholesale buyer without switching apps. | **Bhashini (ULCA)** (22 Indic languages voice/text) + **Cross-Border B2B Trade Catalogs** |
 | **Message Expansion (`expansion.md`) & Stream Message (`stream-message.md`)** | Renders interactive **Milestone Escrow Cards**, **Dynamic COD-to-UPI Discount Cards**, and **1-Click Pre-Staged Refund Approval Cards** directly inside the chat stream. | **ONDC Beckn `IGM` (Issue & Grievance Management)** + **UPI Intent / Stripe Payment Intents** |
@@ -415,22 +415,22 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ### 6. Track 04 Raw Idea Seeds (16 Distinct Seeds Generated Before Pruning to Top 5)
 
-1. **WhisperDesk ($\tau$-Guard)** — *Moffatt*-proof Human+AI Dispatch Center using `webhook/sync.md` pre-delivery policy firewall + `group-channels/direct.md` private agent whisper coaching (*Selected as #1*).
-2. **PactChat (BhashaBargain)** — Multilingual Buyer-Seller 1-on-1 Negotiation Room with `OG-Narrator` private price coaching (`group-channels/direct.md`), `builtin-translation/`, and live Milestone Escrow Cards (`expansion.md`) (*Selected as #2*).
-3. **RTOShield (ONDC-NDR)** — 3-Way Buyer + Seller + Courier Rider Vernacular Triangulation Room that converts impulse COD orders to UPI and stops fake NDR returns (*Selected as #3*).
-4. **TriageSwarm** — Zero-Repeat Context-Preserving Support Router with live sentiment channel tagging (`channel-tag.md`) and pre-staged 1-click tool cards (`expansion.md`) (*Selected as #4*).
-5. **VisualClaimE2E** — Multimodal Warranty, Return-Switch & Damage-Appraisal Support Room combining `voice-video/overview.md` live video inspection with `e2ee/` and instant claim cards (*Selected as #5*).
-6. **PhishFence** — P2P Marketplace anti-scam chat that uses `webhook/sync.md` to block fake payment screenshots, QR phishing, and off-platform phone-number harvesting (*Merged into Idea 2*).
-7. **CustomsClearChat** — Cross-border B2B freight forwarder + exporter + buyer chat room with HS-code tariff classification cards.
-8. **KlarnaRescue** — BNPL (Buy Now Pay Later) empathetic collections & hardship restructuring chat agent with deterministic compliance rails.
-9. **B2BRFQSwarm** — Reverse-auction group channel where a buyer posts an RFQ and multiple verified sellers submit structured bid cards (`expansion.md`).
-10. **AirlineRebookOS** — Mass flight-cancellation dispatch center modeled directly on $\tau$-bench `tau-airline` rules.
-11. **TeleTriageRx** — Patient + Triage Nurse + Pharmacist support dispatch center with `e2ee/` prescription verification.
-12. **AutoPartsMatch** — Mechanic-to-salvage-yard buyer-seller chat with VIN lookup and live video part verification.
-13. **SaaSChurnSave** — Cancellation-flow live dispatch room that calculates LTV and whispers dynamic retention offers to a human CSM.
-14. **RealEstateClosingRoom** — Buyer + Seller + Escrow Officer E2EE document and earnest-money chat room.
-15. **CreatorBrandDeal** — Influencer + Brand sponsor negotiation room with milestone deliverable preview cards.
-16. **AgriMandiDirect** — FPO farmer + wholesale buyer vernacular commodity negotiation room with e-NAM price ticker cards.
+1. **WhisperDesk ($\tau$-Guard)** - *Moffatt*-proof Human+AI Dispatch Center using `webhook/sync.md` pre-delivery policy firewall + `group-channels/direct.md` private agent whisper coaching (*Selected as #1*).
+2. **PactChat (BhashaBargain)** - Multilingual Buyer-Seller 1-on-1 Negotiation Room with `OG-Narrator` private price coaching (`group-channels/direct.md`), `builtin-translation/`, and live Milestone Escrow Cards (`expansion.md`) (*Selected as #2*).
+3. **RTOShield (ONDC-NDR)** - 3-Way Buyer + Seller + Courier Rider Vernacular Triangulation Room that converts impulse COD orders to UPI and stops fake NDR returns (*Selected as #3*).
+4. **TriageSwarm** - Zero-Repeat Context-Preserving Support Router with live sentiment channel tagging (`channel-tag.md`) and pre-staged 1-click tool cards (`expansion.md`) (*Selected as #4*).
+5. **VisualClaimE2E** - Multimodal Warranty, Return-Switch & Damage-Appraisal Support Room combining `voice-video/overview.md` live video inspection with `e2ee/` and instant claim cards (*Selected as #5*).
+6. **PhishFence** - P2P Marketplace anti-scam chat that uses `webhook/sync.md` to block fake payment screenshots, QR phishing, and off-platform phone-number harvesting (*Merged into Idea 2*).
+7. **CustomsClearChat** - Cross-border B2B freight forwarder + exporter + buyer chat room with HS-code tariff classification cards.
+8. **KlarnaRescue** - BNPL (Buy Now Pay Later) empathetic collections & hardship restructuring chat agent with deterministic compliance rails.
+9. **B2BRFQSwarm** - Reverse-auction group channel where a buyer posts an RFQ and multiple verified sellers submit structured bid cards (`expansion.md`).
+10. **AirlineRebookOS** - Mass flight-cancellation dispatch center modeled directly on $\tau$-bench `tau-airline` rules.
+11. **TeleTriageRx** - Patient + Triage Nurse + Pharmacist support dispatch center with `e2ee/` prescription verification.
+12. **AutoPartsMatch** - Mechanic-to-salvage-yard buyer-seller chat with VIN lookup and live video part verification.
+13. **SaaSChurnSave** - Cancellation-flow live dispatch room that calculates LTV and whispers dynamic retention offers to a human CSM.
+14. **RealEstateClosingRoom** - Buyer + Seller + Escrow Officer E2EE document and earnest-money chat room.
+15. **CreatorBrandDeal** - Influencer + Brand sponsor negotiation room with milestone deliverable preview cards.
+16. **AgriMandiDirect** - FPO farmer + wholesale buyer vernacular commodity negotiation room with e-NAM price ticker cards.
 
 ---
 
@@ -438,7 +438,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ---
 
-#### IDEA 1 (Track 04 Rank #1): **WhisperDesk ($\tau$-Guard)** — *Moffatt-Proof Human+AI Customer Support Dispatch Center with Synchronous Policy Firewall & Private Whisper Coaching*
+#### IDEA 1 (Track 04 Rank #1): **WhisperDesk ($\tau$-Guard)** - *Moffatt-Proof Human+AI Customer Support Dispatch Center with Synchronous Policy Firewall & Private Whisper Coaching*
 
 - **Classification:** **Doesn't exist** (First customer support dispatch center that combines `arXiv:2406.12045` $\tau$-bench / `arXiv:2510.10331` ICA policy verification via Nexconn's **Synchronous Pre-Delivery Webhook (`webhook/sync.md`)** with invisible AI-to-Human **Targeted Group Whispers (`group-channels/direct.md`)** inside the same customer channel).
 - **One-Line Pitch:** *An AI support agent that resolves routine queries autonomously, gets deterministically blocked by a synchronous webhook millisecond-before it can hallucinate an illegal refund policy, and seamlessly converts the blocked draft into a private in-room whisper coaching a human dispatcher with a 1-click pre-staged resolution card.*
@@ -477,7 +477,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 ```
 
 ##### War-Room Council Critique & Survival Log
-- **Patrick Jane (Judge-Psychology):** *"Every CTO and judge has read about the Air Canada chatbot lawsuit (`Moffatt v. Air Canada`) and Klarna's 2025 walkback. When you show an AI bot getting tricked into promising an illegal $180 refund on stage, and Nexconn's `webhook/sync.md` literally catches it mid-air, blocks it from reaching the customer, tags a human dispatcher, and whispers the compliant VIP store-credit button to the human via `group-channels/direct.md`—the judges will applaud."*
+- **Patrick Jane (Judge-Psychology):** *"Every CTO and judge has read about the Air Canada chatbot lawsuit (`Moffatt v. Air Canada`) and Klarna's 2025 walkback. When you show an AI bot getting tricked into promising an illegal $180 refund on stage, and Nexconn's `webhook/sync.md` literally catches it mid-air, blocks it from reaching the customer, tags a human dispatcher, and whispers the compliant VIP store-credit button to the human via `group-channels/direct.md` - the judges will applaud."*
 - **Andrej Karpathy (AI Rigor):** *"Grounded directly in Sierra/Princeton's $\tau$-bench (`arXiv:2406.12045`) and Airbnb's ICA schema (`arXiv:2510.10331`). It solves the fundamental reliability gap of tool-calling support agents by putting a deterministic symbolic verifier at the messaging transport layer."*
 - **Charlie Munger (Inversion):** *"What could fail? Latency on `webhook/sync.md` if the policy check uses a slow LLM. Fix: Compile ICA policies into fast deterministic JSON-Logic / Python rules so `webhook/sync.md` executes in `<20ms`."*
 
@@ -493,11 +493,11 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 | 7. Regulatory / Compliance Safety | 5% | 9.5 | 0.48 | Enforces FTC / EU AI Act / CCPA consumer protection and auditability by design. |
 | 8. Prior Art Differentiation | 10% | 8.5 | 0.85 | Clear architectural leap over Chatwoot, Intercom Fin, and Zendesk. |
 | 9. Team Execution Risk (Inverse) | 5% | 7.2 | 0.36 | Low risk; deterministic policy rules guarantee 100% reproducible demo behavior. |
-| **TOTAL SCORE** | **100%** | — | **9.20 / 10** | **Rank #1 in Track 04 (`nexconn-support`) — Overall Highest Scoring Idea Across Tracks 03 & 04** |
+| **TOTAL SCORE** | **100%** | - | **9.20 / 10** | **Rank #1 in Track 04 (`nexconn-support`) - Overall Highest Scoring Idea Across Tracks 03 & 04** |
 
 ---
 
-#### IDEA 2 (Track 04 Rank #2): **PactChat (BhashaBargain)** — *Multilingual Buyer-Seller 1-on-1 Negotiation Room with OG-Narrator Whisper Copilot & Milestone Escrow Cards*
+#### IDEA 2 (Track 04 Rank #2): **PactChat (BhashaBargain)** - *Multilingual Buyer-Seller 1-on-1 Negotiation Room with OG-Narrator Whisper Copilot & Milestone Escrow Cards*
 
 - **Classification:** **Doesn't exist** (First buyer-seller marketplace chat that combines `arXiv:2402.15813` `OG-Narrator` game-theoretic bargaining with Nexconn's **Built-in Translation (`builtin-translation/`)**, **Targeted Group Whispers (`group-channels/direct.md`)** for asymmetric reservation-price coaching, **Message Expansion (`expansion.md`)** live escrow cards, and **`webhook/sync.md`** anti-scam protection).
 - **One-Line Pitch:** *A cross-border and P2P buyer-seller negotiation room where Buyer and Seller bargain in their native languages via built-in translation, coached privately via invisible whispers by an `OG-Narrator` pricing engine, and lock agreed terms into a live in-chat Milestone Escrow Card.*
@@ -530,11 +530,11 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 | 7. Regulatory / Compliance Safety | 5% | 8.5 | 0.43 | Anti-phishing sync webhook + audit trail. |
 | 8. Prior Art Differentiation | 10% | 8.8 | 0.88 | Superior to Alibaba chat (closed) and zBay (no translation or bargaining copilot). |
 | 9. Team Execution Risk (Inverse) | 5% | 8.2 | 0.41 | Very low risk; math model for `OG-Narrator` is lightweight and deterministic. |
-| **TOTAL SCORE** | **100%** | — | **9.00 / 10** | **Rank #2 in Track 04 (`nexconn-support`)** |
+| **TOTAL SCORE** | **100%** | - | **9.00 / 10** | **Rank #2 in Track 04 (`nexconn-support`)** |
 
 ---
 
-#### IDEA 3 (Track 04 Rank #3): **RTOShield (ONDC-NDR)** — *Vernacular COD Verification & Live Buyer-Seller-Courier Triangulation Room*
+#### IDEA 3 (Track 04 Rank #3): **RTOShield (ONDC-NDR)** - *Vernacular COD Verification & Live Buyer-Seller-Courier Triangulation Room*
 
 - **Classification:** **Exists-in-closed-silos, missing on open commerce** (First multi-party real-time **Buyer + Seller + Courier Rider** chat room built on Nexconn that combines `builtin-translation/`, dynamic **COD-to-UPI Prepayment Cards (`expansion.md`)**, and **Live Doorstep Verification (`voice-video/overview.md`)** to slash India's 25%–40% RTO rate).
 - **One-Line Pitch:** *A real-time vernacular triangulation room that converts high-risk Cash-on-Delivery orders into instant UPI prepayments and pulls the Buyer, Seller, and Delivery Rider into a single translated room the second a "Customer Unavailable" NDR occurs.*
@@ -560,14 +560,14 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 | 7. Regulatory / Compliance Safety | 5% | 8.8 | 0.44 | Number masking via Nexconn Call SDK protects buyer DPDP privacy. |
 | 8. Prior Art Differentiation | 10% | 8.2 | 0.82 | Moves beyond 1-way WhatsApp templates (LimeChat) into live 3-party Seller+Buyer+Rider rooms. |
 | 9. Team Execution Risk (Inverse) | 5% | 7.4 | 0.37 | Low execution risk. |
-| **TOTAL SCORE** | **100%** | — | **8.75 / 10** | **Rank #3 in Track 04 (`nexconn-support`)** |
+| **TOTAL SCORE** | **100%** | - | **8.75 / 10** | **Rank #3 in Track 04 (`nexconn-support`)** |
 
 ---
 
-#### IDEA 4 (Track 04 Rank #4): **TriageSwarm** — *Zero-Repeat Context-Preserving Support Router with Live Sentiment Tagging & Speculative Tool Staging*
+#### IDEA 4 (Track 04 Rank #4): **TriageSwarm** - *Zero-Repeat Context-Preserving Support Router with Live Sentiment Tagging & Speculative Tool Staging*
 
 - **Classification:** **Exists-but-weak** (10x re-architecture of Chatwoot/Zendesk dispatch centers using speculative tool staging via `expansion.md`, `channel-tag.md`, and `group-channels/direct.md`).
-- **One-Line Pitch:** *A multi-agent dispatch center that speculatively runs read-only diagnostics and stages 1-click refund/replacement payloads while the customer is still typing—so human agents resolve escalated chats in 5 seconds without asking a single repeat question.*
+- **One-Line Pitch:** *A multi-agent dispatch center that speculatively runs read-only diagnostics and stages 1-click refund/replacement payloads while the customer is still typing - so human agents resolve escalated chats in 5 seconds without asking a single repeat question.*
 
 ##### How It Works & Nexconn SDK Deep Integration
 1. **Speculative Diagnostic Execution:** While a customer types a complaint, `@DiagAgent` (`AgentID`) queries order/shipping/billing APIs in parallel and updates `channel-tag.md` (`#billing-double-charge`, `#sentiment-critical`, `#vip-tier`).
@@ -578,7 +578,7 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ---
 
-#### IDEA 5 (Track 04 Rank #5): **VisualClaimE2E** — *Multimodal Warranty, Return-Switch & Damage-Appraisal Support Room*
+#### IDEA 5 (Track 04 Rank #5): **VisualClaimE2E** - *Multimodal Warranty, Return-Switch & Damage-Appraisal Support Room*
 
 - **Classification:** **Exists-but-weak** (Replaces slow email return tickets with live Nexconn `voice-video/overview.md` video inspection + `e2ee/` + `expansion.md` instant return-label cards).
 - **One-Line Pitch:** *An end-to-end encrypted support room where customers show damaged goods over a 20-second live video call (`Call SDK`), AI verifies serial numbers and damage authenticity against pre-shipment photos, and a 1-click Replacement Card settles the claim on the spot.*
@@ -631,8 +631,8 @@ Direct inspection of prior survey handoffs (`teamwork_spec_miner_survey_1/handof
 
 ## 4. Conclusion
 
-1. **Track 03 (`nexconn-workplace`) Top Recommendation:** Build **BatonOS** (**9.15 / 10**) — the *I-PASS Shift Handover & Operational Continuity Engine* that turnsNexconn's *"Shift handover channels"* prompt into a zero-drop clinical/NOC/factory sign-out room with `expansion.md` live state cards, `group-channels/direct.md` omission whispers, and a `webhook/sync.md` pre-handover safety firewall. (Runner-up: **FlowRoom (SOP-RCA)** at **8.85 / 10**).
-2. **Track 04 (`nexconn-support`) Top Recommendation:** Build **WhisperDesk ($\tau$-Guard)** (**9.20 / 10**) — the *Moffatt-Proof Human+AI Dispatch Center* that intercepts hallucinated AI refund/policy promises via `webhook/sync.md` before the customer ever sees them and coaches the human dispatcher privately via `group-channels/direct.md` whispers + `expansion.md` 1-click resolution cards. (Runner-up: **PactChat (BhashaBargain)** at **9.00 / 10** for multilingual buyer-seller negotiation + escrow).
+1. **Track 03 (`nexconn-workplace`) Top Recommendation:** Build **BatonOS** (**9.15 / 10**) - the *I-PASS Shift Handover & Operational Continuity Engine* that turnsNexconn's *"Shift handover channels"* prompt into a zero-drop clinical/NOC/factory sign-out room with `expansion.md` live state cards, `group-channels/direct.md` omission whispers, and a `webhook/sync.md` pre-handover safety firewall. (Runner-up: **FlowRoom (SOP-RCA)** at **8.85 / 10**).
+2. **Track 04 (`nexconn-support`) Top Recommendation:** Build **WhisperDesk ($\tau$-Guard)** (**9.20 / 10**) - the *Moffatt-Proof Human+AI Dispatch Center* that intercepts hallucinated AI refund/policy promises via `webhook/sync.md` before the customer ever sees them and coaches the human dispatcher privately via `group-channels/direct.md` whispers + `expansion.md` 1-click resolution cards. (Runner-up: **PactChat (BhashaBargain)** at **9.00 / 10** for multilingual buyer-seller negotiation + escrow).
 3. **Cross-Track Verdict:** Between Track 03 and Track 04, **Track 04 (`WhisperDesk` at 9.20/10)** and **Track 03 (`BatonOS` at 9.15/10)** are virtually tied in winnability, with **WhisperDesk** holding a slight edge in 90-second stage drama (catching a live prompt-injected refund hallucination mid-air) and **BatonOS** holding a slight edge in low-crowding differentiation (almost zero competitors will build a rigorous shift-handover state machine).
 
 ---
@@ -653,26 +653,26 @@ To independently verify all findings, citations, and deliverables in this report
 
 ## Numbered Reference Sources
 
-1. Nexconn Build Challenge Official Portal — [https://challenge.nexconn.com/](https://challenge.nexconn.com/)
-2. Nexconn Developer Documentation (AICP, Stream Message, Expansion, Targeted Group Messages, Built-in Translation, Sync Webhooks, Call SDK, E2EE) — [https://docs.nexconn.com/](https://docs.nexconn.com/)
-3. Microsoft Work Trend Index Annual Report ("Breaking Down the Infinite Workday", 275 interruptions/day) — [https://www.microsoft.com/en-us/worklab/work-trend-index/](https://www.microsoft.com/en-us/worklab/work-trend-index/)
-4. Joint Commission Sentinel Event Alert #58 ("Inadequate hand-off communication", 80% of serious medical errors) — [https://www.jointcommission.org/resources/sentinel-event/sentinel-event-alert-newsletters/sentinel-event-alert-58-inadequate-hand-off-communication/](https://www.jointcommission.org/resources/sentinel-event/sentinel-event-alert-newsletters/sentinel-event-alert-58-inadequate-hand-off-communication/)
-5. Starmer, A. J., et al. (2014). *Changes in Medical Errors after Implementation of a Handoff Program (I-PASS)*. New England Journal of Medicine, 371(19), 1803–1812 — [https://www.nejm.org/doi/full/10.1056/NEJMsa1405556](https://www.nejm.org/doi/full/10.1056/NEJMsa1405556)
-6. Siemens *True Cost of Downtime 2024* & Splunk *Hidden Costs of Downtime* ($14,056/min average, $2M/hr automotive) — [https://www.splunk.com/en_us/campaigns/the-hidden-costs-of-downtime.html](https://www.splunk.com/en_us/campaigns/the-hidden-costs-of-downtime.html)
-7. Nandi, S., et al. (2025). *SOP-Bench: Complex Industrial Standard Operating Procedures for Evaluating LLM Agents*. ICLR 2025 — [https://arxiv.org/abs/2506.08119](https://arxiv.org/abs/2506.08119)
-8. Shao, Y., et al. (2024). *Collaborative Gym (Co-Gym): A Framework for Enabling and Evaluating Human-Agent Collaboration*. Stanford University — [https://arxiv.org/abs/2412.15280](https://arxiv.org/abs/2412.15280)
-9. Tufano, M., et al. (2024). *AutoDev: Automated AI-Driven Development*. Microsoft Research — [https://arxiv.org/abs/2403.08299](https://arxiv.org/abs/2403.08299)
-10. *Moffatt v. Air Canada*, 2024 BCCRT 149 (Civil Resolution Tribunal of British Columbia) — [https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html](https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html)
-11. Klarna AI Assistant Press Release (700 full-time agents equivalent, 2.3M chats) — [https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)
-12. Yao, S., Shinn, N., Razavi, P., & Narasimhan, K. (2024). *$\tau$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains*. Sierra AI & Princeton University — [https://arxiv.org/abs/2406.12045](https://arxiv.org/abs/2406.12045)
-13. Xia, T., et al. (2024). *Measuring Bargaining Abilities of LLMs: A Benchmark and A Buyer-Enhancement Method (OG-Narrator)*. Shanghai Jiao Tong University — [https://arxiv.org/abs/2402.15813](https://arxiv.org/abs/2402.15813)
-14. Airbnb Engineering & Research (2025). *LLM-Friendly Knowledge Representation for Customer Support (Intent-Context-Action)* — [https://arxiv.org/abs/2510.10331](https://arxiv.org/abs/2510.10331)
-15. ClickPost E-Commerce Return-to-Origin (RTO) Benchmark Report (India COD RTO 25%–40%) — [https://www.clickpost.ai/blog/rto-in-ecommerce](https://www.clickpost.ai/blog/rto-in-ecommerce)
-16. Open Network for Digital Commerce (ONDC) Official Portal — [https://ondc.org/](https://ondc.org/)
-17. Mattermost Open-Source Workplace Messaging — [https://github.com/mattermost/mattermost](https://github.com/mattermost/mattermost)
-18. Zulip Open-Source Topic-Threaded Team Chat — [https://github.com/zulip/zulip](https://github.com/zulip/zulip)
-19. Netflix Dispatch Incident Management Orchestrator — [https://github.com/Netflix/dispatch](https://github.com/Netflix/dispatch)
-20. Keep Open-Source AIOps & Incident Management Platform — [https://github.com/keephq/keep](https://github.com/keephq/keep)
-21. Chatwoot Open-Source Customer Engagement Suite — [https://github.com/chatwoot/chatwoot](https://github.com/chatwoot/chatwoot)
-22. Botpress Open-Source Conversational AI Platform — [https://github.com/botpress/botpress](https://github.com/botpress/botpress)
-23. zBay P2P Encrypted Marketplace & Dispute Oracle (ETHGlobal Waterloo Winner) — [https://ethglobal.com/showcase/zbay-63p6x](https://ethglobal.com/showcase/zbay-63p6x)
+1. Nexconn Build Challenge Official Portal - [https://challenge.nexconn.com/](https://challenge.nexconn.com/)
+2. Nexconn Developer Documentation (AICP, Stream Message, Expansion, Targeted Group Messages, Built-in Translation, Sync Webhooks, Call SDK, E2EE) - [https://docs.nexconn.com/](https://docs.nexconn.com/)
+3. Microsoft Work Trend Index Annual Report ("Breaking Down the Infinite Workday", 275 interruptions/day) - [https://www.microsoft.com/en-us/worklab/work-trend-index/](https://www.microsoft.com/en-us/worklab/work-trend-index/)
+4. Joint Commission Sentinel Event Alert #58 ("Inadequate hand-off communication", 80% of serious medical errors) - [https://www.jointcommission.org/resources/sentinel-event/sentinel-event-alert-newsletters/sentinel-event-alert-58-inadequate-hand-off-communication/](https://www.jointcommission.org/resources/sentinel-event/sentinel-event-alert-newsletters/sentinel-event-alert-58-inadequate-hand-off-communication/)
+5. Starmer, A. J., et al. (2014). *Changes in Medical Errors after Implementation of a Handoff Program (I-PASS)*. New England Journal of Medicine, 371(19), 1803–1812 - [https://www.nejm.org/doi/full/10.1056/NEJMsa1405556](https://www.nejm.org/doi/full/10.1056/NEJMsa1405556)
+6. Siemens *True Cost of Downtime 2024* & Splunk *Hidden Costs of Downtime* ($14,056/min average, $2M/hr automotive) - [https://www.splunk.com/en_us/campaigns/the-hidden-costs-of-downtime.html](https://www.splunk.com/en_us/campaigns/the-hidden-costs-of-downtime.html)
+7. Nandi, S., et al. (2025). *SOP-Bench: Complex Industrial Standard Operating Procedures for Evaluating LLM Agents*. ICLR 2025 - [https://arxiv.org/abs/2506.08119](https://arxiv.org/abs/2506.08119)
+8. Shao, Y., et al. (2024). *Collaborative Gym (Co-Gym): A Framework for Enabling and Evaluating Human-Agent Collaboration*. Stanford University - [https://arxiv.org/abs/2412.15280](https://arxiv.org/abs/2412.15280)
+9. Tufano, M., et al. (2024). *AutoDev: Automated AI-Driven Development*. Microsoft Research - [https://arxiv.org/abs/2403.08299](https://arxiv.org/abs/2403.08299)
+10. *Moffatt v. Air Canada*, 2024 BCCRT 149 (Civil Resolution Tribunal of British Columbia) - [https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html](https://www.canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html)
+11. Klarna AI Assistant Press Release (700 full-time agents equivalent, 2.3M chats) - [https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)
+12. Yao, S., Shinn, N., Razavi, P., & Narasimhan, K. (2024). *$\tau$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains*. Sierra AI & Princeton University - [https://arxiv.org/abs/2406.12045](https://arxiv.org/abs/2406.12045)
+13. Xia, T., et al. (2024). *Measuring Bargaining Abilities of LLMs: A Benchmark and A Buyer-Enhancement Method (OG-Narrator)*. Shanghai Jiao Tong University - [https://arxiv.org/abs/2402.15813](https://arxiv.org/abs/2402.15813)
+14. Airbnb Engineering & Research (2025). *LLM-Friendly Knowledge Representation for Customer Support (Intent-Context-Action)* - [https://arxiv.org/abs/2510.10331](https://arxiv.org/abs/2510.10331)
+15. ClickPost E-Commerce Return-to-Origin (RTO) Benchmark Report (India COD RTO 25%–40%) - [https://www.clickpost.ai/blog/rto-in-ecommerce](https://www.clickpost.ai/blog/rto-in-ecommerce)
+16. Open Network for Digital Commerce (ONDC) Official Portal - [https://ondc.org/](https://ondc.org/)
+17. Mattermost Open-Source Workplace Messaging - [https://github.com/mattermost/mattermost](https://github.com/mattermost/mattermost)
+18. Zulip Open-Source Topic-Threaded Team Chat - [https://github.com/zulip/zulip](https://github.com/zulip/zulip)
+19. Netflix Dispatch Incident Management Orchestrator - [https://github.com/Netflix/dispatch](https://github.com/Netflix/dispatch)
+20. Keep Open-Source AIOps & Incident Management Platform - [https://github.com/keephq/keep](https://github.com/keephq/keep)
+21. Chatwoot Open-Source Customer Engagement Suite - [https://github.com/chatwoot/chatwoot](https://github.com/chatwoot/chatwoot)
+22. Botpress Open-Source Conversational AI Platform - [https://github.com/botpress/botpress](https://github.com/botpress/botpress)
+23. zBay P2P Encrypted Marketplace & Dispute Oracle (ETHGlobal Waterloo Winner) - [https://ethglobal.com/showcase/zbay-63p6x](https://ethglobal.com/showcase/zbay-63p6x)

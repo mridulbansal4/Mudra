@@ -69,8 +69,8 @@ export function S1Hero() {
           transition={{ duration: 0.8, delay: 0.24, ease: ease.expoOut }}
           className="t-lead mt-5 max-w-[440px] lowercase text-fg-2"
         >
-          samadhan is the members-only escrow room where buyers and sellers inspect
-          live, pay safely and settle disputes in ninety seconds — in their own
+          mudra is the members-only escrow room where buyers and sellers inspect
+          live, pay safely and settle disputes in ninety seconds, in their own
           language.
         </motion.p>
 

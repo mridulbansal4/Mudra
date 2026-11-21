@@ -1,13 +1,13 @@
 import { css, html, nothing } from "lit";
-import { SamadhanCardBase, shortHash } from "./base";
+import { MudraCardBase, shortHash } from "./base";
 
 /**
- * <nc-video-assay-receipt> — messageType `x-samadhan-assay-receipt`.
+ * <nc-video-assay-receipt> - messageType `x-mudra-assay-receipt`.
  * data: { passed, framePhashHex, rpmPeak, minRpm, serial, blurLaplacian, computeMs, engine, thumbnail, signature }
  */
-export class SamadhanAssayReceipt extends SamadhanCardBase {
+export class MudraAssayReceipt extends MudraCardBase {
   static styles = [
-    SamadhanCardBase.baseStyles,
+    MudraCardBase.baseStyles,
     css`
       .grid {
         display: grid;
@@ -54,14 +54,14 @@ export class SamadhanAssayReceipt extends SamadhanCardBase {
           ${p.thumbnail ? html`<img class="thumb" src=${p.thumbnail} alt="Captured inspection frame" />` : html`<div class="thumb"></div>`}
           <dl>
             <dt>Frame pHash</dt>
-            <dd>${p.framePhashHex ?? p.frame_phash_hex ?? "—"}</dd>
+            <dd>${p.framePhashHex ?? p.frame_phash_hex ?? "-"}</dd>
             <dt>Motor RPM</dt>
             <dd>
-              ${p.rpmPeak != null ? Number(p.rpmPeak).toLocaleString("en-IN", { maximumFractionDigits: 1 }) : "—"}
+              ${p.rpmPeak != null ? Number(p.rpmPeak).toLocaleString("en-IN", { maximumFractionDigits: 1 }) : "-"}
               ${p.minRpm ? html`<span class="muted">(min ${Number(p.minRpm).toLocaleString("en-IN")})</span>` : nothing}
             </dd>
             <dt>Sharpness</dt>
-            <dd>${p.blurLaplacian != null ? Number(p.blurLaplacian).toFixed(1) : "—"}</dd>
+            <dd>${p.blurLaplacian != null ? Number(p.blurLaplacian).toFixed(1) : "-"}</dd>
             ${p.serial ? html`<dt>Serial plate</dt><dd>${p.serial}</dd>` : nothing}
             <dt>Verifier</dt>
             <dd>${p.engine ?? "rust"}${p.computeMs != null ? ` · ${Number(p.computeMs).toFixed(2)} ms` : ""}</dd>

@@ -1,5 +1,5 @@
 # ADR-0004: Story-Driven Frontend Design System (`/hallmark` v2 + `/unslop` + `/apple-design` + HeroUI v3 & Native)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Design & Frontend Lead — Dev 3) · Status: Accepted · Last updated: 2026-11-10
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Design & Frontend Lead - Dev 3) · Status: Accepted · Last updated: 2026-11-10
 > Related: [Design System](../../02-design/DESIGN_SYSTEM.md) · [UI Spec](../../02-design/UI_SPEC.md) · [Frontend](../FRONTEND.md) · [Mobile](../MOBILE.md)
 
 ---
@@ -18,8 +18,8 @@ Hackathon frontends fail in two predictable ways:
 - Enforce modern HeroUI v3 React (`@heroui/react@^3.0.1` on Tailwind CSS v4) and HeroUI Native (`heroui-native@^2.0.1` on Uniwind) compound component patterns, plus Apple-grade physical motion (`/apple-design`).
 
 ## Considered Options
-1. **Option A: Default dark-mode AI dashboard with Tailwind v3 / HeroUI v2 (`<HeroUIProvider>`) and a single `/chat` route**: Rejected—violates HeroUI v3 migration rules, triggers `sloplint` failures, and leaves first-time visitors lost.
-2. **Option B: Unstyled raw HTML around `<nc-chat-ui-app-provider>`**: Rejected—fails the 30% Completeness & Execution rubric and lacks accessible dialogs, tabs, and mobile parity.
+1. **Option A: Default dark-mode AI dashboard with Tailwind v3 / HeroUI v2 (`<HeroUIProvider>`) and a single `/chat` route**: Rejected - violates HeroUI v3 migration rules, triggers `sloplint` failures, and leaves first-time visitors lost.
+2. **Option B: Unstyled raw HTML around `<nc-chat-ui-app-provider>`**: Rejected - fails the 30% Completeness & Execution rubric and lacks accessible dialogs, tabs, and mobile parity.
 3. **Option C: Story-Driven 9-Route Architecture using `/hallmark` v2.0.0 + `/unslop` + `/apple-design` + `@heroui/react@^3.0.1` (Tailwind v4) + `heroui-native@^2.0.1` (Uniwind)**.
 
 ## Decision Outcome

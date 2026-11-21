@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router";
 import { Button } from "@heroui/react";
-import type { FsmState } from "@samadhan/shared-types";
-import { formatInr } from "@samadhan/shared-types";
+import type { FsmState } from "@mudra/shared-types";
+import { formatInr } from "@mudra/shared-types";
 import { TopNav, Banner } from "../components/Chrome";
 import { StoryBar } from "../components/StoryBar";
 import { DealRoom, VoucherChain } from "../components/DealRoom";
@@ -81,7 +81,7 @@ export default function Desk() {
     try {
       const r = await api.post<{ subchannel_id: string; joined: boolean }>(
         "/api/v1/community/subchannels",
-        { community_channel_id: "comm_samadhan_bharat_trade", category_slug: slug, action: "CREATE_OR_GET" },
+        { community_channel_id: "comm_mudra_bharat_trade", category_slug: slug, action: "CREATE_OR_GET" },
         s.jwt,
       );
       setJoinMsg(`Joined ${slug} (${r.subchannel_id}) via createCommunitySubchannel`);
