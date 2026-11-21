@@ -73,7 +73,7 @@ export function AppShell({
           aria-label="App home"
           className="bg-transparent border-0 p-0 text-fg cursor-pointer press"
         >
-          <LogoMark size={22} />
+          <LogoMark size={30} />
         </button>
 
         {showLivePill ? (

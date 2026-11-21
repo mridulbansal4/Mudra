@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="stage" cx="256" cy="210" r="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#19191d"/>
+      <stop offset="60%" stop-color="#0d0d10"/>
+      <stop offset="100%" stop-color="#060608"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="120" y1="64" x2="392" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#292930"/>
+      <stop offset="48%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#070709"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="256" y1="64" x2="256" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.48"/>
+      <stop offset="38%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.03"/>
+    </linearGradient>
+    <radialGradient id="well" cx="256" cy="176" r="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.075"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0.01"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+    <linearGradient id="arch" x1="156" y1="156" x2="356" y2="356" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#e4e4e9"/>
+      <stop offset="100%" stop-color="#9e9ea9"/>
+    </linearGradient>
+    <linearGradient id="key" x1="256" y1="248" x2="256" y2="344" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f2ff80"/>
+      <stop offset="55%" stop-color="#e5fe40"/>
+      <stop offset="100%" stop-color="#b4d614"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="256" cy="296" r="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e5fe40" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e5fe40" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-15%" width="140%" height="145%">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#000000" flood-opacity="0.72"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="3" seed="7" result="noise"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0" in="noise" result="softNoise"/>
+      <feComposite in="softNoise" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <clipPath id="clip">
+      <path d="M256 64C389.7 64 448 122.3 448 256C448 389.7 389.7 448 256 448C122.3 448 64 389.7 64 256C64 122.3 122.3 64 256 64Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#stage)"/>
+
+  <!-- Monolith squircle -->
+  <g filter="url(#shadow)">
+    <path d="M256 64C389.7 64 448 122.3 448 256C448 389.7 389.7 448 256 448C122.3 448 64 389.7 64 256C64 122.3 122.3 64 256 64Z" fill="url(#bg)"/>
+  </g>
+
+  <g clip-path="url(#clip)">
+    <rect x="64" y="64" width="384" height="384" fill="url(#well)"/>
+    <rect x="64" y="64" width="384" height="384" fill="#ffffff" filter="url(#grain)"/>
+    <circle cx="256" cy="296" r="96" fill="url(#glow)"/>
+  </g>
+
+  <!-- Inner datum ring -->
+  <path d="M256 88C372.6 88 424 139.4 424 256C424 372.6 372.6 424 256 424C139.4 424 88 372.6 88 256C88 139.4 139.4 88 256 88Z" stroke="#ffffff" stroke-opacity="0.06" stroke-width="3"/>
+
+  <!-- Specular rim bevel -->
+  <path d="M256 67C387.5 67 445 124.5 445 256C445 387.5 387.5 445 256 445C124.5 445 67 387.5 67 256C67 124.5 124.5 67 256 67Z" stroke="url(#rim)" stroke-width="5"/>
+
+  <!-- Mudra M-Arch -->
+  <path d="M156.6 341.7V206.6C156.6 170.9 191.5 158.6 216.9 184L256 223L295.1 184C320.5 158.6 355.4 170.9 355.4 206.6V341.7" stroke="url(#arch)" stroke-width="26.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Central Assay Keystone -->
+  <path d="M256 254.2L291.7 296L256 337.8L220.3 296Z" fill="url(#key)"/>
+  <path d="M256 257.6L279.3 285L256 278.2L232.7 285Z" fill="#ffffff" fill-opacity="0.45"/>
+</svg>

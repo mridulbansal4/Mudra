@@ -7,7 +7,7 @@ import { VelvetCard } from "../ui/VelvetCard";
 export function Wordmark() {
   return (
     <Link to="/" className="inline-flex items-center gap-2 text-fg no-underline" aria-label="samadhan home">
-      <Logo layout="row" markSize={22} wordmarkSize={12} />
+      <Logo layout="row" markSize={30} wordmarkSize={13} />
     </Link>
   );
 }
