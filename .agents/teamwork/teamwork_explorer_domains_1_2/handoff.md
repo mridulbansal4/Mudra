@@ -1,6 +1,6 @@
-# Handoff Report — Deep Domain Research & War-Room Council Blueprints: Track 01 (`nexconn-social`) & Track 02 (`nexconn-gaming`)
+# Handoff Report - Deep Domain Research & War-Room Council Blueprints: Track 01 (`nexconn-social`) & Track 02 (`nexconn-gaming`)
 
-**Core Summary:** Track 01 (**Social & Community — `nexconn-social`**) and Track 02 (**Gaming & Live Streams — `nexconn-gaming`**) are the two highest-visual-impact tracks of the Nexconn Build Challenge 2026 because they directly exercise Nexconn's flagship architectural differentiators (`Community Channels`, `Open Channels + KV Metadata`, `Group Channels + Targeted Whispers /group-channels/direct.md`, `Message Expansion`, `Streaming Messages`, and `Built-in Translation`). Across both domains, we mapped quantified pain statistics, 12 verified user/creator/gamer voices, 10+ open-source GitHub repositories, 8 peer-reviewed 2024–2026 research papers, and 6 global hackathon winners, generating 32 raw idea seeds (16 per track) and stress-testing them through the 6-round War-Room Council to produce 10 complete, mathematically verified blueprints led by **GhostCoach SquadOS (`9.44/10`)** in `nexconn-gaming` (Domain Winnability **`9.28/10`**) and **SyncStage AI (`9.29/10`)** in `nexconn-social` (Domain Winnability **`8.78/10`**).
+**Core Summary:** Track 01 (**Social & Community - `nexconn-social`**) and Track 02 (**Gaming & Live Streams - `nexconn-gaming`**) are the two highest-visual-impact tracks of the Nexconn Build Challenge 2026 because they directly exercise Nexconn's flagship architectural differentiators (`Community Channels`, `Open Channels + KV Metadata`, `Group Channels + Targeted Whispers /group-channels/direct.md`, `Message Expansion`, `Streaming Messages`, and `Built-in Translation`). Across both domains, we mapped quantified pain statistics, 12 verified user/creator/gamer voices, 10+ open-source GitHub repositories, 8 peer-reviewed 2024–2026 research papers, and 6 global hackathon winners, generating 32 raw idea seeds (16 per track) and stress-testing them through the 6-round War-Room Council to produce 10 complete, mathematically verified blueprints led by **GhostCoach SquadOS (`9.44/10`)** in `nexconn-gaming` (Domain Winnability **`9.28/10`**) and **SyncStage AI (`9.29/10`)** in `nexconn-social` (Domain Winnability **`8.78/10`**).
 
 ---
 
@@ -8,10 +8,10 @@
 
 ### 1.1 Official Hackathon Track Specifications (`teamwork_spec_miner_survey_1/handoff.md`)
 - **Source**: Official Nexconn Build Challenge 2026 page (`https://reskilll.com/hack/nexconn/`), archived in `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\handoff.md` (Lines 107–119).
-- **Track 01 (`nexconn-social`) — Social & Community**:
+- **Track 01 (`nexconn-social`) - Social & Community**:
   - **Subtitle**: *"Group messaging and topic-based channels"*
   - **Official Sample Builds**: `Live room for a watch party`, `Group chat for shared interests`, `Creator fan channel`.
-- **Track 02 (`nexconn-gaming`) — Gaming & Live Streams**:
+- **Track 02 (`nexconn-gaming`) - Gaming & Live Streams**:
   - **Subtitle**: *"Squad chat and live stream interactive chatroom"*
   - **Official Sample Builds**: `Squad chat room`, `In-match quick chat`, `Spectator chat overlay`.
 - **Mandatory Technical Gate**: Every project must integrate at least one Nexconn service (`Chat SDK` or `Call SDK`) in a real, demonstrable, multi-user round-trip flow (mocking or faking the communication layer is an explicit disqualifier).
@@ -32,7 +32,7 @@ From direct inspection of `https://docs.nexconn.ai/llms.txt` and `teamwork_explo
    - Capability: High-concurrency livestream/watch-party rooms with unlimited concurrent participants and synchronized room-level KV metadata (`playback_timestamp_ms`, `is_playing`, `video_url`, `active_poll_id`, `match_phase`) plus automatic key deletion when the host disconnects.
 3. **Group Channels & Targeted Group Whispers (`/group-channels/direct.md`)**:
    - Docs: `https://docs.nexconn.ai/chatsdk-flutter/group-channels/direct.md`, `https://docs.nexconn.ai/chatsdk-android/group-channels/direct.md`, `https://docs.nexconn.ai/chatsdk-web/group-channel/overview.md`.
-   - Capability: Persistent squad/interest group channels (up to 3,000 members) with **Targeted Group Messaging** — sending a message inside a shared group channel with a `userIds` array so **only those specific recipients** see the message while keeping it anchored in the shared squad/community timeline.
+   - Capability: Persistent squad/interest group channels (up to 3,000 members) with **Targeted Group Messaging** - sending a message inside a shared group channel with a `userIds` array so **only those specific recipients** see the message while keeping it anchored in the shared squad/community timeline.
 4. **Streaming Messages (`/message/stream-msg.md`) & Message Expansion (`/message/expansion.md`)**:
    - Docs: `https://docs.nexconn.ai/chatsdk-web/message/stream-msg.md`, `https://docs.nexconn.ai/chatsdk-android/message/stream-message.md`, `https://docs.nexconn.ai/chatsdk-android/message/expansion.md`, `/chatsdk-android/message/customize.md`.
    - Capability: Native chunk-by-chunk LLM token streaming over Nexconn's WebSocket transport + up to 300 mutable key-value pairs per message (`expansion`) for real-time interactive cards (polls, predictions, watch-party reactions, squad ready-checks) without flooding chat with duplicate messages.
@@ -56,7 +56,7 @@ From direct inspection of `https://docs.nexconn.ai/llms.txt` and `teamwork_explo
 
 ---
 
-# PART I — TRACK 01: `nexconn-social` (Social & Community)
+# PART I - TRACK 01: `nexconn-social` (Social & Community)
 > **Official Subtitle**: *"Group messaging and topic-based channels"*
 > **Official Sample Builds**: `Live room for a watch party` · `Group chat for shared interests` · `Creator fan channel`
 
@@ -87,12 +87,12 @@ From direct inspection of `https://docs.nexconn.ai/llms.txt` and `teamwork_explo
    - *"When an artist or creator drops a live message in the fan channel, international fans have to copy-paste every single message into external translators or wait for fan-translation accounts on X, completely missing the live back-and-forth moment."*
    - **Source**: Global fandom communication friction documented across Weverse/Bubble user feedback (`https://weverse.io/` & `https://www.koreaboo.com/`).
 6. **Creator Platform Fee & Paywall Fragmentation (Patreon + Discord Role Sync Failures)**:
-   - *"Connecting Patreon or YouTube Memberships to Discord roles breaks constantly—paying fans get locked out of VIP channels, free users linger after cancelling, and there is no native way to drop a paid or VIP-only interactive drop right inside the public fan channel to convert lurkers."*
+   - *"Connecting Patreon or YouTube Memberships to Discord roles breaks constantly - paying fans get locked out of VIP channels, free users linger after cancelling, and there is no native way to drop a paid or VIP-only interactive drop right inside the public fan channel to convert lurkers."*
    - **Source**: Patreon-Discord integration support threads (`https://support.patreon.com/hc/en-us/articles/212052266-Getting-Discord-access`).
 
 ---
 
-## Section 2: Urgency — Why 2025–2026 (`nexconn-social`)
+## Section 2: Urgency - Why 2025–2026 (`nexconn-social`)
 **Urgency Score: `8.5 / 10`**
 
 1. **Post-Shutdown Co-Viewing Vacuum (2024–2026)**:
@@ -137,7 +137,7 @@ From direct inspection of `https://docs.nexconn.ai/llms.txt` and `teamwork_explo
 ### 3.4 Global Hackathon Winners (Devpost / ETHGlobal)
 | Winning Project | Hackathon & Award | Verification URL | What They Built & Why Judges Loved It | How We Adapt It to Nexconn SDK |
 |---|---|---|---|---|
-| **Truman AI Live** | **ETHGlobal Bangkok** (Mantle — Best Gaming / Socials Winner) | `https://ethglobal.com/showcase/truman-ai-live-6w71i` | A 24/7 interactive live show where the audience chats, votes, and places micro-predictions in real time to steer the storyline of AI characters on stage. | Replace slow on-chain polling with Nexconn `Open Channels` + `Message Expansion` (300 KV pairs/msg for instant branch voting) + `Streaming Messages` for live AI table-reads (**Idea 4: `CrowdCut Live Studio`**). |
+| **Truman AI Live** | **ETHGlobal Bangkok** (Mantle - Best Gaming / Socials Winner) | `https://ethglobal.com/showcase/truman-ai-live-6w71i` | A 24/7 interactive live show where the audience chats, votes, and places micro-predictions in real time to steer the storyline of AI characters on stage. | Replace slow on-chain polling with Nexconn `Open Channels` + `Message Expansion` (300 KV pairs/msg for instant branch voting) + `Streaming Messages` for live AI table-reads (**Idea 4: `CrowdCut Live Studio`**). |
 | **OmniBet** | **ETHGlobal Prague** (Finalist / Prize Winner) | `https://ethglobal.com/showcase/omnibet-2b50l` | Listens to live sports stream audio/commentary and automatically spawns 60-second micro-prediction markets ("Will the next ball be a boundary?") directly in the watch-party sidebar. | Implement free-to-play loyalty/XP micro-predictions inside Nexconn watch-party rooms using `Message Expansion` (`expansion.md`) so it is 100% legal under India's RMG rules while preserving the exact dopamine loop. |
 | **Chatlas** | **Devpost** (Microsoft Azure AI Hackathon Winner) | `https://devpost.com/software/chatlas` | Real-time multilingual group chat that translates messages on the fly while preserving slang and cultural context across global communities. | Upgrade from custom translation wrappers to Nexconn's native **Built-in Translation** (`/builtin-translation/channel-translation-strategy.md`) + `Community Channels` (**Idea 2: `BhashaVerse FanHub`**). |
 
@@ -205,20 +205,20 @@ From direct inspection of `https://docs.nexconn.ai/llms.txt` and `teamwork_explo
 
 ### 7.1 War-Room Council Elimination & Survival Summary (`nexconn-social`)
 - **Round 1 (Munger's Inversion)**: Killed Seeds #8, #12, #14, #16 because they look like single-feature filters on top of generic group chat or lack high-frequency daily urgency.
-- **Round 2 (Law & Dark-Pattern Gate — Harvey Specter + R.S. Sharma)**: Flagged Seed #7 (`CricketPulse`) and Seed #9 (`FanBackstage Auction`) for potential real-money wagering/gambling liability under India's Online Gaming / BNS regulations; forced all prediction mechanics in `SyncStage AI` and `BhashaVerse FanHub` to use **100% free-to-play loyalty XP / creator badges** (zero real-money staking) and explicit DPDP 2023 consent + Nexconn `profanity-filter-callback`.
+- **Round 2 (Law & Dark-Pattern Gate - Harvey Specter + R.S. Sharma)**: Flagged Seed #7 (`CricketPulse`) and Seed #9 (`FanBackstage Auction`) for potential real-money wagering/gambling liability under India's Online Gaming / BNS regulations; forced all prediction mechanics in `SyncStage AI` and `BhashaVerse FanHub` to use **100% free-to-play loyalty XP / creator badges** (zero real-money staking) and explicit DPDP 2023 consent + Nexconn `profanity-filter-callback`.
 - **Round 3 (Buffett's Moat + Karpathy's Build Check)**: Merged Seeds #1, #6, and #10 into **Idea 1 (`SyncStage AI`)** so that one unified watch-party engine delivers **Zero-Spoiler Time-Gated Chat + Multi-Agent Co-Viewing (`arXiv:2512.10918`) + Secret Whisper Clues (`/group-channels/direct.md`)**, buildable cleanly in 36 hours using YouTube IFrame API + Nexconn Web SDK.
 - **Round 4 (Mike Ross's User Pain + Jobs's 3-Minute Demo)**: Forced every surviving idea to have a side-by-side multi-window live browser demo where judges see sub-100ms Nexconn synchronization with zero slides.
 
 ### 7.2 Top 5 Ideas for Track 01 (`nexconn-social`)
 
-#### Idea 1: SyncStage AI — Zero-Drift, Spoiler-Shielded Watch-Party Room with Multi-Agent Co-Viewing Companions
+#### Idea 1: SyncStage AI - Zero-Drift, Spoiler-Shielded Watch-Party Room with Multi-Agent Co-Viewing Companions
 **Type**: Practical Winner + Moonshot · **Score**: `9.29 / 10`
 
 **Problem statement**
 When friends, fandoms, or creator communities watch live sports, anime premieres, or YouTube shows together online, playback drifts by 5–30 seconds across devices so faster viewers spoil every goal or plot twist in chat, mobile users are locked out of desktop browser extensions like Teleparty, and solo viewers entering off-peak watch rooms face dead silence.
 
 **The pain (Mike Ross)**
-A fan watching an anime finale or Champions League/IPL thriller with their online community sees *"OMG HE DIED!!"* or *"GOALLL!"* in the chat 15 seconds before their video stream reaches that frame—ruining the climax. If they try to watch at 1 AM when friends are asleep, the room is a ghost town. Quantified: Twitch shut down native Watch Parties in April 2024 (`https://www.pcmag.com/news/twitch-is-shutting-down-watch-parties`), leaving 70%+ of Gen-Z second-screen viewers juggling desynced video players and unbuffered group chats.
+A fan watching an anime finale or Champions League/IPL thriller with their online community sees *"OMG HE DIED!!"* or *"GOALLL!"* in the chat 15 seconds before their video stream reaches that frame - ruining the climax. If they try to watch at 1 AM when friends are asleep, the room is a ghost town. Quantified: Twitch shut down native Watch Parties in April 2024 (`https://www.pcmag.com/news/twitch-is-shutting-down-watch-parties`), leaving 70%+ of Gen-Z second-screen viewers juggling desynced video players and unbuffered group chats.
 
 **Why now**
 1. Twitch Watch Parties shut down on April 2, 2024, creating a massive vacuum for web/mobile SDK-native watch rooms.
@@ -226,7 +226,7 @@ A fan watching an anime finale or Champions League/IPL thriller with their onlin
 3. December 2025 research (*CompanionCast*, `arXiv:2512.10918`) proved multi-agent AI co-viewing companions paced by an LLM-as-a-Judge director dramatically boost engagement without chat spam.
 
 **The gap others miss (Jane / Thiel)**
-Everyone thinks watch-party synchronization means forcing every video player to pause whenever one viewer buffers (which ruins the experience for 100 other viewers). The real insight is **Two-Way Temporal Alignment**: sync the baseline room clock via **Nexconn Open Channel KV Metadata**, and stamp every chat message with the sender's exact `video_timestamp_ms`. If Viewer B is 8 seconds behind Viewer A, Viewer B's client **buffers and reveals Viewer A's chat message at the exact millisecond Viewer B's video player hits that frame**—zero spoilers, zero forced pauses!
+Everyone thinks watch-party synchronization means forcing every video player to pause whenever one viewer buffers (which ruins the experience for 100 other viewers). The real insight is **Two-Way Temporal Alignment**: sync the baseline room clock via **Nexconn Open Channel KV Metadata**, and stamp every chat message with the sender's exact `video_timestamp_ms`. If Viewer B is 8 seconds behind Viewer A, Viewer B's client **buffers and reveals Viewer A's chat message at the exact millisecond Viewer B's video player hits that frame** - zero spoilers, zero forced pauses!
 
 **What exists and why it falls short**
 | Existing Product / Repo / Paper | URL | Why It Falls Short |
@@ -245,7 +245,7 @@ Everyone thinks watch-party synchronization means forcing every video player to 
 **The demo moment (Jobs)**
 On a single screen, we show two side-by-side browser windows: **Host (Priya, at 02:20 of a thriller clip)** and **Delayed Viewer (Arjun, deliberately dragged 10 seconds back to 02:10)**.
 1. Priya types *"THE BUTLER JUST POISONED THE CUP!"* at `02:20`.
-2. On Arjun's screen (at `02:10`), the message does **not** spoil the scene—it shows a glowing *"🔒 1 Spoiler-Shielded Reaction at 02:20"* badge on the timeline scrubber. The instant Arjun's video hits `02:20`, Priya's message pops into chat synchronized to the frame!
+2. On Arjun's screen (at `02:10`), the message does **not** spoil the scene - it shows a glowing *"🔒 1 Spoiler-Shielded Reaction at 02:20"* badge on the timeline scrubber. The instant Arjun's video hits `02:20`, Priya's message pops into chat synchronized to the frame!
 3. Next, the AI Director triggers a live **Message Expansion** poll card (*"Who is the accomplice? Vote in 15s"*) and sends a **Targeted Group Whisper** (`/group-channels/direct.md`) visible *only* on Arjun's screen: *"🕵️ Secret Clue for Arjun: Watch the mirror at 02:35."*
 
 **30-second explanation (Karp)**
@@ -254,7 +254,7 @@ On a single screen, we show two side-by-side browser windows: **Host (Priya, at 
 **Council jurisdiction**
 | Persona | Verdict & Key Point |
 |---|---|
-| **Peter Thiel** | "Zero-spoiler time-gated chat is a genuine 10x secret—once you experience chat locked to your local video frame, raw unbuffered group chat feels broken." |
+| **Peter Thiel** | "Zero-spoiler time-gated chat is a genuine 10x secret - once you experience chat locked to your local video frame, raw unbuffered group chat feels broken." |
 | **Andrej Karpathy** | "Completely buildable in 36 hours: YouTube IFrame API + transcript JSON + Gemini 2.5 Flash streaming into Nexconn's `/message/stream-msg.md` and `/open-channel-kv.md`." |
 | **Steve Jobs** | "The side-by-side 10-second lag demo where the spoiler badge unlocks at the exact video frame is pure 3-minute stage magic." |
 | **Harvey Specter & R.S. Sharma** | "Clean: uses official YouTube IFrame embed (zero DMCA video re-hosting), free-to-play trivia XP (zero RMG liability), and Nexconn auto-moderation callbacks." |
@@ -285,7 +285,7 @@ On a single screen, we show two side-by-side browser windows: **Host (Priya, at 
 
 ---
 
-#### Idea 2: BhashaVerse FanHub — Self-Translating Creator Super-Community & VIP Whisper Drops
+#### Idea 2: BhashaVerse FanHub - Self-Translating Creator Super-Community & VIP Whisper Drops
 **Type**: Practical Winner · **Score**: `9.21 / 10`
 
 **Problem statement**
@@ -299,7 +299,7 @@ An Indian creator, IPL franchise, or global artist has 100,000 fans speaking Hin
 2. India's UPI Autopay micro-subscriptions (`₹29–₹99/mo`) crossed record adoption in 2025, enabling impulse fan-pass upgrades inside creator channels.
 
 **The gap others miss (Jane / Thiel)**
-DearU Bubble's $100M+ secret is **the illusion of 1-to-1 intimacy inside a 1-to-N broadcast**, while Discord's strength is **community energy**. No product combines both inside a single channel. By pairing Nexconn's **Community Channels** + **Built-in Translation** with **Targeted Group Whispers (`/group-channels/direct.md`)**, a creator can broadcast a public hype message to 10,000 fans *and* simultaneously drop a VIP-only backstage voice/photo whisper (`userIds: vipTierIds`) inline in the exact same channel—showing non-VIPs a blurred teaser badge that converts lurkers into paid supporters on the spot.
+DearU Bubble's $100M+ secret is **the illusion of 1-to-1 intimacy inside a 1-to-N broadcast**, while Discord's strength is **community energy**. No product combines both inside a single channel. By pairing Nexconn's **Community Channels** + **Built-in Translation** with **Targeted Group Whispers (`/group-channels/direct.md`)**, a creator can broadcast a public hype message to 10,000 fans *and* simultaneously drop a VIP-only backstage voice/photo whisper (`userIds: vipTierIds`) inline in the exact same channel - showing non-VIPs a blurred teaser badge that converts lurkers into paid supporters on the spot.
 
 **What exists and why it falls short**
 | Existing Product / Repo / Paper | URL | Why It Falls Short |
@@ -310,14 +310,14 @@ DearU Bubble's $100M+ secret is **the illusion of 1-to-1 intimacy inside a 1-to-
 
 **How it works**
 1. **Polyglot Community Hierarchy**: Structured via **Nexconn Community Channels** (`/community-channels/overview.md`) with user groups (`Free Fans`, `SuperFans`, `Mods` via `/community-channels/user-group-about.md`).
-2. **Per-User Zero-Click Native Translation**: Each fan sets their preferred language via **Nexconn Built-in Translation** (`/builtin-translation/user-level-settings.md`). A Tamil fan types in Tamil, a Hindi fan reads it in Hindi, and the creator replies in English—all inside one unified `#creator-main-stage` channel.
+2. **Per-User Zero-Click Native Translation**: Each fan sets their preferred language via **Nexconn Built-in Translation** (`/builtin-translation/user-level-settings.md`). A Tamil fan types in Tamil, a Hindi fan reads it in Hindi, and the creator replies in English - all inside one unified `#creator-main-stage` channel.
 3. **Inline VIP Whisper Drops**: When the creator toggles *"VIP Backstage Drop"*, the app sends a **Targeted Group Whisper** (`/group-channels/direct.md`) to `userIds: [superFanIds]` containing the exclusive voice note/early link, while posting a lightweight `Message Expansion` teaser card (`expansion.md`) to the public room showing live claim counts.
 4. **Live Creator AMA Stage & AI Co-Host**: During live AMAs, the creator opens a **Nexconn Call SDK** audio stage (`/callsdk-web/integrate-with-chat.md`), while an AI Moderator clusters duplicate fan questions across 6 languages and streams the top synthesized question to the creator via **Nexconn Streaming Messages** (`/message/stream-msg.md`).
 
 **The demo moment (Jobs)**
-We show three browser panes side-by-side: **Creator (English)**, **Fan A (Hindi — SuperFan VIP)**, and **Fan B (Tamil — Free Tier)**.
+We show three browser panes side-by-side: **Creator (English)**, **Fan A (Hindi - SuperFan VIP)**, and **Fan B (Tamil - Free Tier)**.
 1. The Creator types *"Which thumbnail should we drop for tonight's premiere?"* and attaches a **Message Expansion** live poll card. It instantly renders in Hindi for Fan A and Tamil for Fan B via Nexconn Built-in Translation, and both fans tap to vote with the progress bar animating live across all 3 screens.
-2. The Creator then clicks **"Send VIP Backstage Whisper"** with an exclusive behind-the-scenes clip. It appears *instantly inline* in Fan A's feed via `/group-channels/direct.md`, while Fan B sees *"🔒 1 VIP Whisper dropped to SuperFans — Unlock with ₹49 UPI Pass"*.
+2. The Creator then clicks **"Send VIP Backstage Whisper"** with an exclusive behind-the-scenes clip. It appears *instantly inline* in Fan A's feed via `/group-channels/direct.md`, while Fan B sees *"🔒 1 VIP Whisper dropped to SuperFans - Unlock with ₹49 UPI Pass"*.
 
 **30-second explanation (Karp)**
 "BhashaVerse FanHub is Weverse-in-a-box for every creator on earth, powered by Nexconn. It combines Community Channels and Built-in AI Translation so fans speaking Hindi, Tamil, English, or Korean share one lively channel without language silos, and uses Targeted Group Whispers to deliver inline VIP-only drops that turn casual lurkers into paying SuperFans."
@@ -325,7 +325,7 @@ We show three browser panes side-by-side: **Creator (English)**, **Fan A (Hindi 
 **Council jurisdiction**
 | Persona | Verdict & Key Point |
 |---|---|
-| **Warren Buffett** | "Inline VIP Whisper Drops inside the public feed solve the creator conversion funnel—you monetize FOMO right where the attention already lives." |
+| **Warren Buffett** | "Inline VIP Whisper Drops inside the public feed solve the creator conversion funnel - you monetize FOMO right where the attention already lives." |
 | **R.S. Sharma** | "Uniting India's 22 official languages inside a single creator channel + UPI micro-passes is peak India-first DPI leverage." |
 | **Paul Graham** | "Every mid-tier YouTuber and regional creator who hates managing a dead 20-channel Discord server would switch to this tomorrow." |
 | **Harvey Specter** | "Nexconn's `profanity-filter-callback.md` and `auto-moderation.md` keep brand-safe creator rooms clean before toxic messages ever render." |
@@ -356,7 +356,7 @@ We show three browser panes side-by-side: **Creator (English)**, **Fan A (Hindi 
 
 ---
 
-#### Idea 3: PulsePact Micro-Circles — Shared-Interest Accountability Squads with AI Referee & Private Nudge Whispers
+#### Idea 3: PulsePact Micro-Circles - Shared-Interest Accountability Squads with AI Referee & Private Nudge Whispers
 **Type**: Practical Winner · **Score**: `8.99 / 10`
 
 **Problem statement**
@@ -384,7 +384,7 @@ Public shaming makes lagging members quit the group chat; total silence lets the
 4. **10-Minute Live Co-Working Sprint (`Call SDK`)**: Clicking *"Start 10-Min Squad Sprint"* launches an embedded **Nexconn Call SDK** silent/lo-fi focus room with synchronized countdown metadata.
 
 **The demo moment (Jobs)**
-In a 2-browser demo (**Member A: Checked In**, **Member B: Lagging**), Member A drops a screenshot of a completed LeetCode problem. Vision AI verifies it in 1.5 seconds via **Streaming Messages**, increments the shared **Message Expansion** Squad Streak meter to `5/6` across both screens, and immediately triggers a private **Targeted Group Whisper** on Member B's screen only—with a 1-click *"Complete 2-Min Flash Quiz to Save Squad Streak"* button!
+In a 2-browser demo (**Member A: Checked In**, **Member B: Lagging**), Member A drops a screenshot of a completed LeetCode problem. Vision AI verifies it in 1.5 seconds via **Streaming Messages**, increments the shared **Message Expansion** Squad Streak meter to `5/6` across both screens, and immediately triggers a private **Targeted Group Whisper** on Member B's screen only - with a 1-click *"Complete 2-Min Flash Quiz to Save Squad Streak"* button!
 
 **30-second explanation (Karp)**
 "PulsePact turns shared-interest group chats from noisy graveyards into high-retention 6-person accountability squads on Nexconn. It uses Message Expansion for zero-spam live streak cards, Vision AI + Streaming Messages for instant proof verification, and Targeted Group Whispers to privately rescue lagging members before they ghost."
@@ -421,7 +421,7 @@ In a 2-browser demo (**Member A: Checked In**, **Member B: Lagging**), Member A 
 
 ---
 
-#### Idea 4: CrowdCut Live Studio — Interactive Fan Table-Read & Story-Branching Creator Stage
+#### Idea 4: CrowdCut Live Studio - Interactive Fan Table-Read & Story-Branching Creator Stage
 **Type**: Moonshot · **Score**: `8.98 / 10`
 
 **Problem statement**
@@ -452,12 +452,12 @@ Instead of letting 500 fans spam raw text prompts, CrowdCut uses **Message Expan
 The host starts a sci-fi mystery scene; two browser windows vote on a **Message Expansion** cliffhanger card (*"Open the airlock"* vs *"Interrogate the android"*); the AI Showrunner streams the next scene live via **Streaming Messages**, and one viewer receives a private **Targeted Whisper** cue card to read the android's plot-twist line live over **Call SDK**!
 
 **30-second explanation (Karp)**
-"CrowdCut Live Studio turns a creator fan channel into an interactive live writers' room and voice theater on Nexconn—combining Message Expansion plot-branch voting, Streaming Message script generation, Call SDK stage audio, and Targeted Group Whispers for secret actor teleprompters."
+"CrowdCut Live Studio turns a creator fan channel into an interactive live writers' room and voice theater on Nexconn - combining Message Expansion plot-branch voting, Streaming Message script generation, Call SDK stage audio, and Targeted Group Whispers for secret actor teleprompters."
 
 **Council jurisdiction**
 | Persona | Verdict & Key Point |
 |---|---|
-| **Steve Jobs** | "Pure theatrical magic for the 3-minute demo video—judges watch a live story branch, stream, and get performed in real time." |
+| **Steve Jobs** | "Pure theatrical magic for the 3-minute demo video - judges watch a live story branch, stream, and get performed in real time." |
 | **Seth Godin** | "Transforms passive subscribers into co-owners of the creator's universe." |
 
 **Tech stack**
@@ -484,7 +484,7 @@ The host starts a sci-fi mystery scene; two browser windows vote on a **Message 
 
 ---
 
-#### Idea 5: SignalCommons — Anti-Noise Topic Guilds with AI Catch-Up Synthesizer & Knowledge Cards
+#### Idea 5: SignalCommons - Anti-Noise Topic Guilds with AI Catch-Up Synthesizer & Knowledge Cards
 **Type**: Practical Winner · **Score**: `8.82 / 10`
 
 **Problem statement**
@@ -511,7 +511,7 @@ Zulip (`https://github.com/zulip/zulip`) proved topic discipline beats raw chat 
 3. **Personal Delta Catch-Up (`Targeted Group Whispers` + `Streaming Messages`)**: When a returning user clicks *"⚡ Catch Me Up (84 Unread)"*, the backend fetches messages since their last read cursor and delivers a personalized 15-second digest visible *only* to them inline via `/group-channels/direct.md` + `/message/stream-msg.md`.
 
 **The demo moment (Jobs)**
-User A and User B rattle off a 20-message technical debate in `#react-architecture`. User C logs in fresh, sees `"20 Unread"`, clicks **"⚡ 10-Second Personal Catch-Up"**, and watches an inline private whisper stream a 3-bullet summary with jump-links while the root question card automatically flips its **Message Expansion** badge to `✅ SOLVED — Consensus Reached`.
+User A and User B rattle off a 20-message technical debate in `#react-architecture`. User C logs in fresh, sees `"20 Unread"`, clicks **"⚡ 10-Second Personal Catch-Up"**, and watches an inline private whisper stream a 3-bullet summary with jump-links while the root question card automatically flips its **Message Expansion** badge to `✅ SOLVED - Consensus Reached`.
 
 **30-second explanation (Karp)**
 "SignalCommons eliminates the '300 unread messages' problem in topic communities using Nexconn Community Channels, Message Expansion living knowledge cards that update in place, and Targeted Group Whispers that stream a personal delta briefing whenever you return."
@@ -519,7 +519,7 @@ User A and User B rattle off a 20-message technical debate in `#react-architectu
 **Council jurisdiction**
 | Persona | Verdict & Key Point |
 |---|---|
-| **Charlie Munger** | "High utility, zero fluff—solves the exact reason 95% of community members mute Discord servers." |
+| **Charlie Munger** | "High utility, zero fluff - solves the exact reason 95% of community members mute Discord servers." |
 | **Andrej Karpathy** | "Very high 36-hour reliability; clean showcase of Community Channels + Message Expansion + Streaming Messages." |
 
 **Tech stack**
@@ -557,7 +557,7 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 
 ---
 
-# PART II — TRACK 02: `nexconn-gaming` (Gaming & Live Streams)
+# PART II - TRACK 02: `nexconn-gaming` (Gaming & Live Streams)
 > **Official Subtitle**: *"Squad chat and live stream interactive chatroom"*
 > **Official Sample Builds**: `Squad chat room` · `In-match quick chat` · `Spectator chat overlay`
 
@@ -567,7 +567,7 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 | Pain Dimension | Quantified Metric / Statistic | Source & Verification URL |
 |---|---|---|
 | **Severe Multiplayer Voice & Text Toxicity ("Solo-Queue Silence")** | According to the Anti-Defamation League's (*ADL*) benchmark *"Hate Is No Game"* report, **76% of adult gamers (ages 18–45) and 74% of youth gamers (ages 13–17)** experience harassment in online multiplayer games (*Valorant, Call of Duty, CS2, Dota 2, Overwatch, BGMI*), with **~50% occurring in live voice chat**. As a direct consequence, >60% of women, LGBTQ+, and minority gamers mute their microphones ("solo-queue silence"), forfeiting tactical coordination and reducing squad win rates. Conversely, Activision + Modulate's *ToxMod* deployment proved AI voice/comms moderation cut severe toxicity exposure by **43–50%** and lifted player retention by **28%**. | ADL *Hate Is No Game* Report (`https://www.adl.org/resources/report/hate-no-game-hate-and-harassment-online-games-2023`), Modulate ToxMod (`https://www.modulate.ai/`), & Call of Duty Anti-Toxicity Progress Report (`https://www.callofduty.com/blog/2024/08/call-of-duty-anti-toxicity-progress-report`) |
-| **Tactical Audio Clutter & "Direction Drift" in 5-Player Squads** | In competitive 5v5 and Battle Royale games (*Valorant, League of Legends, Dota 2, CS2, BGMI*), shared squad voice/text channels suffer from overlapping panic callouts and **Direction Drift** (where generic shotcalling or AI coaching broadcasts instructions to the entire squad or recommends the wrong tactical posture—pushing vs. holding—because it lacks live player-specific state conditioning). | Tencent Research on *State-Grounded Conditioning* for Live In-Game Coaching (`arXiv:2609.27606`, `https://arxiv.org/abs/2609.27606`) |
+| **Tactical Audio Clutter & "Direction Drift" in 5-Player Squads** | In competitive 5v5 and Battle Royale games (*Valorant, League of Legends, Dota 2, CS2, BGMI*), shared squad voice/text channels suffer from overlapping panic callouts and **Direction Drift** (where generic shotcalling or AI coaching broadcasts instructions to the entire squad or recommends the wrong tactical posture - pushing vs. holding - because it lacks live player-specific state conditioning). | Tencent Research on *State-Grounded Conditioning* for Live In-Game Coaching (`arXiv:2609.27606`, `https://arxiv.org/abs/2609.27606`) |
 | **Livestream "Hyper-Chat" Wall of Text vs. Small Streamer Dead Air** | Global live gaming streams generate billions of hours (Twitch holds ~54% of global watch hours per Streams Charts), while **India has 500M+ gamers (591M in FY24)** and a **$3.8B gaming market projected to reach $9.2B by FY29** per Lumikai's *State of India Gaming Report*. In major esports/creator streams (BGMI Masters Series, Valorant VCT, Kai Cenat), chat exceeds **50–200+ messages/second**, making 99% of viewer messages unreadable and causing naive bullet-chat (*danmaku*) overlays to collide and obscure gameplay (`arXiv:2603.03060`). Conversely, >90% of aspiring streamers broadcast to <15 concurrent viewers in silent chatrooms. | Lumikai *State of India Gaming Report FY24* (`https://www.lumikai.com/post/state-of-india-gaming-report-fy24`), Streams Charts (`https://streamscharts.com/`), & *DLIOS* (`https://arxiv.org/abs/2603.03060`) |
 | **Cross-Server / Cross-Language Raid & LFG Friction** | Global MMOs, gacha/co-op games (**HoYoverse's Genshin Impact / Honkai / HoYoLAB**, *Blockman Go*, *Monster Hunter*, *Helldivers 2*), and mobile Battle Royales bring together players across English, Hindi, Japanese, Korean, Bahasa, and Spanish, where in-match quick-chat wheels lack semantic flexibility and voice callouts fail across language barriers. | Nexconn Customer Case Context (`https://www.nexconn.ai/`) & Nexconn Built-in Translation Docs (`https://docs.nexconn.ai/chatsdk-android/builtin-translation/overview.md`) |
 
@@ -582,10 +582,10 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
    - *"Running Discord in the background while playing BGMI on mid-range Android phones either kills frame rates, causes Bluetooth headset audio to switch into low-bitrate mono call mode that ruins footsteps, or lags out when switching from lobby chat to in-match quick chat."*
    - **Source**: Indian mobile gaming community reports & Lumikai gamer survey insights (`https://www.lumikai.com/post/state-of-india-gaming-report-fy24`).
 4. **Livestream Viewers on the "200 Messages/Sec Wall of Text" in Esports & Mega-Streams**:
-   - *"Typing in a 50,000-viewer esports or streamer chat feels like screaming into a hurricane—your message scrolls off the screen in 0.2 seconds, the streamer never sees it, and chat has zero tangible impact on the broadcast."*
+   - *"Typing in a 50,000-viewer esports or streamer chat feels like screaming into a hurricane - your message scrolls off the screen in 0.2 seconds, the streamer never sees it, and chat has zero tangible impact on the broadcast."*
    - **Source**: Livestream interaction studies in *DLIOS* (`https://arxiv.org/abs/2603.03060`) and Twitch Extension developer benchmarks (`https://dev.twitch.tv/docs/extensions/`).
 5. **Multistreamers (Simulcasting on Twitch + YouTube + Kick / Loco / Rooter) on Fragmented Spectator Overlays**:
-   - *"Since Twitch allowed simulcasting, I stream to Twitch and YouTube simultaneously, plus mobile viewers in India watch on YouTube/Rooter. Twitch Extensions and Channel Point predictions only work on Twitch desktop web—my YouTube and mobile spectators are second-class citizens who can't vote on live clutch predictions or trigger screen overlays."*
+   - *"Since Twitch allowed simulcasting, I stream to Twitch and YouTube simultaneously, plus mobile viewers in India watch on YouTube/Rooter. Twitch Extensions and Channel Point predictions only work on Twitch desktop web - my YouTube and mobile spectators are second-class citizens who can't vote on live clutch predictions or trigger screen overlays."*
    - **Source**: Twitch Simulcasting Guidelines (`https://help.twitch.tv/s/article/simulcasting-guidelines`) & `steveseguin/social_stream` multi-platform streamer issues (`https://github.com/steveseguin/social_stream`).
 6. **Small / Solo Streamers on "Dead Air" Fatigue**:
    - *"Streaming to 3 lurkers for 4 hours is exhausting because nobody talks in chat, so you have nothing to bounce off of while focusing on high-intensity gameplay."*
@@ -593,13 +593,13 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 
 ---
 
-## Section 2: Urgency — Why 2025–2026 (`nexconn-gaming`)
+## Section 2: Urgency - Why 2025–2026 (`nexconn-gaming`)
 **Urgency Score: `9.0 / 10`**
 
 1. **Direct Alignment with Nexconn's Flagship Gaming Customers (`HoYoLAB` & `Blockman Go`)**:
    - As verified in `teamwork_explorer_survey_2/handoff.md` (Section 1.2), Nexconn's marquee social/gaming deployments include **HoYoverse's HoYoLAB** and **Blockman Go**. Nexconn's product and engineering judges evaluate gaming chat SDKs through the exact lens of squad synchronization, low-latency quick chat, multilingual guild communication, and high-concurrency livestream rooms.
 2. **2026 Research Breakthroughs in Telemetry-Grounded Gaming AI (`arXiv:2609.27606`, `arXiv:2603.03447`, `arXiv:2603.03060`)**:
-   - Three landmark 2026 papers—Tencent's *State-Grounded Conditioning* (`arXiv:2609.27606`), *Proact-VL* (`arXiv:2603.03447`), and *DLIOS* (`arXiv:2603.03060`)—just solved the core algorithmic bottlenecks for real-time in-match coaching, proactive AI streaming companions, and min-heap collision-free bullet-chat overlays. Combining those 2026 algorithms with Nexconn's `Targeted Group Whispers`, `Open Channel KV Metadata`, and `Message Expansion` is an unbeatable technical synthesis.
+   - Three landmark 2026 papers - Tencent's *State-Grounded Conditioning* (`arXiv:2609.27606`), *Proact-VL* (`arXiv:2603.03447`), and *DLIOS* (`arXiv:2603.03060`) - just solved the core algorithmic bottlenecks for real-time in-match coaching, proactive AI streaming companions, and min-heap collision-free bullet-chat overlays. Combining those 2026 algorithms with Nexconn's `Targeted Group Whispers`, `Open Channel KV Metadata`, and `Message Expansion` is an unbeatable technical synthesis.
 3. **India's 500M+ Gamer Shift from RMG to Esports, BGMI & Interactive Streaming (2024–2026)**:
    - Following India's 28% GST enforcement on Real-Money Gaming (RMG) and the 2024–2025 industry consolidation (including UAE's Redwood acquiring a majority stake in Indian streaming platform **Loco** and **Rooter** expanding interactive esports sponsorships), Indian gaming capital and developer energy have pivoted aggressively toward mid-core/hardcore squad games (*BGMI, Valorant, Free Fire*), esports watch rooms, and non-gambling spectator interactivity (`https://www.lumikai.com/post/state-of-india-gaming-report-fy24`).
 4. **The Multistreaming Era (Twitch Simulcasting + YouTube Live)**:
@@ -621,7 +621,7 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 ### 3.2 Real Open-Source GitHub Repositories
 | Repository | Stars & Tech Stack | URL | What It Does & Architectural Limitation | Nexconn Integration Upgrade |
 |---|---|---|---|---|
-| **`tmijs/tmi.js`** | ~1.6k ⭐ (JavaScript / Node.js / Twitch IRC) | `https://github.com/tmijs/tmi.js` | Official community library for connecting to Twitch IRC chat. **Limitation**: Plain-text IRC protocol only—cannot mutate existing messages in place (`Message Expansion`), cannot store room KV state, and cannot send targeted whispers inside a group channel. | Replace legacy IRC plumbing with `@nexconn/chatsdk` (`Open Channels`, `Open Channel KV`, `Message Expansion`, `Streaming Messages`). |
+| **`tmijs/tmi.js`** | ~1.6k ⭐ (JavaScript / Node.js / Twitch IRC) | `https://github.com/tmijs/tmi.js` | Official community library for connecting to Twitch IRC chat. **Limitation**: Plain-text IRC protocol only - cannot mutate existing messages in place (`Message Expansion`), cannot store room KV state, and cannot send targeted whispers inside a group channel. | Replace legacy IRC plumbing with `@nexconn/chatsdk` (`Open Channels`, `Open Channel KV`, `Message Expansion`, `Streaming Messages`). |
 | **`steveseguin/social_stream`** (Social Stream Ninja) | ~1.25k ⭐ (JavaScript / WebRTC / OBS Overlay) | `https://github.com/steveseguin/social_stream` | Aggregates live chat from Twitch, YouTube, Kick, and Discord into a unified streamer dock and OBS overlay. **Limitation**: One-way read-only aggregation; viewers cannot interact with stateful prediction cards or trigger two-way squad/overlay state updates. | Use Nexconn `Open Channels` + `Message Expansion` (300 KV pairs/msg) as the two-way interactive state bus for OBS overlays. |
 | **`baffler/Transparent-Twitch-Chat-Overlay`** | ~1.1k ⭐ (C# / WPF / Chromium) | `https://github.com/baffler/Transparent-Twitch-Chat-Overlay` | Renders a click-through transparent Twitch chat window over single-monitor PC games. **Limitation**: Passive text scroll only; lacks collision-free bullet lanes, tactical squad quick-chat, or voice integration. | Upgrade to a dual-mode **Squad Tactical HUD + Collision-Free Spectator Danmaku Overlay** backed by Nexconn Web SDK. |
 | **`wheatup/Twitch-Chat-Danmaku`** | ~200+ ⭐ (JavaScript / CSS) | `https://github.com/wheatup/Twitch-Chat-Danmaku` | Renders livestream chat as flying Niconico/Bilibili-style bullet comments (*danmaku*). **Limitation**: Naive lane assignment causes unreadable text collisions during hype spikes (>30 msgs/sec) and lacks semantic clustering. | Apply the 2026 **min-heap lane-allocation algorithm** (`arXiv:2603.03060`) + Nexconn `Message Expansion` semantic combo counters (*"🔥 x48 CLUTCH!"*). |
@@ -660,7 +660,7 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 
 ### 5.1 Nexconn SDK Primitive Mapping for `nexconn-gaming`
 1. **`Group Channels` + `Targeted Group Whispers` (`/chatsdk-flutter/group-channels/direct.md`)**:
-   - The crown jewel for `Squad chat room` and `In-match quick chat`: all 5 teammates share one persistent Squad Channel, while the AI Shotcaller (or human IGL) sends private role-targeted whispers (`userIds: [supportPlayerId]`)—such as *"🛡️ Enemy flank incoming from B-Main in 6s; hold smoke"*—without cluttering the other 4 teammates' screens or ears during a firefight.
+   - The crown jewel for `Squad chat room` and `In-match quick chat`: all 5 teammates share one persistent Squad Channel, while the AI Shotcaller (or human IGL) sends private role-targeted whispers (`userIds: [supportPlayerId]`) - such as *"🛡️ Enemy flank incoming from B-Main in 6s; hold smoke"* - without cluttering the other 4 teammates' screens or ears during a firefight.
 2. **`Open Channels` + `Open Channel KV Metadata` (`/chatsdk-web/open-channel/open-channel-kv.md`)**:
    - Powers the `Spectator chat overlay` and live arena: stores synchronized match/stream telemetry (`match_phase: "1v2_CLUTCH"`, `bomb_timer_sec: 18`, `streamer_hp: 24`, `active_prediction_msg_id`, `danmaku_combo_count`) across thousands of spectators and the streamer's OBS Browser Source overlay.
 3. **`Message Expansion` (`/chatsdk-android/message/expansion.md`) & `Custom Messages` (`/message/customize.md`)**:
@@ -675,7 +675,7 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 ### 5.2 Gaming Tech Frontier & India/Global Rails
 - **Live Game State & Telemetry**: Riot Live Client Data API (`https://127.0.0.1:2999/liveclientdata/allgamedata`), Valve CS2 Game State Integration (GSI HTTP POST), Overwolf Game Events, plus a built-in **Interactive Match Telemetry Simulator** for the 3-minute hackathon judge demo so judges can trigger a `"1v3 Clutch / Baron Spawn / Final Zone"` state with one click in their browser.
 - **Broadcast & Overlay Integration**: OBS Studio Browser Source (`?mode=obs-overlay&transparent=1`) + `obs-websocket` v5 protocol + min-heap bullet-lane allocator (`arXiv:2603.03060`).
-- **Legal & Compliance Gate**: 100% free-to-play **Channel XP / Prestige Ranks** for all spectator clutch predictions (zero real-money staking, zero crypto wagering—100% compliant with India's Online Gaming / BNS regulations and Twitch/YouTube ToS).
+- **Legal & Compliance Gate**: 100% free-to-play **Channel XP / Prestige Ranks** for all spectator clutch predictions (zero real-money staking, zero crypto wagering - 100% compliant with India's Online Gaming / BNS regulations and Twitch/YouTube ToS).
 
 ---
 
@@ -683,7 +683,7 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 
 1. **`[Doesn't exist]` GhostCoach SquadOS**: 5-player squad chatroom + in-match HUD (`Group Channels` + `Call SDK`) powered by Tencent's *State-Grounded Conditioning* (`arXiv:2609.27606`) that ingests live match telemetry and sends **role-targeted tactical whispers** (`/group-channels/direct.md`) *only* to the specific player who needs them, plus 1-tap ackable `Message Expansion` quick-chat cards.
 2. **`[Exists-but-weak]` DanmakuPulse Arena**: Cross-platform OBS spectator chat overlay (`Open Channels` + `Open Channel KV`) implementing the 2026 *DLIOS* min-heap collision-free bullet-chat algorithm (`arXiv:2603.03060`), semantic hype-combo merging (`"🔥 CLUTCH x84"` via `Message Expansion`), and 60-second auto-spawned Clutch Prediction cards.
-3. **`[Exists-but-weak]` ShieldMic RaidRoom**: Anti-toxicity squad voice & quick-chat bridge (`Call SDK` + `profanity-filter-callback.md` + `Message Expansion`) that lets muted/shy players whisper a 2-second callout—or intercepts a tilting teammate's toxic rant—and rewrites it into a clean, non-toxic, 1-tap ackable Tactical Ping Card in the squad chat.
+3. **`[Exists-but-weak]` ShieldMic RaidRoom**: Anti-toxicity squad voice & quick-chat bridge (`Call SDK` + `profanity-filter-callback.md` + `Message Expansion`) that lets muted/shy players whisper a 2-second callout - or intercepts a tilting teammate's toxic rant - and rewrites it into a clean, non-toxic, 1-tap ackable Tactical Ping Card in the squad chat.
 4. **`[Doesn't exist]` CrowdDirector Live**: Interactive "Twitch Plays / Chaos Mod" spectator chatroom (`Open Channels` + `Message Expansion` + `Streaming Messages`) where viewers vote every 45 seconds to spawn live buffs, debuffs, or plot events inside the streamer's game/OBS overlay while a *Proact-VL* AI Co-Caster (`arXiv:2603.03447`) narrates the chaos.
 5. **`[Exists abroad, not in India]` GuildSync Polyglot LFG**: Cross-language squad finder and raid chat (`Community Channels` + `Group Channels` + `Built-in Translation`) for Mumbai/Singapore/Tokyo servers where Hindi, Tamil, English, and Japanese teammates use a semantic **Custom Message Quick-Chat Wheel** (`/message/customize.md`) that renders in each teammate's native language with instant ack counters.
 6. **`[Doesn't exist]` ClutchFreeze Replay Room**: When a streamer pulls off a 1v4 clutch, `Open Channel KV` captures the timestamp and spawns a `Message Expansion` frame-by-frame telestrator card where spectators draw tactical arrows and vote on the MVP micro-play.
@@ -704,13 +704,13 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 
 ### 7.1 War-Room Council Elimination & Survival Summary (`nexconn-gaming`)
 - **Round 1 (Munger's Inversion)**: Killed Seeds #12, #14, #15, #16 because they depend on niche game genres (MMO DKP auctions, speedrunning) rather than universal squad chat and livestream overlays.
-- **Round 2 (Law & Dark-Pattern Gate — Harvey Specter + R.S. Sharma)**: Audited Seed #2 (`DanmakuPulse Arena`) to ensure clutch predictions use **100% non-monetary Channel Prestige XP** (zero RMG/betting exposure under Indian BNS / IT Rules and Twitch ToS), and verified that Seed #1 (`GhostCoach SquadOS`) uses official Riot/Valve local telemetry schemas + a self-contained browser Match Simulator (zero memory-reading anti-cheat violations).
+- **Round 2 (Law & Dark-Pattern Gate - Harvey Specter + R.S. Sharma)**: Audited Seed #2 (`DanmakuPulse Arena`) to ensure clutch predictions use **100% non-monetary Channel Prestige XP** (zero RMG/betting exposure under Indian BNS / IT Rules and Twitch ToS), and verified that Seed #1 (`GhostCoach SquadOS`) uses official Riot/Valve local telemetry schemas + a self-contained browser Match Simulator (zero memory-reading anti-cheat violations).
 - **Round 3 (Buffett's Moat + Karpathy's Build Check)**: Combined Seeds #1, #7, and #13 into **Idea 1 (`GhostCoach SquadOS`)** so that one unified squad platform covers `Squad chat room` + `In-match quick chat` + **Role-Targeted AI Whisper Coaching (`/group-channels/direct.md`)** + **Dead-Teammate Backseat Shield**; and combined Seeds #2, #6, and #11 into **Idea 2 (`DanmakuPulse Arena`)** for the ultimate `Spectator chat overlay`.
-- **Round 4 (Mike Ross's User Pain + Jobs's 3-Minute Demo)**: Designed every Top 5 blueprint so a judge can test it live in two browser tabs without installing a 50 GB PC game—using a built-in interactive live gameplay stream + telemetry control deck.
+- **Round 4 (Mike Ross's User Pain + Jobs's 3-Minute Demo)**: Designed every Top 5 blueprint so a judge can test it live in two browser tabs without installing a 50 GB PC game - using a built-in interactive live gameplay stream + telemetry control deck.
 
 ### 7.2 Top 5 Ideas for Track 02 (`nexconn-gaming`)
 
-#### Idea 1: GhostCoach SquadOS — Telemetry-Grounded Role-Targeted Whisper Shotcaller & In-Match Quick-Chat HUD
+#### Idea 1: GhostCoach SquadOS - Telemetry-Grounded Role-Targeted Whisper Shotcaller & In-Match Quick-Chat HUD
 **Type**: Practical Winner + Moonshot · **Score**: `9.44 / 10`
 
 **Problem statement**
@@ -737,12 +737,12 @@ Every gaming chat app treats a 5-player squad as a single megaphone: every messa
 **How it works**
 1. **5-Player Persistent Squad Room (`Group Channels` + `Call SDK`)**: The squad joins a **Nexconn Group Channel** (`/group-channels/manage-group-channel.md`) with integrated **Nexconn Call SDK** voice (`/callsdk-web/integrate-with-chat.md`), assigning each member their tactical role (`IGL / Duelist / Controller / Sentinel / Initiator` or `Assaulter / Sniper / Support`).
 2. **State-Grounded Telemetry Bus (`Open Channel KV` / Live State Engine)**: Ingests live match telemetry (via Riot Live Client API / CS2 GSI or the built-in interactive **Live Match Simulator Deck**) tracking round phase, alive players, economy, ultimate readiness, and win-probability delta (`arXiv:2609.27606`).
-3. **Role-Targeted Tactical Whispers (`/group-channels/direct.md`)**: When a state trigger fires (e.g., *"Enemy smoke expires in 5s on B-Site"* or *"1v2 Clutch Isolation Mode Active"*), the State-Grounded AI Coach sends a **Targeted Group Whisper** (`/group-channels/direct.md`) inside the shared squad channel with `userIds: [controllerPlayerId]`—so **only the Controller sees and hears the smoke timing whisper**, keeping the Duelist's HUD 100% distraction-free!
+3. **Role-Targeted Tactical Whispers (`/group-channels/direct.md`)**: When a state trigger fires (e.g., *"Enemy smoke expires in 5s on B-Site"* or *"1v2 Clutch Isolation Mode Active"*), the State-Grounded AI Coach sends a **Targeted Group Whisper** (`/group-channels/direct.md`) inside the shared squad channel with `userIds: [controllerPlayerId]` - so **only the Controller sees and hears the smoke timing whisper**, keeping the Duelist's HUD 100% distraction-free!
 4. **Clutch Isolation Shield**: When 4 teammates die and 1 survivor remains in a 1vX clutch, GhostCoach automatically activates **Clutch Shield**: dead teammates can still chat with each other, but their messages are held back from the survivor's HUD unless the IGL clicks *"Send Verified Whisper to Survivor"* (`/group-channels/direct.md`).
-5. **1-Tap Semantic In-Match Quick-Chat Cards (`Custom Messages` + `Message Expansion`)**: Players trigger context-aware quick-chat cards (*"⚡ Execute A-Split in 10s — Need Flash + Smoke"*) via `/message/customize.md`. Teammates tap `👍 Ready` on the HUD overlay, mutating the card's `Message Expansion` KV state (`ready_count: "4/5"`, `smoke_assigned: "@Arjun"`) in real time across the squad.
+5. **1-Tap Semantic In-Match Quick-Chat Cards (`Custom Messages` + `Message Expansion`)**: Players trigger context-aware quick-chat cards (*"⚡ Execute A-Split in 10s - Need Flash + Smoke"*) via `/message/customize.md`. Teammates tap `👍 Ready` on the HUD overlay, mutating the card's `Message Expansion` KV state (`ready_count: "4/5"`, `smoke_assigned: "@Arjun"`) in real time across the squad.
 
 **The demo moment (Jobs)**
-On screen, we show a live gameplay feed with a **Match Telemetry Control Bar** at the top and **two Squad HUD windows side-by-side**: **Player 1 (Duelist — Alive in a 1v2 Clutch)** and **Player 2 (Controller / IGL)**.
+On screen, we show a live gameplay feed with a **Match Telemetry Control Bar** at the top and **two Squad HUD windows side-by-side**: **Player 1 (Duelist - Alive in a 1v2 Clutch)** and **Player 2 (Controller / IGL)**.
 1. Both players tap a **Message Expansion Tactical Quick-Chat Card** (*"Execute B-Site Retake"*), and judges watch the role assignment badges (`Flash: Ready ✅`, `Smoke: Ready ✅`) light up in <50ms across both screens.
 2. We click **"Simulate 1v2 Clutch State"** on the telemetry bar: instantly, noisy dead-teammate backseat messages are shielded from Player 1's HUD, while GhostCoach streams a **State-Grounded Targeted Group Whisper** (`/group-channels/direct.md`) *exclusively* to Player 1's screen: *"🎯 GhostCoach Whisper (Only You): Bomb planted for B-Long (19s left). Enemy Jett is low HP (25 HP) last seen Pillar. Play time & jiggle-peek."* Player 2's screen confirms that the whisper was privately routed only to Player 1!
 
@@ -752,7 +752,7 @@ On screen, we show a live gameplay feed with a **Match Telemetry Control Bar** a
 **Council jurisdiction**
 | Persona | Verdict & Key Point |
 |---|---|
-| **Peter Thiel** | "Role-selective whispering inside a shared group channel (`/group-channels/direct.md`) conditioned on live game state is a true secret—nobody else in the hackathon will connect that SDK endpoint to competitive squad shotcalling." |
+| **Peter Thiel** | "Role-selective whispering inside a shared group channel (`/group-channels/direct.md`) conditioned on live game state is a true secret - nobody else in the hackathon will connect that SDK endpoint to competitive squad shotcalling." |
 | **Andrej Karpathy** | "Grounded directly in `arXiv:2609.27606` (2026), and the built-in Match Telemetry Simulator means judges can test every clutch state live in a browser in 30 seconds." |
 | **Steve Jobs** | "Seeing a whisper land on the Duelist's HUD while the rest of the squad's backseat spam gets cleanly filtered out is an unforgettable 3-minute demo." |
 | **Harvey Specter** | "Zero memory hacking or anti-cheat violations: uses official Riot/CS2 local telemetry schemas plus a browser simulation deck." |
@@ -783,14 +783,14 @@ On screen, we show a live gameplay feed with a **Match Telemetry Control Bar** a
 
 ---
 
-#### Idea 2: DanmakuPulse Arena — Zero-Overlap Bullet-Chat OBS Overlay & 60-Second Live Clutch Prediction Engine
+#### Idea 2: DanmakuPulse Arena - Zero-Overlap Bullet-Chat OBS Overlay & 60-Second Live Clutch Prediction Engine
 **Type**: Practical Winner · **Score**: `9.32 / 10`
 
 **Problem statement**
 In live gaming streams and esports broadcasts, high-velocity spectator chat (>50 msgs/sec) turns into an unreadable scrolling wall where 99% of messages are ignored, naive bullet-chat (*danmaku*) overlays collide and obscure the gameplay, and interactive predictions (like Twitch Channel Points) break whenever streamers simulcast across YouTube, Twitch, Loco, or Rooter.
 
 **The pain (Mike Ross)**
-A viewer watching a tense *BGMI* final circle or *Valorant* 1v3 clutch on YouTube Live or a multistream types `"CLUTCH IT!!"`—and their message vanishes in 200 milliseconds with zero visual impact on the broadcast. Meanwhile, if the streamer enables a basic transparent chat overlay, 100 overlapping messages block the crosshair! Quantified: *DLIOS* (`arXiv:2603.03060`, Mar 2026) showed that unmanaged burst danmaku causes severe visual occlusion and cognitive overload unless scheduled by a lane-allocation algorithm and semantic aggregation.
+A viewer watching a tense *BGMI* final circle or *Valorant* 1v3 clutch on YouTube Live or a multistream types `"CLUTCH IT!!"` - and their message vanishes in 200 milliseconds with zero visual impact on the broadcast. Meanwhile, if the streamer enables a basic transparent chat overlay, 100 overlapping messages block the crosshair! Quantified: *DLIOS* (`arXiv:2603.03060`, Mar 2026) showed that unmanaged burst danmaku causes severe visual occlusion and cognitive overload unless scheduled by a lane-allocation algorithm and semantic aggregation.
 
 **Why now**
 1. March 2026 paper *DLIOS* (`arXiv:2603.03060`) introduced a **min-heap lane-allocation algorithm** that guarantees collision-free bullet comments plus LLM-generated quick-reaction triggers.
@@ -824,9 +824,9 @@ We show the **Streamer's Live Game + Transparent OBS Overlay** on the left and *
 **Council jurisdiction**
 | Persona | Verdict & Key Point |
 |---|---|
-| **Steve Jobs** | "Visually, this is the most explosive 3-minute demo in the entire hackathon—flying gold combo bullets + a live tug-of-war prediction bar on top of a game stream." |
+| **Steve Jobs** | "Visually, this is the most explosive 3-minute demo in the entire hackathon - flying gold combo bullets + a live tug-of-war prediction bar on top of a game stream." |
 | **Andrej Karpathy** | "Implementing the min-heap lane allocator from `arXiv:2603.03060` in TypeScript takes ~80 lines of code and gives real algorithmic depth." |
-| **Harvey Specter & R.S. Sharma** | "100% free-to-play Prestige XP and badges—zero real-money gambling liability in India or globally." |
+| **Harvey Specter & R.S. Sharma** | "100% free-to-play Prestige XP and badges - zero real-money gambling liability in India or globally." |
 
 **Tech stack**
 - **Frontend & OBS Overlay**: Next.js 15, HTML5 Canvas / CSS GPU-accelerated transforms (`will-change: transform`), Min-Heap Lane Allocator (`arXiv:2603.03060`), Tailwind CSS.
@@ -854,11 +854,11 @@ We show the **Streamer's Live Game + Transparent OBS Overlay** on the left and *
 
 ---
 
-#### Idea 3: ShieldMic RaidRoom — Toxicity-Neutralizing Squad Comms & Voice-to-Tactical-Card Bridge
+#### Idea 3: ShieldMic RaidRoom - Toxicity-Neutralizing Squad Comms & Voice-to-Tactical-Card Bridge
 **Type**: Practical Winner · **Score**: `9.20 / 10`
 
 **Problem statement**
-76% of adult gamers and 74% of youth gamers experience severe harassment in multiplayer games (`ADL`), causing >60% of women, LGBTQ+, and solo-queue players to mute their microphones—which starves the squad of tactical callouts while toxic teammates tilt the entire lobby with profanity-laced rants.
+76% of adult gamers and 74% of youth gamers experience severe harassment in multiplayer games (`ADL`), causing >60% of women, LGBTQ+, and solo-queue players to mute their microphones - which starves the squad of tactical callouts while toxic teammates tilt the entire lobby with profanity-laced rants.
 
 **The pain (Mike Ross)**
 You want to win your ranked match, so you need to communicate enemy positions and cooldowns. If you open your mic, you risk harassment over your voice or accent; if a tilting teammate starts screaming insults *"You idiots never rotate B, Jett is literally 10 HP at market!"*, the whole squad tilts and mutes each other, even though buried inside that toxic rant was a match-winning piece of intel (*"Jett 10 HP at Market"*).
@@ -867,7 +867,7 @@ You want to win your ranked match, so you need to communicate enemy positions an
 Activision and Modulate's *ToxMod* report (`https://www.callofduty.com/blog/2024/08/call-of-duty-anti-toxicity-progress-report`) proved that reducing voice toxicity exposure by 43–50% boosts player retention by 28%. Nexconn's `Call SDK` + `profanity-filter-callback.md` + `Message Expansion` allow us to go one step beyond passive muting: **converting toxic or shy speech into clean, structured tactical callout cards in <400ms**.
 
 **The gap others miss (Jane / Thiel)**
-Existing anti-toxicity tools only **punish or mute** after the damage is done—which leaves the team with *less* tactical information. ShieldMic's breakthrough is **Toxicity-to-Telemetry Distillation**: when a tilting player vents (or a shy player whispers in Shield Mode), ShieldMic strips 100% of the insults/identity markers and extracts *only* the actionable game intel, posting a structured **Nexconn Message Expansion Tactical Callout Card** (`🎯 Intel: Enemy Jett 10 HP @ Market [Tap to Ack]`) + neutral AI voice readout!
+Existing anti-toxicity tools only **punish or mute** after the damage is done - which leaves the team with *less* tactical information. ShieldMic's breakthrough is **Toxicity-to-Telemetry Distillation**: when a tilting player vents (or a shy player whispers in Shield Mode), ShieldMic strips 100% of the insults/identity markers and extracts *only* the actionable game intel, posting a structured **Nexconn Message Expansion Tactical Callout Card** (`🎯 Intel: Enemy Jett 10 HP @ Market [Tap to Ack]`) + neutral AI voice readout!
 
 **What exists and why it falls short**
 | Existing Product / Repo / Paper | URL | Why It Falls Short |
@@ -879,14 +879,14 @@ Existing anti-toxicity tools only **punish or mute** after the damage is done—
 1. **Shield Mode Push-to-Whisper (`Call SDK` + Web Speech / Fast STT)**: Players who don't want to expose their raw voice toggle **Shield Mode**: they speak naturally into their mic, and their raw audio is converted into a clean **Message Expansion Tactical Card** + optional neutral tactical TTS callout over `Call SDK`.
 2. **Rage-to-Intel Sanitizer (`profanity-filter-callback.md` + Gemini 2.5 Flash)**: When a message or speech transcript triggers Nexconn's profanity/toxicity filter (`/chatsdk-web/moderation/profanity-filter-callback.md`), instead of dropping the tactical intel or showing the slur, the sanitizer rewrites:
    - *Raw toxic input*: `"Are you blind?! Why is nobody watching A-Heaven, Reyna is literally flanking with Odin!!"`
-   - *Rendered Nexconn Tactical Card*: `"⚠️ FLANK ALERT: Enemy Reyna @ A-Heaven (Weapon: Odin) — [👍 Ack: 0/4]"`
+   - *Rendered Nexconn Tactical Card*: `"⚠️ FLANK ALERT: Enemy Reyna @ A-Heaven (Weapon: Odin) - [👍 Ack: 0/4]"`
    - And sends a private de-escalation warning to the sender via **Targeted Group Whispers (`/group-channels/direct.md`)** (`"🛡️ ShieldMic rewrote your callout to keep squad morale high"`).
 3. **1-Tap Squad Ack (`Message Expansion`)**: Teammates click `👍 On It` on the tactical card, updating its `Message Expansion` KV map in real time.
 
 **The demo moment (Jobs)**
 In a 2-browser squad demo, Player A types (or speaks) a frustrated, toxic rant containing buried game intel: *"You guys are terrible, Sniper is camping North Tower with 20 HP!"*
 1. On Player A's screen, a private **Targeted Group Whisper** (`/group-channels/direct.md`) gently notifies them: *"🛡️ ShieldMic extracted your tactical callout and filtered tilt language."*
-2. On Player B's screen, zero toxicity appears—instead, a crisp, glowing **Message Expansion Tactical Card** lands in the squad HUD: **`🎯 CRITICAL INTEL: Enemy Sniper @ North Tower (20 HP) — [Tap to Claim Kill]`**, which Player B clicks to update to `✅ Claimed by @PlayerB`!
+2. On Player B's screen, zero toxicity appears - instead, a crisp, glowing **Message Expansion Tactical Card** lands in the squad HUD: **`🎯 CRITICAL INTEL: Enemy Sniper @ North Tower (20 HP) - [Tap to Claim Kill]`**, which Player B clicks to update to `✅ Claimed by @PlayerB`!
 
 **30-second explanation (Karp)**
 "ShieldMic RaidRoom solves the #1 reason solo-queue squads lose games: voice harassment and tilt. Powered by Nexconn's Profanity Filter Callbacks, Message Expansion, Targeted Group Whispers, and Call SDK, it lets shy gamers speak through structured tactical cards and automatically distills toxic teammate rants into clean, 1-tap ackable enemy intel."
@@ -922,7 +922,7 @@ In a 2-browser squad demo, Player A types (or speaks) a frustrated, toxic rant c
 
 ---
 
-#### Idea 4: CrowdDirector Live — Viewer-Driven "Chaos Mod" Overlay & Proactive AI Co-Caster
+#### Idea 4: CrowdDirector Live - Viewer-Driven "Chaos Mod" Overlay & Proactive AI Co-Caster
 **Type**: Moonshot · **Score**: `9.05 / 10`
 
 **Problem statement**
@@ -983,7 +983,7 @@ In a live split-screen demo, the presenter plays an embedded survival arena game
 
 ---
 
-#### Idea 5: GuildSync Polyglot LFG — Cross-Language Raid Matchmaker & Auto-Translated Tactical Quick-Chat
+#### Idea 5: GuildSync Polyglot LFG - Cross-Language Raid Matchmaker & Auto-Translated Tactical Quick-Chat
 **Type**: Practical Winner · **Score**: `8.96 / 10`
 
 **Problem statement**
@@ -1059,12 +1059,12 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 |---|---|---|
 | **Domain Winnability Score** | **`9.28 / 10`** (Rank #1 across Tracks 01–02) | **`8.78 / 10`** (Rank #2 across Tracks 01–02) |
 | **Urgency Score (2025–2026)** | **`9.0 / 10`** | **`8.5 / 10`** |
-| **Crowd Risk** | **Low–Medium** (`crowd_desert_score = 8.5`) — high perceived barrier scares off basic CRUD teams | **Medium–High** (`crowd_desert_score = 7.0`) — attracts generic Discord/WhatsApp clones unless differentiated via watch-party sync |
-| **#1 Recommended Practical + Moonshot Idea** | **GhostCoach SquadOS (`9.44 / 10`)** — Telemetry-Grounded Role-Targeted Whisper Shotcaller & In-Match Quick-Chat HUD | **SyncStage AI (`9.29 / 10`)** — Zero-Drift, Spoiler-Shielded Watch-Party Room with Multi-Agent Co-Viewing Companions |
-| **#2 Recommended Practical Winner** | **DanmakuPulse Arena (`9.32 / 10`)** — Min-Heap Zero-Overlap Bullet-Chat OBS Overlay & 60s Clutch Prediction Engine | **BhashaVerse FanHub (`9.21 / 10`)** — Self-Translating Creator Super-Community & Inline VIP Whisper Drops |
-| **#3 Recommended Practical Winner** | **ShieldMic RaidRoom (`9.20 / 10`)** — Toxicity-Neutralizing Squad Comms & Voice-to-Tactical-Card Bridge | **PulsePact Micro-Circles (`8.99 / 10`)** — Shared-Interest Accountability Squads with AI Referee & Rescue Whispers |
-| **#4 Recommended Moonshot** | **CrowdDirector Live (`9.05 / 10`)** — Viewer-Driven Chaos Mod Overlay & Proactive AI Co-Caster | **CrowdCut Live Studio (`8.98 / 10`)** — Interactive Fan Table-Read & Story-Branching Creator Stage |
-| **#5 Recommended Practical Winner** | **GuildSync Polyglot LFG (`8.96 / 10`)** — Cross-Language Raid Matchmaker & Localized Tactical Callout Wheel | **SignalCommons (`8.82 / 10`)** — Anti-Noise Topic Guilds with AI Catch-Up Synthesizer & Living Knowledge Cards |
+| **Crowd Risk** | **Low–Medium** (`crowd_desert_score = 8.5`) - high perceived barrier scares off basic CRUD teams | **Medium–High** (`crowd_desert_score = 7.0`) - attracts generic Discord/WhatsApp clones unless differentiated via watch-party sync |
+| **#1 Recommended Practical + Moonshot Idea** | **GhostCoach SquadOS (`9.44 / 10`)** - Telemetry-Grounded Role-Targeted Whisper Shotcaller & In-Match Quick-Chat HUD | **SyncStage AI (`9.29 / 10`)** - Zero-Drift, Spoiler-Shielded Watch-Party Room with Multi-Agent Co-Viewing Companions |
+| **#2 Recommended Practical Winner** | **DanmakuPulse Arena (`9.32 / 10`)** - Min-Heap Zero-Overlap Bullet-Chat OBS Overlay & 60s Clutch Prediction Engine | **BhashaVerse FanHub (`9.21 / 10`)** - Self-Translating Creator Super-Community & Inline VIP Whisper Drops |
+| **#3 Recommended Practical Winner** | **ShieldMic RaidRoom (`9.20 / 10`)** - Toxicity-Neutralizing Squad Comms & Voice-to-Tactical-Card Bridge | **PulsePact Micro-Circles (`8.99 / 10`)** - Shared-Interest Accountability Squads with AI Referee & Rescue Whispers |
+| **#4 Recommended Moonshot** | **CrowdDirector Live (`9.05 / 10`)** - Viewer-Driven Chaos Mod Overlay & Proactive AI Co-Caster | **CrowdCut Live Studio (`8.98 / 10`)** - Interactive Fan Table-Read & Story-Branching Creator Stage |
+| **#5 Recommended Practical Winner** | **GuildSync Polyglot LFG (`8.96 / 10`)** - Cross-Language Raid Matchmaker & Localized Tactical Callout Wheel | **SignalCommons (`8.82 / 10`)** - Anti-Noise Topic Guilds with AI Catch-Up Synthesizer & Living Knowledge Cards |
 
 ---
 
@@ -1079,9 +1079,9 @@ Using the War-Room Domain Winnability formula (`0.25*organiser_priority + 0.20*j
 
 ## 4. Conclusion
 
-1. **Track 02 (`nexconn-gaming` — Domain Winnability `9.28/10`)** is the single highest-leverage arena across Tracks 01–02 because it aligns directly with Nexconn's marquee production customers (**HoYoLAB** and **Blockman Go**), faces lower generic student competition, and produces the most visually arresting 3-minute side-by-side demos.
+1. **Track 02 (`nexconn-gaming` - Domain Winnability `9.28/10`)** is the single highest-leverage arena across Tracks 01–02 because it aligns directly with Nexconn's marquee production customers (**HoYoLAB** and **Blockman Go**), faces lower generic student competition, and produces the most visually arresting 3-minute side-by-side demos.
    - **Top Build Recommendation for Track 02**: **GhostCoach SquadOS (`9.44/10`)** (or **DanmakuPulse Arena (`9.32/10`)** if the team prefers a pure livestream spectator overlay). Even better, a winning team can unify `GhostCoach SquadOS` (Squad HUD + Role-Targeted Whispers `/group-channels/direct.md`) and `DanmakuPulse Arena` (Min-Heap Spectator Danmaku Overlay + 45s Clutch Predictions `expansion.md`) as two views (`?role=squad` vs `?role=spectator-overlay`) of the same live match!
-2. **Track 01 (`nexconn-social` — Domain Winnability `8.78/10`)** can be won decisively by avoiding generic group-chat clones and building **SyncStage AI (`9.29/10`)** (Zero-Spoiler Time-Gated Watch Party + Multi-Agent AI Co-Viewing Companions via `Open Channel KV` + `Streaming Messages` + `Targeted Group Whispers`) or **BhashaVerse FanHub (`9.21/10`)** (Weverse-style Polyglot Creator Community with `Built-in Translation` + Inline VIP Whisper Drops).
+2. **Track 01 (`nexconn-social` - Domain Winnability `8.78/10`)** can be won decisively by avoiding generic group-chat clones and building **SyncStage AI (`9.29/10`)** (Zero-Spoiler Time-Gated Watch Party + Multi-Agent AI Co-Viewing Companions via `Open Channel KV` + `Streaming Messages` + `Targeted Group Whispers`) or **BhashaVerse FanHub (`9.21/10`)** (Weverse-style Polyglot Creator Community with `Built-in Translation` + Inline VIP Whisper Drops).
 3. All deliverables in this handoff are structured for immediate downstream ingestion into `research/domains/nexconn-social.md`, `war-room/nexconn-social.md`, `war-room/nexconn-social-ideas.md`, `research/domains/nexconn-gaming.md`, `war-room/nexconn-gaming.md`, and `war-room/nexconn-gaming-ideas.md`.
 
 ---

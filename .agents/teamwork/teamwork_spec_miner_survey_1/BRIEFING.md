@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T18:11:00Z
+# BRIEFING - 2026-10-31T18:11:00Z
 
 ## Mission
 Mine and document the full specification for `war-room-council` and `agent-browser` skills, plus audit the `d:\Hackathons\Nexconn` workspace and PDF generation toolchain.
@@ -8,7 +8,7 @@ Mine and document the full specification for `war-room-council` and `agent-brows
 - Roles: Specification Miner, External Domain Expert
 - Working directory: `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1`
 - Original parent: `ce650322-b861-45dd-a12e-c7d3a6871eb0`
-- Milestone: Survey 1 — Skill Specification Mining + Environment Audit
+- Milestone: Survey 1 - Skill Specification Mining + Environment Audit
 
 ## 🔒 Key Constraints
 - Read-only specification miner: do NOT modify any files outside `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1`.
@@ -21,10 +21,10 @@ Mine and document the full specification for `war-room-council` and `agent-brows
 
 ## Loaded Skills
 - **Source**: `C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md`
-  - **Local copy**: N/A (system prompt skill — read directly from source path)
+  - **Local copy**: N/A (system prompt skill - read directly from source path)
   - **Core methodology**: Full intelligence operation on a hackathon (Step 0 setup, Step 1 facts, Step 2 parallel recon A-E + domain research, Step 3 connect-the-dots + biblehackathon.md, Step 4 war-room debate Rounds 0-5 per domain, Step 5 winnability + ideas.md + md2pdf.py rendering, Step 6 handover).
 - **Source**: `C:\Users\Harshad\.gemini\config\skills\agent-browser\SKILL.md`
-  - **Local copy**: N/A (system prompt skill — read directly from source path)
+  - **Local copy**: N/A (system prompt skill - read directly from source path)
   - **Core methodology**: Native Rust CLI for Chrome/Chromium automation via CDP with accessibility-tree snapshots and `@eN` element refs; invoked via `npx --yes agent-browser`.
 
 ## Task Summary
@@ -39,7 +39,7 @@ Mine and document the full specification for `war-room-council` and `agent-brows
 - Verified `agent-browser` is invoked via `npx --yes agent-browser` and retrieved the full 592-line core specification.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\DISPATCH.md` — Dispatch log
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\BRIEFING.md` — Working memory
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\progress.md` — Liveness heartbeat
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\handoff.md` — Final specification & handoff report
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\DISPATCH.md` - Dispatch log
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\BRIEFING.md` - Working memory
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\progress.md` - Liveness heartbeat
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1\handoff.md` - Final specification & handoff report

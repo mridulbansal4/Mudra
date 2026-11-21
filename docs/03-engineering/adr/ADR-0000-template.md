@@ -1,5 +1,5 @@
 # ADR-0000: Markdown Architecture Decision Record (MADR) Template
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Architecture Board) · Status: Accepted · Last updated: 2026-11-10
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Architecture Board) · Status: Accepted · Last updated: 2026-11-10
 > Related: [Architecture](../ARCHITECTURE.md) · [Tech Stack](../TECH_STACK.md)
 
 ---

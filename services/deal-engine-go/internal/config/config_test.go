@@ -42,7 +42,7 @@ func TestDotEnvDoesNotOverride(t *testing.T) {
 }
 
 func TestPlaceholderAndMaskDatabaseURL(t *testing.T) {
-	if !IsPlaceholderDatabaseURL("") || !IsPlaceholderDatabaseURL("postgresql://postgres:[YOUR-PASSWORD]@localhost:5432/samadhan_os") {
+	if !IsPlaceholderDatabaseURL("") || !IsPlaceholderDatabaseURL("postgresql://postgres:[YOUR-PASSWORD]@localhost:5432/mudra_os") {
 		t.Fatal("expected placeholder DSNs")
 	}
 	if IsPlaceholderDatabaseURL("postgresql://postgres:secret@aws-1-ap-south-1.pooler.supabase.com:5432/postgres") {
@@ -56,7 +56,7 @@ func TestPlaceholderAndMaskDatabaseURL(t *testing.T) {
 
 func TestLoadDefaults(t *testing.T) {
 	t.Setenv("GO_DEAL_ENGINE_PORT", "")
-	t.Setenv("SAMADHAN_JWT_SECRET", "")
+	t.Setenv("MUDRA_JWT_SECRET", "")
 	t.Setenv("ASSAY_ED25519_PRIVATE_KEY_HEX", "zz")
 	c := Load()
 	if c.Port != 4002 || !c.UsingDevJWT || len(c.Ed25519Seed) != 32 || !c.UsingDevSigningKey {

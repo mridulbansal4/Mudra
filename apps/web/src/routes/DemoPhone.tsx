@@ -10,7 +10,7 @@ export default function DemoPhone() {
 
   const store = useMemo(() => createDemoStore("happy", false), []);
   useEffect(() => {
-    document.title = `two-phone demo (${isSeller ? "vikram" : "rajesh"}) — samadhan`;
+    document.title = "Mudra";
     return () => store.destroy();
   }, [isSeller, store]);
 

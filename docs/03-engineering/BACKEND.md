@@ -1,12 +1,12 @@
-# Backend Engineering Specification (Go 1.24 + Rust 1.85 + Node.js 22) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Systems Backend Lead — Dev 2 & Dev 1) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Backend Engineering Specification (Go 1.24 + Rust 1.85 + Node.js 22) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Systems Backend Lead - Dev 2 & Dev 1) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Architecture](./ARCHITECTURE.md) · [Data Model](./DATA_MODEL.md) · [API Spec](./API_SPEC.md) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md) · [ADR-0001](./adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md)
 
 ---
 
 ## 1. Polyglot Service Topology & Responsibility Matrix
 
-Instead of a slow, GIL-bound Python backend, SAMADHAN-OS splits backend responsibilities across three compiled/typed systems runtimes communicating over persistent HTTP/2 loopback and DragonflyDB/Redis streams:
+Instead of a slow, GIL-bound Python backend, MUDRA-OS splits backend responsibilities across three compiled/typed systems runtimes communicating over persistent HTTP/2 loopback and DragonflyDB/Redis streams:
 
 | Service Directory | Language & Framework | Port | Core Responsibilities & Latency Budget |
 |---|---|---|---|
@@ -21,7 +21,7 @@ Instead of a slow, GIL-bound Python backend, SAMADHAN-OS splits backend responsi
 ### 2.1 Directory Layout
 ```text
 services/deal-engine-go/
-├── go.mod                              # module github.com/chanakya-team/samadhan-os/services/deal-engine-go (go 1.24)
+├── go.mod                              # module github.com/chanakya-team/mudra-os/services/deal-engine-go (go 1.24)
 ├── cmd/server/main.go                  # Graceful HTTP/2 server, OTel tracer, advisory-locked DB migrations
 └── internal/
     ├── fsm/

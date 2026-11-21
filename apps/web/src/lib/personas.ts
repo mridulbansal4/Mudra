@@ -1,4 +1,4 @@
-import type { Locale, Role } from "@samadhan/shared-types";
+import type { Locale, Role } from "@mudra/shared-types";
 import { api } from "./api";
 import { setSession, type UserSession } from "./session";
 
@@ -20,7 +20,7 @@ export const PERSONAS: Persona[] = [
 interface AuthResponse {
   user: { id: string; nexconn_user_id: string; display_name: string; role: Role; preferred_locale: Locale };
   nexconn: { app_key?: string; access_token: string; expires_in_sec?: number; mode?: "live" | "simulated" };
-  samadhan_jwt: string;
+  mudra_jwt: string;
   mode?: "live" | "simulated";
 }
 
@@ -38,7 +38,7 @@ export async function signIn(input: { preset?: string; displayName: string; role
     displayName: r.user.display_name,
     role: r.user.role,
     locale: r.user.preferred_locale ?? input.locale,
-    jwt: r.samadhan_jwt,
+    jwt: r.mudra_jwt,
     nexconnToken: r.nexconn.access_token,
     appKey: r.nexconn.app_key,
     mode: r.nexconn.mode ?? r.mode ?? (r.nexconn.access_token?.startsWith("sim_") ? "simulated" : "live"),

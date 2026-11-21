@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T18:55:00Z
+# BRIEFING - 2026-10-31T18:55:00Z
 
 ## Mission
 Author comprehensive, evidence-backed Domain Dossiers (`research/domains/<slug>.md`), 6-Round War-Room Council Debate Transcripts (`war-room/<slug>.md`), and polished Top-5 Ideas (`war-room/<slug>-ideas.md`) for Track 03 (`nexconn-workplace`) and Track 04 (`nexconn-support`).
@@ -8,7 +8,7 @@ Author comprehensive, evidence-backed Domain Dossiers (`research/domains/<slug>.
 - Roles: implementer, qa, specialist
 - Working directory: `d:\Hackathons\Nexconn\.agents\teamwork\worker_m2_tracks_3_4`
 - Original parent: `ce650322-b861-45dd-a12e-c7d3a6871eb0`
-- Milestone: M2b (`worker_m2_tracks_3_4` — Features F11 & F12)
+- Milestone: M2b (`worker_m2_tracks_3_4` - Features F11 & F12)
 
 ## 🔒 Key Constraints
 - Exclusive file write ownership under `d:\Hackathons\Nexconn\`:
@@ -41,13 +41,13 @@ Author comprehensive, evidence-backed Domain Dossiers (`research/domains/<slug>.
 - Selected Track 04 (`nexconn-support`) Top 5: #1 **WhisperDesk ($\tau$-Guard)** (`9.20/10`), #2 **PactChat (BhashaBargain)** (`9.00/10`), #3 **RTOShield (ONDC-NDR)** (`8.75/10`), #4 **TriageSwarm** (`8.55/10`), #5 **VisualClaimE2E** (`8.30/10`). Domain Winnability: `9.02/10`.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\research\domains\nexconn-workplace.md` — Track 03 7-part domain dossier (42,848 bytes, 31 sources)
-- `d:\Hackathons\Nexconn\war-room\nexconn-workplace.md` — Track 03 Rounds 0–5 war-room transcript (38,458 bytes)
-- `d:\Hackathons\Nexconn\war-room\nexconn-workplace-ideas.md` — Track 03 Top 5 polished ideas (73,105 bytes)
-- `d:\Hackathons\Nexconn\research\domains\nexconn-support.md` — Track 04 7-part domain dossier (43,137 bytes, 31 sources)
-- `d:\Hackathons\Nexconn\war-room\nexconn-support.md` — Track 04 Rounds 0–5 war-room transcript (37,825 bytes)
-- `d:\Hackathons\Nexconn\war-room\nexconn-support-ideas.md` — Track 04 Top 5 polished ideas (72,853 bytes)
-- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m2_tracks_3_4\handoff.md` — 5-component Hard Handoff report
+- `d:\Hackathons\Nexconn\research\domains\nexconn-workplace.md` - Track 03 7-part domain dossier (42,848 bytes, 31 sources)
+- `d:\Hackathons\Nexconn\war-room\nexconn-workplace.md` - Track 03 Rounds 0–5 war-room transcript (38,458 bytes)
+- `d:\Hackathons\Nexconn\war-room\nexconn-workplace-ideas.md` - Track 03 Top 5 polished ideas (73,105 bytes)
+- `d:\Hackathons\Nexconn\research\domains\nexconn-support.md` - Track 04 7-part domain dossier (43,137 bytes, 31 sources)
+- `d:\Hackathons\Nexconn\war-room\nexconn-support.md` - Track 04 Rounds 0–5 war-room transcript (37,825 bytes)
+- `d:\Hackathons\Nexconn\war-room\nexconn-support-ideas.md` - Track 04 Top 5 polished ideas (72,853 bytes)
+- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m2_tracks_3_4\handoff.md` - 5-component Hard Handoff report
 
 ## Change Tracker
 - **Files modified**:
@@ -61,7 +61,7 @@ Author comprehensive, evidence-backed Domain Dossiers (`research/domains/<slug>.
 - **Pending issues**: None
 
 ## Quality Status
-- **Build/test result**: PASS — Python verification scripts confirmed all 6 files exist, non-empty, zero `TODO`/`TBD`, all required headings present, all 22 bold labels appear 5x per `*-ideas.md`, zero leaked raw dialogue turns in `*-ideas.md`, and 10/10 exact score breakdowns match to 4 decimal places.
+- **Build/test result**: PASS - Python verification scripts confirmed all 6 files exist, non-empty, zero `TODO`/`TBD`, all required headings present, all 22 bold labels appear 5x per `*-ideas.md`, zero leaked raw dialogue turns in `*-ideas.md`, and 10/10 exact score breakdowns match to 4 decimal places.
 - **Lint status**: Clean (0 violations)
 - **Tests added/modified**: Executed structural, schema, anti-leak, and weighted score math verification checks across all 6 deliverables.
 

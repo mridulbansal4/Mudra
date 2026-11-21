@@ -1,6 +1,6 @@
 ## 2026-10-31T18:05:30Z
 
-# Task Assignment: Survey 1 — War-Room-Council & Agent-Browser Skill Specification Mining + Environment Audit
+# Task Assignment: Survey 1 - War-Room-Council & Agent-Browser Skill Specification Mining + Environment Audit
 
 - **Your Identity**: `teamwork_spec_miner_survey_1`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_spec_miner_survey_1`

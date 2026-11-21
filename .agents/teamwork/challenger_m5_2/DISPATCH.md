@@ -1,6 +1,6 @@
 ## 2026-10-31T19:40:00Z
 
-# Task Assignment: Wave 4 Challenger 2 (`challenger_m5_2`) — Tier 5 White-Box Adversarial Verification of `ideas.md/.pdf` and `war-room/*` (30 Ideas, Math & SDK Mappings)
+# Task Assignment: Wave 4 Challenger 2 (`challenger_m5_2`) - Tier 5 White-Box Adversarial Verification of `ideas.md/.pdf` and `war-room/*` (30 Ideas, Math & SDK Mappings)
 
 - **Your Identity**: `challenger_m5_2`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2`
@@ -20,7 +20,7 @@
 
 ## 2026-10-31T20:08:32Z
 
-You are `challenger_m5_2` (Wave 4 Challenger 2 — Tier 5 White-Box Adversarial Verifier).
+You are `challenger_m5_2` (Wave 4 Challenger 2 - Tier 5 White-Box Adversarial Verifier).
 Your working directory is `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2`.
 Your parent conversation ID is `ce650322-b861-45dd-a12e-c7d3a6871eb0`.
 

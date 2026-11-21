@@ -1,4 +1,4 @@
-# AGENTS.md — Universal AI Agent Instructions for SAMADHAN-OS (`SamvadDeal`)
+# AGENTS.md - Universal AI Agent Instructions for MUDRA-OS (`SamvadDeal`)
 
 > **Primary Agent Specification**: Read **[`CLAUDE.md`](CLAUDE.md)** for full build/test/eval commands, architecture rules, and design system constraints, and **[`MAP.md`](MAP.md)** for the complete documentation index.
 

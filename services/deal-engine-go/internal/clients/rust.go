@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/hrtime"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/hrtime"
 )
 
 // Rust is the client for services/assay-verifier-rs (:4003) with Go fallbacks.
