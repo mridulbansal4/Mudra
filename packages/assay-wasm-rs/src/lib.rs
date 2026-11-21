@@ -24,7 +24,9 @@ const K: usize = 8;
 
 /// Returns the number of bytes needed for `width x height` RGBA8, or None on overflow.
 fn rgba_len(width: u32, height: u32) -> Option<usize> {
-    (width as usize).checked_mul(height as usize)?.checked_mul(4)
+    (width as usize)
+        .checked_mul(height as usize)?
+        .checked_mul(4)
 }
 
 #[inline]
@@ -55,7 +57,10 @@ pub fn laplacian_variance_impl(rgba: &[u8], width: u32, height: u32) -> f64 {
     for y in 1..h - 1 {
         for x in 1..w - 1 {
             let c = gray[y * w + x];
-            let v = gray[(y - 1) * w + x] + gray[(y + 1) * w + x] + gray[y * w + x - 1] + gray[y * w + x + 1]
+            let v = gray[(y - 1) * w + x]
+                + gray[(y + 1) * w + x]
+                + gray[y * w + x - 1]
+                + gray[y * w + x + 1]
                 - 4.0 * c;
             sum += v;
             lap.push(v);
@@ -146,7 +151,10 @@ pub fn phash_rgba_u64(rgba: &[u8], width: u32, height: u32) -> Option<u64> {
 /// Parses a 16-hex-char hash (optional `0x`, case-insensitive).
 pub fn parse_hash_hex(s: &str) -> Option<u64> {
     let t = s.trim();
-    let t = t.strip_prefix("0x").or_else(|| t.strip_prefix("0X")).unwrap_or(t);
+    let t = t
+        .strip_prefix("0x")
+        .or_else(|| t.strip_prefix("0X"))
+        .unwrap_or(t);
     if t.len() != 16 || !t.chars().all(|c| c.is_ascii_hexdigit()) {
         return None;
     }
@@ -215,8 +223,14 @@ mod tests {
     #[test]
     fn phash_cross_language_vectors() {
         // Same vectors as services/assay-verifier-rs/src/phash.rs.
-        assert_eq!(phash_rgba(&test_image(64, 48, 0), 64, 48), "80031f3f3e787971");
-        assert_eq!(phash_rgba(&test_image(20, 10, 0), 20, 10), "8055005580550055");
+        assert_eq!(
+            phash_rgba(&test_image(64, 48, 0), 64, 48),
+            "80031f3f3e787971"
+        );
+        assert_eq!(
+            phash_rgba(&test_image(20, 10, 0), 20, 10),
+            "8055005580550055"
+        );
     }
 
     #[test]

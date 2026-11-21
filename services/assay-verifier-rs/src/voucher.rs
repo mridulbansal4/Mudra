@@ -35,7 +35,8 @@ pub struct VoucherSigner {
 impl VoucherSigner {
     /// Builds a signer from a 32-byte Ed25519 seed given as 64 hex chars.
     pub fn from_seed_hex(seed_hex: &str) -> Result<Self, String> {
-        let bytes = hex::decode(seed_hex.trim()).map_err(|e| format!("seed is not valid hex: {e}"))?;
+        let bytes =
+            hex::decode(seed_hex.trim()).map_err(|e| format!("seed is not valid hex: {e}"))?;
         let seed: [u8; 32] = bytes
             .as_slice()
             .try_into()
@@ -49,7 +50,13 @@ impl VoucherSigner {
         hex::encode(self.key.verifying_key().to_bytes())
     }
 
-    pub fn sign(&self, prev_hash_hex: &str, deal_id: &str, voucher_type: &str, payload: &Value) -> SignedVoucher {
+    pub fn sign(
+        &self,
+        prev_hash_hex: &str,
+        deal_id: &str,
+        voucher_type: &str,
+        payload: &Value,
+    ) -> SignedVoucher {
         let hash = chain_hash(prev_hash_hex, deal_id, voucher_type, payload);
         let signature = self.key.sign(&hash);
         SignedVoucher {
@@ -61,7 +68,12 @@ impl VoucherSigner {
 }
 
 /// SHA-256(prev_hash_hex || deal_id || voucher_type || canonical_json(payload)).
-pub fn chain_hash(prev_hash_hex: &str, deal_id: &str, voucher_type: &str, payload: &Value) -> [u8; 32] {
+pub fn chain_hash(
+    prev_hash_hex: &str,
+    deal_id: &str,
+    voucher_type: &str,
+    payload: &Value,
+) -> [u8; 32] {
     let mut hasher = Sha256::new();
     hasher.update(prev_hash_hex.as_bytes());
     hasher.update(deal_id.as_bytes());
@@ -144,13 +156,19 @@ mod tests {
     fn chain_vectors_match_reference() {
         let s = VoucherSigner::from_seed_hex(DEV_SEED_HEX).unwrap();
         let v1 = s.sign("", "deal_001", "ESCROW_LOCKED", &sample_payload());
-        assert_eq!(v1.curr_hash_hex, "6037d76a45a8fc1e15340218294d21084bdb707adc8c91bcff6587e353103f3d");
+        assert_eq!(
+            v1.curr_hash_hex,
+            "6037d76a45a8fc1e15340218294d21084bdb707adc8c91bcff6587e353103f3d"
+        );
         assert_eq!(
             v1.signature_hex,
             "ea9375fef05c138f79844464039ea3b291ee857c6bdcbcdacfb6888c8006cd9e1230942ebcdf2b610d2604e07b95e92c8a78d66c994696940d1bb40a9466840c"
         );
         let v2 = s.sign(&v1.curr_hash_hex, "deal_001", "ASSAY_STARTED", &json!({}));
-        assert_eq!(v2.curr_hash_hex, "d268ef017a124904d1a43d8724464521a805e7febe4a4e041040c9387df25c86");
+        assert_eq!(
+            v2.curr_hash_hex,
+            "d268ef017a124904d1a43d8724464521a805e7febe4a4e041040c9387df25c86"
+        );
         assert_eq!(
             v2.signature_hex,
             "7ee85a2973bba991b24cd2b495e118d998490e8fdc407a121c4151d499346d917ce5114a98cf058f2a47f9689ee1968ab863e1aeb3853e13c1593bd4d5863e00"
