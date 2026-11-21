@@ -1,6 +1,6 @@
-# Gate Status — Final Milestone M5 (Iteration 1)
+# Gate Status - Final Milestone M5 (Iteration 1)
 
-## Gate — Iteration 1
+## Gate - Iteration 1
 | Agent | Role | Verdict | Source |
 |-------|------|---------|--------|
 | `worker_m4_assembly` (`4cddd977-b090-4de9-8416-bc15939934a0`) | `teamwork_worker` | DONE (189/189 E2E tests passed, PDFs rendered) | `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\handoff.md` |

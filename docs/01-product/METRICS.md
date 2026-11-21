@@ -1,12 +1,12 @@
-# Product Metrics, Funnel & Event Taxonomy — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Growth, Telemetry & Analytics Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Product Metrics, Funnel & Event Taxonomy - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Growth, Telemetry & Analytics Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [PRD](./PRD.md) · [Observability](../05-ops/OBSERVABILITY.md) · [GTM](../07-business/GTM.md)
 
 ---
 
 ## 1. North-Star Metric & Hierarchy
 
-- **Production North-Star Metric**: **Verified Dispute-Free Gross Merchandise Value (`VDF-GMV`)** — Total value (`₹` / `$`) of transactions where escrow is locked in `<nc-escrow-deal-card>`, verified over live `@nexconn/call` video + Rust WASM assay, and settled without external chargeback.
+- **Production North-Star Metric**: **Verified Dispute-Free Gross Merchandise Value (`VDF-GMV`)** - Total value (`₹` / `$`) of transactions where escrow is locked in `<nc-escrow-deal-card>`, verified over live `@nexconn/call` video + Rust WASM assay, and settled without external chargeback.
 - **Hackathon Judging North-Star Metric (Weight: 15% Traction + 25% SDK Integration)**: **Verified Unique Nexconn Active Users (`MAUs` in `console.nexconn.ai`) + Full-Cycle SDK Funnel Completion Rate**.
 
 ```mermaid
@@ -26,7 +26,7 @@ flowchart TD
 
 ## 2. AARRR Pirate Funnel Metrics (Hackathon MVP & Production Targets)
 
-| Stage | Definition in SAMADHAN-OS | Primary Route / Trigger | Hackathon MVP Target (Nov 23, 2026) | v1 Production Target (Q2 2027) |
+| Stage | Definition in MUDRA-OS | Primary Route / Trigger | Hackathon MVP Target (Nov 23, 2026) | v1 Production Target (Q2 2027) |
 |---|---|---|---|---|
 | **Acquisition** | Unique visitors landing on `/`, `/sandbox`, `/arena`, or shared deal room links | Campus WhatsApp groups, `r/IndianGaming`, local refurb shops, Judge Card | `1,500+` unique visitors | `120,000 / mo` |
 | **Activation** | Visitor receives a real Nexconn token (`issueAccessToken`) and completes `await NCEngine.connect({ token })` | `/auth` (1-Tap), `/sandbox` (Auto-Dual), `/arena` (Auto-Player) | `> 65%` (`500 – 1,000+` verified Nexconn MAUs) | `> 55%` (`66,000 MAUs`) |
@@ -47,7 +47,7 @@ Tracked in dual-write mode: (1) Internal PostgreSQL + Go telemetry ledger (`API-
 | `nexconn_session_connected` | `await NCEngine.connect({ token })` resolves | `{ nexconn_user_id: string, role: "buyer"\|"seller"\|"arbitrator"\|"guest", latency_ms: number }` | `UserManagementApi.issueAccessToken` + `NCEngine.connect` (**Counts as 1 Verified MAU**) |
 | `onboarding_completed` | User finishes 3-step `/onboarding` wizard | `{ source_lang: string, target_lang: string, camera_mode: "webcam"\|"simulated_hd" }` | Configures `<nc-bilingual-bubble>` & `NCCallEngine` source |
 | `bilingual_stream_completed` | `sendGroupChannelStreamMessage` finishes streaming into `<nc-bilingual-bubble>` | `{ deal_id: string, channel_id: string, src_lang: string, tgt_lang: string, ttft_ms: number, pii_scrub_us: number }` | `MessageManagementApi.sendGroupChannelStreamMessage` (`API-05`) |
-| `escrow_card_transitioned` | User clicks action inside `<nc-escrow-deal-card>` | `{ deal_id: string, prev_state: string, next_state: string, amount_paise: number, go_fsm_us: number }` | `registerMessageType` (`x-samadhan-escrow-card`) + Go FSM (`API-06`) |
+| `escrow_card_transitioned` | User clicks action inside `<nc-escrow-deal-card>` | `{ deal_id: string, prev_state: string, next_state: string, amount_paise: number, go_fsm_us: number }` | `registerMessageType` (`x-mudra-escrow-card`) + Go FSM (`API-06`) |
 | `video_assay_started` | User clicks `Verify on Live Video` | `{ deal_id: string, call_id: string, media_type: "VIDEO", camera_mode: "webcam"\|"simulated_hd" }` | `NCCallEngine.startCall` + `requestChangeMediaType(NCCallMediaType.VIDEO)` |
 | `video_assay_verified` | Rust `assay-verifier-rs` signs frame + audio FFT receipt | `{ deal_id: string, call_id: string, phash_hex: string, rpm_peak_hz: number, rust_exec_ms: number, vision_pass: boolean }` | `onServerCallLogReceived` + `SystemMessagesApi` (`API-08`) |
 | `dispute_channel_frozen` | User clicks `Raise Dispute` | `{ deal_id: string, channel_id: string, freeze_latency_ms: number, reason_code: string }` | `GroupChannelModerationApi.addGroupChannelFreezeList` (`API-09`) |

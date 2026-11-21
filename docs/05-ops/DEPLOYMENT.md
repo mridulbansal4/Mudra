@@ -1,5 +1,5 @@
-# Deployment Playbook (Hackathon MVP & Production) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Release & Cloud Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Deployment Playbook (Hackathon MVP & Production) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Release & Cloud Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Infrastructure](./INFRASTRUCTURE.md) · [CI/CD](./CICD.md) · [Runbook](./RUNBOOK.md)
 
 ---
@@ -9,7 +9,7 @@
 Red Team Seat `R26` (Corey Quinn) and `R25` (Exhausted Judge) warn that free-tier containers that sleep after 15 minutes of inactivity fail when a judge clicks the Live App link at 2:00 AM.
 
 **Our Guarantee**:
-1. **Frontend (`apps/web`)**: Deployed on **Vercel Edge / Cloudflare Pages** (`https://samadhan-os.vercel.app`) — globally cached static HTML/CSS/JS + `.wasm` binary with `<60ms` TTFB and zero cold start.
+1. **Frontend (`apps/web`)**: Deployed on **Vercel Edge / Cloudflare Pages** (`https://mudra-os.vercel.app`) - globally cached static HTML/CSS/JS + `.wasm` binary with `<60ms` TTFB and zero cold start.
 2. **Polyglot Backend (`deal-engine-go`, `assay-verifier-rs`, `nexconn-bridge-node`, PostgreSQL 17, Redis)**: Deployed on **Always-On Railway Pro / AWS `ap-south-1` / Alibaba Cloud ECS** with `minReplicas: 1` and a 60-second synthetic heartbeat cron (`GET /api/v1/traction/telemetry`), guaranteeing `0ms` cold-start penalty during the entire Nov 23–27, 2026 judging window.
 
 ---
@@ -34,7 +34,7 @@ docker compose -f infra/docker/docker-compose.prod.yml up -d
 cd packages/assay-wasm-rs && wasm-pack build --target web --release && cd ../..
 
 # 2. Build Vite 6 + React 19 + HeroUI v3 bundle & run Hallmark sloplint gate
-pnpm --filter @samadhan/web build
+pnpm --filter @mudra/web build
 node scripts/sloplint.mjs apps/web/dist --render
 
 # 3. Deploy to production edge

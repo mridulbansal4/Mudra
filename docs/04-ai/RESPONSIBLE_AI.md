@@ -1,5 +1,5 @@
-# Responsible AI, Fairness & Governance — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (AI Ethics & Governance Lead — Amanda Askell, Dario Amodei & Mike Ross Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Responsible AI, Fairness & Governance - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (AI Ethics & Governance Lead - Amanda Askell, Dario Amodei & Mike Ross Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Models](./MODELS.md) · [Prompts](./PROMPTS.md) · [AI Evals](./AI_EVALS.md) · [Compliance](../06-security-compliance/COMPLIANCE.md)
 
 ---
@@ -8,9 +8,9 @@
 
 In Indian and cross-border commerce, an asymmetric AI system could unfairly favor fluent English speakers or wealthy corporate sellers over vernacular smallholders (`P-01` Rajesh in Tirupur, regional FPO farmers, or small workshop mechanics). We enforce four structural fairness guarantees:
 
-| Fairness Dimension | Potential Bias Risk | Structural Mitigation in SAMADHAN-OS |
+| Fairness Dimension | Potential Bias Risk | Structural Mitigation in MUDRA-OS |
 |---|---|---|
-| **Linguistic & Dialect Parity** | A seller speaking fluent English might sound more "persuasive" to an LLM arbitrator (`M-04`) than a buyer speaking colloquial Tamil or rural Punjabi. | `M-04` (`P-M04-v1.2`) evaluates disputes primarily on **objective, language-independent cryptographic facts**: pre- vs. post-delivery 64-bit `pHash` Hamming distance, `rustfft` motor RPM measurements, `onServerCallLogReceived` call logs, and `System` channel timestamps—never on rhetorical polish. |
+| **Linguistic & Dialect Parity** | A seller speaking fluent English might sound more "persuasive" to an LLM arbitrator (`M-04`) than a buyer speaking colloquial Tamil or rural Punjabi. | `M-04` (`P-M04-v1.2`) evaluates disputes primarily on **objective, language-independent cryptographic facts**: pre- vs. post-delivery 64-bit `pHash` Hamming distance, `rustfft` motor RPM measurements, `onServerCallLogReceived` call logs, and `System` channel timestamps - never on rhetorical polish. |
 | **Caste, Gender & Regional Neutrality** | Surnames, honorifics, or regional accents influencing bargaining (`M-05`) or dispute split recommendations (`M-04`). | Prior to invoking `M-04`, buyer and seller names/locations are anonymized in the tribunal prompt context as `PARTY_BUYER` and `PARTY_SELLER`. Our eval suite (`AI_EVALS.md`) runs counterfactual name-swap invariance tests (asserting `0 bps` difference when swapping Tamil, Punjabi, Muslim, Dalit, or female persona names). |
 | **Low-End Device & Lighting Equity** | Budget Android cameras in dimly lit workshops producing slightly noisier frames that could be falsely flagged as "defective." | Client WASM (`packages/assay-wasm-rs`) guides the seller in real time (`"Move 10cm closer / turn on torch"`) until Laplacian sharpness `>= 120.0` before capturing, and `phash.rs` uses illumination-invariant DCT low-frequency bins rather than raw RGB pixel diffs. |
 
@@ -51,8 +51,8 @@ Every AI-generated message streamed via `sendGroupChannelStreamMessage` carries 
 
 ## 5. Regulatory Alignment: MeitY IndiaAI Guidelines, Singapore Model AI Governance & EU AI Act
 
-| Framework | Classification of SAMADHAN-OS | Compliance Implementation |
+| Framework | Classification of MUDRA-OS | Compliance Implementation |
 |---|---|---|
 | **MeitY IndiaAI Governance Guidelines & Advisories (2024–2026)** | Commercial Mediation & Translation Assistant | Explicit watermark/labeling on all AI-streamed cards (`<nc-bilingual-bubble>`, `<nc-tribunal-verdict-card>`), zero non-consensual deepfake generation, and full Indian language parity via Bhashini. |
 | **Singapore IMDA Model AI Governance Framework (GenAI 2024–2026)** | Human-over-the-Loop Commercial Decision Support (Relevant to **RCLOUD GLOBAL PTE. LTD.**) | Deterministic Go FSM boundaries, cryptographic provenance (`System` channel Ed25519 vouchers), and human arbitrator override in `/dispatch`. |
-| **EU AI Act (Regulation (EU) 2024/1689)** | **Limited Risk (Article 50 — Transparency Obligations)** (Not High-Risk Annex III, as it is bilateral commercial escrow/mediation with human sign-off, not public judicial court administration or credit scoring) | Complies 100% with Article 50 transparency duties: users are clearly informed when interacting with `Chanakya AI Shopkeeper` (`/arena`) or `AI Tribunal` (`M-04`). |
+| **EU AI Act (Regulation (EU) 2024/1689)** | **Limited Risk (Article 50 - Transparency Obligations)** (Not High-Risk Annex III, as it is bilateral commercial escrow/mediation with human sign-off, not public judicial court administration or credit scoring) | Complies 100% with Article 50 transparency duties: users are clearly informed when interacting with `Chanakya AI Shopkeeper` (`/arena`) or `AI Tribunal` (`M-04`). |

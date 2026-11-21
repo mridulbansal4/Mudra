@@ -6,7 +6,7 @@ import { VelvetCard } from "../ui/VelvetCard";
 
 export function Wordmark() {
   return (
-    <Link to="/" className="inline-flex items-center gap-2 text-fg no-underline" aria-label="samadhan home">
+    <Link to="/" className="inline-flex items-center gap-2 text-fg no-underline" aria-label="mudra home">
       <Logo layout="row" markSize={22} wordmarkSize={12} />
     </Link>
   );
@@ -29,8 +29,8 @@ export function Page({ children, wide = false }: { children: ReactNode; wide?: b
 
 export function SectionTitle({ title, sub }: { title: string; sub?: string }) {
   useEffect(() => {
-    document.title = `${title.toLowerCase()} — samadhan`;
-  }, [title]);
+    document.title = "Mudra";
+  }, []);
 
   return (
     <div className="mb-8">

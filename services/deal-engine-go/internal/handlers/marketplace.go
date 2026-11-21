@@ -6,9 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 var subchannelTitles = map[string]string{

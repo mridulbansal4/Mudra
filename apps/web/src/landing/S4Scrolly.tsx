@@ -55,7 +55,7 @@ const STEPS: ScrollyStepDef[] = [
   {
     num: "03",
     title: "inspect it live.",
-    body: "the seller shows the machine on video. we fingerprint every frame and listen to the motor — 4,820 rpm, as promised.",
+    body: "the seller shows the machine on video. we fingerprint every frame and listen to the motor: 4,820 rpm, as promised.",
     chips: [
       { icon: ScanLine, label: "frame hash" },
       { icon: Fan, label: "acoustic rpm" },

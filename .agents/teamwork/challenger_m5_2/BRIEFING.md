@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T20:18:00Z
+# BRIEFING - 2026-10-31T20:18:00Z
 
 ## Mission
 Execute Tier 5 white-box adversarial verification scripts against `ideas.md`, `ideas.pdf`, and all 12 files in `war-room/` (plus `roster-additions.md`) to empirically verify all 30 ideas, 14 required template fields, exact 9-criterion weighted score math, Domain Winnability Index math, explicit Nexconn SDK/UI/Call/AICP primitive mappings, global hackathon winner / research paper citations, zero leaked raw war-room dialogue turns in `ideas.md` and `war-room/*-ideas.md`, and PDF validity.
@@ -8,11 +8,11 @@ Execute Tier 5 white-box adversarial verification scripts against `ideas.md`, `i
 - Roles: critic, specialist
 - Working directory: `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2`
 - Original parent: `ce650322-b861-45dd-a12e-c7d3a6871eb0`
-- Milestone: M5 (Wave 4 Challenger 2 — Tier 5 White-Box Adversarial Verifier)
+- Milestone: M5 (Wave 4 Challenger 2 - Tier 5 White-Box Adversarial Verifier)
 - Instance: 2 of 2
 
 ## 🔒 Key Constraints
-- Review-only — do NOT modify implementation code or project deliverables
+- Review-only - do NOT modify implementation code or project deliverables
 - Write only to `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2` (do NOT place source code, tests, or data files in `.agents/teamwork/`)
 - Run empirical verification code directly to verify every claim
 
@@ -41,14 +41,14 @@ Execute Tier 5 white-box adversarial verification scripts against `ideas.md`, `i
 
 ## Loaded Skills
 - **Source**: `C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md`
-- **Local copy**: N/A (system prompt skill — read directly from listed path)
+- **Local copy**: N/A (system prompt skill - read directly from listed path)
 - **Core methodology**: Deep hackathon recon, multi-persona war-room debate across 6 rounds, 9-criterion weighted scoring rubric, 5-factor Domain Winnability Index, and strict template separation between `war-room/<slug>.md` (raw dialogue) and `war-room/<slug>-ideas.md` / `ideas.md` (distilled 14-field idea cards).
 
 ## Key Decisions Made
 - Verdict: **APPROVE**. All acceptance criteria empirically verified with zero blocking defects.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\DISPATCH.md` — Dispatch log
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\BRIEFING.md` — Persistent working memory
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\progress.md` — Liveness heartbeat
-- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\handoff.md` — 5-Component Empirical Verification & Adversarial Challenge Report
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\DISPATCH.md` - Dispatch log
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\BRIEFING.md` - Persistent working memory
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\progress.md` - Liveness heartbeat
+- `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_2\handoff.md` - 5-Component Empirical Verification & Adversarial Challenge Report

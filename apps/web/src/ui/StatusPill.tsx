@@ -1,4 +1,4 @@
-import type { FsmState } from "@samadhan/shared-types";
+import type { FsmState } from "@mudra/shared-types";
 import type { ReactNode } from "react";
 
 export type StatusTone = "locked" | "live" | "frozen" | "neutral";

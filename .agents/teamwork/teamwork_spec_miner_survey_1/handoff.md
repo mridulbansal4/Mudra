@@ -1,4 +1,4 @@
-# Handoff Report — `teamwork_spec_miner_survey_1`
+# Handoff Report - `teamwork_spec_miner_survey_1`
 
 ## 1. Observation
 
@@ -96,14 +96,14 @@ d:\Hackathons\Nexconn\
 
 ### Detailed Phase-by-Phase Requirements
 
-#### Step 0 — Set Up (`SKILL.md` Lines 49–53)
+#### Step 0 - Set Up (`SKILL.md` Lines 49–53)
 - Create directory structure: `d:\Hackathons\Nexconn\research\00-source\`, `d:\Hackathons\Nexconn\research\domains\`, `d:\Hackathons\Nexconn\war-room\`.
 - Initialize `d:\Hackathons\Nexconn\state.md` with:
   - Hackathon link (`https://reskilll.com/hack/nexconn/`)
   - Date, team info / defaults (e.g., 4 people, 36 hours, full-stack JS/Python, per `bible/SKILL.md` Line 31)
   - Later updated in Step 2 (approved council roster table) and Step 6 (domains, idea names, scores, winnability ranking, #1 recommendation + dark horse).
 
-#### Step 1 — Get the Facts (`SKILL.md` Lines 55–58, `recon-playbook.md` Section 1)
+#### Step 1 - Get the Facts (`SKILL.md` Lines 55–58, `recon-playbook.md` Section 1)
 - Fetch `https://reskilll.com/hack/nexconn/` (and associated Reskilll/Nexconn pages) using web fetch and `agent-browser`.
 - Save raw sources in `d:\Hackathons\Nexconn\research\00-source\`.
 - Extract into `d:\Hackathons\Nexconn\research\01-facts.md`:
@@ -117,7 +117,7 @@ d:\Hackathons\Nexconn\
   8. Every problem statement verbatim with ID and author
   9. Listed resources, required tools/SDKs, sponsors and tiers, judges/mentors/jury, partner institutions, contact persons.
 
-#### Step 2 — Parallel Recon Tracks (A–E) + Phase 2 Domain Deep Research + Council Roster (`SKILL.md` Lines 60–83)
+#### Step 2 - Parallel Recon Tracks (A–E) + Phase 2 Domain Deep Research + Council Roster (`SKILL.md` Lines 60–83)
 1. **Recon Track A (`research/A-organisers.md`)**:
    - Who owns/runs the hackathon (Reskilll, Nexconn, partners), mandate, budget/business line, leadership's public statements.
    - Hidden motives (hiring pipeline, API/platform/SDK adoption, R&D, PR, ecosystem building).
@@ -147,9 +147,9 @@ d:\Hackathons\Nexconn\
    2. **Urgency**: Recent news (last 12 months with dates), policy/industry deadlines, budget/funding lines, incidents. **Score urgency 1–10 with reasons**.
    3. **Prior art**: Table of existing startups/products (India + global, funding, traction, why they fall short), **GitHub repos** (name, stars, last commit, what it does), **research papers** (title, year, venue, key result, link), deployed systems, and **global hackathon winners / previous hackathon projects** that can be replicated or adapted using Nexconn's tools/SDKs.
    4. **Gap analysis in three buckets**:
-      - `Exists but weak` — what exists, specific weakness, 10x improvement.
-      - `Doesn't exist` — nobody is doing it; why (schlep, data, regulation, timing) and why solvable now.
-      - `Exists abroad, not in India` (or exists in another ecosystem, not yet on Nexconn/target ecosystem) — foreign/external product, why it works there, what must change for India/Nexconn.
+      - `Exists but weak` - what exists, specific weakness, 10x improvement.
+      - `Doesn't exist` - nobody is doing it; why (schlep, data, regulation, timing) and why solvable now.
+      - `Exists abroad, not in India` (or exists in another ecosystem, not yet on Nexconn/target ecosystem) - foreign/external product, why it works there, what must change for India/Nexconn.
    5. **India rails, Nexconn SDKs/tools & data available**: Which DPI/APIs/datasets and Nexconn services/tools/SDKs can be used in the hackathon.
    6. **Tech frontier**: Newest models, techniques, protocols, hardware making something newly possible (with sources).
    7. **Raw idea seeds**: **15+ seeds**, each one line, tagged with its gap bucket.
@@ -157,7 +157,7 @@ d:\Hackathons\Nexconn\
    - Save full approved roster table (`seat · person · why · mode: lead/support per domain`) to `state.md`.
    - Write full dossiers (`rise`, `how they decide`, `asks`, `attacks`, `voice`, `blind spot`) for any new domain/Nexconn experts into `war-room/roster-additions.md`.
 
-#### Step 3 — Connect the Dots & Write `biblehackathon.md` (`SKILL.md` Lines 84–88, `recon-playbook.md` Section 3)
+#### Step 3 - Connect the Dots & Write `biblehackathon.md` (`SKILL.md` Lines 84–88, `recon-playbook.md` Section 3)
 - Run Patrick Jane's synthesis session (chaired by Patrick Jane with Jaishankar, Sharma, Thiel, Karp, Graham, and Munger) and write `d:\Hackathons\Nexconn\research\F-connect-the-dots.md` with 6 mandatory sections:
   1. **The real reason this hackathon exists** (one paragraph, with evidence).
   2. **What the organisers secretly fear** and **what they would love to announce afterwards**.
@@ -167,23 +167,23 @@ d:\Hackathons\Nexconn\
   6. **The 80% trap** (what most teams will build, so we avoid it).
 - Write `d:\Hackathons\Nexconn\biblehackathon.md` following the exact template in `output-templates.md`.
 
-#### Step 4 — The War Room (`SKILL.md` Lines 90–101, `war-room-protocol.md` Phase 3)
+#### Step 4 - The War Room (`SKILL.md` Lines 90–101, `war-room-protocol.md` Phase 3)
 - For each domain/track, run the 6-round War Room session and log the full transcript to `d:\Hackathons\Nexconn\war-room\<domain>.md`:
-  - **Round 0 — Brief (Jane, 5 lines)**: What this domain's PS authors really want, the 80% trap, the best dots.
-  - **Round 1 — Idea storm**: Every LEAD seat proposes 1–3 ideas from their lens + research seeds (**aim for 20–30 candidates**; Thiel and Musk must each propose at least one crazy/contrarian idea).
-  - **Round 2 — Attack**: Aggressive, idea-by-idea attack in strict order:
+  - **Round 0 - Brief (Jane, 5 lines)**: What this domain's PS authors really want, the 80% trap, the best dots.
+  - **Round 1 - Idea storm**: Every LEAD seat proposes 1–3 ideas from their lens + research seeds (**aim for 20–30 candidates**; Thiel and Musk must each propose at least one crazy/contrarian idea).
+  - **Round 2 - Attack**: Aggressive, idea-by-idea attack in strict order:
     `Munger (pre-mortem)` → `Harvey + Sharma (legal/regulatory)` → `Buffett (who pays)` → `Karpathy (can we build & demo it, is AI/Nexconn integration real)` → `Mike Ross (does it actually help; ethics)` → `Graham (tarpit? would judges care?)` → `Domain leads (field reality)`.
     Musk and Thiel defend or rescue. Ideas with a standing veto die or get restructured.
-  - **Round 3 — Rebuild & merge**: Combine survivors; sharpen the secret (Thiel), the human (Mike), the rail/compliance (Sharma), the moat (Buffett), the stack & Nexconn integration (Karpathy).
-  - **Round 4 — Score & vote**: Score using the 9-criterion weighted rubric. **Top 5 go forward** (must include at least one `"Doesn't exist"` idea and at least one `"Exists abroad, not in India"` idea if supported by research).
-  - **Round 5 — Polish**: Jobs names each top-5 idea and writes the one-liner; Karp writes the 30-second explanation; Godin defines who it's for; Gary Vee defines the first-10k-users channel; Ive defines the 3-screen UX flow.
+  - **Round 3 - Rebuild & merge**: Combine survivors; sharpen the secret (Thiel), the human (Mike), the rail/compliance (Sharma), the moat (Buffett), the stack & Nexconn integration (Karpathy).
+  - **Round 4 - Score & vote**: Score using the 9-criterion weighted rubric. **Top 5 go forward** (must include at least one `"Doesn't exist"` idea and at least one `"Exists abroad, not in India"` idea if supported by research).
+  - **Round 5 - Polish**: Jobs names each top-5 idea and writes the one-liner; Karp writes the 30-second explanation; Godin defines who it's for; Gary Vee defines the first-10k-users channel; Ive defines the 3-screen UX flow.
 - Write the polished Top-5 ideas section for the domain to `d:\Hackathons\Nexconn\war-room\<domain>-ideas.md` following the exact `ideas.md` template.
 
-#### Step 5 — Winnability, Assemble, Render (`SKILL.md` Lines 103–115, `war-room-protocol.md` Phase 4)
+#### Step 5 - Winnability, Assemble, Render (`SKILL.md` Lines 103–115, `war-room-protocol.md` Phase 4)
 1. Compute the **Domain Winnability Index** across all tracks/domains, select the **#1 recommended domain + idea**, and select a **dark horse** pick.
 2. Complete Part 5 (`Domain Winnability ranking`) and Part 6 (`The Council`) of `d:\Hackathons\Nexconn\biblehackathon.md`.
 3. Assemble `d:\Hackathons\Nexconn\ideas.md`:
-   - `Part 0 — Where to Play` (Domain Winnability ranking table, Council's #1 pick and dark horse with 5-line reason, All ideas at a glance table)
+   - `Part 0 - Where to Play` (Domain Winnability ranking table, Council's #1 pick and dark horse with 5-line reason, All ideas at a glance table)
    - Every `war-room/<domain>-ideas.md` ordered by Domain Winnability rank (highest to lowest)
    - Merged numbered `# Sources` section at the end.
 4. Verification checks before rendering:
@@ -199,7 +199,7 @@ d:\Hackathons\Nexconn\
    ```
 6. Verify both `d:\Hackathons\Nexconn\biblehackathon.pdf` and `d:\Hackathons\Nexconn\ideas.pdf` exist and are `> 0` bytes.
 
-#### Step 6 — Hand Over (`SKILL.md` Lines 116–122)
+#### Step 6 - Hand Over (`SKILL.md` Lines 116–122)
 - Append final summary (domains, idea names, scores, winnability ranking, #1 recommendation + dark horse) to `d:\Hackathons\Nexconn\state.md`.
 
 ---
@@ -271,7 +271,7 @@ Include the relevant bench seats for domains present in the hackathon (and add c
 
 ## 1.4 Scoring Rubrics (`war-room-protocol.md` Lines 52–79)
 
-### A. Idea Scoring Rubric (Round 4 — Weighted Total out of 10.0)
+### A. Idea Scoring Rubric (Round 4 - Weighted Total out of 10.0)
 Every top-5 idea in every domain MUST display its individual criterion scores (1–10) and weighted total out of 10:
 
 | # | Criterion | Weight | Owner |
@@ -290,7 +290,7 @@ Every top-5 idea in every domain MUST display its individual criterion scores (1
 Formula:
 $$\text{Score} = 0.15(\text{pain} + \text{novelty} + \text{alignment} + \text{demo}) + 0.10(\text{feasibility} + \text{India} + \text{business}) + 0.05(\text{legal} + \text{moonshot})$$
 
-### B. Domain Winnability Index (Phase 4 — Weighted Total out of 10.0)
+### B. Domain Winnability Index (Phase 4 - Weighted Total out of 10.0)
 Computed for every track/domain (including Open Innovation) to rank where the team has the highest odds of winning:
 
 | # | Factor | Weight | How to Measure |
@@ -309,7 +309,7 @@ $$\text{Winnability} = 0.25(\text{CompInv}) + 0.20(\text{SatInv} + \text{Demo} +
 ## 1.5 Exact Output Templates & Formatting Rules (`output-templates.md`)
 
 ### Formatting Rules for Markdown → PDF (`md2pdf.py`)
-- Use `#` (`H1`) **only** for major Parts (`# Part 1 — ...`, `# <Domain 1>`, `# Sources`) because CSS in `md2pdf.py` applies `page-break-before: always` to every `h1` after the first.
+- Use `#` (`H1`) **only** for major Parts (`# Part 1 - ...`, `# <Domain 1>`, `# Sources`) because CSS in `md2pdf.py` applies `page-break-before: always` to every `h1` after the first.
 - Use `##` (`H2`) for sections (`md2pdf.py` generates the automatic Table of Contents from `H1` and `H2` headings via `toc_depth: "1-2"`).
 - Tables render cleanly with styled headers; avoid raw HTML blocks.
 - Every factual claim must have an inline source link or `[S#]` reference, and both `biblehackathon.md` and `ideas.md` must end with `# Sources` containing a numbered list of real URLs.
@@ -317,40 +317,40 @@ $$\text{Winnability} = 0.25(\text{CompInv}) + 0.20(\text{SatInv} + \text{Demo} +
 ### Template 1: `d:\Hackathons\Nexconn\biblehackathon.md`
 Must contain these exact top-level H1 parts and H2 sections:
 ```markdown
-# <Hackathon Name> — The Hackathon Bible
+# <Hackathon Name> - The Hackathon Bible
 > One-paragraph verdict: what this hackathon really is, why it exists, and how to win it.
 
-# Part 1 — The Facts
+# Part 1 - The Facts
 ## At a glance
 ## Evaluation criteria
 ## Themes & problem statements
 ## Timeline & deliverables checklist
 
-# Part 2 — The People
+# Part 2 - The People
 ## Organisers & committee
 ## Sponsors
 ## Judges & jury
 ## Judge heat-map
 
-# Part 3 — Why This Hackathon, Why Now
+# Part 3 - Why This Hackathon, Why Now
 ## The real reason it exists
 ## Policy & scheme drivers
 ## Incidents & history behind the problem statements
 ## Geopolitical lens (global + India)
 ## What the organisers want to announce afterwards
 
-# Part 4 — Connecting the Dots
+# Part 4 - Connecting the Dots
 ## Dots nobody else will connect
 ## Hidden evaluation criteria
-## Landmines — what will annoy this jury
-## The 80% trap — what most teams will build
+## Landmines - what will annoy this jury
+## The 80% trap - what most teams will build
 
-# Part 5 — The Battlefield
+# Part 5 - The Battlefield
 ## Competition forecast
 ## Prior work by domain
 ## Domain Winnability ranking
 
-# Part 6 — The Council
+# Part 6 - The Council
 ## Who sat in the war room
 
 # Sources
@@ -360,11 +360,11 @@ Must contain these exact top-level H1 parts and H2 sections:
 ### Template 2: `d:\Hackathons\Nexconn\ideas.md`
 Must contain these exact top-level H1 parts and H2 sections, with **5 ideas per domain** ordered by Domain Winnability:
 ```markdown
-# <Hackathon Name> — Top Ideas by Domain
+# <Hackathon Name> - Top Ideas by Domain
 > How to read this: 5 ideas per domain, ranked. Scores are the council's weighted rubric (out of 10).
 > Winnability ranking of domains is in Part 0.
 
-# Part 0 — Where to Play
+# Part 0 - Where to Play
 ## Domain Winnability ranking
 ## The council's #1 pick and dark horse
 ## All ideas at a glance
@@ -372,7 +372,7 @@ Must contain these exact top-level H1 parts and H2 sections, with **5 ideas per 
 # <Domain 1>
 ## Domain snapshot
 
-## Idea 1 — <Name>: <one-liner>
+## Idea 1 - <Name>: <one-liner>
 **Type:** Exists-but-weak / Doesn't exist / Exists abroad, not in India   **Score:** X.X/10   **Problem statement:** <ID>
 
 **The pain (Mike Ross):** ...
@@ -386,16 +386,16 @@ Must contain these exact top-level H1 parts and H2 sections, with **5 ideas per 
 **Council jurisdiction (short verdicts, only seats that matter for this idea):**
 | Seat | Verdict |
 |---|---|
-| Thiel — market & moat | … |
-| Buffett — money | revenue model, who pays, ₹ pricing, fintech hooks |
-| Harvey / Sharma — legal & India compliance | laws that apply + how the MVP stays clean |
-| Jaishankar — India alignment | national priority, scheme, ministry that will own it |
-| Karpathy — AI & tech | model choices, Nexconn SDK/service integration, why the AI is load-bearing |
-| Mike Ross — human & ethics | … |
-| Munger — how it dies | top risk + mitigation |
-| Musk — year-10 moonshot | … |
-| <Domain lead> — field reality | … |
-| Godin / Gary Vee — first 10k users | … |
+| Thiel - market & moat | … |
+| Buffett - money | revenue model, who pays, ₹ pricing, fintech hooks |
+| Harvey / Sharma - legal & India compliance | laws that apply + how the MVP stays clean |
+| Jaishankar - India alignment | national priority, scheme, ministry that will own it |
+| Karpathy - AI & tech | model choices, Nexconn SDK/service integration, why the AI is load-bearing |
+| Mike Ross - human & ethics | … |
+| Munger - how it dies | top risk + mitigation |
+| Musk - year-10 moonshot | … |
+| <Domain lead> - field reality | … |
+| Godin / Gary Vee - first 10k users | … |
 
 **Tech stack (basic):** Frontend · Backend · AI/ML (models, APIs) · Data (sources, DB) · India rails · Infra · Sponsor/Nexconn tech used.
 **Implementation sketch:** MVP scope for the hackathon time box in phases (H0–6, H6–18, H18–30, H30–36), what is real vs mocked in the demo, datasets with links.

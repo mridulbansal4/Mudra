@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T18:05:30Z
+# BRIEFING - 2026-10-31T18:05:30Z
 
 ## Mission
 Monitor Project Orchestrator (`ce650322-b861-45dd-a12e-c7d3a6871eb0`) executing the Nexconn hackathon war-room research, track ideation, council debate, and PDF/Markdown deliverable generation, and verify completion via Victory Audit.
@@ -12,7 +12,7 @@ Monitor Project Orchestrator (`ce650322-b861-45dd-a12e-c7d3a6871eb0`) executing 
 - Active Victory Auditor: 009caeae-1ebd-4f9b-825b-fbfd0d3ccb28 (`victory_auditor_1`)
 
 ## 🔒 Key Constraints
-- No technical decisions — relay only
+- No technical decisions - relay only
 - Victory Audit is MANDATORY before reporting completion
 - Follow `war-room-council` (`C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md`) and `agent-browser` (`C:\Users\Harshad\.gemini\config\skills\agent-browser\SKILL.md`) skills
 - Produce `biblehackathon.md`, `biblehackathon.pdf`, `ideas.md`, `ideas.pdf`, `state.md`, `research/`, and `war-room/` in `d:\Hackathons\Nexconn` with zero placeholders/TODOs and non-empty valid PDFs
@@ -39,9 +39,9 @@ Monitor Project Orchestrator (`ce650322-b861-45dd-a12e-c7d3a6871eb0`) executing 
 - **Retry count**: 0
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\BRIEFING.md` — Sentinel briefing and state index
-- `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md` — Verbatim approved task prompt
-- `d:\Hackathons\Nexconn\.agents\teamwork\progress.md` — Sentinel progress log
-- `d:\Hackathons\Nexconn\.agents\teamwork\handoff.md` — Sentinel final handoff report
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_orchestrator_main\handoff.md` — Project Orchestrator hard handoff report
-- `d:\Hackathons\Nexconn\.agents\teamwork\victory_auditor_1\handoff.md` — Independent Victory Auditor report (`VICTORY CONFIRMED`)
+- `d:\Hackathons\Nexconn\.agents\teamwork\BRIEFING.md` - Sentinel briefing and state index
+- `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md` - Verbatim approved task prompt
+- `d:\Hackathons\Nexconn\.agents\teamwork\progress.md` - Sentinel progress log
+- `d:\Hackathons\Nexconn\.agents\teamwork\handoff.md` - Sentinel final handoff report
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_orchestrator_main\handoff.md` - Project Orchestrator hard handoff report
+- `d:\Hackathons\Nexconn\.agents\teamwork\victory_auditor_1\handoff.md` - Independent Victory Auditor report (`VICTORY CONFIRMED`)

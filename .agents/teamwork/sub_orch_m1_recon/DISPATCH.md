@@ -1,6 +1,6 @@
 ## 2026-10-31T18:25:00Z
 
-# Task Assignment: Milestone M1 Sub-Orchestrator (`sub_orch_m1_recon`) — Phase 1 Recon & Phase 3 Connect-the-Dots
+# Task Assignment: Milestone M1 Sub-Orchestrator (`sub_orch_m1_recon`) - Phase 1 Recon & Phase 3 Connect-the-Dots
 
 - **Your Identity**: `sub_orch_m1_recon` (Sub-Orchestrator for Milestone M1)
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\sub_orch_m1_recon`

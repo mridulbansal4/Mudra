@@ -1,5 +1,5 @@
-# Official Nexconn SDK Integration Manual & Console Guide — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Nexconn SDK Lead — Dev 1) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Official Nexconn SDK Integration Manual & Console Guide - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Nexconn SDK Lead - Dev 1) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Architecture](./ARCHITECTURE.md) · [Integrations](./INTEGRATIONS.md) · [Frontend](./FRONTEND.md) · [Backend](./BACKEND.md)
 
 ---
@@ -19,7 +19,7 @@ Before running `apps/web` or `services/nexconn-bridge-node`, perform these exact
 ### Step 1: Create Account & Application
 1. Open [https://console.nexconn.ai](https://console.nexconn.ai) and sign in with the Team `Chanakya` master developer account.
 2. Click **"Create Application"**:
-   - **Application Name**: `SAMADHAN-OS-Production`
+   - **Application Name**: `MUDRA-OS-Production`
    - **Region / Data Center**: `Singapore (ap-southeast-1)` (closest edge to both Singapore's RCLOUD GLOBAL PTE. LTD. and India).
 3. Once created, open **Application Overview → Credentials** and copy:
    - **`App Key`** → Paste into `.env` as `NEXCONN_APP_KEY` and `VITE_NEXCONN_APP_KEY` (and save for the Reskilll submission form!).
@@ -46,7 +46,7 @@ Before running `apps/web` or `services/nexconn-bridge-node`, perform these exact
 ### Step 5: Configure Domain Allowlist & WebRTC TURN
 1. Navigate to **Security → CORS / Allowed Origins** and add:
    - `http://localhost:5173` (Local Vite Dev)
-   - `https://samadhan-os.vercel.app` / `https://samadhan-os.dev` (Production Live App URL)
+   - `https://mudra-os.vercel.app` / `https://mudra-os.dev` (Production Live App URL)
 
 ---
 
@@ -58,7 +58,7 @@ Before running `apps/web` or `services/nexconn-bridge-node`, perform these exact
 pnpm add @nexconn/chatui@^26.2.5 @nexconn/chat@^26.2.1 @nexconn/engine@^26.2.1 @nexconn/call@^26.2.0 lit@^3.3.2
 ```
 
-| Package | Version | Supported Channels | What It Does in SAMADHAN-OS |
+| Package | Version | Supported Channels | What It Does in MUDRA-OS |
 |---|---|---|---|
 | `@nexconn/chatui` | `^26.2.5` | **ONLY** `Direct`, `Group`, `System` (`❌` No `Open`, `❌` No `Community`, `❌` No voice recording) | Renders `<nc-chat-ui-app-provider>` and hosts our 4 custom Lit `BaseMessageContent` cards (`registerMessageType`). |
 | `@nexconn/chat` & `@nexconn/engine` | `^26.2.1` | **ALL 5**: `Direct`, `Group`, `System`, `Community`, `Open` | Powers `NCEngine.initialize` & `NCEngine.connect`, `Open` channel live flash-lot ticker, `Community` category subchannels (`createCommunitySubchannel`), and browser voice recording. |
@@ -86,7 +86,7 @@ import { customElement, property } from "lit/decorators.js";
 import { BaseMessageContent } from "@nexconn/chatui";
 
 @customElement("nc-escrow-deal-card")
-export class SamadhanEscrowCard extends BaseMessageContent {
+export class MudraEscrowCard extends BaseMessageContent {
   static styles = css`
     :host {
       display: block;
@@ -119,7 +119,7 @@ export class SamadhanEscrowCard extends BaseMessageContent {
 
   private dispatchDealAction(action: string) {
     this.dispatchEvent(
-      new CustomEvent("samadhan-deal-action", {
+      new CustomEvent("mudra-deal-action", {
         detail: { action, dealId: this.message?.customExtras?.dealId },
         bubbles: true,
         composed: true, // Crosses Lit Shadow DOM boundary into React 19!
@@ -156,15 +156,15 @@ import { NCChatUIApplication, registerMessageType } from "@nexconn/chatui";
 import { NCEngine } from "@nexconn/engine";
 import { NCCallEngine, NCCallMediaType } from "@nexconn/call";
 import {
-  SamadhanEscrowCard,
-  SamadhanBilingualBubble,
-  SamadhanAssayReceipt,
-  SamadhanTribunalVerdict,
-} from "@samadhan/nc-lit-cards";
+  MudraEscrowCard,
+  MudraBilingualBubble,
+  MudraAssayReceipt,
+  MudraTribunalVerdict,
+} from "@mudra/nc-lit-cards";
 
 let bootPromise: Promise<void> | null = null;
 
-export async function initializeSamadhanNexconnStack(params: {
+export async function initializeMudraNexconnStack(params: {
   appKey: string;
   token: string;
   locale?: "en_US" | "zh_CN";
@@ -177,10 +177,10 @@ export async function initializeSamadhanNexconnStack(params: {
       language: params.locale ?? "en_US",
       hooks: {
         beforeReady() {
-          registerMessageType("x-samadhan-escrow-card", SamadhanEscrowCard);
-          registerMessageType("x-samadhan-bilingual-bubble", SamadhanBilingualBubble);
-          registerMessageType("x-samadhan-assay-receipt", SamadhanAssayReceipt);
-          registerMessageType("x-samadhan-tribunal-verdict", SamadhanTribunalVerdict);
+          registerMessageType("x-mudra-escrow-card", MudraEscrowCard);
+          registerMessageType("x-mudra-bilingual-bubble", MudraBilingualBubble);
+          registerMessageType("x-mudra-assay-receipt", MudraAssayReceipt);
+          registerMessageType("x-mudra-tribunal-verdict", MudraTribunalVerdict);
         },
       },
     });
@@ -193,7 +193,7 @@ export async function initializeSamadhanNexconnStack(params: {
     // STEP 3: Initialize NCCallEngine ONLY AFTER await NCEngine.connect({ token }) resolves
     const callEngine = NCCallEngine.getInstance();
     callEngine.onServerCallLogReceived((callLog) => {
-      window.dispatchEvent(new CustomEvent("samadhan-call-log", { detail: callLog }));
+      window.dispatchEvent(new CustomEvent("mudra-call-log", { detail: callLog }));
     });
   })();
 
@@ -270,7 +270,7 @@ export async function issueNexconnToken(userId: string, name: string, portraitUr
     issueAccessTokenRequest: {
       userId,
       name,
-      portrait: portraitUri ?? "https://api.samadhan-os.dev/avatars/default.png",
+      portrait: portraitUri ?? "https://api.mudra-os.dev/avatars/default.png",
     },
   });
 }
@@ -280,7 +280,7 @@ export async function issueNexconnToken(userId: string, name: string, portraitUr
 export async function streamGroupDealMessage(params: {
   channelId: string;
   senderId: string;
-  messageType: string; // e.g., "x-samadhan-bilingual-bubble" or "x-samadhan-tribunal-verdict"
+  messageType: string; // e.g., "x-mudra-bilingual-bubble" or "x-mudra-tribunal-verdict"
   contentStream: string;
   customExtras: Record<string, unknown>;
 }) {

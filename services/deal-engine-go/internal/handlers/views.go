@@ -3,8 +3,8 @@ package handlers
 import (
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 // EscrowContractView is EscrowContractSummary (+ umn).
