@@ -1,4 +1,4 @@
-# Milestone M4 Handoff Report — Master Assembly, Winnability & PDF Rendering (`worker_m4_assembly`)
+# Milestone M4 Handoff Report - Master Assembly, Winnability & PDF Rendering (`worker_m4_assembly`)
 
 - **Handoff Type:** Hard (Task 100% Complete)
 - **Worker Agent:** `worker_m4_assembly` (`4cddd977-b090-4de9-8416-bc15939934a0`)
@@ -44,7 +44,7 @@ Command:
 ```text
 > python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --root "d:\Hackathons\Nexconn"
 ==============================================================================
-NEXCONN 2026 E2E TEST SUITE — ROOT: D:\Hackathons\Nexconn (TIER: all)
+NEXCONN 2026 E2E TEST SUITE - ROOT: D:\Hackathons\Nexconn (TIER: all)
 ==============================================================================
 
 --- Tier 1: 80/80 passed ---
@@ -97,14 +97,14 @@ Exit code: 0
    - From `research/D-why-now.md`, `research/E-competition.md`, and `research/F-connect-the-dots.md`, we integrated the 7 Patrick Jane evidence-backed dots, the *Trigger -> Evidence -> Worry -> Proof* incident matrices (*Air Canada v. Moffatt*, *Piper Alpha*, Joint Commission I-PASS, Discord March 2026 slowdown, MHA I4C ”Digital Arrest” scams), the global hackathon winner table (`ETHGlobal Agentic Ethereum 2025`, `TreeHacks 2025`, `Berkeley RDI LLM Agents 2024–2025`, `CalHacks 11.0`, `Microsoft AI Agents Hackathon 2025`), and the 2024–2026 arXiv benchmark papers (`MultiAgentBench`, `SWE-agent`, `Tau-bench`, `Collider`, `Stickney et al.`).
 2. **Computing the 5-Factor Domain Winnability Index (F15 & F16):**
    - Applying $\text{Winnability} = 0.25(\text{CompInv}) + 0.20(\text{SatInv}) + 0.25(\text{Demo}) + 0.20(\text{Align}) + 0.10(\text{Feas48h})$ across all 6 canonical tracks yielded the exact winnability order:
-     1. **Rank #1 — `nexconn-gaming` (`02 Gaming & Live Streams`):** **9.27 / 10** (`CompInv 9.0 · SatInv 9.2 · Demo 9.8 · Align 9.6 · Feas 8.7`) — **#1 Winning Pick: `GhostCoach SquadOS` (`9.44 / 10`)**.
-     2. **Rank #2 — `nexconn-workplace` (`03 Workplace & Collaboration`):** **9.02 / 10** (`CompInv 8.6 · SatInv 9.0 · Demo 9.4 · Align 9.5 · Feas 8.6`) — Top Idea: **`BatonOS` (`9.15 / 10`)**.
-     3. **Rank #3 — `nexconn-support` (`04 Marketplace & Support`):** **9.01 / 10** (`CompInv 8.4 · SatInv 9.0 · Demo 9.5 · Align 9.4 · Feas 8.9`) — Top Idea: **`WhisperDesk ($\tau$-Guard)` (`9.20 / 10`)**.
-     4. **Rank #4 — `open-innovation` (`06 Open Innovation` / `open`):** **8.73 / 10** (`CompInv 8.5 · SatInv 9.0 · Demo 9.0 · Align 9.0 · Feas 8.0`) — **#1 Dark Horse Pick: `A2ACanvas OS` (`9.25 / 10`)**.
-     5. **Rank #5 — `nexconn-social` (`01 Social & Community`):** **8.69 / 10** (`CompInv 7.6 · SatInv 8.4 · Demo 9.6 · Align 9.4 · Feas 8.7`) — Top Idea: **`SyncStage AI` (`9.29 / 10`)**.
-     6. **Rank #6 — `nexconn-social-good` (`05 Humanitarian & Social Good`):** **8.43 / 10** (`CompInv 8.8 · SatInv 8.5 · Demo 8.2 · Align 8.2 · Feas 8.3`) — Top Idea: **`KavachElder` (`9.07 / 10`)**.
+     1. **Rank #1 - `nexconn-gaming` (`02 Gaming & Live Streams`):** **9.27 / 10** (`CompInv 9.0 · SatInv 9.2 · Demo 9.8 · Align 9.6 · Feas 8.7`) - **#1 Winning Pick: `GhostCoach SquadOS` (`9.44 / 10`)**.
+     2. **Rank #2 - `nexconn-workplace` (`03 Workplace & Collaboration`):** **9.02 / 10** (`CompInv 8.6 · SatInv 9.0 · Demo 9.4 · Align 9.5 · Feas 8.6`) - Top Idea: **`BatonOS` (`9.15 / 10`)**.
+     3. **Rank #3 - `nexconn-support` (`04 Marketplace & Support`):** **9.01 / 10** (`CompInv 8.4 · SatInv 9.0 · Demo 9.5 · Align 9.4 · Feas 8.9`) - Top Idea: **`WhisperDesk ($\tau$-Guard)` (`9.20 / 10`)**.
+     4. **Rank #4 - `open-innovation` (`06 Open Innovation` / `open`):** **8.73 / 10** (`CompInv 8.5 · SatInv 9.0 · Demo 9.0 · Align 9.0 · Feas 8.0`) - **#1 Dark Horse Pick: `A2ACanvas OS` (`9.25 / 10`)**.
+     5. **Rank #5 - `nexconn-social` (`01 Social & Community`):** **8.69 / 10** (`CompInv 7.6 · SatInv 8.4 · Demo 9.6 · Align 9.4 · Feas 8.7`) - Top Idea: **`SyncStage AI` (`9.29 / 10`)**.
+     6. **Rank #6 - `nexconn-social-good` (`05 Humanitarian & Social Good`):** **8.43 / 10** (`CompInv 8.8 · SatInv 8.5 · Demo 8.2 · Align 8.2 · Feas 8.3`) - Top Idea: **`KavachElder` (`9.07 / 10`)**.
 3. **Assembling `ideas.md`, `state.md`, and Rendering PDFs (F16):**
-   - Assembled `ideas.md` with `# Part 0 — Where to Play` (`## Domain Winnability ranking`, `## The council's #1 pick and dark horse`, `## All ideas at a glance`), followed by all 6 domain sections in exact winnability order (30 ideas total, each preserving all 14 required fields, exact 9-criterion weighted score math with `diff = 0.000`, and zero raw war-room dialogue leaks), ending with a unified `# Sources` section (`65` numbered URLs + search verification log).
+   - Assembled `ideas.md` with `# Part 0 - Where to Play` (`## Domain Winnability ranking`, `## The council's #1 pick and dark horse`, `## All ideas at a glance`), followed by all 6 domain sections in exact winnability order (30 ideas total, each preserving all 14 required fields, exact 9-criterion weighted score math with `diff = 0.000`, and zero raw war-room dialogue leaks), ending with a unified `# Sources` section (`65` numbered URLs + search verification log).
    - Rendered both PDFs via `md2pdf.py` using headless Chromium and verified all 189 E2E tests pass (`100.0%`).
 
 ---

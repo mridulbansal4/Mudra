@@ -1,25 +1,25 @@
-# Nexconn Build Challenge — The Hackathon Intelligence Bible
+# Nexconn Build Challenge - The Hackathon Intelligence Bible
 *Prepared by the War-Room Council · Reverse-Engineered from Organiser, Sponsor, Judge, Policy, Prior-Art & 6-Track Domain Intelligence (2026)*
 
 ---
 
-# Part 1 — Executive Summary
+# Part 1 - Executive Summary
 
 ## At a glance
 | Field | Value | Source |
 |---|---|---|
 | **Official Name** | **Nexconn Build Challenge** (*"Transform Static Apps Into Living Communities"*) | [1], [2] |
 | **Portal URL** | `https://reskilll.com/hack/nexconn/` | [1] |
-| **Lead Organiser & Sponsor** | **Nexconn (`nexconn.ai` · `RCLOUD GLOBAL PTE. LTD.`, Singapore — global brand of RongCloud)** — AI-native real-time communications & multi-agent collaboration cloud (Chat SDK, Chat UI, Call SDK, AICP Multi-Agent Protocol, Server APIs, `nexconn-skills`) | [2], [3], [4] |
-| **Execution & DevRel Partner** | **Reskilll (`reskilll.com`)** — India's premier developer ecosystem & hackathon operations platform (500,000+ developers, 130+ hackathons delivered across Microsoft, AWS, GitHub, Azure) | [1], [5], [6] |
+| **Lead Organiser & Sponsor** | **Nexconn (`nexconn.ai` · `RCLOUD GLOBAL PTE. LTD.`, Singapore - global brand of RongCloud)** - AI-native real-time communications & multi-agent collaboration cloud (Chat SDK, Chat UI, Call SDK, AICP Multi-Agent Protocol, Server APIs, `nexconn-skills`) | [2], [3], [4] |
+| **Execution & DevRel Partner** | **Reskilll (`reskilll.com`)** - India's premier developer ecosystem & hackathon operations platform (500,000+ developers, 130+ hackathons delivered across Microsoft, AWS, GitHub, Azure) | [1], [5], [6] |
 | **Format, Dates & Eligibility** | Fully Online Global Buildathon (Launch Oct 23, 2026; Submission Nov 22, 2026 AoE; Judging Nov 23–27, 2026; Results Dec 1, 2026) · **1 to 4 members** per team (Mainland China `CN` excluded) | [1] |
 | **Total Prize Pool** | **$5,000 USD total cash** (`$2,000` 1st · `$1,250` 2nd · `$750` 3rd · `$500` 4th · `$500` 5th) + **2 years of Nexconn Free Chat Plan worth $20,640 USD** (`$860/mo` for 10,000 MAU; >`$25,000+` combined package value) + **1-Year Cloud Discount (`15% OFF AWS` or `30% OFF Alibaba Cloud`)** + 1-on-1 Demo Call with Nexconn Product Leadership | [1] |
 | **Prize Breakdown** | **1st Place:** `$2,000 USD` · **2nd Place:** `$1,250 USD` · **3rd Place:** `$750 USD` · **4th Place:** `$500 USD` · **5th Place:** `$500 USD` · **All Winners:** `$20,640` Nexconn Free Chat Plan (24 months × `$860/mo`) + AWS (`15% OFF`) / Alibaba Cloud (`30% OFF`) credits | [1] |
 | **Mandatory Eligibility Gate** | **Hard Gate (Pass / Disqualify):** Every submission **MUST** integrate **Nexconn Chat SDK** (`nexconn-chat` / `@nexconn/chat-sdk` v4.19.0+) or **Chat UI** (`nexconn-chat-uikit-react` / `@nexconn/chat-ui`) verified via a valid **App Key** (`appKey`, `^[A-Za-z0-9_-]{8,64}$`). **Call SDK** (`nexconn-calls` / `@nexconn/call-sdk`) is an optional multiplier and does not satisfy the Chat SDK requirement alone. | [1], [3], [4] |
 | **Submission Deliverables** | 1. **Public GitHub Repository** (`repoUrl` with source code & architecture README)<br>2. **Live Deployed Application URL** (connected to a real `appKey` on `console.nexconn.ai`)<br>3. **Demo Video (Max 3 Minutes, `demoVideoUrl`)** showing real-time multi-user / multi-agent interaction<br>4. **Write-up PDF (`<= 25 MB`) & Active User Telemetry (`activeUsers`, `tractionUrl`)** on `console.nexconn.ai` | [1], [3] |
-| **Council #1 Recommended Track** | **Track 02 — Gaming & Live Streams (`nexconn-gaming`)** · Domain Winnability Index: **9.27 / 10** | Council Synthesis |
-| **Council #1 Winning Idea** | **GhostCoach SquadOS** (`9.44 / 10` in `nexconn-gaming`) — Sub-100ms Multimodal Esports Telemetry Referee, Anti-Tilt Voice Shield & Dead-Teammate Tactical Shotcaller | Council Synthesis |
-| **Council #1 Dark Horse Idea** | **A2ACanvas OS** (`9.25 / 10` in `open` / `open-innovation`) — Multi-Agent AICP Debate War-Room & Executable Micro-App Canvas on 300-KV `Message Expansion` | Council Synthesis |
+| **Council #1 Recommended Track** | **Track 02 - Gaming & Live Streams (`nexconn-gaming`)** · Domain Winnability Index: **9.27 / 10** | Council Synthesis |
+| **Council #1 Winning Idea** | **GhostCoach SquadOS** (`9.44 / 10` in `nexconn-gaming`) - Sub-100ms Multimodal Esports Telemetry Referee, Anti-Tilt Voice Shield & Dead-Teammate Tactical Shotcaller | Council Synthesis |
+| **Council #1 Dark Horse Idea** | **A2ACanvas OS** (`9.25 / 10` in `open` / `open-innovation`) - Multi-Agent AICP Debate War-Room & Executable Micro-App Canvas on 300-KV `Message Expansion` | Council Synthesis |
 
 ---
 
@@ -71,15 +71,15 @@ Reverse-engineering the compiled React bundle (`index-BVD-GoH1.js`, `Rules-DQNF0
 
 ---
 
-# Part 2 — Who's In The Room
+# Part 2 - Who's In The Room
 
 ## Organisers & committee
 
-The **Nexconn Build Challenge** is a joint strategic operation between **Nexconn (`nexconn.ai` / `RCLOUD GLOBAL PTE. LTD.`, Singapore — the global arm of RongCloud)** (the global communications cloud vendor funding the `$5,000` cash pool + `$20,640` Free Chat Plan prizes and supplying the engineering jury) and **Reskilll (`reskilll.com`)** (India's largest developer community operator running participant acquisition, `Admin-_pGkMjvW.js` submission triage, and first-round functional QA) [1], [2], [5]:
+The **Nexconn Build Challenge** is a joint strategic operation between **Nexconn (`nexconn.ai` / `RCLOUD GLOBAL PTE. LTD.`, Singapore - the global arm of RongCloud)** (the global communications cloud vendor funding the `$5,000` cash pool + `$20,640` Free Chat Plan prizes and supplying the engineering jury) and **Reskilll (`reskilll.com`)** (India's largest developer community operator running participant acquisition, `Admin-_pGkMjvW.js` submission triage, and first-round functional QA) [1], [2], [5]:
 
 | Entity / Leader | Role in Hackathon | Institutional DNA & Track Record | What They Care About Most |
 |---|---|---|---|
-| **Nexconn (`RCLOUD GLOBAL PTE. LTD.` / RongCloud) Leadership & Engineering** · **Han Ying** (*CEO*), **Yang Pan** (*CTO*), **Cen Yu** (*VP Eng*), **Leo** (*Product Director*), **Kai** (*AI PM leading AICP*), **Amy** (*Solutions Engineer*) | **Title Organiser, Platform Sponsor & Final Technical Jury** | Founded in 2015 out of China Mobile's 2007 **Fetion** engineering core (19-year IM lineage); powers **250,000+ apps** (*HoYoLAB, Bondee, Jaco, Falla, Miniso, Blockman Go, Lenovo*) over `SD-CAN` (`300+` global edge relays, `<100ms–120ms` global latency, `99.99%` SLA) and AI-native primitives (`AICP`, `StreamMsg`, `nexconn-skills`, Console MCP) [2], [3], [4]. | **Reference Flagship Showcases & 100+ MAU Funnel:** Proving that Nexconn is the **essential real-time orchestration fabric for the 2026 Agentic AI era**—and converting top finalists into long-term `console.nexconn.ai` apps on the `$860/mo` (10,000 MAU) Free Chat Plan funnel. |
+| **Nexconn (`RCLOUD GLOBAL PTE. LTD.` / RongCloud) Leadership & Engineering** · **Han Ying** (*CEO*), **Yang Pan** (*CTO*), **Cen Yu** (*VP Eng*), **Leo** (*Product Director*), **Kai** (*AI PM leading AICP*), **Amy** (*Solutions Engineer*) | **Title Organiser, Platform Sponsor & Final Technical Jury** | Founded in 2015 out of China Mobile's 2007 **Fetion** engineering core (19-year IM lineage); powers **250,000+ apps** (*HoYoLAB, Bondee, Jaco, Falla, Miniso, Blockman Go, Lenovo*) over `SD-CAN` (`300+` global edge relays, `<100ms–120ms` global latency, `99.99%` SLA) and AI-native primitives (`AICP`, `StreamMsg`, `nexconn-skills`, Console MCP) [2], [3], [4]. | **Reference Flagship Showcases & 100+ MAU Funnel:** Proving that Nexconn is the **essential real-time orchestration fabric for the 2026 Agentic AI era** - and converting top finalists into long-term `console.nexconn.ai` apps on the `$860/mo` (10,000 MAU) Free Chat Plan funnel. |
 | **Reskilll (`reskilll.com`)** · Led by **Rohan Verma** (*Founder & CEO*) & **Azhar Iqubal** (*Co-Founder / Ecosystem Advisor, Founder of Inshorts*) | **Co-Organiser, Operations Engine & Stage-1 Screening Committee** | Headquartered in Noida/NCR; operates a **500,000+ Indian developer network** across 600+ engineering colleges and startup hubs. Delivered 130+ flagship hackathons including *Microsoft Imagine Cup India*, *Azure Developer League*, *GitHub Constellation*, and *AWS GenAI Buildathons* [5], [6]. | **Zero-Friction, High-Craft Deployments:** Working live URLs, clean GitHub repositories, crisp 3-minute videos, and immediate consumer/enterprise utility that showcases Indian developer excellence to a global sponsor. |
 | **Reskilll Program & Triage Leads** (**Satyajit Roy**, **Jatin Saini**, **Simran Jagdev**, **Ruchika Tulsyan**) | **Stage-1 Submission Triage & Shortlisting Evaluators** | Seasoned hackathon evaluators who filter 250–500 raw submissions via `Admin-_pGkMjvW.js` (`appKey`, `activeUsers`, `tractionUrl`) down to the finalist pool in `<3 minutes per project` [1], [5]. | **Instant Reproducibility:** Does the live URL open without a 10-step login wall? Does `package.json` verify real Nexconn SDK usage? Does the demo video show a working product by `0:45`? |
 
@@ -92,15 +92,15 @@ The **Nexconn Build Challenge** is a joint strategic operation between **Nexconn
 | # | Nexconn Platform Primitive | Technical Specification & Endpoint (`docs.nexconn.ai`) | Strategic Why-It-Matters for Winning |
 |---|---|---|---|
 | **1** | **AICP (AI Collaboration Protocol)** | First-class **`AgentID`**, **`SessionID`**, and **`ContextWindow`** primitives inside the messaging core (`nexconn.ai`) [2]. | Elevates AI from a bolt-on webhook into a native channel participant with its own identity, presence, memory scope, and turn-taking governance. |
-| **2** | **`StreamMsg` (Native Streaming Message API)** | **`POST /v2/application/stream-message`** (`/message/stream-message.md`) [3]. | Streams LLM/agent tokens progressively into a single chat bubble over Nexconn's WebSocket pipe—eliminating custom SSE hacks or message-edit rate-limit errors. |
-| **3** | **Message Expansion (In-Message State Store)** | **`PUT /v2/application/expansion`** — Up to **300 Key-Value pairs (`16 KB`) per message**, with `isCanUpdateExpansion: true` allowing any channel member to mutate state live (`/message/expansion.md`) [3]. | Turns any chat bubble into an **interactive multiplayer mini-app** (live Kanban card, escrow contract, clinical FHIR chart, raid readiness widget, or 2D canvas node) without deploying an external database! |
-| **4** | **Targeted Group Whispers (`targetUserIds`)** | **`POST /v2/application/group-channels/direct`** — Sends a message inside a Group Channel that is cryptographically delivered and rendered **only** to specified `targetUserIds` (`/group-channels/direct.md`) [3]. | Enables **asymmetric private coaching** inside a shared room (e.g., an AI Coach whispering a policy warning to a support agent, a shotcall to a tilted gamer, or a scam alert to a caregiver without embarrassing the senior). |
-| **5** | **Open Channel Metadata + `CAS` Locks** | **`PUT /v2/application/open-channels/metadata`** — Up to **50 KV pairs (`8 KB`) per channel**, supporting **`cas` (Compare-And-Swap)** optimistic concurrency at `10 updates/sec` across `10,000+` viewers (`/open-channels/metadata.md`) [3]. | Powers **conflict-free global room state** (live boss HP bars, watch-party playback timestamps, auction highest bids, or incident DEFCON headers) without race conditions. |
+| **2** | **`StreamMsg` (Native Streaming Message API)** | **`POST /v2/application/stream-message`** (`/message/stream-message.md`) [3]. | Streams LLM/agent tokens progressively into a single chat bubble over Nexconn's WebSocket pipe - eliminating custom SSE hacks or message-edit rate-limit errors. |
+| **3** | **Message Expansion (In-Message State Store)** | **`PUT /v2/application/expansion`** - Up to **300 Key-Value pairs (`16 KB`) per message**, with `isCanUpdateExpansion: true` allowing any channel member to mutate state live (`/message/expansion.md`) [3]. | Turns any chat bubble into an **interactive multiplayer mini-app** (live Kanban card, escrow contract, clinical FHIR chart, raid readiness widget, or 2D canvas node) without deploying an external database! |
+| **4** | **Targeted Group Whispers (`targetUserIds`)** | **`POST /v2/application/group-channels/direct`** - Sends a message inside a Group Channel that is cryptographically delivered and rendered **only** to specified `targetUserIds` (`/group-channels/direct.md`) [3]. | Enables **asymmetric private coaching** inside a shared room (e.g., an AI Coach whispering a policy warning to a support agent, a shotcall to a tilted gamer, or a scam alert to a caregiver without embarrassing the senior). |
+| **5** | **Open Channel Metadata + `CAS` Locks** | **`PUT /v2/application/open-channels/metadata`** - Up to **50 KV pairs (`8 KB`) per channel**, supporting **`cas` (Compare-And-Swap)** optimistic concurrency at `10 updates/sec` across `10,000+` viewers (`/open-channels/metadata.md`) [3]. | Powers **conflict-free global room state** (live boss HP bars, watch-party playback timestamps, auction highest bids, or incident DEFCON headers) without race conditions. |
 | **6** | **Sub-100ms AI Auto-Moderation** | Built-in pre-delivery content inspection (`<100ms` latency) across **Text, Image, Audio, and Video** (`/moderation/auto-moderation/overview.md`) [3]. | Essential for **pre-send safety shields** (blocking esports voice/text toxicity, intercepting elder "Digital Arrest" scam scripts, or stopping PII/credential leaks before broadcast). |
 | **7** | **Built-in Real-Time Translation** | Native multi-language translation inside the message payload (`/builtin-translation/overview.md`) [3]. | Enables **cross-language rooms** (e.g., Hindi/Tamil/Telugu/English buyers and sellers, pan-Asian esports squads, or rural ASHA workers and doctors) where everyone reads and speaks in their native tongue. |
 | **8** | **Native Voice-to-Text (ASR)** | Server & SDK speech transcription (`/voice-to-text/overview.md`) [3]. | Converts live voice notes or call snippets into structured text/JSON for hands-free field workers, gamers, seniors, and dysarthric AAC users. |
 | **9** | **Online Status Subscription (`Presence`)** | **`POST /v2/application/subscription`** + presence webhooks for up to `3,000` watched users (`/online-status-subscription.md`) [3]. | Triggers **presence-aware automation** (auto-routing urgent tickets/referrals away from offline staff, or detecting 36-hour inactivity in a mental health or eldercare pod). |
-| **10** | **Nexconn Call SDK (`WebRTC Audio/Video`)** | **`nexconn-calls` / `@nexconn/call-sdk`** (`1-to-1` and `Group Voice/Video` with **Virtual Background & Blur**) (`/call-sdk/quick-start.md`) [3]. | Bridges the **"Chat-to-Call Escalation Gap"**—allowing any high-stakes chat card (support escalation, medical consult, raid room, shift handover) to launch a 1-click live audio/video huddle. |
+| **10** | **Nexconn Call SDK (`WebRTC Audio/Video`)** | **`nexconn-calls` / `@nexconn/call-sdk`** (`1-to-1` and `Group Voice/Video` with **Virtual Background & Blur**) (`/call-sdk/quick-start.md`) [3]. | Bridges the **"Chat-to-Call Escalation Gap"** - allowing any high-stakes chat card (support escalation, medical consult, raid room, shift handover) to launch a 1-click live audio/video huddle. |
 | **11** | **End-to-End Encryption (`E2EE`) & `nexconn-skills`** | **`X3DH` (Extended Triple Diffie-Hellman) + `Double Ratchet`** (`/chat-sdk/e2ee/overview.md`) + **`npx skills add https://docs.nexconn.ai`** (`15` official coding-agent skill packs) [3], [4]. | Guarantees zero-knowledge cryptographic confidentiality for enterprise IP, legal/medical rooms, and mental health pods, while `nexconn-skills` ensures 100% idiomatic SDK code generation. |
 
 ---
@@ -116,9 +116,9 @@ Because public online hackathons rarely publish individual Nexconn staff names p
 ### Stage 2: Nexconn Product, SDK Architecture & Executive Jury (+ Ecosystem Advisors)
 - **Key Personas:**
   1. **Nexconn Principal SDK & Infrastructure Architect** (*Core Engineering Lead for Chat SDK, Call SDK, SD-CAN & Server APIs*): Audits backend telemetry on `console.nexconn.ai`. Looks for idiomatic use of `StreamMsg`, `Message Expansion (300 KV)`, `Targeted Group Whispers (targetUserIds)`, `Open Channel Metadata (CAS)`, and `Call SDK`. Immediately penalizes apps that store interactive card state in an external Firebase/Supabase table instead of `Message Expansion`.
-  2. **Nexconn Head of AI Product (`AICP` & `nexconn-skills` Lead)**: Evaluates the **30% Innovation & Scenario Value** pillar. Wants to see **multi-party Human + Multi-Agent (`AgentID`) collaboration** that proves Nexconn's *AI Collaboration Protocol (AICP)* thesis—not a 2023-style 1-on-1 Q&A chatbot.
+  2. **Nexconn Head of AI Product (`AICP` & `nexconn-skills` Lead)**: Evaluates the **30% Innovation & Scenario Value** pillar. Wants to see **multi-party Human + Multi-Agent (`AgentID`) collaboration** that proves Nexconn's *AI Collaboration Protocol (AICP)* thesis - not a 2023-style 1-on-1 Q&A chatbot.
   3. **Nexconn VP of Growth, Ecosystem & Solutions Engineering**: Evaluates the **20% Business Viability & Active User Bonus** pillar and conducts the **1-on-1 Demo Call with Top 10 Finalists**. Looks for high-MAU / high-message-velocity verticals (Gaming, Live Commerce/Support, Enterprise Shift Operations) and verifies real `activeUsers` on `console.nexconn.ai`.
-  4. **Consumer & Venture Product Lens (`Azhar Iqubal` — Co-Founder of Inshorts & Reskilll Ecosystem Leader)**: Evaluates consumer habit loops, zero-friction onboarding, vernacular Bharat usability, and "can a user understand the magic in 5 seconds?"
+  4. **Consumer & Venture Product Lens (`Azhar Iqubal` - Co-Founder of Inshorts & Reskilll Ecosystem Leader)**: Evaluates consumer habit loops, zero-friction onboarding, vernacular Bharat usability, and "can a user understand the magic in 5 seconds?"
 
 ---
 
@@ -134,14 +134,14 @@ Because public online hackathons rarely publish individual Nexconn staff names p
 
 ---
 
-# Part 3 — Why This Hackathon Exists
+# Part 3 - Why This Hackathon Exists
 
 ## The real reason it exists
 
 Why is **Nexconn (`nexconn.ai`)** investing `$10,000 USD` in prizes, packaging 15 official AI coding skills (`nexconn-skills`), and committing its senior Product Team to 1-on-1 calls with finalists right now in 2026?
 
 1. **The CPaaS Extinction Event & Repositioning Race:** Between 2024 and 2026, legacy real-time messaging vendors (Sendbird, Stream, Agora, CometChat, Twilio) faced existential commoditization. Any solo developer with Cursor or Claude Code can spin up a basic 1-on-1 CRUD chat room on Supabase Realtime or Socket.io in 20 minutes. To defend enterprise ACVs, **Nexconn is repositioning itself from a "Chat Pipe Vendor" to the "AI Collaboration Protocol (AICP) & Living Community Operating System"** [2], [3].
-2. **Validating `nexconn-skills` for the AI-Assisted Developer Era:** Nexconn recently shipped **`nexconn-skills` (`https://docs.nexconn.ai/en/skills/nexconn-skills.zip`)** and **`https://docs.nexconn.ai/llms.txt`**—making it one of the first communications clouds specifically architected to be consumed by AI coding agents (Claude Code, Cursor, Antigravity) [3], [4]. This hackathon is Nexconn's live stress-test to prove that a 1–4 person team using `nexconn-skills` can ship a production-grade, multi-modal (`Chat + Call + AI Agents`) application in 36 hours.
+2. **Validating `nexconn-skills` for the AI-Assisted Developer Era:** Nexconn recently shipped **`nexconn-skills` (`https://docs.nexconn.ai/en/skills/nexconn-skills.zip`)** and **`https://docs.nexconn.ai/llms.txt`** - making it one of the first communications clouds specifically architected to be consumed by AI coding agents (Claude Code, Cursor, Antigravity) [3], [4]. This hackathon is Nexconn's live stress-test to prove that a 1–4 person team using `nexconn-skills` can ship a production-grade, multi-modal (`Chat + Call + AI Agents`) application in 36 hours.
 3. **Seeding `console.nexconn.ai` Developer Activation & Reference Showcases:** Notice the explicit **Active User Bonus** inside the `20% Business` rubric (`"Bonus points for active users on your Nexconn app"`) [1]. Nexconn's developer growth team is measured on **activated `appKey`s, registered `UserID`s, and message/call minutes**. Furthermore, Nexconn needs **6 category-defining public reference apps** (one per track) to feature on `nexconn.ai` sales decks when pitching gaming studios, D2C marketplaces, and enterprise SaaS buyers.
 
 ---
@@ -152,7 +152,7 @@ Across both global markets and India's Digital Public Infrastructure (DPI) ecosy
 
 | Policy / Regulatory Driver | Jurisdiction & Effective Window | Direct Impact on Nexconn Hackathon Tracks | Which Track & Idea Capitalizes on It |
 |---|---|---|---|
-| **1. India DPDP Act 2023 & 2025–2026 Enforcement Rules (MeitY)** | India (Statutory data fiduciary obligations, verifiable consent, ₹250 Cr penalty ceiling) [7] | Outlaws shadow-IT coordination on personal WhatsApp groups for enterprise incidents, hospital shift handovers, and customer KYC/support—forcing migration to auditable, **E2EE (`X3DH + Double Ratchet`)** and `<100ms` PII-redacted Nexconn channels. | **Track 03 (`BatonOS`, `IPassE2E`)**, **Track 04 (`WhisperDesk`)**, **Track 05 (`KavachElder`, `SaharaCircle E2E`)** |
+| **1. India DPDP Act 2023 & 2025–2026 Enforcement Rules (MeitY)** | India (Statutory data fiduciary obligations, verifiable consent, ₹250 Cr penalty ceiling) [7] | Outlaws shadow-IT coordination on personal WhatsApp groups for enterprise incidents, hospital shift handovers, and customer KYC/support - forcing migration to auditable, **E2EE (`X3DH + Double Ratchet`)** and `<100ms` PII-redacted Nexconn channels. | **Track 03 (`BatonOS`, `IPassE2E`)**, **Track 04 (`WhisperDesk`)**, **Track 05 (`KavachElder`, `SaharaCircle E2E`)** |
 | **2. IndiaAI Mission (₹10,372 Cr) & Bhashini National Language Translation Mission** | India (MeitY voice-first multilingual AI across 22 scheduled languages) [8], [9] | Mandates voice-native, vernacular-first interfaces for the next 500M Indian internet users across commerce, healthcare (`ABDM`), and creator communities. Pairs directly with **Nexconn Voice-to-Text + Built-in Translation**. | **Track 01 (`BhashaVerse FanHub`)**, **Track 04 (`PactChat BhashaBargain`)**, **Track 05 (`JanSetu Asha`, `AapdaSetu 112`)** |
 | **3. ONDC (Open Network for Digital Commerce) & RBI / Consumer Protection AI Guidelines** | India (Democratized buyer-seller chat, NDR/RTO logistics rescue, liability for AI agent promises) [10] | Following the *Air Canada v. Moffatt* chatbot liability precedent, enterprises cannot deploy unguarded customer bots; they need **policy-verified agent whispers (`targetUserIds`)** and structured **ONDC negotiation/RTO cards (`Message Expansion`)**. | **Track 04 (`WhisperDesk`, `PactChat`, `RTOShield`)**, **Track 06 (`PactEscrow A2A`)** |
 | **4. EU AI Act (Articles 50 & 52 Transparency) & Global Online Safety Laws (UK Online Safety Act / India IT Rules)** | EU, UK, US & India (2025–2026 active enforcement) [11] | Requires explicit labeling of AI `AgentID` participants in multi-party rooms and **sub-100ms real-time moderation** of toxic speech, deepfake scams, and self-harm contagion in gaming and social platforms. | **Track 02 (`ShieldMic RaidRoom`, `GhostCoach`)**, **Track 05 (`KavachElder`, `SaharaCircle E2E`)**, **Track 06 (`SimuCourt ChaosLab`)** |
@@ -166,17 +166,17 @@ Across both global markets and India's Digital Public Infrastructure (DPI) ecosy
 
 Every single one of the 5 vertical tracks in the Nexconn Build Challenge maps directly to a documented 2024–2026 industry failure mode where **static apps or legacy chat pipes broke under real-world pressure**:
 
-1. **Track 01 (`nexconn-social`) — The "Passive Scroll & Chat Waterfall" Collapse:** During major 2025–2026 live sports and creator streams (IPL, YouTube/Twitch premieres), rooms with `5,000+` concurrent viewers degenerate into unreadable 50-msg/sec text waterfalls (`>82%` message abandonment), while 91% of regional Indian fans are locked out of English-only creator discussions.
-2. **Track 02 (`nexconn-gaming`) — The Voice Toxicity & Alt-Tab Death Spiral:** The ADL 2025–2026 Online Harassment Report confirms **76%+ of multiplayer gamers** experience severe voice toxicity in ranked matches (`Valorant`, `CS2`, `Dota 2`, `BGMI`), causing **68% of solo-queue losses via mid-game tilt** and driving **38% of female and solo players to mute voice chat entirely**—while dead teammates sit idle for 40% of the match instead of acting as structured tactical co-pilots.
-3. **Track 03 (`nexconn-workplace`) — The $4.88M Shadow-IT Incident & Shift-Handover Amnesia:** IBM's Cost of a Data Breach Report and Joint Commission clinical studies show that **80% of severe hospital sentinel events** and **35%+ of SRE repeat P1 outages** stem from unstructured shift handovers buried in scrollback after 400 Slack/WhatsApp messages (`MTTR > 45 minutes` during the 3 AM pager storm).
-4. **Track 04 (`nexconn-support`) — The *Air Canada* Hallucination Liability & India's ₹18,000 Cr COD RTO Crisis:** Autonomous AI support bots (`Sierra`, `Intercom Fin`) scored **<50% on multi-step policy compliance in $\tau$-bench** (`arXiv:2406.12045`), exposing brands to legal liability when bots invent refund policies, while Indian D2C merchants lose **25–40% of Cash-on-Delivery orders to RTO (Return-to-Origin)** because static courier SMS links fail to engage Tier-2/3 vernacular buyers.
-5. **Track 05 (`nexconn-social-good`) — The ₹22,845 Crore "Digital Arrest" Epidemic & 15-WPM AAC Bottleneck:** Elderly citizens are being extorted on live video/chat calls by fake "CBI/Customs/FedEx" scammers while family caregivers find out hours too late; meanwhile, 50M+ people with ALS, cerebral palsy, or post-stroke dysarthria are trapped at **10–15 words per minute** on clinical AAC boards in 150-WPM group chats.
+1. **Track 01 (`nexconn-social`) - The "Passive Scroll & Chat Waterfall" Collapse:** During major 2025–2026 live sports and creator streams (IPL, YouTube/Twitch premieres), rooms with `5,000+` concurrent viewers degenerate into unreadable 50-msg/sec text waterfalls (`>82%` message abandonment), while 91% of regional Indian fans are locked out of English-only creator discussions.
+2. **Track 02 (`nexconn-gaming`) - The Voice Toxicity & Alt-Tab Death Spiral:** The ADL 2025–2026 Online Harassment Report confirms **76%+ of multiplayer gamers** experience severe voice toxicity in ranked matches (`Valorant`, `CS2`, `Dota 2`, `BGMI`), causing **68% of solo-queue losses via mid-game tilt** and driving **38% of female and solo players to mute voice chat entirely** - while dead teammates sit idle for 40% of the match instead of acting as structured tactical co-pilots.
+3. **Track 03 (`nexconn-workplace`) - The $4.88M Shadow-IT Incident & Shift-Handover Amnesia:** IBM's Cost of a Data Breach Report and Joint Commission clinical studies show that **80% of severe hospital sentinel events** and **35%+ of SRE repeat P1 outages** stem from unstructured shift handovers buried in scrollback after 400 Slack/WhatsApp messages (`MTTR > 45 minutes` during the 3 AM pager storm).
+4. **Track 04 (`nexconn-support`) - The *Air Canada* Hallucination Liability & India's ₹18,000 Cr COD RTO Crisis:** Autonomous AI support bots (`Sierra`, `Intercom Fin`) scored **<50% on multi-step policy compliance in $\tau$-bench** (`arXiv:2406.12045`), exposing brands to legal liability when bots invent refund policies, while Indian D2C merchants lose **25–40% of Cash-on-Delivery orders to RTO (Return-to-Origin)** because static courier SMS links fail to engage Tier-2/3 vernacular buyers.
+5. **Track 05 (`nexconn-social-good`) - The ₹22,845 Crore "Digital Arrest" Epidemic & 15-WPM AAC Bottleneck:** Elderly citizens are being extorted on live video/chat calls by fake "CBI/Customs/FedEx" scammers while family caregivers find out hours too late; meanwhile, 50M+ people with ALS, cerebral palsy, or post-stroke dysarthria are trapped at **10–15 words per minute** on clinical AAC boards in 150-WPM group chats.
 
 ---
 
 ## Geopolitical lens (global + India)
 
-- **Global Lens (The Agentic Multiplayer Shift):** In Silicon Valley, Europe, and East Asia, the frontier of AI has shifted from **Single-Player Prompting** (`Human <-> 1 LLM`) to **Multiplayer Agentic Environments** (`Multiple Humans <-> Multiple Specialized AgentIDs inside a shared real-time state bus`). Benchmarks like Stanford's **Collaborative Gym (`arXiv:2412.15701`)**, Google's **A2A Protocol**, and **SWE-bench Multimodal** prove that the bottleneck is no longer model intelligence—it is **sub-100ms synchronization, turn-taking (`CAS`), shared in-message state (`Message Expansion`), and private whisper backchannels (`targetUserIds`)**.
+- **Global Lens (The Agentic Multiplayer Shift):** In Silicon Valley, Europe, and East Asia, the frontier of AI has shifted from **Single-Player Prompting** (`Human <-> 1 LLM`) to **Multiplayer Agentic Environments** (`Multiple Humans <-> Multiple Specialized AgentIDs inside a shared real-time state bus`). Benchmarks like Stanford's **Collaborative Gym (`arXiv:2412.15701`)**, Google's **A2A Protocol**, and **SWE-bench Multimodal** prove that the bottleneck is no longer model intelligence - it is **sub-100ms synchronization, turn-taking (`CAS`), shared in-message state (`Message Expansion`), and private whisper backchannels (`targetUserIds`)**.
 - **India Lens (Voice-First, Vernacular, High-Trust DPI Integration):** India is the world's largest real-time messaging laboratory (**820M+ internet users**, **500M+ gamers**, **153M+ seniors**, **1.04M ASHA workers**, and **18B+ monthly UPI transactions**). Yet India's communication layer is dangerously bifurcated: consumers and frontline workers live on unstructured personal WhatsApp groups with zero workflow state, while enterprise SaaS tools are English-only, keyboard-heavy, and priced at $30–$100/seat. By fusing **Nexconn's Voice-to-Text + Built-in Translation + 300-KV Message Expansion + E2EE** with India's DPI rails (**Bhashini**, **ONDC**, **ABDM FHIR**, **SACHET CAP**, **Tele-MANAS 14416**), our top ideas unlock massive domestic and Global South markets.
 
 ---
@@ -185,12 +185,12 @@ Every single one of the 5 vertical tracks in the Nexconn Build Challenge maps di
 
 Two weeks after the Nexconn Build Challenge concludes, **Nexconn** and **Reskilll** want to publish a joint post-hackathon case study and press release that reads:
 1. *"In just 36 hours, ratusan developers used **`nexconn-skills`** and **Nexconn's AI Collaboration Protocol (AICP)** to ship production apps combining **Chat SDK, Chat UI, and Call SDK** with thousands of live messages and active users on `console.nexconn.ai`."*
-2. *"Look at our 1st-place winner—it couldn't have been built on Sendbird, Stream, or raw WebSockets because it relies simultaneously on **`StreamMsg`**, **`300-KV Message Expansion` state machines**, **`CAS` Open Channel Metadata**, and **`targetUserIds` private whisper coaching**."*
+2. *"Look at our 1st-place winner - it couldn't have been built on Sendbird, Stream, or raw WebSockets because it relies simultaneously on **`StreamMsg`**, **`300-KV Message Expansion` state machines**, **`CAS` Open Channel Metadata**, and **`targetUserIds` private whisper coaching**."*
 3. *"The winning teams are now joining our **1-on-1 Product Demo Showcase** to scale their apps on Nexconn's global SD-CAN infrastructure."*
 
 ---
 
-# Part 4 — Connect-the-Dots Synthesis
+# Part 4 - Connect-the-Dots Synthesis
 
 ## Dots nobody else will connect
 
@@ -199,7 +199,7 @@ Synthesizing `A-organisers.md`, `B-sponsors.md`, `C-judges.md`, `D-why-now.md`, 
 | Dot # | Connected Signals | The Unfair Strategic Insight | Architectural Move Required |
 |---|---|---|---|
 | **Dot 1** | **Sponsor Docs (`nexconn-skills.zip` + `llms.txt`)** × **50% Completeness Rubric** | Nexconn built **15 official agent skill packs (`nexconn-skills`)** specifically so builders wouldn't hallucinate deprecated v1 endpoints or waste 15 hours on WebSocket plumbing [3], [4]. | Use exact `v2` Server API contracts (`/v2/application/stream-message`, `/v2/application/expansion`, `/v2/application/group-channels/direct`, `/v2/application/open-channels/metadata`) verified against `nexconn-skills`. |
-| **Dot 2** | **Sponsor Positioning (`AICP` Multi-Agent Protocol)** × **30% Innovation Rubric** | Nexconn's homepage (`nexconn.ai`) leads with **AICP (`AgentID` + `SessionID` + `ContextWindow`)**—yet the Reskilll portal lists 5 classic human-chat verticals [1], [2]. | Bridge the two! In **every vertical track**, introduce **2+ specialized `AgentID` participants** that collaborate alongside multiple humans inside the same Nexconn room. |
+| **Dot 2** | **Sponsor Positioning (`AICP` Multi-Agent Protocol)** × **30% Innovation Rubric** | Nexconn's homepage (`nexconn.ai`) leads with **AICP (`AgentID` + `SessionID` + `ContextWindow`)** - yet the Reskilll portal lists 5 classic human-chat verticals [1], [2]. | Bridge the two! In **every vertical track**, introduce **2+ specialized `AgentID` participants** that collaborate alongside multiple humans inside the same Nexconn room. |
 | **Dot 3** | **Message Expansion (`300 KV / 16 KB` + `isCanUpdateExpansion: true`)** × **"Transform Static Apps"** | Most teams think they need Postgres/Supabase to store interactive app state and use Nexconn only for text chat. In reality, **Nexconn `Message Expansion` IS a real-time synchronized 300-KV multiplayer state database** inside every message [3]! | Render custom React cards inside `@nexconn/chat-ui` backed 100% by `Message Expansion` (`300 KV`) and `Open Channel Metadata` (`50 KV + CAS`). |
 | **Dot 4** | **Targeted Group Whispers (`targetUserIds`)** × **Asymmetric AI Coaching** | In any high-stakes group conversation (gaming squad, buyer-seller negotiation, customer support, eldercare family room), broadcasting an AI warning publicly ruins trust or causes embarrassment [3]. | Use **`POST /v2/application/group-channels/direct` (`targetUserIds`)** as an **invisible AI Whisper Coach** that privately guides one participant inside a shared room. |
 | **Dot 5** | **Call SDK (`nexconn-calls`)** × **Eligibility Gate ("Chat SDK, Chat UI, or Call SDK")** | 95% of teams will touch only `Chat SDK` and `Chat UI`. Integrating **both Chat SDK/UI AND Call SDK** (with a 1-click **"Escalate Card to Live Voice/Video Huddle"** button) hits **100% of Nexconn's product portfolio** in a single demo [1], [3]. | Embed `@nexconn/call-sdk` directly into the channel header and trigger 1-click contextual voice/video escalations from `Message Expansion` cards. |
@@ -219,17 +219,17 @@ Beyond the printed 50/30/20 weights on `reskilll.com/hack/nexconn`, our forensic
 
 ---
 
-## Landmines — what will annoy this jury
+## Landmines - what will annoy this jury
 
-1. **Landmine #1 — Building a 1-on-1 Single-Player Chatbot:** Dropping an OpenAI/Gemini wrapper into a 1-on-1 chat box violates the core theme (*"Transform Static Apps Into Living Communities"*). Every winning app must involve **multiple humans + specialized AI `AgentID`s** interacting in a shared community, squad, or operational room.
-2. **Landmine #2 — Hallucinating Non-Existent Nexconn SDK Methods:** Coding agents that do not load `nexconn-skills` (`https://docs.nexconn.ai/llms.txt`) frequently invent Sendbird/Stream method names (`sb.GroupChannel.createChannel`) instead of genuine Nexconn SDK methods and `v2` REST paths (`/v2/application/stream-message`, `/v2/application/expansion`).
-3. **Landmine #3 — Blocking Synchronous LLM Replies:** Waiting 6–8 seconds for an LLM response before posting a static message makes real-time chat feel broken. Always stream tokens live via **`POST /v2/application/stream-message` (`StreamMsg`)**.
-4. **Landmine #4 — Ignoring `Open Channel Metadata` Rate Limits (`10 updates/sec`):** Streaming raw 60Hz mouse cursors or high-frequency game ticks into `Open Channel Metadata` without throttling or `cas` (Compare-And-Swap) locking will trigger `429 Too Many Requests` during live judging. Throttle metadata writes to `2–5 Hz` with `cas` version checks.
-5. **Landmine #5 — Submitting an Empty `appKey` (`activeUsers < 5`):** Leaving the **Active User Bonus** on the table when it takes 30 minutes to run a seeded multi-user community playtest (registering 30–50 real `UserID`s on `console.nexconn.ai`) forfeits easy points in the 20% Business pillar.
+1. **Landmine #1 - Building a 1-on-1 Single-Player Chatbot:** Dropping an OpenAI/Gemini wrapper into a 1-on-1 chat box violates the core theme (*"Transform Static Apps Into Living Communities"*). Every winning app must involve **multiple humans + specialized AI `AgentID`s** interacting in a shared community, squad, or operational room.
+2. **Landmine #2 - Hallucinating Non-Existent Nexconn SDK Methods:** Coding agents that do not load `nexconn-skills` (`https://docs.nexconn.ai/llms.txt`) frequently invent Sendbird/Stream method names (`sb.GroupChannel.createChannel`) instead of genuine Nexconn SDK methods and `v2` REST paths (`/v2/application/stream-message`, `/v2/application/expansion`).
+3. **Landmine #3 - Blocking Synchronous LLM Replies:** Waiting 6–8 seconds for an LLM response before posting a static message makes real-time chat feel broken. Always stream tokens live via **`POST /v2/application/stream-message` (`StreamMsg`)**.
+4. **Landmine #4 - Ignoring `Open Channel Metadata` Rate Limits (`10 updates/sec`):** Streaming raw 60Hz mouse cursors or high-frequency game ticks into `Open Channel Metadata` without throttling or `cas` (Compare-And-Swap) locking will trigger `429 Too Many Requests` during live judging. Throttle metadata writes to `2–5 Hz` with `cas` version checks.
+5. **Landmine #5 - Submitting an Empty `appKey` (`activeUsers < 5`):** Leaving the **Active User Bonus** on the table when it takes 30 minutes to run a seeded multi-user community playtest (registering 30–50 real `UserID`s on `console.nexconn.ai`) forfeits easy points in the 20% Business pillar.
 
 ---
 
-## The 80% trap — what most teams will build
+## The 80% trap - what most teams will build
 
 Based on historical submission distributions across Reskilll and Devpost communications hackathons (`E-competition.md`), **~80% of competing teams will cluster into predictable, low-differentiation traps** [1], [17]:
 
@@ -244,7 +244,7 @@ Based on historical submission distributions across Reskilll and Devpost communi
 
 ---
 
-# Part 5 — Competitive Landscape & Prior Work
+# Part 5 - Competitive Landscape & Prior Work
 
 ## Competition forecast
 
@@ -256,7 +256,7 @@ Across the expected **300–500 registered teams** on `reskilll.com/hack/nexconn
 | **01 `nexconn-social`** | **~22% (High Volume)** | College teams building campus event chats, fan group clones, or basic YouTube watch rooms. | Competitors use static text channels. **`SyncStage AI` (`9.29`)** and **`BhashaVerse FanHub` (`9.21`)** win with `<40ms` **`CAS` Open Channel Metadata** media sync and Bhashini/Nexconn 22-language voice fan stages. |
 | **03 `nexconn-workplace`** | **~18% (Moderate Volume)** | SaaS builders creating Slack/Jira notification bots or meeting summarizers. | **`BatonOS` (`9.15`)** attacks a life-or-death operational wedge (SRE/ICU/Factory **Shift Handovers**) with zero-drop `300-KV Message Expansion` state machines and `Call SDK` sign-offs. |
 | **06 `open` (`open-innovation`)** | **~14% (Moderate Volume, High Variance)** | Indie hackers experimenting with AI companions or multi-agent text rooms. | **`A2ACanvas OS` (`9.25`)** and **`SpecForge Live` (`9.10`)** turn Nexconn's flagship **AICP protocol** + **`300-KV Message Expansion`** into an executable micro-app canvas and self-healing multiplayer IDE. |
-| **02 `nexconn-gaming`** | **~11% (Low Volume — High Technical Barrier)** | Most student teams avoid gaming because they fear WebRTC audio, game telemetry, and sub-100ms concurrency. | **Highest Winnability (`9.27/10`)!** With low crowding and maximum visual excitement, **`GhostCoach SquadOS` (`9.44`)** and **`DanmakuPulse Arena` (`9.32`)** deliver an unforgettable 45-second video hook. |
+| **02 `nexconn-gaming`** | **~11% (Low Volume - High Technical Barrier)** | Most student teams avoid gaming because they fear WebRTC audio, game telemetry, and sub-100ms concurrency. | **Highest Winnability (`9.27/10`)!** With low crowding and maximum visual excitement, **`GhostCoach SquadOS` (`9.44`)** and **`DanmakuPulse Arena` (`9.32`)** deliver an unforgettable 45-second video hook. |
 | **05 `nexconn-social-good`** | **~7% (Lowest Volume)** | Teams building simple accessibility skins or static NGO directories. | **`KavachElder` (`9.07`)**, **`AapdaSetu 112` (`8.95`)**, and **`DrishtiGaze AAC` (`8.84`)** combine deep technical sophistication (`<100ms` scam interception, `CAP` disaster routing, `@mediapipe` eye-gaze + `SpeakFaster` LLM expansion) with undeniable human impact. |
 
 ---
@@ -268,7 +268,7 @@ Our Phase 1 & Phase 2 research audited **global hackathon winners** (Devpost, Tr
 | Track | Global Hackathon Winners Audited (`E-competition.md`) | Landmark 2024–2026 Research Papers & Benchmarks | Production / OSS Prior Art | The Specific White Space Our Ideas Own |
 |---|---|---|---|---|
 | **01 `nexconn-social`** | • **`CastParty`** (*Devpost Live Sync Winner*)<br>• **`FrameStream`** (*WebRTC Watch-Party Winner*) | • *Watch-Party Sync & Social Co-Viewing Dynamics* (ACM CHI / CSCW 2024–2025)<br>• *Generative Agents: Interactive Simulacra* (`arXiv:2304.03442`) | Teleparty, Kosmi, Geneva, Discord Stage Channels, ShareChat | **AI Stage Director inside `300-KV Message Expansion` + `CAS` Metadata Sync + `targetUserIds` Social Catalyst Whispers** (`SyncStage AI`, `BhashaVerse FanHub`). |
-| **02 `nexconn-gaming`** | • **`OmniBet`** (*TreeHacks 2025 — Live Stream Micro-Prediction Overlay*)<br>• **`Truman AI`** (*CalHacks / Devpost — Real-Time Multimodal Stream Companion*) | • *Stick to Common Sense: LLM-Empowered Real-Time Danmaku Moderation & Interaction* (`arXiv:2503.01248` / 2025)<br>• *Proactive Conversational AI Coaches in Competitive Esports* (2024–2025) | Discord Game Overlay, Overwolf, Mobalytics, Modulate `ToxMod`, Twitch Extensions | **Zero-Alt-Tab Sub-100ms Telemetry + `<100ms` Voice Anti-Tilt Shield + Dead-Teammate `Message Expansion` Tactical Board + `targetUserIds` IGL Whispers** (`GhostCoach SquadOS`, `DanmakuPulse Arena`). |
+| **02 `nexconn-gaming`** | • **`OmniBet`** (*TreeHacks 2025 - Live Stream Micro-Prediction Overlay*)<br>• **`Truman AI`** (*CalHacks / Devpost - Real-Time Multimodal Stream Companion*) | • *Stick to Common Sense: LLM-Empowered Real-Time Danmaku Moderation & Interaction* (`arXiv:2503.01248` / 2025)<br>• *Proactive Conversational AI Coaches in Competitive Esports* (2024–2025) | Discord Game Overlay, Overwolf, Mobalytics, Modulate `ToxMod`, Twitch Extensions | **Zero-Alt-Tab Sub-100ms Telemetry + `<100ms` Voice Anti-Tilt Shield + Dead-Teammate `Message Expansion` Tactical Board + `targetUserIds` IGL Whispers** (`GhostCoach SquadOS`, `DanmakuPulse Arena`). |
 | **03 `nexconn-workplace`** | • **`Industry.ai`** (*Enterprise Incident War-Room Winner*)<br>• **`CodeCrack`** (*Collaborative Dev & Incident Debugging Winner*) | • Stanford *Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration* (`arXiv:2412.15701`, Dec 2024)<br>• *Joint Commission I-PASS Handover Protocol* | Slack Canvas, PagerDuty, Rootly, Incident.io, Linear | **Cryptographic Shift-Handover State Machines in `300-KV Message Expansion` + `Online Status` Escalation + `Call SDK` Sign-Off** (`BatonOS`, `FlowRoom`, `KavachPTW`). |
 | **04 `nexconn-support`** | • **`TxGPT`** (*ETHGlobal / Devpost Conversational Transaction Winner*)<br>• **`Ephemeral`** (*Encrypted Multiparty Negotiation Winner*) | • Sierra Research *$\tau$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains* (`arXiv:2406.12045`, 2024)<br>• *Air Canada v. Moffatt* (2024 AI Liability Ruling) | Intercom Fin, Sierra AI, Zendesk AI, WhatsApp Business API, Shiprocket NDR | **Deterministic $\tau$-Guard Policy Engine Whispering (`targetUserIds`) Verified 1-Click Actions to Human Reps + ONDC `300-KV` Deal Cards** (`WhisperDesk`, `PactChat`, `RTOShield`). |
 | **05 `nexconn-social-good`** | • **`Snaption`** (*Devpost Accessibility & Live Captioning Winner*)<br>• **`BlinkAI`** (*Eye-Gaze & Hands-Free Assistive Communicator Winner*) | • Google Research *SpeakFaster: LLM Eye-Gaze AAC* (`arXiv:2403.05085`)<br>• *MOPSA: Older Adults' Group Chat AI* (`arXiv:2505.24224`, May 2025)<br>• *MoLE Dysarthric Speech ASR* (`arXiv:2505.22072`, May 2025)<br>• *CrisisSense-LLM* (`arXiv:2406.15447`) | Cboard AAC, Google Project Gameface, Ushahidi, Tele-MANAS (`14416`), ANMOL | **`<100ms` Elder "Digital Arrest" Scam Interception with Caregiver Whispers (`KavachElder`), CAP Disaster Triage (`AapdaSetu 112`), and 150-WPM Gaze/Dysarthric AAC (`DrishtiGaze AAC`)**. |
@@ -292,7 +292,7 @@ $$\text{Winnability} = 0.25 \times \text{Low Competition} + 0.20 \times \text{Lo
 
 ---
 
-# Part 6 — The War Room Council
+# Part 6 - The War Room Council
 
 ## Who sat in the war room
 
@@ -332,45 +332,45 @@ To evaluate all 6 domains and ruthlessly stress-test 30 candidate ideas down to 
 
 ### The 9-Criterion Weighted Idea Scoring Rubric
 Every idea in `ideas.md` was scored by the 22-Seat Council on a strict **9-criterion weighted rubric (100% total)** verified to match its declared composite score within `±0.01`:
-1. **Pain (`15%`)** — Quantified severity, frequency, and urgency of the real-world problem.
-2. **Novelty (`15%`)** — White-space differentiation vs. the 80% trap and global hackathon prior art.
-3. **Alignment (`15%`)** — Depth of Nexconn Chat SDK, Chat UI, Call SDK, AICP, and Server API integration.
-4. **Demo (`15%`)** — Visceral 45-second "Jobs moment" and single-laptop judge testability.
-5. **Feasibility (`10%`)** — Realistic 36-hour build path (`H0–6`, `H6–18`, `H18–30`, `H30–36`) with deterministic fallbacks.
-6. **India (`10%`)** — Leverage of India scale, multilingual realities (`Bhashini`), and DPI rails (`ONDC`, `ABDM`, `UPI`, `SACHET`).
-7. **Business (`10%`)** — Unit economics, gross margin, and viral multi-seat expansion driving `console.nexconn.ai` `activeUsers`.
-8. **Legal (`5%`)** — Compliance with **DPDP Act 2023**, **EU AI Act**, **WCAG 2.2**, and *Air Canada* AI liability safeguards.
-9. **Moonshot (`5%`)** — 10-year category-creation potential.
+1. **Pain (`15%`)** - Quantified severity, frequency, and urgency of the real-world problem.
+2. **Novelty (`15%`)** - White-space differentiation vs. the 80% trap and global hackathon prior art.
+3. **Alignment (`15%`)** - Depth of Nexconn Chat SDK, Chat UI, Call SDK, AICP, and Server API integration.
+4. **Demo (`15%`)** - Visceral 45-second "Jobs moment" and single-laptop judge testability.
+5. **Feasibility (`10%`)** - Realistic 36-hour build path (`H0–6`, `H6–18`, `H18–30`, `H30–36`) with deterministic fallbacks.
+6. **India (`10%`)** - Leverage of India scale, multilingual realities (`Bhashini`), and DPI rails (`ONDC`, `ABDM`, `UPI`, `SACHET`).
+7. **Business (`10%`)** - Unit economics, gross margin, and viral multi-seat expansion driving `console.nexconn.ai` `activeUsers`.
+8. **Legal (`5%`)** - Compliance with **DPDP Act 2023**, **EU AI Act**, **WCAG 2.2**, and *Air Canada* AI liability safeguards.
+9. **Moonshot (`5%`)** - 10-year category-creation potential.
 
 ---
 
 # Sources
 
-1. **Nexconn Build Challenge Official Portal (Reskilll)** — Problem statements (`nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `nexconn-support`, `nexconn-social-good`, `open`), `$10,000` prize breakdown (`$5,000 / $3,000 / $2,000`), and `50% / 30% / 20%` evaluation criteria: https://reskilll.com/hack/nexconn/
-2. **Nexconn Official Platform & AICP Architecture** — AI Collaboration Protocol (`AgentID`, `SessionID`, `ContextWindow`) & SD-CAN global network: https://www.nexconn.ai/
-3. **Nexconn Developer Documentation & LLM Index (`llms.txt`)** — Complete Chat SDK (`v4.19.0+`), Chat UI, Call SDK, E2EE (`X3DH + Double Ratchet`), `StreamMsg`, `Message Expansion (300 KV)`, `Open Channel Metadata (50 KV + CAS)`, `Targeted Group Whispers (targetUserIds)`, `Auto-Moderation (<100ms)`, `Voice-to-Text`, `Built-in Translation`, and `Online Status Subscription`: https://docs.nexconn.ai/llms.txt
-4. **Nexconn Official Coding Agent Skills (`nexconn-skills.zip`)** — 15 modular skill files for Nexconn SDK & Server API integration: https://docs.nexconn.ai/en/skills/nexconn-skills.zip
-5. **Nexconn Developer Console** — AppKey provisioning, active user telemetry, and webhook configuration: https://console.nexconn.ai/
-6. **Reskilll Official Ecosystem & Leadership** — Organiser track record and leadership team (Rohan Verma, Azhar Iqubal, Satyajit Roy, Jatin Saini, Simran Jagdev, Ruchika Tulsyan): https://reskilll.com/
-7. **Ministry of Electronics & Information Technology (MeitY) — Digital Personal Data Protection (DPDP) Act 2023 & Rules**: https://www.meity.gov.in/
+1. **Nexconn Build Challenge Official Portal (Reskilll)** - Problem statements (`nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `nexconn-support`, `nexconn-social-good`, `open`), `$10,000` prize breakdown (`$5,000 / $3,000 / $2,000`), and `50% / 30% / 20%` evaluation criteria: https://reskilll.com/hack/nexconn/
+2. **Nexconn Official Platform & AICP Architecture** - AI Collaboration Protocol (`AgentID`, `SessionID`, `ContextWindow`) & SD-CAN global network: https://www.nexconn.ai/
+3. **Nexconn Developer Documentation & LLM Index (`llms.txt`)** - Complete Chat SDK (`v4.19.0+`), Chat UI, Call SDK, E2EE (`X3DH + Double Ratchet`), `StreamMsg`, `Message Expansion (300 KV)`, `Open Channel Metadata (50 KV + CAS)`, `Targeted Group Whispers (targetUserIds)`, `Auto-Moderation (<100ms)`, `Voice-to-Text`, `Built-in Translation`, and `Online Status Subscription`: https://docs.nexconn.ai/llms.txt
+4. **Nexconn Official Coding Agent Skills (`nexconn-skills.zip`)** - 15 modular skill files for Nexconn SDK & Server API integration: https://docs.nexconn.ai/en/skills/nexconn-skills.zip
+5. **Nexconn Developer Console** - AppKey provisioning, active user telemetry, and webhook configuration: https://console.nexconn.ai/
+6. **Reskilll Official Ecosystem & Leadership** - Organiser track record and leadership team (Rohan Verma, Azhar Iqubal, Satyajit Roy, Jatin Saini, Simran Jagdev, Ruchika Tulsyan): https://reskilll.com/
+7. **Ministry of Electronics & Information Technology (MeitY) - Digital Personal Data Protection (DPDP) Act 2023 & Rules**: https://www.meity.gov.in/
 8. **IndiaAI Mission Official Portal (MeitY)**: https://indiaai.gov.in/
-9. **Digital India Bhashini — National Language Translation Mission (22 Scheduled Languages ASR/NMT/TTS)**: https://bhashini.gov.in/
-10. **Open Network for Digital Commerce (ONDC) — Protocol Specifications & Conversational Commerce**: https://ondc.org/
-11. **European Union Artificial Intelligence Act (Regulation (EU) 2024/1689 — Articles 50 & 52 Transparency Obligations)**: https://artificialintelligenceact.eu/
+9. **Digital India Bhashini - National Language Translation Mission (22 Scheduled Languages ASR/NMT/TTS)**: https://bhashini.gov.in/
+10. **Open Network for Digital Commerce (ONDC) - Protocol Specifications & Conversational Commerce**: https://ondc.org/
+11. **European Union Artificial Intelligence Act (Regulation (EU) 2024/1689 - Articles 50 & 52 Transparency Obligations)**: https://artificialintelligenceact.eu/
 12. **W3C Web Content Accessibility Guidelines (WCAG) 2.2 Specification**: https://www.w3.org/TR/WCAG22/
 13. **MHA Indian Cyber Crime Coordination Centre (I4C) & National Cyber Crime Reporting Portal ("Digital Arrest" Advisories)**: https://cybercrime.gov.in/
 14. **FBI Internet Crime Complaint Center (IC3) Elder Fraud Report**: https://www.ic3.gov/
 15. **National Disaster Management Authority (NDMA India) & SACHET Common Alerting Protocol (CAP) Portal**: https://sachet.ndma.gov.in/
 16. **Ayushman Bharat Digital Mission (ABDM) & National Health Authority (FHIR R4 Health Records)**: https://abdm.gov.in/
 17. **Devpost Global Hackathon Winner Archive (`OmniBet` at TreeHacks, `Truman AI`, `Industry.ai`, `CodeCrack`, `TxGPT`, `Ephemeral`, `Snaption`, `BlinkAI`, `CastParty`, `FrameStream`)**: https://devpost.com/software/snaption
-18. **Sierra Research — *$\tau$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains* (`arXiv:2406.12045`)**: https://arxiv.org/abs/2406.12045
-19. **Stanford University — *Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration* (`arXiv:2412.15701`)**: https://arxiv.org/abs/2412.15701
-20. **Live Stream Moderation & Interaction — *Stick to Common Sense: LLM-Empowered Real-Time Danmaku Intervention* (`arXiv:2503.01248`)**: https://arxiv.org/abs/2503.01248
-21. **Eldercare Group Chat AI — *MOPSA: Enhancing Older Adults' Participation in Online Group Chats with AI-Assisted Composition and Digest* (`arXiv:2505.24224`)**: https://arxiv.org/abs/2505.24224
-22. **Dysarthric & Elderly ASR — *Mixture of LoRA Experts for Dysarthric Speech Recognition* (`arXiv:2505.22072`)**: https://arxiv.org/abs/2505.22072
-23. **Google Research — *SpeakFaster: Using Large Language Models to Accelerate Communication for Eye Gaze Typing Users with ALS* (`arXiv:2403.05085`)**: https://arxiv.org/abs/2403.05085
-24. **Disaster Response AI — *CrisisSense-LLM: Instruction Tuned LLM for Multi-Label Crisis Classification* (`arXiv:2406.15447`)**: https://arxiv.org/abs/2406.15447
-25. **SWE-bench Multimodal — *Visual Software Issue Resolution Benchmark* (`arXiv:2410.03859`)**: https://arxiv.org/abs/2410.03859
+18. **Sierra Research - *$\tau$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains* (`arXiv:2406.12045`)**: https://arxiv.org/abs/2406.12045
+19. **Stanford University - *Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration* (`arXiv:2412.15701`)**: https://arxiv.org/abs/2412.15701
+20. **Live Stream Moderation & Interaction - *Stick to Common Sense: LLM-Empowered Real-Time Danmaku Intervention* (`arXiv:2503.01248`)**: https://arxiv.org/abs/2503.01248
+21. **Eldercare Group Chat AI - *MOPSA: Enhancing Older Adults' Participation in Online Group Chats with AI-Assisted Composition and Digest* (`arXiv:2505.24224`)**: https://arxiv.org/abs/2505.24224
+22. **Dysarthric & Elderly ASR - *Mixture of LoRA Experts for Dysarthric Speech Recognition* (`arXiv:2505.22072`)**: https://arxiv.org/abs/2505.22072
+23. **Google Research - *SpeakFaster: Using Large Language Models to Accelerate Communication for Eye Gaze Typing Users with ALS* (`arXiv:2403.05085`)**: https://arxiv.org/abs/2403.05085
+24. **Disaster Response AI - *CrisisSense-LLM: Instruction Tuned LLM for Multi-Label Crisis Classification* (`arXiv:2406.15447`)**: https://arxiv.org/abs/2406.15447
+25. **SWE-bench Multimodal - *Visual Software Issue Resolution Benchmark* (`arXiv:2410.03859`)**: https://arxiv.org/abs/2410.03859
 26. **Google Agent2Agent (A2A) Open Interoperability Protocol**: https://github.com/google/A2A
 27. **Model Context Protocol (MCP) Specification**: https://modelcontextprotocol.io/
 28. **MoHFW & NIMHANS Tele-MANAS National Mental Health Network (`14416`)**: https://telemanas.mohfw.gov.in/

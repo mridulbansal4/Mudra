@@ -1,6 +1,6 @@
 ## 2026-10-31T18:05:30Z
 
-# Task Assignment: Survey 3 — Deep Company Research on Nexconn & Global Hackathon/Research Landscape
+# Task Assignment: Survey 3 - Deep Company Research on Nexconn & Global Hackathon/Research Landscape
 
 - **Your Identity**: `teamwork_explorer_survey_3`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_survey_3`

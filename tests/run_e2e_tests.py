@@ -94,7 +94,7 @@ REQUIRED_IDEA_FIELD_PATTERNS: List[Tuple[str, str]] = [
     ("Score", r"\*{0,2}Score\*{0,2}\s*:"),
     (
         "Problem statement",
-        r"\*{0,2}(?:Problem\s+statement|One-line\s+hook)\*{0,2}\s*:|^##\s+Idea\s+\d+\s+[—-]\s+[^:\n]+:",
+        r"\*{0,2}(?:Problem\s+statement|One-line\s+hook)\*{0,2}\s*:|^##\s+Idea\s+\d+\s+-\s+[^:\n]+:",
     ),
     (
         "The pain (Mike Ross)",
@@ -531,7 +531,7 @@ def run_tier1_tests(root: Path) -> List[TestResult]:
     add(
         "T1_F16_01",
         "F16",
-        "ideas.md exists (> 10,000 bytes) and contains # Part 0 — Where to Play and # Sources",
+        "ideas.md exists (> 10,000 bytes) and contains # Part 0 - Where to Play and # Sources",
         ideas_md.is_file()
         and ideas_md.stat().st_size > 10000
         and bool(re.search(r"^#\s+Part\s+0\b", ideas_text, re.I | re.M))
@@ -805,7 +805,7 @@ def run_tier2_tests(root: Path) -> List[TestResult]:
     )
     add("T2_NEG_03", "Validator", "verify_idea_score_math accurately rejects mismatched weighted score (9.9 vs 5.0)", not neg_math_ok, "Verified rejection of bad math")
 
-    neg_fields_ok, neg_missing = check_idea_required_fields("## Idea 1 — Broken\n**Type:** Doesn't exist\n**Score:** 8.0/10\n")
+    neg_fields_ok, neg_missing = check_idea_required_fields("## Idea 1 - Broken\n**Type:** Doesn't exist\n**Score:** 8.0/10\n")
     add("T2_NEG_04", "Validator", "check_idea_required_fields accurately detects missing required idea fields", not neg_fields_ok and len(neg_missing) == 12, f"missing_count={len(neg_missing)}")
 
     neg_pdf_ok, _ = verify_pdf_file(root / "non_existent_dummy_file.pdf")
@@ -935,7 +935,7 @@ def run_tier3_tests(root: Path) -> List[TestResult]:
             m2_detail.append(f"{t['slug']} has {len(slug_blocks)} ideas")
             continue
         # Extract idea 1 title
-        m_title = re.search(r"^##\s+Idea\s+1\s*[—:-]\s*([^\n:]+)", slug_blocks[0][0])
+        m_title = re.search(r"^##\s+Idea\s+1\s*[:-]\s*([^\n:]+)", slug_blocks[0][0])
         if m_title:
             idea1_name = m_title.group(1).strip()
             if idea1_name.lower() not in ideas_text.lower():
@@ -953,7 +953,7 @@ def run_tier3_tests(root: Path) -> List[TestResult]:
             m3_ideas_consistent = False
             m3_detail.append(f"{t['slug']} has {len(slug_blocks)} ideas")
             continue
-        m_title = re.search(r"^##\s+Idea\s+1\s*[—:-]\s*([^\n:]+)", slug_blocks[0][0])
+        m_title = re.search(r"^##\s+Idea\s+1\s*[:-]\s*([^\n:]+)", slug_blocks[0][0])
         if m_title:
             idea1_name = m_title.group(1).strip()
             if idea1_name.lower() not in ideas_text.lower():
@@ -964,7 +964,7 @@ def run_tier3_tests(root: Path) -> List[TestResult]:
     # T3_13: No duplicate idea names across the 30 ideas in ideas.md
     idea_names: List[str] = []
     for h, _ in all_ideas:
-        m = re.search(r"^##\s+Idea\s+\d+\s*[—:-]\s*([^:\n]+)", h)
+        m = re.search(r"^##\s+Idea\s+\d+\s*[:-]\s*([^:\n]+)", h)
         idea_names.append((m.group(1) if m else h).strip().lower())
     unique_names = set(idea_names)
     add("T3_13", "F9..F14xF16", "All 30 ideas across the 6 tracks in ideas.md have unique idea names (zero duplicates)", len(all_ideas) >= 30 and len(unique_names) == len(idea_names), f"unique={len(unique_names)}/{len(idea_names)}")
@@ -1102,7 +1102,7 @@ def _generate_synthetic_pdf(pdf_path: Path, title: str, pages: int = 6) -> None:
         c = canvas.Canvas(str(pdf_path), pagesize=A4, pageCompression=0)
         for p in range(1, pages + 1):
             c.setFont("Helvetica-Bold", 16)
-            c.drawString(72, 780, f"{title} — Page {p} of {pages}")
+            c.drawString(72, 780, f"{title} - Page {p} of {pages}")
             c.setFont("Helvetica", 10)
             for line_idx in range(45):
                 c.drawString(
@@ -1121,7 +1121,7 @@ def _generate_synthetic_pdf(pdf_path: Path, title: str, pages: int = 6) -> None:
     doc = fitz.open()
     for p in range(1, pages + 1):
         page = doc.new_page()
-        text_lines = [f"{title} — Page {p} of {pages}"] + [
+        text_lines = [f"{title} - Page {p} of {pages}"] + [
             f"Nexconn Build Challenge 2026 verification content line {i} on page {p} (RCLOUD GLOBAL PTE. LTD.)."
             for i in range(45)
         ]
@@ -1140,7 +1140,7 @@ def _build_synthetic_idea_block(track: Dict[str, str], idea_num: int) -> str:
     ]
     gap_type = gap_types[(idea_num - 1) % len(gap_types)]
     idea_title = f"{track['slug'].replace('-', '').title()}Mesh{idea_num}"
-    return f"""## Idea {idea_num} — {idea_title}: AI-native real-time workflow on Nexconn for {track['name']}
+    return f"""## Idea {idea_num} - {idea_title}: AI-native real-time workflow on Nexconn for {track['name']}
 **Type:** {gap_type}   **Score:** 8.6/10   **Problem statement:** {track['track_id']} ({track['name']})
 
 **The pain (Mike Ross):** Ramesh, a frontline coordinator in Bengaluru, loses 2.5 hours daily across fragmented chat threads [S1](https://reskilll.com/hack/nexconn/).
@@ -1165,16 +1165,16 @@ def _build_synthetic_idea_block(track: Dict[str, str], idea_num: int) -> str:
 **Council jurisdiction (short verdicts, only seats that matter for this idea):**
 | Seat | Verdict |
 |---|---|
-| Thiel — market & moat | Concentric monopoly starting with high-urgency teams on Nexconn SD-CAN. |
-| Buffett — money | SaaS ₹999/seat/month ($12/mo) with 82% gross margin on Nexconn Free Chat Plan ($20,640 credit). |
-| Harvey / Sharma — legal & India compliance | DPDP Act 2023 compliant consent notices; acts as TSP using Bhashini/ONDC rails. |
-| Jaishankar — India alignment | Advances IndiaAI and Global South cross-border digital public infrastructure. |
-| Karpathy — AI & tech | Uses `nexconn-skills`, `stream-message.md`, `expansion.md`, and `group-channels/direct.md`. |
-| Mike Ross — human & ethics | Zero cognitive overload, accessible large-font & voice-first fallback on low-end Android. |
-| Munger — how it dies | Mitigates multi-user cold-start via 1-click dual-persona live simulation. |
-| Musk — year-10 moonshot | Autonomous global A2A coordination mesh handling 10B daily agent transactions. |
-| Domain Lead — field reality | Grounded in real field telemetry and sub-second webhook acknowledgement. |
-| Godin / Gary Vee — first 10k users | Viral shared room links driving verified `activeUsers` on our Nexconn `App Key`. |
+| Thiel - market & moat | Concentric monopoly starting with high-urgency teams on Nexconn SD-CAN. |
+| Buffett - money | SaaS ₹999/seat/month ($12/mo) with 82% gross margin on Nexconn Free Chat Plan ($20,640 credit). |
+| Harvey / Sharma - legal & India compliance | DPDP Act 2023 compliant consent notices; acts as TSP using Bhashini/ONDC rails. |
+| Jaishankar - India alignment | Advances IndiaAI and Global South cross-border digital public infrastructure. |
+| Karpathy - AI & tech | Uses `nexconn-skills`, `stream-message.md`, `expansion.md`, and `group-channels/direct.md`. |
+| Mike Ross - human & ethics | Zero cognitive overload, accessible large-font & voice-first fallback on low-end Android. |
+| Munger - how it dies | Mitigates multi-user cold-start via 1-click dual-persona live simulation. |
+| Musk - year-10 moonshot | Autonomous global A2A coordination mesh handling 10B daily agent transactions. |
+| Domain Lead - field reality | Grounded in real field telemetry and sub-second webhook acknowledgement. |
+| Godin / Gary Vee - first 10k users | Viral shared room links driving verified `activeUsers` on our Nexconn `App Key`. |
 
 **Tech stack (basic):** Frontend: Next.js + `nexconn-chatui-web` · Backend: Node.js (`nexconn-server-sdk`) · AI/ML: Gemini 2.5 Flash + Nexconn AI Mode · Data: PostgreSQL + Nexconn 180-day Cloud History · India rails: Bhashini, UPI, ONDC · Infra: Vercel + AWS · Sponsor/Nexconn tech used: Chat SDK, Chat UI, Call SDK, AICP (`AgentID`), `stream-message`, `expansion`, `group-channels/direct`, `builtin-translation`, `open-channels`, `moderation`, `nexconn-skills`.
 **Implementation sketch:** H0–6: Setup Nexconn Console App Key (`^[A-Za-z0-9_-]{8,64}$`) via `nexconn-skills` and build dual-persona auth. H6–18: Implement Chat SDK channels, `stream-message.md`, and `expansion.md` interactive cards. H18–30: Add `group-channels/direct.md` whispers, `builtin-translation`, and Moderation webhooks. H30–36: Onboard live testers for `activeUsers` telemetry and record 3-minute demo video. Datasets: https://arxiv.org/abs/2412.15701.
@@ -1194,7 +1194,7 @@ def populate_synthetic_workspace(ws: Path) -> None:
 
     # F1: research/00-source/bundle-extract.md
     (ws / "research" / "00-source" / "bundle-extract.md").write_text(
-        """# Raw Bundle Extraction — Nexconn Build Challenge 2026 (`nexconn2026`)
+        """# Raw Bundle Extraction - Nexconn Build Challenge 2026 (`nexconn2026`)
 Extracted from https://reskilll.com/hack/nexconn/ (`index-BVD-GoH1.js`, `Rules-DQNF0983.js`, `Submit-R3OJNUmD.js`, `Admin-_pGkMjvW.js`).
 Tracks: nexconn-social, nexconn-gaming, nexconn-workplace, nexconn-support, nexconn-social-good, open.
 SDKs: Chat SDK, Chat UI, Call SDK, docs.nexconn.ai, nexconn-skills.
@@ -1205,23 +1205,23 @@ Validation: appKey regex ^[A-Za-z0-9_-]{8,64}$ (8-64 chars), 25 MB writeup PDF, 
 
     # F2: research/01-facts.md
     (ws / "research" / "01-facts.md").write_text(
-        f"""# Canonical Facts — Nexconn Build Challenge 2026 (`nexconn2026`)
+        f"""# Canonical Facts - Nexconn Build Challenge 2026 (`nexconn2026`)
 - **Title**: Nexconn Build Challenge 2026 (`https://reskilll.com/hack/nexconn/`)
 - **Dates**: Launch Oct 23, 2026; Submission deadline Nov 22, 2026 AoE; Judging Nov 23–27, 2026; Results Dec 1, 2026.
 - **Eligibility**: Global developers/students/designers except residents of Mainland China (`CN` excluded). Team size: 1–4 members (or solo).
 - **Prizes**: $5,000 total cash ($2,000 1st, $1,250 2nd, $750 3rd, $500 4th, $500 5th) + 2 years of Nexconn Free Chat Plan worth $20,640 ($860/mo) + 1-year cloud discount (15% OFF AWS or 30% OFF Alibaba Cloud).
 - **Mandatory SDK Rule**: Must use **Chat SDK** or **Chat UI** (`chat-sdk` / `chat-ui`). **Call SDK** is optional and does not satisfy the Chat SDK requirement alone. Verified via submitted **App Key** (`^[A-Za-z0-9_-]{{8,64}}$`).
 - **Judging Criteria**:
-  1. Completeness & user experience — 50%
-  2. Innovation & scenario value — 30%
-  3. Business & growth potential — 20% (plus activeUsers traction bonus)
+  1. Completeness & user experience - 50%
+  2. Innovation & scenario value - 30%
+  3. Business & growth potential - 20% (plus activeUsers traction bonus)
 - **Tracks**:
-  1. `nexconn-social` — Social & Community
-  2. `nexconn-gaming` — Gaming & Live Streams
-  3. `nexconn-workplace` — Workplace & Collaboration
-  4. `nexconn-support` — Marketplace & Support
-  5. `nexconn-social-good` — Humanitarian & Social Good
-  6. `open` — Open Innovation
+  1. `nexconn-social` - Social & Community
+  2. `nexconn-gaming` - Gaming & Live Streams
+  3. `nexconn-workplace` - Workplace & Collaboration
+  4. `nexconn-support` - Marketplace & Support
+  5. `nexconn-social-good` - Humanitarian & Social Good
+  6. `open` - Open Innovation
 {urls_block}
 """,
         encoding="utf-8",
@@ -1229,7 +1229,7 @@ Validation: appKey regex ^[A-Za-z0-9_-]{8,64}$ (8-64 chars), 25 MB writeup PDF, 
 
     # F3: research/A-organisers.md
     (ws / "research" / "A-organisers.md").write_text(
-        f"""# Recon Track A — Organisers: Reskilll & Nexconn (`RCLOUD GLOBAL PTE. LTD.` / RongCloud)
+        f"""# Recon Track A - Organisers: Reskilll & Nexconn (`RCLOUD GLOBAL PTE. LTD.` / RongCloud)
 - **Primary Organiser**: Nexconn (`RCLOUD GLOBAL PTE. LTD.`, Singapore), the global brand of **RongCloud** (founded 2015 from China Mobile's 2007 Fetion team).
 - **Leadership**: Han Ying (CEO), Yang Pan (CTO), Cen Yu (VP Eng), Leo (Product Director), Kai (AI PM leading AICP), Amy (Solutions Engineer).
 - **Operations Partner**: **Reskilll** operates the registration/submission portal and `Admin-_pGkMjvW.js` evaluation dashboard exposing `appKey`, `activeUsers`, and `tractionUrl`.
@@ -1241,7 +1241,7 @@ Validation: appKey regex ^[A-Za-z0-9_-]{8,64}$ (8-64 chars), 25 MB writeup PDF, 
 
     # F4: research/B-sponsors.md
     (ws / "research" / "B-sponsors.md").write_text(
-        f"""# Recon Track B — Deep Nexconn Company, Philosophy & SDK Profile
+        f"""# Recon Track B - Deep Nexconn Company, Philosophy & SDK Profile
 - **Lineage & Scale**: 19-year Fetion/RongCloud heritage (`RCLOUD GLOBAL PTE. LTD.`), powering 250,000+ apps (HoYoLAB, Bondee, Jaco, Falla, Miniso, Blockman Go, Lenovo) over SD-CAN (300+ nodes, 120 ms global latency, 99.99% uptime).
 - **AICP & A2A Architecture**: Assigns autonomous agents first-class `AgentID` alongside human `UserID`, supporting token streaming (`stream-message.md`), stateful cards (`expansion.md`), and `nexconn-skills` + Console MCP.
 - **SDKs & Channel Primitives**:
@@ -1257,7 +1257,7 @@ Validation: appKey regex ^[A-Za-z0-9_-]{8,64}$ (8-64 chars), 25 MB writeup PDF, 
 
     # F5: research/C-judges.md
     (ws / "research" / "C-judges.md").write_text(
-        f"""# Recon Track C — Judges, Evaluator Workflow & 3-Minute Judge Heat-Map
+        f"""# Recon Track C - Judges, Evaluator Workflow & 3-Minute Judge Heat-Map
 - **Judge Identity**: Individual judge names are not disclosed on the portal; submissions are scored by **Nexconn judges** and **Nexconn engineers** alongside Reskilll evaluators.
 - **Step 1 Gate**: Console verification of submitted **App Key** (`appKey`) and real **active users** (`activeUsers`) telemetry.
 - **50% Completeness & UX**: Zero-friction 1-click demo persona login in the first 45 seconds.
@@ -1271,7 +1271,7 @@ Validation: appKey regex ^[A-Za-z0-9_-]{8,64}$ (8-64 chars), 25 MB writeup PDF, 
 
     # F6: research/D-why-now.md
     (ws / "research" / "D-why-now.md").write_text(
-        f"""# Recon Track D — Why-Now Triggers Across Policy, Incidents, Geopolitics, History & Sponsor Strategy
+        f"""# Recon Track D - Why-Now Triggers Across Policy, Incidents, Geopolitics, History & Sponsor Strategy
 Covers all 6 tracks: `nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `nexconn-support`, `nexconn-social-good`, `open-innovation`.
 1. **Policy**: India DPDP Act 2023, Bhashini, ONDC, UPI, IndiaAI. Trigger -> Evidence [https://meity.gov.in] -> What the authors are actually worried about -> What a winning answer must prove.
 2. **Incident**: Elder fraud and workplace handover failures. Trigger -> Evidence [https://cert-in.org.in] -> What they are worried about -> What a winning answer must prove.
@@ -1285,7 +1285,7 @@ Covers all 6 tracks: `nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `n
 
     # F7: research/E-competition.md
     (ws / "research" / "E-competition.md").write_text(
-        f"""# Recon Track E — Competition Forecast, 80% Trap & Global Benchmark Catalog
+        f"""# Recon Track E - Competition Forecast, 80% Trap & Global Benchmark Catalog
 - **Participating Team Estimate**: 250–400 registered teams across `nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `nexconn-support`, `nexconn-social-good`, and `open-innovation`.
 - **The 80% Trap**: Generic WhatsApp/Slack clone or plain LLM chatbot wrapper.
 - **Global Hackathon Winners**: Industry.ai (ETHGlobal), Truman AI Live (ETHGlobal), OmniBet (ETHGlobal), Ephemeral (TreeHacks), CodeCrack (TreeHacks), TxGPT (ETHGlobal), Snaption Live (DubHacks), BlinkAI (TreeHacks) mapped to `stream-message`, `expansion`, `Open Channel`, and `Group Channel`.
@@ -1302,7 +1302,7 @@ Covers all 6 tracks: `nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `n
         for i in range(1, 9)
     )
     (ws / "research" / "F-connect-the-dots.md").write_text(
-        f"""# Connect the Dots — Patrick Jane Synthesis Session
+        f"""# Connect the Dots - Patrick Jane Synthesis Session
 Chaired by Patrick Jane with Jaishankar, Sharma, Thiel, Karp, Graham, and Munger.
 ## 1. The real reason this hackathon exists
 Nexconn (`RCLOUD GLOBAL PTE. LTD.`) is seeding global developer adoption of its Chat SDK and AICP platform.
@@ -1321,9 +1321,9 @@ Building a generic 1-on-1 text chat wrapper.
     )
 
     (ws / "war-room" / "roster-additions.md").write_text(
-        """# Council Roster Additions — Custom Nexconn & Domain Specialists
+        """# Council Roster Additions - Custom Nexconn & Domain Specialists
 Jurisdiction modes: LEAD, SUPPORT, SILENT across all 6 domains.
-## Kai Chen — Nexconn AICP & SDK Principal Architect (LEAD)
+## Kai Chen - Nexconn AICP & SDK Principal Architect (LEAD)
 - **Rise / Background**: Built distributed IM and AICP (`AgentID` + `stream-message`) at RongCloud / Nexconn.
 - **How they decide**: Checks if Nexconn primitives (`expansion.md`, `group-channels/direct.md`, `open-channels`) are load-bearing.
 - **Asks**: "Which exact Nexconn channel type and webhook powers this flow?"
@@ -1340,7 +1340,7 @@ Jurisdiction modes: LEAD, SUPPORT, SILENT across all 6 domains.
         slug = t["slug"]
         seeds = "\n".join(f"{i}. Seed {i} for {slug} [Exists-but-weak / Doesn't exist]" for i in range(1, 17))
         (ws / "research" / "domains" / f"{slug}.md").write_text(
-            f"""# Domain Research — {t['name']} (`{slug}`)
+            f"""# Domain Research - {t['name']} (`{slug}`)
 ## 1. The pain map
 Frontline users and communities suffer high coordination latency [S1](https://reskilll.com/hack/nexconn/).
 ## 2. Urgency
@@ -1363,13 +1363,13 @@ Multi-agent A2A over low-latency binary transport [S4](https://docs.nexconn.ai/l
         )
 
         (ws / "war-room" / f"{slug}.md").write_text(
-            f"""# War-Room Debate Transcript — {t['name']} (`{slug}`)
-## Round 0 — Brief
+            f"""# War-Room Debate Transcript - {t['name']} (`{slug}`)
+## Round 0 - Brief
 **JANE:** Authors want real Nexconn SDK usage and active users [S1].
-## Round 1 — Idea storm
+## Round 1 - Idea storm
 **THIEL:** Here is our contrarian 0-to-1 monopoly idea for {slug} [S1].
 **MUSK:** Delete the dashboard; make the message itself the state machine [S2].
-## Round 2 — Attack
+## Round 2 - Attack
 **MUNGER:** Pre-mortem: how does this fail in 6 months? Cold-start friction [S1].
 **HARVEY:** Legal check: ensure DPDP consent and TSP structuring [S2].
 **SHARMA:** Integrate Bhashini and open consent rails [S2].
@@ -1377,18 +1377,18 @@ Multi-agent A2A over low-latency binary transport [S4](https://docs.nexconn.ai/l
 **KARPATHY:** Use `stream-message.md` and `expansion.md` so the demo is 100% real [S3].
 **MIKE ROSS:** Protects frontline workers with zero extra typing burden [S1].
 **GRAHAM:** Avoids the tarpit by solving an immediate workflow pain [S1].
-## Round 3 — Rebuild & merge
+## Round 3 - Rebuild & merge
 **KARPATHY:** Merged top survivors around Nexconn AICP and 1-click dual-persona demo [S3].
-## Round 4 — Score & vote
+## Round 4 - Score & vote
 **GRAHAM:** Scoring complete on the 9-criterion weighted rubric; top 5 advance [S1].
-## Round 5 — Polish
+## Round 5 - Polish
 **JOBS:** Named all 5 products and scripted the 45-second demo moment [S1].
 """,
             encoding="utf-8",
         )
 
         ideas_for_track = "\n\n".join(_build_synthetic_idea_block(t, i) for i in range(1, 6))
-        track_ideas_doc = f"""# Track {t['num']} — {t['name']} (`{slug}`)
+        track_ideas_doc = f"""# Track {t['num']} - {t['name']} (`{slug}`)
 ## Domain snapshot
 {t['tagline']}. Leverages Nexconn Chat SDK, Chat UI, Call SDK, AICP (`AgentID`), `stream-message`, `expansion`, `group-channels/direct`, `builtin-translation`, `open-channels`, and `moderation`.
 
@@ -1399,10 +1399,10 @@ Multi-agent A2A over low-latency binary transport [S4](https://docs.nexconn.ai/l
 
     # F15: biblehackathon.md & biblehackathon.pdf
     (ws / "biblehackathon.md").write_text(
-        f"""# Nexconn Build Challenge 2026 — The Hackathon Bible
+        f"""# Nexconn Build Challenge 2026 - The Hackathon Bible
 > Verdict: Build an AI-native real-time collaborative app on Nexconn Chat SDK with 1-click multi-persona UX and verified App Key traction.
 
-# Part 1 — The Facts
+# Part 1 - The Facts
 ## At a glance
 Nexconn Build Challenge 2026 (`https://reskilll.com/hack/nexconn/`), Oct 23 – Nov 22, 2026 AoE. $5,000 cash pool ($2,000 1st) + $20,640 Free Chat Plan (2 years) + 15% AWS / 30% Alibaba Cloud discount. Mainland China (`CN`) excluded. Team size 1–4.
 ## Evaluation criteria
@@ -1412,7 +1412,7 @@ Covers all 6 tracks: `nexconn-social` (Social & Community), `nexconn-gaming` (Ga
 ## Timeline & deliverables checklist
 Write-up PDF (with App Key), Demo Video, Runnable App URL, Public GitHub Repo, Traction proof.
 
-# Part 2 — The People
+# Part 2 - The People
 ## Organisers & committee
 Operated by **Reskilll** for **Nexconn** (`RCLOUD GLOBAL PTE. LTD.` / **RongCloud**). Leadership: Han Ying, Yang Pan, Cen Yu, Leo, Kai, Amy.
 ## Sponsors
@@ -1422,7 +1422,7 @@ Evaluated by Nexconn judges and engineers via Reskilll's admin portal (`Admin-_p
 ## Judge heat-map
 First 45s: 1-click dual-persona live chat demo. Next 90s: Nexconn primitive depth (`stream-message`, `expansion`, `group-channels/direct`). Final 45s: `App Key` telemetry & business viability.
 
-# Part 3 — Why This Hackathon, Why Now
+# Part 3 - Why This Hackathon, Why Now
 ## The real reason it exists
 Drive global developer adoption of Nexconn's Free Chat Plan and AICP agentic messaging fabric.
 ## Policy & scheme drivers
@@ -1434,17 +1434,17 @@ Jaishankar lens: resilient Global South real-time communication infrastructure.
 ## What the organisers want to announce afterwards
 High-traction AI-native apps running live on Nexconn App Keys.
 
-# Part 4 — Connecting the Dots
+# Part 4 - Connecting the Dots
 ## Dots nobody else will connect
 8 connected dots linking `Admin-_pGkMjvW.js`, `appKey` telemetry, `nexconn-skills`, and AICP.
 ## Hidden evaluation criteria
 Zero-signup 1-click demo personas and verified `activeUsers` on the Nexconn console.
-## Landmines — what will annoy this jury
+## Landmines - what will annoy this jury
 Using Call SDK alone without Chat SDK, or fake WebSocket state.
-## The 80% trap — what most teams will build
+## The 80% trap - what most teams will build
 Generic 1-on-1 chat wrappers or plain LLM prompt boxes.
 
-# Part 5 — The Battlefield
+# Part 5 - The Battlefield
 ## Competition forecast
 Estimated 250–400 teams; highest crowding in basic social/support bots.
 ## Prior work by domain
@@ -1459,7 +1459,7 @@ Benchmarks include Industry.ai, Truman AI Live, OmniBet, Ephemeral, CodeCrack, T
 | #5 | `nexconn-social-good` (Humanitarian & Social Good) | 8.5 | 8.0 | 8.5 | 8.5 | 8.5 | **8.40** |
 | #6 | `nexconn-social` (Social & Community) | 6.5 | 7.0 | 8.5 | 8.5 | 9.0 | **7.78** |
 
-# Part 6 — The Council
+# Part 6 - The Council
 ## Who sat in the war room
 11 Core Seats: Peter Thiel, Alex Karp, Patrick Jane, Warren Buffett, Harvey Specter, Mike Ross, Steve Jobs, Elon Musk, Andrej Karpathy, S. Jaishankar, Dr. R.S. Sharma.
 6 Extra Seats: Charlie Munger, Seth Godin, Gary Vaynerchuk, Tim Cook, Jony Ive, Paul Graham.
@@ -1470,27 +1470,27 @@ Custom Specialist: Kai Chen (Nexconn AICP & SDK Principal Architect).
 """,
         encoding="utf-8",
     )
-    _generate_synthetic_pdf(ws / "biblehackathon.pdf", "Nexconn Build Challenge 2026 — Hackathon Bible", pages=6)
+    _generate_synthetic_pdf(ws / "biblehackathon.pdf", "Nexconn Build Challenge 2026 - Hackathon Bible", pages=6)
 
     # F16: ideas.md, ideas.pdf, state.md
     (ws / "ideas.md").write_text(
-        f"""# Nexconn Build Challenge 2026 — Top Ideas by Domain
+        f"""# Nexconn Build Challenge 2026 - Top Ideas by Domain
 > How to read this: 5 ideas per domain (30 ideas total), ranked by the council's 9-criterion weighted rubric.
 
-# Part 0 — Where to Play
+# Part 0 - Where to Play
 ## Domain Winnability ranking
 | Rank | Track | Winnability Score |
 |---|---|---|
-| #1 | `nexconn-workplace` — Workplace & Collaboration | **8.98/10** |
-| #2 | `nexconn-support` — Marketplace & Support | **8.75/10** |
-| #3 | `open-innovation` — Open Innovation | **8.73/10** |
-| #4 | `nexconn-gaming` — Gaming & Live Streams | **8.48/10** |
-| #5 | `nexconn-social-good` — Humanitarian & Social Good | **8.40/10** |
-| #6 | `nexconn-social` — Social & Community | **7.78/10** |
+| #1 | `nexconn-workplace` - Workplace & Collaboration | **8.98/10** |
+| #2 | `nexconn-support` - Marketplace & Support | **8.75/10** |
+| #3 | `open-innovation` - Open Innovation | **8.73/10** |
+| #4 | `nexconn-gaming` - Gaming & Live Streams | **8.48/10** |
+| #5 | `nexconn-social-good` - Humanitarian & Social Good | **8.40/10** |
+| #6 | `nexconn-social` - Social & Community | **7.78/10** |
 
 ## The council's #1 pick and dark horse
-- **#1 Winning Recommendation**: **NexconnWorkplaceMesh1** in Track 03 (`nexconn-workplace` — Workplace & Collaboration), Score **8.6/10**.
-- **Dark Horse Pick**: **NexconnSupportMesh1** in Track 04 (`nexconn-support` — Marketplace & Support), Score **8.6/10**.
+- **#1 Winning Recommendation**: **NexconnWorkplaceMesh1** in Track 03 (`nexconn-workplace` - Workplace & Collaboration), Score **8.6/10**.
+- **Dark Horse Pick**: **NexconnSupportMesh1** in Track 04 (`nexconn-support` - Marketplace & Support), Score **8.6/10**.
 
 ## All ideas at a glance
 30 vetted ideas across all 6 tracks (`nexconn-workplace`, `nexconn-support`, `open-innovation`, `nexconn-gaming`, `nexconn-social-good`, `nexconn-social`).
@@ -1502,10 +1502,10 @@ Custom Specialist: Kai Chen (Nexconn AICP & SDK Principal Architect).
 """,
         encoding="utf-8",
     )
-    _generate_synthetic_pdf(ws / "ideas.pdf", "Nexconn Build Challenge 2026 — Top 30 Ideas", pages=6)
+    _generate_synthetic_pdf(ws / "ideas.pdf", "Nexconn Build Challenge 2026 - Top 30 Ideas", pages=6)
 
     (ws / "state.md").write_text(
-        """# War-Room Council State — Nexconn Build Challenge 2026 (`nexconn2026`)
+        """# War-Room Council State - Nexconn Build Challenge 2026 (`nexconn2026`)
 - **Hackathon URL**: https://reskilll.com/hack/nexconn/
 - **Team Defaults**: 1–4 members, 36-hour build sprint, TypeScript/Next.js + Python/Node.js + Nexconn Chat SDK.
 - **Approved Council Roster**: Peter Thiel, Alex Karp, Patrick Jane, Warren Buffett, Harvey Specter, Mike Ross, Steve Jobs, Elon Musk, Andrej Karpathy, S. Jaishankar, Dr. R.S. Sharma, Charlie Munger, Seth Godin, Gary Vaynerchuk, Tim Cook, Jony Ive, Paul Graham, Kai Chen (Nexconn AICP & SDK Architect).
@@ -1647,7 +1647,7 @@ def main() -> int:
         selected.extend(run_tier4_tests(root))
 
     print("=" * 78)
-    print(f"NEXCONN 2026 E2E TEST SUITE — ROOT: {root} (TIER: {args.tier})")
+    print(f"NEXCONN 2026 E2E TEST SUITE - ROOT: {root} (TIER: {args.tier})")
     print("=" * 78)
 
     for tier_num in (1, 2, 3, 4):

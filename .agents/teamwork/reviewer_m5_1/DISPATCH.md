@@ -1,6 +1,6 @@
 ## 2026-10-31T19:40:00Z
 
-# Task Assignment: Wave 4 Reviewer 1 (`reviewer_m5_1`) — Independent Review of `biblehackathon.md`, `biblehackathon.pdf`, `state.md`, and `research/*`
+# Task Assignment: Wave 4 Reviewer 1 (`reviewer_m5_1`) - Independent Review of `biblehackathon.md`, `biblehackathon.pdf`, `state.md`, and `research/*`
 
 - **Your Identity**: `reviewer_m5_1`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\reviewer_m5_1`

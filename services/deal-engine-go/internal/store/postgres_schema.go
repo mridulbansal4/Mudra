@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS bilingual_messages (
     deal_room_id         UUID NOT NULL REFERENCES deal_rooms(id) ON DELETE CASCADE,
     nexconn_msg_id       VARCHAR(128) NOT NULL UNIQUE,
     sender_nexconn_id    VARCHAR(128) NOT NULL,
-    message_type         VARCHAR(48)  NOT NULL DEFAULT 'x-samadhan-bilingual-bubble',
+    message_type         VARCHAR(48)  NOT NULL DEFAULT 'x-mudra-bilingual-bubble',
     source_locale        VARCHAR(8)   NOT NULL,
     target_locale        VARCHAR(8)   NOT NULL,
     scrubbed_source_text TEXT         NOT NULL,

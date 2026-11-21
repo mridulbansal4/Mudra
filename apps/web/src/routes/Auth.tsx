@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Button, Tabs } from "@heroui/react";
-import type { Locale, Role } from "@samadhan/shared-types";
-import { LOCALE_LABEL } from "@samadhan/shared-types";
+import type { Locale, Role } from "@mudra/shared-types";
+import { LOCALE_LABEL } from "@mudra/shared-types";
 import { Wordmark } from "../components/Chrome";
 import { PERSONAS, signIn, type Persona } from "../lib/personas";
 import { errorText } from "../lib/api";

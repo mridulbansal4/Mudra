@@ -1,5 +1,5 @@
 # Build context: repository root (see infra/docker/docker-compose.yml)
-#   docker build -f services/nexconn-bridge-node/Dockerfile -t samadhan/nexconn-bridge-node .
+#   docker build -f services/nexconn-bridge-node/Dockerfile -t mudra/nexconn-bridge-node .
 FROM node:22-alpine
 
 ENV NODE_ENV=production \

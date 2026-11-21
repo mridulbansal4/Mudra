@@ -1,4 +1,4 @@
-# Wave 4 Forensic Integrity Audit — Handoff & Verification Report (`auditor_m5_1`)
+# Wave 4 Forensic Integrity Audit - Handoff & Verification Report (`auditor_m5_1`)
 
 - **Auditor**: `auditor_m5_1` (Roles: `critic`, `specialist`, `auditor`)
 - **Parent / Caller ID**: `ce650322-b861-45dd-a12e-c7d3a6871eb0`
@@ -17,19 +17,19 @@
 
 ### Phase Results
 
-#### Phase 1 — Mode-Agnostic Investigation (OBSERVE ALL) & Forensic Checks
+#### Phase 1 - Mode-Agnostic Investigation (OBSERVE ALL) & Forensic Checks
 
-- **1. Hardcoded Output Detection**: **PASS** — Inspected all 1,674 lines (`101,802` bytes) of `d:\Hackathons\Nexconn\tests\run_e2e_tests.py` and all 31 deliverable Markdown files (`1,443,946` bytes, `8,857` lines). `run_e2e_tests.py` contains zero hardcoded pass returns (`return True` stubs), zero mocked assertions, and zero skipped tests; every `Suite.check(test_id, tier, description, passed, detail)` call evaluates dynamic boolean conditions against real disk files, regex structural patterns, weighted floating-point arithmetic, and `pypdf.PdfReader` page/text streams.
-- **2. Facade & Placeholder Detection**: **PASS** — Independent regex scan across all 31 deliverable Markdown files confirmed **0 occurrences** of `\b(TODO|TBD|FIXME|PLACEHOLDER|LOREM IPSUM)\b`, **0 truncated files**, and **0 leaked raw council dialogue lines** (`**Persona:**`) in `ideas.md`, `biblehackathon.md`, or `war-room/*-ideas.md` (raw debate dialogue appears exclusively in the 6 `war-room/<slug>.md` transcript files, as required by the `war-room-council` skill).
-- **3. Pre-Populated Artifact Detection**: **PASS** — Independent filesystem scan (`*.log`, `*result*`, `*output*` outside `.agents/`) returned `PREPOPULATED_ARTIFACTS: []` (0 pre-populated test logs, fake attestation files, or cached verification outputs).
-- **4. Layout Compliance (`.agents/teamwork/` Audit)**: **PASS** — Scanned all 74 files inside `d:\Hackathons\Nexconn\.agents\teamwork\`. All 74 files are `.md` agent metadata files (`TW_VIOLATION_FILES: []`). Zero source code, test scripts, PDFs, data files, `AGENTS.md`, or `GEMINI.md` files exist in `.agents/teamwork/`.
-- **5. Build and Run (Independent Test Execution & Negative Self-Test)**: **PASS** —
+- **1. Hardcoded Output Detection**: **PASS** - Inspected all 1,674 lines (`101,802` bytes) of `d:\Hackathons\Nexconn\tests\run_e2e_tests.py` and all 31 deliverable Markdown files (`1,443,946` bytes, `8,857` lines). `run_e2e_tests.py` contains zero hardcoded pass returns (`return True` stubs), zero mocked assertions, and zero skipped tests; every `Suite.check(test_id, tier, description, passed, detail)` call evaluates dynamic boolean conditions against real disk files, regex structural patterns, weighted floating-point arithmetic, and `pypdf.PdfReader` page/text streams.
+- **2. Facade & Placeholder Detection**: **PASS** - Independent regex scan across all 31 deliverable Markdown files confirmed **0 occurrences** of `\b(TODO|TBD|FIXME|PLACEHOLDER|LOREM IPSUM)\b`, **0 truncated files**, and **0 leaked raw council dialogue lines** (`**Persona:**`) in `ideas.md`, `biblehackathon.md`, or `war-room/*-ideas.md` (raw debate dialogue appears exclusively in the 6 `war-room/<slug>.md` transcript files, as required by the `war-room-council` skill).
+- **3. Pre-Populated Artifact Detection**: **PASS** - Independent filesystem scan (`*.log`, `*result*`, `*output*` outside `.agents/`) returned `PREPOPULATED_ARTIFACTS: []` (0 pre-populated test logs, fake attestation files, or cached verification outputs).
+- **4. Layout Compliance (`.agents/teamwork/` Audit)**: **PASS** - Scanned all 74 files inside `d:\Hackathons\Nexconn\.agents\teamwork\`. All 74 files are `.md` agent metadata files (`TW_VIOLATION_FILES: []`). Zero source code, test scripts, PDFs, data files, `AGENTS.md`, or `GEMINI.md` files exist in `.agents/teamwork/`.
+- **5. Build and Run (Independent Test Execution & Negative Self-Test)**: **PASS** - 
   - Executed `python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --root "d:\Hackathons\Nexconn"` → Exit code `0`, **`189/189 passed (100.0%)`** (`Tier 1: 80/80`, `Tier 2: 85/85`, `Tier 3: 16/16`, `Tier 4: 8/8`).
   - Executed `python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --self-test` → Exit code `0`, **`189/189 positive tests PASSED + 6/6 negative mutation checks PASSED`** (confirming the test runner genuinely fails when a deliverable is missing, a `TODO` is injected, a rubric score is corrupted by `+1.50`, a PDF is truncated to 100 bytes, raw council dialogue is leaked into `ideas.md`, or a domain only has 4 ideas).
-- **6. Output & PDF Authenticity Verification**: **PASS** —
+- **6. Output & PDF Authenticity Verification**: **PASS** - 
   - `d:\Hackathons\Nexconn\biblehackathon.pdf`: `1,251,767` bytes, header `%PDF-1.4`, **31 pages**, **0 empty pages**, `Creator: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0`, `Producer: Skia/PDF m156`, `CreationDate: D:20261031200330+00'00'`. Contains the `WAR ROOM COUNCIL` cover page (Page 1), `Contents` TOC (Pages 2–3), all 6 Bible Parts, and `# Sources` (Page 31).
   - `d:\Hackathons\Nexconn\ideas.pdf`: `5,751,132` bytes, header `%PDF-1.4`, **105 pages**, **0 empty pages**, `Creator: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0`, `Producer: Skia/PDF m156`, `CreationDate: D:20261031200333+00'00'`. Contains the `WAR ROOM COUNCIL` cover page (Page 1), `Contents` TOC (Pages 2–5), Part 0 Winnability & At-a-Glance Master Index, all 30 War Room ideas across all 6 official tracks, and `# Sources` (Page 105).
-- **7. Mathematical & Cross-File Consistency Audit**: **PASS** —
+- **7. Mathematical & Cross-File Consistency Audit**: **PASS** - 
   - All 6 official Nexconn Build Challenge tracks (`01` `nexconn-social`, `02` `nexconn-gaming`, `03` `nexconn-workplace`, `04` `nexconn-support`, `05` `nexconn-social-good`, `06` `open` / `open-innovation`) have identical Domain Winnability Index scores and rankings across `biblehackathon.md` Part 5, `ideas.md` Part 0, and `state.md`:
     1. `#1` `02 Gaming & Live Streams` (`nexconn-gaming`): `9.0*0.25 + 9.2*0.20 + 9.8*0.20 + 9.6*0.20 + 8.7*0.15 = 9.275` → **`9.27 / 10`** (#1 Pick: `GhostCoach SquadOS`, `9.44 / 10`)
     2. `#2` `03 Workplace & Collaboration` (`nexconn-workplace`): `8.6*0.25 + 9.0*0.20 + 9.4*0.20 + 9.5*0.20 + 8.6*0.15 = 9.020` → **`9.02 / 10`** (`BatonOS`, `9.15 / 10`)
@@ -41,7 +41,7 @@
 - **8. Dependency & Skill Usage Observation (Mode-Agnostic)**:
   - `ORIGINAL_REQUEST.md` explicitly instructed the team to use the `war-room-council` skill (`C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md`, including `scripts/md2pdf.py`) and `agent-browser` skill, and Python standard library + `markdown` + `pypdf` for PDF generation and verification.
 
-#### Phase 2 — Mode-Specific Flagging (FLAG BY MODE: `Development Mode`)
+#### Phase 2 - Mode-Specific Flagging (FLAG BY MODE: `Development Mode`)
 
 Per `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md` line 8 (`Integrity mode: development`):
 
@@ -81,12 +81,12 @@ Exit Code: 0
 
 Running positive suite against live workspace first...
 Positive suite passed (189/189). Running negative mutation checks...
-  [PASS] M1_missing_deliverable_fails — Expected failure triggered (failed=9)
-  [PASS] M2_injected_todo_fails — Expected failure triggered (T1.07a_no_todo_markers_in_deliverables=False)
-  [PASS] M3_corrupted_rubric_math_fails — Expected failure triggered (T2.14_idea_rubric_math_nexconn-gaming=False)
-  [PASS] M4_corrupted_pdf_fails — Expected failure triggered (T4.01a=False, T4.01c=False)
-  [PASS] M5_leaked_dialogue_in_ideas_fails — Expected failure triggered (T3.05_ideas_md_no_raw_dialogue_leak=False)
-  [PASS] M6_missing_idea_count_fails — Expected failure triggered (T2.13=False, T3.03=False)
+  [PASS] M1_missing_deliverable_fails - Expected failure triggered (failed=9)
+  [PASS] M2_injected_todo_fails - Expected failure triggered (T1.07a_no_todo_markers_in_deliverables=False)
+  [PASS] M3_corrupted_rubric_math_fails - Expected failure triggered (T2.14_idea_rubric_math_nexconn-gaming=False)
+  [PASS] M4_corrupted_pdf_fails - Expected failure triggered (T4.01a=False, T4.01c=False)
+  [PASS] M5_leaked_dialogue_in_ideas_fails - Expected failure triggered (T3.05_ideas_md_no_raw_dialogue_leak=False)
+  [PASS] M6_missing_idea_count_fails - Expected failure triggered (T2.13=False, T3.03=False)
 
 SELF-TEST RESULT: 189/189 positive tests PASSED + 6/6 negative mutation checks PASSED.
 ```
@@ -104,9 +104,9 @@ biblehackathon.pdf:
   page_count: 31
   empty_pages: 0
   metadata: {'Creator': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0', 'Producer': 'Skia/PDF m156', 'CreationDate': "D:20261031200330+00'00'", 'ModDate': "D:20261031200330+00'00'"}
-  p1_snippet: 'WAR ROOM COUNCIL\nNexconn Build Challenge — The\nComplete Reconnaissance & War\nRoom Bible\nNexconn Build Challenge 2026 · 2026-10-31\n2026-10-31'
-  p2_snippet: 'Contents\nExecutive Summary — The 60-Second Intelligence Brief\nPart 1 — Official Facts & Ground Truth (`https://reskilll.com/hack/nexconn/` & `https://docs.nexconn.ai/`)\n...'
-  last_page_snippet: '# Sources\n1. Nexconn Build Challenge Official Portal (Reskilll) — https://reskilll.com/hack/nexconn/\n2. Nexconn Official Developer Documentation — https://docs.nexconn.ai/\n...'
+  p1_snippet: 'WAR ROOM COUNCIL\nNexconn Build Challenge - The\nComplete Reconnaissance & War\nRoom Bible\nNexconn Build Challenge 2026 · 2026-10-31\n2026-10-31'
+  p2_snippet: 'Contents\nExecutive Summary - The 60-Second Intelligence Brief\nPart 1 - Official Facts & Ground Truth (`https://reskilll.com/hack/nexconn/` & `https://docs.nexconn.ai/`)\n...'
+  last_page_snippet: '# Sources\n1. Nexconn Build Challenge Official Portal (Reskilll) - https://reskilll.com/hack/nexconn/\n2. Nexconn Official Developer Documentation - https://docs.nexconn.ai/\n...'
 
 ideas.pdf:
   size_bytes: 5751132
@@ -117,7 +117,7 @@ ideas.pdf:
   metadata: {'Creator': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0', 'Producer': 'Skia/PDF m156', 'CreationDate': "D:20261031200333+00'00'", 'ModDate': "D:20261031200333+00'00'"}
   p1_snippet: 'WAR ROOM COUNCIL\nNexconn Build Challenge 2026 ? Top\nIdeas by Domain\nNexconn Build Challenge 2026 · Top ideas by domain\n2026-10-31'
   p2_snippet: 'Contents\nPart 0 ? Where to Play & Master Index\n0.1 Domain Winnability Index (Ranked #1 to #6)\n...'
-  last_page_snippet: '37. WhisperLiveKit (Real-Time Local Speech-to-Text Server) — https://github.com/QuentinFuxa/WhisperLiveKit\n38. LiveKit Agents Framework — https://github.com/livekit/agents\n...'
+  last_page_snippet: '37. WhisperLiveKit (Real-Time Local Speech-to-Text Server) - https://github.com/QuentinFuxa/WhisperLiveKit\n38. LiveKit Agents Framework - https://github.com/livekit/agents\n...'
 ```
 
 #### 4. Independent Deliverable Volume & Citation Census
@@ -170,8 +170,8 @@ DIALOGUE_HITS in final deliverables (ideas.md, biblehackathon.md, *-ideas.md): [
 
 #### [Low] Challenge 1: ASCII `?` Substitution for Em-Dashes in `ideas.md` Part 0 Header Lines
 
-- **Assumption challenged**: UTF-8 punctuation (`—` / `·`) is preserved identically across all assembled sections of `ideas.md` and `ideas.pdf`.
-- **Attack scenario**: During assembly of `ideas.md` Part 0 (lines 1–108), 25 instances of ` — ` were written as ` ? ` (e.g., line 1: `# Nexconn Build Challenge 2026 ? Top Ideas by Domain`, line 5: `## Part 0 ? Where to Play & Master Index`), which then rendered onto the cover page and TOC of `ideas.pdf`. Note that the body of `ideas.md` (lines 110–2333) preserves proper UTF-8 punctuation and math symbols.
+- **Assumption challenged**: UTF-8 punctuation (` - ` / `·`) is preserved identically across all assembled sections of `ideas.md` and `ideas.pdf`.
+- **Attack scenario**: During assembly of `ideas.md` Part 0 (lines 1–108), 25 instances of ` - ` were written as ` ? ` (e.g., line 1: `# Nexconn Build Challenge 2026 ? Top Ideas by Domain`, line 5: `## Part 0 ? Where to Play & Master Index`), which then rendered onto the cover page and TOC of `ideas.pdf`. Note that the body of `ideas.md` (lines 110–2333) preserves proper UTF-8 punctuation and math symbols.
 - **Blast radius**: Purely cosmetic typography on the title and Part 0 headers of `ideas.md` / `ideas.pdf`; zero impact on content completeness, rubric scores, technical architectures, or PDF readability.
 - **Mitigation**: When assembling multi-file Markdown on Windows PowerShell, enforce `[System.IO.File]::WriteAllText($path, $content, [System.Text.UTF8Encoding]::new($false))` or pure Python `encoding="utf-8"` throughout all string literals.
 
@@ -179,7 +179,7 @@ DIALOGUE_HITS in final deliverables (ideas.md, biblehackathon.md, *-ideas.md): [
 
 - **Assumption challenged**: Regex URL counting (`https?://...`) guarantees that every external GitHub/arXiv/news URL resolves to a 200 OK page.
 - **Attack scenario**: `tests/run_e2e_tests.py` is designed as a fast, deterministic, zero-network test suite (`< 2s` runtime) and therefore validates URL syntax and domain diversity rather than making 983 live HTTP requests. Notice also that `war-room/open-innovation-ideas.md` cites named repositories (`microsoft/autogen`, `langchain-ai/langgraph`, `camel-ai/camel`, `crewAIInc/crewAI`, `e2b-dev/e2b`, `tldraw/tldraw`, `yjs/yjs`) by `owner/repo` slug in its per-domain file while the full `https://` links are consolidated in `research/domains/open-innovation.md` (`28` URLs) and the master `# Sources` section of `ideas.md` (`91` URLs).
-- **Blast radius**: Low — `ideas.md` and `biblehackathon.md` both contain comprehensive, numbered `# Sources` sections with verified `https://` URLs (`91` in `ideas.md`, `40` in `biblehackathon.md`), and the primary hackathon sources (`https://reskilll.com/hack/nexconn/` and `https://docs.nexconn.ai/`) were captured verbatim in `research/00-source/`.
+- **Blast radius**: Low - `ideas.md` and `biblehackathon.md` both contain comprehensive, numbered `# Sources` sections with verified `https://` URLs (`91` in `ideas.md`, `40` in `biblehackathon.md`), and the primary hackathon sources (`https://reskilll.com/hack/nexconn/` and `https://docs.nexconn.ai/`) were captured verbatim in `research/00-source/`.
 - **Mitigation**: None required for offline E2E verification; users running `/bible <idea>` will validate any specific external repo they choose to fork or reference.
 
 ### Stress Test Results
@@ -193,7 +193,7 @@ DIALOGUE_HITS in final deliverables (ideas.md, biblehackathon.md, *-ideas.md): [
 
 ### Unchallenged Areas
 
-- **Live HTTP probing of all 983 external citation URLs** — Out of scope for offline deterministic audit; primary hackathon portals (`reskilll.com/hack/nexconn/` and `docs.nexconn.ai`) were already captured in `research/00-source/`.
+- **Live HTTP probing of all 983 external citation URLs** - Out of scope for offline deterministic audit; primary hackathon portals (`reskilll.com/hack/nexconn/` and `docs.nexconn.ai`) were already captured in `research/00-source/`.
 
 ---
 
@@ -225,7 +225,7 @@ DIALOGUE_HITS in final deliverables (ideas.md, biblehackathon.md, *-ideas.md): [
 ### 3. Caveats
 
 - Offline audit did not perform live HTTP GET requests against all 983 external citation URLs across the 31 Markdown files; primary hackathon sources (`reskilll.com/hack/nexconn/` and `docs.nexconn.ai`) were verified against the captured source files in `research/00-source/`.
-- As noted in Challenge 1, `ideas.md` Part 0 contains 25 instances of ` ? ` in place of ` — ` in header lines; this is purely cosmetic and does not affect any content, score math, or integrity requirement.
+- As noted in Challenge 1, `ideas.md` Part 0 contains 25 instances of ` ? ` in place of ` - ` in header lines; this is purely cosmetic and does not affect any content, score math, or integrity requirement.
 
 ### 4. Conclusion
 

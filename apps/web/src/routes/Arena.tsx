@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@heroui/react";
-import { formatInr } from "@samadhan/shared-types";
+import { formatInr } from "@mudra/shared-types";
 import { Page, SectionTitle, Banner } from "../components/Chrome";
 import { api, errorText } from "../lib/api";
 
@@ -163,7 +163,7 @@ export default function Arena() {
               <div className="text-[13px] text-ink-3">Sticker price</div>
               <div className="num text-[22px] text-ink">{formatInr(run.sticker_price_paise)}</div>
               <div className="mt-3 text-[13px] text-ink-3">Your last offer</div>
-              <div className="num text-[18px] text-ink">{offer ? formatInr(Number(offer.replace(/[^\d]/g, "")) * 100) : "—"}</div>
+              <div className="num text-[18px] text-ink">{offer ? formatInr(Number(offer.replace(/[^\d]/g, "")) * 100) : "-"}</div>
             </div>
             {over ? (
               <div className="rounded-xl border hairline bg-paper p-5">
@@ -182,7 +182,7 @@ export default function Arena() {
                   </Button>
                   <Button
                     variant="outline"
-                    onPress={() => window.open(`https://wa.me/?text=${encodeURIComponent(`I bargained ${savings.toFixed(1)}% off in the SAMADHAN arena. Beat me: ${location.origin}/arena`)}`, "_blank")}
+                    onPress={() => window.open(`https://wa.me/?text=${encodeURIComponent(`I bargained ${savings.toFixed(1)}% off in the MUDRA arena. Beat me: ${location.origin}/arena`)}`, "_blank")}
                   >
                     Share on WhatsApp
                   </Button>

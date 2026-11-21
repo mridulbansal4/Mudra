@@ -1,5 +1,5 @@
-# Frontend Engineering Specification (`apps/web`) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Frontend Lead — Dev 3) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Frontend Engineering Specification (`apps/web`) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Frontend Lead - Dev 3) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Design System](../02-design/DESIGN_SYSTEM.md) · [UI Spec](../02-design/UI_SPEC.md) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md) · [Mobile Spec](./MOBILE.md) · [ADR-0004](./adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md)
 
 ---
@@ -21,7 +21,7 @@
 4. **`/apple-design` Fluid Physical Motion**:
    - Instant pointer-down feedback (`scale(0.97)` in `100ms`); critically damped springs (`damping: 1.0, response: 0.35s`) by default; 1:1 `setPointerCapture` + Apple momentum projection (`projectMomentum(v, 0.998)`) on the draggable WebRTC Video Assay PiP Loupe.
 5. **Shadow DOM Custom-Event Bridge for Lit Cards**:
-   - Because `<nc-escrow-deal-card>` renders inside `<nc-chat-ui-app-provider>`'s Shadow DOM, all user actions inside Lit cards dispatch `new CustomEvent("samadhan-deal-action", { bubbles: true, composed: true, detail })` so the parent React 19 Deal Desk container captures them cleanly.
+   - Because `<nc-escrow-deal-card>` renders inside `<nc-chat-ui-app-provider>`'s Shadow DOM, all user actions inside Lit cards dispatch `new CustomEvent("mudra-deal-action", { bubbles: true, composed: true, detail })` so the parent React 19 Deal Desk container captures them cleanly.
 
 ---
 
@@ -38,15 +38,15 @@ apps/web/
     │   ├── tokens.css                  # Hallmark :root oklch tokens + dark mode
     │   └── globals.css                 # Line 1 Hallmark stamp + @import "tailwindcss" + @import "@heroui/styles"
     ├── routes/                         # Story-Driven Route Tree (React Router v7 / TanStack Router)
-    │   ├── LandingStoryPage.tsx        # /          — 1280x800 Hero + 3 Visual Story Chapters
-    │   ├── AuthPersonaPage.tsx         # /auth      — Login/Signup Tabs + 4 One-Tap Demo Persona Cards
-    │   ├── OnboardingWizardPage.tsx    # /onboarding— 45s 3-Step Setup + Simulated HD Camera Toggle
-    │   ├── DealWorkbenchPage.tsx       # /app       — 4-Stage Story Bar + Hybrid Sidebar + ChatUI + PiP Loupe
-    │   ├── SplitSandboxPage.tsx        # /sandbox   — 1-Click Dual Buyer+Seller Panes + 5-Step Coachmarks
-    │   ├── BargainArenaPage.tsx        # /arena     — 60s Viral Chanakya AI Shopkeeper Challenge
-    │   ├── ArbitratorDispatchPage.tsx  # /dispatch  — Frozen Group Channel Triage & 1-Tap Split Execution
-    │   ├── SdkGuideInspectorPage.tsx   # /guide     — Interactive Beginner Manual & Live SDK Hook Inspector
-    │   └── TractionProofPage.tsx       # /traction  — Public Verified MAU & Latency Dashboard (API-18)
+    │   ├── LandingStoryPage.tsx        # /          - 1280x800 Hero + 3 Visual Story Chapters
+    │   ├── AuthPersonaPage.tsx         # /auth      - Login/Signup Tabs + 4 One-Tap Demo Persona Cards
+    │   ├── OnboardingWizardPage.tsx    # /onboarding - 45s 3-Step Setup + Simulated HD Camera Toggle
+    │   ├── DealWorkbenchPage.tsx       # /app       - 4-Stage Story Bar + Hybrid Sidebar + ChatUI + PiP Loupe
+    │   ├── SplitSandboxPage.tsx        # /sandbox   - 1-Click Dual Buyer+Seller Panes + 5-Step Coachmarks
+    │   ├── BargainArenaPage.tsx        # /arena     - 60s Viral Chanakya AI Shopkeeper Challenge
+    │   ├── ArbitratorDispatchPage.tsx  # /dispatch  - Frozen Group Channel Triage & 1-Tap Split Execution
+    │   ├── SdkGuideInspectorPage.tsx   # /guide     - Interactive Beginner Manual & Live SDK Hook Inspector
+    │   └── TractionProofPage.tsx       # /traction  - Public Verified MAU & Latency Dashboard (API-18)
     ├── components/
     │   ├── story-bar/
     │   │   ├── DealStoryStepper.tsx    # Top 4-Stage Progress Bar + "Next Recommended Step" Coachmark
@@ -72,7 +72,7 @@ apps/web/
 ## 3. State Management & Data Fetching Architecture
 
 - **Server & Deal FSM State (`@tanstack/react-query v5`)**: Fetches `API-04` (`GET /api/v1/deals/:dealId`) and `API-18` (`GET /api/v1/traction/telemetry`) with optimistic updates on `API-06` (`escrow/transition`) and automatic invalidation whenever a `System` channel voucher arrives over `NCEngine`.
-- **Real-Time Channel & Call State (`Zustand v5` store `useSamadhanSessionStore`)**:
+- **Real-Time Channel & Call State (`Zustand v5` store `useMudraSessionStore`)**:
   - Holds `nexconnAppKey`, `nexconnToken`, `ncConnectionState` (`DISCONNECTED | CONNECTING | CONNECTED`), active `storyStage` (`1 | 2 | 3 | 4`), `cameraMode` (`webcam | simulated_hd`), and `activeCallState` (`IDLE | AUDIO_RINGING | VIDEO_ASSAY_ACTIVE | LOG_VERIFIED`).
 
 ---

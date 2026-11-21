@@ -1,4 +1,4 @@
-# Test Infrastructure Specification — Nexconn Build Challenge 2026 (`nexconn2026`)
+# Test Infrastructure Specification - Nexconn Build Challenge 2026 (`nexconn2026`)
 
 ## 1. Test Philosophy
 
@@ -11,7 +11,7 @@
 
 2. **Opaque-Box & Structural/Mathematical Determinism**:
    - Tests inspect the observable deliverables in `d:\Hackathons\Nexconn\` (`research/*`, `war-room/*`, `biblehackathon.md`, `biblehackathon.pdf`, `ideas.md`, `ideas.pdf`, `state.md`) without relying on agent internals.
-   - All rubric calculations—both the **9-Criterion Idea Weighted Score** ($0.15(\text{pain}+\text{novelty}+\text{alignment}+\text{demo}) + 0.10(\text{feasibility}+\text{India}+\text{business}) + 0.05(\text{legal}+\text{moonshot})$) and the **5-Factor Domain Winnability Index** ($0.25(\text{CompInv}) + 0.20(\text{SatInv}+\text{Demo}+\text{Align}) + 0.15(\text{Feas})$)—are independently parsed and mathematically verified.
+   - All rubric calculations - both the **9-Criterion Idea Weighted Score** ($0.15(\text{pain}+\text{novelty}+\text{alignment}+\text{demo}) + 0.10(\text{feasibility}+\text{India}+\text{business}) + 0.05(\text{legal}+\text{moonshot})$) and the **5-Factor Domain Winnability Index** ($0.25(\text{CompInv}) + 0.20(\text{SatInv}+\text{Demo}+\text{Align}) + 0.15(\text{Feas})$) - are independently parsed and mathematically verified.
    - Rendered PDF deliverables (`biblehackathon.pdf` and `ideas.pdf`) are validated for binary header integrity (`%PDF-`), minimum file size (`> 10,000` bytes), and multi-page readability (`>= 5` pages) via `pypdf`.
 
 3. **Self-Testing Harness (`--self-test`)**:
@@ -64,20 +64,20 @@ python d:\Hackathons\Nexconn\tests\run_e2e_tests.py --self-test
 ```
 
 ### 4-Tier Verification Structure
-1. **Tier 1 — Feature Coverage (`80` tests = `5` per feature × `16` features)**:
+1. **Tier 1 - Feature Coverage (`80` tests = `5` per feature × `16` features)**:
    - Verifies file existence, non-empty size, required H1/H2 headings, and core factual entities across all 16 features (`F1`–`F16`).
-2. **Tier 2 — Boundary, Corner Cases & Format/Math Validation (`85` tests = `5` per feature × `16` features + `5` negative validator checks)**:
+2. **Tier 2 - Boundary, Corner Cases & Format/Math Validation (`85` tests = `5` per feature × `16` features + `5` negative validator checks)**:
    - Zero standalone `TODO` or `TBD` placeholder markers across all deliverable markdown files;
    - Binary PDF header (`%PDF-`), file size (`> 10,000` bytes), and `pypdf` readable page count (`>= 5` pages) for `biblehackathon.pdf` and `ideas.pdf`;
    - Full 14-field template compliance across all `30` ideas (`5` ideas × `6` tracks) in `war-room/<slug>-ideas.md` and `ideas.md`;
    - Exact 9-criterion weighted rubric math validation (`±0.15` tolerance) for all `30` ideas;
    - Strict separation check confirming zero raw war-room dialogue turns (`**THIEL:**`, `**MUNGER:**`, `**JANE:**`, `**KARPATHY:**`, `**MUSK:**`, `**HARVEY:**`, `**SHARMA:**`, `**BUFFETT:**`, `**MIKE ROSS:**`, `**GRAHAM:**`, `**JOBS:**`) leaked into `ideas.md` or `war-room/<slug>-ideas.md`.
-3. **Tier 3 — Cross-Feature Combinations (`16` pairwise interaction tests)**:
+3. **Tier 3 - Cross-Feature Combinations (`16` pairwise interaction tests)**:
    - `T3_01`–`T3_04`: Canonical 6-track consistency across `01-facts.md`, `biblehackathon.md`, `ideas.md`, and `state.md`, plus prize pool (`$5,000` / `$20,640`), judging rubric (`50%`/`30%`/`20%`), and App Key (`^[A-Za-z0-9_-]{8,64}$`) alignment.
    - `T3_05`–`T3_08`: Nexconn corporate lineage (`RCLOUD GLOBAL PTE. LTD.` / `RongCloud`) and SDK primitives (`Chat SDK`, `Chat UI`, `Call SDK`, `AICP`, `stream-message`, `expansion`, `group-channels/direct`, `builtin-translation`, `open-channels`, `moderation`, `nexconn-skills`) mapped from `B-sponsors.md` into `biblehackathon.md` and `ideas.md`.
    - `T3_09`–`T3_12`: Global hackathon winners (`Industry.ai`, `Truman AI Live`, `OmniBet`, `Ephemeral`, `TxGPT`, `Snaption Live`) and research papers (`arXiv` citations with URLs) traced across `E-competition.md`, `research/domains/<slug>.md`, `biblehackathon.md`, and `ideas.md`.
-   - `T3_13`–`T3_16`: Domain Winnability ranking order, #1 winning track and idea recommendation, dark horse pick, and `# Sources` integrity across `biblehackathon.md`, `ideas.md` (`Part 0 — Where to Play`), `war-room/<slug>-ideas.md`, and `state.md`.
-4. **Tier 4 — Real-World Application Scenarios (`8` end-to-end scenarios)**:
+   - `T3_13`–`T3_16`: Domain Winnability ranking order, #1 winning track and idea recommendation, dark horse pick, and `# Sources` integrity across `biblehackathon.md`, `ideas.md` (`Part 0 - Where to Play`), `war-room/<slug>-ideas.md`, and `state.md`.
+4. **Tier 4 - Real-World Application Scenarios (`8` end-to-end scenarios)**:
    - Described in Section 4 below.
 
 ---

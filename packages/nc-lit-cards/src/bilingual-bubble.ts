@@ -1,5 +1,5 @@
 import { css, html, nothing } from "lit";
-import { SamadhanCardBase, inr } from "./base";
+import { MudraCardBase, inr } from "./base";
 
 const LANG: Record<string, string> = {
   "en-IN": "English",
@@ -9,12 +9,12 @@ const LANG: Record<string, string> = {
 };
 
 /**
- * <nc-bilingual-bubble> — messageType `x-samadhan-bilingual-bubble`.
+ * <nc-bilingual-bubble> - messageType `x-mudra-bilingual-bubble`.
  * data: { senderName, sourceLocale, targetLocale, rawText, translatedText, terms, streaming, mine, piiRedacted }
  */
-export class SamadhanBilingualBubble extends SamadhanCardBase {
+export class MudraBilingualBubble extends MudraCardBase {
   static styles = [
-    SamadhanCardBase.baseStyles,
+    MudraCardBase.baseStyles,
     css`
       .bubble {
         max-width: 92%;

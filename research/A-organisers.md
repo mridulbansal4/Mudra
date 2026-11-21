@@ -1,4 +1,4 @@
-# A — Organisers Deep-Dive: Reskilll × Nexconn (`RCLOUD GLOBAL PTE. LTD.` / RongCloud)
+# A - Organisers Deep-Dive: Reskilll × Nexconn (`RCLOUD GLOBAL PTE. LTD.` / RongCloud)
 
 > **Primary Sources**: `https://reskilll.com/`, `https://reskilll.com/hack/nexconn/`, `https://reskilll.com/hack/nexconn/assets/Admin-_pGkMjvW.js`, `https://www.nexconn.ai/`, `https://docs.nexconn.ai/`, `https://www.rongcloud.cn/`, `https://www.lyrawork.com/`, and `https://github.com/NexconnAI-Dev/nexconn-skills`.
 
@@ -50,14 +50,14 @@ To understand why Nexconn's SDK works the way it does, you must trace its **19-y
 | **2015–2024** | **RongCloud (融云 / Beijing Cloudzhong Rongxin Network Technology Co., Ltd.)** | Spun out by the core Fetion architecture team to provide cloud IM & RTC PaaS. Ranked **#1 in China's IM PaaS market share** by iResearch across multiple consecutive years, powering **300,000+ apps** and **70M+ Daily Active Users (DAU)**. Backed by over **¥1 Billion+ RMB (~$150M+ USD)** across Series A–D from ** Dongfang Fuhai, GGV Capital (Granite Asia), Tencent / strategic telecom funds, and CICC**. | `https://www.rongcloud.cn/` |
 | **2025–2026** | **Nexconn (`RCLOUD GLOBAL PTE. LTD.`, Singapore)** | International spin-out and global brand launched out of Singapore (`RCLOUD GLOBAL PTE. LTD.`) with dedicated overseas data centers, `https://www.nexconn.ai`, `https://docs.nexconn.ai`, `https://www.lyrawork.com`, and `https://github.com/NexconnAI-Dev`. | `https://www.nexconn.ai/`, `https://docs.nexconn.ai/` |
 
-> **Why Mainland China (`CN`) is excluded in `index-DSX23m3q.js` (`tS = ["CN"]`)**: RongCloud already dominates Mainland China under `rongcloud.cn`. **Nexconn (`nexconn.ai`)** exists specifically to capture **international developers outside Mainland China**—India, Southeast Asia, North America, Europe, MENA, and LATAM.
+> **Why Mainland China (`CN`) is excluded in `index-DSX23m3q.js` (`tS = ["CN"]`)**: RongCloud already dominates Mainland China under `rongcloud.cn`. **Nexconn (`nexconn.ai`)** exists specifically to capture **international developers outside Mainland China** - India, Southeast Asia, North America, Europe, MENA, and LATAM.
 
 ### 3.2 Executive & Technical Leadership
-1. **Han Ying (韩迎) — Co-Founder & CEO**:
+1. **Han Ying (韩迎) - Co-Founder & CEO**:
    - Former Chief Architect / Head of R&D for China Mobile's **Fetion (飞信)**. Obsessed with carrier-grade reliability (`99.99% SLA`), high-concurrency binary protocols, and globalizing Chinese communication infrastructure for overseas mobile/web/AI developers.
-2. **Yang Pan (杨攀) — Co-Founder & CTO**:
+2. **Yang Pan (杨攀) - Co-Founder & CTO**:
    - Former core IM engine lead at Fetion; architected RongCloud/Nexconn's **private binary TCP/QUIC multiplex protocol**, **3-layer consistent hashing Open Channel cluster**, and **AICP (Agent Inter-Communication Protocol)**.
-3. **Cen Yu (岑裕) — Co-Founder & VP of Engineering**:
+3. **Cen Yu (岑裕) - Co-Founder & VP of Engineering**:
    - Leads SDK stability across Android, iOS, Flutter, Web, Unity, and React Native (`@rongcloud/imlib-next`, `IMKit`, `CallLib`).
 4. **Nexconn International Product, DevRel & AI Team**:
    - **Leo (Product Director, Nexconn Global)**: Oversees international developer experience (`console.nexconn.ai`), pricing tiers ($860/mo 10K MAU plan), and commercial scenario validation across Social, Gaming, Workplace, and Marketplace verticals.
@@ -66,7 +66,7 @@ To understand why Nexconn's SDK works the way it does, you must trace its **19-y
 
 ---
 
-## 4. Why This Hackathon Exists Right Now (Organiser Motives — Explicit vs. Implicit)
+## 4. Why This Hackathon Exists Right Now (Organiser Motives - Explicit vs. Implicit)
 
 ### 4.1 Explicit Stated Goals (`https://reskilll.com/hack/nexconn/`)
 - Encourage global mobile and web developers to build real-time chat applications using **Nexconn Chat SDK (`chat-sdk`)** or **Chat UI (`chat-ui`)** across 6 real-world categories.
@@ -80,5 +80,5 @@ To understand why Nexconn's SDK works the way it does, you must trace its **19-y
    - **Observation**: Nexconn invested engineering effort to build `https://github.com/NexconnAI-Dev/nexconn-skills` and publish `@nexconn/console-mcp` on npm (`npx -y @nexconn/console-mcp`) alongside `https://docs.nexconn.ai/llms.txt`.
    - **Implication**: Nexconn wants to prove that AI-assisted developers (using Claude Code, Cursor, Windsurf) can integrate Nexconn faster than any competing CPaaS SDK.
 3. **Validating High-ARPU Vertical Scenarios & Converting Winners into Long-Term Customers**:
-   - **Observation**: Every winner receives **$20,640 in Free Chat Plan credits ($860/month × 24 months for 10,000 MAU)** (`mS` in `index-DSX23m3q.js`)—more than **4× the total cash pool ($5,000)**—plus a big scoring bonus for bringing real active users onto `console.nexconn.ai` (`gu`).
+   - **Observation**: Every winner receives **$20,640 in Free Chat Plan credits ($860/month × 24 months for 10,000 MAU)** (`mS` in `index-DSX23m3q.js`) - more than **4× the total cash pool ($5,000)** - plus a big scoring bonus for bringing real active users onto `console.nexconn.ai` (`gu`).
    - **Implication**: Nexconn's KPI for this hackathon is **activated App Keys with non-zero MAU (`activeUsers`) and showcaseable vertical case studies** that convert into paying $860+/month enterprise tenants or flagship case studies on `nexconn.ai`.

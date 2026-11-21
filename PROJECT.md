@@ -1,4 +1,4 @@
-# Project: Nexconn Build Challenge 2026 — War-Room Council Research & Winning Strategy (`nexconn2026`)
+# Project: Nexconn Build Challenge 2026 - War-Room Council Research & Winning Strategy (`nexconn2026`)
 
 ## Architecture
 - **Overview**: End-to-end multi-agent intelligence, company/SDK analysis, global benchmark synthesis, and 6-track War-Room Council ideation & ranking system for the **Nexconn Build Challenge 2026** (`https://reskilll.com/hack/nexconn/`), adhering strictly to `C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md` and `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md`.
@@ -28,7 +28,7 @@ Every feature from the Survey phase appears below with its assigned milestone. N
 | F13 | Track 05 (`nexconn-social-good`) Domain Dossier, War-Room Debate & Top 5 Ideas | `research/domains/nexconn-social-good.md` (7 sections), `war-room/nexconn-social-good.md` (Rounds 0–5), and `war-room/nexconn-social-good-ideas.md` (Top 5 scored ideas for Humanitarian & Social Good) | M3 | survey |
 | F14 | Track 06 (`open-innovation`) Domain Dossier, War-Room Debate & Top 5 Ideas | `research/domains/open-innovation.md` (7 sections), `war-room/open-innovation.md` (Rounds 0–5), and `war-room/open-innovation-ideas.md` (Top 5 scored ideas for Open Innovation) | M3 | survey |
 | F15 | Master Hackathon Bible (`biblehackathon.md` & `biblehackathon.pdf`) | Complete 6-Part + `# Sources` Hackathon Bible integrating R1–R4, rendered to valid A4 PDF via `md2pdf.py` | M4 | survey |
-| F16 | Master Ideas & Winning Selection (`ideas.md`, `ideas.pdf`, `state.md`) | Complete `Part 0 — Where to Play` (5-factor Domain Winnability ranking, #1 winning track & idea recommendation + dark horse, 30-idea overview table) + 30 detailed ideas across all 6 tracks + `# Sources`, rendered to `ideas.pdf` and summarized in `state.md` | M4 | survey |
+| F16 | Master Ideas & Winning Selection (`ideas.md`, `ideas.pdf`, `state.md`) | Complete `Part 0 - Where to Play` (5-factor Domain Winnability ranking, #1 winning track & idea recommendation + dark horse, 30-idea overview table) + 30 detailed ideas across all 6 tracks + `# Sources`, rendered to `ideas.pdf` and summarized in `state.md` | M4 | survey |
 | F17 | Final E2E Verification & Tier 5 Adversarial Hardening | Pass 100% of E2E tests (Tiers 1–4) from `TEST_READY.md` and complete Tier 5 white-box adversarial coverage hardening | M5 | survey |
 
 ## Milestones
@@ -38,7 +38,7 @@ Every feature from the Survey phase appears below with its assigned milestone. N
 | M2 | Tracks 01–03 Domain Research & War-Room (`worker_m2_tracks_1_2`, `worker_m2_tracks_3_4`) | F9–F11: Create `research/domains/<slug>.md`, `war-room/<slug>.md`, and `war-room/<slug>-ideas.md` for `nexconn-social`, `nexconn-gaming`, and `nexconn-workplace` (5 ideas per track = 15 ideas) | none | DONE (9 files, >366 KB, 15 scored ideas, 100% E2E Tier 1 & Tier 2 pass) |
 | M3 | Tracks 04–06 Domain Research & War-Room (`worker_m2_tracks_3_4`, `worker_m3_tracks_5_6`) | F12–F14: Create `research/domains/<slug>.md`, `war-room/<slug>.md`, and `war-room/<slug>-ideas.md` for `nexconn-support`, `nexconn-social-good`, and `open-innovation` (5 ideas per track = 15 ideas) | none | DONE (9 files, >388 KB, 15 scored ideas, 100% E2E Tier 1 & Tier 2 pass across F1–F14, 30/30 unique idea titles) |
 | M4 | Master Assembly, Winnability & PDF Rendering (`worker_m4_assembly`) | F15–F16: Compute Domain Winnability Index across all 6 tracks, select #1 winning track & idea + dark horse, assemble `biblehackathon.md`, `ideas.md`, and `state.md`, and render `biblehackathon.pdf` and `ideas.pdf` via `md2pdf.py` | M1, M2, M3 | DONE (`biblehackathon.md/.pdf`, `ideas.md/.pdf`, `state.md`, 189/189 E2E pass) |
-| M5 | Final E2E Pass & Tier 5 Adversarial Hardening (`reviewer_m5_1..2`, `challenger_m5_1..2`, `auditor_m5_1`) | F17: Pass 100% of E2E test suite (`TEST_READY.md` Tiers 1–4) and execute Tier 5 white-box adversarial coverage hardening + forensic audit | M4, E2E_TRACK | DONE (Gate Result: PASS — 2/2 Reviewers APPROVE, 2/2 Challengers APPROVE, 1/1 Auditor CLEAN, 189/189 E2E + 6/6 self-test pass) |
+| M5 | Final E2E Pass & Tier 5 Adversarial Hardening (`reviewer_m5_1..2`, `challenger_m5_1..2`, `auditor_m5_1`) | F17: Pass 100% of E2E test suite (`TEST_READY.md` Tiers 1–4) and execute Tier 5 white-box adversarial coverage hardening + forensic audit | M4, E2E_TRACK | DONE (Gate Result: PASS - 2/2 Reviewers APPROVE, 2/2 Challengers APPROVE, 1/1 Auditor CLEAN, 189/189 E2E + 6/6 self-test pass) |
 | E2E_TRACK | E2E Testing Track (`test_writer_e2e`) | Design and build `TEST_INFRA.md`, automated verification runner & test cases (`tests/` covering Tiers 1–4), and publish `TEST_READY.md` | none | DONE (`TEST_INFRA.md`, `tests/run_e2e_tests.py` 189+6 tests, `TEST_READY.md` published) |
 
 ## Interface Contracts
@@ -51,15 +51,15 @@ Every feature from the Survey phase appears below with its assigned milestone. N
 
 ###Canonical Domain Slugs (`<slug>`) Across M2, M3, M4, and E2E_TRACK
 All agents MUST use these exact 6 canonical domain slugs for filenames under `research/domains/` and `war-room/`:
-1. `nexconn-social` — Track 01: Social & Community (`"Group messaging and topic-based channels"`)
-2. `nexconn-gaming` — Track 02: Gaming & Live Streams (`"Squad chat and live stream interactive chatroom"`)
-3. `nexconn-workplace` — Track 03: Workplace & Collaboration (`"Direct messaging and team project threads"`)
-4. `nexconn-support` — Track 04: Marketplace & Support (`"Buyer-seller chat and customer service"`)
-5. `nexconn-social-good` — Track 05: Humanitarian & Social Good (`"Accessible text chat for seniors and communities"`)
-6. `open-innovation` — Track 06: Open Innovation (`"Any interactive chat idea"`, track ID `open`)
+1. `nexconn-social` - Track 01: Social & Community (`"Group messaging and topic-based channels"`)
+2. `nexconn-gaming` - Track 02: Gaming & Live Streams (`"Squad chat and live stream interactive chatroom"`)
+3. `nexconn-workplace` - Track 03: Workplace & Collaboration (`"Direct messaging and team project threads"`)
+4. `nexconn-support` - Track 04: Marketplace & Support (`"Buyer-seller chat and customer service"`)
+5. `nexconn-social-good` - Track 05: Humanitarian & Social Good (`"Accessible text chat for seniors and communities"`)
+6. `open-innovation` - Track 06: Open Innovation (`"Any interactive chat idea"`, track ID `open`)
 
 ### M2 & M3 (`war-room/<slug>-ideas.md`) ↔ M4 (`ideas.md` Assembly)
-Each `war-room/<slug>-ideas.md` file MUST start with `# <Track Number & Name>` (H1) followed by `## Domain snapshot` (H2) and `## Idea 1 — <Name>: <one-liner>` through `## Idea 5 — <Name>: <one-liner>` (H2), containing all required fields from `output-templates.md`:
+Each `war-room/<slug>-ideas.md` file MUST start with `# <Track Number & Name>` (H1) followed by `## Domain snapshot` (H2) and `## Idea 1 - <Name>: <one-liner>` through `## Idea 5 - <Name>: <one-liner>` (H2), containing all required fields from `output-templates.md`:
 - `**Type:** ... **Score:** X.X/10 **Problem statement:** <Track ID & Name>`
 - `**The pain (Mike Ross):**`
 - `**Why now:**`
@@ -78,7 +78,7 @@ Each `war-room/<slug>-ideas.md` file MUST start with `# <Track Number & Name>` (
 ### M1, M2, M3 ↔ M4 (`biblehackathon.md`, `ideas.md`, `state.md`, PDFs)
 - M4 reads all files from M1 (`research/01-facts.md`, `research/A..F`, `war-room/roster-additions.md`), M2, and M3 to compute the 5-factor Domain Winnability Index:
   $$\text{Winnability} = 0.25(\text{CompInv}) + 0.20(\text{SatInv} + \text{Demo} + \text{Align}) + 0.15(\text{Feas})$$
-- M4 orders the 6 domain sections in `ideas.md` from highest Winnability score (#1) to lowest (#6), populates `Part 0 — Where to Play` (including the single best winning track and idea + dark horse pick), assembles `biblehackathon.md` (Parts 1–6 + `# Sources`), writes `state.md`, and runs `md2pdf.py` to produce `biblehackathon.pdf` and `ideas.pdf`.
+- M4 orders the 6 domain sections in `ideas.md` from highest Winnability score (#1) to lowest (#6), populates `Part 0 - Where to Play` (including the single best winning track and idea + dark horse pick), assembles `biblehackathon.md` (Parts 1–6 + `# Sources`), writes `state.md`, and runs `md2pdf.py` to produce `biblehackathon.pdf` and `ideas.pdf`.
 
 ## Code Layout & Strict Write Ownership
 To prevent concurrent write collisions across parallel milestones:

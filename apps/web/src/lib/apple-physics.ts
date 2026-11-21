@@ -1,7 +1,7 @@
 /** Motion constants and helpers per docs/02-design/DESIGN_SYSTEM.md §5. */
 
 export const APPLE_SPRINGS = {
-  /** Critically damped — default UI. */
+  /** Critically damped - default UI. */
   snappy: { response: 0.3, damping: 1.0 },
   smooth: { response: 0.35, damping: 1.0 },
   /** Gesture-driven release only. */
