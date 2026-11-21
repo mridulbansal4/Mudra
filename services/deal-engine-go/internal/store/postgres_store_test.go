@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/config"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/config"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 func TestDeterministicUUIDAndHelpers(t *testing.T) {
@@ -43,7 +43,7 @@ func TestPostgresStoreLiveSupabaseSuite(t *testing.T) {
 		t.Skip("DATABASE_URL unset or placeholder; skipping live Supabase integration test")
 	}
 
-	testSchema := "samadhan_test_" + store.RandHex(4)
+	testSchema := "mudra_test_" + store.RandHex(4)
 	ctx := context.Background()
 
 	ps, err := store.NewPostgresStore(ctx, store.PostgresOptions{
@@ -91,7 +91,7 @@ func TestPostgresStoreLiveSupabaseSuite(t *testing.T) {
 		AmountPaise:    store.SeedAmountPaise,
 		Currency:       "INR",
 		Checklist:      store.DefaultChecklist(),
-		UPIMandateUMN:  "samadhan.8821@okaxis",
+		UPIMandateUMN:  "mudra.8821@okaxis",
 		RequiredSerial: store.SeedSerial,
 		MinMotorRPM:    store.SeedMinRPM,
 		ReferencePHash: store.SeedReferencePHash,
@@ -128,7 +128,7 @@ func TestPostgresStoreLiveSupabaseSuite(t *testing.T) {
 			}
 			card := store.ChatMessage{
 				ID: "msg_" + store.RandHex(6), DealID: d.ID, SenderRole: "system",
-				SenderName: "SAMADHAN Escrow", MessageType: "x-samadhan-escrow-card",
+				SenderName: "MUDRA Escrow", MessageType: "x-mudra-escrow-card",
 				RawText: string(res.Prev) + " -> " + string(res.Next), TranslatedText: string(res.Prev) + " -> " + string(res.Next),
 				ExtractedTerms: map[string]any{}, Extras: map[string]any{"version": res.Version},
 				Engine: "go-test", CreatedAt: ts,

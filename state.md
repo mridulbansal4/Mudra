@@ -1,4 +1,4 @@
-# Project State Index — Nexconn Build Challenge 2026 (`war-room-council`)
+# Project State Index - Nexconn Build Challenge 2026 (`war-room-council`)
 
 > **Status:** COMPLETE (`100%` of R1–R4 Research, 6 Domain Dossiers, 6 Adversarial War-Room Debates, 30 Vetted Ideas, Master Hackathon Bible, Top Ideas Compendium, and Print-Ready PDFs).
 > **Last Updated:** 2026-10-31
@@ -9,12 +9,12 @@
 
 | Field | Verified Fact |
 |---|---|
-| **Hackathon Name** | **Nexconn Build Challenge 2026 (`nexconn2026`) — Build the Next Generation of Messaging with AI** |
+| **Hackathon Name** | **Nexconn Build Challenge 2026 (`nexconn2026`) - Build the Next Generation of Messaging with AI** |
 | **Primary URL** | [https://reskilll.com/hack/nexconn](https://reskilll.com/hack/nexconn) · [https://nexconn.ai/](https://nexconn.ai/) · [https://nexconn.devpost.com/](https://nexconn.devpost.com/) |
 | **Title Sponsor & Platform Owner** | **RCLOUD GLOBAL PTE. LTD.** (**RongCloud** / `nexconn.ai` / `rongcloud.io`, Singapore HQ) |
 | **Community & Execution Partner** | **Reskilll** (`https://reskilll.com/hack/nexconn`, developer community & admin evaluation portal) |
 | **Submission Window** | **Oct 23 – Nov 22** (Reskilll portal window; spring Devpost wave **March 30 – May 25, 2026**) |
-| **Cash Prize Pool** | **$5,000 USD Total Cash** — 1st: **$2,000** · 2nd: **$1,250** · 3rd: **$750** · 4th: **$500** · 5th: **$500** |
+| **Cash Prize Pool** | **$5,000 USD Total Cash** - 1st: **$2,000** · 2nd: **$1,250** · 3rd: **$750** · 4th: **$500** · 5th: **$500** |
 | **SaaS & Cloud Perks** | **2-Year Free Nexconn Chat Plan ($20,640 value at $860/mo)** for all 5 winning teams + **15% OFF AWS** & **30% OFF Alibaba Cloud** (`$107,000+` combined commercial value) |
 | **Team Size & Eligibility** | **1–4 members** (solo allowed; up to 5 on Devpost mirror), international (`18+`, excluding Mainland China `CN` where RongCloud operates separately), mandatory **8–64 char `appKey`** verification gate |
 | **Stated Judging Criteria** | **50% Product Quality, Completeness & UX / 30% Technical & Nexconn SDK Innovation / 20% Real-World Impact & Traction** (`40% / 30% / 30%` on Devpost mirror) |
@@ -27,30 +27,30 @@
 Full specialist definitions and domain activations are stored in `war-room/roster-additions.md`.
 
 ### Core Council (17 Permanent Seats)
-1. **Peter Thiel** — Monopoly, Secret (`What important truth do very few people agree with you on?`), 0-to-1 Moat
-2. **Alex Karp** — Mission-Critical Enterprise Operations, Ontology, 30-Second Plain-Language Explanation
-3. **Patrick Jane** — Buyer Psychology, Hidden Judge Incentives, Trickery & Social-Engineering Detection
-4. **Warren Buffett** — Unit Economics, Customer Switching Costs, Pricing Power, Free Cash Flow
-5. **Charlie Munger** — Inversion (`Tell me where I'm going to die so I never go there`), Incentive-Caused Bias
-6. **Harvey Specter** — Liability Shield, Regulatory Safe Harbor, Asymmetric Settlement Leverage
-7. **Mike Ross** — Ground-Level Human Pain, Composite Persona Moments, Ethical Protection
-8. **Steve Jobs** — Zero-Config UX, Sub-45-Second Demo Theatrics, Insanely Great Craft
-9. **Elon Musk** — First-Principles Physics/Latency Math, 10-Year Moonshot Trajectory
-10. **Andrej Karpathy** — Load-Bearing AI Architecture, Speculative Context Staging, Token/Latency Budgets
-11. **S. Jaishankar** — Geopolitical Alignment, Sovereign DPI (`UPI`, `ONDC`, `ABDM`, `Bhashini`), Global South Export
-12. **R.S. Sharma** — Population-Scale Public Digital Infrastructure, Low-Bandwidth Resilience, DPDP Act 2023
-13. **Seth Godin** — Purple Cow Remarkability, Smallest Viable Tribe
-14. **Gary Vaynerchuk** — Organic Distribution Loops, Creator Attention Arbitrage, First 10,000 Users
-15. **Tim Cook** — Operational Execution, Privacy-by-Architecture, 48-Hour Delivery Discipline
-16. **Jony Ive** — Calm Technology, Tactile Card Surfaces, Zero Interface Clutter
-17. **Paul Graham** — Schlep Blindness, Hair-on-Fire User Need, Ramen Profitability
+1. **Peter Thiel** - Monopoly, Secret (`What important truth do very few people agree with you on?`), 0-to-1 Moat
+2. **Alex Karp** - Mission-Critical Enterprise Operations, Ontology, 30-Second Plain-Language Explanation
+3. **Patrick Jane** - Buyer Psychology, Hidden Judge Incentives, Trickery & Social-Engineering Detection
+4. **Warren Buffett** - Unit Economics, Customer Switching Costs, Pricing Power, Free Cash Flow
+5. **Charlie Munger** - Inversion (`Tell me where I'm going to die so I never go there`), Incentive-Caused Bias
+6. **Harvey Specter** - Liability Shield, Regulatory Safe Harbor, Asymmetric Settlement Leverage
+7. **Mike Ross** - Ground-Level Human Pain, Composite Persona Moments, Ethical Protection
+8. **Steve Jobs** - Zero-Config UX, Sub-45-Second Demo Theatrics, Insanely Great Craft
+9. **Elon Musk** - First-Principles Physics/Latency Math, 10-Year Moonshot Trajectory
+10. **Andrej Karpathy** - Load-Bearing AI Architecture, Speculative Context Staging, Token/Latency Budgets
+11. **S. Jaishankar** - Geopolitical Alignment, Sovereign DPI (`UPI`, `ONDC`, `ABDM`, `Bhashini`), Global South Export
+12. **R.S. Sharma** - Population-Scale Public Digital Infrastructure, Low-Bandwidth Resilience, DPDP Act 2023
+13. **Seth Godin** - Purple Cow Remarkability, Smallest Viable Tribe
+14. **Gary Vaynerchuk** - Organic Distribution Loops, Creator Attention Arbitrage, First 10,000 Users
+15. **Tim Cook** - Operational Execution, Privacy-by-Architecture, 48-Hour Delivery Discipline
+16. **Jony Ive** - Calm Technology, Tactile Card Surfaces, Zero Interface Clutter
+17. **Paul Graham** - Schlep Blindness, Hair-on-Fire User Need, Ramen Profitability
 
 ### Custom Nexconn & Domain Specialists (5 Added Seats)
-18. **Seat 18 — Nexconn Protocol Architect (`AICP & Multi-Agent State Lead`)** — Audits load-bearing usage of Nexconn AICP, `@agent` mention routing, `Targeted Whisper Messaging` (`targetUserIds`), `Custom Structured Cards`, `Message Modification / Recall`, and `Read Receipts`.
-19. **Seat 19 — WebRTC & Sub-100ms Messaging Engineer (`Real-Time Infra Lead`)** — Audits WebSocket frame budgets, fan-out concurrency (`Chatroom` vs. `Group Chat`), optimistic UI rendering, and offline-first sync.
-20. **Seat 20 — Gaming & Live-Stream Systems Lead (`Interactive Entertainment Specialist`)** — Audits Overwolf/GSI telemetry ingestion, bullet-chat (`Danmaku`) collision math, and sub-second viewer prediction overlays.
-21. **Seat 21 — Enterprise B2B SaaS / Support GM (`Incident & Commerce Workflow Lead`)** — Audits SRE shift handovers, $\tau$-bench customer support policy guardrails, and ONDC/B2B escrow state machines.
-22. **Seat 22 — Accessibility & Civic Comms Specialist (`Senior, AAC & Crisis Inclusion Lead`)** — Audits WCAG 2.2 AA compliance, zero-hardware AAC gaze/speech bridges, elder scam interception, and CAP/NDMA 112 triage.
+18. **Seat 18 - Nexconn Protocol Architect (`AICP & Multi-Agent State Lead`)** - Audits load-bearing usage of Nexconn AICP, `@agent` mention routing, `Targeted Whisper Messaging` (`targetUserIds`), `Custom Structured Cards`, `Message Modification / Recall`, and `Read Receipts`.
+19. **Seat 19 - WebRTC & Sub-100ms Messaging Engineer (`Real-Time Infra Lead`)** - Audits WebSocket frame budgets, fan-out concurrency (`Chatroom` vs. `Group Chat`), optimistic UI rendering, and offline-first sync.
+20. **Seat 20 - Gaming & Live-Stream Systems Lead (`Interactive Entertainment Specialist`)** - Audits Overwolf/GSI telemetry ingestion, bullet-chat (`Danmaku`) collision math, and sub-second viewer prediction overlays.
+21. **Seat 21 - Enterprise B2B SaaS / Support GM (`Incident & Commerce Workflow Lead`)** - Audits SRE shift handovers, $\tau$-bench customer support policy guardrails, and ONDC/B2B escrow state machines.
+22. **Seat 22 - Accessibility & Civic Comms Specialist (`Senior, AAC & Crisis Inclusion Lead`)** - Audits WCAG 2.2 AA compliance, zero-hardware AAC gaze/speech bridges, elder scam interception, and CAP/NDMA 112 triage.
 
 ---
 
@@ -60,15 +60,15 @@ Formula: $\text{Winnability} = 0.25(\text{CompInv}) + 0.20(\text{SatInv}) + 0.25
 
 | Winnability Rank | Track ID | Canonical Slug | Comp. Inv (25%) | Sat. Inv (20%) | Demo (25%) | Sponsor/Judge Align (20%) | 48h Feas. (10%) | **Winnability Score** | Top Idea & Score |
 |---|---|---|---|---|---|---|---|---|---|
-| **#1 (Primary Winning Pick)** | **02 Gaming & Live Streams** | `nexconn-gaming` | 9.0 | 9.2 | 9.8 | 9.6 | 8.7 | **9.27 / 10** | **Idea 1 — `GhostCoach SquadOS`** (**9.44 / 10**) |
-| **#2 (Enterprise B2B Runner-Up)** | **03 Workplace & Collaboration** | `nexconn-workplace` | 8.6 | 9.0 | 9.4 | 9.5 | 8.6 | **9.02 / 10** | **Idea 1 — `BatonOS`** (**9.15 / 10**) |
-| **#3 (Commercial ROI Runner-Up)** | **04 Marketplace & Support** | `nexconn-support` | 8.4 | 9.0 | 9.5 | 9.4 | 8.9 | **9.01 / 10** | **Idea 1 — `WhisperDesk ($\tau$-Guard)`** (**9.20 / 10**) |
-| **#4 (#1 Dark Horse Pick)** | **06 Open Innovation** | `open-innovation` (`open`) | 8.5 | 9.0 | 9.0 | 9.0 | 8.0 | **8.73 / 10** | **Idea 1 — `A2ACanvas OS`** (**9.25 / 10**) |
-| **#5 (High Demo, High Crowd)** | **01 Social & Community** | `nexconn-social` | 7.6 | 8.4 | 9.6 | 9.4 | 8.7 | **8.69 / 10** | **Idea 1 — `SyncStage AI`** (**9.29 / 10**) |
-| **#6 (High Empathy, Lower SDK Density)** | **05 Humanitarian & Social Good** | `nexconn-social-good` | 8.8 | 8.5 | 8.2 | 8.2 | 8.3 | **8.43 / 10** | **Idea 1 — `KavachElder`** (**9.07 / 10**) |
+| **#1 (Primary Winning Pick)** | **02 Gaming & Live Streams** | `nexconn-gaming` | 9.0 | 9.2 | 9.8 | 9.6 | 8.7 | **9.27 / 10** | **Idea 1 - `GhostCoach SquadOS`** (**9.44 / 10**) |
+| **#2 (Enterprise B2B Runner-Up)** | **03 Workplace & Collaboration** | `nexconn-workplace` | 8.6 | 9.0 | 9.4 | 9.5 | 8.6 | **9.02 / 10** | **Idea 1 - `BatonOS`** (**9.15 / 10**) |
+| **#3 (Commercial ROI Runner-Up)** | **04 Marketplace & Support** | `nexconn-support` | 8.4 | 9.0 | 9.5 | 9.4 | 8.9 | **9.01 / 10** | **Idea 1 - `WhisperDesk ($\tau$-Guard)`** (**9.20 / 10**) |
+| **#4 (#1 Dark Horse Pick)** | **06 Open Innovation** | `open-innovation` (`open`) | 8.5 | 9.0 | 9.0 | 9.0 | 8.0 | **8.73 / 10** | **Idea 1 - `A2ACanvas OS`** (**9.25 / 10**) |
+| **#5 (High Demo, High Crowd)** | **01 Social & Community** | `nexconn-social` | 7.6 | 8.4 | 9.6 | 9.4 | 8.7 | **8.69 / 10** | **Idea 1 - `SyncStage AI`** (**9.29 / 10**) |
+| **#6 (High Empathy, Lower SDK Density)** | **05 Humanitarian & Social Good** | `nexconn-social-good` | 8.8 | 8.5 | 8.2 | 8.2 | 8.3 | **8.43 / 10** | **Idea 1 - `KavachElder`** (**9.07 / 10**) |
 
-- **The Council's #1 Winning Pick:** **`GhostCoach SquadOS` (`9.44 / 10`)** in **Track 02: Gaming & Live Streams (`nexconn-gaming`)** — Telemetry-grounded role-targeted whisper shotcaller (`targetUserIds: [iglId]`) and in-match mutable tactical quick-chat HUD (`RC:GamingTacticalCard`).
-- **The Council's #1 Dark Horse Pick:** **`A2ACanvas OS` (`9.25 / 10`)** in **Track 06: Open Innovation (`open` / `open-innovation`)** — Multi-agent AICP negotiation mesh and executable state-machine chat workspace with bounded 3-round agent turn budgets and human-in-the-loop approval diff cards (`RC:StateDiffCard`).
+- **The Council's #1 Winning Pick:** **`GhostCoach SquadOS` (`9.44 / 10`)** in **Track 02: Gaming & Live Streams (`nexconn-gaming`)** - Telemetry-grounded role-targeted whisper shotcaller (`targetUserIds: [iglId]`) and in-match mutable tactical quick-chat HUD (`RC:GamingTacticalCard`).
+- **The Council's #1 Dark Horse Pick:** **`A2ACanvas OS` (`9.25 / 10`)** in **Track 06: Open Innovation (`open` / `open-innovation`)** - Multi-agent AICP negotiation mesh and executable state-machine chat workspace with bounded 3-round agent turn budgets and human-in-the-loop approval diff cards (`RC:StateDiffCard`).
 
 ---
 

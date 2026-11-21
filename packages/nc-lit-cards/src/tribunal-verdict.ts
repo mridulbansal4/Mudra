@@ -1,13 +1,13 @@
 import { css, html, nothing } from "lit";
-import { SamadhanCardBase, inr } from "./base";
+import { MudraCardBase, inr } from "./base";
 
 /**
- * <nc-tribunal-verdict> — messageType `x-samadhan-tribunal-verdict`.
+ * <nc-tribunal-verdict> - messageType `x-mudra-tribunal-verdict`.
  * data: { disputeId, amountPaise, buyerRefundBps, sellerPayoutBps, summary, rationale, hamming, freezeRemainingSec, resolved, canResolve }
  */
-export class SamadhanTribunalVerdict extends SamadhanCardBase {
+export class MudraTribunalVerdict extends MudraCardBase {
   static styles = [
-    SamadhanCardBase.baseStyles,
+    MudraCardBase.baseStyles,
     css`
       .card {
         border-color: color-mix(in oklch, var(--freeze-danger, #c23a2b) 30%, transparent);

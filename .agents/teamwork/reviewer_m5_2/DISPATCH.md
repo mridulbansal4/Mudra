@@ -1,6 +1,6 @@
 ## 2026-10-31T19:40:00Z
 
-# Task Assignment: Wave 4 Reviewer 2 (`reviewer_m5_2`) — Independent Review of `ideas.md`, `ideas.pdf`, and `war-room/*` (All 6 Tracks, 30 Ideas)
+# Task Assignment: Wave 4 Reviewer 2 (`reviewer_m5_2`) - Independent Review of `ideas.md`, `ideas.pdf`, and `war-room/*` (All 6 Tracks, 30 Ideas)
 
 - **Your Identity**: `reviewer_m5_2`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\reviewer_m5_2`
@@ -11,7 +11,7 @@
 1. Read `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md`, `d:\Hackathons\Nexconn\PROJECT.md`, and `d:\Hackathons\Nexconn\TEST_READY.md`.
 2. Run the full E2E test suite (`python "d:\Hackathons\Nexconn\tests\run_e2e_tests.py" --root "d:\Hackathons\Nexconn"`).
 3. Independently inspect and verify:
-   - `d:\Hackathons\Nexconn\ideas.md` (`Part 0 — Where to Play` + all 6 domain sections ordered by Winnability rank + 30 complete ideas + `# Sources` per `C:\Users\Harshad\.gemini\config\skills\war-room-council\references\output-templates.md`)
+   - `d:\Hackathons\Nexconn\ideas.md` (`Part 0 - Where to Play` + all 6 domain sections ordered by Winnability rank + 30 complete ideas + `# Sources` per `C:\Users\Harshad\.gemini\config\skills\war-room-council\references\output-templates.md`)
    - `d:\Hackathons\Nexconn\ideas.pdf` (Valid PDF `> 10,000` bytes, readable pages via `pypdf`)
    - `d:\Hackathons\Nexconn\war-room\roster-additions.md`, `war-room\<slug>.md` (Rounds 0–5 debate transcripts), and `war-room\<slug>-ideas.md` across all 6 tracks (`nexconn-social`, `nexconn-gaming`, `nexconn-workplace`, `nexconn-support`, `nexconn-social-good`, `open-innovation`).
 4. Write your structured review and explicit verdict (`APPROVE` or `REQUEST_CHANGES`) in `d:\Hackathons\Nexconn\.agents\teamwork\reviewer_m5_2\handoff.md` and notify `ce650322-b861-45dd-a12e-c7d3a6871eb0` via `send_message`.

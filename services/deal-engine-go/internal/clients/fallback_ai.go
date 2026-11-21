@@ -166,23 +166,23 @@ func ShopkeeperGo(in ShopkeeperInput) string {
 	switch {
 	case strings.HasPrefix(in.Locale, "hi"):
 		if in.Accepted {
-			return fmt.Sprintf("Theek hai bhai, %s pakka! %s aapka hua — UPI escrow lock kar dijiye.", price, in.ItemTitle)
+			return fmt.Sprintf("Theek hai bhai, %s pakka! %s aapka hua, UPI escrow lock kar dijiye.", price, in.ItemTitle)
 		}
 		return fmt.Sprintf("%s mein toh mera nuksaan hai. %s se kam nahi hoga, last offer.", offer, price)
 	case strings.HasPrefix(in.Locale, "ta"):
 		if in.Accepted {
-			return fmt.Sprintf("சரி, %s-க்கு டீல்! %s உங்களுடையது — UPI escrow லாக் பண்ணுங்க.", price, in.ItemTitle)
+			return fmt.Sprintf("சரி, %s-க்கு டீல்! %s உங்களுடையது, UPI escrow லாக் பண்ணுங்க.", price, in.ItemTitle)
 		}
 		return fmt.Sprintf("%s ரொம்ப குறைவு. %s தான் கடைசி விலை.", offer, price)
 	case strings.HasPrefix(in.Locale, "mr"):
 		if in.Accepted {
-			return fmt.Sprintf("ठीक आहे, %s ला डील पक्की! %s तुमचा — UPI escrow लॉक करा.", price, in.ItemTitle)
+			return fmt.Sprintf("ठीक आहे, %s ला डील पक्की! %s तुमचा, UPI escrow लॉक करा.", price, in.ItemTitle)
 		}
 		return fmt.Sprintf("%s खूप कमी आहे. %s पेक्षा कमी नाही.", offer, price)
 	default:
 		if in.Accepted {
-			return fmt.Sprintf("Done — %s it is! The %s is yours. Lock the UPI escrow and I'll start the live inspection.", price, in.ItemTitle)
+			return fmt.Sprintf("Done, %s it is! The %s is yours. Lock the UPI escrow and I'll start the live inspection.", price, in.ItemTitle)
 		}
-		return fmt.Sprintf("%s? You're robbing me! Best I can do is %s — and that's with the warranty.", offer, price)
+		return fmt.Sprintf("%s? You're robbing me! Best I can do is %s, and that's with the warranty.", offer, price)
 	}
 }

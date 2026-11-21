@@ -1,4 +1,4 @@
-import { TRANSITIONS, type FsmAction, type FsmState } from "@samadhan/shared-types";
+import { TRANSITIONS, type FsmAction, type FsmState } from "@mudra/shared-types";
 import type { DemoState } from "./store";
 
 export type ScreenId =
@@ -93,7 +93,7 @@ export const DEAL_META = {
   amountFormatted: "₹1,45,000",
   claim: "motor runs at 4,800 rpm",
   warranty: "6-month warranty",
-  upiMandate: "samadhan.demo@okaxis",
+  upiMandate: "mudra.demo@okaxis",
   voucherHash: "9f3a…c21e",
   signatureHash: "ed25519 · 4be1…09af",
   buyer: {

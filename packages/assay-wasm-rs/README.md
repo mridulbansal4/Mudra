@@ -1,4 +1,4 @@
-# @samadhan/assay-wasm-rs
+# @mudra/assay-wasm-rs
 
 Rust → WebAssembly helpers used by `apps/web` in `assay-wasm.worker.ts` during video inspections. The worker runs on `OffscreenCanvas` frames, where `ImageData.data` is RGBA8.
 
@@ -25,7 +25,7 @@ You need `rustup target add wasm32-unknown-unknown` and `cargo install wasm-pack
 Usage from the worker:
 
 ```ts
-import init, { laplacian_variance, phash_rgba, hamming_hex } from '@samadhan/assay-wasm-rs';
+import init, { laplacian_variance, phash_rgba, hamming_hex } from '@mudra/assay-wasm-rs';
 await init();
 const img = ctx.getImageData(0, 0, w, h);
 const blur = laplacian_variance(new Uint8Array(img.data.buffer), w, h);

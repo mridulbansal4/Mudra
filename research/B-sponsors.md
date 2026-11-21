@@ -1,4 +1,4 @@
-# B — Sponsors & Technical Stack Deep-Dive: Nexconn, AWS & Alibaba Cloud
+# B - Sponsors & Technical Stack Deep-Dive: Nexconn, AWS & Alibaba Cloud
 
 > **Primary Sources**: `https://www.nexconn.ai/`, `https://docs.nexconn.ai/llms.txt`, `https://github.com/NexconnAI-Dev/nexconn-skills`, `https://www.lyrawork.com/`, and `https://reskilll.com/hack/nexconn/assets/index-DSX23m3q.js`.
 
@@ -6,7 +6,7 @@
 
 ## 1. Title Sponsor Technical Architecture: Nexconn (`RCLOUD GLOBAL PTE. LTD.`)
 
-Nexconn is not a simple WebSocket wrapper—it is a global real-time messaging and RTC fabric engineered over 19 years (Fetion → RongCloud → Nexconn). Understanding its internal architecture reveals which features impress Nexconn engineers during code and telemetry review.
+Nexconn is not a simple WebSocket wrapper - it is a global real-time messaging and RTC fabric engineered over 19 years (Fetion → RongCloud → Nexconn). Understanding its internal architecture reveals which features impress Nexconn engineers during code and telemetry review.
 
 ### 1.1 Global Network & Transport Layer
 1. **Private Binary Protocol over Multiplexed TCP / QUIC**:
@@ -27,8 +27,8 @@ Every eligible submission **must** integrate at least one of these two layers (`
 | Feature Category | Exact SDK Capability & Limits | Official Documentation URL | Why Judges Care (Telemetry & Code Signal) |
 |---|---|---|---|
 | **Direct Channels (1-on-1)** | Rich media (text, image, voice, GIF, file, location, custom), typing indicators (`typing-indicators.md`), 1-on-1 read receipts (`read-receipt.md`), quoted replies (`reply.md`), message editing & recall (`modify-and-recall.md`), directional deletion (`Directional-Deletion.md`). | `https://docs.nexconn.ai/chat/overview/features/direct-channels/introduction.md` | Baseline table stakes. Going beyond plain text (using receipts, typing indicators, and custom payloads) separates top 10% apps from tutorials. |
-| **Group Channels (Up to 3,000 Members)** | Role/permission hierarchy (Owner, Admin, Member), mute lists (`mute.md`), @mentions (`mentions.md`), pinned messages (`pin.md`), group read receipts, and **Targeted Group Messages (`direct.md`)**—sending a message inside a group channel that is delivered *only* to a specified subset of `userIds`. | `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md` | **Targeted Group Messages** is a signature Nexconn differentiator: ideal for role-specific alerts, secret squad instructions, whispers, or supervisor-only notes inside a shared room. |
-| **Open Channels (Live Chatrooms — Unlimited Users)** | Unlimited concurrent users, message priority levels (`High` vs `Normal` to survive traffic spikes), allowlist/blocklist (`blocklist-and-allowlist.md`), and **Chatroom Metadata (`managing-metadata.md`)**—up to **50 real-time synchronized Key-Value pairs** per room with atomic lock/Compare-And-Swap (`force` / `autoDelete`). | `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md` | **Chatroom Metadata** lets you synchronize live scoreboard state, watch-party playback timestamps, auction highest bids, or live poll tallies across 10,000+ viewers without a separate database. |
+| **Group Channels (Up to 3,000 Members)** | Role/permission hierarchy (Owner, Admin, Member), mute lists (`mute.md`), @mentions (`mentions.md`), pinned messages (`pin.md`), group read receipts, and **Targeted Group Messages (`direct.md`)** - sending a message inside a group channel that is delivered *only* to a specified subset of `userIds`. | `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md` | **Targeted Group Messages** is a signature Nexconn differentiator: ideal for role-specific alerts, secret squad instructions, whispers, or supervisor-only notes inside a shared room. |
+| **Open Channels (Live Chatrooms - Unlimited Users)** | Unlimited concurrent users, message priority levels (`High` vs `Normal` to survive traffic spikes), allowlist/blocklist (`blocklist-and-allowlist.md`), and **Chatroom Metadata (`managing-metadata.md`)** - up to **50 real-time synchronized Key-Value pairs** per room with atomic lock/Compare-And-Swap (`force` / `autoDelete`). | `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md` | **Chatroom Metadata** lets you synchronize live scoreboard state, watch-party playback timestamps, auction highest bids, or live poll tallies across 10,000+ viewers without a separate database. |
 | **Communities (Discord-Style Servers)** | **Unlimited members**, hierarchical Channel Groups + Sub-Channels, granular role permissions (`permissions.md`), and per-channel notification levels (`notifications.md`). | `https://docs.nexconn.ai/chat/overview/features/communities/architecture.md` | Almost no hackathon team touches Communities APIs; using it in Track 01 (Social) or Track 03 (Workplace) immediately signals deep SDK mastery. |
 | **Streaming Messages (`StreamMsg`)** | Native real-time token-by-token streaming updates into a single message ID (`https://docs.nexconn.ai/chat/overview/features/message/stream-message.md`). | `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md` | **Critical for AI Agents**: Instead of hacky WebSocket side-channels or sending 50 separate messages, `StreamMsg` streams LLM tokens natively through the Nexconn IM pipeline. |
 | **Message Expansion (`expansion.md`)** | Attach up to **300 dynamic Key-Value pairs** (`expansion`) to any sent message and update them in real time across all recipients (`updateMessageExpansion`). | `https://docs.nexconn.ai/chat/overview/features/message/expansion.md` | Enables **living in-chat micro-apps**: interactive approval cards, escrow milestones, triage checklists, live RSVP counters, and medical check-in statuses right inside a message bubble. |
@@ -42,13 +42,13 @@ Every eligible submission **must** integrate at least one of these two layers (`
 ### 2.2 Optional Multiplier: `Call SDK` (`call-sdk`)
 - **Packages**: Web (`@rongcloud/engine` + `@rongcloud/calllib-v3`), Android (`cn.rongcloud.sdk:call_lib` / `call_kit`), iOS (`RongCloudRTC/RongCallLib`), Flutter (`@rongcloud/calllib-flutter`), React Native (`@react-native-Community/calllib`).
 - **Capabilities**: 1-on-1 and group low-latency audio/video calls, screen sharing, beauty filters (`call/sdk/android/beauty.md`), virtual backgrounds (`call/sdk/android/virtual-background.md`), and real-time voice changers (`call/sdk/android/voice-changer.md`).
-- **Rule Reminder**: `Call SDK` is optional and **cannot be used alone**—it must be paired with `Chat SDK` or `Chat UI` (`Submit-R3OJNUmD.js`). Adding seamless 1-click escalation from a Nexconn Chat channel into a Nexconn Audio/Video Call is a major UX completeness booster.
+- **Rule Reminder**: `Call SDK` is optional and **cannot be used alone** - it must be paired with `Chat SDK` or `Chat UI` (`Submit-R3OJNUmD.js`). Adding seamless 1-click escalation from a Nexconn Chat channel into a Nexconn Audio/Video Call is a major UX completeness booster.
 
 ### 2.3 Backend Multiplier: Server SDKs, REST API & Webhooks (`https://docs.nexconn.ai/chat/server/`)
 - **Server SDKs**: Official libraries for **Node.js, Go, Java, Python, PHP, and .NET**.
 - **Required Token Endpoint**: `POST /user/getToken.json` signed with `App-Key`, `Nonce`, `Timestamp`, and `SHA1(App-Secret + Nonce + Timestamp)`.
 - **Server-Side Webhooks**:
-  1. **Pre-Send Synchronous Webhook**: Intercepts every message *before* delivery—allowing a backend AI guardrail, DLP scanner, or scam detector to redact, enrich, or block a message in real time.
+  1. **Pre-Send Synchronous Webhook**: Intercepts every message *before* delivery - allowing a backend AI guardrail, DLP scanner, or scam detector to redact, enrich, or block a message in real time.
   2. **Post-Send Message Synchronization Webhook**: Streams every chat message in real time to your backend so AI agents can trigger workflows, update databases, or reply via Server API / `StreamMsg`.
   3. **User Online Status Webhook**: Notifies your server whenever a user connects or disconnects.
 
@@ -57,7 +57,7 @@ Every eligible submission **must** integrate at least one of these two layers (`
 ## 3. Nexconn's AI Strategy: AICP, AI Mode, Lyra & `nexconn-skills`
 
 ### 3.1 AICP (Agent Inter-Communication Protocol) & Dual Identity (`UserID` + `AgentID`)
-Nexconn's strategic thesis—championed by CTO **Yang Pan** and AI PM **Kai**—is that the next billion active endpoints on real-time messaging networks will not just be humans (`UserID`), but **autonomous AI agents (`AgentID`)** collaborating with humans and other agents inside the same channels:
+Nexconn's strategic thesis - championed by CTO **Yang Pan** and AI PM **Kai** - is that the next billion active endpoints on real-time messaging networks will not just be humans (`UserID`), but **autonomous AI agents (`AgentID`)** collaborating with humans and other agents inside the same channels:
 - **Lyra (`https://www.lyrawork.com/`)**: Nexconn's own flagship product showcase where humans and specialized AI agents collaborate inside Direct Chats, Multi-Agent Group Channels, Shared Drives, and Scheduled Automations (`https://docs.nexconn.ai/ai-mode/overview/introduction.md`).
 - **`nexconn-skills` & `@nexconn/console-mcp` (`https://github.com/NexconnAI-Dev/nexconn-skills`)**:
   - Provides structured Markdown skills (`nexconn-dev`, `nexconn-console`, `nexconn-docs`) and the `@nexconn/console-mcp` MCP server so developers can manage apps, keys, and user tokens directly from AI IDEs.
@@ -67,8 +67,8 @@ Nexconn's strategic thesis—championed by CTO **Yang Pan** and AI PM **Kai**—
 ## 4. Cloud Perks Partners: AWS & Alibaba Cloud (`Jx` in `index-DSX23m3q.js`)
 
 All 5 winning teams receive a 1-year cloud discount (`Jx` in `index-DSX23m3q.js`):
-- **Option A — 15% OFF Amazon Web Services (AWS) for 1 Year** (for newly registered cloud email accounts).
-- **Option B — 30% OFF Alibaba Cloud for 1 Year** (for newly registered cloud email accounts).
+- **Option A - 15% OFF Amazon Web Services (AWS) for 1 Year** (for newly registered cloud email accounts).
+- **Option B - 30% OFF Alibaba Cloud for 1 Year** (for newly registered cloud email accounts).
 - **Why Both Are Offered**: RongCloud/Nexconn operates its global SD-CAN edge nodes and media clusters across both **AWS** (for North America, Europe, India, and LATAM) and **Alibaba Cloud** (for Singapore, Southeast Asia, and Middle East). Mentioning low-latency deployment on AWS or Alibaba Cloud in the project write-up aligns cleanly with Nexconn's infrastructure footprint.
 
 ---

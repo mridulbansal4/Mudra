@@ -1,4 +1,4 @@
-import { FSM_STATES } from "@samadhan/shared-types";
+import { FSM_STATES } from "@mudra/shared-types";
 import { motion } from "motion/react";
 import { useReducedMotion } from "../../motion/hooks";
 import type { DemoState } from "../store";

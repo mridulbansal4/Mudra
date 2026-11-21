@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 // ArenaItem is a SKU in the bargaining arena.
@@ -115,7 +115,7 @@ func (s *Server) handleArenaStart(w http.ResponseWriter, r *http.Request) {
 	tok := s.Bridge.IssueToken(r.Context(), u.NexconnUserID, u.DisplayName, "")
 	s.Store.Telemetry().RecordToken(u.NexconnUserID, tok.Mode)
 	runID := "arena_run_" + tag + store.RandHex(1)
-	opening := "Namaste " + req.ChallengerName + "! " + item.Title + " — sticker price ₹" + clients.FormatINR(item.StickerPaise) + ". You have 60 seconds. Make me an offer!"
+	opening := "Namaste " + req.ChallengerName + "! " + item.Title + ", sticker price ₹" + clients.FormatINR(item.StickerPaise) + ". You have 60 seconds. Make me an offer!"
 	run := &store.ArenaRun{
 		ID: runID, UserID: u.ID, ChallengerName: u.DisplayName, ChallengerNexconn: u.NexconnUserID, Locale: req.PreferredLocale,
 		DirectChannelID: "dir_arena_" + strings.TrimPrefix(runID, "arena_run_"), ItemSKU: item.SKU, ItemTitle: item.Title,
@@ -124,7 +124,7 @@ func (s *Server) handleArenaStart(w http.ResponseWriter, r *http.Request) {
 	}
 	s.Store.PutArena(run)
 	async("arena-opening", func(ctx context.Context) {
-		s.Bridge.StreamDirect(ctx, shopkeeperBotID, u.NexconnUserID, "x-samadhan-shopkeeper-reply", opening, map[string]any{"run_id": runID})
+		s.Bridge.StreamDirect(ctx, shopkeeperBotID, u.NexconnUserID, "x-mudra-shopkeeper-reply", opening, map[string]any{"run_id": runID})
 	})
 	mw.WriteJSON(w, http.StatusCreated, map[string]any{
 		"run_id": runID, "nexconn_direct_channel_id": run.DirectChannelID, "nexconn_access_token": tok.AccessToken,
@@ -179,7 +179,7 @@ func (s *Server) handleArenaBid(w http.ResponseWriter, r *http.Request) {
 		ItemTitle: run.ItemTitle, StickerPricePaise: run.StickerPaise, CounterOfferPaise: dec.CounterPaise, Accepted: dec.Accepted,
 		OfferedAmountPaise: req.OfferedAmountPaise, MessageText: msg.ScrubbedText, Locale: req.Locale,
 	})
-	st := s.Bridge.StreamDirect(r.Context(), shopkeeperBotID, run.ChallengerNexconn, "x-samadhan-shopkeeper-reply", reply,
+	st := s.Bridge.StreamDirect(r.Context(), shopkeeperBotID, run.ChallengerNexconn, "x-mudra-shopkeeper-reply", reply,
 		map[string]any{"run_id": run.ID, "counter_offer_paise": dec.CounterPaise, "deal_closed": dec.Accepted})
 	run.Turns = append(run.Turns, store.ArenaTurn{OfferedPaise: req.OfferedAmountPaise, CounterPaise: dec.CounterPaise, Accepted: dec.Accepted,
 		MessageText: msg.ScrubbedText, ReplyText: reply, StreamID: st.StreamID, At: now.UTC()})

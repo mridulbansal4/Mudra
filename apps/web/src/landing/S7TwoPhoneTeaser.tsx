@@ -37,7 +37,7 @@ export function S7TwoPhoneTeaser() {
           </h2>
           <p className="t-lead mt-5 lowercase text-fg-2">
             watch rajesh in tirupur and vikram in ludhiana close a{" "}
-            <span className="num">₹1.45</span> lakh deal — each in their own
+            <span className="num">₹1.45</span> lakh deal, each in their own
             language, each on their own phone.
           </p>
           <div className="mt-8">

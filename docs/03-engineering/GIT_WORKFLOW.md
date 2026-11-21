@@ -1,5 +1,5 @@
-# Git Workflow & Release Versioning — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Release Engineering Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Git Workflow & Release Versioning - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Release Engineering Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Coding Standards](./CODING_STANDARDS.md) · [CI/CD](../05-ops/CICD.md) · [Contributing](../../CONTRIBUTING.md)
 
 ---
@@ -62,7 +62,7 @@ Every commit message follows:
    - Rust `1.85` `cargo test` & `wasm-pack build`.
    - Node `22` + React `19` typecheck, Vitest unit tests, and `sloplint --render`.
 3. **Semantic Versioning & Sprint Tags**:
-   - `v0.1.0` — Initial Bible & Polyglot Skeleton (`H00`)
-   - `v0.2.0` — Core Nexconn Auth, Go FSM & Lit Escrow Card (`M3 / H11`)
-   - `v0.3.0` — Live WebRTC `@nexconn/call` + Rust WASM Assay + Freeze Tribunal (`M6 / H26`)
-   - `v1.0.0-nexconn-submission` — Full 9-Route Story UX, 500+ Verified MAUs & Final Submission (`M8 / H36`)
+   - `v0.1.0` - Initial Bible & Polyglot Skeleton (`H00`)
+   - `v0.2.0` - Core Nexconn Auth, Go FSM & Lit Escrow Card (`M3 / H11`)
+   - `v0.3.0` - Live WebRTC `@nexconn/call` + Rust WASM Assay + Freeze Tribunal (`M6 / H26`)
+   - `v1.0.0-nexconn-submission` - Full 9-Route Story UX, 500+ Verified MAUs & Final Submission (`M8 / H36`)

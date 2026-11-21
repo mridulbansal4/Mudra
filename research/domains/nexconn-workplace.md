@@ -1,6 +1,6 @@
-# Phase 2 Domain Dossier — Track 03: Workplace & Collaboration (`nexconn-workplace`)
+# Phase 2 Domain Dossier - Track 03: Workplace & Collaboration (`nexconn-workplace`)
 
-- **Official Track Number & Title**: `03` — **Workplace & Collaboration** [S1]
+- **Official Track Number & Title**: `03` - **Workplace & Collaboration** [S1]
 - **Official Subtitle**: `"Direct messaging and team project threads"` [S1]
 - **Official Verbatim Description**: `"Create productivity and operational messaging tools that help distributed teams, frontline staff, or AI-assisted workspaces coordinate faster."` [S1]
 - **Official Verbatim Examples**:
@@ -13,7 +13,7 @@
 
 ## 1. Pain map
 
-Workplace and frontline collaboration software is split across a dangerous divide: knowledge workers drown in unstructured notification noise across Slack and Microsoft Teams threads, while frontline operators (hospital clinicians, SRE on-call engineers, oil/gas/manufacturing shift supervisors, and logistics dispatchers) pass life-and-million-dollar operational state over unstructured WhatsApp groups, verbal shift briefings, or static Excel/SharePoint logs [S4, S5, S6, S7]. Across both segments, the single highest-cost failure point is the **context handover boundary** — when a shift changes, an incident escalates across teams, or an autonomous AI agent hands a half-finished task to a human teammate.
+Workplace and frontline collaboration software is split across a dangerous divide: knowledge workers drown in unstructured notification noise across Slack and Microsoft Teams threads, while frontline operators (hospital clinicians, SRE on-call engineers, oil/gas/manufacturing shift supervisors, and logistics dispatchers) pass life-and-million-dollar operational state over unstructured WhatsApp groups, verbal shift briefings, or static Excel/SharePoint logs [S4, S5, S6, S7]. Across both segments, the single highest-cost failure point is the **context handover boundary** - when a shift changes, an incident escalates across teams, or an autonomous AI agent hands a half-finished task to a human teammate.
 
 ### Quantified Cost of Broken Workplace Coordination & Shift Handovers
 
@@ -27,19 +27,19 @@ Workplace and frontline collaboration software is split across a dangerous divid
 ### Five Real User Voices (Verbatim Pain Signals from the Field)
 
 1. **SRE On-Call Engineer on Follow-the-Sun Handover Failure (`r/sre` / Catchpoint SRE Survey)** [S9, S11]:
-   > *"The worst 30 minutes of my week is taking over the 9 AM IST pager from US West. There's an active SEV-2 channel with 380 messages, three Grafana screenshots with no links, two people arguing about a Kafka consumer lag spike, and the outgoing engineer already logged off because it's 8:30 PM PST. Nobody wrote down what they ALREADY tried and rolled back, so I end up re-running the same failed migration."* — Senior SRE, Bengaluru-based FinTech infrastructure team [S9, S11]
+   > *"The worst 30 minutes of my week is taking over the 9 AM IST pager from US West. There's an active SEV-2 channel with 380 messages, three Grafana screenshots with no links, two people arguing about a Kafka consumer lag spike, and the outgoing engineer already logged off because it's 8:30 PM PST. Nobody wrote down what they ALREADY tried and rolled back, so I end up re-running the same failed migration."* - Senior SRE, Bengaluru-based FinTech infrastructure team [S9, S11]
 
 2. **ICU / Emergency Medicine Resident on Clinical Sign-Out (`r/medicine` / Joint Commission Handoff Report)** [S4, S12]:
-   > *"Night float sign-out at 7 AM is a game of telephone when you have 18 patients. Someone says 'Bed 4 is stable, just watch the potassium' while three pagers go off. Half the time the pending blood culture or the family code-status update gets buried in the WhatsApp ward group, and the day team finds out four hours later when the patient crashes."* — PGY-2 Internal Medicine Resident [S4, S12]
+   > *"Night float sign-out at 7 AM is a game of telephone when you have 18 patients. Someone says 'Bed 4 is stable, just watch the potassium' while three pagers go off. Half the time the pending blood culture or the family code-status update gets buried in the WhatsApp ward group, and the day team finds out four hours later when the patient crashes."* - PGY-2 Internal Medicine Resident [S4, S12]
 
 3. **Manufacturing Plant Maintenance Supervisor on Shift Changeover (`r/PLC` / Chemical Safety Board Testimony)** [S6, S7]:
-   > *"Third shift bypassed a limit switch on the palletizer to clear a jam and wrote 'jumper on LS-4' on the whiteboard—and sent a voice note in Hindi in the plant WhatsApp group. First shift supervisor came in, didn't listen to the voice note, cleared the fault on the HMI, and crushed a conveyor actuator within ten minutes."* — Controls & Maintenance Lead, Automotive Tier-1 Supplier [S6, S7]
+   > *"Third shift bypassed a limit switch on the palletizer to clear a jam and wrote 'jumper on LS-4' on the whiteboard - and sent a voice note in Hindi in the plant WhatsApp group. First shift supervisor came in, didn't listen to the voice note, cleared the fault on the HMI, and crushed a conveyor actuator within ten minutes."* - Controls & Maintenance Lead, Automotive Tier-1 Supplier [S6, S7]
 
 4. **Staff Software Engineer on Multi-Team Project Thread Sprawl (Hacker News / Linear Community)** [S10, S13]:
-   > *"Our Slack has 140 channels. A critical API schema change happens in `#backend-core` inside a 64-reply thread. Neither the mobile team in `#ios-release` nor the QA lead in `#release-train` knows it happened until staging breaks on Thursday afternoon. Linking Jira tickets to Slack just spams bot webhooks that everyone mutes."* — Staff Engineer, Series C SaaS [S13]
+   > *"Our Slack has 140 channels. A critical API schema change happens in `#backend-core` inside a 64-reply thread. Neither the mobile team in `#ios-release` nor the QA lead in `#release-train` knows it happened until staging breaks on Thursday afternoon. Linking Jira tickets to Slack just spams bot webhooks that everyone mutes."* - Staff Engineer, Series C SaaS [S13]
 
 5. **Enterprise AI Workspace Adopter on Multi-Agent Chat Noise (`r/LocalLLaMA` / Lyra Category Feedback)** [S2, S14]:
-   > *"Every vendor wants to put 5 AI agents in our team chat. When we tried running an incident bot, a docs bot, and a PR bot in the same channel, they spammed 4-paragraph markdown walls every time someone asked a question. What I actually want is an agent that whispers to ME privately inside the channel before I embarrass myself in front of the VP."* — Engineering Manager evaluating multi-agent workspaces [S14]
+   > *"Every vendor wants to put 5 AI agents in our team chat. When we tried running an incident bot, a docs bot, and a PR bot in the same channel, they spammed 4-paragraph markdown walls every time someone asked a question. What I actually want is an agent that whispers to ME privately inside the channel before I embarrass myself in front of the VP."* - Engineering Manager evaluating multi-agent workspaces [S14]
 
 ---
 
@@ -51,7 +51,7 @@ Workplace and frontline collaboration software is split across a dangerous divid
 
 1. **Sponsor-Specific Strategic Urgency (Nexconn Lyra & AI Mode Launch, Feb–Apr 2026)** [S2, S3]:
    - On February 12, 2026, Nexconn open-sourced the `@nexconn` ecosystem (`@nexconn/chat-sdk`, `@nexconn/chat-ui`, `@nexconn/call-sdk`, `@nexconn/console-mcp`) and launched **Nexconn AI Mode** (`https://docs.nexconn.ai/ai-mode/overview/introduction.md`) alongside its flagship enterprise showcase **Lyra** (`https://www.lyrawork.com/`) [S2, S3].
-   - Track 03 (`nexconn-workplace`) is the **exact product category** of Lyra (*"One Workspace for Humans and AI Agents"*) [S2]. Judges **Leo** (Global Product Director) and **Kai** (AI PM) are actively searching for reference workflows that go beyond generic "chat with an LLM" and prove why Nexconn's native primitives — **Targeted Group Messages (`targetUserIds`)**, **Streaming Messages (`StreamMsg`)**, **Message Expansion (300 KV pairs)**, **Channel Metadata (50 KV pairs + CAS)**, **Online Status Subscription**, and **Built-in Translation + STT** — beat Slack and Teams for human+agent coordination [S2, S3, S15, S16, S17].
+   - Track 03 (`nexconn-workplace`) is the **exact product category** of Lyra (*"One Workspace for Humans and AI Agents"*) [S2]. Judges **Leo** (Global Product Director) and **Kai** (AI PM) are actively searching for reference workflows that go beyond generic "chat with an LLM" and prove why Nexconn's native primitives - **Targeted Group Messages (`targetUserIds`)**, **Streaming Messages (`StreamMsg`)**, **Message Expansion (300 KV pairs)**, **Channel Metadata (50 KV pairs + CAS)**, **Online Status Subscription**, and **Built-in Translation + STT** - beat Slack and Teams for human+agent coordination [S2, S3, S15, S16, S17].
 
 2. **Frontline & Deskless Digitization Wave in India & Global Manufacturing (2025–2026)** [S6, S18]:
    - Over **80% of the global workforce (2.7 billion workers)** are deskless or frontline workers (healthcare, manufacturing, logistics, field service, retail), yet less than **15%** have purpose-built operational messaging tools [S18].
@@ -92,11 +92,11 @@ Workplace and frontline collaboration software is split across a dangerous divid
 
 | Paper Title & Venue | Citation / Link | Core Technical Contribution | How We Exploit It in Track 03 |
 |---|---|---|---|
-| **_Why Do Multi-Agent LLM Systems Fail?_ (MAST)** — UC Berkeley, 2025 | Cemri et al., `arXiv:2503.13657` [S21] | Empirical taxonomy of 14 failure modes across 1,600+ multi-agent traces; proves **inter-agent conversation reset, withholding context, and lack of termination verification** cause up to 86.7% failure | Justifies replacing free-form multi-agent group chat with **deterministic Channel Metadata state machines (50 KV pairs + CAS)** and explicit Baton verification gates |
-| **_STRATUS: A Multi-Agent System for Autonomous Reliability Engineering of Modern Clouds_** — June 2025 | `arXiv:2506.02009` [S23] | State-machine-enforced multi-agent SRE architecture (Detection, Triage, Diagnosis, Mitigation) with **transactional dry-run and rollback gates** | Blueprint for **FlowRoom** (Idea 2): binding Nexconn Open Channel metadata and synchronous pre-send webhooks to an SRE state machine |
-| **_SOP-Bench: Complex Industrial SOPs for Evaluating LLM Agents_** — June 2025 | `arXiv:2506.08119` [S22] | Demonstrates that LLM agents fail on multi-step industrial SOPs unless constrained by **explicit precondition verification and tool-call guards** | Blueprint for **BatonOS** (Idea 1) and **KavachPTW** (Idea 3): enforcing SOP preconditions via Nexconn Message Expansion (`isCanUpdateExpansion`) |
-| **_Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration_** — Stanford / CMU, Dec 2024–2025 | Shao et al., `arXiv:2412.15701` [S30] | Formalizes **asynchronous and synchronous human-agent co-work** with private notification vs. public action channels; shows hybrid teams beat solo humans and solo agents | Directly validates using Nexconn **Targeted Group Messages (`targetUserIds`)** for private AI-to-human coaching inside a shared team channel |
-| **_I-PASS Handoff Program & LLM Clinical Sign-Out Synthesis_** — *NEJM* / *NPJ Digital Medicine* 2024–2025 | Starmer et al. (*NEJM* 2014) [S5]; Hartman et al. (*JAMIA* 2024) [S31] | Proves the 5-part **I-PASS** schema (**I**llness severity, **P**atient summary, **A**ction list, **S**ituation awareness & contingency plans, **S**ynthesis by receiver) reduces clinical handoff errors by 30% | **Step 5 ("Synthesis by receiver")** is the exact scientific foundation for **BatonOS**'s adversarial challenge-response quiz before unlocking a shift handover |
+| **_Why Do Multi-Agent LLM Systems Fail?_ (MAST)** - UC Berkeley, 2025 | Cemri et al., `arXiv:2503.13657` [S21] | Empirical taxonomy of 14 failure modes across 1,600+ multi-agent traces; proves **inter-agent conversation reset, withholding context, and lack of termination verification** cause up to 86.7% failure | Justifies replacing free-form multi-agent group chat with **deterministic Channel Metadata state machines (50 KV pairs + CAS)** and explicit Baton verification gates |
+| **_STRATUS: A Multi-Agent System for Autonomous Reliability Engineering of Modern Clouds_** - June 2025 | `arXiv:2506.02009` [S23] | State-machine-enforced multi-agent SRE architecture (Detection, Triage, Diagnosis, Mitigation) with **transactional dry-run and rollback gates** | Blueprint for **FlowRoom** (Idea 2): binding Nexconn Open Channel metadata and synchronous pre-send webhooks to an SRE state machine |
+| **_SOP-Bench: Complex Industrial SOPs for Evaluating LLM Agents_** - June 2025 | `arXiv:2506.08119` [S22] | Demonstrates that LLM agents fail on multi-step industrial SOPs unless constrained by **explicit precondition verification and tool-call guards** | Blueprint for **BatonOS** (Idea 1) and **KavachPTW** (Idea 3): enforcing SOP preconditions via Nexconn Message Expansion (`isCanUpdateExpansion`) |
+| **_Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration_** - Stanford / CMU, Dec 2024–2025 | Shao et al., `arXiv:2412.15701` [S30] | Formalizes **asynchronous and synchronous human-agent co-work** with private notification vs. public action channels; shows hybrid teams beat solo humans and solo agents | Directly validates using Nexconn **Targeted Group Messages (`targetUserIds`)** for private AI-to-human coaching inside a shared team channel |
+| **_I-PASS Handoff Program & LLM Clinical Sign-Out Synthesis_** - *NEJM* / *NPJ Digital Medicine* 2024–2025 | Starmer et al. (*NEJM* 2014) [S5]; Hartman et al. (*JAMIA* 2024) [S31] | Proves the 5-part **I-PASS** schema (**I**llness severity, **P**atient summary, **A**ction list, **S**ituation awareness & contingency plans, **S**ynthesis by receiver) reduces clinical handoff errors by 30% | **Step 5 ("Synthesis by receiver")** is the exact scientific foundation for **BatonOS**'s adversarial challenge-response quiz before unlocking a shift handover |
 
 ### 3D. Global Hackathon Winners (Comparable Collaboration & Incident Tracks)
 
@@ -110,23 +110,23 @@ Workplace and frontline collaboration software is split across a dangerous divid
 
 ## 4. Gap analysis
 
-### Bucket 1 — `Doesn't exist` (High-Value White Space)
+### Bucket 1 - `Doesn't exist` (High-Value White Space)
 
 1. **Adversarial "Synthesis-by-Receiver" Shift Handover Protocol (`BatonOS`)**:
    - Every existing tool (Slack AI, PagerDuty, Rootly, Microsoft Teams) assumes that **generating a summary = completing a handover** [S8, S24, S25]. Cognitive science and the *NEJM* I-PASS study prove the opposite: passive summaries induce **automation complacency** where the incoming operator clicks "Acknowledge" without reading [S5, S6].
    - **No tool on Earth** combines: (a) continuous ingestion of a shift channel's messages, voice notes, and diffs into a live **Channel Metadata state machine**, (b) a mandatory **30-second Adversarial Comprehension Micro-Challenge** tailored to the shift's highest-severity unacknowledged delta (delivered privately via **Nexconn Targeted Group Message `targetUserIds`**), and (c) an atomic **Synchronous Pre-Send Webhook Lock** that physically blocks the incoming operator from executing destructive commands until the Baton is cryptographically transferred.
 2. **Whisper-Scoped AI Incident Commander Coaching (`FlowRoom`)**:
    - In high-stakes war rooms (SRE outages, security breaches, executive deal rooms), an AI agent posting suggestions publicly into the group channel creates noise and undermines leadership authority [S14, S21].
-   - Using Nexconn's **Targeted Group Messages (`targetUserIds`)** (`https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md`) [S15] to let an SRE diagnostic agent **whisper root-cause hypotheses, blast-radius warnings, and one-click rollback cards exclusively to the on-duty Incident Commander inside the main war-room timeline** — invisible to the 30 other participants until the Commander promotes it — does not exist in Slack, Teams, Rootly, or Incident.io.
+   - Using Nexconn's **Targeted Group Messages (`targetUserIds`)** (`https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md`) [S15] to let an SRE diagnostic agent **whisper root-cause hypotheses, blast-radius warnings, and one-click rollback cards exclusively to the on-duty Incident Commander inside the main war-room timeline** - invisible to the 30 other participants until the Commander promotes it - does not exist in Slack, Teams, Rootly, or Incident.io.
 3. **Self-Mutating Project Threads with Autonomous Cross-Team Dependency Brokers (`ThreadMolt`)**:
    - Project discussion threads in Slack, Zulip, and Linear are passive containers [S13, S24, S27]. None of them watch message expansions across separate project channels, detect when Team A's API contract change breaks Team B's assumption, and autonomously spin up a **Nexconn Direct Channel (`1-on-1`)** negotiation card between the two thread owners to resolve the conflict before code is merged.
 
-### Bucket 2 — `Exists-but-weak`
+### Bucket 2 - `Exists-but-weak`
 
 4. **Encrypted Clinical Ward Sign-Out with Live Read-Receipt Escalation (`IPassE2E`)**:
    - TigerConnect and WhatsApp exist, but WhatsApp violates HIPAA/DPDP auditability [S4, S19], and TigerConnect lacks **Signal-grade E2EE (X3DH + Double Ratchet)** combined with **live AI Mode I-PASS structuring** and **unread escalation timers** built on native per-message read receipts [S17].
 
-### Bucket 3 — `Exists abroad, not in India`
+### Bucket 3 - `Exists abroad, not in India`
 
 5. **Vernacular Voice-First Industrial Shift & Permit-to-Work Lockout Mesh (`KavachPTW`)**:
    - European/US chemical plants pay $100k+/yr for desktop-bound `Shiftconnector` [S6], which fails on Indian shop floors (Pune, Chennai, Sanand, Jamnagar) where contract technicians speak Hindi, Marathi, Tamil, or Gujarati and wear PPE gloves. Combining **Nexconn Voice-to-Text (`voice-to-text/introduction.md`) + Built-in Translation (`builtin-translation/introduction.md`)** [S16] with a **Message Expansion LOTO (Lockout/Tagout) state machine** brings Piper-Alpha-grade safety to Indian manufacturing at 1/50th the cost.
@@ -160,7 +160,7 @@ Workplace and frontline collaboration software is split across a dangerous divid
 | **Voice-to-Text (STT) & Built-in Translation (100+ Languages)** | `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md` & `builtin-translation/introduction.md` [S16] | Native audio message transcription + on-the-fly translation across **100+ languages** (including Hindi, Marathi, Tamil, Telugu, Bengali, Gujarati, Mandarin, Spanish) | Lets frontline factory/hospital workers record a 15-second vernacular voice note and auto-converts it into a bilingual structured handover card |
 | **Online Status Subscription (Presence)** | `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md` [S16] | Real-time online/offline/platform status subscription across Web, iOS, Android, Desktop | Detects when an outgoing shift engineer disconnects prematurely or routes urgent escalations only to verified online responders |
 | **End-to-End Encryption (E2EE)** | `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md` [S16] | **X3DH + Double Ratchet** client-side encryption (`chat-sdk` E2EE module) | Guarantees HIPAA / DPDP Act 2023 zero-knowledge confidentiality for clinical patient sign-outs and executive M&A threads |
-| **Server Webhooks (Pre-Send Synchronous Firewall)** | `https://docs.nexconn.ai/chat/server/` [S17] | Synchronous pre-send message routing webhook (can inspect, enrich, or **reject/block** a message before delivery) + post-send & presence webhooks | Enforces the **Zero-Drop Baton Lock** and **Permit-to-Work Safety Interlock** — physically rejecting `/deploy`, `/ack-shift`, or `/energize-line` commands if preconditions are unmet |
+| **Server Webhooks (Pre-Send Synchronous Firewall)** | `https://docs.nexconn.ai/chat/server/` [S17] | Synchronous pre-send message routing webhook (can inspect, enrich, or **reject/block** a message before delivery) + post-send & presence webhooks | Enforces the **Zero-Drop Baton Lock** and **Permit-to-Work Safety Interlock** - physically rejecting `/deploy`, `/ack-shift`, or `/energize-line` commands if preconditions are unmet |
 | **Call SDK (`@nexconn/call-sdk`)** | `https://docs.nexconn.ai/call/` [S17] | Sub-100ms 1v1 and Group WebRTC Audio/Video calls (used *alongside* `@nexconn/chat-sdk` per eligibility rules) | Launches instant **60-second Audio/Video Escalation Huddles** inside the shift channel when an incoming operator fails the handover verification challenge |
 
 ### 6B. Open Benchmarks, Models & India Operational Rails
@@ -197,33 +197,33 @@ Workplace and frontline collaboration software is split across a dangerous divid
 # Sources
 
 - **[S1]** Nexconn Build Challenge 2026 Official Portal & JS Bundle (`index-DSX23m3q.js`, Track 03 `Workplace & Collaboration` verbatim definition, rubric `gu`, prizes `pu`): `https://reskilll.com/hack/nexconn/`
-- **[S2]** Lyra by Nexconn — Official Multi-Agent Workplace Showcase (*"Where Humans and AI Agents Work Together"*): `https://www.lyrawork.com/`
+- **[S2]** Lyra by Nexconn - Official Multi-Agent Workplace Showcase (*"Where Humans and AI Agents Work Together"*): `https://www.lyrawork.com/`
 - **[S3]** Nexconn AI Mode Documentation & `@nexconn` Open-Source Ecosystem (`NexconnAI-Dev/nexconn-skills`): `https://docs.nexconn.ai/ai-mode/overview/introduction.md` & `https://github.com/NexconnAI-Dev/nexconn-skills`
-- **[S4]** The Joint Commission — *Sentinel Event Alert #58: Inadequate hand-off communication* (80% of serious medical errors linked to miscommunication during handoffs): `https://www.jointcommission.org/resources/sentinel-event/sentinel-event-alert-newsletters/sentinel-event-alert-58-inadequate-hand-off-communication/`
-- **[S5]** Starmer, A. J., et al. (2014) — *Changes in Medical Errors after Implementation of a Handoff Program (I-PASS Study)*, **New England Journal of Medicine (NEJM)**, 371(19), 1803–1812 (23% reduction in medical errors, 30% reduction in preventable adverse events): `https://www.nejm.org/doi/full/10.1056/NEJMsa1405556`
-- **[S6]** UK Health and Safety Executive (HSE) — *Safe Shift Handover* (HSG256) & Piper Alpha Disaster Root-Cause Analysis (167 fatalities linked to Permit-to-Work shift handover failure): `https://www.hse.gov.uk/humanfactors/topics/shifthandover.htm`
-- **[S7]** U.S. Chemical Safety and Hazard Investigation Board (CSB) — *Investigation Report: Refinery Explosion and Fire (BP Texas City, 15 killed, 180 injured — shift turnover communication failure)*: `https://www.csb.gov/bp-america-refinery-explosion/`
-- **[S8]** PagerDuty — *State of Digital Operations Report* & Enterprise Downtime Cost Analysis ($9,000/minute average outage cost): `https://www.pagerduty.com/resources/learn/cost-of-downtime/`
-- **[S9]** Catchpoint — *SRE Report: On-Call Burnout, Alert Fatigue, and Follow-the-Sun Handover Friction*: `https://www.catchpoint.com/sre-survey`
-- **[S10]** Microsoft — *Work Trend Index: Will AI Fix Work?* (workers spend 57% of time communicating in chat/meetings/email vs. 43% creating): `https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work`
-- **[S11]** Reddit `r/sre` & `r/devops` — Practitioners on Follow-the-Sun on-call handover failures and Slack scrollback archaeology: `https://www.reddit.com/r/sre/`
-- **[S12]** Reddit `r/medicine` & `r/Residency` — Resident physicians on night-float clinical sign-out errors and WhatsApp ward groups: `https://www.reddit.com/r/medicine/`
-- **[S13]** Linear — *Linear Method: Project Threads, Sync Engine, and Cross-Team Coordination*: `https://linear.app/method`
-- **[S14]** Hacker News & `r/LocalLLaMA` — Developer critiques of noisy multi-agent chat bots vs. private agent whisper UX: `https://news.ycombinator.com/`
-- **[S15]** Nexconn Docs — *Targeted Group Messages (`targetUserIds` private whisper delivery inside Group Channels)*: `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md`
-- **[S16]** Nexconn Docs — *Built-in Translation (100+ languages), Voice-to-Text (STT), Online Status Subscription, and End-to-End Encryption (E2EE)*: `https://docs.nexconn.ai/chat/overview/features/builtin-translation/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md`, `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md`
-- **[S17]** Nexconn Docs — *Streaming Messages (`StreamMsg`), Message Expansion (300 KV pairs), Open Channel Metadata (50 KV pairs + CAS), Direct Channels, and Server Webhooks*: `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md`, `https://docs.nexconn.ai/chat/overview/features/message/expansion.md`, `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md`, `https://docs.nexconn.ai/chat/overview/features/direct-channels/introduction.md`
-- **[S18]** Emergence Capital & Beekeeper — *The State of the Deskless Workforce Report* (2.7B deskless workers = 80% of global workforce): `https://www.beekeeper.io/en/resources/`
-- **[S19]** Ministry of Electronics and Information Technology (MeitY), Government of India — *Digital Personal Data Protection (DPDP) Act, 2023*: `https://www.meity.gov.in/content/digital-personal-data-protection-act-2023`
-- **[S20]** National Accreditation Board for Hospitals & Healthcare Providers (NABH) — *6th Edition Accreditation Standards for Hospitals (COP & MOM Shift Handover Standards)*: `https://nabh.co/`
-- **[S21]** Cemri, M., et al. (UC Berkeley, March 2025) — *Why Do Multi-Agent LLM Systems Fail? (MAST Taxonomy)*, `arXiv:2503.13657`: `https://arxiv.org/abs/2503.13657`
+- **[S4]** The Joint Commission - *Sentinel Event Alert #58: Inadequate hand-off communication* (80% of serious medical errors linked to miscommunication during handoffs): `https://www.jointcommission.org/resources/sentinel-event/sentinel-event-alert-newsletters/sentinel-event-alert-58-inadequate-hand-off-communication/`
+- **[S5]** Starmer, A. J., et al. (2014) - *Changes in Medical Errors after Implementation of a Handoff Program (I-PASS Study)*, **New England Journal of Medicine (NEJM)**, 371(19), 1803–1812 (23% reduction in medical errors, 30% reduction in preventable adverse events): `https://www.nejm.org/doi/full/10.1056/NEJMsa1405556`
+- **[S6]** UK Health and Safety Executive (HSE) - *Safe Shift Handover* (HSG256) & Piper Alpha Disaster Root-Cause Analysis (167 fatalities linked to Permit-to-Work shift handover failure): `https://www.hse.gov.uk/humanfactors/topics/shifthandover.htm`
+- **[S7]** U.S. Chemical Safety and Hazard Investigation Board (CSB) - *Investigation Report: Refinery Explosion and Fire (BP Texas City, 15 killed, 180 injured - shift turnover communication failure)*: `https://www.csb.gov/bp-america-refinery-explosion/`
+- **[S8]** PagerDuty - *State of Digital Operations Report* & Enterprise Downtime Cost Analysis ($9,000/minute average outage cost): `https://www.pagerduty.com/resources/learn/cost-of-downtime/`
+- **[S9]** Catchpoint - *SRE Report: On-Call Burnout, Alert Fatigue, and Follow-the-Sun Handover Friction*: `https://www.catchpoint.com/sre-survey`
+- **[S10]** Microsoft - *Work Trend Index: Will AI Fix Work?* (workers spend 57% of time communicating in chat/meetings/email vs. 43% creating): `https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work`
+- **[S11]** Reddit `r/sre` & `r/devops` - Practitioners on Follow-the-Sun on-call handover failures and Slack scrollback archaeology: `https://www.reddit.com/r/sre/`
+- **[S12]** Reddit `r/medicine` & `r/Residency` - Resident physicians on night-float clinical sign-out errors and WhatsApp ward groups: `https://www.reddit.com/r/medicine/`
+- **[S13]** Linear - *Linear Method: Project Threads, Sync Engine, and Cross-Team Coordination*: `https://linear.app/method`
+- **[S14]** Hacker News & `r/LocalLLaMA` - Developer critiques of noisy multi-agent chat bots vs. private agent whisper UX: `https://news.ycombinator.com/`
+- **[S15]** Nexconn Docs - *Targeted Group Messages (`targetUserIds` private whisper delivery inside Group Channels)*: `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md`
+- **[S16]** Nexconn Docs - *Built-in Translation (100+ languages), Voice-to-Text (STT), Online Status Subscription, and End-to-End Encryption (E2EE)*: `https://docs.nexconn.ai/chat/overview/features/builtin-translation/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md`, `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md`
+- **[S17]** Nexconn Docs - *Streaming Messages (`StreamMsg`), Message Expansion (300 KV pairs), Open Channel Metadata (50 KV pairs + CAS), Direct Channels, and Server Webhooks*: `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md`, `https://docs.nexconn.ai/chat/overview/features/message/expansion.md`, `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md`, `https://docs.nexconn.ai/chat/overview/features/direct-channels/introduction.md`
+- **[S18]** Emergence Capital & Beekeeper - *The State of the Deskless Workforce Report* (2.7B deskless workers = 80% of global workforce): `https://www.beekeeper.io/en/resources/`
+- **[S19]** Ministry of Electronics and Information Technology (MeitY), Government of India - *Digital Personal Data Protection (DPDP) Act, 2023*: `https://www.meity.gov.in/content/digital-personal-data-protection-act-2023`
+- **[S20]** National Accreditation Board for Hospitals & Healthcare Providers (NABH) - *6th Edition Accreditation Standards for Hospitals (COP & MOM Shift Handover Standards)*: `https://nabh.co/`
+- **[S21]** Cemri, M., et al. (UC Berkeley, March 2025) - *Why Do Multi-Agent LLM Systems Fail? (MAST Taxonomy)*, `arXiv:2503.13657`: `https://arxiv.org/abs/2503.13657`
 - **[S22]** *SOP-Bench: Complex Industrial Standard Operating Procedures for Evaluating LLM Agents* (June 2025), `arXiv:2506.08119`: `https://arxiv.org/abs/2506.08119`
 - **[S23]** *STRATUS: A Multi-Agent System for Autonomous Reliability Engineering of Modern Clouds* (June 2025), `arXiv:2506.02009`: `https://arxiv.org/abs/2506.02009`
-- **[S24]** Slack (Salesforce) — *Slack AI & Enterprise Grid Pricing and Architecture Limitations*: `https://slack.com/pricing`
-- **[S25]** Rootly & Incident.io — *Automated Incident Management on Slack*: `https://rootly.com/` & `https://incident.io/`
+- **[S24]** Slack (Salesforce) - *Slack AI & Enterprise Grid Pricing and Architecture Limitations*: `https://slack.com/pricing`
+- **[S25]** Rootly & Incident.io - *Automated Incident Management on Slack*: `https://rootly.com/` & `https://incident.io/`
 - **[S26]** Mattermost Open-Source Enterprise Collaboration & Incident Playbooks (`mattermost/mattermost`): `https://github.com/mattermost/mattermost`
 - **[S27]** Zulip Open-Source Topic-Threaded Team Chat (`zulip/zulip`): `https://github.com/zulip/zulip`
 - **[S28]** Netflix Dispatch Crisis Management Orchestrator (`Netflix/dispatch`): `https://github.com/Netflix/dispatch`
 - **[S29]** All-Hands-AI / OpenHands Multi-Agent Coding Platform (`All-Hands-AI/OpenHands`): `https://github.com/All-Hands-AI/OpenHands`
-- **[S30]** Shao, Y., et al. (Stanford / CMU, Dec 2024) — *Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration*, `arXiv:2412.15701`: `https://arxiv.org/abs/2412.15701`
-- **[S31]** Hartman, V., et al. (2024) — *Automated Generation of Clinical Sign-Out Summaries from Electronic Health Records using Large Language Models*, *JAMIA*: `https://academic.oup.com/jamia`
+- **[S30]** Shao, Y., et al. (Stanford / CMU, Dec 2024) - *Collaborative Gym: A Framework for Enabling and Evaluating Human-Agent Collaboration*, `arXiv:2412.15701`: `https://arxiv.org/abs/2412.15701`
+- **[S31]** Hartman, V., et al. (2024) - *Automated Generation of Clinical Sign-Out Summaries from Electronic Health Records using Large Language Models*, *JAMIA*: `https://academic.oup.com/jamia`

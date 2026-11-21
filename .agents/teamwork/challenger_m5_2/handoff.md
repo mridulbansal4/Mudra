@@ -1,4 +1,4 @@
-# Handoff Report — `challenger_m5_2` (Wave 4 Challenger 2: Tier 5 White-Box Adversarial Verifier)
+# Handoff Report - `challenger_m5_2` (Wave 4 Challenger 2: Tier 5 White-Box Adversarial Verifier)
 
 **Verdict**: **APPROVE**
 **Overall Risk Assessment**: **LOW**
@@ -20,31 +20,31 @@ I directly inspected the project deliverables (`d:\Hackathons\Nexconn\ideas.md`,
 
 ### 1.2 White-Box Audit of `war-room/` Inventory (13 Files)
 Listed `d:\Hackathons\Nexconn\war-room` and inspected all 13 files:
-1. `war-room/roster-additions.md` (`10,543` bytes) — Documents custom council Seats 18–22 across all 6 tracks.
-2. `war-room/nexconn-social.md` (`32,191` bytes) — Rounds `0, 1, 2, 3, 4, 5` present; `56` bold speaker turns (`**SPEAKER:**`); `18` `[S#]`/URL citations; scoring & kill tables present.
-3. `war-room/nexconn-social-ideas.md` (`30,773` bytes) — `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
-4. `war-room/nexconn-gaming.md` (`30,966` bytes) — Rounds `0, 1, 2, 3, 4, 5` present; `49` bold speaker turns; `16` `[S#]`/URL citations; scoring & kill tables present.
-5. `war-room/nexconn-gaming-ideas.md` (`32,879` bytes) — `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
-6. `war-room/nexconn-workplace.md` (`38,660` bytes) — Rounds `0, 1, 2, 3, 4, 5` present; `15` multi-seat/persona dialogue blocks (`87` bold speaker/item headers); `108` `[S#]`/URL citations; scoring & kill tables present.
-7. `war-room/nexconn-workplace-ideas.md` (`31,732` bytes) — `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
-8. `war-room/nexconn-support.md` (`38,027` bytes) — Rounds `0, 1, 2, 3, 4, 5` present; `10` multi-seat/persona dialogue blocks (`81` bold speaker/item headers); `143` `[S#]`/URL citations; scoring & kill tables present.
-9. `war-room/nexconn-support-ideas.md` (`33,407` bytes) — `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
-10. `war-room/nexconn-social-good.md` (`27,372` bytes) — Rounds `0, 1, 2, 3, 4, 5` present; `25` bold speaker turns; `51` `[S#]`/URL citations; scoring & kill tables present.
-11. `war-room/nexconn-social-good-ideas.md` (`26,951` bytes) — `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
-12. `war-room/open-innovation.md` (`25,014` bytes) — Rounds `0, 1, 2, 3, 4, 5` present; `25` bold speaker turns; `28` named research/venue/arXiv references (`arXiv:2503.13657`, `arXiv:2412.15701`, Devpost, CHI); scoring & kill tables present.
-13. `war-room/open-innovation-ideas.md` (`25,112` bytes) — `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
+1. `war-room/roster-additions.md` (`10,543` bytes) - Documents custom council Seats 18–22 across all 6 tracks.
+2. `war-room/nexconn-social.md` (`32,191` bytes) - Rounds `0, 1, 2, 3, 4, 5` present; `56` bold speaker turns (`**SPEAKER:**`); `18` `[S#]`/URL citations; scoring & kill tables present.
+3. `war-room/nexconn-social-ideas.md` (`30,773` bytes) - `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
+4. `war-room/nexconn-gaming.md` (`30,966` bytes) - Rounds `0, 1, 2, 3, 4, 5` present; `49` bold speaker turns; `16` `[S#]`/URL citations; scoring & kill tables present.
+5. `war-room/nexconn-gaming-ideas.md` (`32,879` bytes) - `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
+6. `war-room/nexconn-workplace.md` (`38,660` bytes) - Rounds `0, 1, 2, 3, 4, 5` present; `15` multi-seat/persona dialogue blocks (`87` bold speaker/item headers); `108` `[S#]`/URL citations; scoring & kill tables present.
+7. `war-room/nexconn-workplace-ideas.md` (`31,732` bytes) - `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
+8. `war-room/nexconn-support.md` (`38,027` bytes) - Rounds `0, 1, 2, 3, 4, 5` present; `10` multi-seat/persona dialogue blocks (`81` bold speaker/item headers); `143` `[S#]`/URL citations; scoring & kill tables present.
+9. `war-room/nexconn-support-ideas.md` (`33,407` bytes) - `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
+10. `war-room/nexconn-social-good.md` (`27,372` bytes) - Rounds `0, 1, 2, 3, 4, 5` present; `25` bold speaker turns; `51` `[S#]`/URL citations; scoring & kill tables present.
+11. `war-room/nexconn-social-good-ideas.md` (`26,951` bytes) - `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
+12. `war-room/open-innovation.md` (`25,014` bytes) - Rounds `0, 1, 2, 3, 4, 5` present; `25` bold speaker turns; `28` named research/venue/arXiv references (`arXiv:2503.13657`, `arXiv:2412.15701`, Devpost, CHI); scoring & kill tables present.
+13. `war-room/open-innovation-ideas.md` (`25,112` bytes) - `5` ideas, `14/14` template fields per idea, `0` leaked speaker turns.
 
 ### 1.3 Empirical Verification of All 30 Ideas (Global Title Uniqueness & Cross-File Parity)
 White-box parsing of `d:\Hackathons\Nexconn\ideas.md` (`191,599` bytes) and the 6 `war-room/<slug>-ideas.md` files confirmed **30 globally unique ideas** (`5` per track across `6` tracks) and **0 set difference** between `ideas.md` and `war-room/<slug>-ideas.md`:
 
 | Track (Winnability Rank & Score) | Idea 1 | Idea 2 | Idea 3 | Idea 4 | Idea 5 |
 |---|---|---|---|---|---|
-| **02 — `nexconn-gaming`** (`#1`, `9.27/10`) | `GhostCoach SquadOS` (`9.44`) | `DanmakuPulse Arena` (`9.32`) | `ShieldMic RaidRoom` (`9.20`) | `CrowdDirector Live` (`9.05`) | `GuildSync Polyglot LFG` (`8.96`) |
-| **03 — `nexconn-workplace`** (`#2`, `9.02/10`) | `BatonOS` (`9.15`) | `FlowRoom` (`8.85`) | `KavachPTW` (`8.65`) | `ThreadMolt` (`8.50`) | `IPassE2E` (`8.35`) |
-| **04 — `nexconn-support`** (`#3`, `9.01/10`) | `WhisperDesk ($\tau$-Guard)` (`9.20`) | `PactChat (BhashaBargain)` (`9.00`) | `RTOShield (ONDC-NDR)` (`8.75`) | `TriageSwarm` (`8.55`) | `VisualClaimE2E` (`8.30`) |
-| **06 — `open-innovation`** (`#4`, `8.73/10`) | `A2ACanvas OS` (`9.25`) | `SpecForge Live` (`9.10`) | `PactEscrow A2A` (`8.99`) | `SimuCourt ChaosLab` (`8.86`) | `SpatialPulse Canvas` (`8.71`) |
-| **01 — `nexconn-social`** (`#5`, `8.69/10`) | `SyncStage AI` (`9.29`) | `BhashaVerse FanHub` (`9.21`) | `PulsePact Micro-Circles` (`8.99`) | `CrowdCut Live Studio` (`8.98`) | `SignalCommons` (`8.82`) |
-| **05 — `nexconn-social-good`** (`#6`, `8.43/10`) | `KavachElder` (`9.07`) | `AapdaSetu 112` (`8.95`) | `DrishtiGaze AAC` (`8.84`) | `SaharaCircle E2E` (`8.73`) | `JanSetu Asha` (`8.67`) |
+| **02 - `nexconn-gaming`** (`#1`, `9.27/10`) | `GhostCoach SquadOS` (`9.44`) | `DanmakuPulse Arena` (`9.32`) | `ShieldMic RaidRoom` (`9.20`) | `CrowdDirector Live` (`9.05`) | `GuildSync Polyglot LFG` (`8.96`) |
+| **03 - `nexconn-workplace`** (`#2`, `9.02/10`) | `BatonOS` (`9.15`) | `FlowRoom` (`8.85`) | `KavachPTW` (`8.65`) | `ThreadMolt` (`8.50`) | `IPassE2E` (`8.35`) |
+| **04 - `nexconn-support`** (`#3`, `9.01/10`) | `WhisperDesk ($\tau$-Guard)` (`9.20`) | `PactChat (BhashaBargain)` (`9.00`) | `RTOShield (ONDC-NDR)` (`8.75`) | `TriageSwarm` (`8.55`) | `VisualClaimE2E` (`8.30`) |
+| **06 - `open-innovation`** (`#4`, `8.73/10`) | `A2ACanvas OS` (`9.25`) | `SpecForge Live` (`9.10`) | `PactEscrow A2A` (`8.99`) | `SimuCourt ChaosLab` (`8.86`) | `SpatialPulse Canvas` (`8.71`) |
+| **01 - `nexconn-social`** (`#5`, `8.69/10`) | `SyncStage AI` (`9.29`) | `BhashaVerse FanHub` (`9.21`) | `PulsePact Micro-Circles` (`8.99`) | `CrowdCut Live Studio` (`8.98`) | `SignalCommons` (`8.82`) |
+| **05 - `nexconn-social-good`** (`#6`, `8.43/10`) | `KavachElder` (`9.07`) | `AapdaSetu 112` (`8.95`) | `DrishtiGaze AAC` (`8.84`) | `SaharaCircle E2E` (`8.73`) | `JanSetu Asha` (`8.67`) |
 
 - **Exact title uniqueness**: `30/30` unique.
 - **Case-insensitive title uniqueness**: `30/30` unique.
@@ -57,7 +57,7 @@ Tested every single idea card in `ideas.md` (`30` cards) and in `war-room/<slug>
 2. `One-line pitch` (`**One-line pitch:**`)
 3. `The pain (with receipts)` (`**The pain (with receipts):**`)
 4. `Why existing solutions fail` (`**Why existing solutions fail:**`)
-5. `The solution — how it works` (`**The solution — how it works:**`)
+5. `The solution - how it works` (`**The solution - how it works:**`)
 6. `Architecture (ASCII)` (`**Architecture (ASCII):**`)
 7. `Tech stack (48-hour build)` (`**Tech stack (48-hour build):**`)
 8. `Why this wins THIS hackathon` (`**Why this wins THIS hackathon:**`)
@@ -124,7 +124,7 @@ Tested every single idea card in `ideas.md` (`30` cards) and in `war-room/<slug>
 ## 3. Caveats
 
 1. **PDF Visual Layout**: `ideas.pdf` was verified via binary header/trailer inspection (`%PDF-` / `%%EOF`), file size (`5,751,132` bytes), page count (`105` pages), and full text extraction (`367,780` characters, `30/30` ideas present) using `pypdf`. Pixel-level visual rendering was not separately screenshotted in a browser, as text/page/byte structure confirmed clean generation.
-2. **Two Non-Blocking Cosmetic Observations**: Documented below in the Challenge Report (`Challenge 1` and `Challenge 2`) — neither affects mathematical accuracy, idea uniqueness, or template compliance.
+2. **Two Non-Blocking Cosmetic Observations**: Documented below in the Challenge Report (`Challenge 1` and `Challenge 2`) - neither affects mathematical accuracy, idea uniqueness, or template compliance.
 
 ---
 
@@ -166,14 +166,14 @@ To independently reproduce and verify all findings from `d:\Hackathons\Nexconn`:
 
 ## Challenges
 
-### [Low] Challenge 1 — Part 0 Winnability Table Column Header Label vs. Canonical Formula Weights
+### [Low] Challenge 1 - Part 0 Winnability Table Column Header Label vs. Canonical Formula Weights
 
 - **Assumption challenged**: That the percentage labels printed in the markdown header row of the Part 0 Winnability Matrix (`ideas.md:27`) match the underlying weights used to compute the `Weighted Winnability Index (0–10)` column.
 - **Attack scenario**: In `ideas.md:27`, the column header reads `| Demo-ability (25%) | Sponsor Alignment (20%) | 48h Feasibility (10%) |`, whereas `war-room-protocol.md` and `PROJECT.md` specify `Demo-ability (20%)` and `48h Feasibility (15%)`.
 - **Blast radius**: Cosmetic only. White-box math verification proved that the actual numbers in the table (`9.27`, `9.02`, `9.01`, `8.73`, `8.69`, `8.43`) were computed using the **canonical** `war-room-protocol.md` weights (`0.25*CompInv + 0.20*SatInv + 0.20*Demo + 0.20*Align + 0.15*Feas`), not the header typo (`25%/10%`).
 - **Mitigation**: No blocking action needed; if a future cosmetic pass is run, change `(25%)` to `(20%)` and `(10%)` to `(15%)` in `ideas.md:27`.
 
-### [Low] Challenge 2 — Part 0 Summary Table `Gap Type` Short Label vs. Body `**Type:**` Multi-Bucket Tagging
+### [Low] Challenge 2 - Part 0 Summary Table `Gap Type` Short Label vs. Body `**Type:**` Multi-Bucket Tagging
 
 - **Assumption challenged**: That the short `Gap Type` string in the Part 0 `All ideas at a glance` summary table (`ideas.md:50-81`) is character-for-character identical to the primary bucket in the body `**Type:**` field on all 30 rows.
 - **Attack scenario**: On 9 of the 30 rows (e.g., `CrowdDirector Live`, `KavachPTW`, `ThreadMolt`, `IPassE2E`, `RTOShield`, `TriageSwarm`), the body `**Type:**` lists a primary + secondary gap classification or differs in which of the two applicable gap buckets is foregrounded in the Part 0 summary table.
@@ -195,4 +195,4 @@ To independently reproduce and verify all findings from `d:\Hackathons\Nexconn`:
 
 ## Unchallenged Areas
 
-- `biblehackathon.md`, `biblehackathon.pdf`, and `domains/*.md` — Assigned to Wave 4 Challenger 1 (`challenger_m5_1`), though covered by the `189/189` E2E suite run executed above.
+- `biblehackathon.md`, `biblehackathon.pdf`, and `domains/*.md` - Assigned to Wave 4 Challenger 1 (`challenger_m5_1`), though covered by the `189/189` E2E suite run executed above.

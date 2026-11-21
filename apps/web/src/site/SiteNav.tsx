@@ -41,51 +41,17 @@ export function SiteNav({ introLogo = false }: SiteNavProps) {
           borderBottom: scrolled ? "1px solid var(--hairline)" : "1px solid transparent",
         }}
       >
-        <Link to="/" className="no-underline" aria-label="samadhan home">
+        <Link to="/" className="no-underline" aria-label="mudra home">
           <Logo markSize={32} wordmarkSize={10} intro={introLogo} />
         </Link>
 
         <div className="flex items-center gap-6">
-          <nav aria-label="Primary" className="hidden md:flex items-center gap-6">
-            <NavLink
-              to="/how-it-works"
-              className={({ isActive }) =>
-                `relative text-[14px] font-semibold lowercase no-underline transition-colors ${
-                  isActive ? "text-fg" : "text-fg-2 hover:text-fg"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <span>how it works</span>
-                  {isActive ? (
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-0 right-0 -bottom-[6px] h-[2px] bg-neo-paccha"
-                    />
-                  ) : null}
-                </>
-              )}
+          <nav aria-label="Primary" className="hidden md:flex items-center gap-1">
+            <NavLink to="/how-it-works" className="nav-link text-[14px] font-semibold lowercase">
+              <span>how it works</span>
             </NavLink>
-            <NavLink
-              to="/demo"
-              className={({ isActive }) =>
-                `relative text-[14px] font-semibold lowercase no-underline transition-colors ${
-                  isActive ? "text-fg" : "text-fg-2 hover:text-fg"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <span>demo</span>
-                  {isActive ? (
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-0 right-0 -bottom-[6px] h-[2px] bg-neo-paccha"
-                    />
-                  ) : null}
-                </>
-              )}
+            <NavLink to="/demo" className="nav-link text-[14px] font-semibold lowercase">
+              <span>demo</span>
             </NavLink>
           </nav>
 

@@ -1,12 +1,12 @@
-# User Journeys & Story Flows — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (UX & Product Flow Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# User Journeys & Story Flows - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (UX & Product Flow Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [PRD](./PRD.md) · [Personas](./PERSONAS.md) · [UI Spec](../02-design/UI_SPEC.md) · [Frontend Architecture](../03-engineering/FRONTEND.md)
 
 ---
 
 ## 1. End-to-End Frontend Story Routing Architecture (Beginner & Judge First)
 
-Per product mandate, SAMADHAN-OS never drops a first-time user or judge into an unguided screen. Every visitor moves through a deliberate, progressive **Story Flow**:
+Per product mandate, MUDRA-OS never drops a first-time user or judge into an unguided screen. Every visitor moves through a deliberate, progressive **Story Flow**:
 
 ```mermaid
 flowchart LR
@@ -64,10 +64,10 @@ journey
       Seller blocks buyer on WhatsApp: 1: Rajesh
 ```
 
-### 2.2 Future-State Journey on SAMADHAN-OS (`SamvadDeal`)
+### 2.2 Future-State Journey on MUDRA-OS (`SamvadDeal`)
 ```mermaid
 journey
-    title Future State: Rajesh & Vikram on SAMADHAN-OS (3-Minute Verified Deal)
+    title Future State: Rajesh & Vikram on MUDRA-OS (3-Minute Verified Deal)
     section 1. Story Onboarding (45s)
       Opens / and clicks Sign In (/auth): 5: Rajesh
       Selects Tamil in /onboarding wizard: 5: Rajesh
@@ -86,13 +86,13 @@ journey
 ```
 
 ### 2.3 Moments of Truth & Emotional Curve (`P-01` & `P-02`)
-1. **Moment of Truth #1 (Second `0:15` — The First Translated Bubble)**: When Rajesh speaks in Tamil and watches `<nc-bilingual-bubble>` stream fluent Hindi + extracted JSON chips (`Price: ₹1,45,000`, `Warranty: 6 Months`, `Assay: 4,800 RPM Test`) onto Vikram's screen in `260ms` via `sendGroupChannelStreamMessage`. *Emotion shifts from linguistic anxiety to instant clarity.*
-2. **Moment of Truth #2 (Second `0:45` — The Rust WASM Green Bounding Box)**: During the `@nexconn/call` HD video inspection, when the Apple-design PiP Loupe locks onto serial plate `JUKI-MO-6814S-8821` with aVault Emerald (`oklch(0.58 0.16 155)`) bounding box and logs `onServerCallLogReceived`. *Emotion shifts from scam paranoia to forensic certainty.*
-3. **Moment of Truth #3 (Second `1:30` — The 110ms Vermilion Freeze Seal)**: When `Raise Dispute` invokes `addGroupChannelFreezeList`, halting emotional arguments and streaming an objective `88% / 12%` repair rebate in 90 seconds. *Emotion shifts from helplessness to institutional protection.*
+1. **Moment of Truth #1 (Second `0:15` - The First Translated Bubble)**: When Rajesh speaks in Tamil and watches `<nc-bilingual-bubble>` stream fluent Hindi + extracted JSON chips (`Price: ₹1,45,000`, `Warranty: 6 Months`, `Assay: 4,800 RPM Test`) onto Vikram's screen in `260ms` via `sendGroupChannelStreamMessage`. *Emotion shifts from linguistic anxiety to instant clarity.*
+2. **Moment of Truth #2 (Second `0:45` - The Rust WASM Green Bounding Box)**: During the `@nexconn/call` HD video inspection, when the Apple-design PiP Loupe locks onto serial plate `JUKI-MO-6814S-8821` with aVault Emerald (`oklch(0.58 0.16 155)`) bounding box and logs `onServerCallLogReceived`. *Emotion shifts from scam paranoia to forensic certainty.*
+3. **Moment of Truth #3 (Second `1:30` - The 110ms Vermilion Freeze Seal)**: When `Raise Dispute` invokes `addGroupChannelFreezeList`, halting emotional arguments and streaming an objective `88% / 12%` repair rebate in 90 seconds. *Emotion shifts from helplessness to institutional protection.*
 
 ---
 
-## 3. Journey 2: Solo Judge at 2 AM (`P-05`) — Zero-Cold-Start 60-Second Walkthrough
+## 3. Journey 2: Solo Judge at 2 AM (`P-05`) - Zero-Cold-Start 60-Second Walkthrough
 
 ```mermaid
 sequenceDiagram

@@ -1,5 +1,5 @@
-# Feature Matrix & Flags — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product & Engineering Leads) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Feature Matrix & Flags - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Product & Engineering Leads) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [PRD](./PRD.md) · [User Stories](./USER_STORIES.md) · [Architecture](../03-engineering/ARCHITECTURE.md)
 
 ---

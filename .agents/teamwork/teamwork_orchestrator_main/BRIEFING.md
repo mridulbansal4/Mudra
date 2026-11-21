@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T18:05:30Z
+# BRIEFING - 2026-10-31T18:05:30Z
 
 ## Mission
 Orchestrate comprehensive multi-agent research on the Nexconn hackathon (`https://reskilll.com/hack/nexconn/`) and company Nexconn using `war-room-council` and `agent-browser`, executing full war-room council debates across all tracks (2-3+ feasible ideas per track + Open Innovation), ranking tracks, selecting the single best winning track and idea, and producing all verified deliverables (`biblehackathon.md`, `biblehackathon.pdf`, `ideas.md`, `ideas.pdf`, `state.md`, `research/`, `war-room/`) in `d:\Hackathons\Nexconn`.
@@ -32,12 +32,12 @@ Orchestrate comprehensive multi-agent research on the Nexconn hackathon (`https:
   6. E2E Testing Track (`test_writer_e2e`) [done]
   7. Final Milestone M5: E2E Verification & Tier 5 Adversarial Hardening [done]
 - **Current phase**: 4 (All Milestones M1-M5 + E2E_TRACK Completed & Verified)
-- **Current focus**: Completed — Final Handoff & Report to Sentinel (`1070af76-56ea-4db5-9a3c-48f012bf50e8`)
+- **Current focus**: Completed - Final Handoff & Report to Sentinel (`1070af76-56ea-4db5-9a3c-48f012bf50e8`)
 
 ## 🔒 Key Constraints
 - DISPATCH-ONLY orchestrator: NEVER write/modify source/deliverable files directly, NEVER run build/test commands directly, NEVER investigate at code/skill level directly.
 - Include `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md` in every subagent dispatch.
-- Never reuse a subagent after it has delivered its handoff — always spawn fresh.
+- Never reuse a subagent after it has delivered its handoff - always spawn fresh.
 - Audit verdict is a binary veto.
 
 ## Current Parent
@@ -84,10 +84,10 @@ Orchestrate comprehensive multi-agent research on the Nexconn hackathon (`https:
 - On context truncation: handle timers as step 4 of the State Recovery section of your prompt says
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md` — Authoritative user request
-- `d:\Hackathons\Nexconn\PROJECT.md` — Project decomposition, feature inventory, milestones & write ownership
-- `d:\Hackathons\Nexconn\biblehackathon.md` & `d:\Hackathons\Nexconn\biblehackathon.pdf` — Master Hackathon Intelligence Bible (68.5 KB MD, 1.25 MB / 31-page PDF)
-- `d:\Hackathons\Nexconn\ideas.md` & `d:\Hackathons\Nexconn\ideas.pdf` — Master Top-30 Ideas Compendium (386.2 KB MD, 5.75 MB / 105-page PDF)
-- `d:\Hackathons\Nexconn\state.md` — Project State & Handoff Index (12.8 KB)
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_orchestrator_main\GATE_STATUS.md` — Wave 4 Gate Verdict Tracker (PASS)
-- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_orchestrator_main\handoff.md` — Final Hard Handoff Report
+- `d:\Hackathons\Nexconn\.agents\teamwork\ORIGINAL_REQUEST.md` - Authoritative user request
+- `d:\Hackathons\Nexconn\PROJECT.md` - Project decomposition, feature inventory, milestones & write ownership
+- `d:\Hackathons\Nexconn\biblehackathon.md` & `d:\Hackathons\Nexconn\biblehackathon.pdf` - Master Hackathon Intelligence Bible (68.5 KB MD, 1.25 MB / 31-page PDF)
+- `d:\Hackathons\Nexconn\ideas.md` & `d:\Hackathons\Nexconn\ideas.pdf` - Master Top-30 Ideas Compendium (386.2 KB MD, 5.75 MB / 105-page PDF)
+- `d:\Hackathons\Nexconn\state.md` - Project State & Handoff Index (12.8 KB)
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_orchestrator_main\GATE_STATUS.md` - Wave 4 Gate Verdict Tracker (PASS)
+- `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_orchestrator_main\handoff.md` - Final Hard Handoff Report

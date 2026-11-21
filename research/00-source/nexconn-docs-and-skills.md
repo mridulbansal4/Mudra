@@ -46,17 +46,17 @@ Below is the structured technical index extracted from `https://docs.nexconn.ai/
 
 ### 2.1 AI Mode (`https://docs.nexconn.ai/ai-mode/`)
 - **Overview & Quickstart**:
-  - `https://docs.nexconn.ai/ai-mode/overview/introduction.md` — Introduction to AI Mode
-  - `https://docs.nexconn.ai/ai-mode/overview/quickstart.md` — Quickstart guide
-  - `https://docs.nexconn.ai/ai-mode/overview/billing.md` — Billing & credits
+  - `https://docs.nexconn.ai/ai-mode/overview/introduction.md` - Introduction to AI Mode
+  - `https://docs.nexconn.ai/ai-mode/overview/quickstart.md` - Quickstart guide
+  - `https://docs.nexconn.ai/ai-mode/overview/billing.md` - Billing & credits
 - **User Guide**:
-  - `https://docs.nexconn.ai/ai-mode/user-guide/agent.md` — AI Agent configuration & personas
-  - `https://docs.nexconn.ai/ai-mode/user-guide/direct-chat.md` — 1-on-1 Human-to-Agent Direct Chat
-  - `https://docs.nexconn.ai/ai-mode/user-guide/group-channel.md` — Multi-Agent & Human-Agent Group Channels
-  - `https://docs.nexconn.ai/ai-mode/user-guide/skills.md` — Custom Agent Skills
-  - `https://docs.nexconn.ai/ai-mode/user-guide/automations.md` — Scheduled & event-driven Automations
-  - `https://docs.nexconn.ai/ai-mode/user-guide/drive.md` — Shared Workspace Drive
-  - `https://docs.nexconn.ai/ai-mode/user-guide/workspace-management.md` — Workspace & member governance
+  - `https://docs.nexconn.ai/ai-mode/user-guide/agent.md` - AI Agent configuration & personas
+  - `https://docs.nexconn.ai/ai-mode/user-guide/direct-chat.md` - 1-on-1 Human-to-Agent Direct Chat
+  - `https://docs.nexconn.ai/ai-mode/user-guide/group-channel.md` - Multi-Agent & Human-Agent Group Channels
+  - `https://docs.nexconn.ai/ai-mode/user-guide/skills.md` - Custom Agent Skills
+  - `https://docs.nexconn.ai/ai-mode/user-guide/automations.md` - Scheduled & event-driven Automations
+  - `https://docs.nexconn.ai/ai-mode/user-guide/drive.md` - Shared Workspace Drive
+  - `https://docs.nexconn.ai/ai-mode/user-guide/workspace-management.md` - Workspace & member governance
 
 ### 2.2 Chat Overview & Feature Matrix (`https://docs.nexconn.ai/chat/overview/`)
 - **Channel Types**:
@@ -67,14 +67,14 @@ Below is the structured technical index extracted from `https://docs.nexconn.ai/
     - `https://docs.nexconn.ai/chat/overview/features/group-channels/members.md`
     - `https://docs.nexconn.ai/chat/overview/features/group-channels/permissions.md`
     - `https://docs.nexconn.ai/chat/overview/features/group-channels/mute.md`
-    - `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md` — **Targeted Group Messages** (send to specific subset of users inside a group)
+    - `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md` - **Targeted Group Messages** (send to specific subset of users inside a group)
     - `https://docs.nexconn.ai/chat/overview/features/group-channels/mentions.md`
-  - **Open Channels (Live Chatrooms — unlimited concurrent users)**:
+  - **Open Channels (Live Chatrooms - unlimited concurrent users)**:
     - `https://docs.nexconn.ai/chat/overview/features/open-channels/introduction.md`
     - `https://docs.nexconn.ai/chat/overview/features/open-channels/basic.md`
     - `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-members.md`
     - `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-messages.md`
-    - `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md` — **Real-time key-value state synchronization** (up to 50 KV pairs per room, atomic update/lock)
+    - `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md` - **Real-time key-value state synchronization** (up to 50 KV pairs per room, atomic update/lock)
     - `https://docs.nexconn.ai/chat/overview/features/open-channels/muting-members.md`
     - `https://docs.nexconn.ai/chat/overview/features/open-channels/blocklist-and-allowlist.md`
   - **Communities (Unlimited members & sub-channels)**:
@@ -86,22 +86,22 @@ Below is the structured technical index extracted from `https://docs.nexconn.ai/
     - `https://docs.nexconn.ai/chat/overview/features/communities/notifications.md`
     - `https://docs.nexconn.ai/chat/overview/features/communities/messaging.md`
 - **Advanced Messaging Primitives**:
-  - `https://docs.nexconn.ai/chat/overview/features/message/introduction.md` — Built-in & Custom Message types
-  - `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md` — **Streaming Messages** (real-time AI/LLM output streaming)
-  - `https://docs.nexconn.ai/chat/overview/features/message/expansion.md` — **Message Expansion** (up to 300 dynamic key-value pairs per message for interactive cards, polls, reactions, and live status updates)
-  - `https://docs.nexconn.ai/chat/overview/features/message/reply.md` — Quoted replies & threads
-  - `https://docs.nexconn.ai/chat/overview/features/message/read-receipt.md` — 1-on-1 & Group read receipts
-  - `https://docs.nexconn.ai/chat/overview/features/message/modify-and-recall.md` — Message editing & recall
-  - `https://docs.nexconn.ai/chat/overview/features/message/pin.md` — Pinned messages
-  - `https://docs.nexconn.ai/chat/overview/features/message/typing-indicators.md` — Real-time typing status
-  - `https://docs.nexconn.ai/chat/overview/features/message/Directional-Deletion.md` — Directional message deletion
+  - `https://docs.nexconn.ai/chat/overview/features/message/introduction.md` - Built-in & Custom Message types
+  - `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md` - **Streaming Messages** (real-time AI/LLM output streaming)
+  - `https://docs.nexconn.ai/chat/overview/features/message/expansion.md` - **Message Expansion** (up to 300 dynamic key-value pairs per message for interactive cards, polls, reactions, and live status updates)
+  - `https://docs.nexconn.ai/chat/overview/features/message/reply.md` - Quoted replies & threads
+  - `https://docs.nexconn.ai/chat/overview/features/message/read-receipt.md` - 1-on-1 & Group read receipts
+  - `https://docs.nexconn.ai/chat/overview/features/message/modify-and-recall.md` - Message editing & recall
+  - `https://docs.nexconn.ai/chat/overview/features/message/pin.md` - Pinned messages
+  - `https://docs.nexconn.ai/chat/overview/features/message/typing-indicators.md` - Real-time typing status
+  - `https://docs.nexconn.ai/chat/overview/features/message/Directional-Deletion.md` - Directional message deletion
 - **AI, Trust, Safety & Accessibility Add-Ons**:
-  - `https://docs.nexconn.ai/chat/overview/features/builtin-translation/introduction.md` — **Built-in Translation**
-  - `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md` — **Voice-to-Text**
-  - `https://docs.nexconn.ai/chat/overview/features/moderation/auto-moderation.md` — **Content Moderation**
-  - `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md` — **End-to-End Encryption (X3DH + Double Ratchet)**
-  - `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md` — **Online Status Subscription (Presence)**
-  - `https://docs.nexconn.ai/chat/overview/features/notifications/push-introduction.md` — **Multi-vendor Push Notifications (FCM, APNs, Huawei, Xiaomi, OPPO, vivo)**
+  - `https://docs.nexconn.ai/chat/overview/features/builtin-translation/introduction.md` - **Built-in Translation**
+  - `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md` - **Voice-to-Text**
+  - `https://docs.nexconn.ai/chat/overview/features/moderation/auto-moderation.md` - **Content Moderation**
+  - `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md` - **End-to-End Encryption (X3DH + Double Ratchet)**
+  - `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md` - **Online Status Subscription (Presence)**
+  - `https://docs.nexconn.ai/chat/overview/features/notifications/push-introduction.md` - **Multi-vendor Push Notifications (FCM, APNs, Huawei, Xiaomi, OPPO, vivo)**
 
 ### 2.3 Platform SDK Matrix (`https://docs.nexconn.ai/llms.txt`)
 | Layer | Supported Platforms & Packages | Documentation Root |

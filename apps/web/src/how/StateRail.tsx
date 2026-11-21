@@ -1,4 +1,4 @@
-import { FSM_STATES, type FsmState } from "@samadhan/shared-types";
+import { FSM_STATES, type FsmState } from "@mudra/shared-types";
 
 export interface StateRailProps {
   activeChapterIndex: number;
