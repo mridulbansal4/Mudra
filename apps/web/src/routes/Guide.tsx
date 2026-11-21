@@ -48,7 +48,7 @@ const FEATURES = [
 
 const SETUP = [
   "Create an application at console.nexconn.ai and copy the App Key and Secret Key",
-  "Put NEXCONN_APP_KEY and NEXCONN_SECRET_KEY in the repo-root .env (the secret stays server-side, never in VITE_ variables)",
+  "Put your Nexconn app key and secret key in the repo-root .env (the secret stays server-side, never in VITE_ variables)",
   "Enable Direct, Group, System, Community and Open channels, server stream messages and group freeze lists",
   "Add http://localhost:5173 to allowed origins",
   "Restart pnpm dev. The bridge health check switches from simulated to live",
