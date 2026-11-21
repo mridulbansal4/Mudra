@@ -36,7 +36,9 @@ pub fn decode_pcm_f32_le(bytes: &[u8]) -> Vec<f32> {
 
 pub fn analyze(samples: &[f32], sample_rate: u32) -> Result<AudioAnalysis, String> {
     if !(8_000..=384_000).contains(&sample_rate) {
-        return Err(format!("unsupported sample_rate {sample_rate} (8000..=384000)"));
+        return Err(format!(
+            "unsupported sample_rate {sample_rate} (8000..=384000)"
+        ));
     }
     if samples.is_empty() {
         return Err("no audio samples".to_string());
@@ -129,7 +131,9 @@ mod tests {
     fn sine(freq: f64, amp: f64, sr: u32, secs: f64) -> Vec<f32> {
         let len = (sr as f64 * secs) as usize;
         (0..len)
-            .map(|i| (amp * (2.0 * std::f64::consts::PI * freq * i as f64 / sr as f64).sin()) as f32)
+            .map(|i| {
+                (amp * (2.0 * std::f64::consts::PI * freq * i as f64 / sr as f64).sin()) as f32
+            })
             .collect()
     }
 
@@ -140,17 +144,29 @@ mod tests {
         // Bin width is 48000/4096 = 11.72 Hz (703 RPM); log-parabolic
         // interpolation lands within ~0.2 Hz (~12 RPM). Allow 60 RPM.
         assert!((r.rpm_peak - 4819.8).abs() < 60.0, "rpm {}", r.rpm_peak);
-        assert!(r.bearing_noise_ratio < 0.01, "ratio {}", r.bearing_noise_ratio);
+        assert!(
+            r.bearing_noise_ratio < 0.01,
+            "ratio {}",
+            r.bearing_noise_ratio
+        );
     }
 
     #[test]
     fn bearing_noise_ratio_detects_high_band_energy() {
         let motor = sine(80.33, 1.0, 48_000, 2.0);
         let rattle = sine(6000.0, 0.5, 48_000, 2.0);
-        let mixed: Vec<f32> = motor.iter().zip(rattle.iter()).map(|(a, b)| a + b).collect();
+        let mixed: Vec<f32> = motor
+            .iter()
+            .zip(rattle.iter())
+            .map(|(a, b)| a + b)
+            .collect();
         let r = analyze(&mixed, 48_000).unwrap();
         // Expected power ratio 0.25 / 1.25 = 0.2.
-        assert!(r.bearing_noise_ratio > 0.15 && r.bearing_noise_ratio < 0.25, "ratio {}", r.bearing_noise_ratio);
+        assert!(
+            r.bearing_noise_ratio > 0.15 && r.bearing_noise_ratio < 0.25,
+            "ratio {}",
+            r.bearing_noise_ratio
+        );
         assert!((r.rpm_peak - 4819.8).abs() < 60.0);
     }
 
