@@ -1,5 +1,5 @@
-# Localization & Cross-Lingual Architecture — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (i18n & Indic AI Lead — Dr. R.S. Sharma Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Localization & Cross-Lingual Architecture - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (i18n & Indic AI Lead - Dr. R.S. Sharma Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Design System](./DESIGN_SYSTEM.md) · [AI Models](../04-ai/MODELS.md) · [Nexconn SDK Manual](../03-engineering/NEXCONN_SDK_MANUAL.md)
 
 ---
@@ -31,15 +31,15 @@ Track `PS-03` explicitly calls for **Multi-language translated chat**, while spo
 ```ts
 // apps/web/src/lib/nexconn-boot.ts
 import { NCChatUIApplication, registerMessageType } from "@nexconn/chatui";
-import { SamadhanEscrowCard, SamadhanBilingualBubble } from "@samadhan/nc-lit-cards";
+import { MudraEscrowCard, MudraBilingualBubble } from "@mudra/nc-lit-cards";
 
 export function bootChatUI(userLocale: string) {
   NCChatUIApplication.initialize({
     language: userLocale.startsWith("zh") ? "zh_CN" : "en_US",
     hooks: {
       beforeReady() {
-        registerMessageType("x-samadhan-escrow-card", SamadhanEscrowCard);
-        registerMessageType("x-samadhan-bilingual-bubble", SamadhanBilingualBubble);
+        registerMessageType("x-mudra-escrow-card", MudraEscrowCard);
+        registerMessageType("x-mudra-bilingual-bubble", MudraBilingualBubble);
       }
     }
   });
@@ -57,9 +57,9 @@ export function bootChatUI(userLocale: string) {
 ## 3. Indic Typography, Line-Height & Script Rendering Rules
 
 Indic abugida scripts (Tamil, Devanagari, Gurmukhi, Malayalam) have tall ascenders (matras above the headline/shirorekha) and deep vowel descenders below the baseline that get clipped by standard Latin CSS `line-height: 1.2`.
-- **Rule 1 — Script-Aware Line Height**: Any element with `lang="ta"`, `lang="hi"`, `lang="mr"`, `lang="pa"`, or `lang="ml"` automatically applies `line-height: 1.65` for body text and `1.35` for headings, with `padding-top: 2px` to prevent matra clipping inside `<nc-bilingual-bubble>`.
-- **Rule 2 — Zero Negative Letter Spacing on Indic Scripts**: Per `/unslop` §5 and W3C Indic Layout Requirements, `letter-spacing` is locked to `0em` whenever an Indic script is rendered so conjunct consonants (*samyuktakshara*) never split apart.
-- **Rule 3 — Preloaded Subsetted Variable Fonts**: `Noto Sans Tamil`, `Noto Sans Devanagari`, and `Noto Sans Gurmukhi` WOFF2 subsets are preloaded in `index.html` to eliminate tofu (`□`) boxes on Windows/Linux machines.
+- **Rule 1 - Script-Aware Line Height**: Any element with `lang="ta"`, `lang="hi"`, `lang="mr"`, `lang="pa"`, or `lang="ml"` automatically applies `line-height: 1.65` for body text and `1.35` for headings, with `padding-top: 2px` to prevent matra clipping inside `<nc-bilingual-bubble>`.
+- **Rule 2 - Zero Negative Letter Spacing on Indic Scripts**: Per `/unslop` §5 and W3C Indic Layout Requirements, `letter-spacing` is locked to `0em` whenever an Indic script is rendered so conjunct consonants (*samyuktakshara*) never split apart.
+- **Rule 3 - Preloaded Subsetted Variable Fonts**: `Noto Sans Tamil`, `Noto Sans Devanagari`, and `Noto Sans Gurmukhi` WOFF2 subsets are preloaded in `index.html` to eliminate tofu (`□`) boxes on Windows/Linux machines.
 
 ---
 

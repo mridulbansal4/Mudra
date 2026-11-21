@@ -1,4 +1,4 @@
-# Handoff Report — `worker_m2_tracks_3_4` (Features F11 & F12: Track 03 `nexconn-workplace` & Track 04 `nexconn-support`)
+# Handoff Report - `worker_m2_tracks_3_4` (Features F11 & F12: Track 03 `nexconn-workplace` & Track 04 `nexconn-support`)
 
 - **Handoff Type**: Hard (Task Complete)
 - **Agent**: `worker_m2_tracks_3_4` (Roles: `implementer`, `qa`, `specialist`)
@@ -26,12 +26,12 @@
 3. **Verification Tool Outputs (Verbatim)**:
    - Structural, heading, anti-leak, and template label check:
      ```text
-     d:\Hackathons\Nexconn\research\domains\nexconn-workplace.md: 42848 bytes, 229 lines — BASIC CHECKS OK
-     d:\Hackathons\Nexconn\war-room\nexconn-workplace.md: 38458 bytes, 215 lines — BASIC CHECKS OK
-     d:\Hackathons\Nexconn\war-room\nexconn-workplace-ideas.md: 73105 bytes, 445 lines — BASIC CHECKS OK
-     d:\Hackathons\Nexconn\research\domains\nexconn-support.md: 43137 bytes, 232 lines — BASIC CHECKS OK
-     d:\Hackathons\Nexconn\war-room\nexconn-support.md: 37825 bytes, 209 lines — BASIC CHECKS OK
-     d:\Hackathons\Nexconn\war-room\nexconn-support-ideas.md: 72853 bytes, 455 lines — BASIC CHECKS OK
+     d:\Hackathons\Nexconn\research\domains\nexconn-workplace.md: 42848 bytes, 229 lines - BASIC CHECKS OK
+     d:\Hackathons\Nexconn\war-room\nexconn-workplace.md: 38458 bytes, 215 lines - BASIC CHECKS OK
+     d:\Hackathons\Nexconn\war-room\nexconn-workplace-ideas.md: 73105 bytes, 445 lines - BASIC CHECKS OK
+     d:\Hackathons\Nexconn\research\domains\nexconn-support.md: 43137 bytes, 232 lines - BASIC CHECKS OK
+     d:\Hackathons\Nexconn\war-room\nexconn-support.md: 37825 bytes, 209 lines - BASIC CHECKS OK
+     d:\Hackathons\Nexconn\war-room\nexconn-support-ideas.md: 72853 bytes, 455 lines - BASIC CHECKS OK
        d:\Hackathons\Nexconn\war-room\nexconn-workplace-ideas.md: all 22 template labels verified (5x each), 0 dialogue leaks, H1 count=2
        d:\Hackathons\Nexconn\war-room\nexconn-support-ideas.md: all 22 template labels verified (5x each), 0 dialogue leaks, H1 count=2
      ALL STRUCTURAL & CONTENT CHECKS PASSED!
@@ -90,7 +90,7 @@
 
 Features **F11 (Track 03: `nexconn-workplace`)** and **F12 (Track 04: `nexconn-support`)** are 100% complete and verified. The downstream M3 synthesis worker can directly ingest:
 - `d:\Hackathons\Nexconn\research\domains\nexconn-workplace.md` and `d:\Hackathons\Nexconn\research\domains\nexconn-support.md` for `biblehackathon.md` Part 3 (Deep Domain Dossiers).
-- `d:\Hackathons\Nexconn\war-room\nexconn-workplace.md` and `d:\Hackathons\Nexconn\war-room\nexconn-support.md` for `biblehackathon.md` Part 5 (Domain Winnability Matrix — both tracks score **9.02/10**, with top ideas **WhisperDesk `9.20/10`** in Track 04 and **BatonOS `9.15/10`** in Track 03).
+- `d:\Hackathons\Nexconn\war-room\nexconn-workplace.md` and `d:\Hackathons\Nexconn\war-room\nexconn-support.md` for `biblehackathon.md` Part 5 (Domain Winnability Matrix - both tracks score **9.02/10**, with top ideas **WhisperDesk `9.20/10`** in Track 04 and **BatonOS `9.15/10`** in Track 03).
 - `d:\Hackathons\Nexconn\war-room\nexconn-workplace-ideas.md` and `d:\Hackathons\Nexconn\war-room\nexconn-support-ideas.md` for direct inclusion in `ideas.md`.
 
 ---

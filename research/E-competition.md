@@ -1,4 +1,4 @@
-# E — Competition Forecast, Prior Art & Academic Research Landscape (`nexconn2026`)
+# E - Competition Forecast, Prior Art & Academic Research Landscape (`nexconn2026`)
 
 > **Methodology (`recon-playbook.md § 2.E`)**: Before generating or scoring a single idea, we forecast the participating team pool on Reskilll (`https://reskilll.com/hack/nexconn/`), identify what **80% of mediocre teams will build** in each of the 6 tracks, catalogue existing prior art (GitHub repos, Kaggle datasets, funded startups), analyze **past winning projects from global hackathons** (ETHGlobal, Devpost, TreeHacks, Hack the North, DubHacks), and map **2024–2026 academic research papers** (arXiv, ACM CHI/CSCW/UIST, IEEE) into concrete Nexconn SDK differentiation advantages.
 
@@ -30,15 +30,15 @@ Based on Reskilll's historical developer challenge funnels (`https://reskilll.co
 
 #### 2.1.2 Prior Art Inventory (GitHub, Datasets, Startups)
 - **GitHub Volume**: `4,200+` public repositories matching `"watch party chat"` / `"react group chat clone"`. Notable open-source baselines:
-  - **SyncTube** (`https://github.com/RblSb/SyncTube`) — Lightweight synchronized watch-party server & chat (`1.5k+ stars`), lacks creator monetization, structured polls, or CPaaS scale.
-  - **WatchParty (`howardchung/watchparty`)** (`https://github.com/howardchung/watchparty`) — Multi-user video sync (`3.4k+ stars`), relies on heavy custom WebRTC/VM servers instead of lightweight edge metadata sync.
-  - **Zulip** (`https://github.com/zulip/zulip`) — Topic-threaded open-source community chat (`21k+ stars`).
+  - **SyncTube** (`https://github.com/RblSb/SyncTube`) - Lightweight synchronized watch-party server & chat (`1.5k+ stars`), lacks creator monetization, structured polls, or CPaaS scale.
+  - **WatchParty (`howardchung/watchparty`)** (`https://github.com/howardchung/watchparty`) - Multi-user video sync (`3.4k+ stars`), relies on heavy custom WebRTC/VM servers instead of lightweight edge metadata sync.
+  - **Zulip** (`https://github.com/zulip/zulip`) - Topic-threaded open-source community chat (`21k+ stars`).
 - **Datasets**: **Reddit / Discord Community Interaction & Retention Datasets** on Kaggle (`https://www.kaggle.com/datasets/amananandrai/reddit-interactions-dataset`) and SNAP Stanford Social Network datasets (`https://snap.stanford.edu/data/`).
 - **Funded Startups & Incumbents**: **Geneva** (acquired by Bumble, `https://www.geneva.com/`), **Partiful** (`https://partiful.com/`), **Teleparty** (`https://www.teleparty.com/`), **Farcaster / Warpcast** (`https://warpcast.com/`).
 
 #### 2.1.3 Past Global Hackathon Winners in This Domain
-- **ETHGlobal / Devpost Winner — "CastParty / FrameStream"** (`https://devpost.com/software/` / ETHGlobal Frameworks 2024, `https://ethglobal.com/showcase`): Won by turning passive group chat into **stateful in-chat micro-frames** where viewers could vote on next clips, mint/claim creator drops, and trigger synchronized reactions directly inside message bubbles.
-- **TreeHacks / Hack the North Social Track Winners** (`https://treehacks-2024.devpost.com/`): Consistently reward **instant cold-start co-presence**—where a single judge opening the app immediately joins an active room with synchronized shared state rather than an empty lobby.
+- **ETHGlobal / Devpost Winner - "CastParty / FrameStream"** (`https://devpost.com/software/` / ETHGlobal Frameworks 2024, `https://ethglobal.com/showcase`): Won by turning passive group chat into **stateful in-chat micro-frames** where viewers could vote on next clips, mint/claim creator drops, and trigger synchronized reactions directly inside message bubbles.
+- **TreeHacks / Hack the North Social Track Winners** (`https://treehacks-2024.devpost.com/`): Consistently reward **instant cold-start co-presence** - where a single judge opening the app immediately joins an active room with synchronized shared state rather than an empty lobby.
 
 #### 2.1.4 Recent Research Papers (2024–2026) & Nexconn SDK Translation
 1. **"Social Presence and Synchronized Co-Viewing in Live Online Communities"** (ACM CHI / CSCW 2024, `https://dl.acm.org/doi/10.1145/3613904`): Demonstrates that shared sub-second state indicators (who is reacting at exact timestamp `t`, live consensus meters) increase community session retention by **2.8×** over plain scrolling chat.
@@ -56,14 +56,14 @@ Based on Reskilll's historical developer challenge funnels (`https://reskilll.co
 
 #### 2.2.2 Prior Art Inventory (GitHub, Datasets, Startups)
 - **GitHub Volume**: `2,800+` repositories for live stream overlays and squad comms. Notable references:
-  - **Chatterino2** (`https://github.com/Chatterino/chatterino2`) — High-performance Twitch chat client (`2.3k+ stars`) built for high-velocity stream rooms.
-  - **Streamer.bot / CrowdControl integrations** (`https://crowdcontrol.live/`) — Lets viewers trigger in-game effects via chat commands.
-  - **Nexconn Unity Quickdemo** (`https://github.com/NexconnAI-Dev/imsdk-unity-Quickdemo`) — Official Nexconn Unity C# SDK reference.
+  - **Chatterino2** (`https://github.com/Chatterino/chatterino2`) - High-performance Twitch chat client (`2.3k+ stars`) built for high-velocity stream rooms.
+  - **Streamer.bot / CrowdControl integrations** (`https://crowdcontrol.live/`) - Lets viewers trigger in-game effects via chat commands.
+  - **Nexconn Unity Quickdemo** (`https://github.com/NexconnAI-Dev/imsdk-unity-Quickdemo`) - Official Nexconn Unity C# SDK reference.
 - **Datasets**: **Twitch Live Stream Chat & Toxicity Datasets** on Kaggle/Harvard Dataverse (`https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VE0IVQ`) and **Dota 2 / CS2 Tactical Ping & Comms Datasets** (`https://www.kaggle.com/datasets/devinanzelmo/dota-2-matches`).
 - **Funded Startups**: **Crowd Control (`https://crowdcontrol.live/`)**, **Voicemod (`https://www.voicemod.net/`)**, **Guilded** (acquired by Roblox, `https://www.guilded.gg/`), **Root** (`https://www.rootapp.com/`).
 
 #### 2.2.3 Past Global Hackathon Winners in This Domain
-- **Devpost / Twitch Developer Challenge Winners — "Twitch Plays / Crowd-Driven Interactive Overlays"** (`https://devpost.com/hackathons?search=twitch`): Winning entries turn the **spectator chatroom into a real-time game controller or director**—where chat votes, combo streaks, and high-priority moderator calls immediately alter the live canvas or squad HUD.
+- **Devpost / Twitch Developer Challenge Winners - "Twitch Plays / Crowd-Driven Interactive Overlays"** (`https://devpost.com/hackathons?search=twitch`): Winning entries turn the **spectator chatroom into a real-time game controller or director** - where chat votes, combo streaks, and high-priority moderator calls immediately alter the live canvas or squad HUD.
 
 #### 2.2.4 Recent Research Papers (2024–2026) & Nexconn SDK Translation
 1. **"Audience Participation Games: Scalable State Synchronization under High-Velocity Chat"** (ACM CHI PLAY / IEEE Transactions on Games 2024–2025, `https://dl.acm.org/journal/pacmhci`): Proves that separating **high-priority state-mutating commands** from raw spectator chatter prevents client freeze and boosts viewer engagement by **4.1×**.
@@ -79,13 +79,13 @@ Based on Reskilll's historical developer challenge funnels (`https://reskilll.co
 
 #### 2.3.2 Prior Art Inventory (GitHub, Datasets, Startups)
 - **GitHub Volume**: `6,500+` generic team chat repos, but **fewer than 45 public repos** specifically solving **structured clinical/SRE/industrial shift-handover messaging** (`"shift handover" chat` / `"SBAR handover"`). Notable references:
-  - **Mattermost** (`https://github.com/mattermost/mattermost`) — Mission-critical incident & DevOps chat (`30k+ stars`).
-  - **Dispatch (Netflix)** (`https://github.com/Netflix/dispatch`) — Incident management orchestrator over chat (`5.1k+ stars`).
+  - **Mattermost** (`https://github.com/mattermost/mattermost`) - Mission-critical incident & DevOps chat (`30k+ stars`).
+  - **Dispatch (Netflix)** (`https://github.com/Netflix/dispatch`) - Incident management orchestrator over chat (`5.1k+ stars`).
 - **Datasets**: **MIMIC-IV Clinical Notes & Handover Summaries** (`https://physionet.org/content/mimiciv/`) and **PagerDuty / SRE Incident Postmortem Corpora** (`https://github.com/danluu/post-mortems`).
-- **Funded Startups**: **Rootly** (`https://rootly.com/`, YC S21), **incident.io** (`https://incident.io/`), **beekeeper** (`https://www.beekeeper.io/` — frontline shift communication), **Corti** (`https://www.corti.ai/`).
+- **Funded Startups**: **Rootly** (`https://rootly.com/`, YC S21), **incident.io** (`https://incident.io/`), **beekeeper** (`https://www.beekeeper.io/` - frontline shift communication), **Corti** (`https://www.corti.ai/`).
 
 #### 2.3.3 Past Global Hackathon Winners in This Domain
-- **YC / Devpost Enterprise AI Winners — Stateful Incident & Handover Co-Pilots** (`https://devpost.com/software/`): Winners never treat workplace chat as passive text; they turn messages into **stateful, ack-required operational objects** with live ownership handoffs, blast-radius targeting, and automated shift-briefing generation.
+- **YC / Devpost Enterprise AI Winners - Stateful Incident & Handover Co-Pilots** (`https://devpost.com/software/`): Winners never treat workplace chat as passive text; they turn messages into **stateful, ack-required operational objects** with live ownership handoffs, blast-radius targeting, and automated shift-briefing generation.
 
 #### 2.3.4 Recent Research Papers (2024–2026) & Nexconn SDK Translation
 1. **"LLM-Assisted Clinical and Operational Shift Handovers: Reducing Omission Errors via Structured SBAR Verification"** (Nature Digital Medicine / JAMIA 2024–2025, `https://www.nature.com/npjdigitalmed/`): Shows that unstructured chat handovers omit **34% of critical pending contingencies**, whereas structured SBAR (*Situation, Background, Assessment, Recommendation*) cards with explicit read/ack verification cut omission errors by **71%**.
@@ -101,14 +101,14 @@ Based on Reskilll's historical developer challenge funnels (`https://reskilll.co
 
 #### 2.4.2 Prior Art Inventory (GitHub, Datasets, Startups)
 - **GitHub Volume**: `5,100+` customer support chat repos. Notable open-source baselines:
-  - **Chatwoot** (`https://github.com/chatwoot/chatwoot`) — Open-source omnichannel customer support suite (`21k+ stars`).
-  - **Papercups** (`https://github.com/papercups-io/papercups`) — Open-source live customer chat (`5.2k+ stars`).
+  - **Chatwoot** (`https://github.com/chatwoot/chatwoot`) - Open-source omnichannel customer support suite (`21k+ stars`).
+  - **Papercups** (`https://github.com/papercups-io/papercups`) - Open-source live customer chat (`5.2k+ stars`).
   - **MedusaJS / Saleor B2B Negotiation plugins** (`https://github.com/medusajs/medusa`).
 - **Datasets**: **Craigslist Bargains / Deal-or-No-Deal Buyer-Seller Negotiation Corpus** (Stanford NLP / HuggingFace `https://huggingface.co/datasets/craigslist_bargains`) and **Bitext Customer Support LLM Dataset** (`https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset`).
 - **Funded Startups**: **Intercom Fin** (`https://www.intercom.com/fin`), **Sierra AI** (`https://sierra.ai/`), **Decagon** (`https://decagon.ai/`), **Whatnot** (`https://www.whatnot.com/`).
 
 #### 2.4.3 Past Global Hackathon Winners in This Domain
-- **ETHGlobal / Stripe / Devpost Commerce Winners**: Winning marketplace chat projects embed **the entire negotiation and escrow state machine inside the chat stream**—allowing a buyer in one language and a seller in another to counter-offer, verify product condition via live video (`Call SDK`), and lock milestones without leaving the conversation.
+- **ETHGlobal / Stripe / Devpost Commerce Winners**: Winning marketplace chat projects embed **the entire negotiation and escrow state machine inside the chat stream** - allowing a buyer in one language and a seller in another to counter-offer, verify product condition via live video (`Call SDK`), and lock milestones without leaving the conversation.
 
 #### 2.4.4 Recent Research Papers (2024–2026) & Nexconn SDK Translation
 1. **"Cross-Lingual Bargaining and Trust Calibration in Peer-to-Peer Digital Marketplaces"** (ACM CSCW / Management Science 2024–2025, `https://dl.acm.org/doi/10.1145/3637350`): Finds that inline bidirectional translation paired with structured price/condition commitment cards increases cross-language deal completion by **63%** while reducing dispute rates by **48%**.
@@ -119,15 +119,15 @@ Based on Reskilll's historical developer challenge funnels (`https://reskilll.co
 ### Track 05: `Humanitarian & Social Good` (`nexconn-social-good`)
 
 #### 2.5.1 The "80% Mediocre Default Trap"
-- **80% of Track 05 teams** (historically the least crowded track in CPaaS hackathons—typically `<12%` of submissions!) will build a **standard React chat app with `font-size: 24px`** or a basic mental-health chatbot with a crisis hotline banner.
+- **80% of Track 05 teams** (historically the least crowded track in CPaaS hackathons - typically `<12%` of submissions!) will build a **standard React chat app with `font-size: 24px`** or a basic mental-health chatbot with a crisis hotline banner.
 - **Why It Loses**: Increasing CSS font size alone is not accessibility, and an unverified chatbot without volunteer dispatch or caregiver check-in loops fails two of the three explicit examples in `Wx[4].examples` (`"Large-font & voice-to-text chat"`, `"Volunteer dispatch rooms"`, `"Peer-support check-ins"`).
 
 #### 2.5.2 Prior Art Inventory (GitHub, Datasets, Startups)
 - **GitHub Volume**: `<150` public repositories combining **senior accessibility + voice-to-text + volunteer dispatch + peer check-ins**. Notable references:
-  - **Ushahidi Platform** (`https://github.com/ushahidi/platform`) — Crisis mapping and community dispatch (`1.2k+ stars`).
+  - **Ushahidi Platform** (`https://github.com/ushahidi/platform`) - Crisis mapping and community dispatch (`1.2k+ stars`).
   - **HospitalRun / LibreHealth** (`https://github.com/HospitalRun/hospitalrun-frontend`).
 - **Datasets**: ** ElderCare / Daily Wellness Check-in & Emergency Triage Datasets** on PhysioNet/Kaggle and **CrisisLex / HumAID Disaster Response Messaging Datasets** (`https://crisisnlp.qcri.org/`).
-- **Funded Startups & Nonprofits**: **Be My Eyes** (`https://www.bemyeyes.com/` — connects blind/low-vision users with volunteers & AI via real-time chat/call), **Papa** (`https://www.papa.com/` — senior companionship & dispatch), **Snug Safety** (`https://www.snugsafe.com/` — daily senior check-in).
+- **Funded Startups & Nonprofits**: **Be My Eyes** (`https://www.bemyeyes.com/` - connects blind/low-vision users with volunteers & AI via real-time chat/call), **Papa** (`https://www.papa.com/` - senior companionship & dispatch), **Snug Safety** (`https://www.snugsafe.com/` - daily senior check-in).
 
 #### 2.5.3 Past Global Hackathon Winners in This Domain
 - **DubHacks / TreeHacks Social Good & Accessibility Grand Prize Winners** (`https://dubhacks-24.devpost.com/`): Consistently win by pairing **zero-cognitive-load voice/large-touch interfaces for the vulnerable user** with a **high-density real-time dispatch & escalation console for volunteers/caregivers**.
@@ -145,11 +145,11 @@ Based on Reskilll's historical developer challenge funnels (`https://reskilll.co
 - **Why It Loses**: Judges immediately spot bolted-on widgets that could be deleted without breaking the core product.
 
 #### 2.6.2 Prior Art Inventory (GitHub, Datasets, Startups)
-- **GitHub Volume**: Broad open category, with rapid 2025–2026 growth around **Multi-Agent Collaborative Workspaces** (`AutoGen`, `CrewAI`, `LangGraph`, `OpenHands` — `https://github.com/All-Hands-AI/OpenHands`).
+- **GitHub Volume**: Broad open category, with rapid 2025–2026 growth around **Multi-Agent Collaborative Workspaces** (`AutoGen`, `CrewAI`, `LangGraph`, `OpenHands` - `https://github.com/All-Hands-AI/OpenHands`).
 - **Nexconn's Own Benchmark**: **Lyra (`https://www.lyrawork.com/`)** and **Nexconn AI Mode (`https://docs.nexconn.ai/ai-mode/overview/introduction.md`)**.
 
 #### 2.6.3 Past Global Hackathon Winners in This Domain
-- **PennApps / HackMIT / ETHGlobal Grand Prize Winners**: Win Open Innovation when they **redefine the sponsor's primitive**—using the sponsor's real-time messaging layer as a **distributed multi-agent + human state bus** where agents debate, stream live telemetry (`StreamMsg`), mutate interactive artifacts (`Message Expansion`), and hand off control to humans in real time.
+- **PennApps / HackMIT / ETHGlobal Grand Prize Winners**: Win Open Innovation when they **redefine the sponsor's primitive** - using the sponsor's real-time messaging layer as a **distributed multi-agent + human state bus** where agents debate, stream live telemetry (`StreamMsg`), mutate interactive artifacts (`Message Expansion`), and hand off control to humans in real time.
 
 #### 2.6.4 Recent Research Papers (2024–2026) & Nexconn SDK Translation
 1. **"Communicative Agents for Software and Operations (ChatDev / MetaGPT / Multi-Agent Collaboration Protocols)"** (Qian et al., ACL 2024 / ICLR 2025, `https://arxiv.org/abs/2307.07924` & `https://arxiv.org/abs/2308.00352`): Establishes that structured multi-agent role channels with human-in-the-loop approval gates outperform single-agent chat by **3.2×** on complex multi-step workflows.

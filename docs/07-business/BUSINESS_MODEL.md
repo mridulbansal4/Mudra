@@ -1,10 +1,10 @@
-# Business Model & Economic Moat — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Business & Monetization Lead — Warren Buffett, Peter Thiel & Kunal Shah Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Business Model & Economic Moat - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Business & Monetization Lead - Warren Buffett, Peter Thiel & Kunal Shah Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [GTM](./GTM.md) · [Financials](./FINANCIALS.md) · [Impact](./IMPACT.md) · [Cost](../05-ops/COST.md)
 
 ---
 
-## 1. Lean Canvas — SAMADHAN-OS (`SamvadDeal`)
+## 1. Lean Canvas - MUDRA-OS (`SamvadDeal`)
 
 | Problem | Solution | Unique Value Proposition | Unfair Advantage (Moat) | Customer Segments |
 |---|---|---|---|---|
@@ -29,6 +29,6 @@
 1. **Delta-4 Behavioral Irreversibility (Kunal Shah Principle)**:
    - Once a buyer (`P-01`) experiences locking ₹1,45,000 inside a live bilingual chat card and seeing the Rust WASM green bounding box lock onto the running machine's serial plate (`JUKI-MO-6814S-8821`) over `@nexconn/call`, going back to unverified WhatsApp advance transfers feels reckless (Efficiency score jumps from `2/10` to `9.5/10` → `Delta > 4`).
 2. **Evidence-Network Float & Negative Churn (Warren Buffett Principle)**:
-   - Every completed video assay and `System` channel Ed25519 voucher (`E-08`) builds a merchant's **Verified Assay Reputation Score** inside SAMADHAN-OS. A Ludhiana dealer (`P-02`) with 140 consecutive zero-dispute `System` vouchers converts out-of-state buyers at **3.4x** the rate of an unverified IndiaMART seller—creating an insurmountable switching cost.
+   - Every completed video assay and `System` channel Ed25519 voucher (`E-08`) builds a merchant's **Verified Assay Reputation Score** inside MUDRA-OS. A Ludhiana dealer (`P-02`) with 140 consecutive zero-dispute `System` vouchers converts out-of-state buyers at **3.4x** the rate of an unverified IndiaMART seller - creating an insurmountable switching cost.
 3. **B2B Working Capital & Transit Insurance Hook**:
-   - Because `services/assay-verifier-rs` cryptographically proves that the machine or electronics lot was 100% functional *before* courier pickup (`PRE_SHIPMENT` `pHash` + `4,820 RPM` FFT), logistics insurers and NBFC invoice-financing partners can underwrite transit insurance and instant working-capital advances at **40% lower risk premiums**, sharing a `0.35%` origination commission with SAMADHAN-OS.
+   - Because `services/assay-verifier-rs` cryptographically proves that the machine or electronics lot was 100% functional *before* courier pickup (`PRE_SHIPMENT` `pHash` + `4,820 RPM` FFT), logistics insurers and NBFC invoice-financing partners can underwrite transit insurance and instant working-capital advances at **40% lower risk premiums**, sharing a `0.35%` origination commission with MUDRA-OS.

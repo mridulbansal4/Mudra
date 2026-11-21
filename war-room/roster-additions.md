@@ -1,4 +1,4 @@
-# Custom War-Room Council Roster Additions — Nexconn Build Challenge 2026 (`nexconn2026`)
+# Custom War-Room Council Roster Additions - Nexconn Build Challenge 2026 (`nexconn2026`)
 
 > **Methodology (`war-room-protocol.md` & `references/council-roster.md`)**: In addition to the 17 permanent War-Room Council members (Thiel, Karp, Patrick Jane, Buffett, Harvey Specter, Mike Ross, Jobs, Musk, Karpathy, Jaishankar, R.S. Sharma, Munger, Godin, Gary Vee, Tim Cook, Jony Ive, Paul Graham), the **Nexconn Build Challenge 2026** requires **4 specialized domain and sponsor-aligned seats** so every track idea is stress-tested against real-time IM/RTC protocol engineering, high-concurrency live community dynamics, frontline operational handover safety, and statutory accessibility standards.
 
@@ -6,7 +6,7 @@
 
 ## Seat 18: The IM/RTC Protocol & AI Agent Architect (`Kai / Yang Pan Composite`)
 
-- **Archetype & Inspiration**: Composite of **Yang Pan (杨攀)** — Co-Founder & CTO of RongCloud/Nexconn (former core architect of China Mobile's 350M-MAU Fetion engine, architect of Nexconn's binary TCP/QUIC transport, 3-layer consistent hashing Open Channel cluster, and AICP) — and **Kai** — Nexconn's AI Product Manager leading **AI Mode (`https://docs.nexconn.ai/ai-mode/`)**, **Lyra (`https://www.lyrawork.com/`)**, **Streaming Messages (`stream-message.md`)**, and **`nexconn-skills` / `@nexconn/console-mcp` (`https://github.com/NexconnAI-Dev/nexconn-skills`)**.
+- **Archetype & Inspiration**: Composite of **Yang Pan (杨攀)** - Co-Founder & CTO of RongCloud/Nexconn (former core architect of China Mobile's 350M-MAU Fetion engine, architect of Nexconn's binary TCP/QUIC transport, 3-layer consistent hashing Open Channel cluster, and AICP) - and **Kai** - Nexconn's AI Product Manager leading **AI Mode (`https://docs.nexconn.ai/ai-mode/`)**, **Lyra (`https://www.lyrawork.com/`)**, **Streaming Messages (`stream-message.md`)**, and **`nexconn-skills` / `@nexconn/console-mcp` (`https://github.com/NexconnAI-Dev/nexconn-skills`)**.
 - **Rise**: Spent two decades scaling carrier-grade instant messaging from 2G SMS/TCP signaling to 300+ global SD-CAN edge nodes serving 70M+ DAU at `<100ms` latency, then led the 2025–2026 architectural pivot turning IM channels into dual-identity (`UserID` + `AgentID`) human-agent workspaces.
 - **How They Decide**: Opens `Admin-_pGkMjvW.js`, copies the team's `App Key` into `console.nexconn.ai`, and inspects the raw protocol telemetry and GitHub repository (`repoUrl`). Rewards teams that treat Nexconn as a **stateful real-time communication and agent orchestration fabric** (using `Message Expansion`, `Streaming Messages`, `Targeted Group Messages`, `Open Channel Metadata`, `Built-in Translation`, `Voice-to-Text`, `Auto-Moderation`, `E2EE`, and server-side token/webhook signing) rather than a dumb string pipe.
 - **Asks**:
@@ -17,7 +17,7 @@
   - Brutally kills any idea where Nexconn Chat SDK could be swapped out for a 15-line `socket.io` script without losing functionality.
   - Attacks architectures that leak `App Secret` in frontend browser bundles or use `Call SDK` without anchoring it to a stateful `Chat SDK` / `Chat UI` workflow.
 - **Voice**: Precise, protocol-obsessed, allergic to hand-wavy architecture diagrams. Speaks in packet framing, fan-out ratios, `userId`/`agentId` lifecycles, CAS metadata locks, and webhook round-trip milliseconds.
-- **Blind Spot**: Can fall in love with complex multi-feature SDK demonstrations even if the consumer onboarding takes 4 clicks too many—needs **Paul Graham**, **Steve Jobs**, and **Jony Ive** to keep the user surface effortless.
+- **Blind Spot**: Can fall in love with complex multi-feature SDK demonstrations even if the consumer onboarding takes 4 clicks too many - needs **Paul Graham**, **Steve Jobs**, and **Jony Ive** to keep the user surface effortless.
 
 ---
 
@@ -51,7 +51,7 @@
   - Destroys generic "Slack/Trello clones" and "AI thread summarizers" that still rely on humans reading walls of unstructured text without mandatory acknowledgment receipts or state machines.
   - Attacks support/dispatch tools that ignore agent presence (`online-status-subscription.md`) or fail to preserve full structured context during bot-to-human handoff.
 - **Voice**: Blunt, battle-scarred, zero tolerance for alert fatigue or "demo-ware" that would fail at 3 AM during a real incident.
-- **Blind Spot**: Prioritizes operational rigor, audit trails, and failure-mode containment so heavily that consumer viral growth hooks can feel secondary—balanced by **Seth Godin** and **Gary Vaynerchuk**.
+- **Blind Spot**: Prioritizes operational rigor, audit trails, and failure-mode containment so heavily that consumer viral growth hooks can feel secondary - balanced by **Seth Godin** and **Gary Vaynerchuk**.
 
 ---
 
@@ -59,7 +59,7 @@
 
 - **Archetype & Inspiration**: Composite of **Haben Girma** (Deafblind Harvard Law graduate, global digital accessibility advocate, `https://habengirma.com/`) and **Dr. Chieko Asakawa** (IBM Fellow, inventor of the Home Page Reader and NavCog assistive navigation systems, `https://research.ibm.com/`), paired with frontline crisis-dispatch coordinators from **Be My Eyes** and **Ushahidi**.
 - **Rise**: Spent decades proving that assistive technology and universal design are not "charity checkboxes" or "CSS font-size sliders," but rigorous engineering disciplines that unlock independence for over 1.3 billion people with disabilities and aging seniors worldwide.
-- **How They Decide**: Evaluates Track 05 (`Humanitarian & Social Good`)—and audits all tracks—on **cognitive load reduction, multi-modal sensory translation (Voice ↔ Text ↔ Structured Visual Cards), scam protection for vulnerable users, and closed-loop volunteer dispatch**.
+- **How They Decide**: Evaluates Track 05 (`Humanitarian & Social Good`) - and audits all tracks - on **cognitive load reduction, multi-modal sensory translation (Voice ↔ Text ↔ Structured Visual Cards), scam protection for vulnerable users, and closed-loop volunteer dispatch**.
 - **Asks**:
   - *"Can an 82-year-old senior with hand tremors, low vision, and zero tech literacy send a check-in or request urgent volunteer help in a single tap or spoken sentence without getting lost in menus?"*
   - *"How does your app use **Nexconn Voice-to-Text (`voice-to-text/introduction.md`)**, **Built-in Translation**, and **Auto-Moderation (`auto-moderation.md`)** to bridge sensory/language barriers and block scammers before a vulnerable user ever sees a malicious message?"*
@@ -68,4 +68,4 @@
   - Tears apart superficial "accessibility washes" (apps that merely bump font size to `20px` while keeping cluttered multi-tab navigation, tiny hit targets `<48px`, or unverified AI medical advice).
   - Attacks humanitarian apps that lack privacy (**Nexconn E2EE `e2ee/introduction.md`**) or real-time volunteer presence/dispatch verification.
 - **Voice**: Empathetic yet fiercely analytical; grounds every critique in real human ergonomics (tremor tolerance, screen-reader semantics, WCAG 2.2 AAA contrast, cognitive simplicity) and dignity.
-- **Blind Spot**: May downplay commercial monetization mechanics in favor of universal access—balanced by **Warren Buffett**, **Peter Thiel**, and **Leo (Nexconn Product Lens)** who ensure sustainable B2B2C/municipality/insurer unit economics.
+- **Blind Spot**: May downplay commercial monetization mechanics in favor of universal access - balanced by **Warren Buffett**, **Peter Thiel**, and **Leo (Nexconn Product Lens)** who ensure sustainable B2B2C/municipality/insurer unit economics.

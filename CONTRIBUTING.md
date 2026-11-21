@@ -1,6 +1,6 @@
-# Contributing to SAMADHAN-OS (`SamvadDeal`)
+# Contributing to MUDRA-OS (`SamvadDeal`)
 
-Thank you for contributing to **SAMADHAN-OS (`SamvadDeal`)** by Team `Chanakya`! To keep our polyglot monorepo (`Go 1.24` + `Rust 1.85/WASM` + `Node.js 22` + `React 19 / HeroUI v3` + `Expo 53 / heroui-native`) fast, deterministic, and regression-free during the **Nexconn Build Challenge 2026**, please follow this guide.
+Thank you for contributing to **MUDRA-OS (`SamvadDeal`)** by Team `Chanakya`! To keep our polyglot monorepo (`Go 1.24` + `Rust 1.85/WASM` + `Node.js 22` + `React 19 / HeroUI v3` + `Expo 53 / heroui-native`) fast, deterministic, and regression-free during the **Nexconn Build Challenge 2026**, please follow this guide.
 
 For detailed engineering rules, also read [`docs/03-engineering/CODING_STANDARDS.md`](docs/03-engineering/CODING_STANDARDS.md) and [`docs/03-engineering/GIT_WORKFLOW.md`](docs/03-engineering/GIT_WORKFLOW.md).
 
@@ -20,8 +20,8 @@ For detailed engineering rules, also read [`docs/03-engineering/CODING_STANDARDS
 4. Install dependencies, compile the Rust WebAssembly package, and start all services:
    ```bash
    pnpm install
-   pnpm --filter @samadhan/assay-wasm-rs build:wasm
-   pnpm --filter @samadhan/nc-lit-cards build
+   pnpm --filter @mudra/assay-wasm-rs build:wasm
+   pnpm --filter @mudra/nc-lit-cards build
    pnpm dev
    ```
 

@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 var (
@@ -83,7 +83,7 @@ func (s *Server) handleCreateDeal(w http.ResponseWriter, r *http.Request) {
 	tag := store.RandHex(3)
 	now := time.Now().UTC()
 	d := &store.Deal{
-		ID: "d_" + tag, ChannelID: "grp_samadhan_" + slugify(req.Title) + "_" + tag, Title: req.Title,
+		ID: "d_" + tag, ChannelID: "grp_mudra_" + slugify(req.Title) + "_" + tag, Title: req.Title,
 		BuyerID: c.Sub, SellerID: seller.ID, Machine: fsm.NewMachine(fsm.StateCreated),
 		AmountPaise: req.AmountPaise, Currency: req.Currency, Checklist: checklist,
 		RequiredSerial: serial, MinMotorRPM: minRPM, CreatedAt: now, UpdatedAt: now,
@@ -91,7 +91,7 @@ func (s *Server) handleCreateDeal(w http.ResponseWriter, r *http.Request) {
 	ch := s.Bridge.CreateGroupChannel(r.Context(), d.ChannelID, d.Title, seller.NexconnUserID, []string{c.NexconnID, seller.NexconnUserID})
 	s.Store.PutDeal(d)
 	v := s.dealView(d)
-	w.Header().Set("X-Samadhan-Channel-Engine", ch.Engine)
+	w.Header().Set("X-Mudra-Channel-Engine", ch.Engine)
 	mw.WriteJSON(w, http.StatusCreated, v)
 }
 
@@ -104,7 +104,7 @@ func (s *Server) handleGetDeal(w http.ResponseWriter, r *http.Request) {
 	mw.WriteJSON(w, http.StatusOK, s.dealView(d))
 }
 
-// GET /api/v1/deals — participants see their deals; arbitrators/guests see all.
+// GET /api/v1/deals - participants see their deals; arbitrators/guests see all.
 func (s *Server) handleListDeals(w http.ResponseWriter, r *http.Request) {
 	c := claims(r)
 	out := []DealView{}
@@ -144,10 +144,10 @@ func (s *Server) translateAndStore(ctx context.Context, d *store.Deal, sender st
 		"source_locale": src, "target_locale": dst, "scrubbed_source_text": sc.ScrubbedText,
 		"extracted_terms": terms, "pii_redacted_count": redacted, "pii_categories": sc.Categories,
 	}
-	st := s.Bridge.StreamGroup(ctx, channel, sender.NexconnUserID, "x-samadhan-bilingual-bubble", tr.TranslatedText, extras)
+	st := s.Bridge.StreamGroup(ctx, channel, sender.NexconnUserID, "x-mudra-bilingual-bubble", tr.TranslatedText, extras)
 	msg := store.ChatMessage{
 		ID: "msg_" + store.RandHex(6), SenderRole: senderRole, SenderName: sender.DisplayName, SenderNexconnID: sender.NexconnUserID,
-		MessageType: "x-samadhan-bilingual-bubble", SourceLocale: src, TargetLocale: dst,
+		MessageType: "x-mudra-bilingual-bubble", SourceLocale: src, TargetLocale: dst,
 		RawText: sc.ScrubbedText, TranslatedText: tr.TranslatedText, ExtractedTerms: terms, PIIRedacted: redacted,
 		StreamID: st.StreamID, Engine: tr.Engine,
 		Extras: map[string]any{"pii_scrub_engine": sc.Engine, "pii_scrub_time_us": sc.ScrubTimeUS, "translate_model": tr.Model, "stream_engine": st.Engine, "pii_categories": sc.Categories},
@@ -218,7 +218,7 @@ func (s *Server) handleTranslateStream(w http.ResponseWriter, r *http.Request) {
 	}
 	sender := s.Store.UserCopy(c.Sub)
 	t := s.translateAndStore(r.Context(), d, sender, role, req.RawText, src, dst)
-	delivery := "POST /v4/group-channel/message/stream/send (x-samadhan-bilingual-bubble)"
+	delivery := "POST /v4/group-channel/message/stream/send (x-mudra-bilingual-bubble)"
 	if t.stream.Engine == clients.EngineGoFallback {
 		delivery += " [simulated: bridge offline]"
 	}

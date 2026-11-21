@@ -1,9 +1,9 @@
-# Progress — `auditor_m5_1`
+# Progress - `auditor_m5_1`
 
 Last visited: 2026-10-31T20:14:00Z
 
 ## Status
-- **Phase**: Completed — Writing `handoff.md` and notifying parent (`ce650322-b861-45dd-a12e-c7d3a6871eb0`)
+- **Phase**: Completed - Writing `handoff.md` and notifying parent (`ce650322-b861-45dd-a12e-c7d3a6871eb0`)
 - **Verdict**: `CLEAN`
 
 ## Completed Steps

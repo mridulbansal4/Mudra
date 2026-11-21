@@ -1,4 +1,4 @@
-# Verbatim Portal & SPA Bundle Capture — Nexconn Build Challenge 2026 (`reskilll.com/hack/nexconn`)
+# Verbatim Portal & SPA Bundle Capture - Nexconn Build Challenge 2026 (`reskilll.com/hack/nexconn`)
 
 - **Captured From**: `https://reskilll.com/hack/nexconn/` (and SPA routes `/tracks`, `/prizes`, `/rules`, `/schedule`, `/submit`, `/login`, `/register`, `/dashboard`, `/admin`)
 - **Production SPA Bundle Assets**:
@@ -17,7 +17,7 @@
 ## 1. Portal Hero, Metadata & Core Value Proposition
 
 ### 1.1 HTML Document `<head>` (`https://reskilll.com/hack/nexconn/`)
-- **Title**: `Nexconn Build Challenge 2026 — Build an App with Real-Time Chat`
+- **Title**: `Nexconn Build Challenge 2026 - Build an App with Real-Time Chat`
 - **Meta Description**: `Build any mobile or web app using Nexconn Chat SDK or Chat UI. $5,000 in cash prizes, $20,640 in Free Chat Plan credits, and 1-year cloud discounts. Submit by November 22, 2026.`
 - **Fonts**: `Space Grotesk` (headings), `Plus Jakarta Sans` (body), `JetBrains Mono` (code/monospace).
 
@@ -27,10 +27,10 @@
 - **Sub-headline**: `Pick a track, integrate Nexconn Chat SDK or Chat UI into your mobile or web app, and compete for $5,000 in cash, $20,640 in Free Chat Plan credits, and 1-year cloud discounts.`
 - **Primary CTAs**: `Register Now` (`/hack/nexconn/register`), `Submit Project` (`/hack/nexconn/submit`), `Explore Docs` (`https://docs.nexconn.ai/`).
 - **Quick Stats Strip (`fS`)**:
-  - `$5,000` — `Total Cash Prizes (5 Winners)`
-  - `$20,640` — `Free Chat Plan (2 Years per Winner)`
-  - `6 Tracks` — `Social, Gaming, Workplace, Support, Social Good & Open`
-  - `Nov 22, 2026` — `Submission Deadline (23:59 AoE)`
+  - `$5,000` - `Total Cash Prizes (5 Winners)`
+  - `$20,640` - `Free Chat Plan (2 Years per Winner)`
+  - `6 Tracks` - `Social, Gaming, Workplace, Support, Social Good & Open`
+  - `Nov 22, 2026` - `Submission Deadline (23:59 AoE)`
 
 ---
 
@@ -62,7 +62,7 @@ const xt = {
 
 ## 3. Verbatim Tracks & Example Ideas (`Wx`, `Xx`, `gS` in `index-DSX23m3q.js`)
 
-All 6 tracks compete in a single shared pool for the top 5 overall winner slots (`yS` FAQ: *"Do tracks have separate prizes? No — all 6 tracks share the same prize pool."*).
+All 6 tracks compete in a single shared pool for the top 5 overall winner slots (`yS` FAQ: *"Do tracks have separate prizes? No - all 6 tracks share the same prize pool."*).
 
 ```javascript
 const Wx = [
@@ -83,7 +83,7 @@ const Wx = [
     id: "nexconn-gaming",
     name: "Gaming & Live Streams",
     sub: "Squad chat and live stream interactive chatroom",
-    desc: "Power real-time communication for players and viewers—from low-latency squad coordination to massive live-stream spectator chatrooms.",
+    desc: "Power real-time communication for players and viewers - from low-latency squad coordination to massive live-stream spectator chatrooms.",
     examples: [
       "Squad chat room",
       "In-match quick chat",
@@ -145,7 +145,7 @@ const Wx = [
 
 ## 4. Verbatim Prizes & Perks (`Vx`, `mS`, `Jx` in `index-DSX23m3q.js`)
 
-### 4.1 Cash Prize Breakdown (`Vx` — $5,000 Total across 5 Winners)
+### 4.1 Cash Prize Breakdown (`Vx` - $5,000 Total across 5 Winners)
 | Rank | Cash Prize (`Vx.cash`) | Additional Per-Winner Perks (`mS` / `Jx`) |
 |---|---|---|
 | **1st Place** | **$2,000 USD** | 2-Year Nexconn Free Chat Plan ($20,640 value) + 1-Year Cloud Discount (15% OFF AWS or 30% OFF Alibaba Cloud) |
@@ -245,12 +245,12 @@ const gu = [
 Inspecting `https://reskilll.com/hack/nexconn/assets/Admin-_pGkMjvW.js` reveals the exact operational dashboard used by Reskilll organisers and Nexconn judges:
 
 - **Admin API Endpoints** (`https://allbackend.reskilll.com/admin/hackathon/nexconn2026/...`):
-  - `GET /admin/hackathon/nexconn2026/stats` — Total registrations, teams, submissions, and track distribution.
-  - `GET /admin/hackathon/nexconn2026/users` — Participant roster, countries, and registration metadata.
-  - `GET /admin/hackathon/nexconn2026/teams` — Team compositions, invite codes, and selected tracks.
-  - `GET /admin/hackathon/nexconn2026/ideas` — Full project submissions list with filter by status (`submitted`, `draft`) and track.
-  - `GET /admin/hackathon/nexconn2026/analytics` — Funnel conversion and daily signup/submission velocity.
-  - `PATCH /admin/hackathon/nexconn2026/registration` — Toggle registration open/closed state.
+  - `GET /admin/hackathon/nexconn2026/stats` - Total registrations, teams, submissions, and track distribution.
+  - `GET /admin/hackathon/nexconn2026/users` - Participant roster, countries, and registration metadata.
+  - `GET /admin/hackathon/nexconn2026/teams` - Team compositions, invite codes, and selected tracks.
+  - `GET /admin/hackathon/nexconn2026/ideas` - Full project submissions list with filter by status (`submitted`, `draft`) and track.
+  - `GET /admin/hackathon/nexconn2026/analytics` - Funnel conversion and daily signup/submission velocity.
+  - `PATCH /admin/hackathon/nexconn2026/registration` - Toggle registration open/closed state.
 - **Judge CSV Export Schema (`Qt` in `Admin-_pGkMjvW.js`)**:
   ```javascript
   const headers = [

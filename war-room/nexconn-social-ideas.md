@@ -1,4 +1,4 @@
-# 01 Social & Community — Group Messaging and Topic-Based Channels
+# 01 Social & Community - Group Messaging and Topic-Based Channels
 
 ## Domain snapshot
 - **Pain summary:** **79% of digital creators** report severe burnout (**35% driven directly by audience/community channel fatigue** across fragmented Discord/Telegram/WhatsApp groups) `[S1, S2]`; **fewer than 15% of members** in mid-sized Discord/Telegram servers ever post, **>70% of new servers die within 90 days** `[S3]`, and **68% of watch-party viewers** suffer plot/goal spoilers from 8–45 second stream drift while legacy watch-party apps (Kast, Twitch Watch Parties) shut down or fail on mobile `[S5, S6]`.
@@ -8,8 +8,8 @@
 
 ---
 
-## Idea 1 — SyncStage AI: Zero-drift, spoiler-shielded watch-party room with multi-agent AI co-viewing companions
-**Type:** Exists-but-weak · **Score:** 9.29/10 · **Problem statement:** nexconn-social — Social & Community (Live room for a watch party)
+## Idea 1 - SyncStage AI: Zero-drift, spoiler-shielded watch-party room with multi-agent AI co-viewing companions
+**Type:** Exists-but-weak · **Score:** 9.29/10 · **Problem statement:** nexconn-social - Social & Community (Live room for a watch party)
 
 **The pain (evidence):** **86% of Gen Z and Millennial viewers** second-screen or message group chats during live sports, anime premieres, and creator streams, yet **68% regularly get goals and plot twists spoiled** because HLS/DASH stream latency drifts by **8 to 45 seconds** across devices `[S5, S6]`. Following the shutdown of **Kast** and **Twitch Watch Parties (April 2024)**, desktop-only Chrome extensions like **Teleparty** lock out the **>75% of Indian and SEA viewers who watch on mobile**, while small friend groups suffer awkward "dead room" silence during slow scenes `[S5, S7, S12]`.
 
@@ -35,7 +35,7 @@
 | Failure modes (Munger) | Solves the "empty watch party" demo failure via the **Dual-Pane Lag Simulator** + pre-indexed transcript AI companions so a solo judge immediately sees a bustling, time-shifted room. |
 | 10x Moonshot version (Musk) | **"TimeCapsule VOD Replay":** Every live watch party automatically saves its millisecond-indexed `Custom Messages` and `Message Expansion` polls so late viewers watching 48 hours later experience the entire crowd roar in real time. |
 | Domain Bench Lead (Ronnie Screwvala) | Turns passive YouTube premieres and OTT episode drops into ticketed, interactive premiere theatres with live halftime polls and creator voice drop-ins. |
-| Tribe & Growth (Seth Godin / Gary Vaynerchuk) | Every room generates a shareable "Live Reaction Heatmap Clip" link that pulls friend groups into the `Open Channel` with one tap—driving organic `appKey` MAU. |
+| Tribe & Growth (Seth Godin / Gary Vaynerchuk) | Every room generates a shareable "Live Reaction Heatmap Clip" link that pulls friend groups into the `Open Channel` with one tap - driving organic `appKey` MAU. |
 | Craft & Execution (Jony Ive / Tim Cook) | Frosted-glass **Spoiler Shield pill** on the video scrubber + Dual-Viewer Split-Screen toggle lets judges verify millisecond sync and delay buffering in one browser tab. |
 | Nexconn Protocol & Live Economy (Kai-Yang Pan / Justin Lin-Emmett Shear) | Deeply showcases `Open Channels`, `Open Channel KV Metadata` (`deleteWhenLeft: true`), `Message Expansion` (live halftime polls), `Streaming Messages`, `Built-in AI Translation`, and `Call SDK` group voice huddles. |
 
@@ -49,8 +49,8 @@
 
 ---
 
-## Idea 2 — BhashaVerse FanHub: Self-translating creator super-community with inline VIP whisper drops
-**Type:** Exists abroad, not in India · **Score:** 9.21/10 · **Problem statement:** nexconn-social — Social & Community (Creator fan channel)
+## Idea 2 - BhashaVerse FanHub: Self-translating creator super-community with inline VIP whisper drops
+**Type:** Exists abroad, not in India · **Score:** 9.21/10 · **Problem statement:** nexconn-social - Social & Community (Creator fan channel)
 
 **The pain (evidence):** **79% of creators suffer burnout** (**35% from managing fragmented audience channels**), and **over 50% earn under $15,000/year** because passive broadcast tools (Instagram Broadcast Channels, Telegram Channels) offer zero two-way community or inline micro-monetization `[S1, S2]`. In India (**900M+ internet users**) and Southeast Asia, a single creator's fanbase spans **6 to 12+ languages** (Hindi, Hinglish, Tamil, Telugu, Marathi, Bengali, English); creators either fracture their community into dead language-specific sub-channels or alienate **60%+ of regional fans** who cannot keep up with fast English/Hindi chat `[S7, S8]`.
 
@@ -58,7 +58,7 @@
 
 **The solution:** **BhashaVerse FanHub** is a mobile-first, multilingual creator super-community built on **Nexconn `Community Channels`**, **`Built-in AI Translation`**, **`Targeted Group Whispers`**, and **`Message Expansion`**.
 1. **Unified 3-Tier Community Hierarchy with Native AI Translation:** Using **Nexconn `Community Channels`** (`Server → Channel Group → Topic Channel`, `/chatsdk-flutter/community-channels/overview.md`) and **`Built-in AI Translation`** (`/chatsdk-android/builtin-translation/channel-translation-strategy.md` + `/user-level-settings.md`), a creator posts once and fans across Hindi, Tamil, Telugu, Marathi, and English converse in a **single unified room**, with every message automatically rendered in each fan's preferred language alongside cultural slang preservation notes `[S9]`.
-2. **Inline Sachet Drops & Targeted VIP Whispers (`userIds`):** Inside the public fan channel, the creator posts an interactive **Flash Drop Card** (`Custom Messages` + **`Message Expansion`** storing live claim tallies, e.g., *"🔥 47/50 Backstage Passes Claimed — ₹29 UPI / $1"*). The instant a fan claims a pass—or is selected by the AI Community Co-Host for top constructive engagement—the backend fires a **Nexconn `Targeted Group Whisper`** (`/chatsdk-flutter/group-channels/direct.md`) addressed strictly to `userIds: [fanUserId]` *inside the same public channel* `[S9]`.
+2. **Inline Sachet Drops & Targeted VIP Whispers (`userIds`):** Inside the public fan channel, the creator posts an interactive **Flash Drop Card** (`Custom Messages` + **`Message Expansion`** storing live claim tallies, e.g., *"🔥 47/50 Backstage Passes Claimed - ₹29 UPI / $1"*). The instant a fan claims a pass - or is selected by the AI Community Co-Host for top constructive engagement - the backend fires a **Nexconn `Targeted Group Whisper`** (`/chatsdk-flutter/group-channels/direct.md`) addressed strictly to `userIds: [fanUserId]` *inside the same public channel* `[S9]`.
 3. **Zero-Context-Switch VIP Experience:** Only the targeted VIP fan sees the golden encrypted whisper bubble appear inline in their channel timeline containing their secret merch code, unreleased audio snippet, or a 1-click **Nexconn `Call SDK` Backstage Green-Room** button to join the creator on live audio/video `[S9, S10]`.
 4. **90-Second Judge Demo Narrative:** Using the **3-Persona Live Switcher (`👑 Creator Host [EN] | 🌟 VIP Fan Priya [HI] | 👀 Regular Fan Karthik [TA]`)**, the judge types an announcement as the Creator in English, sees Priya read/reply in Hindi and Karthik in Tamil in real time, triggers a **Targeted VIP Whisper Drop** to Priya, and toggles between Priya's view (showing the golden inline VIP Whisper + live `Call SDK` Green-Room button) and Karthik's view (showing only the public `Message Expansion` counter ticking down) `[S9, S10]`.
 
@@ -90,8 +90,8 @@
 
 ---
 
-## Idea 3 — PulsePact Micro-Circles: Shared-interest accountability squads with Vision AI referee and private rescue whispers
-**Type:** Doesn't exist · **Score:** 8.99/10 · **Problem statement:** nexconn-social — Social & Community (Group chat for shared interests)
+## Idea 3 - PulsePact Micro-Circles: Shared-interest accountability squads with Vision AI referee and private rescue whispers
+**Type:** Doesn't exist · **Score:** 8.99/10 · **Problem statement:** nexconn-social - Social & Community (Group chat for shared interests)
 
 **The pain (evidence):** Millions of users join shared-interest group chats on WhatsApp, Telegram, and Discord for **daily coding (`#100DaysOfCode`), competitive exam prep (UPSC/JEE/GATE), fitness challenges, and language learning**, yet **>70% of interest groups collapse within 90 days** and **85%+ of members go silent by week two** `[S3, S4]`. Linear group chats fail shared-interest cohorts for two reasons: (1) daily check-in proofs clutter the chat with hundreds of unstructured photos/texts, and (2) when a member misses a day, either nobody notices or public call-outs trigger shame-driven churn `[S3, S4]`.
 
@@ -101,7 +101,7 @@
 1. **Stateful Pinned Pact Board (`Message Expansion`):** Every shared-interest squad (e.g., *LeetCode Daily 75*, *5AM Run Club*, *UPSC Answer Writing*) has a living **Squad Pact Card** (`Custom Messages` + **Nexconn `Message Expansion`** up to 300 KV pairs) that updates each member's daily check-in status, verified proof thumbnail, individual streak, and collective "Squad Shield" multiplier in place without cluttering the chat `[S9]`.
 2. **Instant Multimodal Vision AI Referee (`Streaming Messages`):** When a member uploads a check-in image (a LeetCode Accepted screen, a smartwatch run summary, or handwritten study notes), **Gemini 2.5 Flash Vision** verifies authenticity in <2 seconds, mutates the member's slot in the `Message Expansion` Pact Card to `VERIFIED ✅`, and streams a tailored micro-coaching insight via **Nexconn `Streaming Messages`** `[S9, S13]`.
 3. **Empathetic Private Rescue Whispers (`Targeted Group Whispers`):** When a member is at risk of breaking their streak (`Online Status Subscription` + deadline timer), PulsePact **never shames them in public**. Instead, it sends an encrypted **Nexconn `Targeted Group Whisper`** (`/chatsdk-flutter/group-channels/direct.md`) addressed *only* to `userIds: [atRiskMemberId, assignedBuddyId]` inside the group channel with a 1-click **"Split the Goal / 5-Min Co-Study Call (`Call SDK`)"** rescue button `[S9, S10]`.
-4. **90-Second Judge Demo Narrative:** The judge selects the *"LeetCode & System Design Squad"* channel, drops a screenshot of a solved problem to watch the Vision AI Referee stream feedback via `Streaming Messages` and flip the **`Message Expansion`** Pact Card to 100% Squad Streak, then clicks **"Simulate Missed Deadline for Rahul"**—toggling between the public squad view (zero public shaming) and Rahul + his Buddy's view (where the private **Targeted Rescue Whisper** and 1-click **`Call SDK` Co-Focus Room** appear inline) `[S9, S10]`.
+4. **90-Second Judge Demo Narrative:** The judge selects the *"LeetCode & System Design Squad"* channel, drops a screenshot of a solved problem to watch the Vision AI Referee stream feedback via `Streaming Messages` and flip the **`Message Expansion`** Pact Card to 100% Squad Streak, then clicks **"Simulate Missed Deadline for Rahul"** - toggling between the public squad view (zero public shaming) and Rahul + his Buddy's view (where the private **Targeted Rescue Whisper** and 1-click **`Call SDK` Co-Focus Room** appear inline) `[S9, S10]`.
 
 **Why now (2026):** Sub-second multimodal Vision LLMs + **Nexconn's combination of 300-key `Message Expansion` and `Targeted Group Whispers` (`userIds`)** allow group chats to verify real-world habits and execute private peer interventions inside a single channel `[S9, S13]`.
 
@@ -131,10 +131,10 @@
 
 ---
 
-## Idea 4 — CrowdCut Live Studio: Interactive fan table-read and story-branching creator stage
-**Type:** Doesn't exist · **Score:** 8.98/10 · **Problem statement:** nexconn-social — Social & Community (Creator fan channel & Live room for a watch party)
+## Idea 4 - CrowdCut Live Studio: Interactive fan table-read and story-branching creator stage
+**Type:** Doesn't exist · **Score:** 8.98/10 · **Problem statement:** nexconn-social - Social & Community (Creator fan channel & Live room for a watch party)
 
-**The pain (evidence):** Creators, fiction podcasters, D&D/actual-play streamers, and indie animation studios want their communities to **actively co-create episodes and participate in live events**, not just scroll past static posts `[S1, S14]`. Today, running a live interactive story or fan table-read requires cobbling together Twitch/YouTube streams (15s lag), strawpoll links, Discord stage channels, and Google Docs scripts—causing **chaotic desynchronization where fans can't see their lines or vote in time** `[S4, S14, S16]`.
+**The pain (evidence):** Creators, fiction podcasters, D&D/actual-play streamers, and indie animation studios want their communities to **actively co-create episodes and participate in live events**, not just scroll past static posts `[S1, S14]`. Today, running a live interactive story or fan table-read requires cobbling together Twitch/YouTube streams (15s lag), strawpoll links, Discord stage channels, and Google Docs scripts - causing **chaotic desynchronization where fans can't see their lines or vote in time** `[S4, S14, S16]`.
 
 **What exists today & why it fails:** **Discord Stage Channels** and **X Spaces** are audio-only rooms with zero synchronized script teleprompter, zero inline branching state, and no private cueing rail for audience actors; **Kahoot** and **Mentimeter** are corporate slide poll tools without persistent community channels or voice stages; **Twitch Polls** sit disconnected from script generation `[S3, S14]`.
 
@@ -142,7 +142,7 @@
 1. **Live Branching Teleprompter (`Open Channel KV Metadata` + `Streaming Messages`):** The main stage displays a synchronized, cinematic script teleprompter driven by **Nexconn `Open Channel KV Metadata`** (`currentSceneId`, `activeLineIndex`, `castMap`). When the story reaches a cliffhanger, the AI Showrunner streams two dramatic scene setups into the room via **Nexconn `Streaming Messages`** `[S9]`.
 2. **15-Second Crowd Plot-Vote Cards (`Message Expansion`):** An interactive **Plot Branch Card** (`Custom Messages` + **`Message Expansion`**) appears in the chat stream. Hundreds of fans tap to vote (or spend ₹10/100 Fan Points to boost a twist), watching the mutable `Message Expansion` progress bars surge in real time before the AI Showrunner streams the winning scene script live `[S9, S16]`.
 3. **Secret Backstage Teleprompter Cues (`Targeted Group Whispers` + `Call SDK`):** When a scene requires a fan voice actor (e.g., *Character: The Rogue AI* or *The Detective*), the creator or AI Showrunner selects an active fan from the room and sends a **Nexconn `Targeted Group Whisper`** (`userIds: [selectedFanId]`) containing their secret character motivation, next 3 dialogue lines, and a 1-click **`Call SDK` "Step Onto Stage"** mic button `[S9, S10]`.
-4. **90-Second Judge Demo Narrative:** The judge enters a live Sci-Fi Mystery Table-Read in CrowdCut Studio, clicks a plot branch on the **`Message Expansion`** Vote Card to watch the AI Showrunner stream the next dialogue scene via **`Streaming Messages`**, and clicks **"Cue Fan Actor"**—watching the selected fan persona receive a private **`Targeted Group Whisper`** backstage cue card with their character's secret motive and join the live **`Call SDK`** voice stage to deliver the line `[S9, S10]`.
+4. **90-Second Judge Demo Narrative:** The judge enters a live Sci-Fi Mystery Table-Read in CrowdCut Studio, clicks a plot branch on the **`Message Expansion`** Vote Card to watch the AI Showrunner stream the next dialogue scene via **`Streaming Messages`**, and clicks **"Cue Fan Actor"** - watching the selected fan persona receive a private **`Targeted Group Whisper`** backstage cue card with their character's secret motive and join the live **`Call SDK`** voice stage to deliver the line `[S9, S10]`.
 
 **Why now (2026):** Fast streaming LLMs (Gemini 2.5 Flash <250ms TTFT) + **Nexconn's `Open Channel KV`, `Message Expansion`, `Targeted Group Whispers`, and `Call SDK`** turn interactive storytelling from a $50M Netflix *Bandersnatch* production into a live creator community format anyone can host `[S9, S10, S16]`.
 
@@ -150,7 +150,7 @@
 | Jurisdiction | Verdict & design input |
 |---|---|
 | Contrarian / Monopoly (Thiel) | Shifts entertainment communities from passive *consumption* to synchronous *co-production*, creating an emotional lock-in no broadcast feed can copy. |
-| Moat / Unit economics (Buffett) | Creators monetize via "Plot Twist Boosts" and "Cast Audition Passes" inside the room—high-margin virtual goods with zero marginal COGS. |
+| Moat / Unit economics (Buffett) | Creators monetize via "Plot Twist Boosts" and "Cast Audition Passes" inside the room - high-margin virtual goods with zero marginal COGS. |
 | Judge fit & Legal (Harvey / Sharma) | Bridges two Track 01 sub-scenarios (`Creator fan channel` + `Live room for a watch party`) with 100% original co-created IP and built-in moderation. |
 | India & Global South (Jaishankar) | Pairs with **Nexconn `Built-in AI Translation`** so regional fans can vote on plot branches and read teleprompter lines in Hindi, Tamil, or English. |
 | AI / Architecture (Karpathy) | Uses structured state-machine prompting + **Nexconn `Streaming Messages`** (`pullStreamMessage`) so the AI Showrunner streams formatted `[CHARACTER]: Dialogue` tokens directly into the stage teleprompter. |
@@ -172,10 +172,10 @@
 
 ---
 
-## Idea 5 — SignalCommons: Anti-noise topic guilds with AI catch-up synthesizer and living knowledge cards
-**Type:** Exists-but-weak · **Score:** 8.82/10 · **Problem statement:** nexconn-social — Social & Community (Group chat for shared interests)
+## Idea 5 - SignalCommons: Anti-noise topic guilds with AI catch-up synthesizer and living knowledge cards
+**Type:** Exists-but-weak · **Score:** 8.82/10 · **Problem statement:** nexconn-social - Social & Community (Group chat for shared interests)
 
-**The pain (evidence):** Across topic-based communities on Discord, Telegram Topics, and Slack, **fewer than 15% of members actively post** and **>70% of servers go inactive within 90 days** `[S3]`. When a member returns to an active topic channel after 8 hours away, they face **"384 unread messages"** of fragmented chatter, off-topic memes, and buried links—causing them to hit "Mark All as Read" or mute the channel via DND forever (`ACM WWW / ICWSM 2025`) `[S3, S4, S15]`.
+**The pain (evidence):** Across topic-based communities on Discord, Telegram Topics, and Slack, **fewer than 15% of members actively post** and **>70% of servers go inactive within 90 days** `[S3]`. When a member returns to an active topic channel after 8 hours away, they face **"384 unread messages"** of fragmented chatter, off-topic memes, and buried links - causing them to hit "Mark All as Read" or mute the channel via DND forever (`ACM WWW / ICWSM 2025`) `[S3, S4, S15]`.
 
 **What exists today & why it fails:** **Discord Forum Channels** and **Telegram Topics** are still linear chronological message dumps where answers, links, and consensus get buried 200 messages deep; **Zulip** forces rigid email-style subject lines that feel sterile for social interest communities; existing summarizer bots post wall-of-text summaries into the public channel, creating *even more* unread clutter `[S3, S4, S15]`.
 
@@ -183,7 +183,7 @@
 1. **Living Topic Cards Instead of Buried Scroll (`Message Expansion`):** Inside each **Nexconn `Community Channel`** (`Server → Channel Group → Topic Channel`), SignalCommons maintains pinned **Living Knowledge Cards** (`Custom Messages` + **`Message Expansion`** up to 300 mutable KV pairs). As members share links, debate pros/cons, or vote on recommendations (e.g., *"Best GPUs under $500"*, *"Indie Game Engine Benchmarks"*, *"Bangalore Apartment Leads"*), an AI Curator extracts structured entries and updates the Living Card's KV state in place with clickable message citations `[S9, S15]`.
 2. **Zero-Spam Personal Catch-Up Whispers (`Targeted Group Whispers` + `Streaming Messages`):** When a member reconnects after being offline (detected via **`Online Status Subscription`** and **`Read Receipts`** delta), SignalCommons does *not* spam the public room. It delivers a private **Nexconn `Targeted Group Whisper`** (`userIds: [returningUserId]`) containing a 15-second personalized catch-up digest (*"While you were away: 3 key decisions, 2 links matching your tags, and 1 question waiting for your expertise"*), streamed live via **`Streaming Messages`** `[S9, S15]`.
 3. **Smart DND & Anti-Raid Quarantine (`do-not-disturb-by-channel-id` + `Auto-Moderation`):** Integrates Nexconn's native per-channel DND level configuration (`/chatsdk-flutter/community-channels/do-not-disturb-by-channel-id.md`) and **`Auto-Moderation`** (`/chatsdk-web/moderation/auto-moderation.md`) so off-topic noise and spam raids are filtered before they trigger notification fatigue `[S9]`.
-4. **90-Second Judge Demo Narrative:** The judge enters a bustling 3-tier **`Community Channel`** (*AI Builders Guild → #open-source-models*), triggers a **"Simulate 40 Rapid-Fire Debate Messages"** burst, and watches the pinned **`Message Expansion` Living Comparison Table** automatically populate with pros, cons, benchmark numbers, and source citations in real time—then clicks **"Reconnect as Offline Member"** to see the private **`Targeted Group Whisper` Catch-Up Digest** stream in exclusively for that user `[S9]`.
+4. **90-Second Judge Demo Narrative:** The judge enters a bustling 3-tier **`Community Channel`** (*AI Builders Guild → #open-source-models*), triggers a **"Simulate 40 Rapid-Fire Debate Messages"** burst, and watches the pinned **`Message Expansion` Living Comparison Table** automatically populate with pros, cons, benchmark numbers, and source citations in real time - then clicks **"Reconnect as Offline Member"** to see the private **`Targeted Group Whisper` Catch-Up Digest** stream in exclusively for that user `[S9]`.
 
 **Why now (2026):** `ICWSM 2025` research proving citation-linked topic synthesis boosts lurker re-entry by **3.1x** `[S15]`, combined with **Nexconn's 300-key `Message Expansion`, `Community Channels`, `do-not-disturb-by-channel-id`, and `Targeted Group Whispers`**, makes self-cleaning topic channels practical out of the box `[S9, S15]`.
 
@@ -191,7 +191,7 @@
 | Jurisdiction | Verdict & design input |
 |---|---|
 | Contrarian / Monopoly (Thiel) | Every chat app optimizes for *sending* more messages; SignalCommons optimizes for *extracting durable signal* per message via mutable `Message Expansion` cards. |
-| Moat / Unit economics (Buffett) | Every conversation builds a searchable, structured Living Knowledge Card index—creating compounding community memory that makes switching to a blank Discord server unthinkable. |
+| Moat / Unit economics (Buffett) | Every conversation builds a searchable, structured Living Knowledge Card index - creating compounding community memory that makes switching to a blank Discord server unthinkable. |
 | Judge fit & Legal (Harvey / Sharma) | Directly addresses the track subtitle `Group Messaging and Topic-Based Channels`; integrates Nexconn `Auto-Moderation` and `profanity-filter-callback` for safe public spaces. |
 | India & Global South (Jaishankar) | Turns chaotic 1,000-person campus placement, exam resource, and local civic groups into structured, multilingual resource hubs via `Built-in AI Translation`. |
 | AI / Architecture (Karpathy) | Runs incremental delta extraction on sliding message windows, patching JSON diffs into Nexconn `Message Expansion` KV keys (`card_row_1..N`) and streaming personal catch-ups. |
@@ -213,20 +213,20 @@
 
 ---
 
-## Sources — Track 01 (`nexconn-social`)
-- **[S1]** Goldman Sachs Global Investment Research & Epidemic Sound / Linktree Creator Economy Reports (2024–2025): $205B–$253B creator economy sizing (projected $480B by 2027 / $1.34T by 2033) and 79% creator burnout rate (35% from audience/community channel fatigue) — `https://www.goldmansachs.com/insights/articles/the-creator-economy-could-approach-half-a-trillion-dollars-by-2027`
-- **[S2]** Influencer Marketing Hub & Kajabi State of Creator Economy Report (2025): Creator monetization gap (>50% earning under $15K/yr) — `https://influencermarketinghub.com/creator-economy-stats/`
-- **[S3]** Commsor / Common Room / Levellr Discord & Community Retention Benchmarks (2024–2025): <15% active poster ratio, 1–5% DAU/MAU, and >70% 90-day server churn — `https://www.commonroom.io/resources/community-benchmarks/`
-- **[S4]** Harvard Business Review & Community Design Analyses (2024–2025): Notification fatigue, linear group-chat noise, and migration to micro-communities — `https://hbr.org/2024/05/building-online-communities-that-actually-work`
-- **[S5]** Shut-down of Twitch Watch Parties (April 2024) and Kast, plus Teleparty / Scener / Kosmi mobile & stream-drift spoiler friction — `https://help.twitch.tv/s/article/watch-parties`
+## Sources - Track 01 (`nexconn-social`)
+- **[S1]** Goldman Sachs Global Investment Research & Epidemic Sound / Linktree Creator Economy Reports (2024–2025): $205B–$253B creator economy sizing (projected $480B by 2027 / $1.34T by 2033) and 79% creator burnout rate (35% from audience/community channel fatigue) - `https://www.goldmansachs.com/insights/articles/the-creator-economy-could-approach-half-a-trillion-dollars-by-2027`
+- **[S2]** Influencer Marketing Hub & Kajabi State of Creator Economy Report (2025): Creator monetization gap (>50% earning under $15K/yr) - `https://influencermarketinghub.com/creator-economy-stats/`
+- **[S3]** Commsor / Common Room / Levellr Discord & Community Retention Benchmarks (2024–2025): <15% active poster ratio, 1–5% DAU/MAU, and >70% 90-day server churn - `https://www.commonroom.io/resources/community-benchmarks/`
+- **[S4]** Harvard Business Review & Community Design Analyses (2024–2025): Notification fatigue, linear group-chat noise, and migration to micro-communities - `https://hbr.org/2024/05/building-online-communities-that-actually-work`
+- **[S5]** Shut-down of Twitch Watch Parties (April 2024) and Kast, plus Teleparty / Scener / Kosmi mobile & stream-drift spoiler friction - `https://help.twitch.tv/s/article/watch-parties`
 - **[S6]** Open-source co-viewing repositories: `howardchung/watchparty` (`https://github.com/howardchung/watchparty`) and `Syncplay/syncplay` (`https://github.com/Syncplay/syncplay`).
-- **[S7]** IAMAI & Kantar *Internet in India Report 2024–2025*: 900M+ users, >75% mobile OTT viewership, and multilingual community fragmentation — `https://www.iamai.in/`
+- **[S7]** IAMAI & Kantar *Internet in India Report 2024–2025*: 900M+ users, >75% mobile OTT viewership, and multilingual community fragmentation - `https://www.iamai.in/`
 - **[S8]** Digital India Bhashini (`https://bhashini.gov.in/`) & NPCI UPI Real-Time Micro-Payment Rails (`https://www.npci.org.in/what-we-do/upi/product-statistics`).
 - **[S9]** Official Nexconn Chat SDK Documentation (`https://docs.nexconn.ai/llms.txt`): `Community Channels` (`/chatsdk-flutter/community-channels/overview.md`, `/expand-message.md`, `/do-not-disturb-by-channel-id.md`), `Open Channel KV Metadata` (`/chatsdk-web/open-channel/open-channel-kv.md`), `Targeted Group Whispers` (`/chatsdk-flutter/group-channels/direct.md`), `Message Expansion` (`/chatsdk-android/message/expansion.md`), `Streaming Messages` (`/chatsdk-web/message/stream-msg.md`), `Built-in AI Translation` (`/chatsdk-android/builtin-translation/overview.md`), and `Auto-Moderation` (`/chatsdk-web/moderation/auto-moderation.md`).
 - **[S10]** Official Nexconn Call SDK Documentation (`https://docs.nexconn.ai/llms.txt`): Group Calls and Chat-to-Call Integration (`/callsdk-web/integrate-with-chat.md`, `/callsdk-web/group-call.md`).
 - **[S11]** Official Nexconn Developer Skills & MCP Server (`https://github.com/NexconnAI-Dev/nexconn-skills`, `@nexconn/console-mcp`).
-- **[S12]** *Beyond One-on-One: Authoring Circumplex-Guided Polyphonic AI Companions for Group Chat*, arXiv:2509.10539 (Sep 2025) — `https://arxiv.org/abs/2509.10539`
-- **[S13]** *Inner Thoughts: Proactive AI Participation in Group Conversations*, arXiv:2509.09314 (Sep 2025) & arXiv:2507.03128 (Jul 2025) — `https://arxiv.org/abs/2509.09314`
-- **[S14]** ACM CHI / CSCW Co-Viewing & Social Live-Streaming Studies (2024–2025) — `https://dl.acm.org/`
-- **[S15]** AAAI ICWSM / ACM WWW (2025): LLM-driven thread synthesis and lurker re-entry in online communities — `https://www.icwsm.org/`
-- **[S16]** Devpost Social & Media Hackathon Winning Patterns (2024–2025) — `https://devpost.com/software/search?query=watch+party+ai`
+- **[S12]** *Beyond One-on-One: Authoring Circumplex-Guided Polyphonic AI Companions for Group Chat*, arXiv:2509.10539 (Sep 2025) - `https://arxiv.org/abs/2509.10539`
+- **[S13]** *Inner Thoughts: Proactive AI Participation in Group Conversations*, arXiv:2509.09314 (Sep 2025) & arXiv:2507.03128 (Jul 2025) - `https://arxiv.org/abs/2509.09314`
+- **[S14]** ACM CHI / CSCW Co-Viewing & Social Live-Streaming Studies (2024–2025) - `https://dl.acm.org/`
+- **[S15]** AAAI ICWSM / ACM WWW (2025): LLM-driven thread synthesis and lurker re-entry in online communities - `https://www.icwsm.org/`
+- **[S16]** Devpost Social & Media Hackathon Winning Patterns (2024–2025) - `https://devpost.com/software/search?query=watch+party+ai`

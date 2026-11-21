@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T20:05:00Z
+# BRIEFING - 2026-10-31T20:05:00Z
 
 ## Mission
 Assemble the master deliverables for Milestone M4 (`biblehackathon.md`, `ideas.md`, `state.md`), render `biblehackathon.pdf` and `ideas.pdf` via `md2pdf.py`, and pass 100% of the 189 E2E tests in `tests/run_e2e_tests.py`.
@@ -43,7 +43,7 @@ Assemble the master deliverables for Milestone M4 (`biblehackathon.md`, `ideas.m
 - **Pending issues**: None
 
 ## Quality Status
-- **Build/test result**: PASS (`189/189` passed — `100.0%`, exit code `0`)
+- **Build/test result**: PASS (`189/189` passed - `100.0%`, exit code `0`)
 - **Lint status**: Clean (zero `TODO`/`TBD`, zero dialogue leaks, zero score math discrepancies)
 - **Tests added/modified**: Verified against all 4 tiers (`Tier 1: 80/80`, `Tier 2: 85/85`, `Tier 3: 16/16`, `Tier 4: 8/8`) in `tests/run_e2e_tests.py`
 
@@ -53,11 +53,11 @@ Assemble the master deliverables for Milestone M4 (`biblehackathon.md`, `ideas.m
 - **Core methodology**: Full hackathon intelligence synthesis, 5-factor Domain Winnability Index ranking, 30-idea war-room assembly, and headless Chromium PDF rendering via `md2pdf.py`.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\DISPATCH.md` — Task assignment
-- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\progress.md` — Heartbeat log
-- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\handoff.md` — 5-Component Handoff Report
-- `d:\Hackathons\Nexconn\biblehackathon.md` — Master Hackathon Intelligence Bible
-- `d:\Hackathons\Nexconn\biblehackathon.pdf` — Rendered Hackathon Bible PDF (31 pages)
-- `d:\Hackathons\Nexconn\ideas.md` — Master Top 30 Ideas by Domain Compendium
-- `d:\Hackathons\Nexconn\ideas.pdf` — Rendered Top Ideas PDF (105 pages)
-- `d:\Hackathons\Nexconn\state.md` — Project State Index
+- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\DISPATCH.md` - Task assignment
+- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\progress.md` - Heartbeat log
+- `d:\Hackathons\Nexconn\.agents\teamwork\worker_m4_assembly\handoff.md` - 5-Component Handoff Report
+- `d:\Hackathons\Nexconn\biblehackathon.md` - Master Hackathon Intelligence Bible
+- `d:\Hackathons\Nexconn\biblehackathon.pdf` - Rendered Hackathon Bible PDF (31 pages)
+- `d:\Hackathons\Nexconn\ideas.md` - Master Top 30 Ideas by Domain Compendium
+- `d:\Hackathons\Nexconn\ideas.pdf` - Rendered Top Ideas PDF (105 pages)
+- `d:\Hackathons\Nexconn\state.md` - Project State Index

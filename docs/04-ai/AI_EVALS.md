@@ -1,5 +1,5 @@
-# AI Evaluation Suite & Red-Team Benchmarks — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (AI Evals Lead — Hamel Husain & Percy Liang Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
+# AI Evaluation Suite & Red-Team Benchmarks - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (AI Evals Lead - Hamel Husain & Percy Liang Chair) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Models](./MODELS.md) · [Prompts](./PROMPTS.md) · [CI/CD](../05-ops/CICD.md)
 
 ---
@@ -23,7 +23,7 @@ Following Hamel Husain's AI evaluation methodology, every prompt or model change
 
 ## 3. Task-Specific Metrics, Baselines & Acceptance Thresholds
 
-| Task & Model | Primary Metric | Baseline (Zero-Shot Unconstrained LLM) | SAMADHAN-OS Current Score | Hard CI Gate Threshold |
+| Task & Model | Primary Metric | Baseline (Zero-Shot Unconstrained LLM) | MUDRA-OS Current Score | Hard CI Gate Threshold |
 |---|---|---|---|---|
 | **`M-01` Cross-Lingual Translation Quality** | `chrF++` + Technical Term Preservation Rate (`Juki MO-6814S`, `4800 RPM`) | `81.4%` term preservation | **`99.2%`** | `>= 97.0%` |
 | **`M-01` Contract Term JSON Extraction** | Exact-Match `amount_paise` (in integer paise) & `warranty_months` F1 | `84.0%` (fails on `"1.45 Lakh"` / `"पेटी"`) | **`98.8%`** | `>= 96.5%` |
@@ -42,7 +42,7 @@ Every pull request modifying `ai/prompts/**`, `services/nexconn-bridge-node/**`,
 cd services/assay-verifier-rs && cargo test --release --test eval_suite
 
 # 2. Run JSON schema, Indic translation, Tribunal calibration & Red-Team evals
-pnpm --filter @samadhan/ai-evals run eval:ci
+pnpm --filter @mudra/ai-evals run eval:ci
 ```
 If any metric drops below the **Hard CI Gate Threshold** in Section 3, the GitHub Actions workflow blocks the merge and prints a diff table showing the exact failing JSONL row.
 

@@ -1,4 +1,4 @@
-# Progress — `worker_m1_recon`
+# Progress - `worker_m1_recon`
 
 Last visited: 2026-10-31T18:45:00Z
 

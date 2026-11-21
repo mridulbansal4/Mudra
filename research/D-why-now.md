@@ -1,4 +1,4 @@
-# D — Why Each Problem Statement Exists Right Now (Late-2026 Trigger Matrix)
+# D - Why Each Problem Statement Exists Right Now (Late-2026 Trigger Matrix)
 
 > **Methodology (`recon-playbook.md § 2.D`)**: None of the 6 tracks in the **Nexconn Build Challenge 2026** (`https://reskilll.com/hack/nexconn/tracks`) were chosen at random. Every track reflects a specific convergence of (1) Indian & global regulatory/DPI shifts, (2) 2024–2026 outages, scams, and operational failures, (3) geopolitical & cross-border corridor dynamics (the Jaishankar lens), (4) recurring developer failure modes, and (5) Nexconn's late-2026 global product roadmap (`nexconn.ai`, `lyrawork.com`, `nexconn-skills`).
 
@@ -9,13 +9,13 @@ Every trigger below follows the strict causal chain:
 
 ## 1. Cross-Track Macro Triggers: Why Nexconn Launched `nexconn2026` in October 2026
 
-### Macro Trigger 1.1 — The Singapore Global Re-Domiciling & Cross-Border CPaaS War
+### Macro Trigger 1.1 - The Singapore Global Re-Domiciling & Cross-Border CPaaS War
 - **Trigger**: RongCloud (融云, China's #1 IM PaaS with 70M+ DAU) spun out its international operations under **`RCLOUD GLOBAL PTE. LTD.` (Singapore)** as **Nexconn (`https://www.nexconn.ai/`)** while explicitly excluding Mainland China (`tS = ["CN"]` in `https://reskilll.com/hack/nexconn/assets/index-DSX23m3q.js`) and partnering with India's **Reskilll (`https://reskilll.com/`)**.
 - **Evidence**: `https://www.nexconn.ai/`, `https://reskilll.com/hack/nexconn/rules`, and `https://github.com/NexconnAI-Dev/nexconn-skills`.
 - **What the authors are actually worried about**: Under the **Jaishankar multi-alignment & digital sovereignty lens**, global SaaS buyers in India, Southeast Asia, MENA, Europe, and North America demand Singapore-governed infrastructure (`RCLOUD GLOBAL PTE. LTD.`), GDPR/DPDP-compliant data handling, and English-first AI developer tooling (`docs.nexconn.ai/llms.txt`, `@nexconn/console-mcp`), rather than domestic Chinese SDK documentation. Meanwhile, Western rivals (Sendbird, Stream, Twilio/Agora) charge steep per-MAU overages that price out emerging-market startups.
 - **What a winning answer must prove**: A globally polished, English-first (or multi-language translated) production application that proves Nexconn's Singapore-backed SDK (`@rongcloud/imlib-next` / mobile `IMKit`) can power mission-critical international workflows with `<100ms` latency and clean developer ergonomics.
 
-### Macro Trigger 1.2 — The Transition from "Human-Only Chat" to "Human + AI Agent Channels" (AICP & Lyra)
+### Macro Trigger 1.2 - The Transition from "Human-Only Chat" to "Human + AI Agent Channels" (AICP & Lyra)
 - **Trigger**: In 2025–2026, Nexconn launched **AI Mode (`https://docs.nexconn.ai/ai-mode/overview/introduction.md`)**, **Streaming Messages (`https://docs.nexconn.ai/chat/overview/features/message/stream-message.md`)**, **Lyra (`https://www.lyrawork.com/`)**, and **`nexconn-skills` (`https://github.com/NexconnAI-Dev/nexconn-skills`)**.
 - **Evidence**: `https://docs.nexconn.ai/llms.txt` devotes an entire top-level documentation tree (`/ai-mode/`) to Agents, Skills, Automations, Shared Drives, and Multi-Agent Group Channels, alongside `/chat/overview/features/message/stream-message.md`.
 - **What the authors are actually worried about**: Traditional CPaaS vendors are commoditized if they only transport human-to-human text strings. Nexconn wants to own the transport layer where **AI Agents (`AgentID`) and Humans (`UserID`) collaborate in the same group channels** with token-by-token streaming (`StreamMsg`) and stateful in-message cards (`Message Expansion`).
@@ -28,10 +28,10 @@ Every trigger below follows the strict causal chain:
 ---
 
 ### Track 01: `Social & Community` (`nexconn-social`)
-*Verbatim Prompt*: **"Group messaging and topic-based channels — Live room for a watch party; Group chat for shared interests; Creator fan channel."** (`https://reskilll.com/hack/nexconn/tracks`)
+*Verbatim Prompt*: **"Group messaging and topic-based channels - Live room for a watch party; Group chat for shared interests; Creator fan channel."** (`https://reskilll.com/hack/nexconn/tracks`)
 
 #### Trigger 01-A (Market & Platform Shift): The Fragmentation of Passive Social Feeds into Micro-Communities & Co-Watching
-- **Trigger**: Gen-Z and global fandoms are abandoning algorithmic public feeds in favor of synchronous "co-presence" spaces—live watch parties, creator fan rooms, and interest-based communities—especially after Discord removed/restricted several third-party watch-together bots and Twitch tightened simulcasting/monetization rules in 2024–2026.
+- **Trigger**: Gen-Z and global fandoms are abandoning algorithmic public feeds in favor of synchronous "co-presence" spaces - live watch parties, creator fan rooms, and interest-based communities - especially after Discord removed/restricted several third-party watch-together bots and Twitch tightened simulcasting/monetization rules in 2024–2026.
 - **Evidence**: `https://docs.nexconn.ai/chat/overview/features/communities/architecture.md` (Nexconn's dedicated Discord-style **Communities** engine with unlimited members) and `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md` (Open Channel 50-key real-time metadata sync).
 - **What the authors are actually worried about**: Developers building social apps try to hack watch parties or fan communities using basic 1-on-1 or small-group WebSockets, which crash as soon as 500 fans join a creator drop or try to synchronize video playback state.
 - **What a winning answer must prove**: Real-time state synchronization across a community using **Nexconn Open Channel Metadata (`managing-metadata.md`)** and **Message Expansion (`expansion.md`)** so playback timestamps, live fan polls, and creator drops stay in sub-100ms lockstep across all connected users.
@@ -45,7 +45,7 @@ Every trigger below follows the strict causal chain:
 ---
 
 ### Track 02: `Gaming & Live Streams` (`nexconn-gaming`)
-*Verbatim Prompt*: **"Squad chat and live stream interactive chatroom — Squad chat room; In-match quick chat; Spectator chat overlay."** (`https://reskilll.com/hack/nexconn/tracks`)
+*Verbatim Prompt*: **"Squad chat and live stream interactive chatroom - Squad chat room; In-match quick chat; Spectator chat overlay."** (`https://reskilll.com/hack/nexconn/tracks`)
 
 #### Trigger 02-A (Technical Bottleneck): The "Twitch Chat Flood" vs. Tactical Squad Coordination Split
 - **Trigger**: In live esports, mobile battle royales (BGMI, Free Fire, Mobile Legends, Honor of Kings Global), and interactive live streams, two opposite communication modes collide: **5-player tactical squad chat** (which needs ultra-low latency, directional whispers, and voice changers) and **100,000-viewer spectator chat** (which suffers from unreadable text waterfalls during clutch moments).
@@ -62,7 +62,7 @@ Every trigger below follows the strict causal chain:
 ---
 
 ### Track 03: `Workplace & Collaboration` (`nexconn-workplace`)
-*Verbatim Prompt*: **"Direct messaging and team project threads — Direct messaging for teams; Project discussion threads; Shift handover channel."** (`https://reskilll.com/hack/nexconn/tracks`)
+*Verbatim Prompt*: **"Direct messaging and team project threads - Direct messaging for teams; Project discussion threads; Shift handover channel."** (`https://reskilll.com/hack/nexconn/tracks`)
 
 #### Trigger 03-A (Operational & Safety Crisis): The "Shift Handover Black Hole" in Hospitals, Manufacturing, Aviation & DevOps SRE
 - **Trigger**: Look closely at Nexconn's third example in `Wx[2].examples`: **`"Shift handover channel"`**. According to The Joint Commission (`https://www.jointcommission.org/`) and WHO Patient Safety studies (`https://www.who.int/teams/integrated-health-services/patient-safety`), **up to 80% of serious medical errors and industrial/SRE escalation failures occur during shift handovers** because outgoing staff dump unstructured text messages into WhatsApp or Slack threads where critical pending tasks, unacknowledged alarms, and patient/machine states scroll out of view.
@@ -78,7 +78,7 @@ Every trigger below follows the strict causal chain:
 ---
 
 ### Track 04: `Marketplace & Support` (`nexconn-support`)
-*Verbatim Prompt*: **"Buyer-seller chat and customer service — Buyer-seller 1-on-1 chat; Human agent dispatch center; Multi-language translated chat."** (`https://reskilll.com/hack/nexconn/tracks`)
+*Verbatim Prompt*: **"Buyer-seller chat and customer service - Buyer-seller 1-on-1 chat; Human agent dispatch center; Multi-language translated chat."** (`https://reskilll.com/hack/nexconn/tracks`)
 
 #### Trigger 04-A (Cross-Border Commerce & DPI Explosion): ONDC, Cross-Border B2B/C2C Trade & The Language Wall
 - **Trigger**: With the rise of **India's ONDC (Open Network for Digital Commerce, `https://ondc.org/`)**, Southeast Asian social commerce (TikTok Shop, Shopee), and cross-border B2B sourcing between Asia, MENA, and LATAM, buyers and sellers routinely negotiate custom orders, shipping terms, and support claims across incompatible languages (e.g., a Gujarati or Vietnamese manufacturer negotiating with an Arabic, Spanish, or German buyer).
@@ -95,7 +95,7 @@ Every trigger below follows the strict causal chain:
 ---
 
 ### Track 05: `Humanitarian & Social Good` (`nexconn-social-good`)
-*Verbatim Prompt*: **"Accessible text chat for seniors and communities — Large-font & voice-to-text chat; Volunteer dispatch rooms; Peer-support check-ins."** (`https://reskilll.com/hack/nexconn/tracks`)
+*Verbatim Prompt*: **"Accessible text chat for seniors and communities - Large-font & voice-to-text chat; Volunteer dispatch rooms; Peer-support check-ins."** (`https://reskilll.com/hack/nexconn/tracks`)
 
 #### Trigger 05-A (Demographic & Accessibility Mandate): Global Aging Populations & Statutory Digital Accessibility Laws (EAA 2025, RPwD Act, ADA Title II 2026)
 - **Trigger**: By 2025–2026, the **European Accessibility Act (EAA, enforced June 2025)** (`https://ec.europa.eu/social/main.jsp?catId=1202`), the **US DOJ ADA Title II Web & Mobile Accessibility Rule (enforced April 2026)** (`https://www.ada.gov/resources/2024-03-08-web-rule/`), and **India's Rights of Persons with Disabilities (RPwD) Act / IS 17802 accessibility standards** (`https://depwd.gov.in/`) made accessible digital communication a legal mandate. Simultaneously, rapidly aging populations in Japan, Singapore, Europe, and urban India face acute isolation and struggle with tiny fonts, complex UI chrome, and typing with tremor/arthritis.
@@ -112,7 +112,7 @@ Every trigger below follows the strict causal chain:
 ---
 
 ### Track 06: `Open Innovation` (`open` / `open-innovation`)
-*Verbatim Prompt*: **"Any interactive chat idea — Any real-time idea; Chat SDK required, Call SDK optional; Web, iOS, Android or Flutter."** (`https://reskilll.com/hack/nexconn/tracks`)
+*Verbatim Prompt*: **"Any interactive chat idea - Any real-time idea; Chat SDK required, Call SDK optional; Web, iOS, Android or Flutter."** (`https://reskilll.com/hack/nexconn/tracks`)
 
 #### Trigger 06-A (Technological Frontier): Multi-Agent Swarms & Programmable Real-Time Canvases Over IM Protocols
 - **Trigger**: In 2025–2026, the AI industry shifted from single-turn chatbots to **multi-agent protocols (Anthropic MCP, Google A2A, and Nexconn's own AICP / AI Mode)** (`https://docs.nexconn.ai/ai-mode/user-guide/group-channel.md`). However, developers lack a battle-tested real-time pub/sub + state bus where multiple humans and specialized AI agents can collaborate, stream reasoning tokens (`StreamMsg`), mutate shared artifacts (`Message Expansion` + `Open Channel Metadata`), and escalate to live voice/video (`Call SDK`).

@@ -1,5 +1,5 @@
 {
-  "name": "@samadhan/web",
+  "name": "@mudra/web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -20,8 +20,8 @@
     "@nexconn/engine": "26.2.1",
     "@react-aria/ssr": "^3.10.1",
     "@react-aria/utils": "^3.34.1",
-    "@samadhan/nc-lit-cards": "workspace:*",
-    "@samadhan/shared-types": "workspace:*",
+    "@mudra/nc-lit-cards": "workspace:*",
+    "@mudra/shared-types": "workspace:*",
     "@supabase/supabase-js": "^2.119.0",
     "lit": "^3.3.2",
     "lucide-react": "^1.75.0",

@@ -3,10 +3,10 @@
 Fastify 5 + TypeScript bridge between the Go deal engine (:4002) and **Nexconn** (IM, stream messages, channel freeze, system vouchers) plus the **Gemini** AI models M-01 (translator), M-04 (tribunal) and M-05 (shopkeeper). The binding contract is `docs/03-engineering/IMPLEMENTATION_CONTRACT.md` §2, §5, §6 and §7.
 
 ```bash
-pnpm --filter @samadhan/nexconn-bridge-node dev        # tsx watch, reads repo-root .env
-pnpm --filter @samadhan/nexconn-bridge-node start
-pnpm --filter @samadhan/nexconn-bridge-node typecheck
-pnpm --filter @samadhan/nexconn-bridge-node test
+pnpm --filter @mudra/nexconn-bridge-node dev        # tsx watch, reads repo-root .env
+pnpm --filter @mudra/nexconn-bridge-node start
+pnpm --filter @mudra/nexconn-bridge-node typecheck
+pnpm --filter @mudra/nexconn-bridge-node test
 ```
 
 ## Modes (degraded-mode rule, contract §2)
@@ -61,7 +61,7 @@ Stream text is sent as up to 3 sequential `StreamMessageContent { content, seq, 
 | `NEXCONN_PRIMARY_API_DOMAIN` | `NEXCONN_API_BASE_URL` → `https://api.nexconn.ai` | |
 | `NEXCONN_SECONDARY_API_DOMAIN` | same as primary | SDK failover domain |
 | `NEXCONN_TIMEOUT_MS` | `5000` | axios timeout for SDK calls |
-| `NEXCONN_SYSTEM_VOUCHER_BOT_ID` | `usr_samadhan_system_voucher` | sender for system vouchers |
+| `NEXCONN_SYSTEM_VOUCHER_BOT_ID` | `usr_mudra_system_voucher` | sender for system vouchers |
 | `GEMINI_API_KEY`, `GEMINI_FLASH_MODEL`, `GEMINI_PRO_MODEL` | –, `gemini-2.5-flash`, `gemini-2.5-pro` | `GEMINI_TIMEOUT_MS` defaults to 8000 |
 | `RUST_ASSAY_VERIFIER_URL` | `http://localhost:4003` | `RUST_SCRUB_TIMEOUT_MS` defaults to 300 |
 | `INTERNAL_SERVICE_HMAC_SECRET` | empty, so auth is off | |
@@ -77,5 +77,5 @@ Env is loaded from `services/nexconn-bridge-node/.env`, then the repo-root `.env
 ## Docker
 
 ```bash
-docker build -f services/nexconn-bridge-node/Dockerfile -t samadhan/nexconn-bridge-node .   # from repo root
+docker build -f services/nexconn-bridge-node/Dockerfile -t mudra/nexconn-bridge-node .   # from repo root
 ```

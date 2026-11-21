@@ -1,6 +1,6 @@
 ## 2026-10-31T18:28:00Z
 
-# Task Assignment: Domain Explorer 1 & 2 (`teamwork_explorer_domains_1_2`) — Deep Research & War-Room Blueprints for Track 01 (`nexconn-social`) & Track 02 (`nexconn-gaming`)
+# Task Assignment: Domain Explorer 1 & 2 (`teamwork_explorer_domains_1_2`) - Deep Research & War-Room Blueprints for Track 01 (`nexconn-social`) & Track 02 (`nexconn-gaming`)
 
 - **Your Identity**: `teamwork_explorer_domains_1_2`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_1_2`
@@ -16,8 +16,8 @@
 
 ## Objective
 Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation blueprints for:
-- **Track 01 (`nexconn-social` — Social & Community)**: *"Group messaging and topic-based channels"* (Sample builds: Live room for a watch party; Group chat for shared interests; Creator fan channel)
-- **Track 02 (`nexconn-gaming` — Gaming & Live Streams)**: *"Squad chat and live stream interactive chatroom"* (Sample builds: Squad chat room; In-match quick chat; Spectator chat overlay)
+- **Track 01 (`nexconn-social` - Social & Community)**: *"Group messaging and topic-based channels"* (Sample builds: Live room for a watch party; Group chat for shared interests; Creator fan channel)
+- **Track 02 (`nexconn-gaming` - Gaming & Live Streams)**: *"Squad chat and live stream interactive chatroom"* (Sample builds: Squad chat room; In-match quick chat; Spectator chat overlay)
 
 ## Required Deliverables in `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_1_2\handoff.md`
 For **EACH** of the two tracks (`nexconn-social` and `nexconn-gaming`), provide:

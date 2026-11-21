@@ -7,6 +7,6 @@
     "apps/web/src/lib/supabase.ts exports supabase singleton, subscribeToVouchers, and subscribeToDealRealtime safely when env vars are set or absent",
     "apps/web/src/vite-env.d.ts types VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY",
     "useLiveDeal subscribes to Supabase Realtime changes when configured without breaking SSE/polling fallback",
-    "pnpm --filter @samadhan/web typecheck, test, and build pass with zero errors"
+    "pnpm --filter @mudra/web typecheck, test, and build pass with zero errors"
   ]
 }

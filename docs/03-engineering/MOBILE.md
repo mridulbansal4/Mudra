@@ -1,5 +1,5 @@
-# Mobile Companion App Specification (`apps/mobile-expo`) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Mobile & Field UX Lead — Dev 3) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Mobile Companion App Specification (`apps/mobile-expo`) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Mobile & Field UX Lead - Dev 3) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Design System](../02-design/DESIGN_SYSTEM.md) · [Frontend](./FRONTEND.md) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md)
 
 ---

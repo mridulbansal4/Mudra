@@ -1,4 +1,4 @@
-import type { ApiError } from "@samadhan/shared-types";
+import type { ApiError } from "@mudra/shared-types";
 
 /** Requests go to `/api/*`, which Vite proxies to the Go gateway on :4002. */
 const BASE = import.meta.env.VITE_API_BASE_URL ?? "";

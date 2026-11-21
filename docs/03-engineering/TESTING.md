@@ -1,5 +1,5 @@
-# Testing Strategy & Verification Suite — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (QA, E2E & Verification Lead — Dev 4) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Testing Strategy & Verification Suite - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (QA, E2E & Verification Lead - Dev 4) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [User Stories](../01-product/USER_STORIES.md) · [Performance](./PERFORMANCE.md) · [CI/CD](../05-ops/CICD.md)
 
 ---

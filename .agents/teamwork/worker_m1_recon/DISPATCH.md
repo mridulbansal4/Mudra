@@ -1,6 +1,6 @@
 ## 2026-10-31T18:28:00Z
 
-# Task Assignment: Milestone M1 Implementation Worker (`worker_m1_recon`) — Phase 1 Recon & Phase 3 Connect-the-Dots Deliverables
+# Task Assignment: Milestone M1 Implementation Worker (`worker_m1_recon`) - Phase 1 Recon & Phase 3 Connect-the-Dots Deliverables
 
 - **Your Identity**: `worker_m1_recon`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\worker_m1_recon`
@@ -32,7 +32,7 @@ You own and MUST write the following files under `d:\Hackathons\Nexconn\`:
 5. **`d:\Hackathons\Nexconn\research\B-sponsors.md`** (Feature F4):
    - Exhaustive company and technical dossier on **Nexconn**: engineering philosophy (carrier-grade weak-network resilience + AI-native AICP), proprietary binary TCP/QUIC transport protocol, 300+ node SD-CAN (120ms latency, 99.99% uptime, 100% delivery), 3-layer consistent hashing for Open Channels, X3DH/Double Ratchet E2EE, AICP (`UserID` + `AgentID`), complete feature breakdown of **Chat SDK** (Direct, Group, Community, Open channels, `stream-message.md`, `expansion.md`, `group-channels/direct.md`, `builtin-translation`, Voice-to-Text), **Chat UI**, **Call SDK**, **Server SDKs & Webhooks** (pre-send, post-sync, online status), **Content Moderation (`<100ms`)**, **AI Mode**, **Lyra (`lyrawork.com`)**, **`nexconn-skills` & `@nexconn/console-mcp`**, AWS & Alibaba Cloud perks, marquee customers (**HoYoLAB, Bondee, Jaco, Falla, Blockman Go, Miniso, DeBox, Saudi Beem, JioChat, Lenovo, Epson**), and explicit track-by-track leverage blueprints.
 6. **`d:\Hackathons\Nexconn\research\C-judges.md`** (Feature F5):
-   - Detailed profile of the Nexconn judging panel ("Nexconn judges" & "Nexconn engineers" — Product Director Leo, AI PM Kai, Solutions Engineer Amy, and core IM/RTC SDK engineers), the 4-step evaluation pipeline via Reskilll's Admin Portal (`Admin-_pGkMjvW.js`) + `console.nexconn.ai` App Key telemetry verification, judge psychology, pet peeves, most likely questions, and the **3-Minute Judge Heat-Map**.
+   - Detailed profile of the Nexconn judging panel ("Nexconn judges" & "Nexconn engineers" - Product Director Leo, AI PM Kai, Solutions Engineer Amy, and core IM/RTC SDK engineers), the 4-step evaluation pipeline via Reskilll's Admin Portal (`Admin-_pGkMjvW.js`) + `console.nexconn.ai` App Key telemetry verification, judge psychology, pet peeves, most likely questions, and the **3-Minute Judge Heat-Map**.
 7. **`d:\Hackathons\Nexconn\research\D-why-now.md`** (Feature F6):
    - Why-now triggers for all 6 tracks across all 5 dimensions (Indian & global policy/DPI, recent incidents/outages/scams, Jaishankar geopolitical lens, recurring historical failures, and Nexconn 2026 strategic triggers) formatted strictly as:
      `Trigger → Evidence [source] → What the authors are actually worried about → What a winning answer must prove`.
@@ -48,9 +48,9 @@ You own and MUST write the following files under `d:\Hackathons\Nexconn\`:
      6. The 80% trap across all 6 tracks
 10. **`d:\Hackathons\Nexconn\war-room\roster-additions.md`** (Feature F8b):
     - Full persona dossiers (`rise`, `how they decide`, `asks`, `attacks`, `voice`, `blind spot`) for the custom domain & sponsor seats added to the War-Room Council:
-      1. **Kai / Yang Pan Composite — Nexconn AICP & SDK Chief Architect** (Sponsor-Tech Expert seat required by `war-room-council/SKILL.md` Line 74)
-      2. **Justin Lin / Emmett Shear Composite — Live Streaming, Danmaku & Gaming Real-Time Architect** (for Track 02 `nexconn-gaming` & Track 01 `nexconn-social`)
-      3. **Charity Majors / Kelsey Hightower Composite — Incident Response, SRE & Workplace Shift-Handover Lead** (for Track 03 `nexconn-workplace`)
+      1. **Kai / Yang Pan Composite - Nexconn AICP & SDK Chief Architect** (Sponsor-Tech Expert seat required by `war-room-council/SKILL.md` Line 74)
+      2. **Justin Lin / Emmett Shear Composite - Live Streaming, Danmaku & Gaming Real-Time Architect** (for Track 02 `nexconn-gaming` & Track 01 `nexconn-social`)
+      3. **Charity Majors / Kelsey Hightower Composite - Incident Response, SRE & Workplace Shift-Handover Lead** (for Track 03 `nexconn-workplace`)
       4. **Habermann / Accessibility Assistive Tech Specialist** (supporting Track 05 `nexconn-social-good`)
 
 ## Verification Requirements

@@ -14,7 +14,7 @@ export default function HowItWorks() {
   const chapterRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
-    document.title = "how it works — samadhan";
+    document.title = "Mudra";
   }, []);
 
   useEffect(() => {

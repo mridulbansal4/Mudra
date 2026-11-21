@@ -1,21 +1,21 @@
-# 04 Marketplace & Support — Buyer-Seller Chat and Customer Service
+# 04 Marketplace & Support - Buyer-Seller Chat and Customer Service
 
 ## Domain snapshot
 
-- **Official Track Title & Subtitle**: **04 — Marketplace & Support** (*"Buyer-seller chat and customer service"*) [S1]
+- **Official Track Title & Subtitle**: **04 - Marketplace & Support** (*"Buyer-seller chat and customer service"*) [S1]
 - **Official Verbatim Prompt**: *"Enable trusted transactional conversations between buyers and sellers, on-demand service providers, or multi-language customer support teams."* [S1]
 - **Official Verbatim Examples**: `1. Buyer-seller 1-on-1 chat` · `2. Human agent dispatch center` · `3. Multi-language translated chat` [S1]
-- **Urgency Score**: **9.4 / 10** — Driven by strict corporate liability for AI support hallucinations established in **_Moffatt v. Air Canada_ (2024 BCCRT 149)** [S4], empirical proof from Sierra AI's **$\tau$-bench** (`arXiv:2406.12045`) and **$\tau^2$-bench** (`arXiv:2506.07982`) that frontier LLMs fail multi-rule support policies **>50% of the time (`pass^8 < 25%`)** [S5, S6], Meta's WhatsApp Business API per-conversation price hikes squeezing marketplace margins [S12], and India's **₹18,000+ Crore ($2.2B/yr) Cash-on-Delivery Return-to-Origin (RTO)** crisis across D2C and **ONDC** [S7, S8].
+- **Urgency Score**: **9.4 / 10** - Driven by strict corporate liability for AI support hallucinations established in **_Moffatt v. Air Canada_ (2024 BCCRT 149)** [S4], empirical proof from Sierra AI's **$\tau$-bench** (`arXiv:2406.12045`) and **$\tau^2$-bench** (`arXiv:2506.07982`) that frontier LLMs fail multi-rule support policies **>50% of the time (`pass^8 < 25%`)** [S5, S6], Meta's WhatsApp Business API per-conversation price hikes squeezing marketplace margins [S12], and India's **₹18,000+ Crore ($2.2B/yr) Cash-on-Delivery Return-to-Origin (RTO)** crisis across D2C and **ONDC** [S7, S8].
 - **Domain Winnability Score**: **9.02 / 10** (Sponsor Focus `9.4` · Judge Excitation `9.1` · Prize Surface `8.8` · Competition Inverse `7.8` · Demo-ability `9.5` · 36h Buildability `9.2` · Data/API Readiness `9.4`).
 - **Core Thesis**: Track 04 is the direct commercial heartbeat of **Nexconn (`RCLOUD GLOBAL PTE. LTD.`)** across Singapore, Southeast Asia, India, and cross-border marketplaces [S1, S2]. Naive entrants will submit a 1v1 RAG FAQ chatbot; our Top 5 ideas weaponize Nexconn's **Synchronous Pre-Send Policy Firewall (`<50ms`)**, **Targeted Group Whispers (`targetUserIds`)**, **Built-in 100+ Language Translation**, **Voice-to-Text (`STT`)**, **Message Expansion (300 KV pairs)**, **Open Channel Metadata (50 KV pairs + CAS)**, **Online Status Subscription**, **Auto-Moderation (`<100ms`)**, and **`@nexconn/call-sdk`** [S19, S20, S21] to build *Moffatt*-proof human+AI dispatch centers and zero-leakage buyer-seller negotiation rooms.
 
 ---
 
-## Idea 1 — WhisperDesk ($\tau$-Guard): *Moffatt*-Proof Human+AI Support Dispatch Center with Synchronous Policy Firewall & Private Whisper Coaching
+## Idea 1 - WhisperDesk ($\tau$-Guard): *Moffatt*-Proof Human+AI Support Dispatch Center with Synchronous Policy Firewall & Private Whisper Coaching
 
 **Tag**: `Doesn't exist` · **Score**: **9.20/10**
 
-**One-line hook**: The customer support AI that physically cannot pull an *Air Canada* hallucination—because Nexconn's **Synchronous Pre-Send Firewall** intercepts out-of-policy refund promises in `<50ms` and **whispers a pre-staged 1-click approval card privately to a human supervisor (`targetUserIds`)** inside the multilingual chat room.
+**One-line hook**: The customer support AI that physically cannot pull an *Air Canada* hallucination - because Nexconn's **Synchronous Pre-Send Firewall** intercepts out-of-policy refund promises in `<50ms` and **whispers a pre-staged 1-click approval card privately to a human supervisor (`targetUserIds`)** inside the multilingual chat room.
 
 **Problem & who feels it**: In **_Moffatt v. Air Canada_ (2024 BCCRT 149)**, a tribunal ruled that companies are strictly legally liable when their customer support chatbot hallucinates a refund or discount policy [S4]. Months later, Sierra AI's landmark **$\tau$-bench** (`arXiv:2406.12045` [S5]) and **$\tau^2$-bench** (`arXiv:2506.07982` [S6]) proved that even GPT-4o and Claude 3.5 Sonnet score **under 50% `pass^1` and under 25% `pass^8`** when executing multi-step retail and airline support policies (e.g., non-refundable fare exceptions, partial voucher splits, 24-hour exchange windows). Today, enterprises face a brutal dilemma: either deploy an autonomous bot that risks legal liability and viral PR disasters, or force human agents to handle 100% of chats manually across language barriers [S4, S10, S14].
 
@@ -35,7 +35,7 @@
   1. A customer in Tokyo (or Chennai) opens a support session typing in Japanese (or speaking a Tamil voice note via **Nexconn STT** [S21]): *"My flight was cancelled due to a family bereavement; I want a full $800 cash refund on my Basic Economy ticket."*
   2. **Nexconn Built-in Translation** [S21] renders the message in English for the support workspace while **Open Channel Metadata (50 KV pairs + CAS)** [S20] updates the live ticket state (`customer_lang: ja`, `order_tier: BASIC_ECON`, `requested_refund_usd: 800`, `tau_policy_rule: RULE_4_2_MAX_CASH_200`).
   3. If an unconstrained LLM agent attempts to reply *"I have processed your full $800 cash refund"*, Nexconn's **Synchronous Pre-Send Policy Firewall ($\tau$-Guard)** intercepts the outbound message in `<35ms`, verifies the proposed tool call against the deterministic **$\tau$-bench / ABCD policy AST** (`max_cash_refund <= $200` for `BASIC_ECON`), and **blocks delivery to the customer** [S5, S20, S29].
-  4. In the same millisecond, **WhisperDesk** queries **Nexconn Online Status Subscription** [S21] to locate an active human supervisor (Rhea) and sends a **Targeted Group Message (`targetUserIds: ['supervisor_rhea']`)** [S19] directly into the customer channel—visible *only* to Rhea, never to the customer.
+  4. In the same millisecond, **WhisperDesk** queries **Nexconn Online Status Subscription** [S21] to locate an active human supervisor (Rhea) and sends a **Targeted Group Message (`targetUserIds: ['supervisor_rhea']`)** [S19] directly into the customer channel - visible *only* to Rhea, never to the customer.
   5. The private Whisper Card displays the intercepted hallucination in red alongside a pre-staged **Message Expansion (300 KV pairs) Compliant Resolution Card** [S20]: `[Option A: Approve $200 Cash + $600 Instant Travel Credit (Policy #4.2 Compliant)]` or `[Option B: Executive Override Full $800 Cash]`.
   6. Rhea clicks **Option A** in one tap (elapsed supervisor time: **4 seconds**). **WhisperDesk** executes the Stripe/Order ledger update, mutates the customer-visible **Message Expansion Receipt Card**, and streams the polite, legally compliant resolution to the customer in native Japanese via **`StreamMsg` + Built-in Translation** [S20, S21].
 - **Technical architecture**:
@@ -59,14 +59,14 @@
 
 **Tech stack**: `@nexconn/chat-sdk` (`@rongcloud/imlib-next`), `@nexconn/chat-ui`, `@nexconn/call-sdk`, `@nexconn/console-mcp`, Nexconn AI Mode (`Targeted Group Messages`, `Message Expansion`, `Open Channel Metadata`, `Built-in Translation`, `Voice-to-Text`, `Auto-Moderation`, `Online Status Subscription`, `StreamMsg`), Next.js 15, TypeScript, Tailwind CSS, FastAPI Policy Firewall, Claude 3.7 Sonnet / Gemini 2.5 Flash.
 
-**60-second demo script (Jobs style)**: Split the screen: Left side is a customer in Tokyo typing in Japanese, demanding a retroactive $800 cash bereavement refund—the exact scenario from *Moffatt v. Air Canada*. Right side is our **WhisperDesk Dispatch Center**. We click **Simulate Naive AI Reply ($800 Cash)**. In 35 milliseconds, Nexconn's **Synchronous Pre-Send Policy Firewall ($\tau$-Guard)** blocks the hallucination before it ever reaches the customer's phone (`BLOCKED: Violates Policy #4.2 — Basic Fare Max Cash Refund $200`). In the same heartbeat, **Online Status Subscription** routes the room to Supervisor Rhea and drops a private **Targeted Group Whisper (`targetUserIds`)** into her timeline with a pre-staged **Message Expansion Card**: `[Approve $200 Cash + $600 Instant Flight Credit]`. Rhea clicks **Approve** once. **Nexconn Built-in Translation** streams the compliant offer to the customer in fluent Japanese via `StreamMsg`, and the customer taps **Accept** inside the bubble.
+**60-second demo script (Jobs style)**: Split the screen: Left side is a customer in Tokyo typing in Japanese, demanding a retroactive $800 cash bereavement refund - the exact scenario from *Moffatt v. Air Canada*. Right side is our **WhisperDesk Dispatch Center**. We click **Simulate Naive AI Reply ($800 Cash)**. In 35 milliseconds, Nexconn's **Synchronous Pre-Send Policy Firewall ($\tau$-Guard)** blocks the hallucination before it ever reaches the customer's phone (`BLOCKED: Violates Policy #4.2 - Basic Fare Max Cash Refund $200`). In the same heartbeat, **Online Status Subscription** routes the room to Supervisor Rhea and drops a private **Targeted Group Whisper (`targetUserIds`)** into her timeline with a pre-staged **Message Expansion Card**: `[Approve $200 Cash + $600 Instant Flight Credit]`. Rhea clicks **Approve** once. **Nexconn Built-in Translation** streams the compliant offer to the customer in fluent Japanese via `StreamMsg`, and the customer taps **Accept** inside the bubble.
 
 **30-second viral clip (Gary Vee style)**: *"Remember when Air Canada's chatbot hallucinated a bereavement refund and lost in court? Watch our Nexconn Pre-Send Firewall catch that exact hallucination in 35 milliseconds and whisper a 1-click legal fix to a human boss!"*
 
 **3-screen UI strip (Ive style)**:
-1. **Screen 1 — Customer Multilingual Chat View**: Clean mobile `@nexconn/chat-ui` interface with native **Built-in Translation**, voice notes (`STT`), and interactive **Message Expansion** settlement cards.
-2. **Screen 2 — Supervisor Whisper Dispatch Console (`targetUserIds`)**: Multi-room command center showing live **Online Status** queues, blocked policy hallucinations in red, and 1-click amber Whisper Approval cards.
-3. **Screen 3 — Live $\tau$-bench Policy AST & Audit Inspector (`Open Channel Metadata`)**: Real-time visualizer showing which policy rules passed/failed in `<35ms`.
+1. **Screen 1 - Customer Multilingual Chat View**: Clean mobile `@nexconn/chat-ui` interface with native **Built-in Translation**, voice notes (`STT`), and interactive **Message Expansion** settlement cards.
+2. **Screen 2 - Supervisor Whisper Dispatch Console (`targetUserIds`)**: Multi-room command center showing live **Online Status** queues, blocked policy hallucinations in red, and 1-click amber Whisper Approval cards.
+3. **Screen 3 - Live $\tau$-bench Policy AST & Audit Inspector (`Open Channel Metadata`)**: Real-time visualizer showing which policy rules passed/failed in `<35ms`.
 
 **Business model & unit economics (Buffett check)**: Priced at **$49/supervisor seat/month + $0.08/resolved ticket** (over **90% cheaper** than Intercom Fin's $0.99/resolution [S23] and Sierra's $1.50+/resolution). Gross margin is **~86%**: deterministic policy checking in the Pre-Send Webhook costs `<$0.0001` per message, and one human supervisor can oversee **40+ concurrent AI-assisted multilingual rooms** because exceptions take only 4 seconds (1 click) to approve.
 
@@ -75,8 +75,8 @@
 **Legal & compliance clearance (Mike Ross check)**: Directly engineered around **_Moffatt v. Air Canada_ (2024 BCCRT 149)** [S4], **FTC "Operation AI Comply"**, **EU AI Act Article 50 (AI transparency)**, and **India DPDP Act 2023** [S31]. Every outbound policy commitment carries a cryptographic `messageUId` + policy-rule hash or human supervisor `userId` signature.
 
 **Failure modes & pre-mortem (Munger check)**:
-- *Failure Mode 1 — Pre-Send Webhook latency spike delaying normal chat*: **Mitigation**: The Pre-Send Policy Firewall runs a `<5ms` fast-path regex/intent filter that immediately passes non-monetary conversational turns and only invokes the $\tau$-bench policy AST when an offer, refund, credit, or policy waiver is detected.
-- *Failure Mode 2 — All human supervisors are busy when an exception fires*: **Mitigation**: **Open Channel Metadata** queues the staged Whisper Card by customer LTV/urgency while the AI sends a polite, policy-safe holding message (*"I've staged your exception request for a senior specialist who will confirm within 60 seconds"*).
+- *Failure Mode 1 - Pre-Send Webhook latency spike delaying normal chat*: **Mitigation**: The Pre-Send Policy Firewall runs a `<5ms` fast-path regex/intent filter that immediately passes non-monetary conversational turns and only invokes the $\tau$-bench policy AST when an offer, refund, credit, or policy waiver is detected.
+- *Failure Mode 2 - All human supervisors are busy when an exception fires*: **Mitigation**: **Open Channel Metadata** queues the staged Whisper Card by customer LTV/urgency while the AI sends a polite, policy-safe holding message (*"I've staged your exception request for a senior specialist who will confirm within 60 seconds"*).
 
 **Council attribution**:
 
@@ -91,7 +91,7 @@
 
 ---
 
-## Idea 2 — PactChat (BhashaBargain): Multilingual Buyer-Seller 1-on-1 Negotiation Room with `OG-Narrator` Whisper Copilot & Milestone Escrow Cards
+## Idea 2 - PactChat (BhashaBargain): Multilingual Buyer-Seller 1-on-1 Negotiation Room with `OG-Narrator` Whisper Copilot & Milestone Escrow Cards
 
 **Tag**: `Doesn't exist` · **Score**: **9.00/10**
 
@@ -99,10 +99,10 @@
 
 **Problem & who feels it**: Across B2B wholesale marketplaces (IndiaMart, Udaan, Alibaba, GlobalSources), cross-border trade, C2C platforms (Carousell, OLX), and freelance/service marketplaces, **over 60% of high-value transactions require 1-on-1 buyer-seller negotiation** over price, Minimum Order Quantity (MOQ), customization, and delivery milestones [S9, S13, S15]. Today, these conversations fail in three ways:
 1. **Language & Modality Friction**: A factory seller in Surat or Yiwu speaks Gujarati or Mandarin voice notes while a buyer in Dubai, Berlin, or Chennai types in Arabic, German, or English [S15].
-2. **Unstructured Haggling Deadlocks**: Buyers and sellers haggle in free text, but the chat bubble cannot dynamically mutate into a binding multi-milestone escrow checkout card—causing **40%+ drop-off** between verbal agreement and payment [S13].
+2. **Unstructured Haggling Deadlocks**: Buyers and sellers haggle in free text, but the chat bubble cannot dynamically mutate into a binding multi-milestone escrow checkout card - causing **40%+ drop-off** between verbal agreement and payment [S13].
 3. **20%–35% Off-Platform GMV Leakage & Scams**: Sellers paste personal WhatsApp numbers or external UPI/wire links in chat to dodge marketplace take-rates, or fraudsters send phishing QR codes [S9].
 
-**Why now**: Recent negotiation AI research—specifically **`OG-Narrator`** (*Offer-Graph Narrator for Bilateral Price Negotiation*, `arXiv:2310.15172` [S13])—proved that decomposing unstructured haggling into a formal **Offer Graph** (`Price`, `MOQ`, `Delivery_SLA`, `Escrow_Split`, `BATNA`) boosts deal closure rates by **28%**. When paired with `@nexconn/chat-sdk`'s **Built-in 100+ Language Translation**, **Voice-to-Text (`STT`)**, **Targeted Whispers (`targetUserIds`)**, **Message Expansion (300 KV pairs)**, and **`<100ms` Auto-Moderation** [S19, S20, S21], a 1-on-1 chat room becomes a complete cross-border deal desk.
+**Why now**: Recent negotiation AI research - specifically **`OG-Narrator`** (*Offer-Graph Narrator for Bilateral Price Negotiation*, `arXiv:2310.15172` [S13]) - proved that decomposing unstructured haggling into a formal **Offer Graph** (`Price`, `MOQ`, `Delivery_SLA`, `Escrow_Split`, `BATNA`) boosts deal closure rates by **28%**. When paired with `@nexconn/chat-sdk`'s **Built-in 100+ Language Translation**, **Voice-to-Text (`STT`)**, **Targeted Whispers (`targetUserIds`)**, **Message Expansion (300 KV pairs)**, and **`<100ms` Auto-Moderation** [S19, S20, S21], a 1-on-1 chat room becomes a complete cross-border deal desk.
 
 **What exists & why it falls short**:
 
@@ -144,14 +144,14 @@
 
 **Tech stack**: `@nexconn/chat-sdk`, `@nexconn/chat-ui`, `@nexconn/call-sdk`, `@nexconn/console-mcp`, Nexconn AI Mode (`Built-in Translation`, `Voice-to-Text`, `Targeted Group Messages`, `Message Expansion`, `Open Channel Metadata`, `Auto-Moderation`, `Read Receipts`), Next.js 15, TypeScript, Tailwind CSS, FastAPI.
 
-**60-second demo script (Jobs style)**: Left pane: A wholesale apparel seller in Surat speaking Gujarati. Right pane: A buyer in Dubai typing in English/Arabic. The seller holds the mic and speaks in Gujarati: *"For 500 hoodies, ₹480 per unit."* **Nexconn STT + Built-in Translation** delivers it instantly in English and Arabic. The buyer counters at ₹410. Instantly, an **`OG-Narrator` Whisper Card (`targetUserIds`)** appears ONLY on the seller's screen: *"Buyer's likely ceiling is ₹445. Counter at ₹445 with 600 MOQ (+₹48,000 net profit)."* Next, the seller tries to type *"Text me on WhatsApp 98250-XXXXX to skip fees"*—and **Nexconn `<100ms` Auto-Moderation** blocks the off-platform leak live on screen! The seller clicks **Send ₹445 Counter-Offer**, mutating the shared **Message Expansion Escrow Card** in place; the buyer taps **Lock Milestone 1 Escrow**, and the deal closes in 45 seconds.
+**60-second demo script (Jobs style)**: Left pane: A wholesale apparel seller in Surat speaking Gujarati. Right pane: A buyer in Dubai typing in English/Arabic. The seller holds the mic and speaks in Gujarati: *"For 500 hoodies, ₹480 per unit."* **Nexconn STT + Built-in Translation** delivers it instantly in English and Arabic. The buyer counters at ₹410. Instantly, an **`OG-Narrator` Whisper Card (`targetUserIds`)** appears ONLY on the seller's screen: *"Buyer's likely ceiling is ₹445. Counter at ₹445 with 600 MOQ (+₹48,000 net profit)."* Next, the seller tries to type *"Text me on WhatsApp 98250-XXXXX to skip fees"* - and **Nexconn `<100ms` Auto-Moderation** blocks the off-platform leak live on screen! The seller clicks **Send ₹445 Counter-Offer**, mutating the shared **Message Expansion Escrow Card** in place; the buyer taps **Lock Milestone 1 Escrow**, and the deal closes in 45 seconds.
 
-**30-second viral clip (Gary Vee style)**: *"Watch a Surat factory owner speaking Gujarati and a Dubai buyer speaking Arabic close a ₹2.6 Lakh wholesale deal in 40 seconds—with an AI whispering margin math to the seller and blocking off-platform scam links in real time!"*
+**30-second viral clip (Gary Vee style)**: *"Watch a Surat factory owner speaking Gujarati and a Dubai buyer speaking Arabic close a ₹2.6 Lakh wholesale deal in 40 seconds - with an AI whispering margin math to the seller and blocking off-platform scam links in real time!"*
 
 **3-screen UI strip (Ive style)**:
-1. **Screen 1 — Dual-Language Buyer-Seller 1-on-1 Timeline (`STT + Built-in Translation`)**: Side-by-side chat showing native voice notes, instant translations, and `<100ms` Auto-Moderation leak shields.
-2. **Screen 2 — Private `OG-Narrator` Whisper Coach (`targetUserIds`)**: Seller-only inline coaching card displaying live concession curves, BOM floor, and 1-click counter-offer triggers.
-3. **Screen 3 — In-Bubble Mutable Milestone & Escrow Card (`Message Expansion`)**: Interactive contract card tracking price, MOQ, read receipts, and milestone escrow releases inside the chat bubble.
+1. **Screen 1 - Dual-Language Buyer-Seller 1-on-1 Timeline (`STT + Built-in Translation`)**: Side-by-side chat showing native voice notes, instant translations, and `<100ms` Auto-Moderation leak shields.
+2. **Screen 2 - Private `OG-Narrator` Whisper Coach (`targetUserIds`)**: Seller-only inline coaching card displaying live concession curves, BOM floor, and 1-click counter-offer triggers.
+3. **Screen 3 - In-Bubble Mutable Milestone & Escrow Card (`Message Expansion`)**: Interactive contract card tracking price, MOQ, read receipts, and milestone escrow releases inside the chat bubble.
 
 **Business model & unit economics (Buffett check)**: Sold to B2B, C2C, and services marketplaces as a white-label SDK module at **$499/month base + 0.25% of escrow GMV closed inside chat**. Preventing just **10% of off-platform GMV leakage** (which averages 20%–35% of marketplace volume [S9]) and lifting chat-to-deal conversion by 25% generates a **15x–30x net revenue lift** for the marketplace operator at **88% software gross margin**.
 
@@ -160,8 +160,8 @@
 **Legal & compliance clearance (Mike Ross check)**: Complies with **India Consumer Protection (E-Commerce) Rules 2020**, **DPDP Act 2023**, and **RBI Payment Aggregator / Escrow nodal account guidelines** (using simulated UPI/Stripe escrow intents for the hackathon demo) while maintaining an immutable **Direct Channel Read-Receipt** audit trail for dispute arbitration [S20, S31].
 
 **Failure modes & pre-mortem (Munger check)**:
-- *Failure Mode 1 — Sellers trying to spell phone numbers in words ("nine eight two five...") to bypass regex moderation*: **Mitigation**: Combines Nexconn's `<100ms` keyword/regex **Auto-Moderation** with a semantic LLM classifier in the Pre-Send Webhook that catches obfuscated phone numbers, email handles, and social usernames across 100+ languages [S21].
-- *Failure Mode 2 — Race condition when both buyer and seller click update on the Offer Card simultaneously*: **Mitigation**: Enforces monotonic version numbers inside **Open Channel Metadata (50 KV pairs with atomic CAS)** [S20] so stale counter-offers are rejected cleanly.
+- *Failure Mode 1 - Sellers trying to spell phone numbers in words ("nine eight two five...") to bypass regex moderation*: **Mitigation**: Combines Nexconn's `<100ms` keyword/regex **Auto-Moderation** with a semantic LLM classifier in the Pre-Send Webhook that catches obfuscated phone numbers, email handles, and social usernames across 100+ languages [S21].
+- *Failure Mode 2 - Race condition when both buyer and seller click update on the Offer Card simultaneously*: **Mitigation**: Enforces monotonic version numbers inside **Open Channel Metadata (50 KV pairs with atomic CAS)** [S20] so stale counter-offers are rejected cleanly.
 
 **Council attribution**:
 
@@ -175,13 +175,13 @@
 
 ---
 
-## Idea 3 — RTOShield (ONDC-NDR): Vernacular COD Verification & Live 3-Way Buyer-Seller-Courier NDR Rescue Room
+## Idea 3 - RTOShield (ONDC-NDR): Vernacular COD Verification & Live 3-Way Buyer-Seller-Courier NDR Rescue Room
 
 **Tag**: `Exists abroad, not in India` · **Score**: **8.75/10**
 
-**One-line hook**: Rescues failed Cash-on-Delivery (COD) orders in 40 seconds by spinning up an instant **3-Way Translated Nexconn Group Channel (Buyer + Seller + Courier Rider)** the exact moment a delivery rider hits a locked gate—bridging vernacular voice notes with an in-bubble **UPI Prepay & Gate-Drop Card**.
+**One-line hook**: Rescues failed Cash-on-Delivery (COD) orders in 40 seconds by spinning up an instant **3-Way Translated Nexconn Group Channel (Buyer + Seller + Courier Rider)** the exact moment a delivery rider hits a locked gate - bridging vernacular voice notes with an in-bubble **UPI Prepay & Gate-Drop Card**.
 
-**Problem & who feels it**: In India and emerging markets (Indonesia, Philippines, MENA), **60%–65% of e-commerce orders are Cash-on-Delivery (COD)**, and **25% to 40% suffer Return-to-Origin (RTO)** failure—burning **₹18,000+ Crore ($2.2B+)/year** in wasted two-way shipping and inventory lockup for Indian D2C brands and **ONDC** merchants [S7, S8, S16]. Over half of all RTOs happen during the **180-second doorstep window**: either the delivery rider speaks Kannada/Tamil/Telugu while the buyer speaks Hindi/English, the apartment security guard refuses unpaid COD parcels when the buyer is at the office, or the courier logs a fake **NDR (Non-Delivery Report: "Customer Unreachable / Refused")** without actually attempting resolution [S7, S16]. Existing NDR tools send a static WhatsApp message 4 hours later—long after the delivery van has left the neighborhood.
+**Problem & who feels it**: In India and emerging markets (Indonesia, Philippines, MENA), **60%–65% of e-commerce orders are Cash-on-Delivery (COD)**, and **25% to 40% suffer Return-to-Origin (RTO)** failure - burning **₹18,000+ Crore ($2.2B+)/year** in wasted two-way shipping and inventory lockup for Indian D2C brands and **ONDC** merchants [S7, S8, S16]. Over half of all RTOs happen during the **180-second doorstep window**: either the delivery rider speaks Kannada/Tamil/Telugu while the buyer speaks Hindi/English, the apartment security guard refuses unpaid COD parcels when the buyer is at the office, or the courier logs a fake **NDR (Non-Delivery Report: "Customer Unreachable / Refused")** without actually attempting resolution [S7, S16]. Existing NDR tools send a static WhatsApp message 4 hours later - long after the delivery van has left the neighborhood.
 
 **Why now**: With Meta hiking WhatsApp Business API per-conversation fees [S12] and **ONDC** scaling hyperlocal and inter-city retail across India [S8], merchants need an instant, zero-per-message-tax **in-app 3-way rescue room**. Using `@nexconn/chat-sdk`'s **Group Channels**, **Voice-to-Text (`STT`) + Built-in Translation**, **Message Expansion (300 KV pairs)**, **Open Channel Metadata (50 KV pairs + CAS)**, and **`@nexconn/call-sdk`** [S20, S21], we can connect the rider, buyer, and seller AI agent in `<200ms` while the rider is still standing at the gate.
 
@@ -196,7 +196,7 @@
 **The solution**:
 - **User flow**:
   1. Delivery Rider Santosh arrives at an apartment gate in Bengaluru with a ₹1,200 COD parcel. The buyer isn't answering the intercom. Santosh taps **[Flag Doorstep Exception / NDR]** in his rider app.
-  2. **RTOShield**'s **Pre-Send Webhook** intercepts the NDR filing—refusing to let the rider mark `DELIVERY_FAILED` until a **90-second Live 3-Way Rescue Timer** runs in an auto-provisioned **Nexconn Group Channel** (`#ndr-order-9921`) containing **Santosh (Rider)**, **Aarti (Buyer)**, and the **Seller Rescue Agent** [S20].
+  2. **RTOShield**'s **Pre-Send Webhook** intercepts the NDR filing - refusing to let the rider mark `DELIVERY_FAILED` until a **90-second Live 3-Way Rescue Timer** runs in an auto-provisioned **Nexconn Group Channel** (`#ndr-order-9921`) containing **Santosh (Rider)**, **Aarti (Buyer)**, and the **Seller Rescue Agent** [S20].
   3. Santosh holds the push-to-talk button and speaks for 6 seconds in Kannada: *"Main gate security won't allow Cash-on-Delivery parcels upstairs without payment."*
   4. **Nexconn Voice-to-Text (`STT`) + Built-in Translation** [S21] transcribes the Kannada audio and delivers it to Aarti in English/Hindi in `<500ms`.
   5. Simultaneously, the **Seller Rescue Agent** posts a mutable **Message Expansion (300 KV pairs) Doorstep Rescue Card** [S20] offering Aarti three 1-tap options:
@@ -224,14 +224,14 @@
 
 **Tech stack**: `@nexconn/chat-sdk`, `@nexconn/chat-ui`, `@nexconn/call-sdk`, Nexconn `Voice-to-Text (STT)`, `Built-in Translation`, `Message Expansion`, `Open Channel Metadata`, `Online Status Subscription`, `Read Receipts`, Next.js 15, TypeScript, Tailwind CSS, FastAPI, ONDC Beckn / IGM v2.0 schemas.
 
-**60-second demo script (Jobs style)**: Three mobile screens side by side: **Delivery Rider (Kannada)**, **Buyer (English)**, and **Seller Dispatch**. The rider stands at a locked apartment gate with a ₹1,200 Cash-on-Delivery order and taps **Mark Undelivered (NDR)**. Instead of letting the order bounce, `RTOShield` intercepts the NDR and opens a **3-Way Translated Nexconn Room** with a 90-second countdown. The rider speaks for 5 seconds in Kannada: *"Security won't allow unpaid COD parcels at the gate."* **Nexconn STT + Built-in Translation** renders it in English on the buyer's screen alongside a live **Message Expansion Card**: `[Pay ₹1,150 via UPI Now (Save ₹50) & Authorize Guard Drop]`. The buyer taps once; the rider's Kannada screen flashes green (`PREPAID — LEAVE WITH GUARD`), and a 5-second **`@nexconn/call-sdk`** video clip confirms the drop—turning a ₹220 RTO loss into a delivered order in 40 seconds.
+**60-second demo script (Jobs style)**: Three mobile screens side by side: **Delivery Rider (Kannada)**, **Buyer (English)**, and **Seller Dispatch**. The rider stands at a locked apartment gate with a ₹1,200 Cash-on-Delivery order and taps **Mark Undelivered (NDR)**. Instead of letting the order bounce, `RTOShield` intercepts the NDR and opens a **3-Way Translated Nexconn Room** with a 90-second countdown. The rider speaks for 5 seconds in Kannada: *"Security won't allow unpaid COD parcels at the gate."* **Nexconn STT + Built-in Translation** renders it in English on the buyer's screen alongside a live **Message Expansion Card**: `[Pay ₹1,150 via UPI Now (Save ₹50) & Authorize Guard Drop]`. The buyer taps once; the rider's Kannada screen flashes green (`PREPAID - LEAVE WITH GUARD`), and a 5-second **`@nexconn/call-sdk`** video clip confirms the drop - turning a ₹220 RTO loss into a delivered order in 40 seconds.
 
 **30-second viral clip (Gary Vee style)**: *"Indian D2C brands lose ₹18,000 Crore a year to Cash-on-Delivery returns! Watch how our 3-way Kannada-to-English translated Nexconn chat room stops a fake delivery failure at the apartment gate in 40 seconds!"*
 
 **3-screen UI strip (Ive style)**:
-1. **Screen 1 — Rider 1-Tap Vernacular NDR & Countdown Screen (`STT + Translation`)**: High-contrast rider interface showing the 90-second rescue timer, push-to-talk mic, and live COD-to-Prepaid status badge.
-2. **Screen 2 — Buyer 3-Way Rescue Chat & In-Bubble UPI Card (`Message Expansion`)**: Consumer chat view with instant translated rider audio and 1-tap UPI discount + gate-drop authorization.
-3. **Screen 3 — Seller ONDC `IGM` & Fake-NDR Audit Console (`Open Channel Metadata`)**: Dispatch dashboard tracking live rescues, courier read-receipt compliance, and saved RTO rupees.
+1. **Screen 1 - Rider 1-Tap Vernacular NDR & Countdown Screen (`STT + Translation`)**: High-contrast rider interface showing the 90-second rescue timer, push-to-talk mic, and live COD-to-Prepaid status badge.
+2. **Screen 2 - Buyer 3-Way Rescue Chat & In-Bubble UPI Card (`Message Expansion`)**: Consumer chat view with instant translated rider audio and 1-tap UPI discount + gate-drop authorization.
+3. **Screen 3 - Seller ONDC `IGM` & Fake-NDR Audit Console (`Open Channel Metadata`)**: Dispatch dashboard tracking live rescues, courier read-receipt compliance, and saved RTO rupees.
 
 **Business model & unit economics (Buffett check)**: Performance-based SaaS: **₹12 ($0.14) per rescued NDR order** (or $299/month for up to 5,000 NDR rescue sessions). Since every prevented RTO saves a merchant **₹150–₹250 ($1.80–$3.00)** in forward + reverse shipping and restocking costs [S7], merchants enjoy a **15x immediate ROI**, while **RTOShield** operates at an **89% gross margin** (zero Meta WhatsApp per-conversation tax, powered by Nexconn's **$20,640 Free Chat Plan** [S1, S12]).
 
@@ -240,8 +240,8 @@
 **Legal & compliance clearance (Mike Ross check)**: Eliminates PSTN phone-number exposure between riders and buyers (protecting female/residential buyer privacy under **DPDP Act 2023** [S31] by routing all communication inside ephemeral, order-scoped `@nexconn/chat-sdk` & `@nexconn/call-sdk` channels that auto-archive upon delivery).
 
 **Failure modes & pre-mortem (Munger check)**:
-- *Failure Mode 1 — Buyer is genuinely in a meeting and doesn't reply within 90 seconds*: **Mitigation**: Uses **Nexconn Online Status Subscription** [S21]; if the buyer is offline after 45 seconds, the Seller Rescue Agent automatically sends a fallback **Message Expansion** evening-slot reschedule card and logs a cryptographically verified `GENUINE_BUYER_OFFLINE` badge so the rider isn't penalized.
-- *Failure Mode 2 — Courier rider tries to game the timer without speaking*: **Mitigation**: The Pre-Send NDR gate requires either a valid voice/photo message or a verified 90-second unread receipt before unlocking `NDR_CONFIRMED`.
+- *Failure Mode 1 - Buyer is genuinely in a meeting and doesn't reply within 90 seconds*: **Mitigation**: Uses **Nexconn Online Status Subscription** [S21]; if the buyer is offline after 45 seconds, the Seller Rescue Agent automatically sends a fallback **Message Expansion** evening-slot reschedule card and logs a cryptographically verified `GENUINE_BUYER_OFFLINE` badge so the rider isn't penalized.
+- *Failure Mode 2 - Courier rider tries to game the timer without speaking*: **Mitigation**: The Pre-Send NDR gate requires either a valid voice/photo message or a verified 90-second unread receipt before unlocking `NDR_CONFIRMED`.
 
 **Council attribution**:
 
@@ -256,13 +256,13 @@
 
 ---
 
-## Idea 4 — TriageSwarm: Zero-Repeat Context-Preserving Support Router with Live Presence Dispatch & Speculative Tool Staging
+## Idea 4 - TriageSwarm: Zero-Repeat Context-Preserving Support Router with Live Presence Dispatch & Speculative Tool Staging
 
 **Tag**: `Exists-but-weak` · **Score**: **8.55/10**
 
-**One-line hook**: Eliminates the #1 cause of customer rage—repeating your problem across support handoffs—by routing via **Nexconn Online Status Subscription**, pinning a shared **$\tau^2$-bench Dual-Control State Board** to the channel header, and **speculatively pre-staging the exact 1-click fix in a private whisper card (`targetUserIds`)** before the human agent even says hello.
+**One-line hook**: Eliminates the #1 cause of customer rage - repeating your problem across support handoffs - by routing via **Nexconn Online Status Subscription**, pinning a shared **$\tau^2$-bench Dual-Control State Board** to the channel header, and **speculatively pre-staging the exact 1-click fix in a private whisper card (`targetUserIds`)** before the human agent even says hello.
 
-**Problem & who feels it**: Zendesk's CX Trends report reveals that **72% of customers** are forced to repeat their problem to multiple agents during a support escalation, and **64%** will switch brands after a single fragmented handoff [S10]. Meanwhile, frontline support agents juggle 4 to 6 concurrent chat windows with **38%–45% annual burnout turnover** [S11, S17]. The June 2025 **$\tau^2$-bench** paper (*Evaluating Conversational Agents in a Dual-Control Environment*, `arXiv:2506.07982` [S6]) identified why technical and operational support chats fail: troubleshooting is a **dual-control problem** where *both* the customer (holding the physical device/app) and the support agent (holding backend tools) must observe and mutate a shared state tree—yet existing chat tools pass only flat text transcripts.
+**Problem & who feels it**: Zendesk's CX Trends report reveals that **72% of customers** are forced to repeat their problem to multiple agents during a support escalation, and **64%** will switch brands after a single fragmented handoff [S10]. Meanwhile, frontline support agents juggle 4 to 6 concurrent chat windows with **38%–45% annual burnout turnover** [S11, S17]. The June 2025 **$\tau^2$-bench** paper (*Evaluating Conversational Agents in a Dual-Control Environment*, `arXiv:2506.07982` [S6]) identified why technical and operational support chats fail: troubleshooting is a **dual-control problem** where *both* the customer (holding the physical device/app) and the support agent (holding backend tools) must observe and mutate a shared state tree - yet existing chat tools pass only flat text transcripts.
 
 **Why now**: Combining **$\tau^2$-bench's Dual-Control paradigm** (`arXiv:2506.07982` [S6]) with `@nexconn/chat-sdk`'s **Online Status Subscription**, **Open Channel Metadata (50 KV pairs + CAS)**, **Message Expansion (300 KV pairs)**, and **Targeted Group Whispers (`targetUserIds`)** [S19, S20, S21] lets us replace blind round-robin ticket queues with an atomic, state-preserving dispatch swarm.
 
@@ -281,7 +281,7 @@
   3. On the customer's screen, a **Dual-Control Message Expansion Card (300 KV pairs)** [S20] renders interactive self-check toggles (`[✓] Roaming Toggle Enabled`, `[Tap to Run APN Reset Diagnostic]`). When the customer taps the diagnostic button on their phone, the KV state mutates live in the channel without the customer typing a word.
   4. When human escalation is triggered, **TriageSwarm** queries **Nexconn Online Status Subscription** (`online-status-subscription.md` [S21]) across the L2 specialist pool, selects the online specialist with the lowest active typing/channel load, and claims the channel atomically via **Open Channel Metadata CAS** (`assigned_l2_agent: devika_blr`, `sla_deadline_ms: +90000`).
   5. **Zero-Repeat Magic**: Before Devika types her first keystroke, **TriageSwarm** injects a private **Targeted Group Whisper (`targetUserIds: ['devika_blr']`)** [S19] at the bottom of her timeline containing:
-     - A 3-bullet **Zero-Repeat Context Pill** (*"DO NOT ask for Order ID or APN status—already verified in Metadata"*), and
+     - A 3-bullet **Zero-Repeat Context Pill** (*"DO NOT ask for Order ID or APN status - already verified in Metadata"*), and
      - **Speculatively Pre-Staged 1-Click Tool Buttons**: `[1-Click: Release Wire Hold #TX-9041 + Push OTA eSIM Profile]`.
   6. If Devika's connection drops or her **Typing Indicator** [S20] fails to fire within 45 seconds, **TriageSwarm** automatically re-routes the CAS lock to the next online specialist with zero context loss.
 - **Technical architecture**:
@@ -304,14 +304,14 @@
 
 **Tech stack**: `@nexconn/chat-sdk`, `@nexconn/chat-ui`, `@nexconn/call-sdk`, Nexconn AI Mode (`Online Status Subscription`, `Open Channel Metadata`, `Message Expansion`, `Targeted Group Messages`, `Typing Indicators`, `Read Receipts`, `Built-in Translation`), Next.js 15, TypeScript, Tailwind CSS, FastAPI.
 
-**60-second demo script (Jobs style)**: Left pane: Customer troubleshooting a stuck international wire and dead eSIM. On the customer's **Dual-Control Message Expansion card**, they tap **Run Device APN Check**—mutating the shared channel state live without typing. Now the customer clicks **Escalate to Specialist**. Watch the right pane—our **TriageSwarm Dispatch Center**. **Nexconn Online Status Subscription** spots that Agent #1 is offline and Agent #2 is at capacity, so it atomically locks the channel to Agent #3 (Devika) via **Open Channel Metadata CAS**. Before Devika types a single letter, a private **`targetUserIds` Whisper Card** slides into her view: *"Zero-Repeat Brief: Identity & APN already verified. Click once to execute pre-staged fix: `[Release Wire Hold + Push OTA eSIM]`."* Devika clicks once, the customer's card turns green in 3 seconds, and we then kill Devika's browser tab to show another active chat automatically failing over to Agent #2 in real time.
+**60-second demo script (Jobs style)**: Left pane: Customer troubleshooting a stuck international wire and dead eSIM. On the customer's **Dual-Control Message Expansion card**, they tap **Run Device APN Check** - mutating the shared channel state live without typing. Now the customer clicks **Escalate to Specialist**. Watch the right pane - our **TriageSwarm Dispatch Center**. **Nexconn Online Status Subscription** spots that Agent #1 is offline and Agent #2 is at capacity, so it atomically locks the channel to Agent #3 (Devika) via **Open Channel Metadata CAS**. Before Devika types a single letter, a private **`targetUserIds` Whisper Card** slides into her view: *"Zero-Repeat Brief: Identity & APN already verified. Click once to execute pre-staged fix: `[Release Wire Hold + Push OTA eSIM]`."* Devika clicks once, the customer's card turns green in 3 seconds, and we then kill Devika's browser tab to show another active chat automatically failing over to Agent #2 in real time.
 
 **30-second viral clip (Gary Vee style)**: *"72% of people lose their minds when a support agent asks for the order number they ALREADY gave the chatbot. Watch TriageSwarm hand the human agent a pre-staged 1-click fix before they even type 'hello'!"*
 
 **3-screen UI strip (Ive style)**:
-1. **Screen 1 — Presence-Driven Dispatch Swarm Board (`Online Status + Channel Metadata CAS`)**: Real-time grid of online/offline human agents, active SLA timers, and automatic failover routing.
-2. **Screen 2 — Shared $\tau^2$-bench Dual-Control Diagnostic Card (`Message Expansion`)**: Interactive two-way state card inside the chat timeline shared between customer and specialist.
-3. **Screen 3 — Speculative 1-Click Tool Staging Whisper Bar (`targetUserIds`)**: Private agent footer with pre-populated API actions and a "Never Ask Again" verified-facts pill bar.
+1. **Screen 1 - Presence-Driven Dispatch Swarm Board (`Online Status + Channel Metadata CAS`)**: Real-time grid of online/offline human agents, active SLA timers, and automatic failover routing.
+2. **Screen 2 - Shared $\tau^2$-bench Dual-Control Diagnostic Card (`Message Expansion`)**: Interactive two-way state card inside the chat timeline shared between customer and specialist.
+3. **Screen 3 - Speculative 1-Click Tool Staging Whisper Bar (`targetUserIds`)**: Private agent footer with pre-populated API actions and a "Never Ask Again" verified-facts pill bar.
 
 **Business model & unit economics (Buffett check)**: Priced at **$35/agent seat/month** for BPOs, telecoms, neobanks, and SaaS support teams. Cutting Average Handle Time (AHT) from 8 minutes to 90 seconds increases human agent concurrency by **3.2x**, saving **$18,000+/agent/year** in contact-center staffing costs at **87% gross margin** [S10, S11].
 
@@ -320,8 +320,8 @@
 **Legal & compliance clearance (Mike Ross check)**: Speculative tool calls are **staged in read-only dry-run mode** inside the `targetUserIds` whisper card and only execute when the authenticated human agent clicks **Confirm**, maintaining full SOC 2 / PCI-DSS human-authorization auditability.
 
 **Failure modes & pre-mortem (Munger check)**:
-- *Failure Mode 1 — Customer mutates the Dual-Control card while the agent is clicking a staged tool*: **Mitigation**: Every staged tool call carries an `expected_metadata_version` hash checked via **Open Channel Metadata CAS** [S20]; if the customer's state changed, the card refreshes in `<100ms` before executing.
-- *Failure Mode 2 — Pre-Send guard against agent asking already-known facts*: **Mitigation**: If a distracted human agent types *"What is your order number?"* when `order_id` is already present in `Open Channel Metadata`, a gentle inline UI nudge auto-fills the known `order_id` before sending.
+- *Failure Mode 1 - Customer mutates the Dual-Control card while the agent is clicking a staged tool*: **Mitigation**: Every staged tool call carries an `expected_metadata_version` hash checked via **Open Channel Metadata CAS** [S20]; if the customer's state changed, the card refreshes in `<100ms` before executing.
+- *Failure Mode 2 - Pre-Send guard against agent asking already-known facts*: **Mitigation**: If a distracted human agent types *"What is your order number?"* when `order_id` is already present in `Open Channel Metadata`, a gentle inline UI nudge auto-fills the known `order_id` before sending.
 
 **Council attribution**:
 
@@ -335,11 +335,11 @@
 
 ---
 
-## Idea 5 — VisualClaimE2E: Multimodal Live-Video Warranty, Return-Switch & Damage-Appraisal Support Room
+## Idea 5 - VisualClaimE2E: Multimodal Live-Video Warranty, Return-Switch & Damage-Appraisal Support Room
 
 **Tag**: `Exists-but-weak` · **Score**: **8.30/10**
 
-**One-line hook**: Kills fake Google-Image return fraud and 5-day email photo disputes by launching a **15-second `@nexconn/call-sdk` live video inspection** inside an **End-to-End Encrypted (`X3DH + Double Ratchet`) `@nexconn/chat-sdk` support channel**—verifying physical damage and serial numbers live and unlocking an in-bubble instant refund card.
+**One-line hook**: Kills fake Google-Image return fraud and 5-day email photo disputes by launching a **15-second `@nexconn/call-sdk` live video inspection** inside an **End-to-End Encrypted (`X3DH + Double Ratchet`) `@nexconn/chat-sdk` support channel** - verifying physical damage and serial numbers live and unlocking an in-bubble instant refund card.
 
 **Problem & who feels it**: Retail and marketplace return fraud exceeds **$100 Billion/year globally** (National Retail Federation [S18]). Fraudulent buyers download photos of cracked screens or spilled groceries from Google Images/Reddit to claim instant refunds, or send back a brick/old model in the box ("return-switch fraud") [S18]. Conversely, honest customers who receive a genuinely defective ₹18,000 appliance or damaged parcel are forced through a **5-to-7-day nightmare** of uploading static photos, waiting for manual RMA review, and shipping the item back before getting a replacement. The same visual-blindness bottleneck plagues **on-demand home service providers** (plumbers, electricians, appliance repair pros) who roll a truck without seeing the broken valve or circuit panel first.
 
@@ -375,7 +375,7 @@
 
 **Judge & sponsor alignment**:
 - **Pass/Fail Gate & Multi-SDK Showcase**: Showcases **`@nexconn/chat-sdk` + `@nexconn/chat-ui` + `@nexconn/call-sdk`** working seamlessly together in a single interface [S1].
-- **50% Completeness & UX**: Visually magnetic 60-second demo—pointing a real webcam/phone camera at a physical product during a live `@nexconn/call-sdk` call and watching the `@nexconn/chat-ui` Message Expansion card flip to `SERIAL_MATCHED -> REFUND_UNLOCKED`.
+- **50% Completeness & UX**: Visually magnetic 60-second demo - pointing a real webcam/phone camera at a physical product during a live `@nexconn/call-sdk` call and watching the `@nexconn/chat-ui` Message Expansion card flip to `SERIAL_MATCHED -> REFUND_UNLOCKED`.
 - **30% Innovation & Scenario Value**: Bridges **Buyer-Seller Chat**, **On-Demand Service Providers**, and **Customer Support** (all three cohorts named in the Track 04 prompt [S1]).
 - **20% Business & Active User Bonus**: Dual-user video + chat sessions register both Chat SDK and Call SDK activity under our `appKey` on `console.nexconn.ai` [S1].
 
@@ -388,14 +388,14 @@
 
 **Tech stack**: `@nexconn/chat-sdk` (with E2EE `X3DH + Double Ratchet`), `@nexconn/chat-ui`, `@nexconn/call-sdk`, Nexconn AI Mode (`Message Expansion`, `Open Channel Metadata`, `Targeted Group Messages`, `StreamMsg`, `Built-in Translation`, `Voice-to-Text`), Next.js 15, TypeScript, Tailwind CSS, Gemini 2.5 Flash Multimodal Vision.
 
-**60-second demo script (Jobs style)**: On screen: A buyer claims a ₹18,000 electronics order arrived with a cracked casing and broken latch. First, they try uploading a static image downloaded from the web—`VisualClaimE2E` blocks it and prompts: **Tap for 15-Second Live Video Inspect (`@nexconn/call-sdk`)**. The embedded WebRTC video opens inside the **End-to-End Encrypted** `@nexconn/chat-ui` channel. A **`StreamMsg`** prompt says: *"Tilt the device 30° left to show the serial label."* On live camera, we tilt the device; the vision overlay locks onto `SN-884920` (matching the warehouse record in **Channel Metadata**), confirms real 3D motion, and mutates the **Message Expansion Card** right in the chat timeline to offer: `[A] Full Replacement` or `[B] Instant ₹3,500 Keep-It Credit + Free Latch Kit Shipped Today`. The buyer taps `[B]`, settling the claim in 20 seconds and saving the merchant a full return loss.
+**60-second demo script (Jobs style)**: On screen: A buyer claims a ₹18,000 electronics order arrived with a cracked casing and broken latch. First, they try uploading a static image downloaded from the web - `VisualClaimE2E` blocks it and prompts: **Tap for 15-Second Live Video Inspect (`@nexconn/call-sdk`)**. The embedded WebRTC video opens inside the **End-to-End Encrypted** `@nexconn/chat-ui` channel. A **`StreamMsg`** prompt says: *"Tilt the device 30° left to show the serial label."* On live camera, we tilt the device; the vision overlay locks onto `SN-884920` (matching the warehouse record in **Channel Metadata**), confirms real 3D motion, and mutates the **Message Expansion Card** right in the chat timeline to offer: `[A] Full Replacement` or `[B] Instant ₹3,500 Keep-It Credit + Free Latch Kit Shipped Today`. The buyer taps `[B]`, settling the claim in 20 seconds and saving the merchant a full return loss.
 
 **30-second viral clip (Gary Vee style)**: *"Fraudsters use fake Google Images to scam e-commerce stores out of $100B a year. Watch our Nexconn Chat + Call SDK verify a real broken gadget on live video, read the serial number, and unlock the refund in 15 seconds!"*
 
 **3-screen UI strip (Ive style)**:
-1. **Screen 1 — E2EE Support Chat + Appraisal Trigger Card (`@nexconn/chat-ui` + `Message Expansion`)**: Encrypted customer support timeline with order metadata and 1-tap video verification launch.
-2. **Screen 2 — Embedded 15-Second `@nexconn/call-sdk` Vision HUD**: Live WebRTC video drawer with real-time serial-number OCR badge, 3D tilt-liveness indicator, and `targetUserIds` adjuster whisper score.
-3. **Screen 3 — In-Bubble Instant Settlement & Spare-Part Dispatch Card (`Message Expansion`)**: Dynamic resolution card comparing full return vs. partial-credit + spare-part economics.
+1. **Screen 1 - E2EE Support Chat + Appraisal Trigger Card (`@nexconn/chat-ui` + `Message Expansion`)**: Encrypted customer support timeline with order metadata and 1-tap video verification launch.
+2. **Screen 2 - Embedded 15-Second `@nexconn/call-sdk` Vision HUD**: Live WebRTC video drawer with real-time serial-number OCR badge, 3D tilt-liveness indicator, and `targetUserIds` adjuster whisper score.
+3. **Screen 3 - In-Bubble Instant Settlement & Spare-Part Dispatch Card (`Message Expansion`)**: Dynamic resolution card comparing full return vs. partial-credit + spare-part economics.
 
 **Business model & unit economics (Buffett check)**: Priced at **$0.25 per video appraisal session** (or $399/month for 2,000 claims). Each 15-second video inspection costs **<$0.015** in vision token + WebRTC transport costs (**~94% gross margin**) while preventing **$45–$300** per fraudulent return or converting a 100% return loss into a 20% partial-credit keep [S18].
 
@@ -404,8 +404,8 @@
 **Legal & compliance clearance (Mike Ross check)**: Client-side **Nexconn End-to-End Encryption (`X3DH + Double Ratchet`)** [S21] ensures customer home video streams are never stored in plaintext on third-party servers, complying with **DPDP Act 2023** and **GDPR** biometric/home-privacy rules while logging only the verified serial-match hash and damage classification in `Open Channel Metadata` [S20, S31].
 
 **Failure modes & pre-mortem (Munger check)**:
-- *Failure Mode 1 — Low bandwidth or poor lighting during the video call*: **Mitigation**: If `@nexconn/call-sdk` detects packet loss or low lux, it automatically activates device torch guidance and falls back to a cryptographically nonce-watermarked 3-angle burst capture inside `@nexconn/chat-sdk`.
-- *Failure Mode 2 — Visually impaired customer unable to align the serial barcode*: **Mitigation**: Incorporates **Seat 21 (`Haben Girma / Chieko Asakawa`)** spatial audio guidance (`"Move phone 2 inches right... hold steady, serial captured"`).
+- *Failure Mode 1 - Low bandwidth or poor lighting during the video call*: **Mitigation**: If `@nexconn/call-sdk` detects packet loss or low lux, it automatically activates device torch guidance and falls back to a cryptographically nonce-watermarked 3-angle burst capture inside `@nexconn/chat-sdk`.
+- *Failure Mode 2 - Visually impaired customer unable to align the serial barcode*: **Mitigation**: Incorporates **Seat 21 (`Haben Girma / Chieko Asakawa`)** spatial audio guidance (`"Move phone 2 inches right... hold steady, serial captured"`).
 
 **Council attribution**:
 
@@ -425,31 +425,31 @@
 - **[S1]** Nexconn Build Challenge 2026 Official Portal & JS Bundle (`index-DSX23m3q.js`, Track 04 `Marketplace & Support`, rubric `gu`, prizes `pu`): `https://reskilll.com/hack/nexconn/`
 - **[S2]** Nexconn Official Website & Developer Documentation Hub (`RCLOUD GLOBAL PTE. LTD.`): `https://www.nexconn.ai/` & `https://docs.nexconn.ai/`
 - **[S3]** Nexconn AI Mode Documentation & `@nexconn` Open-Source Skills (`NexconnAI-Dev/nexconn-skills`): `https://docs.nexconn.ai/ai-mode/overview/introduction.md` & `https://github.com/NexconnAI-Dev/nexconn-skills`
-- **[S4]** Civil Resolution Tribunal of British Columbia — **_Moffatt v. Air Canada_, 2024 BCCRT 149** (Strict corporate liability for AI support chatbot hallucinations): `https://decisions.civilresolutiontribunal.ca/crt/en/item/525449/index.do`
-- **[S5]** Yao, S., et al. (Sierra AI / MIT / Princeton, 2024) — **$\tau$-bench: _A Benchmark for Tool-Agent-User Interaction in Real-World Domains_** (`arXiv:2406.12045`): `https://arxiv.org/abs/2406.12045`
+- **[S4]** Civil Resolution Tribunal of British Columbia - **_Moffatt v. Air Canada_, 2024 BCCRT 149** (Strict corporate liability for AI support chatbot hallucinations): `https://decisions.civilresolutiontribunal.ca/crt/en/item/525449/index.do`
+- **[S5]** Yao, S., et al. (Sierra AI / MIT / Princeton, 2024) - **$\tau$-bench: _A Benchmark for Tool-Agent-User Interaction in Real-World Domains_** (`arXiv:2406.12045`): `https://arxiv.org/abs/2406.12045`
 - **[S6]** **$\tau^2$-bench: _Evaluating Conversational Agents in a Dual-Control Environment_** (June 2025, `arXiv:2506.07982`): `https://arxiv.org/abs/2506.07982`
-- **[S7]** Unicommerce & GoKwik — *India E-Commerce Index & Cash-on-Delivery Return-to-Origin (RTO) Report* (₹18,000+ Cr/yr COD RTO loss): `https://www.gokwik.co/` & `https://unicommerce.com/`
-- **[S8]** ONDC (Open Network for Digital Commerce) — *Beckn Protocol & Issue and Grievance Management (IGM v2.0)*: `https://ondc.org/` & `https://developers.ondc.org/`
-- **[S9]** Harvard Business Review — *Why Marketplaces Leak Value & How to Stop Disintermediation*: `https://hbr.org/2021/05/why-some-platforms-thrive-and-others-dont`
-- **[S10]** Zendesk — *CX Trends Report* (72% customer context repetition across handoffs): `https://www.zendesk.com/Structuring-CX-Trends/`
-- **[S11]** Gartner — *Customer Service & Support Contact Center Attrition Survey*: `https://www.gartner.com/en/customer-service-support`
-- **[S12]** Meta — *WhatsApp Business Platform Per-Conversation Pricing Schedule*: `https://developers.facebook.com/docs/whatsapp/pricing/`
+- **[S7]** Unicommerce & GoKwik - *India E-Commerce Index & Cash-on-Delivery Return-to-Origin (RTO) Report* (₹18,000+ Cr/yr COD RTO loss): `https://www.gokwik.co/` & `https://unicommerce.com/`
+- **[S8]** ONDC (Open Network for Digital Commerce) - *Beckn Protocol & Issue and Grievance Management (IGM v2.0)*: `https://ondc.org/` & `https://developers.ondc.org/`
+- **[S9]** Harvard Business Review - *Why Marketplaces Leak Value & How to Stop Disintermediation*: `https://hbr.org/2021/05/why-some-platforms-thrive-and-others-dont`
+- **[S10]** Zendesk - *CX Trends Report* (72% customer context repetition across handoffs): `https://www.zendesk.com/Structuring-CX-Trends/`
+- **[S11]** Gartner - *Customer Service & Support Contact Center Attrition Survey*: `https://www.gartner.com/en/customer-service-support`
+- **[S12]** Meta - *WhatsApp Business Platform Per-Conversation Pricing Schedule*: `https://developers.facebook.com/docs/whatsapp/pricing/`
 - **[S13]** **_OG-Narrator: Offer-Graph Narrator for Bilateral Price Negotiation_** (`arXiv:2310.15172`): `https://arxiv.org/abs/2310.15172`
-- **[S14]** Reddit `r/CustomerSuccess` — Enterprise CX discussions on *Moffatt v. Air Canada*: `https://www.reddit.com/r/CustomerSuccess/`
-- **[S15]** Reddit `r/ImportExport` — Cross-border B2B wholesale negotiation friction: `https://www.reddit.com/r/ImportExport/`
-- **[S16]** Reddit `r/IndianStartups` — Indian D2C COD RTO & courier NDR discussions: `https://www.reddit.com/r/IndianStartups/`
-- **[S17]** Reddit `r/callcentres` — Contact center agent multi-chat overload reports: `https://www.reddit.com/r/callcentres/`
-- **[S18]** National Retail Federation (NRF) — *Consumer Returns in the Retail Industry Report* ($100B+ return fraud): `https://nrf.com/research/customer-returns-retail-industry`
-- **[S19]** Nexconn Docs — *Targeted Group Messages (`targetUserIds` private whisper delivery inside Group Channels)*: `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md`
-- **[S20]** Nexconn Docs — *Message Expansion (300 KV pairs), Open Channel Metadata (50 KV pairs + CAS), Streaming Messages (`StreamMsg`), Direct Channels (`read-receipt.md`, `typing-indicators.md`, `modify-and-recall.md`), Server Webhooks, and Call SDK*: `https://docs.nexconn.ai/chat/overview/features/message/expansion.md`, `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md`, `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md`, `https://docs.nexconn.ai/chat/overview/features/direct-channels/introduction.md`, `https://docs.nexconn.ai/call/`
-- **[S21]** Nexconn Docs — *Built-in Translation (100+ languages), Voice-to-Text (`STT`), Auto-Moderation (`<100ms`), Online Status Subscription, and End-to-End Encryption (`E2EE`)*: `https://docs.nexconn.ai/chat/overview/features/builtin-translation/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/moderation/auto-moderation.md`, `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md`, `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md`
-- **[S22]** Decagon AI — *Enterprise Customer Support AOPs*: `https://decagon.ai/`
-- **[S23]** Intercom — *Fin AI Agent Pricing ($0.99/resolution) & Architecture*: `https://www.intercom.com/fin`
-- **[S24]** Sendbird — *Programmable Chat SDK Pricing*: `https://sendbird.com/pricing`
+- **[S14]** Reddit `r/CustomerSuccess` - Enterprise CX discussions on *Moffatt v. Air Canada*: `https://www.reddit.com/r/CustomerSuccess/`
+- **[S15]** Reddit `r/ImportExport` - Cross-border B2B wholesale negotiation friction: `https://www.reddit.com/r/ImportExport/`
+- **[S16]** Reddit `r/IndianStartups` - Indian D2C COD RTO & courier NDR discussions: `https://www.reddit.com/r/IndianStartups/`
+- **[S17]** Reddit `r/callcentres` - Contact center agent multi-chat overload reports: `https://www.reddit.com/r/callcentres/`
+- **[S18]** National Retail Federation (NRF) - *Consumer Returns in the Retail Industry Report* ($100B+ return fraud): `https://nrf.com/research/customer-returns-retail-industry`
+- **[S19]** Nexconn Docs - *Targeted Group Messages (`targetUserIds` private whisper delivery inside Group Channels)*: `https://docs.nexconn.ai/chat/overview/features/group-channels/direct.md`
+- **[S20]** Nexconn Docs - *Message Expansion (300 KV pairs), Open Channel Metadata (50 KV pairs + CAS), Streaming Messages (`StreamMsg`), Direct Channels (`read-receipt.md`, `typing-indicators.md`, `modify-and-recall.md`), Server Webhooks, and Call SDK*: `https://docs.nexconn.ai/chat/overview/features/message/expansion.md`, `https://docs.nexconn.ai/chat/overview/features/open-channels/managing-metadata.md`, `https://docs.nexconn.ai/chat/overview/features/message/stream-message.md`, `https://docs.nexconn.ai/chat/overview/features/direct-channels/introduction.md`, `https://docs.nexconn.ai/call/`
+- **[S21]** Nexconn Docs - *Built-in Translation (100+ languages), Voice-to-Text (`STT`), Auto-Moderation (`<100ms`), Online Status Subscription, and End-to-End Encryption (`E2EE`)*: `https://docs.nexconn.ai/chat/overview/features/builtin-translation/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/voice-to-text/introduction.md`, `https://docs.nexconn.ai/chat/overview/features/moderation/auto-moderation.md`, `https://docs.nexconn.ai/chat/overview/features/user-And-friend/online-status-subscription.md`, `https://docs.nexconn.ai/chat/overview/features/e2ee/introduction.md`
+- **[S22]** Decagon AI - *Enterprise Customer Support AOPs*: `https://decagon.ai/`
+- **[S23]** Intercom - *Fin AI Agent Pricing ($0.99/resolution) & Architecture*: `https://www.intercom.com/fin`
+- **[S24]** Sendbird - *Programmable Chat SDK Pricing*: `https://sendbird.com/pricing`
 - **[S25]** Chatwoot Open-Source Customer Support Suite (`chatwoot/chatwoot`): `https://github.com/chatwoot/chatwoot`
 - **[S26]** Papercups Live Chat (`papercups-io/papercups`): `https://github.com/papercups-io/papercups`
 - **[S27]** Chaskiq Conversational Platform (`chaskiq/chaskiq`): `https://github.com/chaskiq/chaskiq`
 - **[S28]** Botpress Chatbot Builder (`botpress/botpress`): `https://github.com/botpress/botpress`
-- **[S29]** Chen, D., et al. (2021) — *Action-Based Conversations Dataset (ABCD)*, `arXiv:2104.00783`: `https://arxiv.org/abs/2104.00783`
+- **[S29]** Chen, D., et al. (2021) - *Action-Based Conversations Dataset (ABCD)*, `arXiv:2104.00783`: `https://arxiv.org/abs/2104.00783`
 - **[S30]** *CINS: Multi-Turn Conversational Dataset for E-Commerce Customer Service*, `arXiv:2009.11036`: `https://arxiv.org/abs/2009.11036`
-- **[S31]** Government of India — *Consumer Protection (E-Commerce) Rules, 2020* & MeitY *DPDP Act, 2023*: `https://consumeraffairs.nic.in/` & `https://www.meity.gov.in/content/digital-personal-data-protection-act-2023`
+- **[S31]** Government of India - *Consumer Protection (E-Commerce) Rules, 2020* & MeitY *DPDP Act, 2023*: `https://consumeraffairs.nic.in/` & `https://www.meity.gov.in/content/digital-personal-data-protection-act-2023`

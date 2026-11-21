@@ -1,8 +1,8 @@
-# Domain Research Dossier — Track 05: Humanitarian & Social Good (`nexconn-social-good`)
+# Domain Research Dossier - Track 05: Humanitarian & Social Good (`nexconn-social-good`)
 
 - **Portal Track ID**: `nexconn-social-good` [S1]
 - **Canonical Domain Slug**: `nexconn-social-good` [S1]
-- **Official Track Name**: **05 — Humanitarian & Social Good** [S1]
+- **Official Track Name**: **05 - Humanitarian & Social Good** [S1]
 - **Official Subtitle / Tagline**: *"Accessible text chat for seniors and communities"* [S1]
 - **Official Description**: *"Design inclusive, accessible real-time communication tools for seniors, differently-abled users, emergency volunteers, or peer-support networks."* [S1]
 - **Official Portal Examples**:
@@ -13,7 +13,7 @@
 
 ---
 
-## 1. The pain map — Who suffers, how badly, how many
+## 1. The pain map - Who suffers, how badly, how many
 
 Modern consumer messaging apps (WhatsApp, Telegram, Discord, iMessage) are designed for 25-year-old urban power users with 20/20 vision, steady fine-motor thumb control, high digital literacy, and English/Mandarin fluency. When seniors, differently-abled individuals, disaster volunteers, or peer-support seekers are forced onto these platforms, four systemic failures occur:
 
@@ -38,11 +38,11 @@ Modern consumer messaging apps (WhatsApp, Telegram, Discord, iMessage) are desig
 4. **Dysarthric / Cerebral Palsy AAC User (`Leveraging LLMs for AAC & Dysarthric Speech`, ACM ASSETS / arXiv:2505.22072, May 2025)** [S17, S18]:
    > *"Standard voice dictation turns my slurred speech into embarrassing gibberish, and typing letter-by-letter on an eye-gaze keyboard takes 45 seconds just to say 'I need my medication adjusted.' In a live group chat, conversation moves at 150 words per minute while my device traps me at 8 words per minute."*
 5. **Peer-Support Moderator on `r/agingparents` & Mental Health Warm-Line Networks (2025)** [S15, S19]:
-   > *"Seniors hate 'I've fallen and I can't get up' panic pendants because they feel like medical surveillance badges of helplessness. What actually works is a dignified morning tea check-in circle with three peers—where tapping one big 'Good Morning' card updates the group, and only if someone's online presence goes dark past 10 AM does a quiet check-in whisper go to their daughter."*
+   > *"Seniors hate 'I've fallen and I can't get up' panic pendants because they feel like medical surveillance badges of helplessness. What actually works is a dignified morning tea check-in circle with three peers - where tapping one big 'Good Morning' card updates the group, and only if someone's online presence goes dark past 10 AM does a quiet check-in whisper go to their daughter."*
 
 ---
 
-## 2. Urgency — Why 2026 is the inflection point
+## 2. Urgency - Why 2026 is the inflection point
 
 - **Domain Urgency Score**: **9.0 / 10** [S2, S3]
 - **Four Converging 2025–2026 Inflection Triggers**:
@@ -53,13 +53,13 @@ Modern consumer messaging apps (WhatsApp, Telegram, Discord, iMessage) are desig
   2. **The Elder AI Scam & "Digital Arrest" Epidemic**:
      - Following Prime Minister Narendra Modi's *Mann Ki Baat* warning on "Digital Arrest" scams and the Ministry of Home Affairs (**I4C**) blocking 80,000+ fraudulent messaging accounts in 2024–2025 [S9, S10], regulators, banks, and telecoms are urgently seeking **real-time in-chat scam interception** that protects seniors *inside the conversation* before money moves.
   3. **Maturation of Zero-Hardware Multimodal Accessibility & Speech AI (2025–2026)**:
-     - May 2025 research breakthroughs—including **MOPSA** (`arXiv:2505.24224`, AI-assisted participation for older adults in fast-moving group chats) [S16] and **MoE-LoRA Dysarthric ASR + LLM AAC Expansion** (`arXiv:2505.22072` & `arXiv:2403.05085`, cutting impaired-speech word error rates by **44.1%** and reducing keystrokes by **70%+**) [S17, S18]—make it possible to run clinical-grade assistive communication in a standard browser using WebRTC + MediaPipe + Nexconn Chat SDK.
+     - May 2025 research breakthroughs - including **MOPSA** (`arXiv:2505.24224`, AI-assisted participation for older adults in fast-moving group chats) [S16] and **MoE-LoRA Dysarthric ASR + LLM AAC Expansion** (`arXiv:2505.22072` & `arXiv:2403.05085`, cutting impaired-speech word error rates by **44.1%** and reducing keystrokes by **70%+**) [S17, S18] - make it possible to run clinical-grade assistive communication in a standard browser using WebRTC + MediaPipe + Nexconn Chat SDK.
   4. **Nexconn's Native Accessibility & Safety Stack in One SDK**:
      - Unlike raw WebSocket frameworks that force developers to stitch together 6 paid APIs in 36 hours, **Nexconn Chat SDK** ships native **Voice-to-Text (`/voice-to-text/`)**, **Built-in AI Translation (`/builtin-translation/`)**, **Auto-Moderation & Anti-Fraud (`<100ms` latency, `/moderation/auto-moderation.md`)**, **Online Status Subscription (`/online-status-subscription.md`)**, **Message Expansion (`300 KV pairs`, `/message/expansion.md`)**, **Targeted Group Whispers (`/group-channels/direct.md`)**, **Call SDK**, and **E2EE (`X3DH + Double Ratchet`)** [S3, S20].
 
 ---
 
-## 3. Prior art — Startups, GitHub repos, research papers & global hackathon winners
+## 3. Prior art - Startups, GitHub repos, research papers & global hackathon winners
 
 ### 3.1 Commercial Products & Non-Profit Platforms
 
@@ -99,7 +99,7 @@ Modern consumer messaging apps (WhatsApp, Telegram, Discord, iMessage) are desig
 
 ---
 
-## 4. Gap analysis — The 3 buckets
+## 4. Gap analysis - The 3 buckets
 
 ### Bucket 1: `Exists-but-weak` (Proven demand, broken real-time execution)
 1. **Family & Senior Group Chat**: WhatsApp family groups exist everywhere, but seniors are passive spectators because messages scroll too fast, fonts/contrast are rigid, hold-to-record voice buttons fail under hand tremor, and scams slip in unmoderated (**MOPSA**, `arXiv:2505.24224` [S16]).
@@ -148,65 +148,65 @@ Modern consumer messaging apps (WhatsApp, Telegram, Discord, iMessage) are desig
 
 ### 6.2 India Digital Public Infrastructure (DPI) & Global Public Data Rails
 
-- **Bhashini (National Language Translation Mission — `bhashini.gov.in`)**: ULCA ASR/TTS/NMT pipelines for **22 scheduled Indian languages** (Hindi, Tamil, Telugu, Malayalam, Kannada, Odia, Assamese, Bengali, Marathi, Gujarati, etc.), paired with Nexconn's Built-in Translation [S2].
-- **ABDM (Ayushman Bharat Digital Mission — `abdm.gov.in`)**: ABHA Health ID and FHIR R4 medication/discharge schemas for accessible senior care and rural ASHA maternal check-ins [S2].
+- **Bhashini (National Language Translation Mission - `bhashini.gov.in`)**: ULCA ASR/TTS/NMT pipelines for **22 scheduled Indian languages** (Hindi, Tamil, Telugu, Malayalam, Kannada, Odia, Assamese, Bengali, Marathi, Gujarati, etc.), paired with Nexconn's Built-in Translation [S2].
+- **ABDM (Ayushman Bharat Digital Mission - `abdm.gov.in`)**: ABHA Health ID and FHIR R4 medication/discharge schemas for accessible senior care and rural ASHA maternal check-ins [S2].
 - **NDMA Cap/SACHET (`sachet.ndma.gov.in`) & 112 ERSS**: Common Alerting Protocol (CAP) live disaster feeds from IMD/CWC/INCOIS and India's unified **112 Emergency Response Support System** [S14].
 - **Open Benchmarking Datasets for 36-Hour Builds**:
-  - **Google Euphonia / TORGO Dysarthric Speech Dataset** (`https://www.cs.toronto.edu/~complingweb/data/TORGO/torgo.html`) — real dysarthric and motor-impaired speech samples for testing ASR/LLM intent reconstruction [S17].
-  - **CrisisMMD & HumAID Disaster Tweet/Message Datasets** (`https://crisisnlp.qcri.org/`) — annotated real-world flood, earthquake, and cyclone SOS messages for testing live deduplication and urgency triage [S27].
-  - **FTC / I4C Elder Scam & Phishing Corpus** (`https://huggingface.co/datasets/ealvaradob/phishing-dataset` + curated Indian "Digital Arrest" / UPI coercion transcripts) — for benchmarking `<100ms` synchronous scam interception [S8, S9].
+  - **Google Euphonia / TORGO Dysarthric Speech Dataset** (`https://www.cs.toronto.edu/~complingweb/data/TORGO/torgo.html`) - real dysarthric and motor-impaired speech samples for testing ASR/LLM intent reconstruction [S17].
+  - **CrisisMMD & HumAID Disaster Tweet/Message Datasets** (`https://crisisnlp.qcri.org/`) - annotated real-world flood, earthquake, and cyclone SOS messages for testing live deduplication and urgency triage [S27].
+  - **FTC / I4C Elder Scam & Phishing Corpus** (`https://huggingface.co/datasets/ealvaradob/phishing-dataset` + curated Indian "Digital Arrest" / UPI coercion transcripts) - for benchmarking `<100ms` synchronous scam interception [S8, S9].
 
 ---
 
 ## 7. Raw idea seeds (18 seeds across all Track 05 sub-segments)
 
-1. **`KavachElder` — Scam-Intercepting Voice-First Senior Companion & Passive Kinship Check-In Mesh** (`Doesn't exist`): A WCAG 2.2 AAA (`24pt` font, `64px` single-tap buttons) senior & family group chat where Nexconn's `<100ms` Auto-Moderation intercepts "Digital Arrest" / UPI / OTP scam coercion before the senior can act, fires a **Targeted Group Whisper (`targetUserIds`)** to the adult child to co-verify, and pairs daily 1-tap **Message Expansion** morning check-ins with **Online Status Subscription** inactivity alerts.
-2. **`AapdaSetu 112` — Vernacular Voice-to-Dispatch Emergency Volunteer & Citizen Triage Command Room** (`Exists abroad, not in India`): Turns chaotic flood/cyclone WhatsApp groups into a structured **Nexconn Group + Open Channel** rescue command center where panicked Tamil/Malayalam/Assamese/Hindi voice notes are transcribed (`Voice-to-Text` + `Built-in Translation`), deduplicated by geo-hash, rendered as claimable **Message Expansion (`300 KV`)** rescue tickets, and whispered (`targetUserIds`) to the nearest boat/medical volunteer.
-3. **`DrishtiGaze AAC` — Zero-Hardware Head-Pose & Dysarthric Speech Real-Time Bridge for Motor-Impaired Communicators** (`Doesn't exist`): Embeds webcam MediaPipe gaze/head-pose dwell selection and dysarthric speech-to-intent LLM expansion (`arXiv:2505.22072`, `SpeakFaster`) directly into `@nexconn/chat-ui`, whispering (`targetUserIds`) 3 context-aware reply candidates privately to the user and streaming (`StreamMsg`) their chosen response at 150 WPM.
-4. **`SaharaCircle E2E` — Cryptographically Sealed Peer-Support Check-In & Crisis Warm-Line Escalation Network** (`Exists-but-weak`): Small-pod (`6–8` member) **E2EE (`X3DH + Double Ratchet`)** peer-support circles (postpartum depression, grief, addiction recovery, caregiver burnout) with daily 1-tap mood check-in cards (`Message Expansion`), `<100ms` crisis trigger interception (`Auto-Moderation`), and silent **Targeted Group Whisper** + **Call SDK** warm-line counselor handoff.
-5. **`JanSetu Asha` — Voice-Native Rural ASHA Maternal Health & Welfare Entitlement Triage Room** (`Exists abroad, not in India`): A low-bandwidth, voice-first **Nexconn Direct + Group Channel** linking rural pregnant mothers, ASHA workers, and PHC doctors in 22 Indian languages (`Voice-to-Text` + `Built-in Translation`), converting voice symptom reports into structured red/amber/green **Message Expansion** maternal risk cards.
-6. **`MOPSA Digest` — Senior Group Chat Catch-Up Synthesizer & 1-Tap Voice Reply Coach** (`Doesn't exist`): Implements the May 2025 **MOPSA** paper (`arXiv:2505.24224`) on Nexconn—sending seniors a private **Targeted Group Whisper** audio/large-font summary of fast-moving family chats plus 3 one-tap reply buttons.
-7. **`ShravanLive` — Deaf & Hard-of-Hearing Community Room with Emotion-Tagged Live Captions & Sign Avatar Cards** (`Exists-but-weak`): Extends DubHacks winner `Snaption Live` onto Nexconn `Voice-to-Text` + `StreamMsg` with speaker-diarized prosody badges (urgency, laughter, sarcasm) and inline ISL/ASL gloss cards.
-8. **`DawaiDost` — Interactive Voice-Verified Senior Medication Adherence & Pharmacist Chat** (`Exists-but-weak`): Daily morning/evening **Message Expansion** pill cards with photo/voice confirmation and automatic caregiver escalation via **Online Status Subscription** if unconfirmed after 60 minutes.
-9. **`BloodBridge Live` — Real-Time Rare Blood & Platelet Donor Whisper Dispatch Room** (`Exists-but-weak`): Hospital-verified urgent blood requests broadcast to a city **Nexconn Open Channel** while whispering (`targetUserIds`) only matched, currently-online donors (`Online Status Subscription`) with 1-tap eligibility & ETA cards (`Message Expansion`).
-10. **`SparshBraille` — Deafblind Haptic Morse/Braille Rhythm Chat over Nexconn Message Expansion** (`Doesn't exist`): Converts incoming Nexconn chat messages and `Message Expansion` status updates into Web Vibration API tactile cadences and ultra-high-contrast 2-button tap replies for deafblind users.
-11. **`NariKavach SOS` — Disguised Silent-Safety Commuter Check-In & Trusted Bystander Whisper Mesh** (`Exists-but-weak`): A dead-man's-switch commuter check-in chat using **Nexconn Online Status Webhooks** + **Message Expansion** live trip heartbeats that silently opens a **Call SDK** audio monitor and **Targeted Group Whisper** if a check-in is missed or duress PIN is entered.
-12. **`AphasiaBridge` — Pictographic & Photo-to-Sentence Chat Companion for Post-Stroke Survivors** (`Doesn't exist`): Lets post-stroke aphasia patients snap a photo or tap 2 high-contrast icons, uses a multimodal LLM to whisper (`targetUserIds`) 3 natural sentences, and sends the chosen message over Nexconn Chat SDK.
-13. **`GramNyaya` — Voice-First Legal Aid & Labour Wage-Theft Paralegal Triage Chat** (`Exists abroad, not in India`): Migrant construction and domestic workers record voice complaints in Bhojpuri/Odia/Hindi (`Voice-to-Text` + `Built-in Translation`), which an AI paralegal structures into a **Message Expansion** case docket for pro-bono lawyers.
-14. **`NeuroCalm Chat` — Sensory-Safe, Tone-Clarified Group Messaging for Neurodivergent & Autistic Youth** (`Doesn't exist`): Uses **Targeted Group Whispers (`targetUserIds`)** to privately annotate idioms, sarcasm, and emotional tone inside group chats while pacing message bursts to prevent sensory overload.
-15. **`HeatWave Sentinel` — Elder & Outdoor Worker Heat-Stroke Early Warning Check-In Channel** (`Exists abroad, not in India`): Links IMD heat-index alerts to a neighbourhood **Nexconn Community Channel**, triggering 1-tap hydration/cooling check-in cards (`Message Expansion`) for solo seniors during `45°C+` Indian summers.
-16. **`KisanMitra Voice` — Accessible Pest & Crop-Insurance Claim Chat for Low-Literacy Smallholder Farmers** (`Exists-but-weak`): Voice-only and photo-based **Nexconn Direct Channel** where farmers speak in local dialects and complete PMFBY crop-loss claims via 1-tap audio-guided **Message Expansion** steps.
-17. **`DementiaAnchor` — Memory-Grounded Reminiscence & Orientation Chat for Early-Stage Alzheimer's Families** (`Doesn't exist`): Family chat room where every family member's message is automatically enriched (via **Targeted Group Whispers** to the senior) with a warm relationship reminder (*"This is your grandson Rohan in Mumbai"*) and context anchor.
-18. **`CivicFix Accessible` — Barrier-Free Wheelchair & Blind Hazard Reporting Chat with Municipal SLA Cards** (`Exists-but-weak`): Differently-abled citizens report broken ramps, blocked tactile paving, or non-working audio signals via voice/photo into a **Nexconn Open Channel** where each report becomes a live SLA-tracked **Message Expansion** card.
+1. **`KavachElder` - Scam-Intercepting Voice-First Senior Companion & Passive Kinship Check-In Mesh** (`Doesn't exist`): A WCAG 2.2 AAA (`24pt` font, `64px` single-tap buttons) senior & family group chat where Nexconn's `<100ms` Auto-Moderation intercepts "Digital Arrest" / UPI / OTP scam coercion before the senior can act, fires a **Targeted Group Whisper (`targetUserIds`)** to the adult child to co-verify, and pairs daily 1-tap **Message Expansion** morning check-ins with **Online Status Subscription** inactivity alerts.
+2. **`AapdaSetu 112` - Vernacular Voice-to-Dispatch Emergency Volunteer & Citizen Triage Command Room** (`Exists abroad, not in India`): Turns chaotic flood/cyclone WhatsApp groups into a structured **Nexconn Group + Open Channel** rescue command center where panicked Tamil/Malayalam/Assamese/Hindi voice notes are transcribed (`Voice-to-Text` + `Built-in Translation`), deduplicated by geo-hash, rendered as claimable **Message Expansion (`300 KV`)** rescue tickets, and whispered (`targetUserIds`) to the nearest boat/medical volunteer.
+3. **`DrishtiGaze AAC` - Zero-Hardware Head-Pose & Dysarthric Speech Real-Time Bridge for Motor-Impaired Communicators** (`Doesn't exist`): Embeds webcam MediaPipe gaze/head-pose dwell selection and dysarthric speech-to-intent LLM expansion (`arXiv:2505.22072`, `SpeakFaster`) directly into `@nexconn/chat-ui`, whispering (`targetUserIds`) 3 context-aware reply candidates privately to the user and streaming (`StreamMsg`) their chosen response at 150 WPM.
+4. **`SaharaCircle E2E` - Cryptographically Sealed Peer-Support Check-In & Crisis Warm-Line Escalation Network** (`Exists-but-weak`): Small-pod (`6–8` member) **E2EE (`X3DH + Double Ratchet`)** peer-support circles (postpartum depression, grief, addiction recovery, caregiver burnout) with daily 1-tap mood check-in cards (`Message Expansion`), `<100ms` crisis trigger interception (`Auto-Moderation`), and silent **Targeted Group Whisper** + **Call SDK** warm-line counselor handoff.
+5. **`JanSetu Asha` - Voice-Native Rural ASHA Maternal Health & Welfare Entitlement Triage Room** (`Exists abroad, not in India`): A low-bandwidth, voice-first **Nexconn Direct + Group Channel** linking rural pregnant mothers, ASHA workers, and PHC doctors in 22 Indian languages (`Voice-to-Text` + `Built-in Translation`), converting voice symptom reports into structured red/amber/green **Message Expansion** maternal risk cards.
+6. **`MOPSA Digest` - Senior Group Chat Catch-Up Synthesizer & 1-Tap Voice Reply Coach** (`Doesn't exist`): Implements the May 2025 **MOPSA** paper (`arXiv:2505.24224`) on Nexconn - sending seniors a private **Targeted Group Whisper** audio/large-font summary of fast-moving family chats plus 3 one-tap reply buttons.
+7. **`ShravanLive` - Deaf & Hard-of-Hearing Community Room with Emotion-Tagged Live Captions & Sign Avatar Cards** (`Exists-but-weak`): Extends DubHacks winner `Snaption Live` onto Nexconn `Voice-to-Text` + `StreamMsg` with speaker-diarized prosody badges (urgency, laughter, sarcasm) and inline ISL/ASL gloss cards.
+8. **`DawaiDost` - Interactive Voice-Verified Senior Medication Adherence & Pharmacist Chat** (`Exists-but-weak`): Daily morning/evening **Message Expansion** pill cards with photo/voice confirmation and automatic caregiver escalation via **Online Status Subscription** if unconfirmed after 60 minutes.
+9. **`BloodBridge Live` - Real-Time Rare Blood & Platelet Donor Whisper Dispatch Room** (`Exists-but-weak`): Hospital-verified urgent blood requests broadcast to a city **Nexconn Open Channel** while whispering (`targetUserIds`) only matched, currently-online donors (`Online Status Subscription`) with 1-tap eligibility & ETA cards (`Message Expansion`).
+10. **`SparshBraille` - Deafblind Haptic Morse/Braille Rhythm Chat over Nexconn Message Expansion** (`Doesn't exist`): Converts incoming Nexconn chat messages and `Message Expansion` status updates into Web Vibration API tactile cadences and ultra-high-contrast 2-button tap replies for deafblind users.
+11. **`NariKavach SOS` - Disguised Silent-Safety Commuter Check-In & Trusted Bystander Whisper Mesh** (`Exists-but-weak`): A dead-man's-switch commuter check-in chat using **Nexconn Online Status Webhooks** + **Message Expansion** live trip heartbeats that silently opens a **Call SDK** audio monitor and **Targeted Group Whisper** if a check-in is missed or duress PIN is entered.
+12. **`AphasiaBridge` - Pictographic & Photo-to-Sentence Chat Companion for Post-Stroke Survivors** (`Doesn't exist`): Lets post-stroke aphasia patients snap a photo or tap 2 high-contrast icons, uses a multimodal LLM to whisper (`targetUserIds`) 3 natural sentences, and sends the chosen message over Nexconn Chat SDK.
+13. **`GramNyaya` - Voice-First Legal Aid & Labour Wage-Theft Paralegal Triage Chat** (`Exists abroad, not in India`): Migrant construction and domestic workers record voice complaints in Bhojpuri/Odia/Hindi (`Voice-to-Text` + `Built-in Translation`), which an AI paralegal structures into a **Message Expansion** case docket for pro-bono lawyers.
+14. **`NeuroCalm Chat` - Sensory-Safe, Tone-Clarified Group Messaging for Neurodivergent & Autistic Youth** (`Doesn't exist`): Uses **Targeted Group Whispers (`targetUserIds`)** to privately annotate idioms, sarcasm, and emotional tone inside group chats while pacing message bursts to prevent sensory overload.
+15. **`HeatWave Sentinel` - Elder & Outdoor Worker Heat-Stroke Early Warning Check-In Channel** (`Exists abroad, not in India`): Links IMD heat-index alerts to a neighbourhood **Nexconn Community Channel**, triggering 1-tap hydration/cooling check-in cards (`Message Expansion`) for solo seniors during `45°C+` Indian summers.
+16. **`KisanMitra Voice` - Accessible Pest & Crop-Insurance Claim Chat for Low-Literacy Smallholder Farmers** (`Exists-but-weak`): Voice-only and photo-based **Nexconn Direct Channel** where farmers speak in local dialects and complete PMFBY crop-loss claims via 1-tap audio-guided **Message Expansion** steps.
+17. **`DementiaAnchor` - Memory-Grounded Reminiscence & Orientation Chat for Early-Stage Alzheimer's Families** (`Doesn't exist`): Family chat room where every family member's message is automatically enriched (via **Targeted Group Whispers** to the senior) with a warm relationship reminder (*"This is your grandson Rohan in Mumbai"*) and context anchor.
+18. **`CivicFix Accessible` - Barrier-Free Wheelchair & Blind Hazard Reporting Chat with Municipal SLA Cards** (`Exists-but-weak`): Differently-abled citizens report broken ramps, blocked tactile paving, or non-working audio signals via voice/photo into a **Nexconn Open Channel** where each report becomes a live SLA-tracked **Message Expansion** card.
 
 ---
 
 # Sources
 
 1. **[S1]** Nexconn Build Challenge 2026 Official Portal & Extracted Bundle (`index-BVD-GoH1.js`, Track 05 `nexconn-social-good`): `https://reskilll.com/hack/nexconn/` (Verified in `d:\Hackathons\Nexconn\research\01-facts.md`).
-2. **[S2]** Phase 1 Reconnaissance Track D — Policy, Regulatory & Accessibility Triggers (EAA June 2025, US DOJ ADA Title II April 2026, India RPwD Act / IS 17802, Bhashini, ABDM): `d:\Hackathons\Nexconn\research\D-why-now.md` & `https://www.w3.org/TR/WCAG22/`.
-3. **[S3]** Phase 1 Reconnaissance Track B — Nexconn Corporate & SDK Architecture Profile (`RCLOUD GLOBAL PTE. LTD.`, SD-CAN, AICP, Moderation, Voice-to-Text, Translation, E2EE): `d:\Hackathons\Nexconn\research\B-sponsors.md` & `https://www.nexconn.ai/`.
-4. **[S4]** Phase 1 Reconnaissance Track E — Competition Forecast & Global Hackathon Benchmarks (`Snaption Live`, `BlinkAI`, `Industry.ai`, `Truman AI Live`, `OmniBet`, `Ephemeral`, `TxGPT`): `d:\Hackathons\Nexconn\research\E-competition.md` & `https://devpost.com/software/snaption`.
-5. **[S5]** World Health Organization (WHO) — *Ageing and Health Fact Sheet* & *WHO Commission on Social Connection (2024–2026)*: `https://www.who.int/news-room/fact-sheets/detail/ageing-and-health`.
-6. **[S6]** U.S. Surgeon General Advisory — *Our Epidemic of Loneliness and Isolation* (26%–29% mortality risk increase): `https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf`.
-7. **[S7]** UNFPA & International Institute for Population Sciences (IIPS) — *India Ageing Report* (153M+ seniors, 15M+ living alone): `https://india.unfpa.org/en/publications/india-ageing-report-2023`.
-8. **[S8]** FBI Internet Crime Complaint Center (IC3) — *Elder Fraud Report* & FTC Consumer Sentinel Data ($12.5B reported / $61.5B estimated elder fraud losses): `https://www.ic3.gov/` & `https://www.ftc.gov/news-events/data-visualizations/explore-data`.
-9. **[S9]** Ministry of Home Affairs (MHA) Indian Cyber Crime Coordination Centre (I4C) & National Cyber Crime Reporting Portal (`cybercrime.gov.in` — ₹22,845 crore cyber fraud & "Digital Arrest" advisories): `https://cybercrime.gov.in/`.
-10. **[S10]** Press Information Bureau (PIB) Government of India — *Government Action Against "Digital Arrest" Scams and Fraudulent Messaging Accounts*: `https://pib.gov.in/`.
-11. **[S11]** World Health Organization (WHO) — *Global Report on Health Equity for Persons with Disabilities* (1.3 billion people / 16% of global population): `https://www.who.int/news-room/fact-sheets/detail/disability-and-health`.
-12. **[S12]** Department of Empowerment of Persons with Disabilities (DEPwD, Gov. of India) — *RPwD Act 2016 & BIS IS 17802 Accessibility Standards*: `https://depwd.gov.in/`.
-13. **[S13]** UN Office for Disaster Risk Reduction (UNDRR) & CRED EM-DAT — *Global Natural Disaster Assessment Report*: `https://www.emdat.be/`.
-14. **[S14]** National Disaster Management Authority (NDMA India) — *Aapda Mitra Volunteer Scheme, CAP SACHET Portal, and Post-Disaster Citizen Rescue Analyses (Chennai Floods / Wayanad)*: `https://ndma.gov.in/` & `https://sachet.ndma.gov.in/`.
-15. **[S15]** Ministry of Health and Family Welfare (MoHFW) & NIMHANS — *National Tele Mental Health Programme (Tele-MANAS 14416) & National Mental Health Survey*: `https://telemanas.mohfw.gov.in/`.
+2. **[S2]** Phase 1 Reconnaissance Track D - Policy, Regulatory & Accessibility Triggers (EAA June 2025, US DOJ ADA Title II April 2026, India RPwD Act / IS 17802, Bhashini, ABDM): `d:\Hackathons\Nexconn\research\D-why-now.md` & `https://www.w3.org/TR/WCAG22/`.
+3. **[S3]** Phase 1 Reconnaissance Track B - Nexconn Corporate & SDK Architecture Profile (`RCLOUD GLOBAL PTE. LTD.`, SD-CAN, AICP, Moderation, Voice-to-Text, Translation, E2EE): `d:\Hackathons\Nexconn\research\B-sponsors.md` & `https://www.nexconn.ai/`.
+4. **[S4]** Phase 1 Reconnaissance Track E - Competition Forecast & Global Hackathon Benchmarks (`Snaption Live`, `BlinkAI`, `Industry.ai`, `Truman AI Live`, `OmniBet`, `Ephemeral`, `TxGPT`): `d:\Hackathons\Nexconn\research\E-competition.md` & `https://devpost.com/software/snaption`.
+5. **[S5]** World Health Organization (WHO) - *Ageing and Health Fact Sheet* & *WHO Commission on Social Connection (2024–2026)*: `https://www.who.int/news-room/fact-sheets/detail/ageing-and-health`.
+6. **[S6]** U.S. Surgeon General Advisory - *Our Epidemic of Loneliness and Isolation* (26%–29% mortality risk increase): `https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf`.
+7. **[S7]** UNFPA & International Institute for Population Sciences (IIPS) - *India Ageing Report* (153M+ seniors, 15M+ living alone): `https://india.unfpa.org/en/publications/india-ageing-report-2023`.
+8. **[S8]** FBI Internet Crime Complaint Center (IC3) - *Elder Fraud Report* & FTC Consumer Sentinel Data ($12.5B reported / $61.5B estimated elder fraud losses): `https://www.ic3.gov/` & `https://www.ftc.gov/news-events/data-visualizations/explore-data`.
+9. **[S9]** Ministry of Home Affairs (MHA) Indian Cyber Crime Coordination Centre (I4C) & National Cyber Crime Reporting Portal (`cybercrime.gov.in` - ₹22,845 crore cyber fraud & "Digital Arrest" advisories): `https://cybercrime.gov.in/`.
+10. **[S10]** Press Information Bureau (PIB) Government of India - *Government Action Against "Digital Arrest" Scams and Fraudulent Messaging Accounts*: `https://pib.gov.in/`.
+11. **[S11]** World Health Organization (WHO) - *Global Report on Health Equity for Persons with Disabilities* (1.3 billion people / 16% of global population): `https://www.who.int/news-room/fact-sheets/detail/disability-and-health`.
+12. **[S12]** Department of Empowerment of Persons with Disabilities (DEPwD, Gov. of India) - *RPwD Act 2016 & BIS IS 17802 Accessibility Standards*: `https://depwd.gov.in/`.
+13. **[S13]** UN Office for Disaster Risk Reduction (UNDRR) & CRED EM-DAT - *Global Natural Disaster Assessment Report*: `https://www.emdat.be/`.
+14. **[S14]** National Disaster Management Authority (NDMA India) - *Aapda Mitra Volunteer Scheme, CAP SACHET Portal, and Post-Disaster Citizen Rescue Analyses (Chennai Floods / Wayanad)*: `https://ndma.gov.in/` & `https://sachet.ndma.gov.in/`.
+15. **[S15]** Ministry of Health and Family Welfare (MoHFW) & NIMHANS - *National Tele Mental Health Programme (Tele-MANAS 14416) & National Mental Health Survey*: `https://telemanas.mohfw.gov.in/`.
 16. **[S16]** *MOPSA: Enhancing Older Adults' Participation in Online Group Chats with AI-Assisted Composition and Digest*, May 2025: `https://arxiv.org/abs/2505.24224`.
 17. **[S17]** *Mixture of LoRA Experts for Dysarthric and Elderly Speech Recognition*, May 2025: `https://arxiv.org/abs/2505.22072`.
-18. **[S18]** Google Research — *SpeakFaster: Using Large Language Models to Accelerate Communication for Eye Gaze Typing Users with ALS* (*Nature Communications* / `arXiv:2403.05085`): `https://arxiv.org/abs/2403.05085`.
+18. **[S18]** Google Research - *SpeakFaster: Using Large Language Models to Accelerate Communication for Eye Gaze Typing Users with ALS* (*Nature Communications* / `arXiv:2403.05085`): `https://arxiv.org/abs/2403.05085`.
 19. **[S19]** Caregiver & Aging-in-Place Field Voices (`r/agingparents` & AARP Caregiving in the US/Global South Reports): `https://www.reddit.com/r/agingparents/` & `https://www.aarp.org/ppi/info-2020/caregiving-in- the-united-states.html`.
 20. **[S20]** Nexconn Developer Documentation (`llms.txt`, `voice-to-text`, `builtin-translation`, `auto-moderation`, `expansion`, `group-channels/direct`, `online-status-subscription`, `stream-message`, `call-sdk`, `e2ee`): `https://docs.nexconn.ai/llms.txt`.
-21. **[S21]** Be My Eyes & OpenAI — *Be My AI Accessible Visual Assistance Platform*: `https://www.bemyeyes.com/`.
-22. **[S22]** GrandPad Senior Tablet — *Purpose-Built Communication for Seniors 75+*: `https://www.grandpad.net/`.
-23. **[S23]** PulsePoint Foundation — *PulsePoint Respond Citizen CPR & Emergency Dispatch App*: `https://www.pulsepoint.org/`.
+21. **[S21]** Be My Eyes & OpenAI - *Be My AI Accessible Visual Assistance Platform*: `https://www.bemyeyes.com/`.
+22. **[S22]** GrandPad Senior Tablet - *Purpose-Built Communication for Seniors 75+*: `https://www.grandpad.net/`.
+23. **[S23]** PulsePoint Foundation - *PulsePoint Respond Citizen CPR & Emergency Dispatch App*: `https://www.pulsepoint.org/`.
 24. **[S24]** Cboard Open-Source AAC Communicator (UNICEF Innovation Fund): `https://github.com/cboard-org/cboard`.
 25. **[S25]** Sahana Eden & Ushahidi Open-Source Crisis Mapping & Disaster Management Platforms: `https://github.com/sahana/eden` & `https://github.com/ushahidi/platform`.
-26. **[S26]** Google Project Gameface — *Open-Source Hands-Free Head/Facial Gesture Cursor Control via MediaPipe*: `https://github.com/google/project-gameface`.
+26. **[S26]** Google Project Gameface - *Open-Source Hands-Free Head/Facial Gesture Cursor Control via MediaPipe*: `https://github.com/google/project-gameface`.
 27. **[S27]** CrisisNLP & *CrisisSense-LLM: Multimodal Disaster Triage and Deduplication*: `https://arxiv.org/abs/2406.15447` & `https://crisisnlp.qcri.org/`.

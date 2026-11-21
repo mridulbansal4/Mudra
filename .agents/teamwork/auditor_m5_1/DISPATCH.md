@@ -1,6 +1,6 @@
 ## 2026-10-31T19:40:00Z
 
-# Task Assignment: Wave 4 Forensic Auditor (`auditor_m5_1`) — Comprehensive Integrity Forensics Audit
+# Task Assignment: Wave 4 Forensic Auditor (`auditor_m5_1`) - Comprehensive Integrity Forensics Audit
 
 - **Your Identity**: `auditor_m5_1`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\auditor_m5_1`

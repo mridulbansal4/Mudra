@@ -1,12 +1,12 @@
-# Local Environment Setup Guide (Windows, macOS & Linux) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (DevEx & Infra Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Local Environment Setup Guide (Windows, macOS & Linux) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (DevEx & Infra Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md) · [Backend](./BACKEND.md) · [Frontend](./FRONTEND.md) · [`.env.example`](../../.env.example)
 
 ---
 
 ## 1. Prerequisites & Tooling Versions
 
-Ensure the following tools are installed before bootstrapping SAMADHAN-OS:
+Ensure the following tools are installed before bootstrapping MUDRA-OS:
 
 | Tool | Required Version | Install Command (Windows PowerShell / Winget) | Install Command (macOS / Linux) |
 |---|---|---|---|
@@ -21,8 +21,8 @@ Ensure the following tools are installed before bootstrapping SAMADHAN-OS:
 
 ### Step 1: Clone Repository & Configure `.env`
 ```bash
-git clone https://github.com/chanakya-team/samadhan-os.git
-cd samadhan-os
+git clone https://github.com/chanakya-team/mudra-os.git
+cd mudra-os
 cp .env.example .env
 ```
 Open `.env` and fill in your **Nexconn `App Key` and `Secret Key`** from [https://console.nexconn.ai](https://console.nexconn.ai) (follow the step-by-step instructions in [NEXCONN_SDK_MANUAL.md](./NEXCONN_SDK_MANUAL.md) §2) and your `GEMINI_API_KEY`.
@@ -31,7 +31,7 @@ Open `.env` and fill in your **Nexconn `App Key` and `Secret Key`** from [https:
 ```bash
 docker compose -f infra/docker/docker-compose.yml up -d
 ```
-- Starts **PostgreSQL 17** on `localhost:5432` (`postgres://samadhan:samadhan_dev_pass@localhost:5432/samadhan_os`)
+- Starts **PostgreSQL 17** on `localhost:5432` (`postgres://mudra:mudra_dev_pass@localhost:5432/mudra_os`)
 - Starts **DragonflyDB / Redis 7.4** on `localhost:6379`
 
 ### Step 3: Build the Rust WebAssembly Module (`packages/assay-wasm-rs`)
@@ -49,7 +49,7 @@ pnpm install
 ### Step 5: Start All Services in One Command (or Separate Terminals)
 ```bash
 # Terminal 1: Start Node.js 22 Official Nexconn SDK Bridge (:4001)
-pnpm --filter @samadhan/nexconn-bridge-node dev
+pnpm --filter @mudra/nexconn-bridge-node dev
 
 # Terminal 2: Start Rust 1.85 Forensic Assay & PII Verifier (:4003)
 cd services/assay-verifier-rs && cargo run --release
@@ -58,7 +58,7 @@ cd services/assay-verifier-rs && cargo run --release
 cd services/deal-engine-go && go run ./cmd/server
 
 # Terminal 4: Start React 19 + HeroUI v3 + Lit Story Frontend (http://localhost:5173)
-pnpm --filter @samadhan/web dev
+pnpm --filter @mudra/web dev
 ```
 
 ---
@@ -88,6 +88,6 @@ curl -s http://localhost:4003/health   # Rust 1.85 Assay Verifier
 | Symptom | Root Cause | Exact Fix |
 |---|---|---|
 | `pnpm install` fails on `@nexconn/server-sdk` | Git SSH vs HTTPS clone on Windows | Ensure `package.json` uses `"git+https://github.com/NexconnAI-Dev/nexconn-server-sdk-node.git#v0.1.2"`. |
-| `<nc-escrow-deal-card>` renders as plain JSON text inside chat | `registerMessageType` was called after `app.ready()` | Check `apps/web/src/lib/nexconn-boot.ts`—all `registerMessageType` calls must stay inside `NCChatUIApplication.initialize({ hooks: { beforeReady() } })`. |
+| `<nc-escrow-deal-card>` renders as plain JSON text inside chat | `registerMessageType` was called after `app.ready()` | Check `apps/web/src/lib/nexconn-boot.ts` - all `registerMessageType` calls must stay inside `NCChatUIApplication.initialize({ hooks: { beforeReady() } })`. |
 | `@nexconn/call` `startCall` hangs with no remote ring | `NCCallEngine` invoked before `NCEngine.connect` finished | Ensure `await NCEngine.connect({ token })` resolves before calling `NCCallEngine.getInstance()`. |
 | No webcam attached on desktop / permission denied | Browser `NotFoundError` / `NotAllowedError` | Toggle **"Use Simulated HD Inspection Video Stream"** on `/onboarding` or in the `/sandbox` top bar (`FF_SIMULATED_HD_CAMERA=true`). |

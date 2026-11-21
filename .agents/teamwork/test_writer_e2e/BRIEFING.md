@@ -1,4 +1,4 @@
-# BRIEFING — 2026-10-31T19:19:00Z
+# BRIEFING - 2026-10-31T19:19:00Z
 
 ## Mission
 Design and build the E2E Testing Track deliverables (`TEST_INFRA.md`, `tests/run_e2e_tests.py`, and `TEST_READY.md`) for the Nexconn Build Challenge 2026 War-Room Council project (`d:\Hackathons\Nexconn`).
@@ -47,7 +47,7 @@ Design and build the E2E Testing Track deliverables (`TEST_INFRA.md`, `tests/run
 - **Tests added/modified**: Created `d:\Hackathons\Nexconn\tests\run_e2e_tests.py` (`189` E2E tests + `6` negative mutation checks), `d:\Hackathons\Nexconn\TEST_INFRA.md`, and `d:\Hackathons\Nexconn\TEST_READY.md`.
 
 ## Artifact Index
-- `d:\Hackathons\Nexconn\TEST_INFRA.md` — Test infrastructure specification
-- `d:\Hackathons\Nexconn\tests\run_e2e_tests.py` — 4-tier E2E test runner and self-test suite
-- `d:\Hackathons\Nexconn\TEST_READY.md` — E2E test suite readiness declaration
-- `d:\Hackathons\Nexconn\.agents\teamwork\test_writer_e2e\handoff.md` — 5-component hard handoff report
+- `d:\Hackathons\Nexconn\TEST_INFRA.md` - Test infrastructure specification
+- `d:\Hackathons\Nexconn\tests\run_e2e_tests.py` - 4-tier E2E test runner and self-test suite
+- `d:\Hackathons\Nexconn\TEST_READY.md` - E2E test suite readiness declaration
+- `d:\Hackathons\Nexconn\.agents\teamwork\test_writer_e2e\handoff.md` - 5-component hard handoff report

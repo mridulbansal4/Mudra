@@ -1,5 +1,5 @@
-# Coding Standards & Polyglot Linting — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Engineering Standards Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
+# Coding Standards & Polyglot Linting - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Engineering Standards Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Frontend](./FRONTEND.md) · [Backend](./BACKEND.md) · [Testing](./TESTING.md)
 
 ---
@@ -24,7 +24,7 @@
 - **React 19 & HeroUI v3 Components**: `PascalCase` files & components (`DealWorkbenchPage.tsx`, `VideoAssayPiPLoupe.tsx`), compound subcomponents (`<Card><Card.Header>...`), event props always `onPress` (never `onClick` on HeroUI buttons).
 - **Custom Lit Web Components (`packages/nc-lit-cards`)**:
   - Custom element tag names: `kebab-case` prefixed with `nc-` (`<nc-escrow-deal-card>`, `<nc-bilingual-bubble>`, `<nc-video-assay-receipt>`, `<nc-tribunal-verdict-card>`).
-  - Nexconn `objectName` registration identifiers: `x-samadhan-escrow-card`, `x-samadhan-bilingual-bubble`, `x-samadhan-assay-receipt`, `x-samadhan-tribunal-verdict`.
+  - Nexconn `objectName` registration identifiers: `x-mudra-escrow-card`, `x-mudra-bilingual-bubble`, `x-mudra-assay-receipt`, `x-mudra-tribunal-verdict`.
 
 ---
 

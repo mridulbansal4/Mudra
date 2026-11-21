@@ -109,7 +109,7 @@ function toGray(rgba: Uint8ClampedArray, w: number, h: number): Float64Array {
   return g;
 }
 
-/** Variance of the 3x3 Laplacian — higher is sharper. Same metric as assay-wasm-rs::laplacian_variance. */
+/** Variance of the 3x3 Laplacian - higher is sharper. Same metric as assay-wasm-rs::laplacian_variance. */
 export function laplacianVariance(rgba: Uint8ClampedArray, w: number, h: number): number {
   const g = toGray(rgba, w, h);
   let sum = 0;

@@ -1,5 +1,5 @@
 # ADR-0005: PostgreSQL 17 Serializable Escrow State + Ed25519 Hash-Chained `System` Channel Ledger
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Data & Cryptography Lead) · Status: Accepted · Last updated: 2026-11-10
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Data & Cryptography Lead) · Status: Accepted · Last updated: 2026-11-10
 > Related: [Data Model](../DATA_MODEL.md) · [Backend](../BACKEND.md) · [Security Architecture](../../06-security-compliance/SECURITY_ARCHITECTURE.md)
 
 ---
@@ -16,8 +16,8 @@ When a ₹1,45,000 commercial deal is negotiated inside a chat room, we need ACI
 - Guarantee `< 1.2ms` p99 state mutation latency and `24h` idempotency on retryable network requests.
 
 ## Considered Options
-1. **Option A: Public EVM Smart Contract Escrow**: Rejected—introduces 2–12s block latency, crypto wallet friction for Indian MSME traders, and regulatory ambiguity.
-2. **Option B: Unversioned CRUD updates in PostgreSQL from Node.js**: Rejected—vulnerable to TOCTOU race conditions when a buyer triggers dispute freeze at the same millisecond a seller claims payout.
+1. **Option A: Public EVM Smart Contract Escrow**: Rejected - introduces 2–12s block latency, crypto wallet friction for Indian MSME traders, and regulatory ambiguity.
+2. **Option B: Unversioned CRUD updates in PostgreSQL from Node.js**: Rejected - vulnerable to TOCTOU race conditions when a buyer triggers dispute freeze at the same millisecond a seller claims payout.
 3. **Option C: PostgreSQL 17 Optimistic Version Locking (`version`) + DragonflyDB / Redis 7.4 `24h` Idempotency in Go 1.24 + Ed25519 Hash-Chained Vouchers in the Nexconn `System` Channel**.
 
 ## Decision Outcome

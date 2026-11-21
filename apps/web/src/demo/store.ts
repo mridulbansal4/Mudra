@@ -1,4 +1,4 @@
-import type { FsmAction, FsmState } from "@samadhan/shared-types";
+import type { FsmAction, FsmState } from "@mudra/shared-types";
 import { connectDemoBroadcast } from "./broadcast";
 import {
   applyFsmMove,
