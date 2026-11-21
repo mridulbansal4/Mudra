@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Build from the repo root or this directory:
-#   docker build -t samadhan/deal-engine-go services/deal-engine-go
+#   docker build -t mudra/deal-engine-go services/deal-engine-go
 FROM golang:1.24-alpine AS build
 WORKDIR /src
 COPY go.mod ./

@@ -1,6 +1,6 @@
 ## 2026-10-31T18:28:00Z
 
-# Task Assignment: Domain Explorer 3 & 4 (`teamwork_explorer_domains_3_4`) — Deep Research & War-Room Blueprints for Track 03 (`nexconn-workplace`) & Track 04 (`nexconn-support`)
+# Task Assignment: Domain Explorer 3 & 4 (`teamwork_explorer_domains_3_4`) - Deep Research & War-Room Blueprints for Track 03 (`nexconn-workplace`) & Track 04 (`nexconn-support`)
 
 - **Your Identity**: `teamwork_explorer_domains_3_4`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_3_4`
@@ -16,8 +16,8 @@
 
 ## Objective
 Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation blueprints for:
-- **Track 03 (`nexconn-workplace` — Workplace & Collaboration)**: *"Direct messaging and team project threads"* (Sample builds: Direct messaging for teams; Project discussion threads; Shift handover channel)
-- **Track 04 (`nexconn-support` — Marketplace & Support)**: *"Buyer-seller chat and customer service"* (Sample builds: Buyer-seller 1-on-1 chat; Human agent dispatch center; Multi-language translated chat)
+- **Track 03 (`nexconn-workplace` - Workplace & Collaboration)**: *"Direct messaging and team project threads"* (Sample builds: Direct messaging for teams; Project discussion threads; Shift handover channel)
+- **Track 04 (`nexconn-support` - Marketplace & Support)**: *"Buyer-seller chat and customer service"* (Sample builds: Buyer-seller 1-on-1 chat; Human agent dispatch center; Multi-language translated chat)
 
 ## Required Deliverables in `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_3_4\handoff.md`
 For **EACH** of the two tracks (`nexconn-workplace` and `nexconn-support`), provide:

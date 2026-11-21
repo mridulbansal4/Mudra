@@ -101,4 +101,4 @@ Implements API-01..API-18 from `API_SPEC.md` (request/response shapes there), wi
 - `GET /api/v1/dispatch/queue` → `{ disputes: [DisputeView] }`
 - `GET /api/v1/arena/:runId` → current run state
 
-Auth: HS256 JWT (`SAMADHAN_JWT_SECRET`, dev default) in `Authorization: Bearer`. Sandbox provision returns `samadhan_jwt` inside both `buyer_session` and `seller_session`. Arena, telemetry, open-lots, sandbox and auth are public. Idempotency: `X-Idempotency-Key` on POST mutations, 24 h in-memory TTL cache keyed by (key, route), replays return the cached status+body with header `Idempotent-Replay: true`.
+Auth: HS256 JWT (`MUDRA_JWT_SECRET`, dev default) in `Authorization: Bearer`. Sandbox provision returns `mudra_jwt` inside both `buyer_session` and `seller_session`. Arena, telemetry, open-lots, sandbox and auth are public. Idempotency: `X-Idempotency-Key` on POST mutations, 24 h in-memory TTL cache keyed by (key, route), replays return the cached status+body with header `Idempotent-Replay: true`.

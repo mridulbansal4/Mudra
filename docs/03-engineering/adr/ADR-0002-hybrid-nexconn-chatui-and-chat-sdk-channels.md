@@ -1,5 +1,5 @@
 # ADR-0002: Hybrid `@nexconn/chatui` + `@nexconn/chat` (`NCEngine`) Multi-Channel Architecture & Call Boot Barrier
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Nexconn SDK Lead) · Status: Accepted · Last updated: 2026-11-10
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Nexconn SDK Lead) · Status: Accepted · Last updated: 2026-11-10
 > Related: [Project Brief](../../00-overview/PROJECT_BRIEF.md) · [Nexconn SDK Manual](../NEXCONN_SDK_MANUAL.md) · [Frontend](../FRONTEND.md)
 
 ---
@@ -19,8 +19,8 @@ As verified in `nexconn-skills/skills/chatui-web/SKILL.md` (`research/01-facts.m
 - Prevent silent WebRTC signaling failures from premature `NCCallEngine` initialization (`R-01`).
 
 ## Considered Options
-1. **Option A: Use only `@nexconn/chatui` (`<nc-chat-ui-app-provider>`) for all channels**: Rejected—`@nexconn/chatui@^26.2.5` does not support `Open` or `Community` channels (`R-02`), forfeiting 2 of the 5 channel types in the 25% Nexconn SDK rubric.
-2. **Option B: Build a 100% custom React chat UI from scratch on `@nexconn/chat`**: Rejected—wastes 40+ engineering hours reimplementing virtualized message timelines, read receipts, and typing indicators already provided by `@nexconn/chatui`.
+1. **Option A: Use only `@nexconn/chatui` (`<nc-chat-ui-app-provider>`) for all channels**: Rejected - `@nexconn/chatui@^26.2.5` does not support `Open` or `Community` channels (`R-02`), forfeiting 2 of the 5 channel types in the 25% Nexconn SDK rubric.
+2. **Option B: Build a 100% custom React chat UI from scratch on `@nexconn/chat`**: Rejected - wastes 40+ engineering hours reimplementing virtualized message timelines, read receipts, and typing indicators already provided by `@nexconn/chatui`.
 3. **Option C: Hybrid Architecture (`@nexconn/chatui` for `Direct`/`Group`/`System` + `@nexconn/chat` `NCEngine` for `Community`/`Open` + strict `NCEngine.connect` boot barrier for `@nexconn/call`)**.
 
 ## Decision Outcome

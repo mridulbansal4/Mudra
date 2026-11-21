@@ -1,12 +1,12 @@
-# System Architecture (C4 Model & Polyglot Flows) — SAMADHAN-OS (`SamvadDeal`)
-> Project: **SAMADHAN-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Chief Systems Architect) · Status: Draft v0.1 · Last updated: 2026-11-10
+# System Architecture (C4 Model & Polyglot Flows) - MUDRA-OS (`SamvadDeal`)
+> Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Chief Systems Architect) · Status: Draft v0.1 · Last updated: 2026-11-10
 > Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Tech Stack](./TECH_STACK.md) · [Data Model](./DATA_MODEL.md) · [API Spec](./API_SPEC.md) · [Nexconn SDK Manual](./NEXCONN_SDK_MANUAL.md) · [ADR-0001](./adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md)
 
 ---
 
 ## 1. Architectural Philosophy: Non-Dual Protocol Unity + Systems Speed
 
-SAMADHAN-OS is architected around two non-negotiable engineering axioms:
+MUDRA-OS is architected around two non-negotiable engineering axioms:
 1. **The Nexconn Channel IS the State Machine**: Instead of treating chat as a side widget next to external web forms, `<nc-chat-ui-app-provider>` (`@nexconn/chatui@^26.2.5`), `NCEngine` (`@nexconn/chat@^26.2.1`), `NCCallEngine` (`@nexconn/call@^26.2.0`), and `@nexconn/server-sdk@0.1.2` form the unified real-time bus for negotiation, custom Lit escrow milestone cards, live WebRTC video inspection, and channel-freeze arbitration.
 2. **Zero-Python Polyglot Systems Performance (`ADR-0001`)**:
    - **Go 1.24 (`services/deal-engine-go`, `:4002`)**: Executes lock-free/serializable escrow finite-state machine transitions (`<1.2ms` p99), optimistic concurrency checks, high-throughput `Open` channel auction bids, and HMAC-verified UPI/ONDC webhooks.
@@ -15,7 +15,7 @@ SAMADHAN-OS is architected around two non-negotiable engineering axioms:
 
 ---
 
-## 2. C4 Level 1 — System Context Diagram
+## 2. C4 Level 1 - System Context Diagram
 
 ```mermaid
 flowchart TB
@@ -27,7 +27,7 @@ flowchart TB
         P5["P-05: Hackathon Judge (2 AM Split-Screen Mode)"]
     end
 
-    SAMADHAN["SAMADHAN-OS (SamvadDeal)\nReal-Time Cross-Lingual Video-Escrow &\n90s Channel-Freeze Arbitration OS"]
+    MUDRA["MUDRA-OS (SamvadDeal)\nReal-Time Cross-Lingual Video-Escrow &\n90s Channel-Freeze Arbitration OS"]
 
     subgraph External["External Cloud & DPI Systems"]
         NC["Nexconn Cloud Platform\n(api.nexconn.ai / console.nexconn.ai)\nIM + ChatUI + WebRTC Call + v4 Server Stream"]
@@ -35,15 +35,15 @@ flowchart TB
         RAILS["UPI ASBA Mandate / RBI PA-Escrow &\nONDC Beckn Webhook Sandbox"]
     end
 
-    P1 & P2 & P3 & P4 & P5 <-->|"HTTPS / WSS / WebRTC"| SAMADHAN
-    SAMADHAN <-->|"IM Socket + WebRTC + v4 REST/Stream"| NC
-    SAMADHAN <-->|"HTTP/2 SSE Streaming"| LLM
-    SAMADHAN <-->|"HMAC-SHA256 Webhooks"| RAILS
+    P1 & P2 & P3 & P4 & P5 <-->|"HTTPS / WSS / WebRTC"| MUDRA
+    MUDRA <-->|"IM Socket + WebRTC + v4 REST/Stream"| NC
+    MUDRA <-->|"HTTP/2 SSE Streaming"| LLM
+    MUDRA <-->|"HMAC-SHA256 Webhooks"| RAILS
 ```
 
 ---
 
-## 3. C4 Level 2 — Container Diagram
+## 3. C4 Level 2 - Container Diagram
 
 ```mermaid
 flowchart TB
@@ -81,7 +81,7 @@ flowchart TB
 
 ---
 
-## 4. C4 Level 3 — Component Architecture of the Three Backend Services & Client Bridge
+## 4. C4 Level 3 - Component Architecture of the Three Backend Services & Client Bridge
 
 ```mermaid
 flowchart LR

@@ -1,13 +1,13 @@
-# MAP.md — Master Navigation Guide for SAMADHAN-OS (`SamvadDeal`)
+# MAP.md - Master Navigation Guide for MUDRA-OS (`SamvadDeal`)
 
-Welcome to the **SAMADHAN-OS (`SamvadDeal`)** repository bible (`PS-03 Marketplace & Support`, **Nexconn Build Challenge 2026**, Team `Chanakya`). Every document in this repository derives its canonical IDs (`F-01`..`F-14`, `P-01`..`P-05`, `E-01`..`E-10`, `API-01`..`API-18`, `M-01`..`M-05`, `R-01`..`R-12`, `ADR-0001`..`ADR-0006`) from **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)**.
+Welcome to the **MUDRA-OS (`SamvadDeal`)** repository bible (`PS-03 Marketplace & Support`, **Nexconn Build Challenge 2026**, Team `Chanakya`). Every document in this repository derives its canonical IDs (`F-01`..`F-14`, `P-01`..`P-05`, `E-01`..`E-10`, `API-01`..`API-18`, `M-01`..`M-05`, `R-01`..`R-12`, `ADR-0001`..`ADR-0006`) from **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)**.
 
 ---
 
 ## 1. Full Repository Directory Tree (One-Line Purpose per File & Folder)
 
 ```text
-samadhan-os/
+mudra-os/
 ├── README.md                                  # Front door: problem, PS-03 mapping, 9-route story flow, Go/Rust/Node stack, quick start
 ├── MAP.md                                     # This file: complete directory map, lookup table, dependency graph & reading orders
 ├── CLAUDE.md                                  # Primary instructions, build/test/eval commands & golden rules for AI coding agents
@@ -175,13 +175,13 @@ samadhan-os/
 flowchart TD
     PB["docs/00-overview/PROJECT_BRIEF.md\n(Canonical Source of Truth)"]
 
-    subgraph Overview["00 — Overview"]
+    subgraph Overview["00 - Overview"]
         VIS["VISION.md"]
         PIT["PITCH.md"]
         HP["HACKATHON_PLAN.md"]
     end
 
-    subgraph Product["01 — Product"]
+    subgraph Product["01 - Product"]
         PRD["PRD.md"]
         PER["PERSONAS.md (P-01..P-05)"]
         UJ["USER_JOURNEYS.md (9 Routes)"]
@@ -190,14 +190,14 @@ flowchart TD
         MET["METRICS.md"]
     end
 
-    subgraph Design["02 — Design"]
+    subgraph Design["02 - Design"]
         DS["DESIGN_SYSTEM.md\n(Hallmark + Unslop + Apple + HeroUI)"]
         UI["UI_SPEC.md"]
         A11Y["ACCESSIBILITY.md"]
         L10N["LOCALIZATION.md"]
     end
 
-    subgraph Engineering["03 — Engineering & API"]
+    subgraph Engineering["03 - Engineering & API"]
         ARCH["ARCHITECTURE.md"]
         NCM["NEXCONN_SDK_MANUAL.md"]
         DM["DATA_MODEL.md (E-01..E-10)"]
@@ -207,13 +207,13 @@ flowchart TD
         ADRS["adr/ADR-0001..ADR-0006"]
     end
 
-    subgraph AI["04 — AI & Evals"]
+    subgraph AI["04 - AI & Evals"]
         MOD["MODELS.md (M-01..M-05)"]
         PRM["PROMPTS.md"]
         EVAL["AI_EVALS.md"]
     end
 
-    subgraph OpsSecBiz["05–08 — Ops, Security, Business & Backlog"]
+    subgraph OpsSecBiz["05–08 - Ops, Security, Business & Backlog"]
         OPS["CICD.md / RUNBOOK.md / SLA.md"]
         SEC["SECURITY_ARCHITECTURE.md / PRIVACY.md / RISK_REGISTER.md (R-01..R-12)"]
         BIZ["BUSINESS_MODEL.md / GTM.md / FINANCIALS.md"]
@@ -234,32 +234,32 @@ flowchart TD
 
 ## 4. Recommended Reading Orders by Role
 
-### Path A — Hackathon Judge (`P-05`, 5-Minute Evaluation Path)
-1. **[`README.md`](README.md)** — Problem, all 3 `PS-03` sub-prompts, 9-route beginner story flow, and polyglot Go + Rust + Node architecture overview.
-2. **[`docs/00-overview/PITCH.md`](docs/00-overview/PITCH.md)** — 90-second live demo choreography, why our architecture wins, and answers to the 12 toughest judge questions.
-3. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** — Proof of deep mastery across `@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, `@nexconn/server-sdk`, and all 5 channel types (`Direct`, `Group`, `Community`, `Open`, `System`).
-4. **[`docs/03-engineering/ARCHITECTURE.md`](docs/03-engineering/ARCHITECTURE.md)** & **[`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md)** — How Go 1.24 (`< 1.2ms` Escrow FSM) and Rust 1.85 + WASM (`< 5ms` `pHash`/FFT + `< 300µs` DPDP PII scrub) power real-time chat commerce.
-5. **[`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md)** — Walkthrough of `/sandbox` (1-Click Split-Screen Buyer + Seller + AI Judge Mode) and `/traction` (live App Key `Ke` MAU telemetry).
+### Path A - Hackathon Judge (`P-05`, 5-Minute Evaluation Path)
+1. **[`README.md`](README.md)** - Problem, all 3 `PS-03` sub-prompts, 9-route beginner story flow, and polyglot Go + Rust + Node architecture overview.
+2. **[`docs/00-overview/PITCH.md`](docs/00-overview/PITCH.md)** - 90-second live demo choreography, why our architecture wins, and answers to the 12 toughest judge questions.
+3. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** - Proof of deep mastery across `@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, `@nexconn/server-sdk`, and all 5 channel types (`Direct`, `Group`, `Community`, `Open`, `System`).
+4. **[`docs/03-engineering/ARCHITECTURE.md`](docs/03-engineering/ARCHITECTURE.md)** & **[`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md)** - How Go 1.24 (`< 1.2ms` Escrow FSM) and Rust 1.85 + WASM (`< 5ms` `pHash`/FFT + `< 300µs` DPDP PII scrub) power real-time chat commerce.
+5. **[`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md)** - Walkthrough of `/sandbox` (1-Click Split-Screen Buyer + Seller + AI Judge Mode) and `/traction` (live App Key `Ke` MAU telemetry).
 
-### Path B — New Developer Joining Team `Chanakya`
-1. **[`CLAUDE.md`](CLAUDE.md)** — 10-line summary, canonical commands, and Do/Don't checklist.
-2. **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)** — Canonical IDs (`F-01`..`F-14`, `E-01`..`E-10`, `API-01`..`API-18`).
-3. **[`docs/03-engineering/ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md)** — Get PostgreSQL 17, DragonflyDB / Redis 7.4, Go `:4002`, Rust `:4003`, Node `:4001`, and Web `:5173` running in `< 10` minutes.
-4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** — Learn the 5 Golden Rules of Nexconn SDK integration.
-5. **[`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md)** & **[`docs/03-engineering/API_SPEC.md`](docs/03-engineering/API_SPEC.md)** — Understand the database tables and REST/SSE contracts.
-6. **[`docs/08-project/BACKLOG.md`](docs/08-project/BACKLOG.md)** — Pick up your assigned P0/P1 sprint task.
+### Path B - New Developer Joining Team `Chanakya`
+1. **[`CLAUDE.md`](CLAUDE.md)** - 10-line summary, canonical commands, and Do/Don't checklist.
+2. **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)** - Canonical IDs (`F-01`..`F-14`, `E-01`..`E-10`, `API-01`..`API-18`).
+3. **[`docs/03-engineering/ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md)** - Get PostgreSQL 17, DragonflyDB / Redis 7.4, Go `:4002`, Rust `:4003`, Node `:4001`, and Web `:5173` running in `< 10` minutes.
+4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** - Learn the 5 Golden Rules of Nexconn SDK integration.
+5. **[`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md)** & **[`docs/03-engineering/API_SPEC.md`](docs/03-engineering/API_SPEC.md)** - Understand the database tables and REST/SSE contracts.
+6. **[`docs/08-project/BACKLOG.md`](docs/08-project/BACKLOG.md)** - Pick up your assigned P0/P1 sprint task.
 
-### Path C — Frontend & Mobile UI Engineer (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` + `/heroui-native`)
-1. **[`docs/02-design/DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md)** — Hallmark `v2.0.0` picks block, Unslop 5-line Direction, warm customs-ledger `oklch` tokens, Apple Fluid Motion springs (`damping: 1.0`), and HeroUI v3 React / HeroUI Native v2 rules.
-2. **[`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md)** — Screen-by-screen ASCII wireframes, 9-route beginner story flow, **4-Stage Deal Story Bar**, and 6-state matrix.
-3. **[`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md)** — React 19 + Tailwind v4 + `@heroui/react@^3.0.1` + Lit v3 `<nc-escrow-deal-card>` Shadow DOM event bridge + `setPointerCapture` WebRTC PiP loupe.
-4. **[`docs/03-engineering/MOBILE.md`](docs/03-engineering/MOBILE.md)** — Expo SDK 53 + `heroui-native@^2.0.1` + `uniwind` field companion.
-5. **[`docs/02-design/ACCESSIBILITY.md`](docs/02-design/ACCESSIBILITY.md)** & **[`docs/02-design/LOCALIZATION.md`](docs/02-design/LOCALIZATION.md)** — WCAG 2.2 AA, Shadow DOM screen reader announcements, and `EN`/`HI`/`MR`/`TA` typography.
+### Path C - Frontend & Mobile UI Engineer (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` + `/heroui-native`)
+1. **[`docs/02-design/DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md)** - Hallmark `v2.0.0` picks block, Unslop 5-line Direction, warm customs-ledger `oklch` tokens, Apple Fluid Motion springs (`damping: 1.0`), and HeroUI v3 React / HeroUI Native v2 rules.
+2. **[`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md)** - Screen-by-screen ASCII wireframes, 9-route beginner story flow, **4-Stage Deal Story Bar**, and 6-state matrix.
+3. **[`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md)** - React 19 + Tailwind v4 + `@heroui/react@^3.0.1` + Lit v3 `<nc-escrow-deal-card>` Shadow DOM event bridge + `setPointerCapture` WebRTC PiP loupe.
+4. **[`docs/03-engineering/MOBILE.md`](docs/03-engineering/MOBILE.md)** - Expo SDK 53 + `heroui-native@^2.0.1` + `uniwind` field companion.
+5. **[`docs/02-design/ACCESSIBILITY.md`](docs/02-design/ACCESSIBILITY.md)** & **[`docs/02-design/LOCALIZATION.md`](docs/02-design/LOCALIZATION.md)** - WCAG 2.2 AA, Shadow DOM screen reader announcements, and `EN`/`HI`/`MR`/`TA` typography.
 
-### Path D — AI Coding Agent (Autonomous Implementation Loop)
-1. **[`CLAUDE.md`](CLAUDE.md)** & **[`AGENTS.md`](AGENTS.md)** — Commands, architectural invariants, and forbidden patterns.
-2. **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)** — Canonical IDs across features, entities, APIs, models, and risks.
-3. **[`api/openapi.yaml`](api/openapi.yaml)** & **[`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md)** — Machine-readable API and SQL contracts.
-4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** — Exact TypeScript patterns for all 4 Nexconn packages.
-5. **[`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md)** & **[`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md)** — Service implementation blueprints for Go 1.24, Rust 1.85 + WASM, Node 22, and React 19 + HeroUI v3.
-6. **[`docs/04-ai/PROMPTS.md`](docs/04-ai/PROMPTS.md)** & **[`docs/04-ai/AI_EVALS.md`](docs/04-ai/AI_EVALS.md)** — Prompt templates, schemas, and evaluation gates.
+### Path D - AI Coding Agent (Autonomous Implementation Loop)
+1. **[`CLAUDE.md`](CLAUDE.md)** & **[`AGENTS.md`](AGENTS.md)** - Commands, architectural invariants, and forbidden patterns.
+2. **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)** - Canonical IDs across features, entities, APIs, models, and risks.
+3. **[`api/openapi.yaml`](api/openapi.yaml)** & **[`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md)** - Machine-readable API and SQL contracts.
+4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** - Exact TypeScript patterns for all 4 Nexconn packages.
+5. **[`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md)** & **[`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md)** - Service implementation blueprints for Go 1.24, Rust 1.85 + WASM, Node 22, and React 19 + HeroUI v3.
+6. **[`docs/04-ai/PROMPTS.md`](docs/04-ai/PROMPTS.md)** & **[`docs/04-ai/AI_EVALS.md`](docs/04-ai/AI_EVALS.md)** - Prompt templates, schemas, and evaluation gates.

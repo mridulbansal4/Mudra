@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/hrtime"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/hrtime"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )

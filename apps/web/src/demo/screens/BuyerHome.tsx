@@ -1,4 +1,4 @@
-import { storyStage } from "@samadhan/shared-types";
+import { storyStage } from "@mudra/shared-types";
 import {
   BadgeCheck,
   Gift,
@@ -54,7 +54,7 @@ export function BuyerHome({ state, dispatch }: BuyerHomeProps) {
         <ListRow icon={ReceiptText} label="signed receipts" value="14" onClick={openChat} />
       </ListGroup>
 
-      <Eyebrow className="mt-8 mb-3">EXPLORE SAMADHAN</Eyebrow>
+      <Eyebrow className="mt-8 mb-3">EXPLORE MUDRA</Eyebrow>
       <div className="grid grid-cols-4 gap-3 items-start justify-items-center">
         <IconTile icon={Handshake} label="deals" onClick={openChat} />
         <IconTile

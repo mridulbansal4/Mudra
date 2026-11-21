@@ -191,7 +191,7 @@ export class NotFoundException extends ApiException {
     }
 }
 
-/** HTTP 409 Conflict — e.g. resource already exists. */
+/** HTTP 409 Conflict - e.g. resource already exists. */
 export class ConflictException extends ApiException {
     constructor(message: string, httpStatus: number, headers?: Record<string, string>, body?: string, cause?: Error) {
         super(message, httpStatus, headers, body, cause);
@@ -207,7 +207,7 @@ export class UnprocessableEntityException extends ApiException {
     }
 }
 
-/** HTTP 429 Too Many Requests — rate limited. */
+/** HTTP 429 Too Many Requests - rate limited. */
 export class TooManyRequestsException extends ApiException {
     constructor(message: string, httpStatus: number, headers?: Record<string, string>, body?: string, cause?: Error) {
         super(message, httpStatus, headers, body, cause);

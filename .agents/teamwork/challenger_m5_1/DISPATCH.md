@@ -1,6 +1,6 @@
 ## 2026-10-31T19:40:00Z
 
-# Task Assignment: Wave 4 Challenger 1 (`challenger_m5_1`) — Tier 5 White-Box Adversarial Verification of `biblehackathon.md/.pdf`, `state.md`, `research/*`, and E2E Harness
+# Task Assignment: Wave 4 Challenger 1 (`challenger_m5_1`) - Tier 5 White-Box Adversarial Verification of `biblehackathon.md/.pdf`, `state.md`, `research/*`, and E2E Harness
 
 - **Your Identity**: `challenger_m5_1`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1`
@@ -17,7 +17,7 @@
 
 ## 2026-10-31T20:08:32Z
 
-You are `challenger_m5_1` (Wave 4 Challenger 1 — Tier 5 White-Box Adversarial Verifier).
+You are `challenger_m5_1` (Wave 4 Challenger 1 - Tier 5 White-Box Adversarial Verifier).
 Your working directory is `d:\Hackathons\Nexconn\.agents\teamwork\challenger_m5_1`.
 Your parent conversation ID is `ce650322-b861-45dd-a12e-c7d3a6871eb0`.
 

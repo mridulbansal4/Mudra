@@ -7,7 +7,7 @@ const FEATURES = [
     title: "Custom Lit message cards",
     where: "packages/nc-lit-cards/src · apps/web/src/lib/nexconn-boot.ts",
     calls: ["NCChatUIApplication.initialize({ hooks })", "app.registerCustomMessages([...])  // before ready()", "app.ready()"],
-    body: "Four Lit 3 web components render escrow, translation, assay and tribunal messages. Actions leave the Shadow DOM as a composed samadhan-deal-action event that React handles once.",
+    body: "Four Lit 3 web components render escrow, translation, assay and tribunal messages. Actions leave the Shadow DOM as a composed mudra-deal-action event that React handles once.",
   },
   {
     id: "stream",

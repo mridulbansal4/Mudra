@@ -1,6 +1,6 @@
 # deal-engine-go (:4002)
 
-Go public API gateway and deterministic escrow FSM for SAMADHAN-OS. It implements API-01..API-18 plus the extras in
+Go public API gateway and deterministic escrow FSM for MUDRA-OS. It implements API-01..API-18 plus the extras in
 `docs/03-engineering/IMPLEMENTATION_CONTRACT.md` §8. It uses only the standard library: no third-party modules and no `go.sum`.
 
 ## Run
@@ -18,7 +18,7 @@ go test ./...                # add -race if gcc/cgo is available
 | `RUST_ASSAY_VERIFIER_URL` | `http://localhost:4003` |
 | `INTERNAL_SERVICE_HMAC_SECRET` | unset, so internal calls go unsigned |
 | `UPI_WEBHOOK_HMAC_SECRET` | dev value from `.env.example` |
-| `SAMADHAN_JWT_SECRET` | dev default (a warning is logged) |
+| `MUDRA_JWT_SECRET` | dev default (a warning is logged) |
 | `ASSAY_ED25519_PRIVATE_KEY_HEX` | dev seed from `.env.example` |
 | `CORS_ALLOWED_ORIGINS` | adds origins to `http://localhost:5173` and `http://127.0.0.1:5173` |
 
@@ -61,11 +61,11 @@ no whitespace and no HTML escaping. The genesis prev hash is 64 zeros. The Ed255
 - **Idempotency:** `X-Idempotency-Key` on any POST, cached in memory for 24 h and keyed by (key, method+path). A replay returns
   the cached status and body with `Idempotent-Replay: true`. A duplicate that arrives while the first request is in flight gets
   `409 ERR_IDEMPOTENCY_IN_PROGRESS`. 5xx responses are not cached.
-- **Webhook API-17:** verifies `X-Samadhan-Signature` (hex HMAC-SHA256 of the raw body, constant-time compare) and allows ±300 s
+- **Webhook API-17:** verifies `X-Mudra-Signature` (hex HMAC-SHA256 of the raw body, constant-time compare) and allows ±300 s
   on `timestamp_unix`. It is idempotent on `event_id`.
 
 ## Docker
 
 ```bash
-docker build -t samadhan/deal-engine-go services/deal-engine-go
+docker build -t mudra/deal-engine-go services/deal-engine-go
 ```

@@ -1,6 +1,6 @@
 # Original User Request
 
-## Initial Request — 2026-10-31T18:04:18Z
+## Initial Request - 2026-10-31T18:04:18Z
 
 Use many agents to research everything like Use as many agents as you want. Use the maximum number of agents but do the work perfectly. Research the Nexconn hackathon (`https://reskilll.com/hack/nexconn/`) and the company Nexconn using the `war-room-council` skill (`C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md`) and the `agent-browser` skill (`C:\Users\Harshad\.gemini\config\skills\agent-browser\SKILL.md`) to analyze all tracks, judging criteria, resources, company services/tools, global hackathon winners, and research papers, debate 2–3+ feasible real-world ideas per track via the war-room council, rank the tracks, and select the best winning track and idea.
 
@@ -18,7 +18,7 @@ Reference material:
 Follow the `war-room-council` skill (`C:\Users\Harshad\.gemini\config\skills\war-room-council\SKILL.md`) and use the `agent-browser` skill (`C:\Users\Harshad\.gemini\config\skills\agent-browser\SKILL.md`) to do full background research on `https://reskilll.com/hack/nexconn/`, covering all tracks (including Open Innovation), judging criteria, required tools/SDKs, and website resources. Incorporate how Reskilll hackathons operate and are evaluated to identify where to build and win.
 
 ### R2. Deep Company Research on Nexconn
-Study the company Nexconn in depth—its philosophy, mentality, products, services, and tools/SDKs. Connect how Nexconn's services and tools can be leveraged to create a much larger real-world impact and stand out among all participants.
+Study the company Nexconn in depth - its philosophy, mentality, products, services, and tools/SDKs. Connect how Nexconn's services and tools can be leveraged to create a much larger real-world impact and stand out among all participants.
 
 ### R3. Global Hackathon Winners and Research Papers
 Research global hackathon winners, prior hackathon projects, and relevant research papers that fit the hackathon tracks (or Open Innovation where fitting using Nexconn's tools) and can be replicated or adapted using Nexconn's services, tools, or SDKs.

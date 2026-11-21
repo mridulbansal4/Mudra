@@ -1,4 +1,4 @@
-# Handoff Report — `worker_m1_recon` (Milestone M1: Recon & Connect-the-Dots, Features F1–F8)
+# Handoff Report - `worker_m1_recon` (Milestone M1: Recon & Connect-the-Dots, Features F1–F8)
 
 - **Handoff Type**: **Hard Handoff** (Task Complete)
 - **Agent**: `worker_m1_recon` (`3f019e59-6ac5-4c27-867a-acbc21f57902`)
@@ -49,7 +49,7 @@ I directly inspected all upstream specifications, live endpoints, and JavaScript
 ## 3. Caveats
 
 - **Timezone Display Discrepancy Documented**: As noted in `01-facts.md` and `F-connect-the-dots.md` (Dot 12), `Rules-DQNF0983.js` displays `2026-11-22 23:59 UTC+8` in prose while `xt.submitBy` in `index-DSX23m3q.js` enforces `2026-11-22T23:59:59-12:00` (AoE) in the portal countdown. Both timestamps are documented so downstream plans target the earlier `23:59 UTC+8` (`21:29 IST`) cutoff.
-- Otherwise, **no caveats**—all 10 assigned files were written and verified in full compliance with `PROJECT.md` and `recon-playbook.md`.
+- Otherwise, **no caveats** - all 10 assigned files were written and verified in full compliance with `PROJECT.md` and `recon-playbook.md`.
 
 ---
 

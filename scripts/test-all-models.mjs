@@ -218,8 +218,8 @@ async function runTests() {
     const prov = await provRes.json();
     assert(provRes.ok, "Go Engine: Sandbox Provisioning", `deal_id=${prov.deal_id}`);
     const dealId = prov.deal_id;
-    const buyerJwt = prov.buyer_session?.samadhan_jwt;
-    const sellerJwt = prov.seller_session?.samadhan_jwt;
+    const buyerJwt = prov.buyer_session?.mudra_jwt;
+    const sellerJwt = prov.seller_session?.mudra_jwt;
 
     // 6b. Translate Stream (Buyer sends Tamil inquiry -> Hindi translation streamed)
     const streamRes = await fetch(`${GO_URL}/api/v1/deals/${dealId}/translate-stream`, {

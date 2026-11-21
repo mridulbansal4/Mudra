@@ -37,10 +37,10 @@ importers:
       '@react-aria/utils':
         specifier: ^3.34.1
         version: 3.34.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@samadhan/nc-lit-cards':
+      '@mudra/nc-lit-cards':
         specifier: workspace:*
         version: link:../../packages/nc-lit-cards
-      '@samadhan/shared-types':
+      '@mudra/shared-types':
         specifier: workspace:*
         version: link:../../packages/shared-types
       '@supabase/supabase-js':

@@ -1,4 +1,4 @@
-# Progress Log — `challenger_m5_1`
+# Progress Log - `challenger_m5_1`
 
 Last visited: 2026-10-31T20:16:00Z
 
