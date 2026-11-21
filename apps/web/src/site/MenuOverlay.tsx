@@ -94,7 +94,7 @@ export function MenuOverlay({ open, onClose }: MenuOverlayProps) {
       {/* Top header */}
       <div className="relative z-10 flex h-[60px] md:h-[72px] w-full items-center justify-between px-5 md:px-10">
         <Link to="/" onClick={onClose} className="no-underline" aria-label="samadhan home">
-          <Logo markSize={24} wordmarkSize={9} />
+          <Logo markSize={32} wordmarkSize={10} />
         </Link>
         <button
           ref={closeBtnRef}
