@@ -42,7 +42,7 @@ export function SiteNav({ introLogo = false }: SiteNavProps) {
         }}
       >
         <Link to="/" className="no-underline" aria-label="samadhan home">
-          <Logo markSize={24} wordmarkSize={9} intro={introLogo} />
+          <Logo markSize={32} wordmarkSize={10} intro={introLogo} />
         </Link>
 
         <div className="flex items-center gap-6">
