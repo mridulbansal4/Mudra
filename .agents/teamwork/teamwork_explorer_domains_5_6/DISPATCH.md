@@ -1,6 +1,6 @@
 ## 2026-10-31T18:28:00Z
 
-# Task Assignment: Domain Explorer 5 & 6 (`teamwork_explorer_domains_5_6`) — Deep Research & War-Room Blueprints for Track 05 (`nexconn-social-good`) & Track 06 (`open-innovation`)
+# Task Assignment: Domain Explorer 5 & 6 (`teamwork_explorer_domains_5_6`) - Deep Research & War-Room Blueprints for Track 05 (`nexconn-social-good`) & Track 06 (`open-innovation`)
 
 - **Your Identity**: `teamwork_explorer_domains_5_6`
 - **Your Working Directory**: `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6`
@@ -16,8 +16,8 @@
 
 ## Objective
 Conduct deep Phase 2 domain research and Phase 3 War-Room Council ideation blueprints for:
-- **Track 05 (`nexconn-social-good` — Humanitarian & Social Good)**: *"Accessible text chat for seniors and communities"* (Sample builds: Large-font & voice-to-text chat; Volunteer dispatch rooms; Peer-support check-ins)
-- **Track 06 (`open-innovation`, track ID `open` — Open Innovation)**: *"Any interactive chat idea"* (Using Nexconn Chat SDK + AICP/A2A/Streaming/Expansion/Translation/Call primitives for high-impact real-world scenarios)
+- **Track 05 (`nexconn-social-good` - Humanitarian & Social Good)**: *"Accessible text chat for seniors and communities"* (Sample builds: Large-font & voice-to-text chat; Volunteer dispatch rooms; Peer-support check-ins)
+- **Track 06 (`open-innovation`, track ID `open` - Open Innovation)**: *"Any interactive chat idea"* (Using Nexconn Chat SDK + AICP/A2A/Streaming/Expansion/Translation/Call primitives for high-impact real-world scenarios)
 
 ## Required Deliverables in `d:\Hackathons\Nexconn\.agents\teamwork\teamwork_explorer_domains_5_6\handoff.md`
 For **EACH** of the two tracks (`nexconn-social-good` and `open-innovation`), provide:

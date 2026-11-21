@@ -1,4 +1,4 @@
-# Progress Log — worker_m2_tracks_1_2
+# Progress Log - worker_m2_tracks_1_2
 
 Last visited: 2026-10-31T19:10:00Z
 

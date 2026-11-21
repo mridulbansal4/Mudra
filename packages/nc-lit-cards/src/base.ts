@@ -1,17 +1,17 @@
 import { LitElement, css } from "lit";
 
 /**
- * Base for all SAMADHAN message cards.
+ * Base for all MUDRA message cards.
  *
  * Cards render from either:
  *  - `data`: a plain object set directly by our React shell (simulated / sandbox mode), or
  *  - `message`: the ChatUIMessageModel handed over by @nexconn/chatui when the card is registered
  *    via `app.registerCustomMessages([{ messageType, component: { tagName, elementClass } }])`.
  *
- * Actions leave the Shadow DOM as `samadhan-deal-action` events (bubbles + composed) so React can
+ * Actions leave the Shadow DOM as `mudra-deal-action` events (bubbles + composed) so React can
  * listen once at the workbench root.
  */
-export class SamadhanCardBase extends LitElement {
+export class MudraCardBase extends LitElement {
   static properties = {
     data: { type: Object },
     message: { type: Object },
@@ -39,7 +39,7 @@ export class SamadhanCardBase extends LitElement {
 
   protected emit(action: string, detail: Record<string, unknown> = {}) {
     this.dispatchEvent(
-      new CustomEvent("samadhan-deal-action", {
+      new CustomEvent("mudra-deal-action", {
         detail: { action, dealId: this.payload.dealId ?? this.payload.deal_id, ...detail },
         bubbles: true,
         composed: true,
@@ -177,6 +177,6 @@ export function shortHash(h?: string, head = 4, tail = 4): string {
 }
 
 export function inr(paise?: number): string {
-  if (paise == null || Number.isNaN(paise)) return "—";
+  if (paise == null || Number.isNaN(paise)) return "-";
   return "₹" + Math.round(paise / 100).toLocaleString("en-IN");
 }

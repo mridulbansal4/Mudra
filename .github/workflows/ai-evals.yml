@@ -1,4 +1,4 @@
-name: SAMADHAN-OS AI & Forensic Evals
+name: MUDRA-OS AI & Forensic Evals
 
 on:
   pull_request:

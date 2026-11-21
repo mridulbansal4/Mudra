@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { Button } from "@heroui/react";
-import type { Locale, Role } from "@samadhan/shared-types";
-import { LOCALE_LABEL } from "@samadhan/shared-types";
+import type { Locale, Role } from "@mudra/shared-types";
+import { LOCALE_LABEL } from "@mudra/shared-types";
 import { Wordmark } from "../components/Chrome";
 import { StoryBar } from "../components/StoryBar";
 import { updateSession, useSession } from "../lib/session";
@@ -116,7 +116,7 @@ export default function Onboarding() {
               <div className="overflow-hidden rounded-xl bg-black">
                 <canvas ref={canvasRef} width={640} height={480} className="block aspect-[4/3] w-full" />
                 <div className="num flex justify-between px-3 py-2 text-[12px] text-white/80">
-                  <span>Sharpness {sharp?.toFixed(0) ?? "—"} {sharp != null && sharp >= 100 ? "(pass)" : ""}</span>
+                  <span>Sharpness {sharp?.toFixed(0) ?? "-"} {sharp != null && sharp >= 100 ? "(pass)" : ""}</span>
                   <span>Audio FFT target {DEMO_RPM.toLocaleString("en-IN")} RPM</span>
                 </div>
               </div>

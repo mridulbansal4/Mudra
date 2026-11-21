@@ -1,7 +1,7 @@
-# Progress — `victory_auditor_1`
+# Progress - `victory_auditor_1`
 
 - **Last visited**: `2026-10-31T20:28:00Z`
-- **Status**: COMPLETE — `VERDICT: VICTORY CONFIRMED`
+- **Status**: COMPLETE - `VERDICT: VICTORY CONFIRMED`
 - **Completed**:
   - Created `DISPATCH.md` and `BRIEFING.md`.
   - Read `ORIGINAL_REQUEST.md`, `teamwork_orchestrator_main/handoff.md`, `PROJECT.md`, `TEST_READY.md`, `TEST_INFRA.md`, and `war-room-council/SKILL.md`.

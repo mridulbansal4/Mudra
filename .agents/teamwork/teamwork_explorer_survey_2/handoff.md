@@ -1,4 +1,4 @@
-# Handoff Report — Reskilll / Nexconn Build Challenge 2026 Investigation
+# Handoff Report - Reskilll / Nexconn Build Challenge 2026 Investigation
 
 **Executive Summary**: The **Nexconn Build Challenge 2026** (`https://reskilll.com/hack/nexconn/`, internal slug `nexconn2026`) is a fully online, global hackathon (Oct 23 – Nov 22, 2026 AoE; results Dec 1, 2026) organized by **Nexconn** (`RCLOUD GLOBAL PTE. LTD.` / RongCloud) and operated by **Reskilll**, offering **$5,000 in cash prizes across 5 winners** ($2,000 / $1,250 / $750 / $500 / $500) plus **$20,640 in Nexconn Free Chat Plan credits (2 years at $860/mo)** and **1-year AWS (15% off) or Alibaba Cloud (30% off) discounts** per winning team. All tracks share a single unified rubric heavily weighted toward **Completeness & UX (50%)**, **Innovation & Scenario Value (30%)**, and **Business & Growth Potential / Active Users on Nexconn (20% + significant traction bonus)**, with a strict **mandatory pass/fail gate requiring real Nexconn Chat SDK or Chat UI usage** verified via the team's submitted **Nexconn App Key** (`8–64` alphanumeric/underscore/hyphen characters).
 
@@ -26,23 +26,23 @@ All observations below were directly extracted and verified from the live SPA at
 #### B. Exact Dates & Timeline (`xt` and `hS` in `index-BVD-GoH1.js`)
 - **Machine-Readable Deadlines (`xt`)**:
   - `launch`: `"2026-10-23T00:00:00-12:00"` (Anywhere on Earth / UTC-12)
-  - `submissionDeadline`: `"2026-11-22T23:59:59-12:00"` (AoE — corresponds to **Monday, Nov 23, 2026 at 17:29:59 IST**)
+  - `submissionDeadline`: `"2026-11-22T23:59:59-12:00"` (AoE - corresponds to **Monday, Nov 23, 2026 at 17:29:59 IST**)
   - `judgingStart`: `"2026-11-23T00:00:00-12:00"`
   - `results`: `"2026-12-01T00:00:00-12:00"`
 - **Human-Readable Schedule (`hS`)**:
-  1. **Launch (`launch`)** — **`Oct 23, 2026`**: `"Registration and submissions open on the same day."`
-  2. **Build & submit (`build`)** — **`Oct 23 – Nov 22, 2026`**: `"Submit at any time. You can edit your submission until the deadline: Nov 22, 23:59 Anywhere on Earth."`
-  3. **Judging (`judging`)** — **`Nov 23 – 27, 2026`**: `"Nexconn judges score each complete submission."`
-  4. **Results (`results`)** — **`Dec 1, 2026`**: `"Nexconn and Reskilll announce the winners on this site and by email."`
+  1. **Launch (`launch`)** - **`Oct 23, 2026`**: `"Registration and submissions open on the same day."`
+  2. **Build & submit (`build`)** - **`Oct 23 – Nov 22, 2026`**: `"Submit at any time. You can edit your submission until the deadline: Nov 22, 23:59 Anywhere on Earth."`
+  3. **Judging (`judging`)** - **`Nov 23 – 27, 2026`**: `"Nexconn judges score each complete submission."`
+  4. **Results (`results`)** - **`Dec 1, 2026`**: `"Nexconn and Reskilll announce the winners on this site and by email."`
 
 #### C. Eligibility & Team Size (`tS`, `Yx`, `yS`, `registration-KuSES_RU.js`, `Dashboard-CUXFNqTn.js`)
 - **Geographic & Participant Eligibility (`Yx`, `yS`, `tS`)**:
   - Verbatim (`yS` FAQ): `"Any developer, designer or student can take part, except residents of Mainland China. The Nexconn Free Chat Plan is not available there. The challenge is fully online, and it is free."`
   - Blocked country code constant: `tS = ["CN"]` (`registration-KuSES_RU.js` enforces `!tS.includes(e.country)` with error message `"Residents of Mainland China are not eligible because the Nexconn Free Chat Plan is not available there."`).
   - Occupation categories during registration (`registration-KuSES_RU.js`):
-    - `"student"` — requires `organization` (College or university) and `gradYear` (2024–2032).
-    - `"professional"` — requires `organization` (Company) and `role` (Role).
-    - `"other"` — `"Indie maker, designer, researcher…"` (`organization` and `role` optional).
+    - `"student"` - requires `organization` (College or university) and `gradYear` (2024–2032).
+    - `"professional"` - requires `organization` (Company) and `role` (Role).
+    - `"other"` - `"Indie maker, designer, researcher…"` (`organization` and `role` optional).
 - **Team Size & Mechanics (`Yx`, `Zx`, `Dashboard-CUXFNqTn.js`)**:
   - **Team Size**: **1–4 members** (`"Work alone or in a team of up to 4 people."`).
   - **Solo Participation**: `"You can also take part alone. To take part alone, create a team of one on your dashboard."`
@@ -80,7 +80,7 @@ All observations below were directly extracted and verified from the live SPA at
      - `"A live URL for a website, or a direct download link for an app (APK, TestFlight or app store)."`
   4. **`Source code`** (`required: !0`):
      - `"A public GitHub repository"` (validated live against `https://api.github.com/repos/{owner}/{repo}` to ensure the repo exists and is public).
-  5. **`User traction proof`** (`required: !1` — optional but awards a significant judging bonus):
+  5. **`User traction proof`** (`required: !1` - optional but awards a significant judging bonus):
      - `"Proof that real people use your app. Find early users to test the app, then make it better. Traction gives a significant bonus in judging."`
 
 - **Complete Submission Form Schema & Client/Server Validation (`nn` in `Submit-R3OJNUmD.js`)**:
@@ -168,7 +168,7 @@ All observations below were directly extracted and verified from the live SPA at
   > `"Judges first check for real Chat SDK usage. The Chat SDK or Chat UI is required. The Call SDK is optional. Judges disqualify projects that do not use the Chat SDK."`
   > `"Your app must use the Nexconn Chat SDK in a real feature. Chat UI counts as Chat SDK usage. The Call SDK is optional. Put the App Key in your write-up and in the submission form. Judges use it to verify your SDK usage."`
 
-#### B. Weighted Scoring Rubric (`gu` in `index-BVD-GoH1.js` — Total: 100%)
+#### B. Weighted Scoring Rubric (`gu` in `index-BVD-GoH1.js` - Total: 100%)
 
 | Weight (`gu.weight`) | Criterion (`gu.title`) | Short Summary (`gu.short`) | Full Rubric Description (`gu.body`) |
 |---|---|---|---|
@@ -189,12 +189,12 @@ All observations below were directly extracted and verified from the live SPA at
 *Source: `index-BVD-GoH1.js` (`ft`, `vS`, `xS`), `Legal-Bh2TY_RJ.js`, `https://www.nexconn.ai/blog/nexconn-chat-integration-skill`, `https://www.nexconn.ai/free-chat-api?utm_source=hackathon`, `https://docs.nexconn.ai/`, and `https://api.github.com/orgs/NexconnAI-Dev/repos`.*
 
 #### A. Organisers, Sponsors, Judges & Mentors
-- **Primary Organiser & Sponsor — Nexconn (`https://www.nexconn.ai`)**:
+- **Primary Organiser & Sponsor - Nexconn (`https://www.nexconn.ai`)**:
   - Corporate entity (`Legal-Bh2TY_RJ.js`): **`RCLOUD GLOBAL PTE. LTD.`** (Singapore-headquartered global communication cloud platform of RongCloud).
   - Scale & positioning: Powers **`250K+ Apps`** with **`99.99% Uptime`** across social, gaming, live streaming, workplace, and marketplace scenarios.
-  - Related product shown on `nexconn.ai` navigation: **Lyra** (`https://lyrawork.com/?utm_source=nexconn_official` — *"Unified Interface for LLMs"*).
+  - Related product shown on `nexconn.ai` navigation: **Lyra** (`https://lyrawork.com/?utm_source=nexconn_official` - *"Unified Interface for LLMs"*).
   - Contact channels: `hackathon@nexconn.ai`, `customercare@nexconn.ai`, Telegram `@NexconnBot` (`https://t.me/NexconnBot`), GitHub Issue Support (`https://github.com/NexconnAI-Dev/hackathon/issues`).
-- **Platform Partner & Co-Organiser — Reskilll (`https://reskilll.com`)**:
+- **Platform Partner & Co-Organiser - Reskilll (`https://reskilll.com`)**:
   - Role (`Legal-Bh2TY_RJ.js` & `Jx`): `"Reskilll runs this website and the submission system for Nexconn."` `"Reskilll pays the cash prizes to the winning teams after the results on Dec 1."`
 - **Cloud Perk Sponsors**:
   - **AWS** (15% discount for 1 year for new email accounts) and **Alibaba Cloud** (30% discount for 1 year for new email accounts).
@@ -216,7 +216,7 @@ All observations below were directly extracted and verified from the live SPA at
 
 #### C. SDKs, Packages, Supported Platforms & Technical Capabilities (`vS`, `docs.nexconn.ai`, `free-chat-api`)
 - **3 SDK / UI Product Lines (`vS`)**:
-  1. **`Chat SDK`** (**Required** — or `Chat UI`):
+  1. **`Chat SDK`** (**Required** - or `Chat UI`):
      - `"Send and receive messages, manage channels and groups, and sync message history."`
      - Supported Platforms: **Web** (`JavaScript / TypeScript`), **iOS** (`Swift`), **Android** (`Kotlin / Java`), **Flutter** (`Dart`).
      - Channel types (`docs.nexconn.ai`):
@@ -228,7 +228,7 @@ All observations below were directly extracted and verified from the live SPA at
   2. **`Chat UI`** (**Counts as Chat SDK usage**):
      - `"Ready-made chat screens that you can add to your app and customize."`
      - Supported Platforms: **Web**, **iOS**, **Android**, **Flutter**.
-  3. **`Call SDK`** (**Optional** — does not satisfy the Chat SDK requirement alone):
+  3. **`Call SDK`** (**Optional** - does not satisfy the Chat SDK requirement alone):
      - `"Add 1-to-1 or group voice and video calls to your chat app."`
      - Supported Platforms: **Web**, **iOS**, **Android** (`Flutter` is marked `"Coming soon"` in `vS`).
      - Free tier: **10,000 free call minutes** (requires card binding).
@@ -267,16 +267,16 @@ Verified via `https://api.github.com/orgs/NexconnAI-Dev/repos`:
    - In `Admin-_pGkMjvW.js`, the Reskilll/Nexconn evaluation table and CSV export surface the following exact columns side-by-side for every submitted project:
      - `Title`, `Track`, `Summary`, `App Key` (`appKey`), `Packages` (`chat-sdk`, `chat-ui`, `call-sdk`), `SDK Features` (`sdkFeatures`), `Active Users` (`activeUsers`), `Built Before` (`builtBefore` / `builtBeforeDetails`), and direct one-click links to **`Write-up PDF`**, **`Demo Video`**, **`Runnable App`**, **`GitHub Repo`**, and **`Traction Proof`**.
 3. **Evaluator Filtering & Scoring Workflow**:
-   - **Step 1 — Hard Telemetry Audit (Pass/Fail Gate)**: Evaluators inspect the submitted `appKey` in the Nexconn backend console to verify:
+   - **Step 1 - Hard Telemetry Audit (Pass/Fail Gate)**: Evaluators inspect the submitted `appKey` in the Nexconn backend console to verify:
      1. That the `appKey` is a real Nexconn application created by the team.
      2. That real SDK API calls / connections / messages flowed through that `appKey` (not mocked WebSockets or local state).
      3. The actual **Active Users count** registered against that `appKey` in the Nexconn console.
-   - **Step 2 — 50% Completeness & UX Check via Live App URL + Demo Video**:
+   - **Step 2 - 50% Completeness & UX Check via Live App URL + Demo Video**:
      - Half of the entire score (`50%`) is `"Completeness & user experience: The demo works fully and runs smoothly. The interface is clean, and the interaction is clear and easy to understand."`
      - Reskilll/Nexconn evaluators click the `Runnable app` link (`appUrl`) and watch the `Demo video` (`demoVideoUrl`). If the live URL requires complex setup, fails to log in immediately, has broken flows, or looks like an unpolished prototype, it loses the largest single block of points (`50%`).
-   - **Step 3 — 30% Innovation & Scenario Value via Write-Up PDF & SDK Depth**:
+   - **Step 3 - 30% Innovation & Scenario Value via Write-Up PDF & SDK Depth**:
      - Evaluators check whether chat is **central to a fresh workflow** (e.g., AI-augmented multi-party workflows, custom interactive message cards up to 25 KB, pre/post-message webhooks, real-time collaborative state, accessible communication) rather than a generic clone of WhatsApp/Slack.
-   - **Step 4 — 20% Business & Growth Potential + Traction Bonus**:
+   - **Step 4 - 20% Business & Growth Potential + Traction Bonus**:
      - Unlike typical hackathons where business potential is judged purely on pitch slides, Nexconn explicitly ties this `20%` criterion (plus a `"significant bonus in judging"`) to **measurable active users on the team's Nexconn App Key** (`activeUsers` in the Nexconn console) and concrete `tractionUrl` proof (analytics screenshots, real user sessions, tester feedback).
 
 ---

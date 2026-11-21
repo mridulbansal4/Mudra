@@ -43,10 +43,10 @@ export default function Traction() {
       />
       {err ? <div className="mb-4"><Banner tone="danger">{err}</Banner></div> : null}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Nexconn users with issued tokens" value={t?.verified_connected_maus?.toLocaleString("en-IN") ?? "—"} hint={t?.app_key_masked ? `App key ${t.app_key_masked}` : undefined} />
-        <Stat label="Signed escrow vouchers" value={t?.total_escrow_vouchers_signed?.toLocaleString("en-IN") ?? "—"} hint="Ed25519, hash-chained per deal" />
-        <Stat label="Go FSM transition p99" value={lat.go_escrow_fsm_ms != null ? `${lat.go_escrow_fsm_ms.toFixed(3)} ms` : "—"} hint="Measured in-process per transition" />
-        <Stat label="Assay pHash p99 (Rust or Go fallback)" value={lat.rust_phash_assay_ms != null ? `${lat.rust_phash_assay_ms.toFixed(2)} ms` : "—"} hint={lat.rust_pii_scrub_ms != null ? `PII scrub p99 ${lat.rust_pii_scrub_ms.toFixed(2)} ms` : undefined} />
+        <Stat label="Nexconn users with issued tokens" value={t?.verified_connected_maus?.toLocaleString("en-IN") ?? "-"} hint={t?.app_key_masked ? `App key ${t.app_key_masked}` : undefined} />
+        <Stat label="Signed escrow vouchers" value={t?.total_escrow_vouchers_signed?.toLocaleString("en-IN") ?? "-"} hint="Ed25519, hash-chained per deal" />
+        <Stat label="Go FSM transition p99" value={lat.go_escrow_fsm_ms != null ? `${lat.go_escrow_fsm_ms.toFixed(3)} ms` : "-"} hint="Measured in-process per transition" />
+        <Stat label="Assay pHash p99 (Rust or Go fallback)" value={lat.rust_phash_assay_ms != null ? `${lat.rust_phash_assay_ms.toFixed(2)} ms` : "-"} hint={lat.rust_pii_scrub_ms != null ? `PII scrub p99 ${lat.rust_pii_scrub_ms.toFixed(2)} ms` : undefined} />
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">

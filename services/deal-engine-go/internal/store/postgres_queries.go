@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -369,7 +369,7 @@ func insertMessageTx(ctx context.Context, tx pgx.Tx, dealUUID string, m ChatMess
 	}
 	msgType := m.MessageType
 	if msgType == "" {
-		msgType = "x-samadhan-bilingual-bubble"
+		msgType = "x-mudra-bilingual-bubble"
 	}
 	meta := msgMetaJSON{
 		SenderRole:   m.SenderRole,

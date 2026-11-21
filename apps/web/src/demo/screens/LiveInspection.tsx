@@ -36,7 +36,7 @@ export function LiveInspection({ state, dispatch }: LiveInspectionProps) {
         >
           <Video size={32} strokeWidth={1.5} aria-hidden="true" />
         </div>
-        <div className="t-h2 !text-[24px] lowercase text-fg">vikram is live — join</div>
+        <div className="t-h2 !text-[24px] lowercase text-fg">vikram is live, join</div>
         <p className="text-[13px] font-medium lowercase text-muted">
           connecting live video &amp; acoustic assay…
         </p>
@@ -82,7 +82,7 @@ export function LiveInspection({ state, dispatch }: LiveInspectionProps) {
                 })
               }
             >
-              looks right — verify
+              looks right, verify
             </NeoButton>
           </div>
           <button

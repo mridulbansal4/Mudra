@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/clients"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/fsm"
-	mw "github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/middleware"
-	"github.com/chanakya-team/samadhan-os/services/deal-engine-go/internal/store"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/clients"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/fsm"
+	mw "github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/middleware"
+	"github.com/chanakya-team/mudra-os/services/deal-engine-go/internal/store"
 )
 
 const (
@@ -236,9 +236,9 @@ func (s *Server) handleAssayVerify(w http.ResponseWriter, r *http.Request) {
 	if log.AudioFFTRPMPeak != nil {
 		text += fmt.Sprintf(", %.1f RPM", *log.AudioFFTRPMPeak)
 	}
-	stream := s.Bridge.StreamGroup(r.Context(), channel, "usr_samadhan_system_voucher", "x-samadhan-assay-receipt", text, receiptExtras)
+	stream := s.Bridge.StreamGroup(r.Context(), channel, "usr_mudra_system_voucher", "x-mudra-assay-receipt", text, receiptExtras)
 	s.addMessage(d, store.ChatMessage{
-		SenderRole: "system", SenderName: "SAMADHAN Assay", MessageType: "x-samadhan-assay-receipt",
+		SenderRole: "system", SenderName: "MUDRA Assay", MessageType: "x-mudra-assay-receipt",
 		RawText: text, TranslatedText: text, Extras: receiptExtras, StreamID: stream.StreamID, Engine: res.Engine,
 	})
 	s.publishDeal(d)

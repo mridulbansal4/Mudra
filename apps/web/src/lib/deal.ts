@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ChatMessage, DealView, FsmAction, Locale, Role } from "@samadhan/shared-types";
+import type { ChatMessage, DealView, FsmAction, Locale, Role } from "@mudra/shared-types";
 import { api } from "./api";
 import { subscribeToDealRealtime } from "./supabase";
 
@@ -89,7 +89,7 @@ export interface TransitionResult {
 export function transition(dealId: string, action: FsmAction, expectedVersion: number, jwt: string) {
   return api.post<TransitionResult>(
     `/api/v1/deals/${dealId}/escrow/transition`,
-    { action, expected_version: expectedVersion, upi_mandate_umn: action === "LOCK_ESCROW" ? "samadhan.demo@okaxis" : undefined },
+    { action, expected_version: expectedVersion, upi_mandate_umn: action === "LOCK_ESCROW" ? "mudra.demo@okaxis" : undefined },
     jwt,
   );
 }

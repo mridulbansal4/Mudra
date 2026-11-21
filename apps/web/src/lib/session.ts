@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from "react";
-import type { Locale, Role } from "@samadhan/shared-types";
+import type { Locale, Role } from "@mudra/shared-types";
 
 export interface UserSession {
   userId: string;
@@ -15,7 +15,7 @@ export interface UserSession {
   onboarded: boolean;
 }
 
-const KEY = "samadhan.session.v1";
+const KEY = "mudra.session.v1";
 const listeners = new Set<() => void>();
 
 function read(): UserSession | null {
@@ -35,7 +35,7 @@ export function setSession(s: UserSession | null) {
     if (s) localStorage.setItem(KEY, JSON.stringify(s));
     else localStorage.removeItem(KEY);
   } catch {
-    /* private mode — keep in memory */
+    /* private mode - keep in memory */
   }
   listeners.forEach((l) => l());
 }

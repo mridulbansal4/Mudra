@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { Button } from "@heroui/react";
-import type { ChatMessage, FsmAction, FsmState, Locale, Role } from "@samadhan/shared-types";
-import { LOCALE_LABEL, formatInr } from "@samadhan/shared-types";
+import type { ChatMessage, FsmAction, FsmState, Locale, Role } from "@mudra/shared-types";
+import { LOCALE_LABEL, formatInr } from "@mudra/shared-types";
 import { api, errorText } from "../lib/api";
 import { QUICK_PHRASES, sendDealMessage, transition, type LiveDeal } from "../lib/deal";
 import { LitCard, type CardTag, type DealActionDetail } from "./LitCard";
@@ -9,10 +9,10 @@ import { AssayLoupe, type AssayCapture } from "./AssayLoupe";
 import { Banner } from "./Chrome";
 
 const TAG_BY_TYPE: Record<string, CardTag> = {
-  "x-samadhan-bilingual-bubble": "nc-bilingual-bubble",
-  "x-samadhan-escrow-card": "nc-escrow-deal-card",
-  "x-samadhan-assay-receipt": "nc-video-assay-receipt",
-  "x-samadhan-tribunal-verdict": "nc-tribunal-verdict",
+  "x-mudra-bilingual-bubble": "nc-bilingual-bubble",
+  "x-mudra-escrow-card": "nc-escrow-deal-card",
+  "x-mudra-assay-receipt": "nc-video-assay-receipt",
+  "x-mudra-tribunal-verdict": "nc-tribunal-verdict",
 };
 
 function flipBits(hex: string, n = 2): string {
@@ -80,7 +80,7 @@ export function useDealActions(deal: LiveDeal | null, jwt: string | undefined, r
             await api.post(`/api/v1/dispatch/assign`, { dispute_id: disputeId, arbitrator_nexconn_id: "arbitrator_meera_sg_8821" }, jwt).catch(() => undefined);
             await api.post(
               `/api/v1/disputes/${disputeId}/resolve`,
-              { buyer_refund_bps: buyer, seller_payout_bps: 10000 - buyer, expected_version: version, resolution_note: "Executed from SAMADHAN dispatch" },
+              { buyer_refund_bps: buyer, seller_payout_bps: 10000 - buyer, expected_version: version, resolution_note: "Executed from MUDRA dispatch" },
               jwt,
             );
             set({ notice: "Binding split executed, channel unfrozen" });
@@ -140,7 +140,7 @@ export function useDealActions(deal: LiveDeal | null, jwt: string | undefined, r
 function messageData(m: ChatMessage, viewerRole: Role, deal: LiveDeal): Record<string, unknown> {
   const x = (m.extras ?? {}) as Record<string, unknown>;
   switch (m.message_type) {
-    case "x-samadhan-bilingual-bubble":
+    case "x-mudra-bilingual-bubble":
       return {
         senderName: m.sender_name ?? m.sender_role,
         sourceLocale: m.source_locale,
@@ -151,7 +151,7 @@ function messageData(m: ChatMessage, viewerRole: Role, deal: LiveDeal): Record<s
         mine: m.sender_role === viewerRole,
         piiRedacted: x.pii_redacted_count,
       };
-    case "x-samadhan-escrow-card":
+    case "x-mudra-escrow-card":
       return {
         dealId: deal.deal_id,
         title: x.title ?? deal.title,
@@ -161,7 +161,7 @@ function messageData(m: ChatMessage, viewerRole: Role, deal: LiveDeal): Record<s
         voucher: x.system_voucher ?? x.voucher ?? { voucher_type: x.voucher_type, curr_voucher_sha256: x.curr_voucher_sha256, ed25519_signature: x.ed25519_signature },
         allowedActions: [],
       };
-    case "x-samadhan-assay-receipt":
+    case "x-mudra-assay-receipt":
       return {
         passed: x.assay_passed,
         framePhashHex: x.frame_phash_hex,
@@ -174,7 +174,7 @@ function messageData(m: ChatMessage, viewerRole: Role, deal: LiveDeal): Record<s
         thumbnail: x.thumbnail_data_url,
         signature: x.ed25519_sig_hex,
       };
-    case "x-samadhan-tribunal-verdict":
+    case "x-mudra-tribunal-verdict":
       return {
         disputeId: x.dispute_id,
         amountPaise: deal.escrow_contract.amount_paise,
