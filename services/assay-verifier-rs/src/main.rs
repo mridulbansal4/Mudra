@@ -137,7 +137,9 @@ async fn phash_diff(
 ) -> Result<Json<PhashDiffResponse>, AppError> {
     let Json(req) = payload?;
     let d = phash::hamming(&req.a_hex, &req.b_hex).map_err(AppError::validation)?;
-    Ok(Json(PhashDiffResponse { hamming_distance: d }))
+    Ok(Json(PhashDiffResponse {
+        hamming_distance: d,
+    }))
 }
 
 async fn sign_voucher(
@@ -146,10 +148,17 @@ async fn sign_voucher(
 ) -> Result<Json<SignedVoucher>, AppError> {
     let Json(req) = payload?;
     if req.deal_id.trim().is_empty() || req.voucher_type.trim().is_empty() {
-        return Err(AppError::validation("deal_id and voucher_type are required"));
+        return Err(AppError::validation(
+            "deal_id and voucher_type are required",
+        ));
     }
     let prev = req.prev_hash_hex.unwrap_or_default();
-    Ok(Json(state.signer.sign(&prev, &req.deal_id, &req.voucher_type, &req.payload)))
+    Ok(Json(state.signer.sign(
+        &prev,
+        &req.deal_id,
+        &req.voucher_type,
+        &req.payload,
+    )))
 }
 
 // ------------------------------------------------------------- logic ------
@@ -168,8 +177,14 @@ fn decode_base64_field(name: &str, s: &str) -> Result<Vec<u8>, AppError> {
 
 fn compute_assay(req: VerifyAssayRequest) -> Result<VerifyAssayResponse, AppError> {
     let started = Instant::now();
-    let has_frame = req.frame_jpeg_base64.as_deref().is_some_and(|s| !s.trim().is_empty());
-    let has_audio = req.audio_pcm_f32_base64.as_deref().is_some_and(|s| !s.trim().is_empty());
+    let has_frame = req
+        .frame_jpeg_base64
+        .as_deref()
+        .is_some_and(|s| !s.trim().is_empty());
+    let has_audio = req
+        .audio_pcm_f32_base64
+        .as_deref()
+        .is_some_and(|s| !s.trim().is_empty());
     if !has_frame && !has_audio {
         return Err(AppError::validation(
             "provide frame_jpeg_base64 and/or audio_pcm_f32_base64",
@@ -222,7 +237,10 @@ pub fn build_router(state: AppState) -> Router {
         .route("/internal/verify-assay", post(verify_assay))
         .route("/internal/phash-diff", post(phash_diff))
         .route("/internal/sign-voucher", post(sign_voucher))
-        .layer(middleware::from_fn_with_state(state.clone(), auth::hmac_auth));
+        .layer(middleware::from_fn_with_state(
+            state.clone(),
+            auth::hmac_auth,
+        ));
 
     Router::new()
         .route("/health", get(health))
@@ -245,7 +263,9 @@ async fn shutdown_signal() {
 
     #[cfg(unix)]
     let terminate = async {
-        if let Ok(mut sig) = tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate()) {
+        if let Ok(mut sig) =
+            tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
+        {
             sig.recv().await;
         }
     };
@@ -272,7 +292,8 @@ async fn main() {
         .and_then(|v| v.parse().ok())
         .unwrap_or(DEFAULT_PORT);
 
-    let hmac_secret = env_non_empty("INTERNAL_SERVICE_HMAC_SECRET").map(|s| Arc::new(s.into_bytes()));
+    let hmac_secret =
+        env_non_empty("INTERNAL_SERVICE_HMAC_SECRET").map(|s| Arc::new(s.into_bytes()));
 
     let seed_hex = match env_non_empty("ASSAY_ED25519_PRIVATE_KEY_HEX") {
         Some(s) => s,
@@ -310,7 +331,10 @@ async fn main() {
     };
     tracing::info!("listening on http://{addr}");
 
-    if let Err(e) = axum::serve(listener, app).with_graceful_shutdown(shutdown_signal()).await {
+    if let Err(e) = axum::serve(listener, app)
+        .with_graceful_shutdown(shutdown_signal())
+        .await
+    {
         tracing::error!("server error: {e}");
         std::process::exit(1);
     }
@@ -352,7 +376,10 @@ mod tests {
     #[tokio::test]
     async fn health_ok() {
         let app = build_router(state(Some("s3cret")));
-        let req = Request::builder().uri("/health").body(Body::empty()).unwrap();
+        let req = Request::builder()
+            .uri("/health")
+            .body(Body::empty())
+            .unwrap();
         let (status, v) = call(app, req).await;
         assert_eq!(status, StatusCode::OK);
         assert_eq!(v["status"], "ok");
@@ -363,7 +390,11 @@ mod tests {
     #[tokio::test]
     async fn scrub_without_secret() {
         let app = build_router(state(None));
-        let (status, v) = call(app, post_json("/internal/scrub-pii", r#"{"text":"call 9876543210"}"#)).await;
+        let (status, v) = call(
+            app,
+            post_json("/internal/scrub-pii", r#"{"text":"call 9876543210"}"#),
+        )
+        .await;
         assert_eq!(status, StatusCode::OK);
         assert_eq!(v["scrubbed_text"], "call [REDACTED_DPDP_PII]");
         assert_eq!(v["redacted_count"], 1);
@@ -382,8 +413,10 @@ mod tests {
         let ts = auth::unix_now().to_string();
         let sig = auth::sign(b"s3cret", &ts, body.as_bytes());
         let mut req = post_json("/internal/phash-diff", body);
-        req.headers_mut().insert(auth::HEADER_TIMESTAMP, ts.parse().unwrap());
-        req.headers_mut().insert(auth::HEADER_SIGNATURE, sig.parse().unwrap());
+        req.headers_mut()
+            .insert(auth::HEADER_TIMESTAMP, ts.parse().unwrap());
+        req.headers_mut()
+            .insert(auth::HEADER_SIGNATURE, sig.parse().unwrap());
         let app = build_router(state(Some("s3cret")));
         let (status, v) = call(app, req).await;
         assert_eq!(status, StatusCode::OK);
@@ -396,8 +429,14 @@ mod tests {
         let body = r#"{"deal_id":"deal_001","voucher_type":"ASSAY_STARTED","payload":{},"prev_hash_hex":"6037d76a45a8fc1e15340218294d21084bdb707adc8c91bcff6587e353103f3d"}"#;
         let (status, v) = call(app, post_json("/internal/sign-voucher", body)).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(v["curr_hash_hex"], "d268ef017a124904d1a43d8724464521a805e7febe4a4e041040c9387df25c86");
-        assert_eq!(v["public_key_hex"], "79b5562e8fe654f94078b112e8a98ba7901f853ae695bed7e0e3910bad049664");
+        assert_eq!(
+            v["curr_hash_hex"],
+            "d268ef017a124904d1a43d8724464521a805e7febe4a4e041040c9387df25c86"
+        );
+        assert_eq!(
+            v["public_key_hex"],
+            "79b5562e8fe654f94078b112e8a98ba7901f853ae695bed7e0e3910bad049664"
+        );
     }
 
     #[tokio::test]
