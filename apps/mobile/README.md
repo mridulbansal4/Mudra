@@ -2,7 +2,7 @@
 
 Campus-first peer-to-peer escrow marketplace Android application (`com.chanakya.mudra`) built with **Expo SDK / React Native (New Architecture)**, **CRED NeoPOP Dark** design system, and a hosted **Supabase** backend (`mudra` schema + `public.m_*` RPCs + `public.m_events` Realtime + `mudra-photos` Storage).
 
-> **Full Specification**: See [`docs/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md`](../../docs/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md) and [`MORNING_REPORT.md`](./MORNING_REPORT.md).
+> **Full Specification**: See [`docs/03-engineering/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md`](../../docs/03-engineering/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md) and [`MORNING_REPORT.md`](./MORNING_REPORT.md).
 
 ---
 

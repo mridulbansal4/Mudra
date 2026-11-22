@@ -1,6 +1,6 @@
 # CLAUDE.md - AI Coding Agent Instructions for MUDRA-OS (`SamvadDeal`)
 
-Read this file **first** before writing or modifying any code in this repository. For full navigation across all 65+ docs, consult [`MAP.md`](MAP.md) and the canonical single source of truth [`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md).
+Read this file **first** before writing or modifying any code in this repository. For full navigation across all 65+ docs, consult [`docs/MAP.md`](docs/MAP.md) and the canonical single source of truth [`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md).
 
 ---
 
@@ -8,7 +8,7 @@ Read this file **first** before writing or modifying any code in this repository
 
 1. **Product**: **MUDRA-OS (`SamvadDeal`)** - Multilingual Escrow, Live Video Product Assay & 90-Second Freeze Arbitration OS built on the **Nexconn Unified Communications Platform** (`PS-03 Marketplace & Support`, Nexconn Build Challenge 2026, Team `Chanakya`).
 2. **Frontend Web (`apps/web`)**: React 19 + TypeScript 5.7 + Vite 6 + Tailwind CSS v4 + `@heroui/react@^3.0.1` + `@nexconn/chatui@^26.2.5` (Lit `^3.3.2` custom `<nc-escrow-deal-card>` & `<nc-bilingual-bubble>`) + `@nexconn/call@^26.2.0` + `@mudra/assay-wasm-rs` (Rust WASM).
-3. **Mobile App (`apps/mobile-expo`)**: Expo SDK 53 + React Native 0.76 + `heroui-native@^2.0.1` + `uniwind` + `react-native-reanimated`.
+3. **Mobile App (`apps/mobile`)**: Expo SDK 53 + React Native 0.76 + `heroui-native@^2.0.1` + `uniwind` + `react-native-reanimated`.
 4. **Service 1 - Nexconn Bridge (`services/nexconn-bridge-node`, `:4001`)**: Node.js 22 LTS + Fastify 5 wrapping the official TypeScript `@nexconn/server-sdk@0.1.2`, Gemini 2.5 Flash/Pro (`M-01`, `M-03`, `M-04`, `M-05`), and Bhashini ASR (`M-02`).
 5. **Service 2 - Deal Engine & Public API Gateway (`services/deal-engine-go`, `:4002`)**: **Go 1.24** (`chi/v5` + `pgx/v5` + `go-redis/v9`) serving `/api/v1/*`, executing the deterministic 8-state Escrow FSM (`< 1.2ms` p99), optimistic version locking, HMAC webhooks, and `/traction` telemetry (`F-04`, `F-13`).
 6. **Service 3 - Assay Verifier (`services/assay-verifier-rs`, `:4003`)**: **Rust 1.85** (`axum 0.8` + `image` + `rustfft` + `aho-corasick` + `ed25519-dalek`) executing `< 300µs` DPDP PII scrubbing (`POST /internal/scrub-pii`), `< 5ms` 64-bit DCT `pHash`, 4096-point audio FFT motor/fan RPM checks, and Ed25519 voucher signing (`F-05`, `F-09`).
@@ -80,7 +80,7 @@ Read [`docs/02-design/DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md) and [`
    - Import `@import "@heroui/styles";` after `@import "tailwindcss";` in `globals.css`.
    - Use **compound components** (`<Card><Card.Header>...<Card.Content>...<Card.Footer></Card>`, `<Tabs><Tabs.ListContainer><Tabs.List><Tabs.Tab>...`).
    - Always use `onPress` (never `onClick`) on HeroUI `<Button>`, `<Tabs.Tab>`, and interactive `<Card>`.
-3. **HeroUI Native (`heroui-native@^2.0.1` + `uniwind` in `apps/mobile-expo`)**:
+3. **HeroUI Native (`heroui-native@^2.0.1` + `uniwind` in `apps/mobile`)**:
    - Wrap root in `<GestureHandlerRootView style={{ flex: 1 }}><HeroUINativeProvider>...</HeroUINativeProvider></GestureHandlerRootView>`.
    - Use `<Card.Body>` (NOT `<Card.Content>`) in `heroui-native`, and HSL theme variables in `global.css`.
 4. **Apple Fluid Motion (`apps/web/src/lib/apple-physics.ts`)**:
@@ -102,7 +102,7 @@ Read [`docs/02-design/DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md) and [`
 ---
 
 ## 6. Key Reference Links
-- **Navigation Map**: [`MAP.md`](MAP.md)
+- **Navigation Map**: [`docs/MAP.md`](docs/MAP.md)
 - **Single Source of Truth**: [`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)
 - **Nexconn SDK Manual**: [`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)
 - **API Specification & OpenAPI 3.1**: [`docs/03-engineering/API_SPEC.md`](docs/03-engineering/API_SPEC.md) & [`api/openapi.yaml`](api/openapi.yaml)

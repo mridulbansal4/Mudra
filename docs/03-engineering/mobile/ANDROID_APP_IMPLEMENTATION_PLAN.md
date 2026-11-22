@@ -111,7 +111,7 @@ const client = new pg.Client({ connectionString: cs, ssl: { rejectUnauthorized: 
   `config.resolver.nodeModulesPaths = [path.resolve(__dirname, 'node_modules')]`;
   `config.watchFolders = [__dirname]`.
 - `package.json`: `"expo": { "autolinking": { "searchPaths": ["./node_modules"] } }`.
-- The old `apps/mobile-expo` folder (if present) is left untouched; docs mention it is superseded.
+- The old `apps/mobile` folder (if present) is left untouched; docs mention it is superseded.
 
 ### ADR-M2: Expo SDK 58 + React Native 0.88 + New Architecture
 - Create with `npx create-expo-app@latest mobile --template blank-typescript` inside `apps/`, then

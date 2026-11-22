@@ -1,6 +1,6 @@
 # AGENTS.md - Universal AI Agent Instructions for MUDRA-OS (`SamvadDeal`)
 
-> **Primary Agent Specification**: Read **[`CLAUDE.md`](CLAUDE.md)** for full build/test/eval commands, architecture rules, and design system constraints, and **[`MAP.md`](MAP.md)** for the complete documentation index.
+> **Primary Agent Specification**: Read **[`CLAUDE.md`](CLAUDE.md)** for full build/test/eval commands, architecture rules, and design system constraints, and **[`docs/MAP.md`](docs/MAP.md)** for the complete documentation index.
 
 ---
 
@@ -15,10 +15,10 @@
 3. **Nexconn SDK Golden Rules**:
    - Register custom Lit v3 elements (`<nc-escrow-deal-card>`, `<nc-bilingual-bubble>`) **before** `await NCChatUIApplication.ready()`.
    - Connect `NCEngine` (`await NCEngine.connect({ token })`) **before** starting `NCCallEngine` WebRTC video inspection calls.
-   - Never leak `NEXCONN_SECRET_KEY` to `apps/web` or `apps/mobile-expo`.
+   - Never leak `NEXCONN_SECRET_KEY` to `apps/web` or `apps/mobile`.
    - Follow [`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md) for all 4 SDKs and all 5 channel types (`Direct`, `Group`, `Community`, `Open`, `System`).
 4. **Frontend Craft (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` + `/heroui-native`)**:
    - Keep `/* hallmark:v2.0.0 */` on line 1 of `apps/web/src/styles/globals.css`.
    - In `@heroui/react@^3.0.1` (Tailwind CSS v4): **no `<HeroUIProvider>`**, use compound components (`<Card.Header>`, `<Card.Content>`, `<Card.Footer>`), and use `onPress` instead of `onClick`.
-   - In `heroui-native@^2.0.1` (`apps/mobile-expo`): wrap with `<GestureHandlerRootView>` + `<HeroUINativeProvider>`, and use `<Card.Body>`.
+   - In `heroui-native@^2.0.1` (`apps/mobile`): wrap with `<GestureHandlerRootView>` + `<HeroUINativeProvider>`, and use `<Card.Body>`.
    - Preserve the beginner-friendly 9-route story flow (`/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` → `/dispatch` → `/guide` → `/traction`) with the **Simulated HD Inspection Video Stream** fallback always working.

@@ -118,7 +118,7 @@ Per `/unslop` Pass 2 and `/heroui-react` v3 theming rules, surfaces stay quiet a
 }
 ```
 
-### 2.1 HeroUI Native (`apps/mobile-expo/global.css`) HSL Equivalent
+### 2.1 HeroUI Native (`apps/mobile/global.css`) HSL Equivalent
 Because `heroui-native@^2.0.1` on Uniwind requires **HSL** tokens instead of `oklch`:
 ```css
 @import "tailwindcss";

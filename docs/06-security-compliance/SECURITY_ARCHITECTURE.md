@@ -11,7 +11,7 @@ MUDRA-OS handles commercial negotiations, live video inspections, and escrow mil
 ```mermaid
 flowchart LR
     subgraph Zone1["Zone 1: Untrusted Client (Browser / Expo)"]
-        UI["apps/web & apps/mobile-expo\nHolds ONLY public VITE_NEXCONN_APP_KEY\n+ short-lived user accessToken + JWT"]
+        UI["apps/web & apps/mobile\nHolds ONLY public VITE_NEXCONN_APP_KEY\n+ short-lived user accessToken + JWT"]
     end
 
     subgraph Zone2["Zone 2: Public Edge & Go Gateway (:4002)"]

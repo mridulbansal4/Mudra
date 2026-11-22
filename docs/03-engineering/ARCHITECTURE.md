@@ -51,7 +51,7 @@ flowchart TB
         WEB["apps/web (React 19 + Vite 6 + Tailwind v4 + HeroUI v3)\nRoutes: / -> /auth -> /onboarding -> /app -> /sandbox -> /arena -> /dispatch -> /guide -> /traction\nEmbeds: @nexconn/chatui + @nexconn/chat + @nexconn/call"]
         LIT["packages/nc-lit-cards (Lit 3.3.2)\n<nc-escrow-deal-card> | <nc-bilingual-bubble>\n<nc-video-assay-receipt> | <nc-tribunal-verdict-card>"]
         WASM["packages/assay-wasm-rs (Rust -> WASM)\n60fps Laplacian Blur + Serial Bounding Lock + Watermark"]
-        MOB["apps/mobile-expo (Expo 53 + React Native 0.78)\nheroui-native 2.0.1 + Uniwind Field Assay App"]
+        MOB["apps/mobile (Expo 53 + React Native 0.78)\nheroui-native 2.0.1 + Uniwind Field Assay App"]
         WEB --- LIT
         WEB --- WASM
     end

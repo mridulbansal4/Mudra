@@ -1,6 +1,6 @@
 # Git Workflow & Release Versioning - MUDRA-OS (`SamvadDeal`)
 > Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Release Engineering Lead) · Status: Draft v0.1 · Last updated: 2026-11-10
-> Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Coding Standards](./CODING_STANDARDS.md) · [CI/CD](../05-ops/CICD.md) · [Contributing](../../CONTRIBUTING.md)
+> Related: [Project Brief](../00-overview/PROJECT_BRIEF.md) · [Coding Standards](./CODING_STANDARDS.md) · [CI/CD](../05-ops/CICD.md) · [Contributing](../../.github/CONTRIBUTING.md)
 
 ---
 
