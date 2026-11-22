@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { ANDROID_RELEASE } from "../config/release";
 import { Corridor } from "../hero/Corridor";
 import { HeroAppPhone } from "../hero/HeroAppPhone";
 import { ease, useReducedMotion } from "../motion/hooks";
@@ -83,6 +84,15 @@ export function S1Hero() {
         >
           <NeoButton variant="purple" size="lg" to="/demo" icon={ArrowRight}>
             try the two-phone demo
+          </NeoButton>
+          <NeoButton
+            variant="paccha"
+            size="lg"
+            href={ANDROID_RELEASE.arm64ApkUrl}
+            download="mudra-v1.0.0-arm64.apk"
+            icon={Download}
+          >
+            download apk
           </NeoButton>
           <NeoButton variant="ghost" size="lg" to="/how-it-works">
             how it works

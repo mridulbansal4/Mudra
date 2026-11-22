@@ -12,3 +12,15 @@ services/deal-engine-go/bin/
 *.tsbuildinfo
 __pycache__/
 *.pyc
+*.apk
+
+# Local research & hackathon notes (kept on disk, excluded from git)
+biblehackathon.md
+biblehackathon.pdf
+ideas.md
+ideas.pdf
+research/
+war-room/
+state.md
+TEST_INFRA.md
+TEST_READY.md
