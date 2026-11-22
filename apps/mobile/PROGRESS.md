@@ -11,8 +11,8 @@
 - [x] **P6**: Deals list + deal room chat + realtime + quick replies + translation + offers/counter + demo tick
 - [x] **P7**: Escrow sheet, live check, receipt/release/stamp, freeze/verdict, review, wallet
 - [x] **P8**: Profile/settings, language, currency, change PIN, delete account, guide, safety, i18n + checkpoint APK 2
-- [ ] **P9**: Polish pass, icons/splash, empty/error states, performance, a11y
-- [ ] **P10**: Final universal + arm64 release builds, `MORNING_REPORT.md`, docs update, final commit
+- [x] **P9**: Polish pass, icons/splash, empty/error states, performance, a11y, 20 emulator QA screenshots verified
+- [x] **P10**: Final universal + arm64 release builds (`dist/mudra-v1.0.0.apk` = `110,276,116` bytes, `dist/mudra-v1.0.0-arm64.apk` = `56,184,777` bytes), `MORNING_REPORT.md`, docs update, final commit
 
 ---
 
