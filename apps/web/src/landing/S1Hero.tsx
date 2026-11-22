@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Corridor } from "../hero/Corridor";
+import { HeroAppPhone } from "../hero/HeroAppPhone";
 import { ease, useReducedMotion } from "../motion/hooks";
 import { NeoButton } from "../ui/NeoButton";
 
@@ -23,7 +24,7 @@ export function S1Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex h-svh min-h-[720px] w-full flex-col items-center justify-center overflow-hidden bg-pop-void px-5 md:px-10"
+      className="relative flex min-h-svh lg:h-svh lg:min-h-[720px] w-full flex-col items-center justify-center overflow-x-clip lg:overflow-hidden bg-pop-void px-5 pt-24 pb-28 lg:py-0 md:px-10"
     >
       <Corridor
         scale={corridorScale}
@@ -34,7 +35,7 @@ export function S1Hero() {
       {/* Centered Foreground */}
       <motion.div
         style={reduced ? undefined : { opacity: headlineOpacity, y: headlineY }}
-        className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center text-center"
+        className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center text-center lg:pr-[160px] xl:pr-0"
       >
         <h1 className="t-hero lowercase text-fg">
           <motion.span
@@ -89,8 +90,11 @@ export function S1Hero() {
         </motion.div>
       </motion.div>
 
+      {/* 3D Corner Phone App Launcher */}
+      <HeroAppPhone scrollProgress={scrollYProgress} />
+
       {/* Bottom scroll cue */}
-      <div className=" absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2">
+      <div className="mt-10 lg:mt-0 lg:absolute lg:bottom-6 lg:left-1/2 z-10 flex lg:-translate-x-1/2 flex-col items-center gap-2">
         <span className="eyebrow">SCROLL</span>
         <div
           aria-hidden="true"
