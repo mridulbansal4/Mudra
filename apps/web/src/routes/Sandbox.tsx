@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
 import { Button } from "@heroui/react";
 import type { FsmState, Locale, NexconnSession } from "@mudra/shared-types";
@@ -11,6 +11,8 @@ import { QUICK_PHRASES, sendDealMessage, transition, useLiveDeal } from "../lib/
 import { signIn } from "../lib/personas";
 import { captureFrame, drawSimulatedFrame, laplacianVariance, synthMotorPcmBase64, DEMO_RPM } from "../lib/assay";
 import { bootNexconn, onNexconnEvent, readGroupHistory, type NexconnStatus } from "../lib/nexconn-boot";
+import { hangUp, isCallReady, openSellerWindow, startInspectionCall } from "../lib/nexconn-call";
+import type { InspectionCall } from "../components/AssayLoupe";
 
 interface Provision {
   deal_id: string;
@@ -94,8 +96,23 @@ export default function Sandbox() {
       else if (e.kind === "message") note(`Received via Nexconn WebSocket: ${e.messageType} ${e.messageId}`);
       else if (e.kind === "stream") note(`Received via Nexconn WebSocket: RC:StreamMsg ${e.messageId} (${e.phase})`);
       else if (e.kind === "error") note(`Nexconn client error: ${e.message}`);
+      else if (e.kind === "call") note(`Nexconn Call ${e.phase}${e.callId ? ` · callId ${e.callId}` : ""}${e.detail ? ` (${e.detail})` : ""}`);
     });
   }, [prov?.buyer_session]);
+
+  // 1:1 Nexconn video call to the seller window for the live inspection (buyer pane loupe).
+  const inspectionCall = useMemo<InspectionCall | undefined>(() => {
+    const s = prov?.seller_session;
+    const appKey = s?.app_key;
+    if (!prov || !s || !appKey || ncStatus !== "connected" || !isCallReady()) return undefined;
+    return {
+      start: async (remoteVideo) => {
+        await openSellerWindow({ app_key: appKey, access_token: s.access_token, mode: s.mode ?? s.token_mode, nexconn_user_id: s.nexconn_user_id, deal_id: prov.deal_id });
+        return startInspectionCall({ calleeId: s.nexconn_user_id, dealId: prov.deal_id, remoteVideo });
+      },
+      stop: () => void hangUp(),
+    };
+  }, [prov, ncStatus]);
 
   // Whenever the deal gets a new message, read the Group channel through the browser Chat SDK and log what Nexconn holds.
   const seenNexconn = useRef(new Set<string>());
@@ -254,7 +271,7 @@ export default function Sandbox() {
       ) : (
         <div className="grid min-h-0 flex-1 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_360px]">
           <div className={`relative min-h-0 border-r hairline ${pane === "buyer" ? "" : "hidden xl:block"}`}>
-            <DealRoom deal={deal} viewerRole="buyer" viewerLocale={buyerLocale} jwt={buyerJwt} refresh={refresh} title={`Buyer · ${deal.buyer_name ?? "Rajesh"} (${buyerLocale})`} />
+            <DealRoom deal={deal} viewerRole="buyer" viewerLocale={buyerLocale} jwt={buyerJwt} refresh={refresh} call={inspectionCall} title={`Buyer · ${deal.buyer_name ?? "Rajesh"} (${buyerLocale})`} />
           </div>
           <div className={`relative min-h-0 border-r hairline ${pane === "seller" ? "" : "hidden xl:block"}`}>
             <DealRoom deal={deal} viewerRole="seller" viewerLocale={sellerLocale} jwt={sellerJwt} refresh={refresh} title={`Seller · ${deal.seller_name ?? "Vikram"} (${sellerLocale})`} />

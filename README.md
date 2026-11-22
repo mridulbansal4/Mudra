@@ -46,7 +46,7 @@ Rajesh runs a garment workshop in Tirupur and speaks Tamil. Vikram sells refurbi
 
 1. **Negotiate in your own language.** Messages are scrubbed for Aadhaar, PAN, phone and UPI IDs by a Rust guard, then translated Tamil ↔ Hindi ↔ English and streamed into custom Nexconn Chat UI cards.
 2. **Lock the money, not your trust.** Pay from the Mudra wallet or any UPI app and slide to lock. A Go state machine moves the deal from `CREATED` to `FUNDED`, and an Ed25519-signed voucher lands in the chat.
-3. **Inspect it live.** The seller goes live on Nexconn Call SDK. Mudra matches the serial plate, fingerprints frames (64-bit pHash) and listens to the motor (4096-point FFT) to confirm the claimed RPM.
+3. **Inspect it live.** The buyer calls the seller over a 1:1 Nexconn Call SDK video call. Mudra matches the serial plate, fingerprints frames (64-bit pHash) and listens to the motor (4096-point FFT) to confirm the claimed RPM.
 4. **Release, or freeze.** The buyer releases funds after verification. If something is wrong, one tap freezes both chats for a 90-second hearing; an arbitrator reviews one evidence packet and an AI tribunal recommendation, then executes a signed split.
 
 ---
@@ -108,7 +108,7 @@ Every transition goes through the Go deal engine with an `Idempotency-Key` and a
 | :--- | :--- | :--- | :--- |
 | **Chat SDK** | `@nexconn/chat`, `@nexconn/engine` | `NCEngine.connect` with server-issued tokens; direct, group, community and open channels for deal rooms, flash lots and the arena | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
 | **Chat UI** | `@nexconn/chatui` + Lit 3 | Four custom message cards registered before `app.ready()`: `<nc-bilingual-bubble>`, `<nc-escrow-deal-card>`, `<nc-video-assay-receipt>`, `<nc-tribunal-verdict>` | [`packages/nc-lit-cards`](packages/nc-lit-cards) |
-| **Call SDK** | `@nexconn/call` | `NCCallEngine` initialized on top of the live `NCEngine` session (no call is started yet; inspection video is captured locally and verified by Rust) | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
+| **Call SDK** | `@nexconn/call` | `NCCallEngine.install()` before `NCEngine.initialize`, then a 1:1 audio-video inspection call: the buyer's loupe "Call seller" opens the seller window (`/call/seller`), which auto-answers (`startCall` / `acceptCall` / `endCall`); the received seller video is fingerprinted by Rust. Falls back to the simulated stream without a camera. | [`apps/web/src/lib/nexconn-call.ts`](apps/web/src/lib/nexconn-call.ts), [`apps/web/src/routes/CallSeller.tsx`](apps/web/src/routes/CallSeller.tsx) |
 | **Server API** | `@nexconn/server-sdk` 0.1.2 (vendored) | `issueAccessToken`, streamed AI messages (`sendGroupChannelStreamMessage`), system vouchers, `addGroupChannelFreezeList` for the dispute freeze | [`services/nexconn-bridge-node/src/nexconn/client.ts`](services/nexconn-bridge-node/src/nexconn/client.ts) |
 
 The Nexconn secret key never leaves `services/nexconn-bridge-node`; CI fails the build if it appears in client code.
@@ -245,7 +245,7 @@ CI runs the same checks on every push: secret scan, Go race tests, Rust fmt + cl
 ## What is simulated
 
 - Payments are simulated; no real money moves.
-- Inspection video comes from the webcam or a simulated HD stream and is verified by Rust; the Call SDK is initialized but no Nexconn call is started yet.
+- Inspection video comes over a 1:1 Nexconn call when the seller window has a camera; auto-play and camera-less machines use the simulated HD stream. Either way it is verified by Rust.
 - In the sandbox, the post-delivery fingerprint is generated to demonstrate a mismatch.
 - `/traction` shows live counters since the last restart; seeded pilot numbers and demo rows are labelled as seeded.
 

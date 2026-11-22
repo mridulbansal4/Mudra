@@ -15,7 +15,7 @@ Demo video: https://youtu.be/0k8za4bE4bQ
 - [Animated two-phone preview](https://mudra.duckdns.org/demo): a scripted, client-side walkthrough of the same flow.
 
 ## How Nexconn is used
-- Web client: @nexconn/chat 26.2.1 and @nexconn/engine 26.2.1 (NCEngine.initialize, then NCEngine.connect with a server-issued token; a message handler logs RC:StreamMsg arrivals in the sandbox), @nexconn/chatui 26.2.5 (NCChatUIApplication with 4 custom Lit message types registered before ready()), @nexconn/call 26.2.1 (initialized after connect; no call is started). File: apps/web/src/lib/nexconn-boot.ts
+- Web client: @nexconn/chat 26.2.1 and @nexconn/engine 26.2.1 (NCEngine.initialize, then NCEngine.connect with a server-issued token; a message handler logs RC:StreamMsg arrivals in the sandbox), @nexconn/chatui 26.2.5 (NCChatUIApplication with 4 custom Lit message types registered before ready()), @nexconn/call 26.2.1 (NCCallEngine.install before NCEngine.initialize; a 1:1 audio-video inspection call from buyer to seller via startCall / acceptCall, opened from the sandbox loupe's "Call seller" button). Files: apps/web/src/lib/nexconn-boot.ts, apps/web/src/lib/nexconn-call.ts, apps/web/src/routes/CallSeller.tsx
 - Server: official Nexconn server SDK 0.1.2 (vendored source) in services/nexconn-bridge-node/src/nexconn/client.ts: issueAccessToken, createGroupChannel, sendGroupChannelStreamMessage and sendDirectChannelStreamMessage (RC:StreamMsg), addGroupChannelFreezeList / removeGroupChannelFreezeList, createOpenChannel + addOpenChannelPrioritySenderList, createCommunitySubchannel, sendSystemChannelMessage.
 - Channel types: Direct (arena), Group (deal rooms and the 90-second freeze), Open (flash lots, via API), Community (category subchannels, via API), System (signed escrow vouchers).
 
@@ -27,6 +27,6 @@ Demo video: https://youtu.be/0k8za4bE4bQ
 
 ## Simulated parts (stated honestly)
 - Payments are simulated; no real money moves.
-- Inspection video comes from the webcam or a simulated HD stream; it is not a Nexconn call.
+- Inspection video comes over a 1:1 Nexconn call when the seller window has a camera; otherwise (and in auto-play) a simulated HD stream is used.
 - In the sandbox, the post-delivery fingerprint is generated to demonstrate a mismatch.
 - The /traction page labels seeded pilot numbers and seeded demo rows separately from live counters.

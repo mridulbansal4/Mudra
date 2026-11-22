@@ -34,10 +34,10 @@ const NEXCONN_CARDS: NexconnFeatureCard[] = [
   {
     badge: "03 · CALL SDK",
     sdk: "@nexconn/call@26.2.1 · NCCallEngine",
-    title: "call engine on the live session",
+    title: "1:1 inspection video call",
     points: [
-      "NCCallEngine initialized once NCEngine.connect succeeds.",
-      "Inspection video is captured locally (webcam or simulated HD).",
+      "NCCallEngine.install before NCEngine.initialize; startCall / acceptCall buyer to seller.",
+      "The buyer's loupe fingerprints the seller video received over the call.",
       "Frames and audio verified by Rust pHash & a 4096-pt FFT.",
     ],
   },

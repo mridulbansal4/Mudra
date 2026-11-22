@@ -10,11 +10,13 @@
  *   4. app.ready()                                     - defines the custom elements
  *   5. NCEngine.addMessageHandler / addConnectionStatusHandler
  *   6. await NCEngine.connect({ token })               - opens the Nexconn WebSocket
+ *   0. NCCallEngine.install()                          - before NCEngine.initialize (Call SDK requirement)
  *   7. NCCallEngine.initialize(...)                    - only after connect resolves
  *
  * The SDKs are dynamically imported so simulated mode never downloads them.
  */
 import { MUDRA_MESSAGE_TYPES, defineMudraCards } from "@mudra/nc-lit-cards";
+import type { NCCallEngine } from "@nexconn/call";
 
 export type NexconnStatus = "simulated" | "connecting" | "connected" | "error";
 
@@ -24,6 +26,7 @@ export type NexconnEvent =
   | { kind: "message"; messageId: string; messageType: string; senderUserId: string }
   | { kind: "stream"; messageId: string; phase: "init" | "complete"; code?: number }
   | { kind: "status"; status: string; code?: number }
+  | { kind: "call"; phase: "ringing" | "incoming" | "connected" | "ended" | "failed"; callId?: string; detail?: string }
   | { kind: "error"; message: string };
 
 type Listener = (e: NexconnEvent) => void;
@@ -48,6 +51,10 @@ let bootToken: string | null = null;
 let engineRef: Engine | null = null;
 let connectedUserId: string | null = null;
 export const nexconnUserId = () => connectedUserId;
+let callEngineRef: NCCallEngine | null = null;
+/** The live NCCallEngine, or null when the Call SDK isn't booted (simulated mode, boot error). */
+export const getCallEngine = () => callEngineRef;
+export const emitNexconnEvent = (e: NexconnEvent) => emit(e);
 
 type Engine = {
   initialize(p: { appKey: string }): void;
@@ -84,10 +91,21 @@ export function bootNexconn(params: { appKey?: string; token?: string; mode?: st
   bootToken = params.token;
   boot = (async () => {
     try {
-      const [{ NCChatUIApplication }, chat] = await Promise.all([import("@nexconn/chatui"), import("@nexconn/chat")]);
+      const [{ NCChatUIApplication }, chat, callSdk] = await Promise.all([
+        import("@nexconn/chatui"),
+        import("@nexconn/chat"),
+        import("@nexconn/call").catch(() => null),
+      ]);
       const sdk = chat as unknown as { NCEngine: Engine; MessageHandler?: HandlerCtor; ConnectionStatusHandler?: HandlerCtor };
       const NCEngine = sdk.NCEngine;
       engineRef = NCEngine;
+
+      // 0. Call SDK plumbing must be installed before NCEngine.initialize.
+      try {
+        callSdk?.NCCallEngine.install();
+      } catch (e) {
+        console.warn("[nexconn] NCCallEngine.install failed", e);
+      }
 
       // 1. Engine first.
       NCEngine.initialize({ appKey: params.appKey! });
@@ -140,10 +158,9 @@ export function bootNexconn(params: { appKey?: string; token?: string; mode?: st
       // 6. Connect.
       await connectWith(NCEngine, params.token!);
 
-      // 7. Call SDK on top of the live engine session (initialized only; inspection video is captured locally).
+      // 7. Call SDK on top of the live engine session, used for the 1:1 inspection call.
       try {
-        const call = await import("@nexconn/call");
-        (call as unknown as { NCCallEngine: { initialize(p: Record<string, unknown>): unknown } }).NCCallEngine.initialize({});
+        if (callSdk) callEngineRef = callSdk.NCCallEngine.initialize({});
       } catch (e) {
         console.warn("[nexconn] Call SDK unavailable; video assay falls back to local capture", e);
       }
