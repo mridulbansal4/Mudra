@@ -7,9 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { Star } from 'lucide-react-native';
 import { C, F } from '@/theme/tokens';
 import { mudraApi } from '@/features/api';
+import { UpiIdSheet } from '@/features/profile/UpiIdSheet';
 import { LANGUAGES } from '@/i18n';
 import { maskPhone } from '@/lib/phone';
 import { useMode, useSessionStore } from '@/state/mode';
+import '@/types/upi';
 import {
   AvatarRing,
   EmptyState,
@@ -37,7 +39,7 @@ export default function ProfileScreen() {
   const locale = useSessionStore((s) => s.locale) ?? 'en';
   const { mode, setMode } = useMode();
 
-  const [sheetMode, setSheetMode] = useState<'edit' | 'delete' | null>(null);
+  const [sheetMode, setSheetMode] = useState<'edit' | 'delete' | 'upi' | null>(null);
   const [nameInput, setNameInput] = useState(storeMe?.name || '');
   const [campusInput, setCampusInput] = useState(storeMe?.campus || '');
   const [bioInput, setBioInput] = useState(storeMe?.bio || '');
@@ -180,6 +182,20 @@ export default function ProfileScreen() {
 
         <ListGroup title={t('profile.group_account', 'ACCOUNT')}>
           <ListRow title={t('profile.edit_profile', 'edit name, campus & bio')} onPress={openEditSheet} />
+          <ListRow
+            testID="profile-upi-row"
+            title={t('profile.upi_id', 'upi id')}
+            value={
+              me.upi_id ? (
+                <Text variant="mono" size={13} color={C.fg2}>
+                  {me.upi_id}
+                </Text>
+              ) : (
+                t('profile.upi_id_add', 'add')
+              )
+            }
+            onPress={() => setSheetMode('upi')}
+          />
           <ListRow title={t('profile.language', 'language')} value={langLabel} onPress={() => router.push('/settings/language' as never)} />
           <ListRow
             title={t('profile.currency', 'currency')}
@@ -221,7 +237,7 @@ export default function ProfileScreen() {
       </ScrollView>
 
       <Sheet
-        visible={sheetMode !== null}
+        visible={sheetMode === 'edit' || sheetMode === 'delete'}
         onClose={() => setSheetMode(null)}
         title={sheetMode === 'delete' ? t('profile.delete_confirm_title') : t('profile.edit_profile')}
       >
@@ -241,6 +257,12 @@ export default function ProfileScreen() {
           </View>
         )}
       </Sheet>
+
+      <UpiIdSheet
+        visible={sheetMode === 'upi'}
+        onClose={() => setSheetMode(null)}
+        currentUpiId={me.upi_id}
+      />
     </View>
   );
 }
