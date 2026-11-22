@@ -12,11 +12,30 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>Mudra</title>
+    <title>Mudra — Multilingual Escrow & Live WebRTC Assay on Nexconn</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Mudra (MUDRA-OS / SamvadDeal)",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Android, Web",
+        "url": "https://mudra.duckdns.org",
+        "downloadUrl": "https://mudra.duckdns.org/downloads/mudra-v1.0.0-arm64.apk",
+        "codeRepository": "https://github.com/mridulbansal4/Mudra",
+        "description": "Multilingual P2P and B2B escrow deal room built on the Nexconn Unified Communications Platform (@nexconn/engine@26.2.1, @nexconn/chat@26.2.1, @nexconn/chatui@26.2.5, @nexconn/call@26.2.1, @nexconn/server-sdk@0.1.2) across all 5 channel types (Direct, Group, Community, Open, System) with Go 1.24 8-state Escrow FSM, Rust 1.85 Aho-Corasick DPDP PII scrubber (<300us) & 64-bit DCT pHash / 4096-point FFT WebRTC hardware assay verifier, and Gemini 2.5 Flash/Pro bilingual RC:StreamMsg translation and 90-second freeze arbitration."
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <noscript>MUDRA-OS needs JavaScript for the live deal desk. Read the docs at /guide in the repository.</noscript>
+    <noscript>
+      MUDRA-OS (SamvadDeal) — Plain-Text Methodology & Technical Architecture:
+      1. Idea & Problem: Eliminates counterfeit and payment fraud in cross-language P2P campus second-hand exchanges and regional B2B wholesale trade by combining an 8-state deterministic escrow state machine, real-time bilingual translation (Hindi, Tamil, Marathi, English), and live WebRTC hardware inspection inside a Nexconn chat room.
+      2. Nexconn SDKs Used: @nexconn/engine@26.2.1 (Singapore Cluster AreaCode.SG, App Key n19jmcy5nw379), @nexconn/chat@26.2.1 (real-time messaging & S3 media RC:FileMsg, RC:SightMsg, RC:ImgMsg), @nexconn/chatui@26.2.5 (custom Lit v3 Web Components nc-escrow-deal-card and nc-bilingual-bubble), @nexconn/call@26.2.1 (NCCallEngine WebRTC SFU Voice, SD 640x480, and HD 1280x720 inspection calls), and @nexconn/server-sdk@0.1.2 (Node.js 22 Fastify REST API v4 & RC:StreamMsg).
+      3. All 5 Nexconn Channel Types: Direct, Group, Community, Open, and System.
+      4. Polyglot Systems Stack: Go 1.24 Deal Engine (:4002), Rust 1.85 Assay & DPDP PII Verifier (:4003), Node.js 22 Fastify Nexconn Bridge (:4001), React 19 + Tailwind CSS v4 + HeroUI v3 Web Desk, and Android APK v1.0.0.
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
