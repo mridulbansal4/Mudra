@@ -5,8 +5,12 @@ import { Link } from "react-router";
 export interface NeoButtonProps {
   variant?: "purple" | "paccha" | "white" | "ghost";
   size?: "md" | "lg";
-  as?: "button" | "link";
+  as?: "button" | "link" | "a";
   to?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  download?: boolean | string;
   icon?: LucideIcon;
   children: ReactNode;
   onClick?: (e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
@@ -56,6 +60,10 @@ export function NeoButton({
   size = "md",
   as,
   to,
+  href,
+  target,
+  rel,
+  download,
   icon: Icon,
   children,
   onClick,
@@ -99,11 +107,11 @@ export function NeoButton({
   const inner = (
     <>
       <style>{`
-        .neo-btn:hover:not(:disabled) {
+        .neo-btn:hover:not(:disabled):not([aria-disabled="true"]) {
           transform: translate(-1px, -1px);
           box-shadow: 6px 6px 0 0 var(--neo-shadow) !important;
         }
-        .neo-btn:active:not(:disabled) {
+        .neo-btn:active:not(:disabled):not([aria-disabled="true"]) {
           transform: translate(5px, 5px) !important;
           box-shadow: 0 0 0 0 var(--neo-shadow) !important;
         }
@@ -124,9 +132,38 @@ export function NeoButton({
     </>
   );
 
+  if (href || as === "a") {
+    const resolvedRel =
+      target === "_blank" && !rel ? "noopener noreferrer" : rel;
+    return (
+      <a
+        href={disabled ? undefined : href}
+        target={target}
+        rel={resolvedRel}
+        download={download}
+        onClick={disabled ? undefined : onClick}
+        aria-disabled={disabled ? "true" : undefined}
+        tabIndex={disabled ? -1 : undefined}
+        className={baseClass}
+        style={style}
+        aria-label={ariaLabel}
+      >
+        {inner}
+      </a>
+    );
+  }
+
   if ((as === "link" || to) && to) {
     return (
-      <Link to={to} onClick={onClick} className={baseClass} style={style} aria-label={ariaLabel}>
+      <Link
+        to={to}
+        onClick={disabled ? undefined : onClick}
+        aria-disabled={disabled ? "true" : undefined}
+        tabIndex={disabled ? -1 : undefined}
+        className={baseClass}
+        style={style}
+        aria-label={ariaLabel}
+      >
         {inner}
       </Link>
     );
