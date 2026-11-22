@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Vault } from "lucide-react";
+import { Vault, Wallet } from "lucide-react";
 import { useReducedMotion } from "../../motion/hooks";
 import { Eyebrow } from "../../ui/Eyebrow";
 import { ListGroup, ListRow } from "../../ui/ListRow";
@@ -16,6 +16,7 @@ export interface EscrowSheetProps {
 export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetProps) {
   const reduced = Boolean(useReducedMotion());
   const [sealedMorph, setSealedMorph] = useState(false);
+  const [method, setMethod] = useState<PayMethod>("wallet");
 
   // Reset morph phase when step changes back
   useEffect(() => {
@@ -111,6 +112,8 @@ export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetPr
               </p>
             </div>
 
+            <PayMethodPicker method={method} onChange={setMethod} />
+
             <ListGroup>
               <ListRow label="item" value="₹1,45,000" showChevron={false} />
               <ListRow
@@ -120,10 +123,10 @@ export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetPr
                 showChevron={false}
               />
               <ListRow
-                label="upi mandate"
+                label={method === "wallet" ? "paid from" : "upi mandate"}
                 value={
                   <span className="font-mono text-[12px] font-medium text-fg-2">
-                    {DEAL_META.upiMandate}
+                    {method === "wallet" ? "mudra wallet" : `${UPI_APPS.find((a) => a.id === method)?.label} · ${DEAL_META.upiMandate}`}
                   </span>
                 }
                 showChevron={false}
@@ -136,6 +139,81 @@ export function EscrowSheet({ state, dispatch, autoLock = false }: EscrowSheetPr
             />
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+type PayMethod = "wallet" | "gpay" | "phonepe" | "paytm" | "bhim";
+
+const UPI_APPS: { id: Exclude<PayMethod, "wallet">; label: string }[] = [
+  { id: "gpay", label: "gpay" },
+  { id: "phonepe", label: "phonepe" },
+  { id: "paytm", label: "paytm" },
+  { id: "bhim", label: "bhim" },
+];
+
+const WALLET_BALANCE = "₹2,40,000";
+
+function PayMethodPicker({ method, onChange }: { method: PayMethod; onChange: (m: PayMethod) => void }) {
+  const walletOn = method === "wallet";
+  return (
+    <div className="flex flex-col gap-2.5" role="radiogroup" aria-label="Pay from">
+      <span className="text-[11px] font-semibold lowercase text-muted">pay from</span>
+      <button
+        type="button"
+        role="radio"
+        aria-checked={walletOn}
+        onClick={() => onChange("wallet")}
+        className="press flex items-center gap-3 px-3.5 py-3 text-left cursor-pointer"
+        style={{
+          borderRadius: "16px",
+          backgroundColor: walletOn ? "rgba(229, 254, 64, 0.10)" : "#1a1a1a",
+          boxShadow: walletOn ? "inset 0 0 0 1.5px #e5fe40" : "inset 0 0 0 1px var(--hairline)",
+        }}
+      >
+        <span
+          className="flex size-[34px] items-center justify-center rounded-full"
+          style={{ backgroundColor: walletOn ? "#e5fe40" : "#2b2b2b", color: walletOn ? "#0d0d0d" : "#f5f5f5" }}
+        >
+          <Wallet size={17} strokeWidth={1.8} aria-hidden="true" />
+        </span>
+        <span className="flex flex-1 flex-col">
+          <span className="text-[13px] font-semibold lowercase text-fg">mudra wallet</span>
+          <span className="text-[11px] font-medium lowercase text-muted">
+            balance <span className="num">{WALLET_BALANCE}</span>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          className="size-[16px] rounded-full"
+          style={{ boxShadow: walletOn ? "inset 0 0 0 5px #e5fe40" : "inset 0 0 0 1.5px #5c5c5c" }}
+        />
+      </button>
+      <span className="pt-1 text-[11px] font-semibold lowercase text-muted">or any upi app</span>
+      <div className="grid grid-cols-4 gap-2">
+        {UPI_APPS.map((app) => {
+          const on = method === app.id;
+          return (
+            <button
+              key={app.id}
+              type="button"
+              role="radio"
+              aria-checked={on}
+              data-upi={app.id}
+              onClick={() => onChange(app.id)}
+              className="press py-2.5 text-[12px] font-semibold lowercase cursor-pointer"
+              style={{
+                borderRadius: "12px",
+                backgroundColor: on ? "#6a35ff" : "#1a1a1a",
+                color: on ? "#ffffff" : "#d4d4d4",
+                boxShadow: on ? "none" : "inset 0 0 0 1px var(--hairline)",
+              }}
+            >
+              {app.label}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
