@@ -14,6 +14,7 @@ import { Text } from './Text';
 export type StatusPillTone =
   | 'locked'
   | 'live'
+  | 'sunshine'
   | 'frozen'
   | 'neutral'
   | 'done'
@@ -33,6 +34,7 @@ const TONE_STYLES: Record<
 > = {
   locked: { bg: 'rgba(229, 254, 64, 0.12)', fg: C.paccha },
   live: { bg: 'rgba(255, 135, 68, 0.14)', fg: C.sunshine, pulse: true },
+  sunshine: { bg: 'rgba(255, 135, 68, 0.14)', fg: C.sunshine },
   frozen: { bg: 'rgba(154, 216, 255, 0.12)', fg: '#9ad8ff' },
   done: { bg: 'rgba(61, 220, 132, 0.12)', fg: C.success },
   danger: { bg: 'rgba(255, 77, 77, 0.12)', fg: C.danger },
