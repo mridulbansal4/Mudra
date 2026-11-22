@@ -1,14 +1,20 @@
 import { Link } from "react-router";
 import { LogoMark } from "../brand/Logo";
+import { ANDROID_RELEASE } from "../config/release";
 import { NeoButton } from "../ui/NeoButton";
 
-const COLUMNS = [
+type FooterLink =
+  | { to: string; label: string }
+  | { href: string; label: string };
+
+const COLUMNS: { header: string; links: FooterLink[] }[] = [
   {
     header: "PRODUCT",
     links: [
       { to: "/how-it-works", label: "how it works" },
       { to: "/demo", label: "two-phone demo" },
       { to: "/sandbox", label: "live sandbox" },
+      { href: ANDROID_RELEASE.tagUrl, label: "download android apk" },
     ],
   },
   {
@@ -31,7 +37,7 @@ const COLUMNS = [
       { to: "/app", label: "my desk" },
     ],
   },
-] as const;
+];
 
 export function SiteFooter() {
   return (
@@ -56,13 +62,24 @@ export function SiteFooter() {
               <div className="eyebrow text-muted">{col.header}</div>
               <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
                 {col.links.map((link) => (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      className="text-[14px] font-medium lowercase text-fg-2 hover:text-fg no-underline transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                  <li key={"href" in link ? link.href : link.to}>
+                    {"href" in link ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[14px] font-medium lowercase text-fg-2 hover:text-fg no-underline transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        className="text-[14px] font-medium lowercase text-fg-2 hover:text-fg no-underline transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
