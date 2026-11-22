@@ -2,6 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
+import { runUpiSmoke } from './smoke-upi.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
@@ -37,12 +38,9 @@ async function rpc(name, args = {}) {
 const results = [];
 function record(step, ok, detail = '') {
   const status = ok ? 'PASS' : 'FAIL';
-  const line = `${status} [Step ${step}] ${detail}`;
-  console.log(line);
+  console.log(`${status} [Step ${step}] ${detail}`);
   results.push({ step, ok, detail });
-  if (!ok) {
-    process.exitCode = 1;
-  }
+  if (!ok) process.exitCode = 1;
 }
 
 async function main() {
@@ -72,22 +70,12 @@ async function main() {
   const phoneB = randPhone();
   try {
     userA = await rpc('m_signup', {
-      p_name: 'Alice Seller',
-      p_phone: phoneA,
-      p_pin: '2580',
-      p_role: 'sell',
-      p_locale: 'en',
-      p_currency: 'USD',
-      p_campus: 'MIT',
+      p_name: 'Alice Seller', p_phone: phoneA, p_pin: '2580',
+      p_role: 'sell', p_locale: 'en', p_currency: 'USD', p_campus: 'MIT',
     });
     userB = await rpc('m_signup', {
-      p_name: 'Bob Buyer',
-      p_phone: phoneB,
-      p_pin: '3690',
-      p_role: 'buy',
-      p_locale: 'en',
-      p_currency: 'USD',
-      p_campus: 'MIT',
+      p_name: 'Bob Buyer', p_phone: phoneB, p_pin: '3690',
+      p_role: 'buy', p_locale: 'en', p_currency: 'USD', p_campus: 'MIT',
     });
     const ok = Boolean(userA?.token && userB?.token && userB?.me?.wallet_balance_minor === 30000);
     record(2, ok, `Signed up seller A (${phoneA}) & buyer B (${phoneB}), initial USD balance=${userB?.me?.wallet_balance_minor}`);
@@ -96,7 +84,7 @@ async function main() {
     return;
   }
 
-  // Step 3: A creates sell listing (price 100.00 USD = 10000 minor, or 1000.00 INR = 100000 minor; let's use 10000 minor so 30000 USD wallet covers 2 deals)
+  // Step 3: A creates sell listing
   const uniqueTag = `smoketest${Date.now().toString().slice(-6)}`;
   let listing1;
   try {
@@ -105,13 +93,8 @@ async function main() {
       p_data: {
         title: `studio headphones ${uniqueTag}`,
         description: 'mint condition wireless headphones for smoke test',
-        category: 'electronics',
-        condition: 'like_new',
-        kind: 'sell',
-        price_minor: 10000,
-        photos: [seedPhoto],
-        meetup_spot: 'student center',
-        campus: 'MIT',
+        category: 'electronics', condition: 'like_new', kind: 'sell',
+        price_minor: 10000, photos: [seedPhoto], meetup_spot: 'student center', campus: 'MIT',
       },
     });
     record(3, Boolean(listing1?.id && listing1?.price_minor === 10000), `Created listing ${listing1?.id} (${listing1?.title})`);
@@ -122,12 +105,7 @@ async function main() {
 
   // Step 4: B m_feed finds it by q
   try {
-    const feed = await rpc('m_feed', {
-      p_token: userB.token,
-      p_filters: { q: uniqueTag },
-      p_limit: 10,
-      p_offset: 0,
-    });
+    const feed = await rpc('m_feed', { p_token: userB.token, p_filters: { q: uniqueTag }, p_limit: 10, p_offset: 0 });
     const found = Array.isArray(feed) && feed.some((item) => item.id === listing1.id);
     record(4, found, `m_feed search q="${uniqueTag}" found=${found} (${feed?.length} results)`);
   } catch (e) {
@@ -138,11 +116,8 @@ async function main() {
   let deal1;
   try {
     deal1 = await rpc('m_start_deal', {
-      p_token: userB.token,
-      p_listing_id: listing1.id,
-      p_amount_minor: 8000,
-      p_note: 'can do 80?',
-      p_idem: `idem-start-${uniqueTag}`,
+      p_token: userB.token, p_listing_id: listing1.id, p_amount_minor: 8000,
+      p_note: 'can do 80?', p_idem: `idem-start-${uniqueTag}`,
     });
     const phoneHidden = deal1?.counterpart?.phone === null;
     record(5, deal1?.state === 'OFFERED' && deal1?.amount_minor === 8000 && phoneHidden, `m_start_deal state=${deal1?.state}, amount=${deal1?.amount_minor}, phoneHidden=${phoneHidden}`);
@@ -151,12 +126,10 @@ async function main() {
     return;
   }
 
-  // Step 12 (early check while deal1 is still before FUNDED): m_send_message with a phone number before FUNDED -> masked
+  // Step 12: m_send_message with a phone number before FUNDED -> masked
   try {
     const msg = await rpc('m_send_message', {
-      p_token: userB.token,
-      p_deal_id: deal1.id,
-      p_body: 'call me on +91 98765 43210 before locking',
+      p_token: userB.token, p_deal_id: deal1.id, p_body: 'call me on +91 98765 43210 before locking',
     });
     const masked = typeof msg?.body === 'string' && msg.body.includes('•••') && !msg.body.includes('98765');
     record(12, masked, `Pre-FUNDED phone number masked: "${msg?.body}"`);
@@ -167,20 +140,13 @@ async function main() {
   // Step 6: A COUNTER 90% (9000) -> B ACCEPT -> CREATED
   try {
     deal1 = await rpc('m_deal_action', {
-      p_token: userA.token,
-      p_deal_id: deal1.id,
-      p_action: 'COUNTER',
-      p_expected_version: deal1.version,
-      p_payload: { amount_minor: 9000 },
+      p_token: userA.token, p_deal_id: deal1.id, p_action: 'COUNTER',
+      p_expected_version: deal1.version, p_payload: { amount_minor: 9000 },
     });
     const afterCounter = deal1.state === 'OFFERED' && deal1.amount_minor === 9000;
-
     deal1 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal1.id,
-      p_action: 'ACCEPT',
-      p_expected_version: deal1.version,
-      p_payload: {},
+      p_token: userB.token, p_deal_id: deal1.id, p_action: 'ACCEPT',
+      p_expected_version: deal1.version, p_payload: {},
     });
     record(6, afterCounter && deal1.state === 'CREATED' && deal1.amount_minor === 9000, `Countered 9000 & accepted -> state=${deal1.state}, version=${deal1.version}`);
   } catch (e) {
@@ -193,11 +159,8 @@ async function main() {
     let conflicted = false;
     try {
       await rpc('m_deal_action', {
-        p_token: userB.token,
-        p_deal_id: deal1.id,
-        p_action: 'LOCK_ESCROW',
-        p_expected_version: deal1.version - 1, // stale!
-        p_payload: {},
+        p_token: userB.token, p_deal_id: deal1.id, p_action: 'LOCK_ESCROW',
+        p_expected_version: deal1.version - 1, p_payload: {},
       });
     } catch (err) {
       conflicted = String(err.message).includes('MUDRA:VERSION_CONFLICT');
@@ -211,11 +174,8 @@ async function main() {
   try {
     const wBefore = await rpc('m_wallet', { p_token: userB.token });
     deal1 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal1.id,
-      p_action: 'LOCK_ESCROW',
-      p_expected_version: deal1.version,
-      p_payload: {},
+      p_token: userB.token, p_deal_id: deal1.id, p_action: 'LOCK_ESCROW',
+      p_expected_version: deal1.version, p_payload: {},
     });
     const wAfter = await rpc('m_wallet', { p_token: userB.token });
     const decreased = wBefore.balance_minor - wAfter.balance_minor === 9000;
@@ -225,50 +185,30 @@ async function main() {
     return;
   }
 
-  // Step 8: A START_ASSAY -> 3x CHECK_ITEM -> B MARK_ASSAY_VERIFIED -> B RELEASE_FUNDS -> A wallet increased by amount; listing sold
+  // Step 8: START_ASSAY -> 3x CHECK_ITEM -> MARK_ASSAY_VERIFIED -> RELEASE_FUNDS
   try {
     const wSellerBefore = await rpc('m_wallet', { p_token: userA.token });
-
     deal1 = await rpc('m_deal_action', {
-      p_token: userA.token,
-      p_deal_id: deal1.id,
-      p_action: 'START_ASSAY',
-      p_expected_version: deal1.version,
-      p_payload: {},
+      p_token: userA.token, p_deal_id: deal1.id, p_action: 'START_ASSAY',
+      p_expected_version: deal1.version, p_payload: {},
     });
-
     for (let idx = 0; idx < 3; idx++) {
       deal1 = await rpc('m_deal_action', {
-        p_token: userA.token,
-        p_deal_id: deal1.id,
-        p_action: 'CHECK_ITEM',
-        p_expected_version: deal1.version,
-        p_payload: { index: idx, photo_url: seedPhoto },
+        p_token: userA.token, p_deal_id: deal1.id, p_action: 'CHECK_ITEM',
+        p_expected_version: deal1.version, p_payload: { index: idx, photo_url: seedPhoto },
       });
     }
-
     deal1 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal1.id,
-      p_action: 'MARK_ASSAY_VERIFIED',
-      p_expected_version: deal1.version,
-      p_payload: {},
+      p_token: userB.token, p_deal_id: deal1.id, p_action: 'MARK_ASSAY_VERIFIED',
+      p_expected_version: deal1.version, p_payload: {},
     });
-
     deal1 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal1.id,
-      p_action: 'RELEASE_FUNDS',
-      p_expected_version: deal1.version,
-      p_payload: {},
+      p_token: userB.token, p_deal_id: deal1.id, p_action: 'RELEASE_FUNDS',
+      p_expected_version: deal1.version, p_payload: {},
     });
-
     const wSellerAfter = await rpc('m_wallet', { p_token: userA.token });
     const lAfter = await rpc('m_listing', { p_token: userA.token, p_listing_id: listing1.id });
-    const ok =
-      deal1.state === 'RELEASED' &&
-      wSellerAfter.balance_minor - wSellerBefore.balance_minor === 9000 &&
-      lAfter.status === 'sold';
+    const ok = deal1.state === 'RELEASED' && wSellerAfter.balance_minor - wSellerBefore.balance_minor === 9000 && lAfter.status === 'sold';
     record(8, ok, `START_ASSAY -> 3x CHECK_ITEM -> MARK_ASSAY_VERIFIED -> RELEASE_FUNDS: state=${deal1.state}, seller wallet +${wSellerAfter.balance_minor - wSellerBefore.balance_minor}, listing=${lAfter.status}`);
   } catch (e) {
     record(8, false, `Step 8 live check & release failed: ${e.message}`);
@@ -278,18 +218,12 @@ async function main() {
   // Step 9: Both LEAVE_REVIEW
   try {
     deal1 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal1.id,
-      p_action: 'LEAVE_REVIEW',
-      p_expected_version: deal1.version,
-      p_payload: { stars: 5, body: 'great seller!', tags: ['on time', 'as described'] },
+      p_token: userB.token, p_deal_id: deal1.id, p_action: 'LEAVE_REVIEW',
+      p_expected_version: deal1.version, p_payload: { stars: 5, body: 'great seller!', tags: ['on time', 'as described'] },
     });
     deal1 = await rpc('m_deal_action', {
-      p_token: userA.token,
-      p_deal_id: deal1.id,
-      p_action: 'LEAVE_REVIEW',
-      p_expected_version: deal1.version,
-      p_payload: { stars: 5, body: 'fast payment!', tags: ['friendly'] },
+      p_token: userA.token, p_deal_id: deal1.id, p_action: 'LEAVE_REVIEW',
+      p_expected_version: deal1.version, p_payload: { stars: 5, body: 'fast payment!', tags: ['friendly'] },
     });
     const sellerProf = await rpc('m_seller_profile', { p_token: userB.token, p_profile_id: userA.me.id });
     record(9, deal1.reviewed_by_me === true && sellerProf?.profile?.rating === 5, `Both left 5-star reviews (seller rating=${sellerProf?.profile?.rating})`);
@@ -300,25 +234,12 @@ async function main() {
   // Step 13: Login with wrong PIN 5x -> LOCKED
   try {
     const lockPhone = randPhone();
-    await rpc('m_signup', {
-      p_name: 'Lock Test User',
-      p_phone: lockPhone,
-      p_pin: '7391',
-      p_role: 'buy',
-      p_locale: 'en',
-      p_currency: 'INR',
-    });
-
+    await rpc('m_signup', { p_name: 'Lock Test User', p_phone: lockPhone, p_pin: '7391', p_role: 'buy', p_locale: 'en', p_currency: 'INR' });
     let lastErr = '';
     for (let i = 1; i <= 5; i++) {
-      try {
-        await rpc('m_login', { p_phone: lockPhone, p_pin: '0000' });
-      } catch (err) {
-        lastErr = String(err.message);
-      }
+      try { await rpc('m_login', { p_phone: lockPhone, p_pin: '0000' }); } catch (err) { lastErr = String(err.message); }
     }
-    const locked = lastErr.includes('MUDRA:LOCKED');
-    record(13, locked, `5x wrong PIN -> ${lastErr}`);
+    record(13, lastErr.includes('MUDRA:LOCKED'), `5x wrong PIN -> ${lastErr}`);
   } catch (e) {
     record(13, false, `PIN lockout test failed: ${e.message}`);
   }
@@ -329,103 +250,41 @@ async function main() {
     const vikram = await rpc('m_login', { p_phone: '+919000000002', p_pin: '1234' });
     const rDeals = await rpc('m_deals', { p_token: rajesh.token, p_role: 'all' });
     const vDeals = await rpc('m_deals', { p_token: vikram.token, p_role: 'all' });
-    const ok = Boolean(rajesh?.token && vikram?.token && rDeals?.length >= 1 && vDeals?.length >= 1);
-    record(14, ok, `Demo logins OK: Rajesh (${rDeals?.length} deal: ${rDeals?.[0]?.state}) & Vikramjeet (${vDeals?.length} deal: ${vDeals?.[0]?.state})`);
+    record(14, Boolean(rajesh?.token && vikram?.token && rDeals?.length >= 1 && vDeals?.length >= 1),
+      `Demo logins OK: Rajesh (${rDeals?.length} deal: ${rDeals?.[0]?.state}) & Vikramjeet (${vDeals?.length} deal: ${vDeals?.[0]?.state})`);
   } catch (e) {
     record(14, false, `Demo accounts login failed: ${e.message}`);
   }
 
-  // Step 11: Second deal: lock then RAISE_DISPUTE with 1 check -> wait 91 s -> m_resolve_if_due -> ARBITRATED_SPLIT 30/70, balances correct
+  // UPI Steps 1-9 (§5)
+  await runUpiSmoke({ rpc, record, randPhone, uniqueTag, seedPhoto, userB });
+
+  // Step 11: Second deal: lock then RAISE_DISPUTE with 1 check -> wait 91 s -> m_resolve_if_due -> ARBITRATED_SPLIT 30/70
   try {
     const listing2 = await rpc('m_create_listing', {
       p_token: userA.token,
       p_data: {
-        title: `mechanical keyboard ${uniqueTag}`,
-        description: 'hot-swappable keyboard for freeze split test',
-        category: 'electronics',
-        condition: 'good',
-        kind: 'sell',
-        price_minor: 10000,
-        photos: [seedPhoto],
-        meetup_spot: 'lobby',
-        campus: 'MIT',
+        title: `mechanical keyboard ${uniqueTag}`, description: 'hot-swappable keyboard for freeze split test',
+        category: 'electronics', condition: 'good', kind: 'sell',
+        price_minor: 10000, photos: [seedPhoto], meetup_spot: 'lobby', campus: 'MIT',
       },
     });
-
-    // Buy now at full price -> directly CREATED
-    let deal2 = await rpc('m_start_deal', {
-      p_token: userB.token,
-      p_listing_id: listing2.id,
-      p_amount_minor: 10000,
-    });
-
-    // Lock escrow (10000)
-    deal2 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal2.id,
-      p_action: 'LOCK_ESCROW',
-      p_expected_version: deal2.version,
-      p_payload: {},
-    });
-
+    let deal2 = await rpc('m_start_deal', { p_token: userB.token, p_listing_id: listing2.id, p_amount_minor: 10000 });
+    deal2 = await rpc('m_deal_action', { p_token: userB.token, p_deal_id: deal2.id, p_action: 'LOCK_ESCROW', p_expected_version: deal2.version, p_payload: {} });
     const wSellerPreSplit = (await rpc('m_wallet', { p_token: userA.token })).balance_minor;
     const wBuyerPreSplit = (await rpc('m_wallet', { p_token: userB.token })).balance_minor;
-
-    // Start assay + 1 check (partial evidence -> 30% seller / 70% buyer)
-    deal2 = await rpc('m_deal_action', {
-      p_token: userA.token,
-      p_deal_id: deal2.id,
-      p_action: 'START_ASSAY',
-      p_expected_version: deal2.version,
-      p_payload: {},
-    });
-    deal2 = await rpc('m_deal_action', {
-      p_token: userA.token,
-      p_deal_id: deal2.id,
-      p_action: 'CHECK_ITEM',
-      p_expected_version: deal2.version,
-      p_payload: { index: 0, photo_url: seedPhoto },
-    });
-
-    // Raise dispute -> DISPUTED_FROZEN
-    deal2 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal2.id,
-      p_action: 'RAISE_DISPUTE',
-      p_expected_version: deal2.version,
-      p_payload: { reason: 'only one check shown' },
-    });
-
-    // Add statement
-    deal2 = await rpc('m_deal_action', {
-      p_token: userB.token,
-      p_deal_id: deal2.id,
-      p_action: 'ADD_STATEMENT',
-      p_expected_version: deal2.version,
-      p_payload: { text: 'seller only sent 1 photo out of 3' },
-    });
+    deal2 = await rpc('m_deal_action', { p_token: userA.token, p_deal_id: deal2.id, p_action: 'START_ASSAY', p_expected_version: deal2.version, p_payload: {} });
+    deal2 = await rpc('m_deal_action', { p_token: userA.token, p_deal_id: deal2.id, p_action: 'CHECK_ITEM', p_expected_version: deal2.version, p_payload: { index: 0, photo_url: seedPhoto } });
+    deal2 = await rpc('m_deal_action', { p_token: userB.token, p_deal_id: deal2.id, p_action: 'RAISE_DISPUTE', p_expected_version: deal2.version, p_payload: { reason: 'only one check shown' } });
+    deal2 = await rpc('m_deal_action', { p_token: userB.token, p_deal_id: deal2.id, p_action: 'ADD_STATEMENT', p_expected_version: deal2.version, p_payload: { text: 'seller only sent 1 photo out of 3' } });
 
     console.log('Waiting 91s for freeze resolution timer to mature...');
     await new Promise((r) => setTimeout(r, 91000));
 
-    const resolved = await rpc('m_resolve_if_due', {
-      p_token: userB.token,
-      p_deal_id: deal2.id,
-    });
-
-    const wSellerPostSplit = (await rpc('m_wallet', { p_token: userA.token })).balance_minor;
-    const wBuyerPostSplit = (await rpc('m_wallet', { p_token: userB.token })).balance_minor;
-
-    const sellerGain = wSellerPostSplit - wSellerPreSplit;
-    const buyerGain = wBuyerPostSplit - wBuyerPreSplit;
-
-    const ok =
-      resolved.state === 'ARBITRATED_SPLIT' &&
-      resolved.verdict?.seller_pct === 30 &&
-      resolved.verdict?.buyer_pct === 70 &&
-      sellerGain === 3000 &&
-      buyerGain === 7000;
-
+    const resolved = await rpc('m_resolve_if_due', { p_token: userB.token, p_deal_id: deal2.id });
+    const sellerGain = (await rpc('m_wallet', { p_token: userA.token })).balance_minor - wSellerPreSplit;
+    const buyerGain = (await rpc('m_wallet', { p_token: userB.token })).balance_minor - wBuyerPreSplit;
+    const ok = resolved.state === 'ARBITRATED_SPLIT' && resolved.verdict?.seller_pct === 30 && resolved.verdict?.buyer_pct === 70 && sellerGain === 3000 && buyerGain === 7000;
     record(11, ok, `90s Freeze Resolution -> state=${resolved.state}, split=${resolved.verdict?.seller_pct}/${resolved.verdict?.buyer_pct}, seller +${sellerGain}, buyer +${buyerGain}`);
   } catch (e) {
     record(11, false, `Freeze resolution test failed: ${e.message}`);
@@ -433,9 +292,7 @@ async function main() {
 
   const failed = results.filter((r) => !r.ok);
   console.log(`\nSmoke Summary: ${results.length - failed.length}/${results.length} passed.`);
-  if (failed.length > 0) {
-    process.exit(1);
-  }
+  if (failed.length > 0) process.exit(1);
 }
 
 main().catch((err) => {
