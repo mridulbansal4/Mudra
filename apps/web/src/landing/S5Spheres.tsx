@@ -74,10 +74,11 @@ export function S5Spheres() {
             {STATS.map((item, idx) => (
               <div
                 key={item.caption}
-                className="flex flex-col justify-between p-6 md:p-8"
-                style={{
-                  borderLeft: idx > 0 ? "1px solid var(--hairline)" : undefined,
-                }}
+                className={`flex flex-col justify-between p-4 sm:p-6 md:p-8 ${
+                  idx >= 2 ? "border-t border-[var(--hairline)] lg:border-t-0" : ""
+                } ${idx % 2 === 1 ? "border-l border-[var(--hairline)]" : ""} ${
+                  idx === 2 ? "lg:border-l lg:border-[var(--hairline)]" : ""
+                }`}
               >
                 <div className="flex items-baseline gap-1.5">
                   <CountUp
