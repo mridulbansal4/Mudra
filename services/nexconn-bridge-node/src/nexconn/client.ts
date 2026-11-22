@@ -64,11 +64,11 @@ export function mapNexconnError(op: string, err: unknown): NexconnBridgeError {
   return new NexconnBridgeError("ERR_NEXCONN_UPSTREAM", `${op}: ${msg}`, true);
 }
 
-/** Nexconn can return HTTP 200 with a business `code`; 200 means success. */
+/** Nexconn can return HTTP 200 with a business `code`; 0 or 200 means success. */
 function assertBusinessOk(op: string, data: unknown): void {
   if (data && typeof data === "object" && "code" in data) {
     const code = (data as { code: unknown }).code;
-    if (typeof code === "number" && code !== 200) {
+    if (typeof code === "number" && code !== 200 && code !== 0) {
       const msg = (data as { errorMessage?: string }).errorMessage ?? "non-success business code";
       throw new NexconnBridgeError("ERR_NEXCONN_REJECTED", `${op}: code ${code} ${msg}`, false, 200, code);
     }
@@ -164,7 +164,7 @@ export class NexconnClient {
         new MessageManagementApi(cfg).sendGroupChannelStreamMessage({
           fromUserId: args.fromUserId,
           toChannelId: channelId,
-          messageType: args.messageType,
+          messageType: "RC:StreamMsg",
           content,
         }),
     );
@@ -178,7 +178,7 @@ export class NexconnClient {
         new MessageManagementApi(cfg).sendDirectChannelStreamMessage({
           fromUserId: args.fromUserId,
           toUserId,
-          messageType: args.messageType,
+          messageType: "RC:StreamMsg",
           content,
         }),
     );
@@ -194,7 +194,10 @@ export class NexconnClient {
         seq: i + 1,
         complete: i === chunks.length - 1,
         ...(messageId ? { messageId } : {}),
-        extra: args.extras ?? {},
+        extra: {
+          ...(args.extras ?? {}),
+          mudraMessageType: args.messageType,
+        },
       };
       const data = await this.call(op, send(content));
       messageId = messageId ?? data.result?.messageId;
