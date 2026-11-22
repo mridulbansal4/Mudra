@@ -17,15 +17,8 @@ import { formatMoney } from '@/lib/money';
 import { useSessionStore } from '@/state/session';
 import '@/types/upi';
 import {
-  Eyebrow,
-  ListGroup,
-  ListRow,
-  NeoButton,
-  Skeleton,
-  SlideToLock,
-  Text,
-  VelvetCard,
-  showToast,
+  Eyebrow, ListGroup, ListRow, NeoButton,
+  Skeleton, SlideToLock, Text, VelvetCard, showToast,
 } from '@/ui';
 
 export default function EscrowScreen() {
@@ -261,36 +254,19 @@ export default function EscrowScreen() {
 }
 
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.65)',
-  },
+  overlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.65)' },
   backdrop: { flex: 1 },
   sheet: {
-    backgroundColor: C.card,
-    borderTopLeftRadius: R.sheet,
-    borderTopRightRadius: R.sheet,
-    borderTopWidth: 1,
-    borderColor: C.hairline,
-    paddingHorizontal: 20,
-    maxHeight: '90%',
+    backgroundColor: C.card, borderTopLeftRadius: R.sheet, borderTopRightRadius: R.sheet,
+    borderTopWidth: 1, borderColor: C.hairline, paddingHorizontal: 20, maxHeight: '90%',
   },
   handleWrap: { alignItems: 'center', paddingVertical: 10 },
   handle: { width: 36, height: 4, borderRadius: 2, backgroundColor: C.border },
   pad: { gap: S.lg, paddingTop: S.xs },
-  topRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+  topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   closeBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: C.card2,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: 34, height: 34, borderRadius: 17, backgroundColor: C.card2,
+    alignItems: 'center', justifyContent: 'center',
   },
   shortfallCard: { gap: 10 },
 });

@@ -217,14 +217,8 @@ async function main() {
 
   // Step 9: Both LEAVE_REVIEW
   try {
-    deal1 = await rpc('m_deal_action', {
-      p_token: userB.token, p_deal_id: deal1.id, p_action: 'LEAVE_REVIEW',
-      p_expected_version: deal1.version, p_payload: { stars: 5, body: 'great seller!', tags: ['on time', 'as described'] },
-    });
-    deal1 = await rpc('m_deal_action', {
-      p_token: userA.token, p_deal_id: deal1.id, p_action: 'LEAVE_REVIEW',
-      p_expected_version: deal1.version, p_payload: { stars: 5, body: 'fast payment!', tags: ['friendly'] },
-    });
+    deal1 = await rpc('m_deal_action', { p_token: userB.token, p_deal_id: deal1.id, p_action: 'LEAVE_REVIEW', p_expected_version: deal1.version, p_payload: { stars: 5, body: 'great seller!', tags: ['on time', 'as described'] } });
+    deal1 = await rpc('m_deal_action', { p_token: userA.token, p_deal_id: deal1.id, p_action: 'LEAVE_REVIEW', p_expected_version: deal1.version, p_payload: { stars: 5, body: 'fast payment!', tags: ['friendly'] } });
     const sellerProf = await rpc('m_seller_profile', { p_token: userB.token, p_profile_id: userA.me.id });
     record(9, deal1.reviewed_by_me === true && sellerProf?.profile?.rating === 5, `Both left 5-star reviews (seller rating=${sellerProf?.profile?.rating})`);
   } catch (e) {
