@@ -102,6 +102,29 @@ project(GestureHandlerCodegen)`,
   "module": "./dist/config-entry.js",
   "types": "./dist/config-entry.d.ts",`,
   },
+  {
+    file: 'node_modules/expo/node_modules/@expo/cli/build/src/export/embed/exportEmbedAsync.js',
+    target: `    } finally{
+        devServerManager.stopAsync();
+    }`,
+    replacement: `    } finally{
+        await devServerManager.stopAsync();
+    }`,
+  },
+  {
+    file: 'node_modules/react-native-reanimated/android/build.gradle.kts',
+    target: `    externalNativeBuild {
+        cmake {
+            path = file("CMakeLists.txt")
+        }
+    }`,
+    replacement: `    externalNativeBuild {
+        cmake {
+            path = file("CMakeLists.txt")
+            buildStagingDirectory = file("M:/.c/reanimated")
+        }
+    }`,
+  },
 ];
 
 for (const p of patches) {
