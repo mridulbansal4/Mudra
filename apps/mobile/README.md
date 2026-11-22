@@ -73,14 +73,16 @@ Copy-Item M:\android\app\build\outputs\apk\release\app-release.apk D:\Hackathons
 
 ---
 
-## Nexconn Android Chat SDK
+## Nexconn Android Chat SDK and Call SDK
 
-Nexconn ships no React Native SDK, so the app wraps the official **Nexconn Android Chat SDK** (`ai.nexconn.chat:chat:26.4.2`) in a local Expo native module:
+Nexconn ships no React Native SDK, so the app wraps the official **Nexconn Android Chat SDK** (`ai.nexconn.chat:chat:26.4.2`) and **Call SDK** (`ai.nexconn.chat:call:26.4.1`) in a local Expo native module. There is no call 26.4.2; call 26.4.1's own POM depends on chat 26.4.2, so the two are the vendor-paired versions.
 
 | File | What it does |
 | :--- | :--- |
 | [`modules/nexconn-chat/android/.../NexconnChatModule.kt`](modules/nexconn-chat/android/src/main/java/expo/modules/nexconnchat/NexconnChatModule.kt) | `NCEngine.initialize` (area `SG`), `NCEngine.connect`, `DirectChannel.sendMessage(TextMessage)`, `NCEngine.disconnect`; forwards `onMessageReceived` and connection-status changes to JS as `onMessage` / `onConnectionStatus` events |
-| [`modules/nexconn-chat/index.ts`](modules/nexconn-chat/index.ts) | Typed JS wrapper (`NexconnChat.initialize/connect/sendDirectText/disconnect`) |
+| [`modules/nexconn-chat/android/.../NexconnCallView.kt`](modules/nexconn-chat/android/src/main/java/expo/modules/nexconnchat/NexconnCallView.kt) | Native view that hosts the local camera or the remote stream of the current call (SDK TextureView renderers) |
+| [`modules/nexconn-chat/index.ts`](modules/nexconn-chat/index.ts) | Typed JS wrapper (`NexconnChat.*`, `NexconnCall.startVideoCall/acceptCall/endCall`, `<NexconnCallView>`) |
+| [`src/features/call/CallOverlay.tsx`](src/features/call/CallOverlay.tsx) | Global incoming-call sheet (Accept / Decline) and full-screen call view (remote big, local small, hang up) |
 | [`src/lib/nexconn.ts`](src/lib/nexconn.ts) | Gets a Nexconn access token from `POST https://mudra.duckdns.org/api/v1/auth/session` (issued server-side by the Nexconn Server SDK; the secret never ships in the app), then initialize, then connect; zustand status store |
 | [`plugins/withNexconnMaven.js`](plugins/withNexconnMaven.js) | Adds `https://maven.nexconn.ai/repository/maven-releases/` to the generated Gradle repositories |
 
@@ -88,7 +90,8 @@ Nexconn ships no React Native SDK, so the app wraps the official **Nexconn Andro
 - **Deal chat**: a sent message is saved to Supabase (history and deal state stay there), then also sent to the counterpart over a Nexconn Direct channel. An incoming Nexconn message refreshes the chat and deal queries at once; the 4-second poll remains as a fallback.
 - **Failure handling**: if the token request or connect fails, the status becomes offline/error and the app keeps working on Supabase alone.
 - **Where to see it**: the deal chat header shows a `Nexconn live` / `Nexconn offline` pill; the Guide screen shows the Nexconn user ID, the runtime SDK version and the last Nexconn message ID.
-- Only Direct-channel text chat runs on Android. Calls, video and group channels are web-only.
+- **Inspection call**: on a deal's Inspect screen the buyer taps **Video call over Nexconn** (shown only while Nexconn is live and the counterpart is a real user). Init order follows the official docs: `NCCallEngine.install()` before `NCEngine.initialize`, and `NCCallEngine.initialize` after `connect` succeeds. Camera and microphone permissions are asked right before a call starts or is accepted. A call failure only shows a short note; chat keeps working.
+- Group channels and the 90-second freeze channel are web-only.
 
 ### Verify the Nexconn connection
 
@@ -99,6 +102,23 @@ adb logcat -s NexconnChat
 ```
 
 Expected lines: `initialized sdk=26.4.2 area=SG`, `connection status CONNECTED`, `connect success userId=m_<supabase id>`; sending a deal message logs `direct message sent id=...`.
+
+### Test the inspection call
+
+Use two devices (two phones, or two emulators with the emulated camera): Rajesh on A, Vikram on B, both showing `Nexconn live`.
+
+1. Chat: in a Rajesh and Vikram deal, a message from A appears on B within about a second.
+2. A: lock money, open the deal's live check (Inspect), tap **Video call over Nexconn**, allow camera and mic.
+3. B: the sheet shows "Incoming inspection call from Rajesh Natarajan". Accept and allow camera and mic.
+4. Both see each other's video. Hang up on either side: both show "call ended" and return to the deal.
+5. Call again and decline on B: A shows "call declined".
+6. Airplane mode on A during a call: both sides end the call after the SDK's reconnect window (about a minute); chat works again after reconnecting.
+
+```powershell
+adb logcat -s NexconnCall
+```
+
+Expected lines: `call engine initialized sdk=26.4.1`, `start call ok id=...` (caller), `call received id=... extra=<deal id>` (callee), `call connected`, `remote video view attached`, `call ended ... reason=ENDED`.
 
 ---
 

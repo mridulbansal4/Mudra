@@ -109,6 +109,7 @@ Every transition goes through the Go deal engine with an `Idempotency-Key` and a
 | **Chat SDK** | `@nexconn/chat`, `@nexconn/engine` | `NCEngine.connect` with server-issued tokens; direct, group, community and open channels for deal rooms, flash lots and the arena | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
 | **Chat UI** | `@nexconn/chatui` + Lit 3 | Four custom message cards registered before `app.ready()`: `<nc-bilingual-bubble>`, `<nc-escrow-deal-card>`, `<nc-video-assay-receipt>`, `<nc-tribunal-verdict>` | [`packages/nc-lit-cards`](packages/nc-lit-cards) |
 | **Call SDK** | `@nexconn/call` | `NCCallEngine.install()` before `NCEngine.initialize`, then a 1:1 audio-video inspection call: the buyer's loupe "Call seller" opens the seller window (`/call/seller`), which auto-answers (`startCall` / `acceptCall` / `endCall`); the received seller video is fingerprinted by Rust. Falls back to the simulated stream without a camera. | [`apps/web/src/lib/nexconn-call.ts`](apps/web/src/lib/nexconn-call.ts), [`apps/web/src/routes/CallSeller.tsx`](apps/web/src/routes/CallSeller.tsx) |
+| **Android Chat + Call SDK** | `ai.nexconn.chat:chat` 26.4.2, `ai.nexconn.chat:call` 26.4.1 | The Android APK wraps both official SDKs in a local Expo module: deal chat over a Nexconn Direct channel, and a 1:1 audio-video inspection call from the deal's Inspect screen (`startCall` / `acceptCall` / `endCall`) with an incoming-call sheet on the other phone | [`apps/mobile/modules/nexconn-chat`](apps/mobile/modules/nexconn-chat), [`apps/mobile/src/lib/nexconn.ts`](apps/mobile/src/lib/nexconn.ts) |
 | **Server API** | `@nexconn/server-sdk` 0.1.2 (vendored) | `issueAccessToken`, streamed AI messages (`sendGroupChannelStreamMessage`), system vouchers, `addGroupChannelFreezeList` for the dispute freeze | [`services/nexconn-bridge-node/src/nexconn/client.ts`](services/nexconn-bridge-node/src/nexconn/client.ts) |
 
 The Nexconn secret key never leaves `services/nexconn-bridge-node`; CI fails the build if it appears in client code.
@@ -153,7 +154,7 @@ flowchart LR
 .
 ├── apps/
 │   ├── web/                    # React 19 web app: landing, /demo, /sandbox, /app, /arena, /dispatch, /traction, /guide
-│   └── mobile/                 # Expo / React Native Android companion app: Nexconn Android Chat SDK 26.4.2 for deal chat, Supabase for history and deal state
+│   └── mobile/                 # Expo / React Native Android companion app: Nexconn Android Chat SDK 26.4.2 for deal chat and Call SDK 26.4.1 for the 1:1 inspection call, Supabase for history and deal state
 ├── services/
 │   ├── deal-engine-go/         # Go public API gateway and escrow state machine (:4002)
 │   ├── assay-verifier-rs/      # Rust forensic and crypto engine (:4003)

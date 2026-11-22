@@ -17,6 +17,7 @@ Demo video: https://youtu.be/0k8za4bE4bQ
 ## How Nexconn is used
 - Web client: @nexconn/chat 26.2.1 and @nexconn/engine 26.2.1 (NCEngine.initialize, then NCEngine.connect with a server-issued token; a message handler logs RC:StreamMsg arrivals in the sandbox), @nexconn/chatui 26.2.5 (NCChatUIApplication with 4 custom Lit message types registered before ready()), @nexconn/call 26.2.1 (NCCallEngine.install before NCEngine.initialize; a 1:1 audio-video inspection call from buyer to seller via startCall / acceptCall, opened from the sandbox loupe's "Call seller" button). Files: apps/web/src/lib/nexconn-boot.ts, apps/web/src/lib/nexconn-call.ts, apps/web/src/routes/CallSeller.tsx
 - Server: official Nexconn server SDK 0.1.2 (vendored source) in services/nexconn-bridge-node/src/nexconn/client.ts: issueAccessToken, createGroupChannel, sendGroupChannelStreamMessage and sendDirectChannelStreamMessage (RC:StreamMsg), addGroupChannelFreezeList / removeGroupChannelFreezeList, createOpenChannel + addOpenChannelPrioritySenderList, createCommunitySubchannel, sendSystemChannelMessage.
+- Android APK: Nexconn Android Chat SDK 26.4.2 (deal chat over a Direct channel) and Call SDK 26.4.1 (1:1 inspection video call from the deal's Inspect screen). Files: apps/mobile/modules/nexconn-chat, apps/mobile/src/lib/nexconn.ts
 - Channel types: Direct (arena), Group (deal rooms and the 90-second freeze), Open (flash lots, via API), Community (category subchannels, via API), System (signed escrow vouchers).
 
 ## Other components
