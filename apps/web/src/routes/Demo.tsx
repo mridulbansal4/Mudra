@@ -110,11 +110,13 @@ export default function Demo() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [store]);
 
-  // Responsive phone scale
+  // Responsive phone scale (bounded by both viewport height and width)
   const [phoneScale, setPhoneScale] = useState(0.76);
   useEffect(() => {
     const updateScale = () => {
-      const s = Math.min(1, Math.max(0.62, (window.innerHeight - 220) / 868));
+      const byHeight = (window.innerHeight - 260) / 868;
+      const byWidth = window.innerWidth < 1100 ? (window.innerWidth - 40) / 414 : (window.innerWidth - 380) / 828;
+      const s = Math.min(0.92, Math.max(0.6, Math.min(byHeight, byWidth)));
       setPhoneScale(Number(s.toFixed(2)));
     };
     updateScale();
@@ -148,18 +150,18 @@ export default function Demo() {
     (state.step === 7 || (state.step === 8 && !arbiterDismissed));
 
   return (
-    <div className="mesh-canvas min-h-dvh w-full text-fg pb-28">
+    <div className="mesh-canvas min-h-dvh w-full text-fg pb-40 sm:pb-36">
       <SiteNav />
 
-      {/* Header row (max-width 1400px, padding top 104px) */}
-      <div className="mx-auto max-w-[1400px] px-5 pt-[104px] md:px-10">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      {/* Header row */}
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 pt-[118px] md:pt-[112px] md:px-10">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <Eyebrow dot>TWO-PHONE DEMO</Eyebrow>
             <h1 className="t-h1 mt-3 lowercase text-fg">one deal, seen from both sides.</h1>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-start gap-3 sm:gap-4">
             <SegmentedControl
               options={BRANCH_OPTIONS}
               value={state.branch}
@@ -183,13 +185,13 @@ export default function Demo() {
               >
                 pop out phones
               </NeoButton>
-              <span className="mt-1 text-[11px] lowercase text-muted">same browser only</span>
+              <span className="mt-1.5 text-[11px] lowercase text-muted">same browser only</span>
             </div>
           </div>
         </div>
 
         {/* Stage */}
-        <div className="relative mt-10 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start min-[1100px]:gap-0">
+        <div className="relative mt-12 flex flex-col items-center justify-center gap-10 min-[1100px]:flex-row min-[1100px]:items-center min-[1100px]:gap-8 xl:gap-12">
           <PhoneFrame
             scale={phoneScale}
             label={
@@ -206,7 +208,7 @@ export default function Demo() {
             />
           </PhoneFrame>
 
-          <div className="my-auto">
+          <div className="shrink-0 py-2">
             <SyncSpine state={state} />
           </div>
 
@@ -224,24 +226,24 @@ export default function Demo() {
               dispatch={store.dispatch}
             />
           </PhoneFrame>
-
-          {/* Optional third smaller phone for Meera on dispute branch */}
-          <AnimatePresence>
-            {showArbiterOverlay ? (
-              <motion.div
-                initial={reducedMotion ? { opacity: 1 } : { y: 80, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 80, opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="min-[1100px]:absolute min-[1100px]:bottom-0 min-[1100px]:left-1/2 min-[1100px]:-translate-x-1/2 z-20"
-              >
-                <PhoneFrame scale={0.55} label="meera · arbitrator · english">
-                  <ArbiterDesk state={state} dispatch={store.dispatch} />
-                </PhoneFrame>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
         </div>
+
+        {/* Optional third phone for Meera on dispute branch (placed below stage to prevent overlap) */}
+        <AnimatePresence>
+          {showArbiterOverlay ? (
+            <motion.div
+              initial={reducedMotion ? { opacity: 1 } : { y: 32, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 32, opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              className="mt-12 flex justify-center"
+            >
+              <PhoneFrame scale={Math.min(0.68, phoneScale)} label="meera · arbitrator · english">
+                <ArbiterDesk state={state} dispatch={store.dispatch} />
+              </PhoneFrame>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
 
       <ControlDock state={state} dispatch={store.dispatch} />
