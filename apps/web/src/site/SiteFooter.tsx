@@ -5,7 +5,7 @@ import { NeoButton } from "../ui/NeoButton";
 
 type FooterLink =
   | { to: string; label: string }
-  | { href: string; label: string };
+  | { href: string; label: string; download?: boolean | string };
 
 const COLUMNS: { header: string; links: FooterLink[] }[] = [
   {
@@ -14,7 +14,11 @@ const COLUMNS: { header: string; links: FooterLink[] }[] = [
       { to: "/how-it-works", label: "how it works" },
       { to: "/demo", label: "two-phone demo" },
       { to: "/sandbox", label: "live sandbox" },
-      { href: ANDROID_RELEASE.tagUrl, label: "download android apk" },
+      {
+        href: ANDROID_RELEASE.arm64ApkUrl,
+        label: "download android apk",
+        download: "mudra-v1.0.0-arm64.apk",
+      },
     ],
   },
   {
@@ -66,8 +70,9 @@ export function SiteFooter() {
                     {"href" in link ? (
                       <a
                         href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        download={link.download}
+                        target={link.download ? undefined : "_blank"}
+                        rel={link.download ? undefined : "noopener noreferrer"}
                         className="text-[14px] font-medium lowercase text-fg-2 hover:text-fg no-underline transition-colors"
                       >
                         {link.label}
