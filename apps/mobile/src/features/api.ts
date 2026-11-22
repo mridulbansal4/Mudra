@@ -19,6 +19,11 @@ import type {
   SellerProfile,
   WalletData,
 } from '@/types';
+import type {
+  RecordUpiDepositDealParams,
+  RecordUpiDepositParams,
+  WithdrawUpiParams,
+} from '@/types/upi';
 
 export interface SignupParams {
   name: string;
@@ -205,6 +210,35 @@ export const mudraApi = {
   wallet: () => rpc<WalletData>('m_wallet'),
 
   topupDemo: () => rpc<WalletData>('m_topup_demo'),
+
+  recordUpiDeposit: (params: RecordUpiDepositParams) =>
+    rpc<WalletData>('m_record_upi_deposit', {
+      p_amount_minor: params.amount_minor,
+      p_utr: params.utr,
+      p_deal_id: null,
+      p_expected_version: null,
+      p_idem: null,
+    }),
+
+  recordUpiDepositForDeal: (params: RecordUpiDepositDealParams) =>
+    rpc<Deal>('m_record_upi_deposit', {
+      p_amount_minor: params.amount_minor,
+      p_utr: params.utr,
+      p_deal_id: params.deal_id,
+      p_expected_version: params.expected_version ?? null,
+      p_idem: params.idem ?? newIdemKey(),
+    }),
+
+  withdrawUpi: (params: WithdrawUpiParams) =>
+    rpc<WalletData>('m_withdraw_upi', {
+      p_amount_minor: params.amount_minor,
+      p_upi_id: params.upi_id,
+    }),
+
+  setUpiId: (upiId: string | null) =>
+    rpc<Me>('m_set_upi_id', {
+      p_upi_id: upiId ?? null,
+    }),
 
   report: (target: ReportTarget, reason: string, note?: string | null) =>
     rpc<{ ok: boolean }>('m_report', {

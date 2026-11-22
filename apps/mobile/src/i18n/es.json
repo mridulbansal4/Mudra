@@ -255,7 +255,17 @@
     "not_enough_credits": "no hay suficientes créditos demo",
     "top_up_credits": "recargar créditos demo",
     "slide_to_lock": "desliza para bloquear dinero",
-    "sealed": "sellado."
+    "sealed": "sellado.",
+    "upi_app": "app upi",
+    "upi_app_sub": "gpay · phonepe · paytm · bhim",
+    "payee_label": "destinatario",
+    "pay_with_upi": "pagar {{price}} con upi",
+    "no_upi_app_toast": "no hay app upi en este dispositivo. usa un utr de prueba para continuar.",
+    "ive_paid": "ya pagué",
+    "enter_utr_prompt": "después de pagar, ingresa el utr de 12 dígitos de tu app upi.",
+    "utr_placeholder": "utr de 12 dígitos",
+    "autofill_test_utr": "autocompletar utr de prueba",
+    "slide_to_seal": "desliza para sellar garantía"
   },
   "inspect": {
     "live_pill": "EN VIVO",
@@ -310,7 +320,23 @@
     "tx_escrow_release": "liberado de garantía",
     "tx_refund": "reembolso de garantía",
     "tx_split": "división de resolución",
-    "tx_reset": "reinicio de demo"
+    "tx_reset": "reinicio de demo",
+    "tx_upi_deposit": "añadido con upi",
+    "tx_upi_withdraw": "retiro a upi",
+    "upi_banner": "los depósitos upi se marcan como no verificados hasta añadir una pasarela. los retiros son solicitudes, no pagos instantáneos.",
+    "add_money_upi": "añadir dinero con upi",
+    "withdraw_upi": "retirar a upi",
+    "demo_credits_testing": "créditos demo (para pruebas)",
+    "status_unverified": "no verificado",
+    "status_requested": "solicitado",
+    "pay_with_upi": "pagar con upi",
+    "confirm_add_money": "confirmar depósito",
+    "added_unverified_toast": "{{price}} añadidos (no verificado)",
+    "request_withdrawal": "solicitar retiro",
+    "max_chip": "máx",
+    "upi_id_placeholder": "name@okaxis",
+    "ledger_id": "id de registro",
+    "amount_label": "monto"
   },
   "profile": {
     "title": "perfil",
@@ -318,6 +344,9 @@
     "selling_mode": "modo vendedor",
     "group_account": "CUENTA",
     "edit_profile": "editar nombre, campus y bio",
+    "upi_id": "id de upi",
+    "upi_id_add": "añadir",
+    "upi_id_saved": "id de upi guardado.",
     "language": "idioma",
     "currency": "moneda",
     "currency_note": "los precios usan tu moneda",
@@ -382,6 +411,7 @@
     "LISTING_UNAVAILABLE": "este anuncio ya no está disponible.",
     "OWN_LISTING": "no puedes iniciar un trato en tu propio anuncio.",
     "RATE_LIMIT": "máximo 3 recargas demo por día.",
+    "UTR_USED": "este utr ya fue utilizado.",
     "NETWORK": "estás sin conexión. reintentaremos.",
     "UNKNOWN": "algo salió mal. inténtalo de nuevo."
   }
