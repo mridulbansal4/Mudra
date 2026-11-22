@@ -46,7 +46,20 @@ export function SiteNav({ introLogo = false }: SiteNavProps) {
           <Logo markSize={32} wordmarkSize={10} intro={introLogo} />
         </Link>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
+          <a
+            href="https://console.nexconn.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 text-[11.5px] font-medium lowercase text-muted hover:text-neo-paccha transition-colors no-underline"
+          >
+            <span
+              aria-hidden="true"
+              className="inline-block size-[5px] rounded-full bg-neo-paccha"
+            />
+            <span>powered by nexconn.ai ↗</span>
+          </a>
+
           <nav aria-label="Primary" className="hidden md:flex items-center gap-1">
             <NavLink to="/how-it-works" className="nav-link text-[14px] font-semibold lowercase">
               <span>how it works</span>
