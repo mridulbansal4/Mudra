@@ -34,6 +34,7 @@ import {
 } from '@/lib/realtime';
 import { useMe, usePing } from '@/features/hooks';
 import { useNexconnSession } from '@/lib/nexconn';
+import { CallOverlay } from '@/features/call/CallOverlay';
 import { Text, ToastProvider } from '@/ui';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -94,6 +95,8 @@ function AppShellInner() {
           }}
         />
       </Stack>
+      {/* 1:1 inspection video call over the Nexconn Android Call SDK */}
+      <CallOverlay />
     </View>
   );
 }

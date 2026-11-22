@@ -6,11 +6,12 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { Camera, CheckCircle2, Image as ImageIcon, Sparkles } from 'lucide-react-native';
+import { Camera, CheckCircle2, Image as ImageIcon, Sparkles, Video } from 'lucide-react-native';
 import { C, R } from '@/theme/tokens';
 import { mudraApi } from '@/features/api';
 import { relativeTime } from '@/lib/time';
 import { pickImageFromGallery, uploadPhotoToMudra } from '@/lib/upload';
+import { startInspectionCall, useNexconnCallStore, useNexconnStore } from '@/lib/nexconn';
 import type { ChecklistItem, DealAction } from '@/types';
 import {
   Eyebrow,
@@ -42,6 +43,9 @@ export default function InspectScreen() {
   const [elapsedSec, setElapsedSec] = useState(0);
   const [uploading, setUploading] = useState(false);
   const cameraRef = useRef<CameraView | null>(null);
+  const nexconnLive = useNexconnStore((s) => s.status === 'live');
+  // The Nexconn call needs the camera, so the photo camera steps aside while a call is on.
+  const inCall = useNexconnCallStore((s) => s.phase === 'ringing' || s.phase === 'incoming' || s.phase === 'connected');
 
   const dealQuery = useQuery({
     queryKey: ['deal', id],
@@ -166,7 +170,7 @@ export default function InspectScreen() {
         />
 
         <View style={styles.cameraStage}>
-          {!cameraDenied ? (
+          {!cameraDenied && !inCall ? (
             <CameraView ref={cameraRef} style={StyleSheet.absoluteFill} facing="back" />
           ) : (
             <View style={styles.simStage}>
@@ -250,6 +254,16 @@ export default function InspectScreen() {
         ))}
 
         <View style={styles.buyerActions}>
+          {nexconnLive && deal.counterpart?.id && !deal.counterpart.is_demo_bot ? (
+            <NeoButton
+              variant="white"
+              size="md"
+              label={t('inspect.video_call_nexconn', 'Video call over Nexconn')}
+              icon={<Video size={16} color={C.bg} />}
+              disabled={inCall}
+              onPress={() => void startInspectionCall(deal.counterpart!.id, deal.id)}
+            />
+          ) : null}
           <NeoButton variant="paccha" size="lg" label={t('inspect.looks_good_verify', 'looks good — mark verified')} loading={actionMut.isPending} onPress={() => actionMut.mutate({ action: 'MARK_ASSAY_VERIFIED' })} />
           <NeoButton variant="danger" size="md" label={t('inspect.somethings_off_freeze', "something's off — freeze")} disabled={actionMut.isPending} onPress={() => actionMut.mutate({ action: 'RAISE_DISPUTE', payload: { reason: 'live check dispute' } })} />
         </View>
