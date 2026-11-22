@@ -83,6 +83,7 @@ begin
     'currency', p_prof.currency,
     'campus', p_prof.campus,
     'bio', p_prof.bio,
+    'upi_id', p_prof.upi_id,
     'avatar_hue', p_prof.avatar_hue,
     'rating', v_rating,
     'rating_count', p_prof.rating_count,
@@ -1314,13 +1315,25 @@ begin
       v_vhash := mudra.voucher(
         v_deal.id,
         'ESCROW_LOCKED',
-        jsonb_build_object('buyer_id', v_deal.buyer_id, 'amount_minor', v_deal.amount_minor, 'currency', v_deal.currency)
+        jsonb_build_object(
+          'buyer_id', v_deal.buyer_id,
+          'amount_minor', v_deal.amount_minor,
+          'currency', v_deal.currency,
+          'method', case when nullif(current_setting('mudra.upi_utr', true), '') is null then 'wallet' else 'upi' end,
+          'utr', nullif(current_setting('mudra.upi_utr', true), '')
+        )
       );
       perform mudra.sys_msg(
         v_deal.id,
         'escrow',
         'money locked in escrow',
-        jsonb_build_object('amount_minor', v_deal.amount_minor, 'currency', v_deal.currency, 'voucher_hash', v_vhash)
+        jsonb_build_object(
+          'amount_minor', v_deal.amount_minor,
+          'currency', v_deal.currency,
+          'voucher_hash', v_vhash,
+          'method', case when nullif(current_setting('mudra.upi_utr', true), '') is null then 'wallet' else 'upi' end,
+          'utr', nullif(current_setting('mudra.upi_utr', true), '')
+        )
       );
 
     when 'START_ASSAY' then
