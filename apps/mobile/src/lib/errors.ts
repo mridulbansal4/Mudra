@@ -14,6 +14,7 @@ export type MudraErrorCode =
   | 'LISTING_UNAVAILABLE'
   | 'OWN_LISTING'
   | 'RATE_LIMIT'
+  | 'UTR_USED'
   | 'NETWORK'
   | 'UNKNOWN';
 
@@ -62,6 +63,7 @@ export function formatMudraErrorMessage(code: MudraErrorCode, detail: string = '
     case 'LISTING_UNAVAILABLE':
     case 'OWN_LISTING':
     case 'RATE_LIMIT':
+    case 'UTR_USED':
     case 'NETWORK':
       return i18n.t(`errors.${code}`);
     case 'UNKNOWN':
