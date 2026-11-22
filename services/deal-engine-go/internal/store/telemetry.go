@@ -56,7 +56,7 @@ func DefaultBaseline() Baseline {
 	return Baseline{
 		VerifiedConnectedMAUs: 64,
 		ChannelsByType:        map[string]int{"direct": 19, "group": 14, "community": 2, "open": 1, "system": 1},
-		VouchersSigned:        48,
+		VouchersSigned:        50,
 	}
 }
 
