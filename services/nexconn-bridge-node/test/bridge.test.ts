@@ -68,7 +68,8 @@ describe("simulated-mode detection", () => {
     expect(c.nexconn.secondaryDomain).toBe("https://api.example.test");
     expect(c.nexconn.simulated).toBe(true);
     const d = loadConfig({});
-    expect(d.nexconn.primaryDomain).toBe("https://api.nexconn.ai");
+    expect(d.nexconn.primaryDomain).toBe("https://api.sg-light-api.com");
+    expect(d.nexconn.secondaryDomain).toBe("https://api-b.sg-light-api.com");
     const e = loadConfig({ NEXCONN_PRIMARY_API_DOMAIN: "https://a", NEXCONN_SECONDARY_API_DOMAIN: "https://b" });
     expect([e.nexconn.primaryDomain, e.nexconn.secondaryDomain]).toEqual(["https://a", "https://b"]);
   });

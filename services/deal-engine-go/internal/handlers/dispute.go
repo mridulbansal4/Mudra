@@ -280,7 +280,7 @@ func (s *Server) handleDisputeResolve(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// GET /api/v1/dispatch/queue
+// GET /api/v1/dispatch/queue (arbitrators only; open, frozen disputes only)
 func (s *Server) handleDispatchQueue(w http.ResponseWriter, r *http.Request) {
 	now := time.Now()
 	out := []DisputeView{}
@@ -290,8 +290,15 @@ func (s *Server) handleDispatchQueue(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		var v DisputeView
-		s.Store.ReadDeal(d, func(d *store.Deal) { v = s.disputeViewOf(dp, d, now) })
-		out = append(out, v)
+		open := false
+		s.Store.ReadDeal(d, func(d *store.Deal) {
+			st, _ := d.Machine.Snapshot()
+			open = st == fsm.StateDisputedFrozen // resolved disputes leave the queue
+			v = s.disputeViewOf(dp, d, now)
+		})
+		if open {
+			out = append(out, v)
+		}
 	}
 	mw.WriteJSON(w, http.StatusOK, map[string]any{"disputes": out})
 }

@@ -18,6 +18,7 @@ interface RecentDeal {
   fsm_state: string;
   serial?: string;
   created_at: string;
+  seeded?: boolean;
 }
 
 interface Telemetry {
@@ -28,6 +29,8 @@ interface Telemetry {
   total_escrow_vouchers_signed?: number;
   recent_deals?: RecentDeal[];
   live_counts?: Record<string, number>;
+  baseline_counts?: { verified_connected_maus?: number; total_escrow_vouchers_signed?: number; active_channels_by_type?: Record<string, number> };
+  uptime_sec?: number;
   latency_detail?: Record<string, unknown>;
   [k: string]: unknown;
 }
@@ -39,7 +42,7 @@ function formatInr(paise: number): string {
 
 function formatTimestamp(iso: string): string {
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime()) || d.getFullYear() < 2020) return "—";
+  if (Number.isNaN(d.getTime()) || d.getFullYear() < 2020) return "-";
   return d.toLocaleString("en-IN", {
     day: "2-digit",
     month: "short",
@@ -74,14 +77,21 @@ export default function Traction() {
   const lc = t?.live_counts ?? {};
   const deals = t?.recent_deals ?? [];
 
-  const summaryRows: Array<[string, string | number]> = [
-    ["Android APK downloads (v1.0.0 arm64)", 124],
-    ["Active Android users (30d)", t?.verified_connected_maus ?? 66],
-    ["Peak concurrent connections", 45],
-    ["Nexconn WebRTC call minutes", "912 min (342 HD · 304 SD · 266 Voice)"],
-    ["Signed Ed25519 escrow vouchers", t?.total_escrow_vouchers_signed ?? 52],
-    ["FSM state transitions (API + pilot)", (lc.fsm_transitions ?? 0) + 162],
-    ["Issued access tokens", Math.max(lc.tokens_issued_live ?? 0, t?.verified_connected_maus ?? 66)],
+  const uptime = t?.uptime_sec ?? 0;
+  const uptimeLabel = uptime >= 3600 ? `${Math.floor(uptime / 3600)} h ${Math.floor((uptime % 3600) / 60)} min` : `${Math.floor(uptime / 60)} min`;
+  const baseline = t?.baseline_counts;
+  const fmtMs = (v: number | undefined, d: number) => (v != null && v > 0 ? `${v.toFixed(d)} ms` : "-");
+
+  // Every row says where its number comes from: live = measured by the running Go engine since its last restart.
+  const summaryRows: Array<[string, string | number, string]> = [
+    ["Users with issued Nexconn tokens", lc.distinct_users_with_tokens ?? 0, "live"],
+    ["Nexconn tokens issued", lc.tokens_issued_live ?? 0, "live"],
+    ["Signed Ed25519 escrow vouchers", lc.vouchers_signed ?? 0, "live"],
+    ["FSM state transitions", lc.fsm_transitions ?? 0, "live"],
+    ["Disputes opened", lc.disputes ?? 0, "live"],
+    ["Seeded pilot baseline: users", baseline?.verified_connected_maus ?? 0, "seeded"],
+    ["Seeded pilot baseline: vouchers", baseline?.total_escrow_vouchers_signed ?? 0, "seeded"],
+    ["Android APK installs", 124, "PostHog event apk_installed"],
   ];
 
   return (
@@ -89,7 +99,7 @@ export default function Traction() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <SectionTitle
           title="Traction and latency ledger"
-          sub="Live telemetry from the Go deal engine (API-18) synced with PostHog & the Singapore cluster."
+          sub="Live counters from the Go deal engine (API-18) since its last restart. Seeded pilot numbers are labelled as seeded."
         />
         <a
           href={POSTHOG_PUBLIC_URL}
@@ -106,30 +116,30 @@ export default function Traction() {
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat
-          label="Active Android users (30d)"
-          value={t?.verified_connected_maus?.toLocaleString("en-IN") ?? "66"}
-          hint={t?.app_key_masked ? `Singapore · ${t.app_key_masked}` : "Singapore · n19jmcy****w379"}
-        />
-        <Stat
-          label="Android APK downloads"
-          value="124"
-          hint="v1.0.0 arm64 (53.7 MB)"
-        />
-        <Stat
-          label="Nexconn WebRTC minutes"
-          value="912"
-          hint="342 HD · 304 SD · 266 Voice"
+          label="Users with Nexconn tokens"
+          value={(lc.distinct_users_with_tokens ?? 0).toLocaleString("en-IN")}
+          hint={`live since restart (${uptimeLabel}) · ${t?.app_key_masked ?? "Singapore cluster"}`}
         />
         <Stat
           label="Signed escrow vouchers"
-          value={t?.total_escrow_vouchers_signed?.toLocaleString("en-IN") ?? "52"}
-          hint={`FSM p99 ${lat.go_escrow_fsm_ms != null ? lat.go_escrow_fsm_ms.toFixed(3) : "0.008"} ms · Assay ${lat.rust_phash_assay_ms != null ? lat.rust_phash_assay_ms.toFixed(2) : "0.21"} ms`}
+          value={(lc.vouchers_signed ?? 0).toLocaleString("en-IN")}
+          hint="live · Ed25519, hash-chained per deal"
+        />
+        <Stat
+          label="Go escrow FSM p99"
+          value={fmtMs(lat.go_escrow_fsm_ms, 3)}
+          hint="live · measured in-process per transition"
+        />
+        <Stat
+          label="Rust assay p99"
+          value={fmtMs(lat.rust_phash_assay_ms, 2)}
+          hint={`live · PII scrub p99 ${fmtMs(lat.rust_pii_scrub_ms, 2)} (incl. HTTP)`}
         />
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <section className="rounded-xl border hairline bg-paper p-5">
-          <h2 className="text-[16px] font-medium text-ink">Nexconn channels by type</h2>
+          <h2 className="text-[16px] font-medium text-ink">Nexconn channels by type <span className="text-[12px] font-normal text-ink-3">(live + seeded baseline)</span></h2>
           <table className="mt-3 w-full text-[14px]">
             <thead>
               <tr className="text-left text-[13px] text-ink-3">
@@ -149,13 +159,14 @@ export default function Traction() {
         </section>
 
         <section className="rounded-xl border hairline bg-paper p-5">
-          <h2 className="text-[16px] font-medium text-ink">Cluster & PostHog summary</h2>
+          <h2 className="text-[16px] font-medium text-ink">Counters and sources</h2>
           <table className="mt-3 w-full text-[14px]">
             <tbody>
-              {summaryRows.map(([label, val]) => (
+              {summaryRows.map(([label, val, source]) => (
                 <tr key={label} className="border-t hairline">
                   <td className="py-2 text-ink-2">{label}</td>
-                  <td className="num py-2 text-right text-ink">{String(val)}</td>
+                  <td className="py-2 pl-3 text-right text-[12px] text-ink-3">{source}</td>
+                  <td className="num py-2 pl-3 text-right text-ink">{String(val)}</td>
                 </tr>
               ))}
             </tbody>
@@ -170,7 +181,9 @@ export default function Traction() {
         <section className="mt-8 rounded-xl border hairline bg-paper p-5">
           <div className="flex items-baseline justify-between">
             <h2 className="text-[16px] font-medium text-ink">Recent escrow rooms</h2>
-            <span className="text-[12.5px] text-ink-3">{deals.length} rooms</span>
+            <span className="text-[12.5px] text-ink-3">
+              {deals.filter((d) => !d.seeded).length} live · {deals.filter((d) => d.seeded).length} seeded demo rows (not real users)
+            </span>
           </div>
           <div className="mt-3 overflow-x-auto">
             <table className="w-full text-[13.5px]">
@@ -188,11 +201,14 @@ export default function Traction() {
               <tbody>
                 {deals.slice(0, 20).map((d) => (
                   <tr key={d.deal_id} className="border-t hairline">
-                    <td className="py-2.5 pr-4 font-medium text-ink">{d.title}</td>
+                    <td className="py-2.5 pr-4 font-medium text-ink">
+                      {d.title}
+                      {d.seeded ? <span className="ml-2 rounded bg-surface-2 px-1.5 py-0.5 text-[11px] font-normal text-ink-3">seeded</span> : null}
+                    </td>
                     <td className="py-2.5 pr-4 text-ink-2">{d.buyer_handle}</td>
                     <td className="py-2.5 pr-4 text-ink-2">{d.seller_handle}</td>
                     <td className="num py-2.5 pr-4 text-right text-ink">{formatInr(d.amount_paise)}</td>
-                    <td className="py-2.5 pr-4 font-mono text-[12px] text-ink-3">{d.serial || "—"}</td>
+                    <td className="py-2.5 pr-4 font-mono text-[12px] text-ink-3">{d.serial || "-"}</td>
                     <td className="py-2.5 pr-4">
                       <span className="rounded bg-surface-2 px-2 py-0.5 font-mono text-[11.5px] text-ink-2">
                         {d.fsm_state}

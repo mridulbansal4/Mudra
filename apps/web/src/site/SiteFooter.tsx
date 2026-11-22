@@ -15,9 +15,9 @@ const COLUMNS: { header: string; links: FooterLink[] }[] = [
       { to: "/demo", label: "two-phone demo" },
       { to: "/sandbox", label: "live sandbox" },
       {
-        href: ANDROID_RELEASE.arm64ApkUrl,
+        href: ANDROID_RELEASE.universalApkUrl,
         label: "download android apk",
-        download: "mudra-v1.0.0-arm64.apk",
+        download: "mudra-v1.0.0.apk",
       },
     ],
   },

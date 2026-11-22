@@ -24,3 +24,12 @@ war-room/
 state.md
 TEST_INFRA.md
 TEST_READY.md
+
+# Local agent notes, audits and editor files (never publish)
+.idea/
+.agent/
+.serena/
+video/
+CLAUDE_DEMO_VIDEO_PROMPT.md
+SUBMISSION_FIX_BRIEF.md
+ANDROID_NEXCONN_SDK_HANDOFF.md

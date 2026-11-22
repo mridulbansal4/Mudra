@@ -144,7 +144,9 @@ export function registerAiRoutes(app: FastifyInstance, deps: AiDeps): void {
     if (gemini.enabled) {
       try {
         const out = await gemini.generateJson<Record<string, unknown>>({
-          model: gemini.proModel,
+          model: gemini.tribunalModel,
+          thinkingLevel: "low",
+          timeoutMs: gemini.tribunalTimeoutMs,
           systemInstruction: prompts.render("m04-tribunal", {
             deal_title: input.deal_title,
             amount_paise: amountPaise,
@@ -177,7 +179,7 @@ export function registerAiRoutes(app: FastifyInstance, deps: AiDeps): void {
           heuristic_reference: { buyer_refund_bps: heuristic.buyer_refund_bps, seller_payout_bps: heuristic.seller_payout_bps },
           pii_redacted_count: piiCount,
           pii_engine: piiEngine,
-          model: gemini.proModel,
+          model: gemini.tribunalModel,
           ai_mode: "gemini",
           requires_human_signoff: true,
           mode: ncMode,

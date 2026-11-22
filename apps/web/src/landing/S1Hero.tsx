@@ -108,17 +108,17 @@ export function S1Hero() {
           <NeoButton
             variant="purple"
             size="lg"
-            to="/demo"
+            to="/sandbox"
             icon={ArrowRight}
             className="w-full sm:w-auto"
           >
-            try the two-phone demo
+            run the live deal, no login
           </NeoButton>
           <NeoButton
             variant="paccha"
             size="lg"
-            href={ANDROID_RELEASE.arm64ApkUrl}
-            download="mudra-v1.0.0-arm64.apk"
+            href={ANDROID_RELEASE.universalApkUrl}
+            download="mudra-v1.0.0.apk"
             icon={Download}
             className="w-full sm:w-auto"
           >

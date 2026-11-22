@@ -55,7 +55,10 @@ export default function Arena() {
     return () => window.clearInterval(id);
   }, [run, result?.deal_closed]);
 
-  useEffect(() => endRef.current?.scrollIntoView({ block: "end" }), [lines.length]);
+  // Block body: scrollIntoView can return a Promise in current Chromium, which React would treat as a cleanup.
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "end" });
+  }, [lines.length]);
 
   const start = async () => {
     setBusy(true);

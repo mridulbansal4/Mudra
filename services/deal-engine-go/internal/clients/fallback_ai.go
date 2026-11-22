@@ -113,7 +113,7 @@ func TribunalGo(in TribunalInput) TribunalResult {
 	bps = (bps + 25) / 50 * 50
 	bps = min(10000, max(0, bps))
 	refund := in.AmountPaise * int64(bps) / 10000
-	summary := fmt.Sprintf("Deterministic tribunal (offline): %s on %q, pHash Hamming distance %d → buyer refund %d bps (₹%s), seller payout %d bps.",
+	summary := fmt.Sprintf("Rule-based recommendation (AI unavailable): %s on %q, pHash Hamming distance %d → buyer refund %d bps (₹%s), seller payout %d bps.",
 		in.ReasonCode, in.DealTitle, h, bps, FormatINR(refund), 10000-bps)
 	rationale := fmt.Sprintf("Rule: base %d bps for %s + %d bps per differing pHash bit (cap %d); distance >20 bits ⇒ full refund. Rounded to 50 bps.", base, in.ReasonCode, perBit, ceil)
 	return TribunalResult{Summary: summary, BuyerRefundBps: bps, SellerPayoutBps: 10000 - bps, Rationale: rationale, Model: "go-deterministic-tribunal-v1", Engine: EngineGoFallback}

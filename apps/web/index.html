@@ -4,7 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0d0d0d" />
-    <meta name="description" content="MUDRA-OS: multilingual escrow, live video product assay and 90-second freeze arbitration inside Nexconn chat." />
+    <meta name="description" content="Mudra: a multilingual escrow deal room built on Nexconn. Chat in your language, lock payment in escrow, verify the product on video, and settle disputes in a 90-second freeze." />
+    <link rel="canonical" href="https://mudra.duckdns.org/" />
+    <link rel="alternate" type="text/markdown" title="Plain-text summary for AI readers" href="/llms.txt" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mudra · multilingual escrow deal room on Nexconn" />
+    <meta property="og:description" content="Chat in your language, lock payment in escrow, verify on video, settle disputes in a 90-second freeze. Live sandbox, no login." />
+    <meta property="og:url" content="https://mudra.duckdns.org/" />
+    <meta property="og:image" content="https://mudra.duckdns.org/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg?v=2" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +22,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <title>Mudra — Multilingual Escrow & Live WebRTC Assay on Nexconn</title>
+    <title>Mudra · Multilingual escrow deal room on Nexconn</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -21,20 +31,25 @@
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Android, Web",
         "url": "https://mudra.duckdns.org",
-        "downloadUrl": "https://mudra.duckdns.org/downloads/mudra-v1.0.0-arm64.apk",
+        "downloadUrl": "https://mudra.duckdns.org/downloads/mudra-v1.0.0.apk",
         "codeRepository": "https://github.com/mridulbansal4/Mudra",
-        "description": "Multilingual P2P and B2B escrow deal room built on the Nexconn Unified Communications Platform (@nexconn/engine@26.2.1, @nexconn/chat@26.2.1, @nexconn/chatui@26.2.5, @nexconn/call@26.2.1, @nexconn/server-sdk@0.1.2) across all 5 channel types (Direct, Group, Community, Open, System) with Go 1.24 8-state Escrow FSM, Rust 1.85 Aho-Corasick DPDP PII scrubber (<300us) & 64-bit DCT pHash / 4096-point FFT WebRTC hardware assay verifier, and Gemini 2.5 Flash/Pro bilingual RC:StreamMsg translation and 90-second freeze arbitration."
+        "sameAs": ["https://github.com/mridulbansal4/Mudra"],
+        "description": "Multilingual P2P and B2B escrow deal room built on Nexconn for the Nexconn Build Challenge 2026 (PS-03 Marketplace & Support). Web client: @nexconn/chat 26.2.1 and @nexconn/engine 26.2.1 (NCEngine.connect with a server-issued token), @nexconn/chatui 26.2.5 (four custom Lit message cards), @nexconn/call 26.2.1 (initialized). Server: vendored Nexconn server SDK 0.1.2 for access tokens, RC:StreamMsg AI streaming in Direct and Group channels, the 90-second group freeze, Open and Community channels and System messages. Go 1.24 8-state escrow state machine with idempotency keys and version checks; Rust 1.85 regex-based PII scrubber, 64-bit DCT pHash, 4096-point FFT motor check and Ed25519 hash-chained vouchers; Gemini translation and dispute recommendations with rule-based fallbacks."
       }
     </script>
   </head>
   <body>
     <div id="root"></div>
     <noscript>
-      MUDRA-OS (SamvadDeal) — Plain-Text Methodology & Technical Architecture:
-      1. Idea & Problem: Eliminates counterfeit and payment fraud in cross-language P2P campus second-hand exchanges and regional B2B wholesale trade by combining an 8-state deterministic escrow state machine, real-time bilingual translation (Hindi, Tamil, Marathi, English), and live WebRTC hardware inspection inside a Nexconn chat room.
-      2. Nexconn SDKs Used: @nexconn/engine@26.2.1 (Singapore Cluster AreaCode.SG, App Key n19jmcy5nw379), @nexconn/chat@26.2.1 (real-time messaging & S3 media RC:FileMsg, RC:SightMsg, RC:ImgMsg), @nexconn/chatui@26.2.5 (custom Lit v3 Web Components nc-escrow-deal-card and nc-bilingual-bubble), @nexconn/call@26.2.1 (NCCallEngine WebRTC SFU Voice, SD 640x480, and HD 1280x720 inspection calls), and @nexconn/server-sdk@0.1.2 (Node.js 22 Fastify REST API v4 & RC:StreamMsg).
-      3. All 5 Nexconn Channel Types: Direct, Group, Community, Open, and System.
-      4. Polyglot Systems Stack: Go 1.24 Deal Engine (:4002), Rust 1.85 Assay & DPDP PII Verifier (:4003), Node.js 22 Fastify Nexconn Bridge (:4001), React 19 + Tailwind CSS v4 + HeroUI v3 Web Desk, and Android APK v1.0.0.
+      Mudra is a multilingual escrow deal room built on Nexconn (Nexconn Build Challenge 2026, PS-03 Marketplace &amp; Support).
+      Buyer and seller chat in Tamil, Hindi, Marathi or English with AI translation; payment is locked in an escrow state machine;
+      the product is checked on video (perceptual hash and motor RPM); disputes freeze the Nexconn Group channel for 90 seconds
+      and a human arbitrator executes a signed split.
+      Nexconn usage: @nexconn/chat 26.2.1 NCEngine.connect, @nexconn/chatui 26.2.5 custom Lit message cards,
+      @nexconn/call 26.2.1 (initialized), and the Nexconn server SDK 0.1.2 for tokens, Group and Direct stream messages (RC:StreamMsg),
+      the group freeze, Open and Community channels and System messages. App Key: n19jmcy5nw379.
+      Live demo without login: https://mudra.duckdns.org/sandbox . Code: https://github.com/mridulbansal4/Mudra .
+      This page needs JavaScript; a plain-text summary is at https://mudra.duckdns.org/llms.txt
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>

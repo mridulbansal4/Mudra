@@ -1,0 +1,32 @@
+# Mudra (MUDRA-OS / SamvadDeal)
+
+> Multilingual escrow deal room for Indian buyers and sellers, built on Nexconn for the Nexconn Build Challenge 2026, track PS-03 Marketplace & Support. Buyer and seller chat in their own language (Tamil, Hindi, Marathi, English), lock payment in an escrow state machine, verify the product on video, and settle disputes through a 90-second channel freeze and a human arbitrator desk.
+
+Nexconn App Key used by this demo: n19jmcy5nw379 (Singapore cluster).
+Source code: https://github.com/mridulbansal4/Mudra
+Demo video: https://youtu.be/0k8za4bE4bQ
+
+## Try it (no login, no webcam needed)
+- [Live sandbox](https://mudra.duckdns.org/sandbox): buyer, seller and arbitrator side by side; the browser connects to Nexconn with the buyer's token; press "Auto-play 45s demo".
+- [Deal desk](https://mudra.duckdns.org/auth): one-tap demo personas (buyer Rajesh, seller Vikram, arbitrator Meera).
+- [Arbitrator dispatch](https://mudra.duckdns.org/dispatch): open, frozen deals with evidence and a binding split (arbitrator persona).
+- [Bargain arena](https://mudra.duckdns.org/arena): 60-second haggle with an AI shopkeeper over a Nexconn Direct channel.
+- [SDK guide](https://mudra.duckdns.org/guide): every screen element mapped to the Nexconn call behind it.
+- [Animated two-phone preview](https://mudra.duckdns.org/demo): a scripted, client-side walkthrough of the same flow.
+
+## How Nexconn is used
+- Web client: @nexconn/chat 26.2.1 and @nexconn/engine 26.2.1 (NCEngine.initialize, then NCEngine.connect with a server-issued token; a message handler logs RC:StreamMsg arrivals in the sandbox), @nexconn/chatui 26.2.5 (NCChatUIApplication with 4 custom Lit message types registered before ready()), @nexconn/call 26.2.1 (initialized after connect; no call is started). File: apps/web/src/lib/nexconn-boot.ts
+- Server: official Nexconn server SDK 0.1.2 (vendored source) in services/nexconn-bridge-node/src/nexconn/client.ts: issueAccessToken, createGroupChannel, sendGroupChannelStreamMessage and sendDirectChannelStreamMessage (RC:StreamMsg), addGroupChannelFreezeList / removeGroupChannelFreezeList, createOpenChannel + addOpenChannelPrioritySenderList, createCommunitySubchannel, sendSystemChannelMessage.
+- Channel types: Direct (arena), Group (deal rooms and the 90-second freeze), Open (flash lots, via API), Community (category subchannels, via API), System (signed escrow vouchers).
+
+## Other components
+- Go deal engine (services/deal-engine-go): public /api/v1 gateway, 8-state escrow state machine with expected_version checks and X-Idempotency-Key replay protection.
+- Rust verifier (services/assay-verifier-rs): regex-based PII scrubber (Aadhaar, PAN, phone, UPI, email) applied before any AI call; 64-bit DCT pHash; 4096-point FFT motor RPM check; Ed25519 hash-chained vouchers.
+- Node bridge (services/nexconn-bridge-node): Gemini translation, dispute recommendation and shopkeeper replies, each with a rule-based fallback.
+- Android APK (companion app): https://mudra.duckdns.org/downloads/mudra-v1.0.0.apk
+
+## Simulated parts (stated honestly)
+- Payments are simulated; no real money moves.
+- Inspection video comes from the webcam or a simulated HD stream; it is not a Nexconn call.
+- In the sandbox, the post-delivery fingerprint is generated to demonstrate a mismatch.
+- The /traction page labels seeded pilot numbers and seeded demo rows separately from live counters.

@@ -76,7 +76,7 @@ export default function Auth() {
       <Button type="submit" variant="primary" fullWidth isDisabled={busy !== null}>
         {busy === "form" ? "Issuing Nexconn access token" : cta}
       </Button>
-      <p className="text-[12.5px] text-ink-3">A DPDP consent receipt is written to your Nexconn System channel when you lock your first escrow.</p>
+      <p className="text-[12.5px] text-ink-3">Your messages are scrubbed of Aadhaar, PAN, phone and UPI IDs before any AI model reads them.</p>
     </form>
   );
 

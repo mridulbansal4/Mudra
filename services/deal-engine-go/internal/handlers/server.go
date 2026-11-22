@@ -141,7 +141,7 @@ func (s *Server) Routes() http.Handler {
 	mux.HandleFunc("POST /api/v1/deals/{dealId}/dispute/freeze", auth(idem(s.handleDisputeFreeze)))
 	mux.HandleFunc("POST /api/v1/dispatch/assign", arb(idem(s.handleDispatchAssign)))
 	mux.HandleFunc("POST /api/v1/disputes/{disputeId}/resolve", arb(idem(s.handleDisputeResolve)))
-	mux.HandleFunc("GET /api/v1/dispatch/queue", auth(s.handleDispatchQueue))
+	mux.HandleFunc("GET /api/v1/dispatch/queue", arb(s.handleDispatchQueue))
 	// API-12 / API-13 / API-14
 	mux.HandleFunc("GET /api/v1/marketplace/open-lots", s.handleOpenLots)
 	mux.HandleFunc("POST /api/v1/marketplace/open-lots/broadcast", seller(idem(s.handleBroadcastLot)))

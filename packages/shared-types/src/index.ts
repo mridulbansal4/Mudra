@@ -140,6 +140,8 @@ export interface NexconnSession {
   mudra_jwt?: string;
   app_key?: string;
   mode?: "live" | "simulated";
+  /** Sandbox provisioning reports the token mode under this name. */
+  token_mode?: "live" | "simulated";
 }
 
 export interface ApiError {

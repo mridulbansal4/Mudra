@@ -209,6 +209,10 @@ func TestFullEscrowDisputeFlowFallbackMode(t *testing.T) {
 	if len(q.Body["disputes"].([]any)) != 1 {
 		t.Fatalf("queue %s", q.Raw)
 	}
+	// The queue holds every party's case file: arbitrators only.
+	if r := call(t, h, "GET", "/api/v1/dispatch/queue", buyer, nil); r.Code != 403 {
+		t.Fatalf("buyer read dispatch queue: %d", r.Code)
+	}
 	// API-10 RBAC + assign
 	if r := call(t, h, "POST", "/api/v1/dispatch/assign", buyer, map[string]any{"dispute_id": disputeID, "arbitrator_nexconn_id": "x"}); r.Code != 403 {
 		t.Fatalf("buyer assign: %d", r.Code)
