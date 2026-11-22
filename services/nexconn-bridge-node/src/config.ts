@@ -43,6 +43,8 @@ export interface BridgeConfig {
     apiKey: string;
     flashModel: string;
     proModel: string;
+    tribunalModel: string;
+    tribunalTimeoutMs: number;
     enabled: boolean;
     timeoutMs: number;
   };
@@ -76,9 +78,11 @@ export function isGeminiConfigured(apiKey: string | undefined): boolean {
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): BridgeConfig {
   const appKey = clean(env.NEXCONN_APP_KEY);
   const secretKey = clean(env.NEXCONN_SECRET_KEY);
+  // Singapore Server API hosts from https://docs.nexconn.ai/platform-chat-api/prepare-to-use-api/base-url.md
+  // (the SDK embeds no default; the App Key's data center must match).
   const primary =
-    clean(env.NEXCONN_PRIMARY_API_DOMAIN) || clean(env.NEXCONN_API_BASE_URL) || "https://api.nexconn.ai";
-  const secondary = clean(env.NEXCONN_SECONDARY_API_DOMAIN) || primary;
+    clean(env.NEXCONN_PRIMARY_API_DOMAIN) || clean(env.NEXCONN_API_BASE_URL) || "https://api.sg-light-api.com";
+  const secondary = clean(env.NEXCONN_SECONDARY_API_DOMAIN) || (primary.includes("sg-light-api.com") ? "https://api-b.sg-light-api.com" : primary);
   const geminiKey = clean(env.GEMINI_API_KEY);
   const origins = clean(env.BRIDGE_CORS_ORIGINS);
 
@@ -100,6 +104,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): BridgeConfig {
       apiKey: geminiKey,
       flashModel: clean(env.GEMINI_FLASH_MODEL) || "gemini-2.5-flash",
       proModel: clean(env.GEMINI_PRO_MODEL) || "gemini-2.5-pro",
+      tribunalModel: clean(env.GEMINI_TRIBUNAL_MODEL) ?? "",
+      tribunalTimeoutMs: Number(env.GEMINI_TRIBUNAL_TIMEOUT_MS || 12000),
       enabled: isGeminiConfigured(geminiKey),
       timeoutMs: Number(env.GEMINI_TIMEOUT_MS || 8000),
     },

@@ -231,7 +231,7 @@ export function HeroAppPhone({ scrollProgress }: HeroAppPhoneProps) {
                               <span className="normal-case">
                                 {ANDROID_RELEASE.version}
                               </span>{" "}
-                              · {ANDROID_RELEASE.arm64Size}
+                              · {ANDROID_RELEASE.universalSize}
                             </div>
                           </div>
                         </div>
@@ -263,7 +263,7 @@ export function HeroAppPhone({ scrollProgress }: HeroAppPhoneProps) {
                           variant="paccha"
                           size="md"
                           fullWidth
-                          href={ANDROID_RELEASE.arm64ApkUrl}
+                          href={ANDROID_RELEASE.universalApkUrl}
                           download
                           icon={Download}
                           className="!h-[42px] !px-3 !text-[13px]"
@@ -274,11 +274,11 @@ export function HeroAppPhone({ scrollProgress }: HeroAppPhoneProps) {
 
                       <div className="flex items-center justify-between border-t border-[var(--hairline)] pt-2 text-[11px]">
                         <a
-                          href={ANDROID_RELEASE.universalApkUrl}
+                          href={ANDROID_RELEASE.arm64ApkUrl}
                           download
                           className="num font-medium lowercase text-muted hover:text-fg no-underline transition-colors"
                         >
-                          universal ({ANDROID_RELEASE.universalSize.toLowerCase()})
+                          arm64 phones ({ANDROID_RELEASE.arm64Size.toLowerCase()})
                         </a>
                         <a
                           href={ANDROID_RELEASE.tagUrl}

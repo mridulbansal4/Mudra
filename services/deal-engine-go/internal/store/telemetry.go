@@ -44,14 +44,15 @@ func Percentile(vals []float64, p float64) float64 {
 	return s[idx]
 }
 
-// Baseline holds historical pilot metrics aggregated prior to the current process start.
+// Baseline holds fixed, seeded pilot numbers that are added to live counts on /traction.
+// They are not measured by this process; the API reports them separately as baseline_counts.
 type Baseline struct {
 	VerifiedConnectedMAUs int            `json:"verified_connected_maus"`
 	ChannelsByType        map[string]int `json:"active_channels_by_type"`
 	VouchersSigned        int            `json:"total_escrow_vouchers_signed"`
 }
 
-// DefaultBaseline returns the persisted pilot baseline before live delta aggregation.
+// DefaultBaseline returns the seeded pilot baseline (hard-coded; labelled as seeded in the API and UI).
 func DefaultBaseline() Baseline {
 	return Baseline{
 		VerifiedConnectedMAUs: 64,

@@ -15,13 +15,20 @@ Multilingual escrow, live video inspection and a 90-second dispute freeze, built
 ![Rust](https://img.shields.io/badge/Rust-1.85-000000?logo=rust&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 
-**[Live app](https://mudra.duckdns.org)** · **[Two-phone demo](https://mudra.duckdns.org/demo)** · **[Sandbox](https://mudra.duckdns.org/sandbox)** · **[Android APK](https://github.com/mridulbansal4/Mudra/releases/tag/v1.0.0)** · **[Docs](docs/MAP.md)**
+**[Live sandbox (no login)](https://mudra.duckdns.org/sandbox)** · **[Demo video](https://youtu.be/0k8za4bE4bQ)** · **[Live app](https://mudra.duckdns.org)** · **[Animated preview](https://mudra.duckdns.org/demo)** · **[Android APK](https://github.com/mridulbansal4/Mudra/releases/tag/v1.0.0)** · **[Docs](docs/MAP.md)**
 
 <sub>Nexconn Build Challenge 2026 · PS-03 Marketplace & Support · Team Chanakya</sub>
 
 </div>
 
 ---
+
+## Try it in two minutes
+
+1. Open the **[live sandbox](https://mudra.duckdns.org/sandbox)**. It provisions a fresh deal with two real Nexconn tokens, connects the browser to Nexconn (header badge: *Nexconn: connected*) and logs every message that arrives over the Nexconn WebSocket.
+2. Press **Auto-play 45s demo**: Tamil offer → Hindi reply → escrow lock → video assay (no webcam needed) → dispute freeze, each step with a signed voucher.
+3. In the tribunal pane, press **Execute binding split** as the arbitrator.
+4. Watch the full walkthrough in the **[demo video](https://youtu.be/0k8za4bE4bQ)**.
 
 ## The problem
 
@@ -60,8 +67,8 @@ Rajesh runs a garment workshop in Tirupur and speaks Tamil. Vikram sells refurbi
     <td><img src="docs/assets/screenshots/dispatch.png" alt="Arbitrator dispatch desk" /><br /><sub><b>Arbitrator dispatch</b> · forensic diff, AI tribunal, signed voucher chain</sub></td>
   </tr>
   <tr>
-    <td><img src="docs/assets/screenshots/sandbox.png" alt="Split-screen sandbox" /><br /><sub><b>Sandbox</b> · split-screen deal wired to the real Go, Rust and Node services</sub></td>
-    <td><img src="docs/assets/screenshots/traction.png" alt="Traction and latency ledger" /><br /><sub><b>Traction</b> · channel counts, cluster activity and latency</sub></td>
+    <td><img src="docs/assets/screenshots/sandbox.png" alt="Split-screen sandbox" /><br /><sub><b>Live sandbox</b> · browser connected to Nexconn, every message read back via the Chat SDK</sub></td>
+    <td><img src="docs/assets/screenshots/traction.png" alt="Traction and latency ledger" /><br /><sub><b>Traction</b> · live counters since restart, seeded numbers labelled</sub></td>
   </tr>
   <tr>
     <td><img src="docs/assets/screenshots/arena.png" alt="60-second bargain arena" /><br /><sub><b>Arena</b> · 60-second bargaining duel on a Nexconn direct channel</sub></td>
@@ -101,8 +108,8 @@ Every transition goes through the Go deal engine with an `Idempotency-Key` and a
 | :--- | :--- | :--- | :--- |
 | **Chat SDK** | `@nexconn/chat`, `@nexconn/engine` | `NCEngine.connect` with server-issued tokens; direct, group, community and open channels for deal rooms, flash lots and the arena | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
 | **Chat UI** | `@nexconn/chatui` + Lit 3 | Four custom message cards registered before `app.ready()`: `<nc-bilingual-bubble>`, `<nc-escrow-deal-card>`, `<nc-video-assay-receipt>`, `<nc-tribunal-verdict>` | [`packages/nc-lit-cards`](packages/nc-lit-cards) |
-| **Call SDK** | `@nexconn/call` | `NCCallEngine` on top of the live `NCEngine` session for in-chat video inspection | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
-| **Server API** | `@nexconn/server-sdk` | `issueAccessToken`, streamed AI messages (`sendGroupChannelStreamMessage`), system vouchers, `addGroupChannelFreezeList` for the dispute freeze | [`services/nexconn-bridge-node/src/nexconn/client.ts`](services/nexconn-bridge-node/src/nexconn/client.ts) |
+| **Call SDK** | `@nexconn/call` | `NCCallEngine` initialized on top of the live `NCEngine` session (no call is started yet; inspection video is captured locally and verified by Rust) | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
+| **Server API** | `@nexconn/server-sdk` 0.1.2 (vendored) | `issueAccessToken`, streamed AI messages (`sendGroupChannelStreamMessage`), system vouchers, `addGroupChannelFreezeList` for the dispute freeze | [`services/nexconn-bridge-node/src/nexconn/client.ts`](services/nexconn-bridge-node/src/nexconn/client.ts) |
 
 The Nexconn secret key never leaves `services/nexconn-bridge-node`; CI fails the build if it appears in client code.
 
@@ -134,9 +141,9 @@ flowchart LR
 
 | Service | Language | Responsibilities |
 | :--- | :--- | :--- |
-| `deal-engine-go` | Go 1.24 (chi, pgx, go-redis) | Public API (`/api/v1/*`), 8-state escrow FSM, idempotency, SSE events, traction telemetry |
-| `assay-verifier-rs` | Rust 1.85 (axum) | DPDP PII scrubbing (Aho-Corasick), 64-bit DCT pHash, 4096-point FFT motor RPM, Ed25519 voucher signing |
-| `nexconn-bridge-node` | Node 22 (Fastify) | Nexconn Server SDK host, Gemini translation, tribunal and shopkeeper prompts, Bhashini fallback |
+| `deal-engine-go` | Go 1.24 (net/http, pgx) | Public API (`/api/v1/*`), 8-state escrow FSM, idempotency, SSE events, traction telemetry |
+| `assay-verifier-rs` | Rust 1.85 (axum) | Regex-based DPDP PII scrubbing, 64-bit DCT pHash, 4096-point FFT motor RPM, Ed25519 voucher signing |
+| `nexconn-bridge-node` | Node 22 (Fastify) | Vendored Nexconn server SDK host, Gemini translation, tribunal and shopkeeper prompts, rule-based fallbacks |
 
 ---
 
@@ -146,7 +153,7 @@ flowchart LR
 .
 ├── apps/
 │   ├── web/                    # React 19 web app: landing, /demo, /sandbox, /app, /arena, /dispatch, /traction, /guide
-│   └── mobile/                 # Expo / React Native Android app (v1.0.0 APK) with Supabase backend
+│   └── mobile/                 # Expo / React Native Android companion app: Nexconn Android Chat SDK 26.4.2 for deal chat, Supabase for history and deal state
 ├── services/
 │   ├── deal-engine-go/         # Go public API gateway and escrow state machine (:4002)
 │   ├── assay-verifier-rs/      # Rust forensic and crypto engine (:4003)
@@ -192,7 +199,7 @@ pnpm dev
 | Go deal engine | http://127.0.0.1:4002 |
 | Rust assay verifier | http://127.0.0.1:4003 |
 
-Without real `NEXCONN_APP_KEY` / `NEXCONN_SECRET_KEY` values the bridge runs in **simulated mode**, so the whole flow, including `/demo` and `/sandbox`, works on any machine. If there's no webcam, the app falls back to a simulated HD inspection stream.
+With real Nexconn keys the bridge issues live tokens and the sandbox connects the browser to Nexconn. Without real `NEXCONN_APP_KEY` / `NEXCONN_SECRET_KEY` values the bridge runs in **simulated mode**, so the whole flow, including `/demo` and `/sandbox`, works on any machine. If there's no webcam, the app falls back to a simulated HD inspection stream.
 
 ### Test
 
@@ -212,8 +219,8 @@ CI runs the same checks on every push: secret scan, Go race tests, Rust fmt + cl
 | Route | What it shows |
 | :--- | :--- |
 | [`/`](https://mudra.duckdns.org) | Landing page, APK download and how Mudra works |
-| [`/demo`](https://mudra.duckdns.org/demo) | Two-phone buyer/seller demo, happy path and dispute branch |
-| [`/sandbox`](https://mudra.duckdns.org/sandbox) | Split-screen deal wired to the real Go, Rust and Node services |
+| [`/sandbox`](https://mudra.duckdns.org/sandbox) | Live split-screen deal wired to Nexconn and the real Go, Rust and Node services |
+| [`/demo`](https://mudra.duckdns.org/demo) | Animated two-phone preview (scripted, client-side), happy path and dispute branch |
 | `/app` | Deal desk with live Chat UI room |
 | `/arena` | 60-second AI bargaining duel |
 | `/dispatch` | Arbitrator desk: frozen channels, forensic diff, binding split |
@@ -234,6 +241,13 @@ CI runs the same checks on every push: secret scan, Go race tests, Rust fmt + cl
 | Security | [Security architecture](docs/06-security-compliance/SECURITY_ARCHITECTURE.md) · [Privacy (DPDP)](docs/06-security-compliance/PRIVACY.md) · [Threat model](docs/06-security-compliance/THREAT_MODEL.md) |
 
 ---
+
+## What is simulated
+
+- Payments are simulated; no real money moves.
+- Inspection video comes from the webcam or a simulated HD stream and is verified by Rust; the Call SDK is initialized but no Nexconn call is started yet.
+- In the sandbox, the post-delivery fingerprint is generated to demonstrate a mismatch.
+- `/traction` shows live counters since the last restart; seeded pilot numbers and demo rows are labelled as seeded.
 
 ## Contributing
 

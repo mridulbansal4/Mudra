@@ -42,7 +42,7 @@ export function S7TwoPhoneTeaser() {
           </p>
           <div className="mt-8">
             <NeoButton variant="paccha" size="lg" to="/demo">
-              open the two-phone demo
+              watch the animated two-phone preview
             </NeoButton>
           </div>
         </FadeUp>

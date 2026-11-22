@@ -38,6 +38,15 @@ export class GeminiClient {
     return this.cfg.proModel;
   }
 
+  /** Model for the dispute tribunal: GEMINI_TRIBUNAL_MODEL, else the flash model (fast enough for the 90 s freeze). */
+  get tribunalModel(): string {
+    return this.cfg.tribunalModel || this.cfg.flashModel;
+  }
+
+  get tribunalTimeoutMs(): number {
+    return this.cfg.tribunalTimeoutMs;
+  }
+
   breakerOpen(now = Date.now()): boolean {
     return now < this.openUntil;
   }
@@ -48,16 +57,23 @@ export class GeminiClient {
     userText: string;
     temperature?: number;
     maxOutputTokens?: number;
+    /** Gemini 3 models only: "low" | "medium" | "high". Overrides the default flash thinking budget. */
+    thinkingLevel?: "low" | "medium" | "high";
+    /** Per-call timeout; defaults to GEMINI_TIMEOUT_MS. */
+    timeoutMs?: number;
   }): Promise<T> {
     if (!this.cfg.enabled) throw new GeminiUnavailable("gemini key not configured");
     if (this.breakerOpen()) throw new GeminiUnavailable("gemini circuit breaker open");
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(args.model)}:generateContent`;
     const isFlash = args.model.toLowerCase().includes("flash");
+    const isGemini3 = /^gemini-3/i.test(args.model);
+    const thinkingConfig =
+      args.thinkingLevel && isGemini3 ? { thinkingLevel: args.thinkingLevel } : isFlash ? { thinkingBudget: 0 } : undefined;
     const generationConfig: Record<string, unknown> = {
       responseMimeType: "application/json",
       temperature: args.temperature ?? 0.2,
       maxOutputTokens: args.maxOutputTokens ?? (isFlash ? 1024 : 2048),
-      ...(isFlash ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
+      ...(thinkingConfig ? { thinkingConfig } : {}),
     };
     try {
       const res = await this.fetchImpl(url, {
@@ -69,7 +85,7 @@ export class GeminiClient {
           contents: [{ role: "user", parts: [{ text: args.userText }] }],
           generationConfig,
         }),
-        signal: AbortSignal.timeout(this.cfg.timeoutMs),
+        signal: AbortSignal.timeout(args.timeoutMs ?? this.cfg.timeoutMs),
       });
       if (!res.ok) throw new GeminiUnavailable(`gemini HTTP ${res.status}`);
       const j = (await res.json()) as GeminiResponse;

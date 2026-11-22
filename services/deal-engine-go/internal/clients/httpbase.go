@@ -31,6 +31,10 @@ const (
 // DefaultTimeout bounds every internal call (5s gives enough headroom for cloud roundtrips to Singapore).
 const DefaultTimeout = 5000 * time.Millisecond
 
+// SlowAITimeout bounds internal calls that wait on a larger model (the AI tribunal): the bridge gives
+// Gemini up to GEMINI_TIMEOUT_MS, so Go must wait longer than that or it always falls back.
+const SlowAITimeout = 15000 * time.Millisecond
+
 // circuitOpenFor: after a failure we skip the service for this long (Windows
 // can take ~2s to report "connection refused" on localhost, so without this
 // every request would pay the full timeout while a sibling service is down).
@@ -75,7 +79,8 @@ type service struct {
 }
 
 func newService(name, baseURL, secret string) *service {
-	return &service{name: name, baseURL: baseURL, secret: secret, hc: &http.Client{Timeout: DefaultTimeout}}
+	// The client itself allows the slowest call; each request is bounded by its own context deadline.
+	return &service{name: name, baseURL: baseURL, secret: secret, hc: &http.Client{Timeout: SlowAITimeout}}
 }
 
 func (s *service) circuitOpen() bool {
@@ -104,8 +109,13 @@ func (s *service) markResult(err error) {
 	s.downUntil = time.Time{}
 }
 
-// postJSON POSTs req to path and decodes into resp. Fails fast when circuit open.
+// postJSON POSTs req to path and decodes into resp within DefaultTimeout. Fails fast when circuit open.
 func (s *service) postJSON(ctx context.Context, path string, req, resp any) error {
+	return s.postJSONWithin(ctx, DefaultTimeout, path, req, resp)
+}
+
+// postJSONWithin is postJSON with an explicit per-call deadline.
+func (s *service) postJSONWithin(ctx context.Context, timeout time.Duration, path string, req, resp any) error {
 	if s.baseURL == "" {
 		return ErrUnavailable
 	}
@@ -116,7 +126,7 @@ func (s *service) postJSON(ctx context.Context, path string, req, resp any) erro
 	if err != nil {
 		return err
 	}
-	ctx, cancel := context.WithTimeout(ctx, DefaultTimeout)
+	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 	hr, err := http.NewRequestWithContext(ctx, http.MethodPost, s.baseURL+path, bytes.NewReader(body))
 	if err != nil {
@@ -180,7 +190,7 @@ func (s *service) probe(ctx context.Context) {
 
 // Status is a snapshot used by /health.
 type Status struct {
-	URL       string         `json:"url"`
+	URL       string         `json:"url,omitempty"`
 	Reachable bool           `json:"reachable"`
 	LastError string         `json:"last_error,omitempty"`
 	Health    map[string]any `json:"health,omitempty"`

@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -218,9 +219,9 @@ func (b *Bridge) Translate(ctx context.Context, text, src, dst string) Translate
 // Tribunal asks the bridge AI for a split recommendation (deterministic Go fallback).
 func (b *Bridge) Tribunal(ctx context.Context, in TribunalInput) TribunalResult {
 	var out TribunalResult
-	if err := b.svc.postJSON(ctx, "/internal/ai/tribunal", in, &out); err == nil && out.BuyerRefundBps+out.SellerPayoutBps == 10000 {
+	if err := b.svc.postJSONWithin(ctx, SlowAITimeout, "/internal/ai/tribunal", in, &out); err == nil && out.BuyerRefundBps+out.SellerPayoutBps == 10000 {
 		out.Engine = EngineBridgeLive
-		if out.Model == "" || out.Model == "heuristic" {
+		if out.Model == "" || strings.HasPrefix(out.Model, "heuristic") {
 			out.Engine = EngineBridgeSimulated
 		}
 		return out

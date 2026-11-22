@@ -10,6 +10,7 @@ import { api, errorText } from "../lib/api";
 import { QUICK_PHRASES, sendDealMessage, transition, useLiveDeal } from "../lib/deal";
 import { signIn } from "../lib/personas";
 import { captureFrame, drawSimulatedFrame, laplacianVariance, synthMotorPcmBase64, DEMO_RPM } from "../lib/assay";
+import { bootNexconn, onNexconnEvent, readGroupHistory, type NexconnStatus } from "../lib/nexconn-boot";
 
 interface Provision {
   deal_id: string;
@@ -80,6 +81,41 @@ export default function Sandbox() {
   const sellerLocale = (prov?.seller_session.locale ?? "hi-IN") as Locale;
 
   const note = (m: string) => setLog((l) => [...l.slice(-30), m]);
+
+  // Connect the browser to Nexconn with the buyer's server-issued token, and log what arrives over the WebSocket.
+  const [ncStatus, setNcStatus] = useState<NexconnStatus>("connecting");
+  const ncAppKey = prov?.buyer_session.app_key;
+  useEffect(() => {
+    const s = prov?.buyer_session;
+    if (!s) return;
+    void bootNexconn({ appKey: s.app_key, token: s.access_token, mode: s.mode ?? s.token_mode }).then(setNcStatus);
+    return onNexconnEvent((e) => {
+      if (e.kind === "connected") note(`Nexconn client connected as ${e.userId} (NCEngine.connect code 0)`);
+      else if (e.kind === "message") note(`Received via Nexconn WebSocket: ${e.messageType} ${e.messageId}`);
+      else if (e.kind === "stream") note(`Received via Nexconn WebSocket: RC:StreamMsg ${e.messageId} (${e.phase})`);
+      else if (e.kind === "error") note(`Nexconn client error: ${e.message}`);
+    });
+  }, [prov?.buyer_session]);
+
+  // Whenever the deal gets a new message, read the Group channel through the browser Chat SDK and log what Nexconn holds.
+  const seenNexconn = useRef(new Set<string>());
+  const msgCount = deal?.messages?.length ?? 0;
+  useEffect(() => {
+    const channel = prov?.nexconn_channel_id;
+    if (ncStatus !== "connected" || !channel || msgCount === 0) return;
+    const t = window.setTimeout(() => {
+      readGroupHistory(channel)
+        .then((list) => {
+          for (const m of list) {
+            if (seenNexconn.current.has(m.messageId)) continue;
+            seenNexconn.current.add(m.messageId);
+            note(`Read via Nexconn Chat SDK: ${m.messageType} ${m.messageId} from ${m.senderUserId}`);
+          }
+        })
+        .catch(() => undefined);
+    }, 1200);
+    return () => window.clearTimeout(t);
+  }, [ncStatus, prov?.nexconn_channel_id, msgCount]);
 
   const autoplay = async () => {
     if (!prov || !buyerJwt || !sellerJwt) return;
@@ -178,6 +214,18 @@ export default function Sandbox() {
             ))}
           </ol>
           <div className="ml-auto flex items-center gap-2">
+            <span
+              className={`num rounded-[11px] px-2.5 py-0.5 text-[12px] ${ncStatus === "connected" ? "bg-vault-bg text-vault" : ncStatus === "error" ? "bg-well text-seal" : "bg-well text-ink-3"}`}
+              title="Browser-side Nexconn Chat SDK connection"
+            >
+              {ncStatus === "connected"
+                ? `Nexconn: connected${ncAppKey ? ` (app ${ncAppKey})` : ""}`
+                : ncStatus === "error"
+                  ? "Nexconn: error"
+                  : ncStatus === "simulated"
+                    ? "Nexconn: simulated"
+                    : "Nexconn: connecting"}
+            </span>
             <Button size="sm" variant="primary" isDisabled={playing || !deal} onPress={() => void autoplay()}>
               {playing ? "Playing" : "Auto-play 45s demo"}
             </Button>

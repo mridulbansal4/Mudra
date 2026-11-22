@@ -1,27 +1,22 @@
-name: MUDRA-OS Zero-Downtime Deploy
+name: Production health check
 
+# Deployment to https://mudra.duckdns.org is done manually on the server.
+# This workflow only checks that the live site and its services answer after a push.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 jobs:
-  deploy-polyglot-stack:
-    name: Build & Deploy Web + Go + Rust + Node Bridge
+  health:
+    name: Live site and service health
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Web app responds
+        run: curl -fsS -o /dev/null -w "web %{http_code}\n" https://mudra.duckdns.org/
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Post-Deploy Synthetic Sandbox & Nexconn Health Check
+      - name: Deal engine and dependencies report ok
         run: |
-          echo "Verifying Go (:4002), Rust (:4003), and Node Nexconn Bridge (:4001) health endpoints..."
+          body=$(curl -fsS https://mudra.duckdns.org/api/v1/health)
+          echo "$body" | head -c 600; echo
+          echo "$body" | grep -q '"status":"ok"'

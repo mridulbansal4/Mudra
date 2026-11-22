@@ -3,6 +3,7 @@ package handlers
 import (
 	"math"
 	"net/http"
+	"runtime"
 	"strings"
 	"time"
 
@@ -80,8 +81,16 @@ func (s *Server) handleTraction(w http.ResponseWriter, r *http.Request) {
 			"created_at":    isoTime(d.CreatedAt),
 		})
 	}
+	// Fixed seeded rows fill the table while few live deals exist; each is flagged so the UI labels it.
 	if len(recentDeals) < 6 {
-		recentDeals = append(recentDeals, recentPilotDeals()...)
+		for _, row := range recentPilotDeals() {
+			row["seeded"] = true
+			recentDeals = append(recentDeals, row)
+		}
+	}
+	timer := "time.Now (monotonic clock)"
+	if runtime.GOOS == "windows" {
+		timer = "QueryPerformanceCounter (~100ns ticks)"
 	}
 
 	mw.WriteJSON(w, http.StatusOK, map[string]any{
@@ -96,9 +105,10 @@ func (s *Server) handleTraction(w http.ResponseWriter, r *http.Request) {
 		"total_escrow_vouchers_signed": base.VouchersSigned + c.Vouchers,
 		"recent_deals":                 recentDeals,
 		"baseline_counts":              base,
+		"baseline_note":                "baseline_counts are fixed seeded numbers (store.DefaultBaseline), added to live counts; they are not measured by this process",
 		"live_counts": map[string]any{
-			"distinct_users_with_tokens": connectedMAU,
-			"tokens_issued_live":         base.VerifiedConnectedMAUs + snap.TokensLive,
+			"distinct_users_with_tokens": snap.DistinctTokenUsers,
+			"tokens_issued_live":         snap.TokensLive,
 			"tokens_issued_simulated":    snap.TokensSim,
 			"active_channels_by_type":    live,
 			"vouchers_signed":            c.Vouchers,
@@ -113,7 +123,7 @@ func (s *Server) handleTraction(w http.ResponseWriter, r *http.Request) {
 			"go_escrow_fsm_samples": snap.FSMSamples,
 			"pii_scrub_samples":     snap.PIISamples,
 			"pii_scrub_engine":      piiEngine,
-			"timer":                 "QueryPerformanceCounter (~100ns ticks)",
+			"timer":                 timer,
 			"assay_samples":         snap.AssaySamples,
 			"assay_engine":          assayEngine,
 		},
@@ -142,18 +152,40 @@ func recentPilotDeals() []map[string]any {
 
 // GET /health
 func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
-	mw.WriteJSON(w, http.StatusOK, map[string]any{
+	bridge, rust := s.Bridge.Status(), s.Rust.Status()
+	body := map[string]any{
 		"status": "ok", "service": "deal-engine-go", "version": Version, "port": s.Cfg.Port,
 		"store":      s.Store.BackendName(),
 		"uptime_sec": int(time.Since(s.Store.Telemetry().StartedAt).Seconds()),
 		"dependencies": map[string]any{
-			"nexconn_bridge":    s.Bridge.Status(),
-			"assay_verifier_rs": s.Rust.Status(),
+			"nexconn_bridge":    bridge,
+			"assay_verifier_rs": rust,
 		},
 		"fallback_voucher_public_key_hex": s.Rust.GoPublicKeyHex(),
-		"dev_defaults_in_use": map[string]bool{
+	}
+	// Internal URLs and the dev-default self-check are only shown to requests from the host itself,
+	// so the public endpoint doesn't advertise configuration weaknesses.
+	if isLocalRequest(r) {
+		body["dev_defaults_in_use"] = map[string]bool{
 			"jwt_secret": s.Cfg.UsingDevJWT, "webhook_secret": s.Cfg.UsingDevWebhook, "ed25519_seed": s.Cfg.UsingDevSigningKey,
 			"internal_hmac_unset": s.Cfg.InternalHMAC == "",
-		},
-	})
+		}
+	} else {
+		bridge.URL, rust.URL = "", ""
+		body["dependencies"] = map[string]any{"nexconn_bridge": bridge, "assay_verifier_rs": rust}
+	}
+	mw.WriteJSON(w, http.StatusOK, body)
+}
+
+// isLocalRequest reports whether the request came straight from this machine (no reverse proxy hop).
+func isLocalRequest(r *http.Request) bool {
+	if r.Header.Get("X-Forwarded-For") != "" || r.Header.Get("X-Real-IP") != "" {
+		return false
+	}
+	host := r.RemoteAddr
+	if i := strings.LastIndex(host, ":"); i >= 0 {
+		host = host[:i]
+	}
+	host = strings.Trim(host, "[]")
+	return host == "127.0.0.1" || host == "::1" || host == "localhost"
 }

@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { defineMudraCards } from "@mudra/nc-lit-cards";
 import "./styles/globals.css";
 import Landing from "./routes/Landing";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 import { getSession } from "./lib/session";
 
@@ -29,6 +30,7 @@ function Loading() {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <ErrorBoundary>
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
         <Routes>
@@ -49,5 +51,6 @@ createRoot(document.getElementById("root")!).render(
         </Routes>
       </Suspense>
     </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>,
 );

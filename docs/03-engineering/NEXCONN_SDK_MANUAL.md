@@ -40,7 +40,7 @@ Before running `apps/web` or `services/nexconn-bridge-node`, perform these exact
 3. Enable **Group Moderation & Freeze Lists** (`/v4/group-channel/moderation/freeze/add`) and **Open Channel Priority Controls**.
 
 ### Step 4: Activate the 10,000 Free `@nexconn/call` Minutes (Credit Card Gate `Qx`)
-1. As documented in `index-Dr3TP1Ui.js` (`Qx`), activating the Call SDK (`@nexconn/call@^26.2.0`) requires completing billing verification on `console.nexconn.ai`.
+1. As documented in `index-Dr3TP1Ui.js` (`Qx`), activating the Call SDK (`@nexconn/call@26.2.1`) requires completing billing verification on `console.nexconn.ai`.
 2. Navigate to **Billing / Credits → Claim Hackathon Credits** (or **Call Service → Activate**), add the verification card ($0 charge for the 10,000 free Call SDK minutes + 10,000 free Chat MAUs), and confirm **Audio & Video Call Service (`RTC`)** status shows **`Active (Green)`**.
 
 ### Step 5: Configure Domain Allowlist & WebRTC TURN
@@ -55,7 +55,7 @@ Before running `apps/web` or `services/nexconn-bridge-node`, perform these exact
 ### 3.1 Frontend (`apps/web/package.json` & `packages/nc-lit-cards/package.json`)
 ```bash
 # Install inside apps/web
-pnpm add @nexconn/chatui@^26.2.5 @nexconn/chat@^26.2.1 @nexconn/engine@^26.2.1 @nexconn/call@^26.2.0 lit@^3.3.2
+pnpm add @nexconn/chatui@^26.2.5 @nexconn/chat@^26.2.1 @nexconn/engine@^26.2.1 @nexconn/call@26.2.1 lit@^3.3.2
 ```
 
 | Package | Version | Supported Channels | What It Does in MUDRA-OS |
@@ -75,6 +75,8 @@ pnpm add "git+https://github.com/NexconnAI-Dev/nexconn-server-sdk-node.git#v0.1.
 ## 4. The 5 Golden Boot & Lifecycle Rules (`nexconn-skills` Law)
 
 Breaking any of these 5 rules causes silent failures. Every developer must follow them verbatim:
+
+> **Verified boot order (Nov 2026, `@nexconn/chat` 26.2.1 / `@nexconn/chatui` 26.2.5):** call `NCEngine.initialize({ appKey })` **before** `NCChatUIApplication.initialize(...)`. If the engine is not initialized first, `NCChatUIApplication.initialize` returns `null`. Then register the custom message types, call `app.ready()`, and `await NCEngine.connect({ token })`. The production code is `apps/web/src/lib/nexconn-boot.ts`; where the examples below differ, the code wins.
 
 ### Rule 1: Register Custom Lit Message Types BEFORE `app.ready()`
 In `@nexconn/chatui@^26.2.5`, custom message components must subclass `BaseMessageContent` from `@nexconn/chatui` (using `lit@^3.3.2`) and MUST be registered inside `NCChatUIApplication.initialize({ hooks })` **before** `app.ready()` resolves:
@@ -202,7 +204,7 @@ export async function initializeMudraNexconnStack(params: {
 ```
 
 ### Rule 2: Await `NCEngine.connect({ token })` Before Touching `NCCallEngine`
-As shown in Step 2 & Step 3 above, `@nexconn/call@^26.2.0` signals WebRTC SDP offers and ICE candidates over the active `NCEngine` IM socket. Calling `NCCallEngine.getInstance().startCall(...)` before `await NCEngine.connect({ token })` resolves will fail silently.
+As shown in Step 2 & Step 3 above, `@nexconn/call@26.2.1` signals WebRTC SDP offers and ICE candidates over the active `NCEngine` IM socket. Calling `NCCallEngine.getInstance().startCall(...)` before `await NCEngine.connect({ token })` resolves will fail silently.
 
 ### Rule 3: Escalating Audio to Live Video Inspection (`requestChangeMediaType`)
 When the user clicks **"Verify on live video"** inside `<nc-escrow-deal-card>`:
