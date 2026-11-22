@@ -1,0 +1,15 @@
+import React from 'react';
+import { Stack } from 'expo-router';
+import { C } from '@/theme/tokens';
+
+export default function AuthLayout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: C.bg },
+        animation: 'slide_from_right',
+      }}
+    />
+  );
+}
