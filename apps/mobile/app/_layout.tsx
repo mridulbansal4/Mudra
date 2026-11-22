@@ -9,7 +9,7 @@ import * as SystemUI from 'expo-system-ui';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import { HeroUINativeProvider } from 'heroui-native';
 import { Uniwind } from 'uniwind';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +33,7 @@ import {
   useRealtimeEvents,
 } from '@/lib/realtime';
 import { useMe, usePing } from '@/features/hooks';
+import { useNexconnSession } from '@/lib/nexconn';
 import { Text, ToastProvider } from '@/ui';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -54,6 +55,7 @@ function AppShellInner() {
   const token = useSessionStore((s) => s.token);
   const me = useSessionStore((s) => s.me);
   const { isOffline } = useNetworkStatus();
+  const client = useQueryClient();
 
   useEffect(() => {
     ensureOnlineManagerWired();
@@ -63,6 +65,8 @@ function AppShellInner() {
   usePing();
   useMe({ enabled: Boolean(token) });
   useRealtimeEvents(me?.id);
+  // Real-time deal chat over the Nexconn Android Chat SDK (Supabase stays the store of record)
+  useNexconnSession(token, me, client);
 
   return (
     <View style={styles.root}>
