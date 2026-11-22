@@ -28,6 +28,7 @@ func (s *Server) handleAuthSession(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		PersonaPreset   string `json:"persona_preset"`
 		DisplayName     string `json:"display_name"`
+		NexconnUserID   string `json:"nexconn_user_id"`
 		Role            string `json:"role"`
 		PreferredLocale string `json:"preferred_locale"`
 		ClientPlatform  string `json:"client_platform"`
@@ -45,7 +46,8 @@ func (s *Server) handleAuthSession(w http.ResponseWriter, r *http.Request) {
 		u, _ = s.Store.GetUser(p.ID)
 	} else {
 		req.DisplayName = strings.TrimSpace(req.DisplayName)
-		if req.DisplayName == "" || len(req.DisplayName) > 80 {
+		req.NexconnUserID = strings.TrimSpace(req.NexconnUserID)
+		if (req.DisplayName == "" && req.NexconnUserID == "") || len(req.DisplayName) > 80 {
 			badRequest(w, r, "display_name required (max 80 chars)")
 			return
 		}
@@ -56,12 +58,27 @@ func (s *Server) handleAuthSession(w http.ResponseWriter, r *http.Request) {
 		if req.PreferredLocale == "" {
 			req.PreferredLocale = "en-IN"
 		}
-		loc := strings.ToLower(strings.SplitN(req.PreferredLocale, "-", 2)[0])
-		u = &store.User{
-			ID: "e01_" + store.NewUUID(), NexconnUserID: req.Role + "_" + slugify(req.DisplayName) + "_" + loc + "_" + store.RandHex(2),
-			DisplayName: req.DisplayName, Role: req.Role, Locale: req.PreferredLocale, KYCTier: "GUEST_SANDBOX", CreatedAt: time.Now().UTC(),
+		if req.NexconnUserID != "" {
+			if existing, ok := s.Store.GetUserByNexconn(req.NexconnUserID); ok {
+				u = existing
+			}
 		}
-		s.Store.PutUser(u)
+		if u == nil {
+			loc := strings.ToLower(strings.SplitN(req.PreferredLocale, "-", 2)[0])
+			nxID := req.NexconnUserID
+			if nxID == "" {
+				nxID = req.Role + "_" + slugify(req.DisplayName) + "_" + loc + "_" + store.RandHex(2)
+			}
+			disp := req.DisplayName
+			if disp == "" {
+				disp = nxID
+			}
+			u = &store.User{
+				ID: "e01_" + store.NewUUID(), NexconnUserID: nxID,
+				DisplayName: disp, Role: req.Role, Locale: req.PreferredLocale, KYCTier: "GUEST_SANDBOX", CreatedAt: time.Now().UTC(),
+			}
+			s.Store.PutUser(u)
+		}
 	}
 	tok, jwt, err := s.issueSession(r.Context(), u, req.ClientPlatform)
 	if err != nil {

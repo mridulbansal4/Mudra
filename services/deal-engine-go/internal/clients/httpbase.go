@@ -28,8 +28,8 @@ const (
 	EngineBridgeSimulated = "bridge-simulated"
 )
 
-// DefaultTimeout bounds every internal call.
-const DefaultTimeout = 1500 * time.Millisecond
+// DefaultTimeout bounds every internal call (5s gives enough headroom for cloud roundtrips to Singapore).
+const DefaultTimeout = 5000 * time.Millisecond
 
 // circuitOpenFor: after a failure we skip the service for this long (Windows
 // can take ~2s to report "connection refused" on localhost, so without this
