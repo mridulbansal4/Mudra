@@ -64,7 +64,7 @@ function RailCardItem({ card }: { card: RailCardDef }) {
   return (
     <Link
       to={card.to}
-      className="group relative flex h-[520px] w-[340px] sm:w-[380px] shrink-0 snap-start flex-col justify-between overflow-hidden border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.16)] p-8 no-underline transition-[transform,border-color] duration-300 hover:-translate-y-[6px]"
+      className="group relative flex h-[430px] sm:h-[520px] w-[285px] sm:w-[380px] shrink-0 snap-start flex-col justify-between overflow-hidden border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.16)] p-6 sm:p-8 no-underline transition-[transform,border-color] duration-300 hover:-translate-y-[6px]"
       style={{
         borderRadius: "28px",
         backgroundColor: "var(--card)",

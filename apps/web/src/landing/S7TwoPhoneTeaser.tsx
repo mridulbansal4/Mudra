@@ -77,8 +77,8 @@ export function S7TwoPhoneTeaser() {
             />
           </svg>
 
-          <div className="flex items-center justify-center">
-            <div className="-mr-[20px] z-10 scale-[0.78] sm:scale-100 origin-right">
+          <div className="flex items-center justify-center scale-[0.76] sm:scale-100 origin-center">
+            <div className="-mr-[20px] z-10">
               <PhoneFrame
                 scale={0.62}
                 tilt={{ x: 0, y: 8, z: 0 }}
@@ -96,7 +96,7 @@ export function S7TwoPhoneTeaser() {
               </PhoneFrame>
             </div>
 
-            <div className="-ml-[20px] z-20 scale-[0.78] sm:scale-100 origin-left">
+            <div className="-ml-[20px] z-20">
               <PhoneFrame
                 scale={0.62}
                 tilt={{ x: 0, y: -8, z: 0 }}
