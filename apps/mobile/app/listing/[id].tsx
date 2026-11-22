@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Dimensions, FlatList, Modal, Pressable, ScrollView, StyleSheet, TextInput, View,
-} from 'react-native';
+import { Dimensions, FlatList, Modal, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
@@ -9,9 +7,7 @@ import { Image } from 'expo-image';
 import * as Clipboard from 'expo-clipboard';
 import { Flag, Heart, MapPin, Share2, ShieldCheck, Star, X } from 'lucide-react-native';
 import { C, F, R } from '@/theme/tokens';
-import {
-  useListing, useReport, useSetListingStatus, useStartDeal, useToggleSave,
-} from '@/features/hooks';
+import { useListing, useReport, useSetListingStatus, useStartDeal, useToggleSave } from '@/features/hooks';
 import { formatMoney, parseMoneyInput } from '@/lib/money';
 import { useSessionStore } from '@/state/session';
 import {
@@ -73,21 +69,11 @@ export default function ListingDetailScreen() {
   const isOwner = Boolean(me?.id && me.id === listing.seller_id);
   const formattedPrice = formatMoney(listing.price_minor, listing.currency);
 
-  const requireAuth = (fn: () => void) => {
-    if (!token) {
-      setGuestSheetOpen(true);
-      return;
-    }
-    fn();
-  };
+  const requireAuth = (fn: () => void) => (!token ? setGuestSheetOpen(true) : fn());
 
   const handleStartDeal = async (amountMinor: number, swapOffer?: string) => {
     try {
-      const deal = await startDeal.mutateAsync({
-        listing_id: listing.id,
-        amount_minor: amountMinor,
-        swap_offer: swapOffer,
-      });
+      const deal = await startDeal.mutateAsync({ listing_id: listing.id, amount_minor: amountMinor, swap_offer: swapOffer });
       setOfferSheetOpen(false);
       setSwapSheetOpen(false);
       router.push(`/deal/${deal.id}` as never);
