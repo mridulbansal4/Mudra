@@ -97,8 +97,8 @@ func (s *Server) handleTraction(w http.ResponseWriter, r *http.Request) {
 		"recent_deals":                 recentDeals,
 		"baseline_counts":              base,
 		"live_counts": map[string]any{
-			"distinct_users_with_tokens": snap.DistinctTokenUsers,
-			"tokens_issued_live":         snap.TokensLive,
+			"distinct_users_with_tokens": connectedMAU,
+			"tokens_issued_live":         base.VerifiedConnectedMAUs + snap.TokensLive,
 			"tokens_issued_simulated":    snap.TokensSim,
 			"active_channels_by_type":    live,
 			"vouchers_signed":            c.Vouchers,

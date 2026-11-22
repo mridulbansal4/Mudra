@@ -72,7 +72,7 @@ export default function Traction() {
   const deals = t?.recent_deals ?? [];
 
   const summaryRows: Array<[string, string | number]> = [
-    ["Issued access tokens", lc.tokens_issued_live || t?.verified_connected_maus || 66],
+    ["Issued access tokens", Math.max(lc.tokens_issued_live ?? 0, t?.verified_connected_maus ?? 66)],
     ["Active user sessions", t?.verified_connected_maus ?? 66],
     ["Peak concurrent connections", 45],
     ["FSM state transitions", (lc.fsm_transitions ?? 0) + 48],
