@@ -29,6 +29,7 @@ func (s *Server) handleCreateDeal(w http.ResponseWriter, r *http.Request) {
 	}
 	var req struct {
 		Title           string                `json:"title"`
+		ChannelID       string                `json:"channel_id"`
 		SellerNexconnID string                `json:"seller_nexconn_id"`
 		AmountPaise     int64                 `json:"amount_paise"`
 		Currency        string                `json:"currency"`
@@ -82,8 +83,12 @@ func (s *Server) handleCreateDeal(w http.ResponseWriter, r *http.Request) {
 	}
 	tag := store.RandHex(3)
 	now := time.Now().UTC()
+	chID := strings.TrimSpace(req.ChannelID)
+	if chID == "" {
+		chID = "grp_mudra_" + slugify(req.Title) + "_" + tag
+	}
 	d := &store.Deal{
-		ID: "d_" + tag, ChannelID: "grp_mudra_" + slugify(req.Title) + "_" + tag, Title: req.Title,
+		ID: "d_" + tag, ChannelID: chID, Title: req.Title,
 		BuyerID: c.Sub, SellerID: seller.ID, Machine: fsm.NewMachine(fsm.StateCreated),
 		AmountPaise: req.AmountPaise, Currency: req.Currency, Checklist: checklist,
 		RequiredSerial: serial, MinMotorRPM: minRPM, CreatedAt: now, UpdatedAt: now,
