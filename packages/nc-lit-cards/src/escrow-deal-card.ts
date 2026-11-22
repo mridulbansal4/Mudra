@@ -50,7 +50,7 @@ export class MudraEscrowCard extends MudraCardBase {
         background: var(--accent, #c84b20);
       }
       .step.current {
-        color: var(--foreground, #1b1c22);
+        color: var(--nc-card-foreground, #1b1c22);
         font-weight: 500;
       }
     `,
