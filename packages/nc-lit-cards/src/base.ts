@@ -51,7 +51,7 @@ export class MudraCardBase extends LitElement {
     :host {
       display: block;
       font-family: var(--font-sans, system-ui, sans-serif);
-      color: var(--foreground, #1b1c22);
+      color: var(--nc-card-foreground, #1b1c22);
       font-size: 14px;
       line-height: 1.45;
     }
@@ -113,7 +113,7 @@ export class MudraCardBase extends LitElement {
       cursor: pointer;
       border: 1px solid var(--border-hairline, rgba(28, 30, 38, 0.14));
       background: var(--surface-2, #f1efea);
-      color: var(--foreground, #1b1c22);
+      color: var(--nc-card-foreground, #1b1c22);
       transition: transform 100ms ease-out, background-color 150ms ease-out;
     }
     button:active {
