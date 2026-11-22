@@ -16,6 +16,7 @@ const Auth = lazy(() => import("./routes/Auth"));
 const Onboarding = lazy(() => import("./routes/Onboarding"));
 const Desk = lazy(() => import("./routes/Desk"));
 const Sandbox = lazy(() => import("./routes/Sandbox"));
+const CallSeller = lazy(() => import("./routes/CallSeller"));
 const Arena = lazy(() => import("./routes/Arena"));
 const Dispatch = lazy(() => import("./routes/Dispatch"));
 const Guide = lazy(() => import("./routes/Guide"));
@@ -40,6 +41,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/app" element={<Desk />} />
           <Route path="/app/deals/:dealId" element={<Desk />} />
           <Route path="/sandbox" element={<Sandbox />} />
+          <Route path="/call/seller" element={<CallSeller />} />
           <Route path="/arena" element={<Arena />} />
           <Route path="/dispatch" element={<Dispatch />} />
           <Route path="/guide" element={<Guide />} />

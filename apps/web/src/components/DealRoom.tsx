@@ -5,7 +5,7 @@ import { LOCALE_LABEL, formatInr } from "@mudra/shared-types";
 import { api, errorText } from "../lib/api";
 import { QUICK_PHRASES, sendDealMessage, transition, type LiveDeal } from "../lib/deal";
 import { LitCard, type CardTag, type DealActionDetail } from "./LitCard";
-import { AssayLoupe, type AssayCapture } from "./AssayLoupe";
+import { AssayLoupe, type AssayCapture, type InspectionCall } from "./AssayLoupe";
 import { Banner } from "./Chrome";
 
 const TAG_BY_TYPE: Record<string, CardTag> = {
@@ -105,7 +105,7 @@ export function useDealActions(deal: LiveDeal | null, jwt: string | undefined, r
         const r = await api.post<{ assay_passed: boolean; audio_fft_rpm_peak?: number; frame_phash_hex?: string; rust_compute_ms?: number }>(
           `/api/v1/deals/${deal.deal_id}/assay/verify-frame`,
           {
-            nexconn_call_id: `call_local_${Date.now()}`,
+            nexconn_call_id: c.callId ?? `call_local_${Date.now()}`,
             stage_tag: "PRE_SHIPMENT",
             challenge_nonce: st.challenge?.challenge_nonce,
             wasm_blur_laplacian: Math.round(c.blurLaplacian * 10) / 10,
@@ -202,6 +202,7 @@ export function DealRoom(props: {
   jwt?: string;
   refresh: () => Promise<void>;
   simulatedCamera?: boolean;
+  call?: InspectionCall;
   compact?: boolean;
   title?: string;
 }) {
@@ -335,7 +336,7 @@ export function DealRoom(props: {
       </div>
 
       {actions.loupeOpen ? (
-        <AssayLoupe simulated={props.simulatedCamera ?? true} busy={actions.busy} challenge={actions.challenge} onCapture={actions.onCapture} onClose={actions.closeLoupe} />
+        <AssayLoupe simulated={props.simulatedCamera ?? true} call={props.call} busy={actions.busy} challenge={actions.challenge} onCapture={actions.onCapture} onClose={actions.closeLoupe} />
       ) : null}
     </section>
   );

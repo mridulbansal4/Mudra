@@ -20,6 +20,13 @@ export interface AssayCapture {
   audioPcmBase64: string;
   sampleRate: number;
   simulated: boolean;
+  callId?: string;
+}
+
+/** A live Nexconn call that streams the seller's camera into the given video element. */
+export interface InspectionCall {
+  start: (remoteVideo: HTMLVideoElement) => Promise<string>;
+  stop: () => void;
 }
 
 const W = 320;
@@ -35,6 +42,7 @@ export function AssayLoupe(props: {
   simulated: boolean;
   busy?: boolean;
   challenge?: { required_serial_plate?: string; min_motor_rpm?: number; challenge_nonce?: string } | null;
+  call?: InspectionCall;
   onCapture: (c: AssayCapture) => void;
   onClose: () => void;
 }) {
@@ -44,8 +52,12 @@ export function AssayLoupe(props: {
   const streamRef = useRef<MediaStream | null>(null);
   const [pos, setPos] = useState({ x: -1, y: -1 });
   const [settling, setSettling] = useState(false);
-  const [mode, setMode] = useState<"sim" | "cam">(props.simulated ? "sim" : "cam");
+  const [mode, setMode] = useState<"sim" | "cam" | "call">(props.simulated ? "sim" : "cam");
   const [camError, setCamError] = useState<string | null>(null);
+  const [callId, setCallId] = useState<string | null>(null);
+  const lastCallId = useRef<string | null>(null);
+  const callRef = useRef(props.call);
+  callRef.current = props.call;
   const [sharp, setSharp] = useState<number | null>(null);
   const drag = useRef<{ dx: number; dy: number; samples: { x: number; y: number; t: number }[] } | null>(null);
 
@@ -59,6 +71,39 @@ export function AssayLoupe(props: {
   useEffect(() => {
     let raf = 0;
     let cancelled = false;
+    if (mode === "call") {
+      const call = callRef.current;
+      const video = videoRef.current;
+      if (!call || !video) {
+        setMode("sim");
+        return;
+      }
+      setCamError("Calling the seller over Nexconn Call");
+      call
+        .start(video)
+        .then((id) => {
+          if (cancelled) return;
+          setCallId(id);
+          lastCallId.current = id;
+          setCamError(`Connected over Nexconn Call ${id}`);
+          // No frames from the seller (camera missing in their window): keep the demo moving on the simulated stream.
+          window.setTimeout(() => {
+            if (cancelled || video.videoWidth > 0) return;
+            setCamError(`Nexconn call ${id} connected but the seller sent no video, using the simulated HD stream`);
+            setMode("sim");
+          }, 10000);
+        })
+        .catch((e: unknown) => {
+          if (cancelled) return;
+          setCamError(`Nexconn call unavailable (${e instanceof Error ? e.message : String(e)}), using the simulated HD stream`);
+          setMode("sim");
+        });
+      return () => {
+        cancelled = true;
+        setCallId(null);
+        call.stop();
+      };
+    }
     if (mode === "cam") {
       if (!navigator.mediaDevices?.getUserMedia) {
         setCamError("No camera API in this browser, using the simulated HD stream");
@@ -159,6 +204,7 @@ export function AssayLoupe(props: {
       audioPcmBase64: audio.base64,
       sampleRate: audio.sampleRate,
       simulated: mode === "sim",
+      callId: lastCallId.current ?? undefined,
     });
   };
 
@@ -192,15 +238,23 @@ export function AssayLoupe(props: {
         <div className="num absolute bottom-2 left-2 rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">
           Sharpness {sharp != null ? sharp.toFixed(0) : "-"} · min RPM {(props.challenge?.min_motor_rpm ?? 4800).toLocaleString("en-IN")}
         </div>
-        <div className="absolute right-2 top-2 rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">{mode === "sim" ? "Simulated HD stream" : "Camera"}</div>
+        <div className="absolute right-2 top-2 rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">
+          {mode === "sim" ? "Simulated HD stream" : mode === "call" ? (callId ? "Seller, live over Nexconn Call" : "Ringing seller") : "Camera"}
+        </div>
       </div>
       <div className="flex items-center gap-2 px-3 py-2.5">
         <Button size="sm" variant="primary" isDisabled={props.busy} onPress={() => void capture()}>
           {props.busy ? "Verifying" : "Capture proof"}
         </Button>
-        <Button size="sm" variant="ghost" onPress={() => setMode(mode === "sim" ? "cam" : "sim")}>
-          {mode === "sim" ? "Use camera" : "Use simulated"}
-        </Button>
+        {props.call && mode !== "call" ? (
+          <Button size="sm" variant="ghost" onPress={() => setMode("call")}>
+            Call seller
+          </Button>
+        ) : (
+          <Button size="sm" variant="ghost" onPress={() => setMode(mode === "sim" ? "cam" : "sim")}>
+            {mode === "sim" ? "Use camera" : "Use simulated"}
+          </Button>
+        )}
         <button className="press ml-auto text-[12.5px] text-ink-3 hover:text-ink" onClick={props.onClose}>
           Close
         </button>
