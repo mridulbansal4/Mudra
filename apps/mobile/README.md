@@ -73,6 +73,35 @@ Copy-Item M:\android\app\build\outputs\apk\release\app-release.apk D:\Hackathons
 
 ---
 
+## Nexconn Android Chat SDK
+
+Nexconn ships no React Native SDK, so the app wraps the official **Nexconn Android Chat SDK** (`ai.nexconn.chat:chat:26.4.2`) in a local Expo native module:
+
+| File | What it does |
+| :--- | :--- |
+| [`modules/nexconn-chat/android/.../NexconnChatModule.kt`](modules/nexconn-chat/android/src/main/java/expo/modules/nexconnchat/NexconnChatModule.kt) | `NCEngine.initialize` (area `SG`), `NCEngine.connect`, `DirectChannel.sendMessage(TextMessage)`, `NCEngine.disconnect`; forwards `onMessageReceived` and connection-status changes to JS as `onMessage` / `onConnectionStatus` events |
+| [`modules/nexconn-chat/index.ts`](modules/nexconn-chat/index.ts) | Typed JS wrapper (`NexconnChat.initialize/connect/sendDirectText/disconnect`) |
+| [`src/lib/nexconn.ts`](src/lib/nexconn.ts) | Gets a Nexconn access token from `POST https://mudra.duckdns.org/api/v1/auth/session` (issued server-side by the Nexconn Server SDK; the secret never ships in the app), then initialize, then connect; zustand status store |
+| [`plugins/withNexconnMaven.js`](plugins/withNexconnMaven.js) | Adds `https://maven.nexconn.ai/repository/maven-releases/` to the generated Gradle repositories |
+
+- **User IDs**: Nexconn user ID = `m_` + Supabase user ID, so both phones derive each other's IDs without a lookup table.
+- **Deal chat**: a sent message is saved to Supabase (history and deal state stay there), then also sent to the counterpart over a Nexconn Direct channel. An incoming Nexconn message refreshes the chat and deal queries at once; the 4-second poll remains as a fallback.
+- **Failure handling**: if the token request or connect fails, the status becomes offline/error and the app keeps working on Supabase alone.
+- **Where to see it**: the deal chat header shows a `Nexconn live` / `Nexconn offline` pill; the Guide screen shows the Nexconn user ID, the runtime SDK version and the last Nexconn message ID.
+- Only Direct-channel text chat runs on Android. Calls, video and group channels are web-only.
+
+### Verify the Nexconn connection
+
+Install the APK on an emulator or phone, log in (for example Rajesh, below), then:
+
+```powershell
+adb logcat -s NexconnChat
+```
+
+Expected lines: `initialized sdk=26.4.2 area=SG`, `connection status CONNECTED`, `connect success userId=m_<supabase id>`; sending a deal message logs `direct message sent id=...`.
+
+---
+
 ## Judge Demo Accounts (PIN `1234`)
 
 | Persona | Phone | PIN | Default Role | Seeded State |

@@ -5,12 +5,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { Camera, Handshake, Lock, Scale } from 'lucide-react-native';
 import { C } from '@/theme/tokens';
-import { Eyebrow, NeoButton, Text, TopBar, VelvetCard } from '@/ui';
+import { Eyebrow, NeoButton, StatusPill, Text, TopBar, VelvetCard } from '@/ui';
+import { NEXCONN_ANDROID_SDK, useNexconnStore } from '@/lib/nexconn';
 
 export default function GuideScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const nexconn = useNexconnStore();
 
   const steps = [
     {
@@ -76,6 +78,26 @@ export default function GuideScreen() {
           ))}
         </View>
 
+        <VelvetCard tone="card" style={styles.nexconnCard}>
+          <View style={styles.nexconnHead}>
+            <Text variant="display" size={20} color={C.fg} lowercase>
+              nexconn connection
+            </Text>
+            <StatusPill
+              tone={nexconn.status === 'live' ? 'done' : nexconn.status === 'connecting' ? 'sunshine' : nexconn.status === 'error' ? 'danger' : 'neutral'}
+              label={nexconn.status === 'live' ? 'Nexconn live' : nexconn.status === 'connecting' ? 'Nexconn connecting' : 'Nexconn offline'}
+            />
+          </View>
+          <NexconnRow label="user id" value={nexconn.userId ?? 'not signed in'} />
+          <NexconnRow
+            label="sdk"
+            value={`Android Chat SDK ${nexconn.sdkVersion ?? ''} (${NEXCONN_ANDROID_SDK})`}
+          />
+          <NexconnRow label="last message id" value={nexconn.lastMessageId ?? 'none yet'} />
+          {nexconn.lastStatusEvent ? <NexconnRow label="sdk status" value={nexconn.lastStatusEvent} /> : null}
+          {nexconn.error ? <NexconnRow label="last error" value={nexconn.error} /> : null}
+        </VelvetCard>
+
         <NeoButton
           variant="paccha"
           size="lg"
@@ -87,7 +109,23 @@ export default function GuideScreen() {
   );
 }
 
+function NexconnRow({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={styles.nexconnRow}>
+      <Text variant="secondary" size={12} color={C.muted}>
+        {label}
+      </Text>
+      <Text variant="mono" size={12} color={C.fg2} selectable>
+        {value}
+      </Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  nexconnCard: { gap: 10 },
+  nexconnHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  nexconnRow: { gap: 2 },
   screen: { flex: 1, backgroundColor: C.bg },
   scroll: { padding: 16, gap: 18 },
   cards: { gap: 12 },

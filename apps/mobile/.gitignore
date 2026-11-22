@@ -27,3 +27,8 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 .DS_Store
+
+# Local Expo native module sources (not generated); keep their build output ignored
+!modules/*/android/
+modules/*/android/build/
+modules/*/android/.gradle/

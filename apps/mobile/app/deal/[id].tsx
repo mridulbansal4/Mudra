@@ -13,6 +13,7 @@ import { getContextualQuickKeys, getQuickReplyText, type QuickReplyKey } from '@
 import { parseMoneyInput } from '@/lib/money';
 import { relativeTime } from '@/lib/time';
 import { useSessionStore } from '@/state/session';
+import { sendNexconnDirect, useNexconnStore } from '@/lib/nexconn';
 import type { DealAction, Message } from '@/types';
 import {
   BilingualBubble, ListGroup, ListRow, NeoButton, OfferCard, Price,
@@ -39,6 +40,7 @@ export default function DealRoomScreen() {
   const dealQuery = useQuery({ queryKey: ['deal', id], queryFn: () => mudraApi.deal(id!), enabled: Boolean(id), refetchInterval: 4000 });
   const msgsQuery = useQuery({ queryKey: ['messages', id], queryFn: () => mudraApi.messages(id!, 0), enabled: Boolean(id), refetchInterval: 4000 });
   const deal = dealQuery.data;
+  const nexconnStatus = useNexconnStore((s) => s.status);
 
   useFocusEffect(useCallback(() => {
     focusedRef.current = true;
@@ -86,6 +88,8 @@ export default function DealRoomScreen() {
     if (!quickKey) setDraftText('');
     try {
       await mudraApi.sendMessage({ deal_id: id, body: clean, quick_key: quickKey });
+      // Real-time copy to the counterpart over a Nexconn Direct channel (Supabase keeps history).
+      if (deal?.counterpart?.id) void sendNexconnDirect(deal.counterpart.id, clean);
       await msgsQuery.refetch();
     } catch (err) {
       showToast((err as Error)?.message || t('errors.UNKNOWN'), 'danger');
@@ -189,6 +193,10 @@ export default function DealRoomScreen() {
           <Text weight={600} size={15} color={C.fg} numberOfLines={1}>{deal?.listing?.title || t('common.loading')}</Text>
           <Text variant="secondary" size={12} color={C.muted} numberOfLines={1}>{deal?.counterpart?.name || ''} · <Text variant="mono" size={11}>{deal?.short_code}</Text></Text>
         </View>
+        <StatusPill
+          tone={nexconnStatus === 'live' ? 'done' : nexconnStatus === 'connecting' ? 'sunshine' : 'neutral'}
+          label={nexconnStatus === 'live' ? 'Nexconn live' : nexconnStatus === 'connecting' ? 'Nexconn connecting' : 'Nexconn offline'}
+        />
         <Pressable accessibilityRole="button" accessibilityLabel="deal options" onPress={() => setSheetMode('menu')} style={styles.iconBtn}>
           <MoreVertical size={20} color={C.fg} />
         </Pressable>

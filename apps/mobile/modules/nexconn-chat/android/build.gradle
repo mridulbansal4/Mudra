@@ -1,0 +1,20 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.nexconnchat'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.nexconnchat"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+}
+
+dependencies {
+  // Official Nexconn Android Chat SDK (Maven Central, mirrored at maven.nexconn.ai).
+  implementation 'ai.nexconn.chat:chat:26.4.2'
+}

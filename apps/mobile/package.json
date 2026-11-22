@@ -5,7 +5,8 @@
   "expo": {
     "autolinking": {
       "searchPaths": [
-        "./node_modules"
+        "./node_modules",
+        "./modules"
       ]
     }
   },

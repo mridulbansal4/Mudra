@@ -1,0 +1,7 @@
+{
+  "name": "nexconn-chat",
+  "version": "1.0.0",
+  "description": "Local Expo module wrapping the Nexconn Android Chat SDK (ai.nexconn.chat:chat) for Mudra",
+  "main": "index.ts",
+  "private": true
+}
