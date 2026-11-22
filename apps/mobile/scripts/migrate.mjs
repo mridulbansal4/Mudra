@@ -15,20 +15,35 @@ if (!rawUrl) {
 }
 
 const cs = rawUrl.replace(/[?&]sslmode=[^&]*/g, '');
-const client = new pg.Client({
-  connectionString: cs,
-  ssl: { rejectUnauthorized: false },
-});
+
+async function connectClient() {
+  try {
+    const c = new pg.Client({ connectionString: cs, ssl: { rejectUnauthorized: false } });
+    await c.connect();
+    return c;
+  } catch (err) {
+    const u = new URL(cs);
+    const refMatch = u.hostname.match(/^db\.([a-z0-9]+)\.supabase\.co$/i);
+    if (!refMatch) throw err;
+    u.hostname = 'aws-1-ap-south-1.pooler.supabase.com';
+    u.username = `postgres.${refMatch[1]}`;
+    u.port = '5432';
+    const c = new pg.Client({ connectionString: u.toString(), ssl: { rejectUnauthorized: false } });
+    await c.connect();
+    return c;
+  }
+}
 
 const migrationsDir = path.resolve(__dirname, '../supabase/migrations');
 const files = [
   '001_mudra_schema.sql',
   '002_mudra_rpc.sql',
   '003_mudra_realtime_storage.sql',
+  '004_mudra_upi.sql',
 ];
 
 async function main() {
-  await client.connect();
+  const client = await connectClient();
   console.log('Connected to Postgres (DATABASE_URL=***)');
 
   for (const file of files) {
