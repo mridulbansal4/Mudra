@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Download, type LucideIcon } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ANDROID_RELEASE } from "../config/release";
@@ -25,6 +25,14 @@ function GitHubMark({ size = 18, className = "" }: { size?: number; className?: 
 export function S1Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const reduced = Boolean(useReducedMotion());
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const update = () => setIsDesktop(window.innerWidth >= 1024);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -40,7 +48,7 @@ export function S1Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-svh lg:h-svh lg:min-h-[720px] w-full flex-col items-center justify-center overflow-x-clip lg:overflow-hidden bg-pop-void px-5 pt-24 pb-28 lg:py-0 md:px-10"
+      className="relative flex min-h-svh lg:h-svh lg:min-h-[720px] w-full flex-col items-center justify-center overflow-x-clip lg:overflow-hidden bg-pop-void px-4 sm:px-6 pt-28 pb-16 lg:py-0 md:px-10"
     >
       <Corridor
         scale={corridorScale}
@@ -50,8 +58,8 @@ export function S1Hero() {
 
       {/* Centered Foreground */}
       <motion.div
-        style={reduced ? undefined : { opacity: headlineOpacity, y: headlineY }}
-        className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center text-center lg:pr-[160px] xl:pr-0"
+        style={reduced || !isDesktop ? undefined : { opacity: headlineOpacity, y: headlineY }}
+        className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-center text-center lg:pr-[160px] xl:pr-0"
       >
         <h1 className="t-hero lowercase text-fg">
           <motion.span
@@ -95,9 +103,15 @@ export function S1Hero() {
           initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: ease.expoOut }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-5"
+          className="mt-8 sm:mt-9 flex w-full max-w-[330px] sm:max-w-none flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-3.5 sm:gap-5"
         >
-          <NeoButton variant="purple" size="lg" to="/demo" icon={ArrowRight}>
+          <NeoButton
+            variant="purple"
+            size="lg"
+            to="/demo"
+            icon={ArrowRight}
+            className="w-full sm:w-auto"
+          >
             try the two-phone demo
           </NeoButton>
           <NeoButton
@@ -106,21 +120,30 @@ export function S1Hero() {
             href={ANDROID_RELEASE.arm64ApkUrl}
             download="mudra-v1.0.0-arm64.apk"
             icon={Download}
+            className="w-full sm:w-auto"
           >
             download apk
           </NeoButton>
-          <NeoButton variant="ghost" size="lg" to="/how-it-works">
-            how it works
-          </NeoButton>
-          <NeoButton
-            variant="ghost"
-            size="lg"
-            href={ANDROID_RELEASE.repoUrl}
-            target="_blank"
-            icon={GitHubMark as unknown as LucideIcon}
-          >
-            github
-          </NeoButton>
+          <div className="grid grid-cols-2 gap-3.5 w-full sm:contents">
+            <NeoButton
+              variant="ghost"
+              size="lg"
+              to="/how-it-works"
+              className="w-full sm:w-auto !px-4 sm:!px-8"
+            >
+              how it works
+            </NeoButton>
+            <NeoButton
+              variant="ghost"
+              size="lg"
+              href={ANDROID_RELEASE.repoUrl}
+              target="_blank"
+              icon={GitHubMark as unknown as LucideIcon}
+              className="w-full sm:w-auto !px-4 sm:!px-8"
+            >
+              github
+            </NeoButton>
+          </div>
         </motion.div>
       </motion.div>
 

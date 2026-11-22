@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { ArrowUpRight, BatteryFull, Download, Signal, Wifi, X } from "lucide-react";
 import {
   AnimatePresence,
@@ -28,12 +28,20 @@ export function HeroAppPhone({ scrollProgress }: HeroAppPhoneProps) {
   const [open, setOpen] = useState(false);
   const [fadedOut, setFadedOut] = useState(false);
   const [tilt, setTilt] = useState({ rx: 6, ry: -12 });
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const update = () => setIsDesktop(window.innerWidth >= 1024);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const scrollY = useTransform(scrollProgress, [0, 0.55], [0, -44]);
   const scrollOpacity = useTransform(scrollProgress, [0, 0.55], [1, 0]);
 
   useMotionValueEvent(scrollProgress, "change", (v) => {
-    const shouldDisable = v > 0.5;
+    const shouldDisable = isDesktop && v > 0.5;
     if (shouldDisable !== fadedOut) {
       setFadedOut(shouldDisable);
     }
@@ -62,7 +70,7 @@ export function HeroAppPhone({ scrollProgress }: HeroAppPhoneProps) {
       initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       transition={reduced ? { duration: 0 } : { duration: 0.9, delay: 0.36, ease: ease.expoOut }}
-      style={reduced ? undefined : { y: scrollY, opacity: scrollOpacity }}
+      style={reduced || !isDesktop ? undefined : { y: scrollY, opacity: scrollOpacity }}
       className={`relative z-20 mt-10 lg:mt-0 lg:absolute lg:right-6 xl:right-10 lg:bottom-8 select-none ${
         fadedOut ? "lg:pointer-events-none" : ""
       }`}

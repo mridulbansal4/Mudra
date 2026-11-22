@@ -154,20 +154,20 @@ export function S8TrustBand() {
           </a>
         </FadeUp>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 sm:mt-12 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
           {NEXCONN_CARDS.map((card, idx) => (
             <motion.article
               key={card.sdk}
-              initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{
-                duration: 0.5,
-                delay: reduced ? 0 : idx * 0.07,
+                duration: 0.45,
+                delay: reduced ? 0 : idx * 0.05,
                 ease: ease.expoOut,
               }}
               whileHover={reduced ? undefined : { y: -4 }}
-              className="group relative flex flex-col justify-between bg-pop-void p-6 transition-colors duration-200"
+              className="group relative flex flex-col justify-between bg-pop-void p-5 sm:p-6 transition-colors duration-200 break-words"
               style={{ border: "1px solid var(--hairline)" }}
             >
               {/* Minimalist animated top accent bar on hover */}
