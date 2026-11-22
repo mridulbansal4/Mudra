@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { Camera, Handshake, Lock, Scale } from 'lucide-react-native';
 import { C } from '@/theme/tokens';
 import { Eyebrow, NeoButton, StatusPill, Text, TopBar, VelvetCard } from '@/ui';
-import { NEXCONN_ANDROID_SDK, useNexconnStore } from '@/lib/nexconn';
+import { NexconnCall } from '../modules/nexconn-chat';
+import { NEXCONN_ANDROID_CALL_SDK, NEXCONN_ANDROID_SDK, useNexconnStore } from '@/lib/nexconn';
 
 export default function GuideScreen() {
   const { t } = useTranslation();
@@ -92,6 +93,10 @@ export default function GuideScreen() {
           <NexconnRow
             label="sdk"
             value={`Android Chat SDK ${nexconn.sdkVersion ?? ''} (${NEXCONN_ANDROID_SDK})`}
+          />
+          <NexconnRow
+            label="call sdk"
+            value={`Call SDK ${NexconnCall.sdkVersion() ?? ''}: 1:1 inspection video call (${NEXCONN_ANDROID_CALL_SDK})${nexconn.status === 'live' && !NexconnCall.isReady() ? ' - not ready' : ''}`}
           />
           <NexconnRow label="last message id" value={nexconn.lastMessageId ?? 'none yet'} />
           {nexconn.lastStatusEvent ? <NexconnRow label="sdk status" value={nexconn.lastStatusEvent} /> : null}

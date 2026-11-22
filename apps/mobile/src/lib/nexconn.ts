@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+import { PermissionsAndroid, Platform } from 'react-native';
 import { create } from 'zustand';
 import type { QueryClient } from '@tanstack/react-query';
-import { NexconnChat } from '../../modules/nexconn-chat';
+import { NexconnCall, NexconnChat } from '../../modules/nexconn-chat';
 import { ENV } from '@/config/env';
 import { newIdemKey } from '@/lib/idem';
 
@@ -103,6 +104,25 @@ function wireListeners(queryClient: QueryClient) {
     queryClient.invalidateQueries({ queryKey: ['deals'] });
     queryClient.invalidateQueries({ queryKey: ['deal'] });
   });
+  wireCallListeners();
+}
+
+function wireCallListeners() {
+  NexconnCall.onCallReceived((e) => {
+    const call = useNexconnCallStore.getState();
+    if (call.phase === 'ringing' || call.phase === 'connected') return; // the SDK reports busy to the caller
+    call.set({ phase: 'incoming', callId: e.callId, peerId: e.callerUserId, dealId: e.extra || null, note: null });
+  });
+  NexconnCall.onCallConnected((e) => {
+    const call = useNexconnCallStore.getState();
+    call.set({ phase: 'connected', callId: e.callId, peerId: e.remoteUserId ?? call.peerId, note: null });
+  });
+  NexconnCall.onCallEnded((e) => {
+    const call = useNexconnCallStore.getState();
+    if (call.phase === 'idle') return;
+    if (call.callId && e.callId && call.callId !== e.callId) return;
+    finishCall(callEndText(e.reason));
+  });
 }
 
 export async function startNexconnSession(
@@ -141,6 +161,10 @@ export async function startNexconnSession(
 export function stopNexconnSession(): void {
   if (activeUserId === null) return;
   activeUserId = null;
+  if (useNexconnCallStore.getState().phase !== 'idle') {
+    void NexconnCall.endCall().catch(() => {});
+    resetCall();
+  }
   try {
     NexconnChat.disconnect();
   } catch {
@@ -177,4 +201,145 @@ export function useNexconnSession(
       stopNexconnSession();
     }
   }, [token, meId, meName, queryClient]);
+}
+
+// ---------------------------------------------------------------------------
+// 1:1 inspection video call over the Nexconn Android Call SDK.
+// The call engine rides on the Chat SDK connection above, so calls are only
+// offered while the chat status is 'live'.
+// ---------------------------------------------------------------------------
+
+export const NEXCONN_ANDROID_CALL_SDK = 'ai.nexconn.chat:call';
+
+export type NexconnCallPhase = 'idle' | 'ringing' | 'incoming' | 'connected' | 'ended' | 'error';
+
+interface NexconnCallState {
+  phase: NexconnCallPhase;
+  callId: string | null;
+  /** Nexconn user ID of the other phone (m_<supabase id>). */
+  peerId: string | null;
+  dealId: string | null;
+  /** Short line shown when a call ends or fails. */
+  note: string | null;
+  set: (patch: Partial<Omit<NexconnCallState, 'set'>>) => void;
+}
+
+export const useNexconnCallStore = create<NexconnCallState>((set) => ({
+  phase: 'idle',
+  callId: null,
+  peerId: null,
+  dealId: null,
+  note: null,
+  set: (patch) => set(patch),
+}));
+
+const CALL_NOTE_MS = 2500;
+let callNoteTimer: ReturnType<typeof setTimeout> | null = null;
+
+function resetCall() {
+  if (callNoteTimer) clearTimeout(callNoteTimer);
+  callNoteTimer = null;
+  useNexconnCallStore.getState().set({ phase: 'idle', callId: null, peerId: null, dealId: null, note: null });
+}
+
+/** Shows why the call ended for a moment, then returns to idle. */
+function finishCall(note: string, phase: 'ended' | 'error' = 'ended') {
+  useNexconnCallStore.getState().set({ phase, note });
+  if (callNoteTimer) clearTimeout(callNoteTimer);
+  callNoteTimer = setTimeout(resetCall, CALL_NOTE_MS);
+}
+
+export function callEndText(reason: string): string {
+  switch (reason) {
+    case 'DECLINED':
+      return 'call declined';
+    case 'NO_ANSWER':
+    case 'MISSED':
+      return 'no answer';
+    case 'CANCELED':
+      return 'call cancelled';
+    case 'BUSY_LINE_RINGING':
+    case 'BUSY_LINE_WAIT':
+      return 'line busy';
+    case 'CONNECTION_ERROR':
+    case 'REMOTE_CONNECTION_ERROR':
+      return 'connection lost';
+    case 'ENDED':
+    case 'HANGUP_BY_OTHER_CLIENT':
+      return 'call ended';
+    default:
+      return `call ended (${reason.toLowerCase().replace(/_/g, ' ')})`;
+  }
+}
+
+/** Camera + microphone runtime permissions, asked right before a call starts or is accepted. */
+export async function ensureCallPermissions(): Promise<boolean> {
+  if (Platform.OS !== 'android') return false;
+  const res = await PermissionsAndroid.requestMultiple([
+    PermissionsAndroid.PERMISSIONS.CAMERA,
+    PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+  ]);
+  return (
+    res[PermissionsAndroid.PERMISSIONS.CAMERA] === PermissionsAndroid.RESULTS.GRANTED &&
+    res[PermissionsAndroid.PERMISSIONS.RECORD_AUDIO] === PermissionsAndroid.RESULTS.GRANTED
+  );
+}
+
+/** True when a video call can be offered right now. */
+export function canStartNexconnCall(): boolean {
+  return useNexconnStore.getState().status === 'live' && NexconnCall.isReady();
+}
+
+/** Buyer starts a video call to the counterpart of a deal. Never throws. */
+export async function startInspectionCall(counterpartSupabaseId: string, dealId: string): Promise<void> {
+  const call = useNexconnCallStore.getState();
+  if (call.phase === 'ringing' || call.phase === 'connected' || call.phase === 'incoming') return;
+  if (!canStartNexconnCall()) {
+    finishCall('Nexconn is not connected', 'error');
+    return;
+  }
+  try {
+    if (!(await ensureCallPermissions())) {
+      finishCall('camera and microphone permission needed', 'error');
+      return;
+    }
+    if (callNoteTimer) clearTimeout(callNoteTimer);
+    const peerId = nexconnUserId(counterpartSupabaseId);
+    call.set({ phase: 'ringing', callId: null, peerId, dealId, note: null });
+    const callId = await NexconnCall.startVideoCall(peerId, dealId);
+    const now = useNexconnCallStore.getState();
+    if (now.phase === 'ringing' || now.phase === 'connected') now.set({ callId: now.callId ?? callId });
+  } catch (e) {
+    if (useNexconnCallStore.getState().phase === 'ringing') finishCall(errorText(e), 'error');
+  }
+}
+
+/** Callee accepts the incoming call. Declines it when permissions are refused. Never throws. */
+export async function acceptIncomingCall(): Promise<void> {
+  const { phase, callId } = useNexconnCallStore.getState();
+  if (phase !== 'incoming' || !callId) return;
+  try {
+    if (!(await ensureCallPermissions())) {
+      await NexconnCall.endCall(callId).catch(() => false);
+      finishCall('camera and microphone permission needed', 'error');
+      return;
+    }
+    await NexconnCall.acceptCall(callId);
+  } catch (e) {
+    if (useNexconnCallStore.getState().phase === 'incoming') finishCall(errorText(e), 'error');
+  }
+}
+
+export async function declineIncomingCall(): Promise<void> {
+  const { callId } = useNexconnCallStore.getState();
+  await NexconnCall.endCall(callId).catch(() => false);
+  finishCall('call declined');
+}
+
+/** Hangs up the current call (or cancels a ringing one). Never throws. */
+export async function hangUpCall(): Promise<void> {
+  const { callId } = useNexconnCallStore.getState();
+  await NexconnCall.endCall(callId).catch(() => false);
+  // onCallEnded normally arrives first; this only covers a lost event.
+  if (useNexconnCallStore.getState().phase !== 'ended') finishCall('call ended');
 }

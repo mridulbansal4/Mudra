@@ -15,18 +15,17 @@
     },
     "android": {
       "package": "com.chanakya.mudra",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "monochromeImage": "./assets/adaptive-mono.png",
         "backgroundColor": "#0d0d0d"
       },
       "edgeToEdgeEnabled": true,
-      "blockedPermissions": [
-        "android.permission.RECORD_AUDIO"
-      ],
       "permissions": [
-        "android.permission.CAMERA"
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
       ]
     },
     "plugins": [
@@ -38,7 +37,8 @@
         "expo-camera",
         {
           "cameraPermission": "Mudra uses the camera so sellers can show items live.",
-          "recordAudioAndroid": false
+          "microphonePermission": "Mudra uses the microphone for live inspection video calls.",
+          "recordAudioAndroid": true
         }
       ],
       [
