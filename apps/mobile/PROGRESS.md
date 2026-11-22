@@ -13,6 +13,7 @@
 - [x] **P8**: Profile/settings, language, currency, change PIN, delete account, guide, safety, i18n + checkpoint APK 2
 - [x] **P9**: Polish pass, icons/splash, empty/error states, performance, a11y, 20 emulator QA screenshots verified
 - [x] **P10**: Final universal + arm64 release builds (`dist/mudra-v1.0.0.apk` = `110,276,116` bytes, `dist/mudra-v1.0.0-arm64.apk` = `56,184,777` bytes), `MORNING_REPORT.md`, docs update, final commit
+- [x] **UPI Payments (`UPI_PAYMENT_PLAN.md`)**: UPI Deep Link (`upi://pay`), Escrow Wallet UPI Pay-In + UTR Confirmation, and UPI Cashout Requests (`004_mudra_upi.sql`, `src/lib/upi.ts`, `UpiPayPanel`, `AddMoneySheet`, `WithdrawSheet`, `UpiIdSheet`, 24/24 `smoke.mjs` checks + Jest unit tests + Emulator QA screenshots)
 
 ---
 
@@ -37,3 +38,35 @@
 - Transient `ECONNRESET` during initial `npm install` on Windows resolved by retrying with `--fetch-retries=5`.
 - `expo-modules-autolinking` failed on `M:\android` due to `path.dirname("M:\\") === "M:\\"`; fixed via `scripts/patch-subst.mjs`.
 - Fixed SQL `CASE` expression in `mudra.deal_json` (`001_mudra_schema.sql`) where `when 'ARBITRATED_SPLIT', 'REFUNDED'` needed separate `WHEN` clauses. All 15/15 `smoke.mjs` assertions (including 91s freeze resolution 30/70 split, version conflict, pre-FUNDED phone masking, 5x PIN lockout, demo logins, and `mudra` schema hidden check) passed.
+
+---
+
+## UPI Payments Implementation (`docs/mobile/UPI_PAYMENT_PLAN.md`)
+
+### What Changed
+1. **Database (`supabase/migrations/004_mudra_upi.sql` & `002_mudra_rpc.sql`)**:
+   - Added `mudra.profiles.upi_id` with format check constraint (`profiles_upi_id_check`).
+   - Extended `mudra.wallet_tx` with `kind in (..., 'upi_deposit', 'upi_withdraw')`, `utr`, `upi_id`, `status in ('completed', 'unverified', 'requested')`, and partial unique index `wallet_tx_utr_unique` on `(utr) where kind = 'upi_deposit'`.
+   - Added `public.m_record_upi_deposit(p_token, p_amount_minor, p_utr, p_deal_id, p_expected_version, p_idem)` (12-digit UTR validation, INR-only, ₹1–₹1,00,000 range, idempotent UTR replay check vs `MUDRA:UTR_USED`, atomic wallet credit + `LOCK_ESCROW` via transaction-local `mudra.upi_utr` config).
+   - Added `public.m_withdraw_upi(p_token, p_amount_minor, p_upi_id)` (INR-only, saves default `upi_id`, debits unlocked wallet balance with `status = 'requested'`, max 5 withdrawals/day `MUDRA:RATE_LIMIT`).
+   - Added `public.m_set_upi_id(p_token, p_upi_id)` for profile management.
+   - Updated `mudra.me_json` to return `upi_id` and `m_deal_action` (`LOCK_ESCROW`) to seal `method` (`'wallet'` | `'upi'`) and `utr` into the `ESCROW_LOCKED` voucher and `escrow` system message from `current_setting('mudra.upi_utr', true)` (blocking client payload spoofing).
+   - Updated `scripts/migrate.mjs` (added `004_mudra_upi.sql` + IPv4 Supavisor pooler fallback) and `scripts/smoke.mjs` + `scripts/smoke-upi.mjs` (24/24 checks passing).
+2. **UPI Deep-Link Helper & Unit Tests (`src/lib/upi.ts`, `src/lib/__tests__/upi.test.ts`, `src/config/{env,brand}.ts`)**:
+   - Implemented `buildUpiPayUrl` (hand-built `upi://pay?pa=...&pn=...&am=...&cu=INR&tn=...&tr=...` with raw `@` in `pa`, `%20`-encoded `pn`/`tn`, 2-decimal `am`, alphanumeric `tr` ≤ 35 chars), `openUpiApp` via `Linking.openURL`, and `makeTestUtr` (12 random digits starting with `9` via `expo-crypto`).
+   - Verified with `jest-expo` unit tests (`src/lib/__tests__/upi.test.ts` — 3/3 passed).
+3. **API, Types, Errors & 5-Locale i18n (`src/features/api.ts`, `src/types/upi.ts`, `src/lib/errors.ts`, `src/i18n/*.json`)**:
+   - Added `recordUpiDeposit`, `recordUpiDepositForDeal`, `withdrawUpi`, and `setUpiId` to `mudraApi`.
+   - Added `UTR_USED` error handling and localized strings across `en`, `hi`, `ta`, `mr`, and `es`.
+4. **Escrow Sheet Split & UPI Pay Panel (`app/deal/[id]/escrow.tsx`, `src/features/escrow/{SealedView,PayMethodPicker,UtrConfirm,UpiPayPanel}.tsx`)**:
+   - Split `escrow.tsx` (< 300 lines) with INR method picker (`mudra wallet` vs `upi app`), 2-step `UpiPayPanel` (`pay` via `upi://pay` intent with foreground `AppState` listener + `"i've paid"` link + emulator fallback toast → `confirm` with 12-digit UTR input, `"auto-fill test utr"` pill, and `"slide to seal escrow"`).
+5. **Wallet Sheets & Profile Row (`app/wallet.tsx`, `src/features/wallet/{AddMoneySheet,WithdrawSheet}.tsx`, `app/profile.tsx`, `src/features/profile/UpiIdSheet.tsx`)**:
+   - Added `AddMoneySheet` (₹500 / ₹1,000 / ₹2,000 quick chips + UPI intent + shared `UtrConfirm`), `WithdrawSheet` (max chip + live UPI ID validation + receipt view), `unverified` (`sunshine`) / `requested` (`neutral`) status pills and mono UTR/UPI subtitles in transaction rows, and `UpiIdSheet` on Profile.
+
+### Known Limits (§6 of `UPI_PAYMENT_PLAN.md`)
+1. **UTRs are self-reported and unverified.** Without a payment gateway (Razorpay/Cashfree/PayU) or bank callback, the app cannot prove a payment happened. That is why deposits are marked `unverified`, UTRs are unique (`wallet_tx_utr_unique`), and the `"auto-fill test utr"` pill exists. Production path: replace the UTR step with a gateway order + webhook that calls `m_record_upi_deposit` server-side.
+2. **Payee VPA.** `mudra.escrow@upi` does not exist. Set `EXPO_PUBLIC_MUDRA_ESCROW_VPA` to a VPA you control, or payments will fail inside the UPI app. Many UPI apps also block or limit intent payments to **personal** (non-merchant) VPAs ("payment declined for security reasons"). That is a bank-side rule, not an app bug. A merchant VPA fixes it.
+3. **Never let judges send real money.** Demo with `"auto-fill test utr"`, or pay ₹1 to your own VPA.
+4. **Withdrawals are requests.** Nothing is paid out automatically (`status = 'requested'`). Production path: a payout API (RazorpayX / Cashfree Payouts).
+5. **Shared INR balance.** Demo credits and UPI money share the same INR balance in this version, so demo credits can be "withdrawn" as a request. That is acceptable for the hackathon and noted here.
+6. **Legal.** Holding other people's money as escrow in India needs RBI authorisation (PA/escrow via a partner bank). Pitch it as "built for a licensed escrow partner", not "we hold funds".

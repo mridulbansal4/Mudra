@@ -14,8 +14,14 @@
   - **Escrow Deal Room & Live Check**: Full 11-state Deal FSM (`m_deal_action`) with optimistic concurrency (`expected_version` / `VERSION_CONFLICT` recovery), idempotency keys, SHA-256 hash-chained `mudra.vouchers`, pre-`FUNDED` phone number masking (`•••`), `SlideToLock` escrow sheet, category-specific 3-step live camera check (`expo-camera` HUD brackets + gallery/listing photo simulated fallback), perforated SVG receipt with `RELEASED` stamp burst animation, 90-second Freeze Resolution Desk (`CountdownRing` + deterministic 70/30, 30/70, or 100% refund split verdict), and 5-star reviews.
   - **Bilingual Chat & 5 Locales**: Full UI localization in **English (`en`), Hindi (`hi`), Tamil (`ta`), Marathi (`mr`), and Spanish (`es`)**, 9 pre-translated contextual quick replies, and receiver-driven lazy Gemini translation (`m_translate_message`) with DPDP PII scrubbing and safe fallback.
   - **Client-Driven Demo Bots**: 8 campus bot profiles that automatically make first-listing offers and progress through offer/counter, escrow lock, live check photos, verification, release, and 5-star reviews via `m_demo_tick`.
-- **What Is Out of Scope (by design)**:
-  - Real money / UPI rails (uses clearly labeled **demo credits** in `mudra.wallets`), OTP/email/Google sign-in, iOS build, FCM push notifications.
+  - **UPI Deep Link + Escrow Wallet + UPI Cashout (`UPI_PAYMENT_PLAN.md`)**: Real `upi://pay` intent deep-linking (`buildUpiPayUrl` + `openUpiApp`) with 12-digit UTR recording (`m_record_upi_deposit`, `status = 'unverified'`, `wallet_tx_utr_unique` replay protection), atomic deal escrow locking (`method = 'upi'` + `utr` sealed in `ESCROW_LOCKED` voucher), wallet UPI deposits (`AddMoneySheet`), UPI withdrawal requests (`m_withdraw_upi`, `WithdrawSheet`, `status = 'requested'`, max 5/day), profile UPI ID management (`m_set_upi_id`, `UpiIdSheet`), and 1-tap demo credits fallback.
+- **Known Limits (§6 of `UPI_PAYMENT_PLAN.md`)**:
+  1. **UTRs are self-reported and unverified**: Without a payment gateway (Razorpay/Cashfree/PayU) or bank callback, deposits are marked `unverified`, UTRs are unique, and the `"auto-fill test utr"` pill is provided for emulators/judges.
+  2. **Payee VPA**: `mudra.escrow@upi` is a placeholder; set `EXPO_PUBLIC_MUDRA_ESCROW_VPA` to a real merchant VPA you control (many UPI apps block intent payments to personal non-merchant VPAs).
+  3. **Never let judges send real money**: Demo with `"auto-fill test utr"`, or pay ₹1 to your own VPA.
+  4. **Withdrawals are requests**: Marked `requested` in the ledger; production requires a payout API (RazorpayX / Cashfree Payouts).
+  5. **Shared INR balance**: Demo credits and UPI deposits share the same INR wallet balance in this version.
+  6. **Legal**: Holding escrow funds in India requires RBI authorization (PA/escrow via a licensed partner bank); pitch as "built for a licensed escrow partner".
 
 ---
 
