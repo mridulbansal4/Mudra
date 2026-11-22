@@ -59,7 +59,7 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
 
 | Capability | MVP (Hackathon - Nov 2026) | v1 (Production - Q1/Q2 2027) | v2 (Global Scale - 2028+) |
 |---|---|---|---|
-| **Frontend Channels** | Web (`apps/web` HeroUI v3) + Mobile (`apps/mobile-expo` `heroui-native`) | Full iOS/Android App Store release + WhatsApp deep-link launcher | Embedded SDK widget for ONDC buyer/seller apps & IndiaMART |
+| **Frontend Channels** | Web (`apps/web` HeroUI v3) + Mobile (`apps/mobile` `heroui-native`) | Full iOS/Android App Store release + WhatsApp deep-link launcher | Embedded SDK widget for ONDC buyer/seller apps & IndiaMART |
 | **Languages (`F-03`)** | Tamil, Hindi, Marathi, Punjabi, Malayalam, English (`M-01`/`M-02`) | All 22 Scheduled Indian Languages (Bhashini) + Bahasa, Mandarin, Thai | 100+ global trade languages with real-time voice dubbing |
 | **Escrow Rails (`F-04`)** | Go 1.24 FSM + HMAC Sandbox Webhooks (`API-17`) + Ed25519 `System` vouchers | Live RBI PA-Escrow (Razorpay Route / Cashfree) + UPI ASBA Mandates | Cross-border Singapore PayNow–UPI linkage + MAS licensed escrow |
 | **Video Assay (`F-05`/`F-06`)** | `@nexconn/call` WebRTC + Rust WASM blur/serial box + Rust `pHash`/FFT + Gemini Vision | Hardware C2PA camera attestation + thermal/OBD Bluetooth sensor ingest | Autonomous warehouse drone/robotic pre-shipment video assay |
@@ -158,7 +158,7 @@ Refer to [PERSONAS.md](./PERSONAS.md) for full dossiers:
 - **Acceptance Criteria**:
   1. Displays live unique connected `userId`s, channel counts across all 5 types, stream latencies, and call logs.
 
-### `F-14` - Companion Mobile Field Assay App (`apps/mobile-expo`) (`Could`)
+### `F-14` - Companion Mobile Field Assay App (`apps/mobile`) (`Could`)
 - **Description**: Expo + React Native + `heroui-native` v2.0.1 + Uniwind mobile app for field sellers/inspectors.
 - **Mapped User Stories**: `US-08`.
 - **Acceptance Criteria**:

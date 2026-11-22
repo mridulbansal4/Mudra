@@ -6,7 +6,7 @@
 
 ## 1. Accessibility Mandate & Regulatory Alignment
 
-MUDRA-OS serves regional MSME owners (`P-01`), noisy factory-floor sellers (`P-02`), and high-volume arbitrators (`P-04`). Our frontend (`apps/web` and `apps/mobile-expo`) enforces:
+MUDRA-OS serves regional MSME owners (`P-01`), noisy factory-floor sellers (`P-02`), and high-volume arbitrators (`P-04`). Our frontend (`apps/web` and `apps/mobile`) enforces:
 1. **WCAG 2.2 Level AA** across all 9 web routes and all 4 custom Lit Web Components (`packages/nc-lit-cards`).
 2. **India Rights of Persons with Disabilities (RPwD) Act, 2016** & **GIGW 3.0** (Guidelines for Indian Government Websites & Apps) digital accessibility standards (`IS 17802`).
 3. **React Aria Accessibility Foundation**: By building on **HeroUI v3 (`@heroui/react@^3.0.1`)**, every `<Button>`, `<Card>`, `<Tabs>`, `<Modal>`, and `<TextField>` uses React Aria primitives (`onPress`, roving `tabIndex`, focus traps, and ARIA live announcements) out of the box.

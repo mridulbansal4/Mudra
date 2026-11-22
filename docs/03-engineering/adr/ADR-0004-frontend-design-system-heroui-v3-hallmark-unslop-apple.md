@@ -23,10 +23,10 @@ Hackathon frontends fail in two predictable ways:
 3. **Option C: Story-Driven 9-Route Architecture using `/hallmark` v2.0.0 + `/unslop` + `/apple-design` + `@heroui/react@^3.0.1` (Tailwind v4) + `heroui-native@^2.0.1` (Uniwind)**.
 
 ## Decision Outcome
-Chosen option: **Option C**. We enforce a unified five-part frontend architecture across `apps/web` and `apps/mobile-expo`:
+Chosen option: **Option C**. We enforce a unified five-part frontend architecture across `apps/web` and `apps/mobile`:
 1. **Story-First Routing**: `/` (Story Landing with `1280x800` Hallmark hero & 3 visual chapters) → `/auth` (Login/Signup Tabs + 4 One-Tap Persona Quick-Fill cards) → `/onboarding` (45s 3-step setup with **Simulated HD Inspection Video Stream** toggle) → `/app` & `/sandbox` (persistent top **4-Stage Deal Story Bar** with "Next Step" coachmarks) → `/arena`, `/dispatch`, `/guide`, `/traction`.
 2. **HeroUI v3 (`@heroui/react@^3.0.1`) on Web**: Zero `<HeroUIProvider>`, Tailwind CSS v4 (`@import "tailwindcss"; @import "@heroui/styles";`), compound components (`<Card><Card.Header>...`), `oklch` tokens, and `onPress` handlers.
-3. **HeroUI Native (`heroui-native@^2.0.1`) on Mobile (`apps/mobile-expo`)**: Expo SDK 53 + Uniwind + `<GestureHandlerRootView>` + `<HeroUINativeProvider>` + compound `<Card><Card.Body>` + HSL tokens.
+3. **HeroUI Native (`heroui-native@^2.0.1`) on Mobile (`apps/mobile`)**: Expo SDK 53 + Uniwind + `<GestureHandlerRootView>` + `<HeroUINativeProvider>` + compound `<Card><Card.Body>` + HSL tokens.
 4. **`/hallmark` v2.0.0 Floor & `/unslop` Craft**: Warm customs-ledger neutral ramp, 4px grid, sentence case everywhere, `tabular-nums`, zero emojis, verified in CI via `sloplint --render` (`0 FAIL`).
 5. **`/apple-design` Fluid Physics**: Instant `:active` `scale(0.97)` feedback, critically damped `damping: 1.0` UI springs, and `setPointerCapture` + momentum projection (`projectMomentum(v, 0.998)`) on the draggable WebRTC Video Assay PiP Loupe.
 

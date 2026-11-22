@@ -53,7 +53,7 @@ gantt
 1. **ONDC Beckn Protocol Adapter (`services/deal-engine-go`)**:
    - Publish MUDRA-OS as an open **ONDC Pre-Shipment Assay & Issue/Grievance Management (IGM 2.0) TSP**, allowing any ONDC Buyer App or Seller App to spawn a Nexconn video-escrow room on high-value B2B orders.
 2. **Full 22-Language Bhashini Pipeline + `heroui-native` Mobile App**:
-   - Release `apps/mobile-expo` (`heroui-native@^2.0.1` + Uniwind) on Google Play and iOS App Store with offline frame queuing and full 22-language Bhashini voice-to-voice translation for agricultural FPO mandis (`e-NAM` sellers).
+   - Release `apps/mobile` (`heroui-native@^2.0.1` + Uniwind) on Google Play and iOS App Store with offline frame queuing and full 22-language Bhashini voice-to-voice translation for agricultural FPO mandis (`e-NAM` sellers).
 3. **6-Month KPI Target**: `30,000+ MAUs` (fully utilizing the 2-Year Free Nexconn Chat Plan prize!), `₹180 Cr` annualized GMV, `96.5%` dispute resolution under 3 minutes.
 
 ---

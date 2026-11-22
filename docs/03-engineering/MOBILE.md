@@ -1,12 +1,12 @@
-# Mobile App Specification (`apps/mobile` & Legacy `apps/mobile-expo`) - MUDRA-OS (`SamvadDeal`)
+# Mobile App Specification (`apps/mobile` & Legacy `apps/mobile`) - MUDRA-OS (`SamvadDeal`)
 > Project: **MUDRA-OS (`SamvadDeal`)** · Owner: Team `Chanakya` (Mobile & Field UX Lead - Dev 3) · Status: Production v1.0 · Last updated: 2026-11-22
-> Related: [Android App Implementation Plan](../mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md) · [Project Brief](../00-overview/PROJECT_BRIEF.md) · [CRED Revamp Build Spec](../02-design/CRED_REVAMP_BUILD_SPEC.md) · [Frontend](./FRONTEND.md)
+> Related: [Android App Implementation Plan](./mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md) · [Project Brief](../00-overview/PROJECT_BRIEF.md) · [CRED Revamp Build Spec](../02-design/CRED_REVAMP_BUILD_SPEC.md) · [Frontend](./FRONTEND.md)
 
 ---
 
-## 0. Production Android App (`apps/mobile` — Supersedes `apps/mobile-expo`)
+## 0. Production Android App (`apps/mobile` — Supersedes `apps/mobile`)
 
-> **Canonical Specification**: See **[`docs/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md`](../mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md)** and **[`apps/mobile/README.md`](../../apps/mobile/README.md)** for the full architecture, schema, RPC contract, and release APK build guide.
+> **Canonical Specification**: See **[`docs/03-engineering/mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md`](./mobile/ANDROID_APP_IMPLEMENTATION_PLAN.md)** and **[`apps/mobile/README.md`](../../apps/mobile/README.md)** for the full architecture, schema, RPC contract, and release APK build guide.
 
 The standalone production Android application (`com.chanakya.mudra`, URL scheme `mudra://`) lives in **`apps/mobile`** (outside `pnpm-workspace.yaml` to avoid dependency hoisting conflicts with `apps/web`) and ships as signed release APKs (`apps/mobile/dist/mudra-v1.0.0.apk` universal and `apps/mobile/dist/mudra-v1.0.0-arm64.apk`):
 
@@ -19,11 +19,11 @@ The standalone production Android application (`com.chanakya.mudra`, URL scheme 
 
 ---
 
-## 1. Legacy Companion Prototype (`apps/mobile-expo` — `F-14`)
+## 1. Legacy Companion Prototype (`apps/mobile` — `F-14`)
 
 While buyers, arbitrators, and hackathon judges frequently use desktop web (`apps/web`), machinery dealers (`P-02` Vikram in Ludhiana) and agri-mandi sellers walk around physical warehouses holding a smartphone to aim their back camera at a serial number plate or grain sack during a live `@nexconn/call` video assay.
 
-`apps/mobile-expo` provides a native iOS/Android field companion built strictly with **Expo SDK 53**, **React Native 0.78**, **HeroUI Native (`heroui-native@^2.0.1`)**, and **Uniwind (Tailwind v4 for React Native)** per `/heroui-native` guidelines.
+`apps/mobile` provides a native iOS/Android field companion built strictly with **Expo SDK 53**, **React Native 0.78**, **HeroUI Native (`heroui-native@^2.0.1`)**, and **Uniwind (Tailwind v4 for React Native)** per `/heroui-native` guidelines.
 
 ---
 
@@ -31,7 +31,7 @@ While buyers, arbitrators, and hackathon judges frequently use desktop web (`app
 
 Per `/heroui-native` skill rules, mobile patterns differ from `@heroui/react` web patterns in four strict ways:
 
-| Aspect | `apps/web` (`@heroui/react` v3) | `apps/mobile-expo` (`heroui-native` v2.0.1) |
+| Aspect | `apps/web` (`@heroui/react` v3) | `apps/mobile` (`heroui-native` v2.0.1) |
 |---|---|---|
 | **Root Providers** | **None** (`No Provider needed`) | **Mandatory**: `<GestureHandlerRootView style={{ flex: 1 }}>` wrapping `<HeroUINativeProvider>` |
 | **Styling Engine** | `@tailwindcss/postcss` + `@heroui/styles` | `uniwind` (`@import "tailwindcss"; @import "uniwind"; @import "heroui-native/styles";`) |
@@ -40,9 +40,9 @@ Per `/heroui-native` skill rules, mobile patterns differ from `@heroui/react` we
 
 ---
 
-## 3. Root Provider & Theme Setup (`apps/mobile-expo`)
+## 3. Root Provider & Theme Setup (`apps/mobile`)
 
-### 3.1 `apps/mobile-expo/global.css`
+### 3.1 `apps/mobile/global.css`
 ```css
 @import "tailwindcss";
 @import "uniwind";
@@ -60,7 +60,7 @@ Per `/heroui-native` skill rules, mobile patterns differ from `@heroui/react` we
 }
 ```
 
-### 3.2 `apps/mobile-expo/src/AppLayout.tsx`
+### 3.2 `apps/mobile/src/AppLayout.tsx`
 ```tsx
 import React from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";

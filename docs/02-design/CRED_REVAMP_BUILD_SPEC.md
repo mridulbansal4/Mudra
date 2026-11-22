@@ -380,7 +380,7 @@ Purpose: the detailed explainer the landing only teases. Same nav/footer/floatin
 
 ## 8. The App UI (phones) and the Two-Phone Demo (`/demo`)
 
-This is the future mobile app, rendered now on a laptop inside `PhoneFrame`s. Build screens as plain React components in `apps/web/src/demo/screens/` so they can later be ported to `apps/mobile-expo`. Screens must not call the backend - they render from a **demo store** (§8.5).
+This is the future mobile app, rendered now on a laptop inside `PhoneFrame`s. Build screens as plain React components in `apps/web/src/demo/screens/` so they can later be ported to `apps/mobile`. Screens must not call the backend - they render from a **demo store** (§8.5).
 
 ### 8.1 Cast & deal (use exactly - matches `lib/personas.ts`)
 - Buyer: **Rajesh Natarajan**, Tirupur, Tamil (`ta-IN`), avatar initials "RN" on a `#2b2b2b` circle with a 2px ring gradient `conic-gradient(#e5fe40, #6a35ff, #ff8744, #e5fe40)` (like CRED's avatar in the bottom bar).
@@ -604,7 +604,7 @@ apps/web/src/routes/Landing.tsx    rewritten to compose landing sections
 docs/02-design/DESIGN_SYSTEM.md    add "CRED revamp overrides" section (§2)
 ```
 
-**Do not modify**: `apps/web/src/lib/*`, `packages/*` (except importing from them), `services/*`, `apps/mobile-expo/*`.
+**Do not modify**: `apps/web/src/lib/*`, `packages/*` (except importing from them), `services/*`, `apps/mobile/*`.
 
 ---
 

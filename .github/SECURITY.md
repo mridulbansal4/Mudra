@@ -3,9 +3,9 @@
 MUDRA-OS handles live milestone escrow state machines (`services/deal-engine-go`), cryptographic product inspection proofs (`services/assay-verifier-rs`), and privileged `@nexconn/server-sdk` channel moderation (`services/nexconn-bridge-node`). Security and **DPDP Act 2023** privacy are foundational engineering requirements.
 
 For our deep-dive security documentation, consult:
-- **[`docs/06-security-compliance/SECURITY_ARCHITECTURE.md`](docs/06-security-compliance/SECURITY_ARCHITECTURE.md)** (Defense-in-depth zones, mTLS/HMAC internal service auth, Ed25519 signing)
-- **[`docs/06-security-compliance/THREAT_MODEL.md`](docs/06-security-compliance/THREAT_MODEL.md)** (STRIDE + OWASP Top 10 + LLM Top 10 threat matrix)
-- **[`docs/06-security-compliance/PRIVACY.md`](docs/06-security-compliance/PRIVACY.md)** (Rust `< 300µs` Aho-Corasick DPDP PII scrubber & data retention)
+- **[`docs/06-security-compliance/SECURITY_ARCHITECTURE.md`](../docs/06-security-compliance/SECURITY_ARCHITECTURE.md)** (Defense-in-depth zones, mTLS/HMAC internal service auth, Ed25519 signing)
+- **[`docs/06-security-compliance/THREAT_MODEL.md`](../docs/06-security-compliance/THREAT_MODEL.md)** (STRIDE + OWASP Top 10 + LLM Top 10 threat matrix)
+- **[`docs/06-security-compliance/PRIVACY.md`](../docs/06-security-compliance/PRIVACY.md)** (Rust `< 300µs` Aho-Corasick DPDP PII scrubber & data retention)
 
 ---
 
@@ -35,7 +35,7 @@ For our deep-dive security documentation, consult:
 
 Please **do not** open a public GitHub issue for suspected security vulnerabilities (such as escrow state bypasses, webhook signature flaws, PII scrubber evasions, or Nexconn token privilege escalation).
 
-1. **Contact**: Report privately via GitHub Security Advisories (`Security -> Report a vulnerability`) or email the Team `Chanakya` Security Lead (`Atharva Satav`, see [`docs/08-project/TEAM.md`](docs/08-project/TEAM.md)).
+1. **Contact**: Report privately via GitHub Security Advisories (`Security -> Report a vulnerability`) or email the Team `Chanakya` Security Lead (`Atharva Satav`, see [`docs/08-project/TEAM.md`](../docs/08-project/TEAM.md)).
 2. **Include**:
    - Affected service (`services/deal-engine-go`, `services/assay-verifier-rs`, `services/nexconn-bridge-node`, `apps/web`, or `packages/nc-lit-cards`).
    - Reproduction steps or proof-of-concept request payload.

@@ -10,7 +10,7 @@
 |---|---|---|---|
 | **Go 1.24 (`services/deal-engine-go`)** | Effective Go + Uber Go Style Guide | `golangci-lint` (`govet`, `errcheck`, `staticcheck`, `revive`, `gosec`) + `gofumpt` | `golangci-lint run ./...` (`0` issues) + `go test -race ./...` |
 | **Rust 1.85 (`services/assay-verifier-rs`, `packages/assay-wasm-rs`)** | Rust 2024 Edition Idioms (`#![forbid(unsafe_code)]`) | `cargo clippy --all-targets -- -D warnings` + `rustfmt` | Zero `unwrap()` / `expect()` in request handlers; all errors mapped via `thiserror` |
-| **TypeScript 5.8 (`apps/web`, `apps/mobile-expo`, `services/nexconn-bridge-node`, `packages/nc-lit-cards`)** | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true` | **Biome 1.9** (`biome check --write`) + `tsc --noEmit` | Zero `any` in domain models (`packages/shared-types`); 100% typed OpenAPI contracts |
+| **TypeScript 5.8 (`apps/web`, `apps/mobile`, `services/nexconn-bridge-node`, `packages/nc-lit-cards`)** | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true` | **Biome 1.9** (`biome check --write`) + `tsc --noEmit` | Zero `any` in domain models (`packages/shared-types`); 100% typed OpenAPI contracts |
 | **CSS & Design System (`apps/web`)** | `/hallmark` v2.0.0 Floor + `/unslop` + `/apple-design` + HeroUI v3 (`oklch`) | `node scripts/sloplint.mjs --render` + Stylelint | `Floor 0 FAIL`: no literal hex outside `:root`, no `transition: all`, no uppercase tracked eyebrows |
 
 ---

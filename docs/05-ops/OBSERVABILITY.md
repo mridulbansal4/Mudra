@@ -6,7 +6,7 @@
 
 ## 1. End-to-End OpenTelemetry Distributed Tracing Across All 3 Runtimes
 
-Every request entering MUDRA-OS from `apps/web` or `apps/mobile-expo` carries an `X-Mudra-Trace-Id` (`traceparent` W3C standard) propagated seamlessly across:
+Every request entering MUDRA-OS from `apps/web` or `apps/mobile` carries an `X-Mudra-Trace-Id` (`traceparent` W3C standard) propagated seamlessly across:
 1. **Go 1.24 (`deal-engine-go` `:4002`)** via `go.opentelemetry.io/otel`
 2. **Rust 1.85 (`assay-verifier-rs` `:4003`)** via `tracing` + `opentelemetry-otlp`
 3. **Node.js 22 (`nexconn-bridge-node` `:4001`)** via `@opentelemetry/sdk-node`

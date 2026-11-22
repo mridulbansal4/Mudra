@@ -41,7 +41,7 @@
 
 ---
 
-## UPI Payments Implementation (`docs/mobile/UPI_PAYMENT_PLAN.md`)
+## UPI Payments Implementation (`docs/03-engineering/mobile/UPI_PAYMENT_PLAN.md`)
 
 ### What Changed
 1. **Database (`supabase/migrations/004_mudra_upi.sql` & `002_mudra_rpc.sql`)**:

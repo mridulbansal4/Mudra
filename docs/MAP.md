@@ -1,6 +1,6 @@
 # MAP.md - Master Navigation Guide for MUDRA-OS (`SamvadDeal`)
 
-Welcome to the **MUDRA-OS (`SamvadDeal`)** repository bible (`PS-03 Marketplace & Support`, **Nexconn Build Challenge 2026**, Team `Chanakya`). Every document in this repository derives its canonical IDs (`F-01`..`F-14`, `P-01`..`P-05`, `E-01`..`E-10`, `API-01`..`API-18`, `M-01`..`M-05`, `R-01`..`R-12`, `ADR-0001`..`ADR-0006`) from **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)**.
+Welcome to the **MUDRA-OS (`SamvadDeal`)** repository bible (`PS-03 Marketplace & Support`, **Nexconn Build Challenge 2026**, Team `Chanakya`). Every document in this repository derives its canonical IDs (`F-01`..`F-14`, `P-01`..`P-05`, `E-01`..`E-10`, `API-01`..`API-18`, `M-01`..`M-05`, `R-01`..`R-12`, `ADR-0001`..`ADR-0006`) from **[`docs/00-overview/PROJECT_BRIEF.md`](00-overview/PROJECT_BRIEF.md)**.
 
 ---
 
@@ -8,21 +8,26 @@ Welcome to the **MUDRA-OS (`SamvadDeal`)** repository bible (`PS-03 Marketplace 
 
 ```text
 mudra-os/
-├── README.md                                  # Front door: problem, PS-03 mapping, 9-route story flow, Go/Rust/Node stack, quick start
-├── MAP.md                                     # This file: complete directory map, lookup table, dependency graph & reading orders
+├── README.md                                  # Front door: problem, demo, screenshots, Nexconn integration, architecture, quick start
+├── LICENSE                                    # MIT licence
+├── CHANGELOG.md                               # Keep a Changelog release history
 ├── CLAUDE.md                                  # Primary instructions, build/test/eval commands & golden rules for AI coding agents
 ├── AGENTS.md                                  # Universal AI agent pointer to CLAUDE.md + non-negotiable architectural invariants
-├── CONTRIBUTING.md                            # Local setup, trunk-based branch naming, Conventional Commits & PR Definition of Done
-├── SECURITY.md                                # Supported versions, security invariants, NEXCONN_SECRET_KEY isolation & SLA reporting
-├── CHANGELOG.md                               # Keep a Changelog release history ([Unreleased] & [0.1.0] - 2026-11-10)
-├── CODE_OF_CONDUCT.md                         # Contributor Covenant v2.1 standards for repo and live Nexconn demo channels
 ├── .env.example                               # Complete environment variable template grouped by service (zero real secrets)
+├── .editorconfig                              # Shared editor settings (indentation, line endings, charset)
+├── package.json · pnpm-workspace.yaml         # pnpm workspace root (web, bridge, Lit cards, shared types)
 │
 ├── .github/
+│   ├── CONTRIBUTING.md                        # Local setup, trunk-based branch naming, Conventional Commits & PR Definition of Done
+│   ├── SECURITY.md                            # Supported versions, security invariants, NEXCONN_SECRET_KEY isolation & reporting
+│   ├── CODE_OF_CONDUCT.md                     # Contributor Covenant v2.1
+│   ├── pull_request_template.md               # PR checklist
+│   ├── ISSUE_TEMPLATE/                        # Bug report & feature request templates
 │   └── workflows/
-│       ├── ci.yml                             # PR gate: Node/React + Go 1.24 race tests + Rust 1.85 clippy + OpenAPI + sloplint
-│       ├── deploy.yml                         # Production CD: GHCR multi-arch images + Cloudflare Pages + Fly.io canary + rollback
-│       └── ai-evals.yml                       # Nightly & PR AI evals: M-01..M-05 accuracy + Rust DPDP PII 1.000 recall gate
+│       ├── ci.yml                             # PR gate: secret scan + Go 1.24 race tests + Rust 1.85 fmt/clippy/tests + Node/web typecheck, tests, build
+│       ├── deploy.yml                         # Production deploy workflow
+│       ├── ai-evals.yml                       # AI & forensic eval suite (Rust PII/pHash/FFT tests)
+│       └── supabase-keepalive.yml             # Keeps the mobile app's hosted Supabase project awake
 │
 ├── api/
 │   └── openapi.yaml                           # OpenAPI 3.1 contract for all 18 endpoints (API-01..API-18) across Node, Go & Rust
@@ -30,8 +35,10 @@ mudra-os/
 ├── apps/
 │   ├── web/
 │   │   └── src/                               # React 19 + Vite 6 + Tailwind v4 + @heroui/react v3 + Lit v3 + Nexconn ChatUI/Call
-│   └── mobile-expo/
-│       └── src/                               # Expo SDK 53 + React Native 0.76 + heroui-native v2 + uniwind field companion
+│   └── mobile/
+│       ├── app/                               # Expo Router screens (home, explore, deals, wallet, escrow, inspect, freeze, receipt)
+│       ├── src/                               # Features, theme tokens, Supabase client, UPI escrow flows
+│       └── supabase/                          # Database migrations & RPCs for the Android app (v1.0.0 APK)
 │
 ├── services/
 │   ├── nexconn-bridge-node/
@@ -51,19 +58,16 @@ mudra-os/
 │       └── src/                               # Shared TypeScript interfaces & JSON schemas synced with Go/Rust structs
 │
 ├── ai/
-│   ├── prompts/                               # Versioned prompt templates for M-01, M-03, M-04, and M-05
-│   └── evals/                                 # Golden JSONL datasets (160 bilingual deals, 50 assay clips, 40 disputes, PII corpus)
+│   └── prompts/                               # Versioned prompt templates loaded at runtime by the bridge (M-01, M-04, M-05)
 │
 ├── infra/
-│   ├── docker/                                # Multi-stage Dockerfiles + docker-compose.yml (PostgreSQL 17 + DragonflyDB/Redis 7.4 + 3 services)
-│   └── terraform/                             # Cloud provisioning manifests for Fly.io (`sin`), Neon PG 17, Upstash Redis & R2
+│   └── docker/                                # docker-compose.yml (PostgreSQL 17 + Redis); each service ships its own Dockerfile
 │
-├── scripts/                                   # Seed scripts, client-bundle secret scanner & Reskilll 4,000-char payload validator
-├── tests/
-│   ├── e2e/                                   # Playwright multi-context WebRTC, Lit Shadow DOM & 9-route story flow E2E suite
-│   └── load/                                  # k6 load scripts verifying <1.2ms Go FSM and <5ms Rust Assay p99 under 200 VUs
+├── scripts/                                   # dev.mjs (start every service), smoke.mjs (end-to-end smoke), test-all-models.mjs
 │
 └── docs/
+    ├── MAP.md                                 # This file: directory map, lookup table & reading orders
+    ├── assets/screenshots/                    # Screenshots used in the README
     ├── 00-overview/
     │   ├── PROJECT_BRIEF.md                   # Single source of truth: locks F-01..F-14, P-01..P-05, E-01..E-10, API-01..API-18, M-01..M-05, R-01..R-12
     │   ├── VISION.md                          # 3-year strategic thesis: why India's $50B+ chat trade needs conversational escrow + video assay
@@ -152,20 +156,20 @@ mudra-os/
 
 | If You Want To Know… | Read This Document First |
 | :--- | :--- |
-| **What are the canonical IDs (`F-01`..`F-14`, `E-01`..`E-10`, `API-01`..`API-18`, `M-01`..`M-05`, `R-01`..`R-12`)?** | [`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md) |
-| **How do I set up `console.nexconn.ai` and integrate `@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, and `@nexconn/server-sdk`?** | [`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md) |
-| **How does a beginner or solo judge navigate from `/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` without getting stuck?** | [`docs/01-product/USER_JOURNEYS.md`](docs/01-product/USER_JOURNEYS.md) & [`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md) |
-| **How do we apply `/hallmark`, `/unslop`, `/apple-design`, `/heroui-react` (v3), and `/heroui-native` (v2)?** | [`docs/02-design/DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md) & [`docs/03-engineering/adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md`](docs/03-engineering/adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md) |
-| **Why and how do we use Go 1.24 (`:4002`) and Rust 1.85 + WASM (`:4003`) instead of generic Python?** | [`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md) & [`docs/03-engineering/adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md`](docs/03-engineering/adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md) |
-| **What are the exact REST & SSE payloads for all 18 endpoints (`API-01`..`API-18`)?** | [`docs/03-engineering/API_SPEC.md`](docs/03-engineering/API_SPEC.md) & [`api/openapi.yaml`](api/openapi.yaml) |
-| **What is the PostgreSQL 17 schema and DragonflyDB / Redis 7.4 key design for `E-01`..`E-10`?** | [`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md) |
-| **How do we register custom Lit Web Components (`<nc-escrow-deal-card>`) inside `@nexconn/chatui` Shadow DOM?** | [`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md) & [`docs/03-engineering/adr/ADR-0003-lit-custom-message-cards-and-shadow-dom-bridge.md`](docs/03-engineering/adr/ADR-0003-lit-custom-message-cards-and-shadow-dom-bridge.md) |
-| **What are the exact system prompts and JSON schemas for Gemini 2.5 Flash/Pro and Chanakya AI Shopkeeper?** | [`docs/04-ai/PROMPTS.md`](docs/04-ai/PROMPTS.md) & [`docs/04-ai/MODELS.md`](docs/04-ai/MODELS.md) |
-| **How does the `< 300µs` Rust Aho-Corasick DPDP PII scrubber protect Aadhaar, PAN, and UPI VPAs?** | [`docs/04-ai/DATA_PIPELINE.md`](docs/04-ai/DATA_PIPELINE.md) & [`docs/06-security-compliance/PRIVACY.md`](docs/06-security-compliance/PRIVACY.md) |
-| **How do we run the entire stack locally in under 10 minutes on Windows PowerShell, WSL2, macOS, or Linux?** | [`docs/03-engineering/ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md) |
-| **What is our 3-minute pitch script, 90-second live demo choreography, and `pS(n)`/`Dx(n)` 4,000-char safe Reskilll submission text?** | [`docs/00-overview/PITCH.md`](docs/00-overview/PITCH.md) & [`docs/00-overview/HACKATHON_PLAN.md`](docs/00-overview/HACKATHON_PLAN.md) |
-| **How do we drive `1,100+` real Nexconn MAUs on our `App Key` (`Ke`) before Nov 23, 2026?** | [`docs/07-business/GTM.md`](docs/07-business/GTM.md) & [`docs/01-product/METRICS.md`](docs/01-product/METRICS.md) |
-| **What happens if a service or external API degrades during live judging?** | [`docs/05-ops/RUNBOOK.md`](docs/05-ops/RUNBOOK.md) & [`docs/06-security-compliance/RISK_REGISTER.md`](docs/06-security-compliance/RISK_REGISTER.md) |
+| **What are the canonical IDs (`F-01`..`F-14`, `E-01`..`E-10`, `API-01`..`API-18`, `M-01`..`M-05`, `R-01`..`R-12`)?** | [`docs/00-overview/PROJECT_BRIEF.md`](00-overview/PROJECT_BRIEF.md) |
+| **How do I set up `console.nexconn.ai` and integrate `@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, and `@nexconn/server-sdk`?** | [`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](03-engineering/NEXCONN_SDK_MANUAL.md) |
+| **How does a beginner or solo judge navigate from `/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` without getting stuck?** | [`docs/01-product/USER_JOURNEYS.md`](01-product/USER_JOURNEYS.md) & [`docs/02-design/UI_SPEC.md`](02-design/UI_SPEC.md) |
+| **How do we apply `/hallmark`, `/unslop`, `/apple-design`, `/heroui-react` (v3), and `/heroui-native` (v2)?** | [`docs/02-design/DESIGN_SYSTEM.md`](02-design/DESIGN_SYSTEM.md) & [`docs/03-engineering/adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md`](03-engineering/adr/ADR-0004-frontend-design-system-heroui-v3-hallmark-unslop-apple.md) |
+| **Why and how do we use Go 1.24 (`:4002`) and Rust 1.85 + WASM (`:4003`) instead of generic Python?** | [`docs/03-engineering/BACKEND.md`](03-engineering/BACKEND.md) & [`docs/03-engineering/adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md`](03-engineering/adr/ADR-0001-polyglot-go-rust-node-nexconn-architecture.md) |
+| **What are the exact REST & SSE payloads for all 18 endpoints (`API-01`..`API-18`)?** | [`docs/03-engineering/API_SPEC.md`](03-engineering/API_SPEC.md) & [`api/openapi.yaml`](../api/openapi.yaml) |
+| **What is the PostgreSQL 17 schema and DragonflyDB / Redis 7.4 key design for `E-01`..`E-10`?** | [`docs/03-engineering/DATA_MODEL.md`](03-engineering/DATA_MODEL.md) |
+| **How do we register custom Lit Web Components (`<nc-escrow-deal-card>`) inside `@nexconn/chatui` Shadow DOM?** | [`docs/03-engineering/FRONTEND.md`](03-engineering/FRONTEND.md) & [`docs/03-engineering/adr/ADR-0003-lit-custom-message-cards-and-shadow-dom-bridge.md`](03-engineering/adr/ADR-0003-lit-custom-message-cards-and-shadow-dom-bridge.md) |
+| **What are the exact system prompts and JSON schemas for Gemini 2.5 Flash/Pro and Chanakya AI Shopkeeper?** | [`docs/04-ai/PROMPTS.md`](04-ai/PROMPTS.md) & [`docs/04-ai/MODELS.md`](04-ai/MODELS.md) |
+| **How does the `< 300µs` Rust Aho-Corasick DPDP PII scrubber protect Aadhaar, PAN, and UPI VPAs?** | [`docs/04-ai/DATA_PIPELINE.md`](04-ai/DATA_PIPELINE.md) & [`docs/06-security-compliance/PRIVACY.md`](06-security-compliance/PRIVACY.md) |
+| **How do we run the entire stack locally in under 10 minutes on Windows PowerShell, WSL2, macOS, or Linux?** | [`docs/03-engineering/ENVIRONMENT_SETUP.md`](03-engineering/ENVIRONMENT_SETUP.md) |
+| **What is our 3-minute pitch script, 90-second live demo choreography, and `pS(n)`/`Dx(n)` 4,000-char safe Reskilll submission text?** | [`docs/00-overview/PITCH.md`](00-overview/PITCH.md) & [`docs/00-overview/HACKATHON_PLAN.md`](00-overview/HACKATHON_PLAN.md) |
+| **How do we drive `1,100+` real Nexconn MAUs on our `App Key` (`Ke`) before Nov 23, 2026?** | [`docs/07-business/GTM.md`](07-business/GTM.md) & [`docs/01-product/METRICS.md`](01-product/METRICS.md) |
+| **What happens if a service or external API degrades during live judging?** | [`docs/05-ops/RUNBOOK.md`](05-ops/RUNBOOK.md) & [`docs/06-security-compliance/RISK_REGISTER.md`](06-security-compliance/RISK_REGISTER.md) |
 
 ---
 
@@ -235,31 +239,31 @@ flowchart TD
 ## 4. Recommended Reading Orders by Role
 
 ### Path A - Hackathon Judge (`P-05`, 5-Minute Evaluation Path)
-1. **[`README.md`](README.md)** - Problem, all 3 `PS-03` sub-prompts, 9-route beginner story flow, and polyglot Go + Rust + Node architecture overview.
-2. **[`docs/00-overview/PITCH.md`](docs/00-overview/PITCH.md)** - 90-second live demo choreography, why our architecture wins, and answers to the 12 toughest judge questions.
-3. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** - Proof of deep mastery across `@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, `@nexconn/server-sdk`, and all 5 channel types (`Direct`, `Group`, `Community`, `Open`, `System`).
-4. **[`docs/03-engineering/ARCHITECTURE.md`](docs/03-engineering/ARCHITECTURE.md)** & **[`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md)** - How Go 1.24 (`< 1.2ms` Escrow FSM) and Rust 1.85 + WASM (`< 5ms` `pHash`/FFT + `< 300µs` DPDP PII scrub) power real-time chat commerce.
-5. **[`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md)** - Walkthrough of `/sandbox` (1-Click Split-Screen Buyer + Seller + AI Judge Mode) and `/traction` (live App Key `Ke` MAU telemetry).
+1. **[`README.md`](../README.md)** - Problem, all 3 `PS-03` sub-prompts, 9-route beginner story flow, and polyglot Go + Rust + Node architecture overview.
+2. **[`docs/00-overview/PITCH.md`](00-overview/PITCH.md)** - 90-second live demo choreography, why our architecture wins, and answers to the 12 toughest judge questions.
+3. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](03-engineering/NEXCONN_SDK_MANUAL.md)** - Proof of deep mastery across `@nexconn/chatui`, `@nexconn/chat`, `@nexconn/call`, `@nexconn/server-sdk`, and all 5 channel types (`Direct`, `Group`, `Community`, `Open`, `System`).
+4. **[`docs/03-engineering/ARCHITECTURE.md`](03-engineering/ARCHITECTURE.md)** & **[`docs/03-engineering/BACKEND.md`](03-engineering/BACKEND.md)** - How Go 1.24 (`< 1.2ms` Escrow FSM) and Rust 1.85 + WASM (`< 5ms` `pHash`/FFT + `< 300µs` DPDP PII scrub) power real-time chat commerce.
+5. **[`docs/02-design/UI_SPEC.md`](02-design/UI_SPEC.md)** - Walkthrough of `/sandbox` (1-Click Split-Screen Buyer + Seller + AI Judge Mode) and `/traction` (live App Key `Ke` MAU telemetry).
 
 ### Path B - New Developer Joining Team `Chanakya`
-1. **[`CLAUDE.md`](CLAUDE.md)** - 10-line summary, canonical commands, and Do/Don't checklist.
-2. **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)** - Canonical IDs (`F-01`..`F-14`, `E-01`..`E-10`, `API-01`..`API-18`).
-3. **[`docs/03-engineering/ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md)** - Get PostgreSQL 17, DragonflyDB / Redis 7.4, Go `:4002`, Rust `:4003`, Node `:4001`, and Web `:5173` running in `< 10` minutes.
-4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** - Learn the 5 Golden Rules of Nexconn SDK integration.
-5. **[`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md)** & **[`docs/03-engineering/API_SPEC.md`](docs/03-engineering/API_SPEC.md)** - Understand the database tables and REST/SSE contracts.
-6. **[`docs/08-project/BACKLOG.md`](docs/08-project/BACKLOG.md)** - Pick up your assigned P0/P1 sprint task.
+1. **[`CLAUDE.md`](../CLAUDE.md)** - 10-line summary, canonical commands, and Do/Don't checklist.
+2. **[`docs/00-overview/PROJECT_BRIEF.md`](00-overview/PROJECT_BRIEF.md)** - Canonical IDs (`F-01`..`F-14`, `E-01`..`E-10`, `API-01`..`API-18`).
+3. **[`docs/03-engineering/ENVIRONMENT_SETUP.md`](03-engineering/ENVIRONMENT_SETUP.md)** - Get PostgreSQL 17, DragonflyDB / Redis 7.4, Go `:4002`, Rust `:4003`, Node `:4001`, and Web `:5173` running in `< 10` minutes.
+4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](03-engineering/NEXCONN_SDK_MANUAL.md)** - Learn the 5 Golden Rules of Nexconn SDK integration.
+5. **[`docs/03-engineering/DATA_MODEL.md`](03-engineering/DATA_MODEL.md)** & **[`docs/03-engineering/API_SPEC.md`](03-engineering/API_SPEC.md)** - Understand the database tables and REST/SSE contracts.
+6. **[`docs/08-project/BACKLOG.md`](08-project/BACKLOG.md)** - Pick up your assigned P0/P1 sprint task.
 
 ### Path C - Frontend & Mobile UI Engineer (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react` + `/heroui-native`)
-1. **[`docs/02-design/DESIGN_SYSTEM.md`](docs/02-design/DESIGN_SYSTEM.md)** - Hallmark `v2.0.0` picks block, Unslop 5-line Direction, warm customs-ledger `oklch` tokens, Apple Fluid Motion springs (`damping: 1.0`), and HeroUI v3 React / HeroUI Native v2 rules.
-2. **[`docs/02-design/UI_SPEC.md`](docs/02-design/UI_SPEC.md)** - Screen-by-screen ASCII wireframes, 9-route beginner story flow, **4-Stage Deal Story Bar**, and 6-state matrix.
-3. **[`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md)** - React 19 + Tailwind v4 + `@heroui/react@^3.0.1` + Lit v3 `<nc-escrow-deal-card>` Shadow DOM event bridge + `setPointerCapture` WebRTC PiP loupe.
-4. **[`docs/03-engineering/MOBILE.md`](docs/03-engineering/MOBILE.md)** - Expo SDK 53 + `heroui-native@^2.0.1` + `uniwind` field companion.
-5. **[`docs/02-design/ACCESSIBILITY.md`](docs/02-design/ACCESSIBILITY.md)** & **[`docs/02-design/LOCALIZATION.md`](docs/02-design/LOCALIZATION.md)** - WCAG 2.2 AA, Shadow DOM screen reader announcements, and `EN`/`HI`/`MR`/`TA` typography.
+1. **[`docs/02-design/DESIGN_SYSTEM.md`](02-design/DESIGN_SYSTEM.md)** - Hallmark `v2.0.0` picks block, Unslop 5-line Direction, warm customs-ledger `oklch` tokens, Apple Fluid Motion springs (`damping: 1.0`), and HeroUI v3 React / HeroUI Native v2 rules.
+2. **[`docs/02-design/UI_SPEC.md`](02-design/UI_SPEC.md)** - Screen-by-screen ASCII wireframes, 9-route beginner story flow, **4-Stage Deal Story Bar**, and 6-state matrix.
+3. **[`docs/03-engineering/FRONTEND.md`](03-engineering/FRONTEND.md)** - React 19 + Tailwind v4 + `@heroui/react@^3.0.1` + Lit v3 `<nc-escrow-deal-card>` Shadow DOM event bridge + `setPointerCapture` WebRTC PiP loupe.
+4. **[`docs/03-engineering/MOBILE.md`](03-engineering/MOBILE.md)** - Expo SDK 53 + `heroui-native@^2.0.1` + `uniwind` field companion.
+5. **[`docs/02-design/ACCESSIBILITY.md`](02-design/ACCESSIBILITY.md)** & **[`docs/02-design/LOCALIZATION.md`](02-design/LOCALIZATION.md)** - WCAG 2.2 AA, Shadow DOM screen reader announcements, and `EN`/`HI`/`MR`/`TA` typography.
 
 ### Path D - AI Coding Agent (Autonomous Implementation Loop)
-1. **[`CLAUDE.md`](CLAUDE.md)** & **[`AGENTS.md`](AGENTS.md)** - Commands, architectural invariants, and forbidden patterns.
-2. **[`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md)** - Canonical IDs across features, entities, APIs, models, and risks.
-3. **[`api/openapi.yaml`](api/openapi.yaml)** & **[`docs/03-engineering/DATA_MODEL.md`](docs/03-engineering/DATA_MODEL.md)** - Machine-readable API and SQL contracts.
-4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](docs/03-engineering/NEXCONN_SDK_MANUAL.md)** - Exact TypeScript patterns for all 4 Nexconn packages.
-5. **[`docs/03-engineering/BACKEND.md`](docs/03-engineering/BACKEND.md)** & **[`docs/03-engineering/FRONTEND.md`](docs/03-engineering/FRONTEND.md)** - Service implementation blueprints for Go 1.24, Rust 1.85 + WASM, Node 22, and React 19 + HeroUI v3.
-6. **[`docs/04-ai/PROMPTS.md`](docs/04-ai/PROMPTS.md)** & **[`docs/04-ai/AI_EVALS.md`](docs/04-ai/AI_EVALS.md)** - Prompt templates, schemas, and evaluation gates.
+1. **[`CLAUDE.md`](../CLAUDE.md)** & **[`AGENTS.md`](../AGENTS.md)** - Commands, architectural invariants, and forbidden patterns.
+2. **[`docs/00-overview/PROJECT_BRIEF.md`](00-overview/PROJECT_BRIEF.md)** - Canonical IDs across features, entities, APIs, models, and risks.
+3. **[`api/openapi.yaml`](../api/openapi.yaml)** & **[`docs/03-engineering/DATA_MODEL.md`](03-engineering/DATA_MODEL.md)** - Machine-readable API and SQL contracts.
+4. **[`docs/03-engineering/NEXCONN_SDK_MANUAL.md`](03-engineering/NEXCONN_SDK_MANUAL.md)** - Exact TypeScript patterns for all 4 Nexconn packages.
+5. **[`docs/03-engineering/BACKEND.md`](03-engineering/BACKEND.md)** & **[`docs/03-engineering/FRONTEND.md`](03-engineering/FRONTEND.md)** - Service implementation blueprints for Go 1.24, Rust 1.85 + WASM, Node 22, and React 19 + HeroUI v3.
+6. **[`docs/04-ai/PROMPTS.md`](04-ai/PROMPTS.md)** & **[`docs/04-ai/AI_EVALS.md`](04-ai/AI_EVALS.md)** - Prompt templates, schemas, and evaluation gates.

@@ -10,7 +10,7 @@
 |---|---|---|---|
 | **Dev 1** | **Lead Architect & Nexconn SDK Specialist** | `console.nexconn.ai` configuration, `@nexconn/server-sdk@0.1.2` Node Bridge (`:4001`), `@nexconn/chatui` (`<nc-chat-ui-app-provider>`), `@nexconn/chat` (`NCEngine` `Open` & `Community` channels), `@nexconn/call` (`NCCallEngine`), and `packages/nc-lit-cards` (`lit@^3.3.2`). | `services/nexconn-bridge-node/`, `packages/nc-lit-cards/`, `apps/web/src/lib/nexconn-boot.ts` |
 | **Dev 2** | **Systems Backend Lead (Go 1.24 + Rust 1.85 + WASM)** | Go 1.24 Deal & Escrow FSM (`:4002`), PostgreSQL 17 schema & optimistic locking (`E-01`..`E-10`), Rust 1.85 Forensic Verifier (`:4003`: `<300µs` DPDP PII scrubber, 64-bit `pHash`, 4096-pt `rustfft`, Ed25519 voucher signer), and `packages/assay-wasm-rs` (60fps browser WASM). | `services/deal-engine-go/`, `services/assay-verifier-rs/`, `packages/assay-wasm-rs/`, `infra/` |
-| **Dev 3** | **Frontend Story UX, Apple Motion & Mobile Lead** | 9-route Story Frontend (`/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` → `/dispatch` → `/guide` → `/traction`), HeroUI v3 (`@heroui/react`), `/hallmark` Floor, `/unslop` tokens, `/apple-design` PiP physics, Simulated HD Camera Stream, and `apps/mobile-expo` (`heroui-native` + Uniwind). | `apps/web/`, `apps/mobile-expo/`, `packages/shared-types/` |
+| **Dev 3** | **Frontend Story UX, Apple Motion & Mobile Lead** | 9-route Story Frontend (`/` → `/auth` → `/onboarding` → `/app` → `/sandbox` → `/arena` → `/dispatch` → `/guide` → `/traction`), HeroUI v3 (`@heroui/react`), `/hallmark` Floor, `/unslop` tokens, `/apple-design` PiP physics, Simulated HD Camera Stream, and `apps/mobile` (`heroui-native` + Uniwind). | `apps/web/`, `apps/mobile/`, `packages/shared-types/` |
 | **Dev 4** | **AI Streaming, Golden Evals, QA & Viral MAU Growth Lead** | Gemini 2.5 Flash/Pro + Bhashini ULCA prompts (`M-01`..`M-05`), Golden JSONL Evals (`ai/evals/`), Playwright E2E suite, `/arena` campus viral MAU rollout (`500–1,000+` MAUs), 3-minute demo video, and Write-up PDF. | `ai/`, `tests/`, `scripts/`, `docs/` |
 
 ---
@@ -27,7 +27,7 @@
 | **Rust 1.85 `<300µs` PII Scrubber, `pHash`, `rustfft` & Ed25519 (`F-06`)**| I | **A / R** | C (WASM Worker)| C (Vision `M-03`) |
 | **Story Frontend (`/` → `/auth` → `/onboarding` → `/app` → `/sandbox`)** | C | C | **A / R** | C |
 | **Hallmark `sloplint --render`, Unslop & Apple Fluid Motion (`R-11`)** | I | I | **A / R** | R (CI Gate) |
-| **Mobile Field Companion (`apps/mobile-expo` `heroui-native`)** | C | I | **A / R** | I |
+| **Mobile Field Companion (`apps/mobile` `heroui-native`)** | C | I | **A / R** | I |
 | **Cross-Lingual Streaming (`M-01`/`M-02`) & Tribunal (`M-04`)** | R (Stream API)| C (PII Scrub) | I | **A / R** |
 | **Viral `/arena` MAU Campaign (`500+` MAUs) & `/traction` Proof** | C | R (`API-18`) | R (`/arena` UI)| **A / R** |
 | **3-Minute Demo Video, PDF Write-Up & Reskilll `pS(n)` Submission** | C (`App Key`) | C | C | **A / R** |

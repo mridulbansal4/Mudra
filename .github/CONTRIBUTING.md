@@ -2,13 +2,13 @@
 
 Thank you for contributing to **MUDRA-OS (`SamvadDeal`)** by Team `Chanakya`! To keep our polyglot monorepo (`Go 1.24` + `Rust 1.85/WASM` + `Node.js 22` + `React 19 / HeroUI v3` + `Expo 53 / heroui-native`) fast, deterministic, and regression-free during the **Nexconn Build Challenge 2026**, please follow this guide.
 
-For detailed engineering rules, also read [`docs/03-engineering/CODING_STANDARDS.md`](docs/03-engineering/CODING_STANDARDS.md) and [`docs/03-engineering/GIT_WORKFLOW.md`](docs/03-engineering/GIT_WORKFLOW.md).
+For detailed engineering rules, also read [`docs/03-engineering/CODING_STANDARDS.md`](../docs/03-engineering/CODING_STANDARDS.md) and [`docs/03-engineering/GIT_WORKFLOW.md`](../docs/03-engineering/GIT_WORKFLOW.md).
 
 ---
 
 ## 1. Local Development Setup
 
-1. Follow [`docs/03-engineering/ENVIRONMENT_SETUP.md`](docs/03-engineering/ENVIRONMENT_SETUP.md) to install **Node.js 22.12+**, **pnpm 9.15+**, **Go 1.24+**, **Rust 1.85+ (`wasm-pack`)**, and **Docker Compose**.
+1. Follow [`docs/03-engineering/ENVIRONMENT_SETUP.md`](../docs/03-engineering/ENVIRONMENT_SETUP.md) to install **Node.js 22.12+**, **pnpm 9.15+**, **Go 1.24+**, **Rust 1.85+ (`wasm-pack`)**, and **Docker Compose**.
 2. Copy `.env.example` to `.env`:
    ```bash
    cp .env.example .env
@@ -63,11 +63,11 @@ All feature branches are cut from `main` and merge back via squash Pull Requests
 
 Before marking a PR ready for review, verify every item below:
 
-- [ ] **Canonical ID Alignment**: All referenced features (`F-01`..`F-14`), entities (`E-01`..`E-10`), and APIs (`API-01`..`API-18`) match [`docs/00-overview/PROJECT_BRIEF.md`](docs/00-overview/PROJECT_BRIEF.md) and [`api/openapi.yaml`](api/openapi.yaml).
+- [ ] **Canonical ID Alignment**: All referenced features (`F-01`..`F-14`), entities (`E-01`..`E-10`), and APIs (`API-01`..`API-18`) match [`docs/00-overview/PROJECT_BRIEF.md`](../docs/00-overview/PROJECT_BRIEF.md) and [`api/openapi.yaml`](../api/openapi.yaml).
 - [ ] **Nexconn SDK Safety**:
   - Custom Lit cards (`<nc-escrow-deal-card>`, `<nc-bilingual-bubble>`) are registered before `await NCChatUIApplication.ready()`.
   - `NCEngine` is connected before `NCCallEngine` starts or accepts a call.
-  - `NEXCONN_SECRET_KEY` is never imported or referenced in `apps/web` or `apps/mobile-expo`.
+  - `NEXCONN_SECRET_KEY` is never imported or referenced in `apps/web` or `apps/mobile`.
 - [ ] **Design & Accessibility Craft (`/hallmark` + `/unslop` + `/apple-design` + `/heroui-react`)**:
   - `/* hallmark:v2.0.0 */` remains on line 1 of `apps/web/src/styles/globals.css`.
   - No `<HeroUIProvider>` in React v3; compound `<Card.Header>` / `<Card.Content>` / `<Card.Footer>` and `onPress` handlers used throughout.

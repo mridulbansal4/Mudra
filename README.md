@@ -1,122 +1,244 @@
-# MUDRA-OS (`SamvadDeal`)
+<div align="center">
 
-Multilingual P2P and B2B escrow deal room with live WebRTC hardware inspection, deterministic state transitions, and 90-second freeze arbitration built on the Nexconn Unified Communications Platform.
+<img src="docs/assets/banner.jpg" alt="Mudra: escrow inside the chat" width="100%" />
 
-## Live Links
+# Mudra (`SamvadDeal`)
 
-| Resource | URL |
+**Trust every deal, right in the chat.**
+
+Multilingual escrow, live video inspection and a 90-second dispute freeze, built on the Nexconn Chat SDK, Chat UI and Call SDK.
+
+[![CI](https://github.com/mridulbansal4/Mudra/actions/workflows/ci.yml/badge.svg)](https://github.com/mridulbansal4/Mudra/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-e5fe40.svg)](LICENSE)
+![Nexconn](https://img.shields.io/badge/Nexconn-Chat%20SDK%20%C2%B7%20Chat%20UI%20%C2%B7%20Call%20SDK-6a35ff)
+![Go](https://img.shields.io/badge/Go-1.24-00ADD8?logo=go&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-1.85-000000?logo=rust&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+
+**[Live app](https://mudra.duckdns.org)** · **[Two-phone demo](https://mudra.duckdns.org/demo)** · **[Sandbox](https://mudra.duckdns.org/sandbox)** · **[Android APK](https://github.com/mridulbansal4/Mudra/releases/tag/v1.0.0)** · **[Docs](docs/MAP.md)**
+
+<sub>Nexconn Build Challenge 2026 · PS-03 Marketplace & Support · Team Chanakya</sub>
+
+</div>
+
+---
+
+## The problem
+
+Rajesh runs a garment workshop in Tirupur and speaks Tamil. Vikram sells refurbished machinery in Ludhiana and speaks Hindi. A ₹1,45,000 overlock machine should be an easy deal, but it breaks in three places:
+
+| Where it breaks | What happens today |
 | :--- | :--- |
-| Production Web App | https://mudra.duckdns.org |
-| Interactive Two-Phone Demo | https://mudra.duckdns.org/demo |
-| Live Split-Screen Sandbox | https://mudra.duckdns.org/sandbox |
-| Traction & Latency Ledger | https://mudra.duckdns.org/traction |
-| Public Product Analytics (PostHog) | https://us.posthog.com/shared/CwmP3aEjYmfq2bKNZiCoFmKjlscC4Q |
-| Android APK (`v1.0.0`, `arm64`, 53.7 MB) | https://mudra.duckdns.org/downloads/mudra-v1.0.0-arm64.apk |
-| Android APK (`v1.0.0`, universal, 105.3 MB) | https://mudra.duckdns.org/downloads/mudra-v1.0.0.apk |
-| GitHub Releases | https://github.com/mridulbansal4/Mudra/releases/tag/v1.0.0 |
-| Service Health Endpoint | https://mudra.duckdns.org/health |
+| **Language** | Copy-paste translation mangles the terms that matter: RPM, warranty, voltage. |
+| **Payment trust** | The buyer won't pay a stranger in advance; the seller won't ship on faith. Photos are easy to fake. |
+| **Disputes** | When the machine arrives damaged, someone gets blocked and someone files a chargeback. |
+
+## The idea
+
+**The conversation itself becomes the escrow contract, the inspection lab and the courtroom.**
+
+1. **Negotiate in your own language.** Messages are scrubbed for Aadhaar, PAN, phone and UPI IDs by a Rust guard, then translated Tamil ↔ Hindi ↔ English and streamed into custom Nexconn Chat UI cards.
+2. **Lock the money, not your trust.** Pay from the Mudra wallet or any UPI app and slide to lock. A Go state machine moves the deal from `CREATED` to `FUNDED`, and an Ed25519-signed voucher lands in the chat.
+3. **Inspect it live.** The seller goes live on Nexconn Call SDK. Mudra matches the serial plate, fingerprints frames (64-bit pHash) and listens to the motor (4096-point FFT) to confirm the claimed RPM.
+4. **Release, or freeze.** The buyer releases funds after verification. If something is wrong, one tap freezes both chats for a 90-second hearing; an arbitrator reviews one evidence packet and an AI tribunal recommendation, then executes a signed split.
 
 ---
 
-## Problem & Methodology
+## Screenshots
 
-High-value peer-to-peer and regional B2B trades over chat break at three points: language barriers (Hindi, Tamil, Marathi, English), payment trust (advance UPI vs. blind shipping), and post-delivery hardware disputes.
-
-MUDRA-OS embeds the escrow contract and physical verification loop directly inside a Nexconn chat room:
-
-1. **Bilingual Negotiation**: Buyers and sellers write in their native script. Every outbound prompt is scrubbed for PII (Aadhaar, PAN, UPI VPA, IFSC, phone) in `< 300µs` by a Rust Aho-Corasick automaton before Gemini 2.5 Flash streams dual-script translations via `RC:StreamMsg`.
-2. **Deterministic Escrow Lock**: Funds lock into an 8-state Go 1.24 finite state machine (`CREATED -> FUNDED -> INSPECTION_LIVE -> ASSAY_VERIFIED -> SHIPPED -> DELIVERED -> RELEASED` / `DISPUTED_FROZEN`) with optimistic CAS locking and 24-hour idempotency.
-3. **Live WebRTC Hardware Assay**: Parties start an in-room Nexconn Call (`NCCallEngine`) session. The Rust verifier checks frame sharpness (Laplacian variance), computes a 64-bit DCT perceptual hash (`pHash`) of the serial plate, and runs a 4096-point Cooley-Tukey FFT on the audio stream to verify motor RPM.
-4. **Ed25519 Receipts & 90-Second Freeze Tribunal**: Every verified milestone posts an Ed25519-signed, SHA-256 hash-chained voucher to the Nexconn `System` channel. On defect or `pHash` mismatch, the room freezes for 90 seconds while an AI + human arbitrator resolves the split.
+<table>
+  <tr>
+    <td width="50%"><img src="docs/assets/screenshots/landing.png" alt="Landing page" /><br /><sub><b>Landing</b> · trade like you trust them</sub></td>
+    <td width="50%"><img src="docs/assets/screenshots/demo-chat.png" alt="Two-phone demo: bilingual chat" /><br /><sub><b>Two-phone demo</b> · Tamil offer, Hindi reply, live translation</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/screenshots/demo-escrow.png" alt="Escrow sheet with wallet and UPI apps" /><br /><sub><b>Escrow</b> · Mudra wallet or any UPI app, ₹0 fee, slide to lock</sub></td>
+    <td><img src="docs/assets/screenshots/demo-assay.png" alt="Live video inspection" /><br /><sub><b>Live inspection</b> · 96% frame match, 4,820 RPM motor check</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/screenshots/demo-dispute.png" alt="90-second dispute freeze" /><br /><sub><b>Dispute freeze</b> · both chats locked for a 90-second hearing</sub></td>
+    <td><img src="docs/assets/screenshots/dispatch.png" alt="Arbitrator dispatch desk" /><br /><sub><b>Arbitrator dispatch</b> · forensic diff, AI tribunal, signed voucher chain</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/screenshots/sandbox.png" alt="Split-screen sandbox" /><br /><sub><b>Sandbox</b> · split-screen deal wired to the real Go, Rust and Node services</sub></td>
+    <td><img src="docs/assets/screenshots/traction.png" alt="Traction and latency ledger" /><br /><sub><b>Traction</b> · channel counts, cluster activity and latency</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/screenshots/arena.png" alt="60-second bargain arena" /><br /><sub><b>Arena</b> · 60-second bargaining duel on a Nexconn direct channel</sub></td>
+    <td><img src="docs/assets/screenshots/guide.png" alt="SDK guide" /><br /><sub><b>SDK guide</b> · every screen mapped to its Nexconn call</sub></td>
+  </tr>
+</table>
 
 ---
 
-## Nexconn SDK & Channel Integration
+## How a deal moves
 
-| Component | Package / Primitive | Usage in MUDRA-OS |
-| :--- | :--- | :--- |
-| Realtime Core | `@nexconn/engine@26.2.1` | Singapore cluster (`AreaCode.SG`), WebSocket multiplexing, presence |
-| Messaging & Media | `@nexconn/chat@26.2.1` | Direct, Group, Community, Open, and System channels + `RC:SightMsg`, `RC:FileMsg`, `RC:ImgMsg` |
-| Inline Deal UI | `@nexconn/chatui@26.2.5` | Custom Lit v3 Web Components (`<nc-escrow-deal-card>`, `<nc-bilingual-bubble>`) |
-| Live Video Assay | `@nexconn/call@26.2.1` | `NCCallEngine` WebRTC SFU calls (Voice, SD `640x480`, HD `1280x720`) + Polaris telemetry |
-| Server Orchestration | `@nexconn/server-sdk@0.1.2` | Token issuance, room lifecycle, moderation freeze API, and `RC:StreamMsg` AI streaming |
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> CREATED
+    CREATED --> FUNDED: LOCK_ESCROW
+    FUNDED --> INSPECTION_LIVE: START_ASSAY
+    INSPECTION_LIVE --> ASSAY_VERIFIED: MARK_ASSAY_VERIFIED
+    ASSAY_VERIFIED --> RELEASED: RELEASE_FUNDS
+    FUNDED --> DISPUTED_FROZEN: RAISE_DISPUTE
+    INSPECTION_LIVE --> DISPUTED_FROZEN: RAISE_DISPUTE
+    ASSAY_VERIFIED --> DISPUTED_FROZEN: RAISE_DISPUTE
+    DISPUTED_FROZEN --> ARBITRATED_SPLIT: RESOLVE_SPLIT
+    DISPUTED_FROZEN --> REFUNDED: REFUND_BUYER
+    RELEASED --> [*]
+    ARBITRATED_SPLIT --> [*]
+    REFUNDED --> [*]
+```
+
+Every transition goes through the Go deal engine with an `Idempotency-Key` and an `expected_version` (optimistic locking), and every milestone writes an Ed25519-signed, hash-chained voucher.
+
+---
+
+## Built on Nexconn
+
+| Nexconn product | Package | How Mudra uses it | Where |
+| :--- | :--- | :--- | :--- |
+| **Chat SDK** | `@nexconn/chat`, `@nexconn/engine` | `NCEngine.connect` with server-issued tokens; direct, group, community and open channels for deal rooms, flash lots and the arena | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
+| **Chat UI** | `@nexconn/chatui` + Lit 3 | Four custom message cards registered before `app.ready()`: `<nc-bilingual-bubble>`, `<nc-escrow-deal-card>`, `<nc-video-assay-receipt>`, `<nc-tribunal-verdict>` | [`packages/nc-lit-cards`](packages/nc-lit-cards) |
+| **Call SDK** | `@nexconn/call` | `NCCallEngine` on top of the live `NCEngine` session for in-chat video inspection | [`apps/web/src/lib/nexconn-boot.ts`](apps/web/src/lib/nexconn-boot.ts) |
+| **Server API** | `@nexconn/server-sdk` | `issueAccessToken`, streamed AI messages (`sendGroupChannelStreamMessage`), system vouchers, `addGroupChannelFreezeList` for the dispute freeze | [`services/nexconn-bridge-node/src/nexconn/client.ts`](services/nexconn-bridge-node/src/nexconn/client.ts) |
+
+The Nexconn secret key never leaves `services/nexconn-bridge-node`; CI fails the build if it appears in client code.
 
 ---
 
 ## Architecture
 
-```
-apps/web (React 19, Vite 6, Tailwind v4, HeroUI v3, Lit v3)
-apps/mobile-expo (Expo / React Native Android APK v1.0.0)
-   |
-   +--> WSS / WebRTC -------------> Nexconn Cloud (Singapore Cluster)
-   |
-   +--> HTTPS /api/v1/* + SSE ----> services/deal-engine-go (Go 1.24, :4002)
-                                       |-- Internal REST --> services/assay-verifier-rs (Rust 1.85, :4003)
-                                       |-- Internal REST --> services/nexconn-bridge-node (Node 22 Fastify, :4001)
+```mermaid
+flowchart LR
+    subgraph Clients
+        W["apps/web<br/>React 19 · Vite · Lit cards"]
+        M["apps/mobile<br/>Expo · React Native (Android)"]
+    end
+    NX[("Nexconn Cloud<br/>chat · calls · channels")]
+    subgraph Services
+        G["deal-engine-go :4002<br/>public /api/v1 · escrow FSM · SSE"]
+        R["assay-verifier-rs :4003<br/>PII scrub · pHash · FFT · Ed25519"]
+        N["nexconn-bridge-node :4001<br/>Nexconn Server SDK · Gemini"]
+    end
+    DB[("PostgreSQL · Redis")]
+    W -- "WebSocket / WebRTC" --> NX
+    W -- "HTTPS + SSE" --> G
+    M -- "HTTPS" --> G
+    G -- "HMAC internal REST" --> R
+    G -- "HMAC internal REST" --> N
+    N -- "Server API" --> NX
+    G --> DB
 ```
 
-| Directory | Responsibility |
-| :--- | :--- |
-| `apps/web` | Production web client, landing experience, two-phone demo, split-screen sandbox, and dispatch desk |
-| `apps/mobile-expo` | Android client (`v1.0.0`) with native Nexconn chat, call, and UPI escrow flows |
-| `services/deal-engine-go` | Public API gateway (`/api/v1/*`), 8-state Escrow FSM, SSE bus, and `/traction` telemetry |
-| `services/assay-verifier-rs` | Aho-Corasick PII scrubber, 64-bit DCT `pHash`, 4096-point `rustfft` audio assay, Ed25519 signer |
-| `services/nexconn-bridge-node` | `@nexconn/server-sdk@0.1.2` host, Gemini 2.5 Flash/Pro prompts, Bhashini ASR fallback |
-| `packages/nc-lit-cards` | Shared Lit v3 custom message cards (`<nc-escrow-deal-card>`, `<nc-bilingual-bubble>`) |
-| `packages/assay-wasm-rs` | Browser-side WASM optical sharpness and perceptual hash helpers |
-| `packages/shared-types` | Shared TypeScript contracts across web, bridge, and Lit cards |
-| `docs/` | Architecture Decision Records (`ADR-0001`..`ADR-0006`), API specs, SDK manual, and runbooks |
+| Service | Language | Responsibilities |
+| :--- | :--- | :--- |
+| `deal-engine-go` | Go 1.24 (chi, pgx, go-redis) | Public API (`/api/v1/*`), 8-state escrow FSM, idempotency, SSE events, traction telemetry |
+| `assay-verifier-rs` | Rust 1.85 (axum) | DPDP PII scrubbing (Aho-Corasick), 64-bit DCT pHash, 4096-point FFT motor RPM, Ed25519 voucher signing |
+| `nexconn-bridge-node` | Node 22 (Fastify) | Nexconn Server SDK host, Gemini translation, tribunal and shopkeeper prompts, Bhashini fallback |
 
 ---
 
-## Application Routes
+## Repository structure
 
-| Route | Purpose |
-| :--- | :--- |
-| `/` | Product overview, APK download, Nexconn SDK architecture, and methodology |
-| `/demo` | Interactive two-phone buyer/seller simulation |
-| `/sandbox` | Split-screen workspace wired to the live Go FSM and Nexconn Singapore cluster |
-| `/app` | Main deal desk with 4-stage story bar and live ChatUI room |
-| `/arena` | 60-second AI bargaining challenge against Chanakya Shopkeeper |
-| `/dispatch` | Arbitrator freeze center with 90-second countdown and evidence diff |
-| `/traction` | Live cluster telemetry, latency percentiles, and recent escrow rooms |
-| `/guide` | Developer SDK guide and integration reference |
-| `/how-it-works` | Step-by-step protocol and escrow state machine walkthrough |
+```text
+.
+├── apps/
+│   ├── web/                    # React 19 web app: landing, /demo, /sandbox, /app, /arena, /dispatch, /traction, /guide
+│   └── mobile/                 # Expo / React Native Android app (v1.0.0 APK) with Supabase backend
+├── services/
+│   ├── deal-engine-go/         # Go public API gateway and escrow state machine (:4002)
+│   ├── assay-verifier-rs/      # Rust forensic and crypto engine (:4003)
+│   └── nexconn-bridge-node/    # Node bridge to the Nexconn Server SDK and Gemini (:4001)
+├── packages/
+│   ├── nc-lit-cards/           # Lit custom message cards for Nexconn Chat UI
+│   ├── shared-types/           # TypeScript contracts shared by web, bridge and cards
+│   └── assay-wasm-rs/          # Browser-side WASM sharpness and pHash helpers
+├── ai/prompts/                 # Versioned prompts loaded by the bridge at runtime
+├── api/openapi.yaml            # OpenAPI 3.1 contract (API-01..API-18)
+├── infra/docker/               # docker-compose for PostgreSQL and Redis
+├── scripts/                    # dev launcher, smoke test, model checks
+├── docs/                       # Product, design, engineering, AI, ops, security and business docs
+└── .github/                    # CI workflows, contributing guide, security policy, templates
+```
+
+A full map of every document, with reading orders, is in [`docs/MAP.md`](docs/MAP.md).
 
 ---
 
-## Local Development
+## Getting started
 
 ### Prerequisites
 
-- Node.js `>= 22.12.0` and `pnpm` `>= 9.15.0`
-- Go `>= 1.24.0`
-- Rust `>= 1.85.0`
+- Node.js `>= 22.12` and pnpm `11`
+- Go `>= 1.24`
+- Rust `>= 1.85`
 
-### Setup & Run
+### Run everything locally
 
 ```bash
-cp .env.example .env
+cp .env.example .env      # works as-is in simulated mode; add Nexconn + Gemini keys for live mode
 pnpm install
 pnpm dev
 ```
 
-This starts:
-- Web client on `http://localhost:5173`
-- Nexconn Bridge on `http://127.0.0.1:4001`
-- Go Deal Engine on `http://127.0.0.1:4002`
-- Rust Assay Verifier on `http://127.0.0.1:4003`
+`pnpm dev` starts all four processes:
 
-### Verification
+| Process | URL |
+| :--- | :--- |
+| Web app | http://localhost:5173 |
+| Nexconn bridge | http://127.0.0.1:4001 |
+| Go deal engine | http://127.0.0.1:4002 |
+| Rust assay verifier | http://127.0.0.1:4003 |
+
+Without real `NEXCONN_APP_KEY` / `NEXCONN_SECRET_KEY` values the bridge runs in **simulated mode**, so the whole flow, including `/demo` and `/sandbox`, works on any machine. If there's no webcam, the app falls back to a simulated HD inspection stream.
+
+### Test
 
 ```bash
-pnpm typecheck
-pnpm test
-cd services/deal-engine-go && go test -race ./...
-cd services/assay-verifier-rs && cargo test
+pnpm typecheck && pnpm test                                   # web, bridge, Lit cards, shared types
+cd services/deal-engine-go && go test -race ./...              # Go escrow engine
+cd services/assay-verifier-rs && cargo clippy --all-targets -- -D warnings && cargo test
+pnpm smoke                                                     # end-to-end smoke test against running services
 ```
+
+CI runs the same checks on every push: secret scan, Go race tests, Rust fmt + clippy + tests + WASM build, and Node/web typecheck, tests and production build.
+
+---
+
+## Routes
+
+| Route | What it shows |
+| :--- | :--- |
+| [`/`](https://mudra.duckdns.org) | Landing page, APK download and how Mudra works |
+| [`/demo`](https://mudra.duckdns.org/demo) | Two-phone buyer/seller demo, happy path and dispute branch |
+| [`/sandbox`](https://mudra.duckdns.org/sandbox) | Split-screen deal wired to the real Go, Rust and Node services |
+| `/app` | Deal desk with live Chat UI room |
+| `/arena` | 60-second AI bargaining duel |
+| `/dispatch` | Arbitrator desk: frozen channels, forensic diff, binding split |
+| [`/traction`](https://mudra.duckdns.org/traction) | Channel counts, cluster activity and latency |
+| `/guide` | SDK guide mapping every screen to its Nexconn call |
+| `/how-it-works` | The eight escrow states, step by step |
+
+---
+
+## Documentation
+
+| Area | Start here |
+| :--- | :--- |
+| Overview | [Project brief](docs/00-overview/PROJECT_BRIEF.md) · [Pitch](docs/00-overview/PITCH.md) · [Vision](docs/00-overview/VISION.md) |
+| Product | [PRD](docs/01-product/PRD.md) · [Features](docs/01-product/FEATURES.md) · [Personas](docs/01-product/PERSONAS.md) |
+| Engineering | [Architecture](docs/03-engineering/ARCHITECTURE.md) · [Nexconn SDK manual](docs/03-engineering/NEXCONN_SDK_MANUAL.md) · [API spec](docs/03-engineering/API_SPEC.md) · [ADRs](docs/03-engineering/adr) |
+| AI | [Models](docs/04-ai/MODELS.md) · [Prompts](docs/04-ai/PROMPTS.md) · [Responsible AI](docs/04-ai/RESPONSIBLE_AI.md) |
+| Security | [Security architecture](docs/06-security-compliance/SECURITY_ARCHITECTURE.md) · [Privacy (DPDP)](docs/06-security-compliance/PRIVACY.md) · [Threat model](docs/06-security-compliance/THREAT_MODEL.md) |
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for setup, branch naming and the pull-request checklist, and [SECURITY.md](.github/SECURITY.md) to report a vulnerability.
 
 ## License
 
-MIT
+[MIT](LICENSE) © 2026 Team Chanakya
