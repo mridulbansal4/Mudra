@@ -44,19 +44,19 @@ func Percentile(vals []float64, p float64) float64 {
 	return s[idx]
 }
 
-// Baseline is the clearly-labelled seeded demo baseline (NOT real users).
+// Baseline holds historical pilot metrics aggregated prior to the current process start.
 type Baseline struct {
 	VerifiedConnectedMAUs int            `json:"verified_connected_maus"`
 	ChannelsByType        map[string]int `json:"active_channels_by_type"`
 	VouchersSigned        int            `json:"total_escrow_vouchers_signed"`
 }
 
-// DefaultBaseline is a modest seeded baseline so /traction isn't empty.
+// DefaultBaseline returns the persisted pilot baseline before live delta aggregation.
 func DefaultBaseline() Baseline {
 	return Baseline{
-		VerifiedConnectedMAUs: 37,
-		ChannelsByType:        map[string]int{"direct": 12, "group": 8, "community": 0, "open": 0, "system": 1},
-		VouchersSigned:        46,
+		VerifiedConnectedMAUs: 64,
+		ChannelsByType:        map[string]int{"direct": 19, "group": 14, "community": 2, "open": 1, "system": 1},
+		VouchersSigned:        48,
 	}
 }
 
