@@ -42,6 +42,20 @@ function withReleaseSigning(config) {
       );
     }
 
+    if (!contents.includes('expo-cli-wrapper.cjs')) {
+      contents = contents.replace(
+        /cliFile\s*=\s*new File\(\["node",\s*"--print",\s*"require\.resolve\('@expo\/cli'[^\n]+/,
+        'cliFile = file("../../scripts/expo-cli-wrapper.cjs")',
+      );
+    }
+
+    if (!contents.includes('debuggableVariants = []')) {
+      contents = contents.replace(
+        /\/\/\s*debuggableVariants\s*=\s*\["liteDebug",\s*"prodDebug"\]/,
+        'debuggableVariants = []',
+      );
+    }
+
     if (!contents.includes('MUDRA_UPLOAD_STORE_FILE')) {
       contents = contents.replace(
         /signingConfigs\s*\{([\s\S]*?debug\s*\{[\s\S]*?\})/,
