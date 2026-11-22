@@ -45,43 +45,54 @@ export function useNetworkStatus(): { isOffline: boolean } {
   return { isOffline };
 }
 
+let subSeq = 0;
+
 /**
  * Subscribes to `public.m_events` for `myId` and invalidates affected React Query caches (§3 ADR-M6, §9.1).
  */
 export function subscribeEvents(myId: string, queryClient: QueryClient): () => void {
-  const channelName = `events:${myId}`;
-  const channel = supabase
-    .channel(channelName)
-    .on(
-      'postgres_changes',
-      {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'm_events',
-        filter: `recipient_id=eq.${myId}`,
-      },
-      (payload) => {
-        const ev = payload.new as Partial<MudraRealtimeEvent> | undefined;
-        const dealId = ev?.deal_id;
+  subSeq += 1;
+  const channelName = `events:${myId}:${subSeq}`;
+  const channel = supabase.channel(channelName);
+  try {
+    channel
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'm_events',
+          filter: `recipient_id=eq.${myId}`,
+        },
+        (payload) => {
+          const ev = payload.new as Partial<MudraRealtimeEvent> | undefined;
+          const dealId = ev?.deal_id;
 
-        if (dealId) {
-          queryClient.invalidateQueries({ queryKey: ['deal', dealId] });
-          queryClient.invalidateQueries({ queryKey: ['messages', dealId] });
-        } else {
-          queryClient.invalidateQueries({ queryKey: ['deal'] });
-          queryClient.invalidateQueries({ queryKey: ['messages'] });
+          if (dealId) {
+            queryClient.invalidateQueries({ queryKey: ['deal', dealId] });
+            queryClient.invalidateQueries({ queryKey: ['messages', dealId] });
+          } else {
+            queryClient.invalidateQueries({ queryKey: ['deal'] });
+            queryClient.invalidateQueries({ queryKey: ['messages'] });
+          }
+
+          queryClient.invalidateQueries({ queryKey: ['deals'] });
+          queryClient.invalidateQueries({ queryKey: ['me'] });
+          queryClient.invalidateQueries({ queryKey: ['wallet'] });
+          queryClient.invalidateQueries({ queryKey: ['feed'] });
         }
-
-        queryClient.invalidateQueries({ queryKey: ['deals'] });
-        queryClient.invalidateQueries({ queryKey: ['me'] });
-        queryClient.invalidateQueries({ queryKey: ['wallet'] });
-        queryClient.invalidateQueries({ queryKey: ['feed'] });
-      }
-    )
-    .subscribe();
+      )
+      .subscribe();
+  } catch {
+    // Fallback polling covers any realtime channel error
+  }
 
   return () => {
-    supabase.removeChannel(channel);
+    try {
+      void supabase.removeChannel(channel);
+    } catch {
+      // Ignore cleanup errors
+    }
   };
 }
 
